@@ -75,7 +75,7 @@ php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" -
 
 ## config変更
 
-- "config/admin.php"を開き、 キー "auth.guards.admin.provider" を以下のように修正します。
+- "config/admin.php"を開き、 キー "auth.providers.admin.provider" を以下のように修正します。
 
 ~~~ php
     'auth' => [
@@ -111,6 +111,9 @@ php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" -
 php artisan passport:keys
 php artisan exment:install
 ~~~
+
+## 設定完了
+クイックスタートが完了したら、引き続き[初期設定](/ja/first_setting.md)を行ってください。  
 
 ## その他の初期設定
 以上の作業で、Exmentを開始することは可能ですが、一部の機能を使うために、追加で設定が必要になる場合があります。  
