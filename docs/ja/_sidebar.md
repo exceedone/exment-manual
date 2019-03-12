@@ -15,6 +15,7 @@
   * [カスタムフォーム](/ja/form.md)
   * [カスタムビュー](/ja/view.md)
   * [ユーザー・ログインユーザー](/ja/user.md)
+  * [役割・権限](/ja/permission.md)
   * [メニュー](/ja/menu.md)
   * [テンプレート](/ja/template.md)
   * [プラグイン](/ja/plugin.md)
