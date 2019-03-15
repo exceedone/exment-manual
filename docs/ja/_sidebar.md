@@ -5,13 +5,14 @@
   * [クイックスタート(ZIP版)](/ja/quickstart_zip.md)
   * [クイックスタート(追加設定)](/ja/quickstart_more.md)
   * [アップデート](/ja/update.md)
+  * [インストールエラーが発生した場合](/ja/install_error.md)
 
 * 【管理者向け】
   * [初期設定](/ja/first_setting.md)
   * [基本情報](/ja/base_info.md)
   * [カスタムテーブル](/ja/table.md)
   * [カスタム列](/ja/column.md)
-  * [関連テーブル](/ja/relation.md)
+  * [リレーション設定](/ja/relation.md)
   * [カスタムフォーム](/ja/form.md)
   * [カスタムビュー](/ja/view.md)
   * [ユーザー・ログインユーザー](/ja/user.md)

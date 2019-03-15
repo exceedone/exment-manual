@@ -11,7 +11,7 @@ cd (Project Name)
 ~~~
 
 - Open ".env" and change the database string to your own MySQL setting.  
-*MySQL can be used only with json type 5.7 or higher.
+*MySQL can be used only with json type 5.7.8 or higher.
 
 ## Command execution
 - Execute the following command.
@@ -20,8 +20,6 @@ cd (Project Name)
 composer require exceedone/exment
 php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
-php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=public --force
-php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=lang --force
 ~~~
 
 ## Change config

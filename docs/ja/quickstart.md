@@ -1,13 +1,20 @@
 # クイックスタート
 Exmentを開始するために必要となる手順です。  
 
+## 注意点
+- **現在Exmentは、サブディレクトリで構築することができません。**  
+例：  
+http://foobartest.com/admin/  OK  
+http://sub.foobartest.com/admin/  OK  
+http://foobartest/subdir/admin/  NG  
+そのため、環境構築を行う場合、サブドメインを設定していただくよう、よろしくお願いします。  
+（なお、当問題は次期バージョンで解消予定です）  
+
+- インストール時にエラーが発生した場合、[インストール時にエラーが発生したら](/ja/install_error)をご参照ください。
+
 ## PHP, MySQL環境構築
-Exmentには、PHP7.1.3以上とMySQL5.7以上が必要です。  
-未導入の方は、PHPとMySQLを同時にインストールできる、XAMPPをお試しください。  
-※すでに導入済の方は不要です。  
-- [Windows版 XAMPP](https://www.apachefriends.org/xampp-files/7.1.26/xampp-windows-x64-7.1.26-0-VC14-installer.exe)
-- [Linux版 XAMPP](https://www.apachefriends.org/xampp-files/7.1.26/xampp-linux-x64-7.1.26-0-installer.run)
-- [Mac版 XAMPP](https://www.apachefriends.org/xampp-files/7.1.26/xampp-osx-7.1.26-0-installer.dmg)
+Exmentには、PHP7.1.3以上が必要です。ならびに、MySQL 5.7.8以上 または MariaDB 10.2.7以上が必要です。  
+※お詫び：以前、オールインワンパッケージとしてXAMPPをご紹介しておりましたが、同梱のMariaDBが10.1であり、Exmentに対応しておりませんでした。大変申し訳ございません。
 
 ## composer導入
 Exmentには、composerの導入が必要です。導入方法はこちらをご参照ください。  
@@ -68,9 +75,6 @@ ADMIN_HTTPS=true #https通信の場合に追加
 composer require exceedone/exment
 php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
-php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=public --force
-php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=lang --force
-php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=views_vendor
 ~~~
 
 ## config変更

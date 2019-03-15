@@ -9,21 +9,26 @@ Exmentのバージョンが更新され、アップデートが必要になっ�
 - その後、実行した時刻のバックアップファイルをクリックし、ダウンロードします。
 
 
-## 最新ソース取得、反映
+## 最新ソース取得、反映、データベース更新
 - コマンドラインで、以下のコマンドを実行します。  
 
 ~~~
 cd (プロジェクトのルートディレクトリ)
 composer update exceedone/exment
+php artisan exment:update
+~~~
+
+
+## (参考)過去のアップデート方法
+コマンド「php artisan exment:update」は、v1.0.9より追加されました。  
+万が一、このコマンドで実行できなかった場合、以下のコマンドを実行してください。  
+
+~~~
+cd (プロジェクトのルートディレクトリ)
+composer update exceedone/exment
+php artisan exment:update
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=public --force
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=lang --force
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=views_vendor --force
-~~~
-
-## データベース最新化
-- コマンドラインで、以下のコマンドを実行します。  
-
-~~~
 php artisan migrate
 ~~~
-

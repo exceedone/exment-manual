@@ -4,14 +4,45 @@
 
 .markdown-section h1{
     margin-top: 5.5rem;
+    border-bottom: solid 3px #cce4ff;
+    position: relative;
+}
+
+.markdown-section h1:after {
+    position: absolute;
+    content: " ";
+    display: block;
+    border-bottom: solid 3px #1e73be;
+    bottom: -3px;
+    width: 20%;
 }
 
 .markdown-section h2{
     margin-top: 5rem;
+    
+    padding: 0.25em 0 0.25em 0.5em;/*上下 左右の余白*/
+    color: #494949;/*文字色*/
+    background: transparent;/*背景透明に*/
+    border-left: solid 5px #1e73be;/*左線*/
+    border-bottom: solid 1px #1e73be;
 }
 
 .markdown-section h3{
     margin-top: 4.5rem;
+    
+    position: relative;
+    padding-left: 1.2em;/*アイコン分のスペース*/
+    line-height: 1.4;
+}
+
+.markdown-section h3::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";/*アイコンのユニコード*/
+    position: absolute;/*絶対位置*/
+    font-size: 1em;/*サイズ*/
+    left: 0;/*アイコンの位置*/
+    top: 0;/*アイコンの位置*/
+    color: #1e73be; /*アイコン色*/
 }
 
 .markdown-section h4{
