@@ -14,7 +14,9 @@ http://foobartest/subdir/admin/  NG
 
 ## PHP, MySQL環境構築
 Exmentには、PHP7.1.3以上が必要です。ならびに、MySQL 5.7.8以上 または MariaDB 10.2.7以上が必要です。  
-※お詫び：以前、オールインワンパッケージとしてXAMPPをご紹介しておりましたが、同梱のMariaDBが10.1であり、Exmentに対応しておりませんでした。大変申し訳ございません。
+PHPやApache、MySQLのある環境構築を、開発環境としてはじめから構築する場合、XAMPPをおすすめしております。  
+XAMPPによる構築方法は、[こちら](/ja/xampp)をご参照ください。  
+※すでに環境がある方は、当設定は不要です。
 
 ## composer導入
 Exmentには、composerの導入が必要です。導入方法はこちらをご参照ください。  
