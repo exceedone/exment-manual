@@ -37,4 +37,7 @@
     * [ページ](/ja/plugin_quickstart_page.md)
     * [ドキュメント](/ja/plugin_quickstart_document.md)
   * [プラグインリファレンス](/ja/plugin_reference.md)
+  * [API](/ja/api.md)
+    * [API設定](/ja/api.md)
+    * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [リリースノート](/ja/release_note.md)

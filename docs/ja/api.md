@@ -1,5 +1,5 @@
-# クイックスタート(API)
-Exmentでは、APIを実行可能です。（現在β版。機能は徐々に追加予定です）  
+# API設定
+Exmentでは、APIを実行可能です。（機能は徐々に追加予定です）  
 Exmentのアカウントを使用する、OAuthを用いた認証によって実施可能です。  
   
 Exmentでは、[laravel/passport](https://github.com/laravel/passport)を使用した認証を行っております。  
@@ -41,7 +41,7 @@ php artisan passport:client
 
 ~~~
 Which user ID should the client be assigned to?:
-> 1
+> (このアプリを管理するユーザーID。通常は1)
 
 What should we name the client?:
 > (Exmentを使用するWebアプリの名前)
@@ -60,6 +60,15 @@ Client secret: qhP34AlxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 - Webサービス側で、Exment認証画面を呼び出すためのエンドポイントを作成します。
 
+~~~
+http(s)://(ExmentのURL)/admin/oauth/authorize'  GET  
+response_type: code
+client_id: (コマンド実施時にコピーしたClient ID)
+redirect_uri: (コマンド実施時に入力したcallback URL)
+scope: (アクセスを行うためのスコープ。複数ある場合はスペース区切り)
+~~~
+
+- 例：
 ~~~ php
 // Webサービス側の実装
 Route::get('/redirect', function () {
@@ -67,7 +76,7 @@ Route::get('/redirect', function () {
         'client_id' => '(コマンド実施時にコピーしたClient ID)',
         'redirect_uri' => '(コマンド実施時に入力したcallback URL)',
         'response_type' => 'code',
-        'scope' => '',
+        'scope' => 'me',
     ]);
 
     return redirect('(ExmentのURL)/admin/oauth/authorize?'.$query);
@@ -76,6 +85,16 @@ Route::get('/redirect', function () {
 
 - Exment認証完了後に、アクセストークンを取得するためのエンドポイントを、Webサービス側で作成します。
 
+~~~
+http(s)://(ExmentのURL)/admin/oauth/token'  POST  
+response_type: authorization_code
+client_id: (コマンド実施時にコピーしたClient ID)
+client_secret: (コマンド実施時にコピーしたClient Secret)
+redirect_uri: (コマンド実施時に入力したcallback URL)
+code: (リダイレクトされたURLより取得したcode)
+~~~
+
+- 例：
 ~~~ php
 // Webサービス側の実装。エンドポイントは、コマンド実施時に入力したcallback URL
 Route::get('/callback', function (Request $request) {
@@ -151,6 +170,7 @@ client_id: (コマンド実施時にコピーしたClient ID)
 client_secret: (コマンド実施時にコピーしたClient Secret)
 username: (ログインするユーザーIDまたはメールアドレス)
 password: (ログインするユーザーパスワード)
+scope: (アクセスを行うスコープ)
 ~~~
 
 - これにより、レスポンス値に、access_token、refresh_token、expires_in属性を含むjsonが返却されます。  
@@ -248,10 +268,10 @@ refresh_token: (取得したリフレッシュトークン)
 アクセストークン取得までの流れをイメージしてください。  
 
 - 以下のURLにアクセスを行います。  
-http(s)://(ExmentのURL)/admin/oauth/authorize?client_id=(コマンド実施時にコピーしたClient ID)&redirect_uri=(コマンド実施時に入力したcallback URL)&response_type=code&scope=  
+http(s)://(ExmentのURL)/admin/oauth/authorize?client_id=(コマンド実施時にコピーしたClient ID)&redirect_uri=(コマンド実施時に入力したcallback URL)&response_type=code&scope=me  
   
 例：  
-http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redirect_uri=http%3a%2f%2flocalhost%2fadmin%2fauth%2fcallback&response_type=code&scope=  
+http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redirect_uri=http%3a%2f%2flocalhost%2fadmin%2fauth%2fcallback&response_type=code&scope=me  
 
 
 - これにより、アプリ認証のためのシンプルな画面が表示されます。  
@@ -333,3 +353,26 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 	"total": 1
 }
 ~~~
+
+## スコープ一覧
+アプリケーションとしてのアクセス許可レベルを定義します。  
+トークン取得時に、このスコープで定義したレベルまで、APIを実行することができます。  
+**※スコープの設定に関わらず、APIでアクセスできるのは、ログインユーザーがもつ役割・権限の情報のみです。**  
+例えば、権限を持たないテーブルの情報は取得できませんし、権限を持たないカスタムデータの更新はできません。  
+
+
+| パラメータ名 | 説明 |
+| ---- | ---- |
+| me | ログインユーザーの情報を取得できます。 |
+| system_read | システム情報を取得できます。 |
+| system_write | システム情報を取得・新規追加・更新・削除できます。 |
+| table_read | カスタムテーブルの情報を取得できます。 |
+| table_write | カスタムテーブルの情報を取得・新規追加・更新・削除できます。 |
+| value_read | カスタムデータの情報を取得できます。 |
+| value_write | カスタムデータの情報を取得・新規追加・更新・削除できます。 |
+
+※複数のスコープを指定する場合、スペース区切りでパラメータに設定してください。  
+
+
+## WebAPIリファレンス
+APIのリファレンスは、[APIリファレンス](https://exment.net/reference/ja/webapi.html)をご参照ください。
