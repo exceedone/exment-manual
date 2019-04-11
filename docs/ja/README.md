@@ -6,6 +6,11 @@
 ## Exmentとは
 Exmentは、情報資産をWeb上で管理するための、オープンソースソフトウェアです。
 
+## 最新版バージョン
+<p align="center">
+<a href="https://exment.net/docs/#/ja/release_note">2019/04/11 v1.0.11</a>
+</p>
+
 ## デモサイト
 <p align="center">
 <a href="https://demo-jp.exment.net/admin">デモサイト</a>
@@ -27,9 +32,6 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 - プラグイン（独自のページや機能を作成）
 - 資料作成(見積書や請求書を画面から作成)
 - API（他のシステムなどからデータ連携）
-
-## 機能(開発予定)
-- 集計処理
 
 ## スクリーンショット
 ![Custom Table and Column](https://exment.net/docs/img/common/screenshot_table_and_column.jpg)  

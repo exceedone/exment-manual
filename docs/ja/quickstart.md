@@ -81,7 +81,7 @@ php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 
 ## config変更
 
-- "config/admin.php"を開き、 キー "auth.providers.admin.provider" を以下のように修正します。
+- "config/admin.php"を開き、 キー "auth.providers.admin.driver" を以下のように修正します。
 
 ~~~ php
     'auth' => [
