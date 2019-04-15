@@ -16,7 +16,7 @@ FORMAT: 1A
 + me
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Request (application/json)
 

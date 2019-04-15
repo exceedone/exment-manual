@@ -27,7 +27,7 @@ FORMAT: 1A
 + value_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
@@ -116,7 +116,7 @@ v1.0.11
 + value_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
@@ -181,7 +181,7 @@ v1.0.11
 + value_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
@@ -240,7 +240,7 @@ v1.0.11
 + value_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
@@ -302,7 +302,7 @@ v1.0.11
 + value_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)

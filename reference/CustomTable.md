@@ -27,7 +27,7 @@ FORMAT: 1A
 + table_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Request (application/json)
 
@@ -121,7 +121,7 @@ v1.0.11
 + table_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + tableKey: user (string, required) - カスタムテーブルのID(Ex. 3)、もしくはテーブル名(Ex. user)
@@ -184,7 +184,7 @@ v1.0.11
 + table_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + tableKey: user (string, required) - カスタムテーブルのID(Ex. 3)、もしくはテーブル名(Ex. user)

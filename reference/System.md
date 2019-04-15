@@ -21,7 +21,7 @@ ExmentのWeb APIリファレンスです。
 なし
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Request (application/json)
 
@@ -32,4 +32,4 @@ v1.0.11
 
 + Response 200 (application/json)
     + Attributes
-        + version: v1.0.11(string, required)
+        + version: v1.1.0(string, required)

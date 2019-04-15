@@ -27,7 +27,7 @@ FORMAT: 1A
 + table_write
 
 #### 対応バージョン
-v1.0.11
+v1.1.0
 
 + Parameters
     + id: 3 (number, required) - カスタム列のID

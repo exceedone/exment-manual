@@ -3,14 +3,6 @@ Exmentを開始するために必要となる手順です。zipファイルよ�
 ※非推奨のインストール方法です。[クイックスタート](/ja/quickstart.md)での導入をおすすめしております。  
 
 ## 注意点
-- **現在Exmentは、サブディレクトリで構築することができません。**  
-例：  
-http://foobartest.com/admin/  OK  
-http://sub.foobartest.com/admin/  OK  
-http://foobartest/subdir/admin/  NG  
-そのため、環境構築を行う場合、サブドメインを設定していただくよう、よろしくお願いします。  
-（なお、当問題は次期バージョンで解消予定です）  
-
 - インストール時にエラーが発生した場合、[インストール時にエラーが発生したら](/ja/install_error)をご参照ください。
 
 
