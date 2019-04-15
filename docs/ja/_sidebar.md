@@ -28,6 +28,7 @@
   * [データ一覧](/ja/data_grid.md)
   * [データフォーム(データ詳細)](/ja/data_form.md)
   * [データインポート・エクスポート](/ja/data_import_export.md)
+  * [検索](/ja/search.md)
 
 * 【開発者向け】
   * [関数リファレンス](/ja/func_reference.md)

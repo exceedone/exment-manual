@@ -110,6 +110,28 @@ php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 ~~~
 
 
+## エラーページ追加
+
+- "app/Exceptions/Handler.php"を開き、 "render"関数に以下を追加します。
+
+~~~ php
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Exception $exception)
+    {
+        // 追加
+        return \Exment::error($request, $exception, function($request, $exception){
+            return parent::render($request, $exception);
+        });
+    }
+~~~
+
+
 ## コマンド実行
 - 以下のコマンドを実行します。
 
