@@ -16,6 +16,7 @@ Exmentのバージョンが更新され、アップデートが必要になっ�
 ~~~
 cd (プロジェクトのルートディレクトリ)
 composer update exceedone/exment
+composer update exceedone/laravel-admin
 php artisan exment:update
 ~~~
 
