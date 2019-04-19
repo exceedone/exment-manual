@@ -5,7 +5,8 @@
   * [クイックスタート(ZIP版)](/ja/quickstart_zip.md)
   * [クイックスタート(追加設定)](/ja/quickstart_more.md)
   * [アップデート](/ja/update.md)
-  * [（補足）XAMPP構築](/ja/xampp.md)
+  * [（補足）XAMPP構築](/ja/install_xampp.md)
+  * [（補足）レンタルサーバーによる構築](/ja/install_rental.md)
   * [（補足）インストールエラーが発生した場合](/ja/install_error.md)
 
 * 【管理者向け】
