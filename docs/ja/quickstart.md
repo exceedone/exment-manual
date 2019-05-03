@@ -102,7 +102,7 @@ php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 ~~~
 
 
-## エラーページ追加
+## （推奨）エラーページ追加
 
 - "app/Exceptions/Handler.php"を開き、 "render"関数に以下を追加します。  
 ※エラーの内容によっては、ここで制御したエラーページが表示されず、Laravelのエラーが表示されることがあります。
