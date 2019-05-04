@@ -8,7 +8,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 
 ## 最新版バージョン
 <p align="center">
-<a href="https://exment.net/docs/#/ja/release_note">2019/05/02 v1.1.4</a>
+<a href="https://exment.net/docs/#/ja/release_note">2019/05/03 v1.1.5</a>
 </p>
 
 ## デモサイト
@@ -52,7 +52,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 
 ### 動作確認ブラウザ
 - Google Chrome
-- Internet Explorer
+- Microsoft Edge
 
 ## その他
 Exmentは、以下のプラグイン・サービスなどを利用しております。

@@ -51,7 +51,7 @@ Exment is open source software for managing information assets on the Web.
 
 ### Verification Browser
 - Google Chrome
-- Internet Explorer
+- Microsoft Edge
 
 ## Other
 Exment uses the following plug-in service etc.
