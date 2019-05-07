@@ -87,7 +87,7 @@ Route::get('/redirect', function () {
 
 ~~~
 http(s)://(ExmentのURL)/admin/oauth/token'  POST  
-response_type: authorization_code
+grant_type: authorization_code
 client_id: (コマンド実施時にコピーしたClient ID)
 client_secret: (コマンド実施時にコピーしたClient Secret)
 redirect_uri: (コマンド実施時に入力したcallback URL)

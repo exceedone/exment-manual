@@ -8,7 +8,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 
 ## 最新版バージョン
 <p align="center">
-<a href="https://exment.net/docs/#/ja/release_note">2019/05/03 v1.1.5</a>
+<a href="https://exment.net/docs/#/ja/release_note">2019/05/07 v1.1.7</a>
 </p>
 
 ## デモサイト
