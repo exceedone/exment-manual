@@ -44,3 +44,4 @@
     * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [リリースノート](/ja/release_note.md)
     * [v1.0.Xからv1.1.X](/ja/update/v1_1.md)
+    * [v1.1.Xからv1.2.X](/ja/update/v1_2.md)

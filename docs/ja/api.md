@@ -65,7 +65,7 @@ http(s)://(ExmentのURL)/admin/oauth/authorize'  GET
 response_type: code
 client_id: (コマンド実施時にコピーしたClient ID)
 redirect_uri: (コマンド実施時に入力したcallback URL)
-scope: (アクセスを行うためのスコープ。複数ある場合はスペース区切り)
+scope: (アクセスを行うためのスコープ。一覧は下記に記載。複数ある場合はスペース区切り)
 ~~~
 
 - 例：
@@ -170,7 +170,7 @@ client_id: (コマンド実施時にコピーしたClient ID)
 client_secret: (コマンド実施時にコピーしたClient Secret)
 username: (ログインするユーザーIDまたはメールアドレス)
 password: (ログインするユーザーパスワード)
-scope: (アクセスを行うスコープ)
+scope: (アクセスを行うスコープ。一覧は下記に記載。複数ある場合はスペース区切り)
 ~~~
 
 - これにより、レスポンス値に、access_token、refresh_token、expires_in属性を含むjsonが返却されます。  

@@ -36,10 +36,12 @@ cd (プロジェクト名)
 - ".env" を開き、以下の内容を追加・変更します。  
 
 ~~~
+
+# 以下、必須設定項目 --------------------
 #基本設定
 APP_URL=http://XXXX.com #そのサイトにアクセスするURL。"admin"は不要
 
-# 以下、データベースの設定値変更
+# データベースの設定値変更
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1 #MySQLのホスト名
 DB_PORT=3306 #MySQLのポート番号
@@ -47,7 +49,14 @@ DB_DATABASE=homestead #MySQLのExment用データベース名
 DB_USERNAME=homestead #MySQLのExment用データベースのユーザー名
 DB_PASSWORD=secret #MySQLのExment用データベースの1パスワード
 
-# 以下、メール送信用の設定値変更
+# v1.2.0より、日本語と日本時間の設定。コピー・ペーストで設定する
+APP_TIMEZONE=Asia/Tokyo
+APP_LOCALE=ja
+
+
+# 以下、任意設定項目 --------------------
+
+# メール送信用の設定値変更。パスワードリセットメールなどを送付する場合に設定
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.mailtrap.io #メールサーバー用のホスト名
 MAIL_PORT=2525 #メールサーバー用のポート番号
@@ -55,52 +64,18 @@ MAIL_USERNAME=null  #メールサーバーのユーザー名
 MAIL_PASSWORD=null #メールサーバーのパスワード
 MAIL_ENCRYPTION=null #ssl使用の場合"ssl"と記入
 
-# 以下、特定の場合に追加
-ADMIN_HTTPS=true #https通信の場合に追加
+# https通信の場合に追加
+ADMIN_HTTPS=true
 
 ~~~
-
-
 
 ## コマンド実行
 - 以下のコマンドを実行します。
 
 ~~~
 composer require exceedone/exment
-php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 ~~~
-
-## config変更
-
-- "config/admin.php"を開き、 キー "auth.providers.admin.driver" を以下のように修正します。
-
-~~~ php
-    'auth' => [
-        'providers' => [
-            'admin' => [
-                // Exment Edit------s
-                // 'driver' => 'eloquent',
-                //'model'  => Encore\Admin\Auth\Database\Administrator::class,
-                'driver' => 'exment-auth',
-                // Exment Edit------e
-            ],
-        ],  
-    ],
-~~~
-
-- 言語とタイムゾーンを変更したい場合、"config/app.php"を開き、 以下の行を修正します。
-
-~~~ php
-
-    // 'timezone' => 'UTC',
-    'timezone' => 'Asia/Tokyo',
-
-    //'locale' => 'en',
-     'locale' => 'ja',
-
-~~~
-
 
 ## （推奨）エラーページ追加
 
@@ -141,3 +116,38 @@ php artisan exment:install
 以下のリンクをご確認ください。  
 - [シングルサインオン](/ja/quickstart_more.md#シングルサインオン)
 - [タスクスケジュール機能](/ja/quickstart_more.md#タスクスケジュール機能)
+
+
+
+
+## (old)config変更
+※これらの設定は、v1.2.0より不要になりました。  
+ですが、過去バージョンでの設定の記録として残しておきます。(将来的に削除します)
+
+- "config/admin.php"を開き、 キー "auth.providers.admin.driver" を以下のように修正します。  
+
+~~~ php
+    'auth' => [
+        'providers' => [
+            'admin' => [
+                // Exment Edit------s
+                // 'driver' => 'eloquent',
+                //'model'  => Encore\Admin\Auth\Database\Administrator::class,
+                'driver' => 'exment-auth',
+                // Exment Edit------e
+            ],
+        ],  
+    ],
+~~~
+
+- 言語とタイムゾーンを変更したい場合、"config/app.php"を開き、 以下の行を修正します。
+
+~~~ php
+
+    // 'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
+
+    //'locale' => 'en',
+     'locale' => 'ja',
+
+~~~

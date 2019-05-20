@@ -6,11 +6,6 @@
 ## Exmentとは
 Exmentは、情報資産をWeb上で管理するための、オープンソースソフトウェアです。
 
-## 最新版バージョン
-<p align="center">
-<a href="https://exment.net/docs/#/ja/release_note">2019/05/07 v1.1.7</a>
-</p>
-
 ## デモサイト
 <p align="center">
 <a href="https://demo-jp.exment.net/admin">デモサイト</a>
@@ -21,6 +16,9 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 - ダッシュボード
 - 画面上からデータ登録
 - 独自テーブル・独自列作成
+- データのカレンダー表示
+- データの集計表示
+- データのグラフ表示
 - テンプレートのインポート・エクスポート（独自テーブル・列を、他のExmentで使用することが可能）
 - データのインポート・エクスポート
 - フォーム内での値計算機能(合計額や、税額の計算)
@@ -63,6 +61,7 @@ Exmentは、以下のプラグイン・サービスなどを利用しており�
 + [mPDF](https://github.com/mpdf/mpdf)
 + [PhpSpreadsheet](https://github.com/phpoffice/phpspreadsheet)
 + [TinyMCE](https://www.tiny.cloud/)
++ [FullCalendar](https://github.com/fullcalendar/fullcalendar)
 
 
 ## クイックスタート

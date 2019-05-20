@@ -1,6 +1,6 @@
 # アップデート
 Exmentのバージョンが更新され、アップデートが必要になった場合の手順です。  
-**※v1.0.Xからv1.1.Xへの更新は、特別な手順が必要です。[こちら](/ja/update/v1_1)の手順で、更新を行ってください。**
+**※v1.0.Xもしくはv1.1.Xからv1.2.Xへの更新は、特別な手順が必要です。[こちら](/ja/update/v1_2)の手順で、更新を行ってください。**
 
 ## (任意)データのバックアップ
 データのバックアップを実行します。
@@ -13,11 +13,12 @@ Exmentのバージョンが更新され、アップデートが必要になっ�
 ## 最新ソース取得、反映、データベース更新
 - コマンドラインで、以下のコマンドを実行します。  
 ※リリース直後だと、最新バージョンが検知されない場合があります。その場合、10～20分ほど経過後、再度下記コマンドを実行してください。  
+**※version1.1.8より、アップデート方法ならびに順序を変更しております。** ご確認をお願いいたします。
 
 ~~~
 cd (プロジェクトのルートディレクトリ)
-composer update exceedone/exment
-composer update exceedone/laravel-admin
+composer require exceedone/laravel-admin
+composer require exceedone/exment
 php artisan exment:update
 ~~~
 
@@ -28,7 +29,7 @@ php artisan exment:update
 
 ~~~
 cd (プロジェクトのルートディレクトリ)
-composer update exceedone/exment
+composer require exceedone/exment
 php artisan exment:update
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=public --force
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider" --tag=lang --force
