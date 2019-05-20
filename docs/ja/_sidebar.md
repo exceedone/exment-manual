@@ -19,6 +19,7 @@
   * [カスタムビュー](/ja/view.md)
   * [ユーザー・ログインユーザー](/ja/user.md)
   * [役割・権限](/ja/permission.md)
+  * [バックアップ](/ja/backup.md)
   * [メニュー](/ja/menu.md)
   * [テンプレート](/ja/template.md)
   * [プラグイン](/ja/plugin.md)
