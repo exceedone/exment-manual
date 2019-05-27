@@ -143,4 +143,5 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 ![ドキュメント出力_添付ファイル](img/plugin/plugin_document_list.png) 
 
 ### サンプルプラグイン
-準備中...
+[ユーザー情報出力](https://exment.net/downloads/sample/plugin/document_demo_user.zip)  
+※ユーザー情報画面で、「ユーザー情報出力」ボタンが表示されます。  
