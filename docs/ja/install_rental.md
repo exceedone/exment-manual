@@ -1,6 +1,4 @@
 # レンタルサーバーによる環境構築
-※当ページは、お問い合わせ対象外となります。ご了承ください。  
-
 手軽に環境を構築し、運用を行う場合、レンタルサーバーという選択肢があります。  
 本ページでは、レンタルサーバーでExmentを構築する手順を記載します。  
 
@@ -21,6 +19,8 @@
 
 - 本手順では、Exmentをレンタルサーバーで動作させるための手順のみの記載となります。  
 SSHやデータベース作成、Linuxコマンドなど、一般的なIT系のナレッジについては記載致しておりません。ご了承ください。  
+
+- その他お問い合わせは、お気軽にこちらの[無料お問い合わせ](https://exment.net/inquiry)にてお願いいたします。
 
 ## レンタルサーバーによるインストール手順
 
@@ -107,7 +107,7 @@ cd laravel
 composer create-project "laravel/laravel=5.6.*" exment
 ~~~
 
-- その後は、[クイックスタート](/ja/quickstart)の手順に従い、Exmentをインストールします。
+- その後は、[インストール手順](/ja/quickstart)に従い、Exmentをインストールします。
 
 - 手順が完了したら、「$HOME/(ドメイン名)/public_html」フォルダに、先ほど作成した「$HOME/(ドメイン名)/laravel/exment/public」フォルダのシンボリックリンクを作成します。  
 シンボリックリンクを作成することで、Laravel本体や設定値は、Web公開のフォルダにない場合でも、laravelのpublicフォルダがpublic_htmlフォルダ内に存在することになります。
@@ -182,7 +182,7 @@ cd laravel
 composer create-project "laravel/laravel=5.6.*" exment
 ~~~
 
-- その後は、[クイックスタート](/ja/quickstart)の手順に従い、Exmentをインストールします。
+- その後は、[インストール手順](/ja/quickstart)に従い、Exmentをインストールします。
 
 - 手順が完了したら、「$HOME/www/exment」フォルダに、先ほど作成した「$HOME/laravel/exment/public」フォルダのシンボリックリンクを作成します。  
 シンボリックリンクを作成することで、Laravel本体や設定値は、Web公開のフォルダにない場合でも、laravelのpublicフォルダがwwwフォルダ内に存在することになります。

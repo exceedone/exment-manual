@@ -7,10 +7,13 @@
 Exmentは、情報資産をWeb上で管理するための、オープンソースソフトウェアです。
 
 ## デモサイト
-<p align="center">
-<a href="https://demo-jp.exment.net/admin">デモサイト</a>
-<br/>※IDとパスワードは「admin/adminadmin」を入力してください
-</p>
+<a href="https://exment.net/demo-env" target="_blank">デモサイト一覧</a>をご確認ください。
+
+## インストール手順
+[インストール手順](/ja/quickstart.md)をご確認ください。
+
+## お問い合わせ
+本マニュアルや、インストール手順についてのお問い合わせは、お気軽にこちらの[無料お問い合わせ](https://exment.net/inquiry)にてお願いいたします。
 
 ## 機能
 - ダッシュボード
@@ -64,5 +67,3 @@ Exmentは、以下のプラグイン・サービスなどを利用しており�
 + [FullCalendar](https://github.com/fullcalendar/fullcalendar)
 
 
-## クイックスタート
-[クイックスタート](/ja/quickstart.md)をご確認ください。

@@ -1,9 +1,9 @@
 * [Home](/ja/)
 
 * 【システム管理者向け】
-  * [クイックスタート](/ja/quickstart.md)
-  * [クイックスタート(ZIP版)](/ja/quickstart_zip.md)
-  * [クイックスタート(追加設定)](/ja/quickstart_more.md)
+  * [インストール手順](/ja/quickstart.md)
+  * [インストール手順(ZIP版)](/ja/quickstart_zip.md)
+  * [インストール追加設定](/ja/quickstart_more.md)
   * [アップデート](/ja/update.md)
   * [（補足）XAMPP構築](/ja/install_xampp.md)
   * [（補足）レンタルサーバーによる構築](/ja/install_rental.md)

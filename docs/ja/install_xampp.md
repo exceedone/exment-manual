@@ -1,6 +1,4 @@
 # XAMPPによる環境構築
-※当ページは、お問い合わせ対象外となります。ご了承ください。  
-
 PHPやApache、MySQLのある環境構築を、開発環境としてはじめから構築する場合、XAMPPをおすすめしております。  
 XAMPPは本来、PHPやApache、MySQLなどを一括でインストールすることができる仕組みです。  
 ただし、XAMPPに同梱しているMySQLは、実際にはMariaDBとなっており、**かつExmentに非対応のバージョン**となっております。（2019/03/15現在）  
@@ -10,6 +8,7 @@ XAMPPは本来、PHPやApache、MySQLなどを一括でインストールする�
 
 なお、本マニュアルではWindowsの場合でご紹介しております。
 
+- その他お問い合わせは、お気軽にこちらの[無料お問い合わせ](https://exment.net/inquiry)にてお願いいたします。
 
 ## インストール手順
 
@@ -123,7 +122,7 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 これで、Apache、PHP、MySQLをインストールすることができました。  
 
 ### Exmentインストール
-Exmentの[クイックスタート](/ja/quickstart)を行い、Exmentのインストールを行います。  
+Exmentの[インストール手順](/ja/quickstart)に従って、Exmentのインストールを行います。  
 Exmentのインストールは、通常"C:\xampp\htdocs"フォルダ内で行います。  
 ここでは、"C:\xampp\htdocs\exment"フォルダ内にインストールを行ったものとします。  
 
