@@ -35,15 +35,19 @@ cd (プロジェクト名)
 ## .env変更
 
 - ".env" を開き、以下の内容を追加・変更します。  
+**※お使いのデータベースが、MySQLか、MariaDBかで、DB_CONNECTIONの値が異なりますので、ご注意ください。**
 
 ~~~
-
 # 以下、必須設定項目 --------------------
 #基本設定
 APP_URL=http://XXXX.com #そのサイトにアクセスするURL。"admin"は不要
 
 # データベースの設定値変更
+# MySQLの場合、以下の設定値（既定値です）
 DB_CONNECTION=mysql
+# MariaDBの場合、以下の設定値に修正します
+DB_CONNECTION=mariadb
+
 DB_HOST=127.0.0.1 #MySQLのホスト名
 DB_PORT=3306 #MySQLのポート番号
 DB_DATABASE=homestead #MySQLのExment用データベース名

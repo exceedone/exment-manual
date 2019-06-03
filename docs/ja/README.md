@@ -1,4 +1,4 @@
-# Exment
+# Exmentマニュアル
 <p align="center">
 <img src="https://exment.net/docs/img/common/exment_logo_side.png" alt="Exment">
 </p>
@@ -6,7 +6,10 @@
 ## Exmentとは
 Exmentは、情報資産をWeb上で管理するための、オープンソースソフトウェアです。
 
-## デモサイト
+## 公式サイト
+<a href="https://exment.net" target="_blank">Exment公式サイト</a>
+
+## デモサイト一覧
 <a href="https://exment.net/demo-env" target="_blank">デモサイト一覧</a>をご確認ください。
 
 ## インストール手順
