@@ -17,6 +17,7 @@
   * [リレーション設定](/ja/relation.md)
   * [カスタムフォーム](/ja/form.md)
   * [カスタムビュー](/ja/view.md)
+  * [ダッシュボード](/ja/dashboard.md)
   * [ユーザー・ログインユーザー](/ja/user.md)
   * [役割・権限](/ja/permission.md)
   * [バックアップ](/ja/backup.md)
