@@ -1,6 +1,10 @@
 * [Home](/ja/)
 
-* 【システム管理者向け】
+* 【はじめに】
+  * [Exmentのコンセプト](/ja/concept.md)
+  * [業務開始までの流れ](/ja/start_flow.md)
+
+* 【インフラ担当者向け】
   * [インストール手順](/ja/quickstart.md)
   * [インストール手順(ZIP版)](/ja/quickstart_zip.md)
   * [インストール追加設定](/ja/quickstart_more.md)

@@ -4,16 +4,18 @@
 </p>
 
 ## Exmentとは
-Exmentは、情報資産をWeb上で管理するための、オープンソースソフトウェアです。
-
-## 公式サイト
+Exmentは、情報資産をWeb上で管理するための、オープンソースソフトウェアです。  
 <a href="https://exment.net" target="_blank">Exment公式サイト</a>
 
 ## デモサイト一覧
+業務に合わせた、さまざまなデモサイトをご用意しております。  
 <a href="https://exment.net/demo-env" target="_blank">デモサイト一覧</a>をご確認ください。
 
-## インストール手順
-[インストール手順](/ja/quickstart.md)をご確認ください。
+## はじめに
+以下の内容をご覧いただくことをおすすめします。
+- [Exmentのコンセプト](/ja/concept.md)
+- [業務開始までの流れ](/ja/start_flow.md)
+- [インストール手順](/ja/quickstart.md)
 
 ## お問い合わせ
 本マニュアルや、インストール手順についてのお問い合わせは、お気軽にこちらの[無料お問い合わせ](https://exment.net/inquiry)にてお願いいたします。
