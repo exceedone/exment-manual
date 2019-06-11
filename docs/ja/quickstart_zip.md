@@ -77,3 +77,5 @@ php artisan exment:install
 以下のリンクをご確認ください。  
 - [シングルサインオン](/ja/quickstart_more.md#シングルサインオン)
 - [タスクスケジュール機能](/ja/quickstart_more.md#タスクスケジュール機能)
+- [サーバー外部通信オフ](/ja/quickstart_more.md#サーバー外部通信オフ)
+- [ファイルアップロード上限サイズ変更](/ja/quickstart_more.md#ファイルアップロード上限サイズ変更)
