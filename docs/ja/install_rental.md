@@ -124,6 +124,9 @@ Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追�
 
 
 ### さくらインターネットの場合
+※さくらインターネットの場合、「composer」実施時に、途中で終了してしまう場合があります。  
+そのため、「nice -n 20 composer」と、「nice -n 20」と付けて実行します。
+
 - あらかじめ、Exment用のMySQLを作成しておきます。
 
 - さくらインターネットの「ドメイン/SSL設定」より、パスを変更します。  
@@ -168,7 +171,7 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=usr/local/bin/
 ## 名前変更
 mv usr/local/bin/composer.phar usr/local/bin/composer
 ## 確認
-composer --version
+nice -n 20 composer --version
 # composer version 1.8.5 2019-04-09 17:46:47
 ~~~
 
@@ -179,7 +182,7 @@ composer --version
 cd ~
 mkdir laravel
 cd laravel
-composer create-project "laravel/laravel=5.6.*" exment
+nice -n 20 composer create-project "laravel/laravel=5.6.*" exment
 ~~~
 
 - その後は、[インストール手順](/ja/quickstart)に従い、Exmentをインストールします。
