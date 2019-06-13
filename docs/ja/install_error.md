@@ -11,44 +11,7 @@
 ~~~
 
 MySQLのバージョンが5.7.7未満の場合によって発生します。  
-その場合、以下の対応を行ってください。  
-※参考：  
-[https://laravel-news.com/laravel-5-4-key-too-long-error](https://laravel-news.com/laravel-5-4-key-too-long-error)  
-[https://akamist.com/blog/archives/982](https://akamist.com/blog/archives/982)  
-
-
-- Exmentをインストールしたフォルダの中の、"app/Providers/AppServiceProvider.php"を編集し、  
-boot(){}関数を、以下のように修正します。  
-
-~~~ php
-public function boot()
-{
-    \Illuminate\Support\Facades\Schema::defaultStringLength(191); // この行を追加
-}
-~~~
-
-- その後、以下のコマンドを、ルートディレクトリで実行してください。  
-
-~~~ php
-php artisan migrate:reset
-php artisan exment:install
-~~~
-
-※このコマンドを実行することにより、別のエラーが発生した場合は、以下の対応をお願いいたします。
-
-- Exment用に作成したデータベースに対し、以下のSQLを実行する。
-
-~~~
-drop table users;
-~~~
-
-- 再度、以下のコマンドを実行する。
-
-~~~ php
-php artisan migrate:reset
-php artisan exment:install
-~~~
-
+MySQLのバージョンを5.7.8以上にアップデートしてください。
 
 ## 初回インストール後、管理画面にアクセス時、「SQLSTATE[HY000][202] Permission denied」エラーが発生する
 ApacheからMySQLにアクセスを行う場合、SELinuxの設定が必要になる場合があります。  

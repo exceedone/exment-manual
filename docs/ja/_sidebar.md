@@ -6,7 +6,7 @@
 
 * 【インフラ担当者向け】
   * [インストール手順](/ja/quickstart.md)
-  * [インストール手順(ZIP版)](/ja/quickstart_zip.md)
+  * [インストール手順(画面インストール)](/ja/quickstart_beta.md)
   * [インストール追加設定](/ja/quickstart_more.md)
   * [アップデート](/ja/update.md)
   * [（補足）XAMPP構築](/ja/install_xampp.md)

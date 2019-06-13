@@ -126,10 +126,34 @@ Exmentの[インストール手順](/ja/quickstart)に従って、Exmentのイ�
 Exmentのインストールは、通常"C:\xampp\htdocs"フォルダ内で行います。  
 ここでは、"C:\xampp\htdocs\exment"フォルダ内にインストールを行ったものとします。  
 
-### サブドメイン設定
-現在Exmentは、サブディレクトリで構築することができません。  
-通常のxamppの設定だと、"http://localhost/exment" のように、サブディレクトリでのURLになってしまいます。  
-そこで、XAMPPのサブドメイン設定を行います。これにより、 http://exment.localhost のようなURLを構成することができます。
+## 証明書の追加
+"C:\xampp\apache\bin"に、"curl-ca-bundle.crt"というファイルがあるかどうかを確認します。  
+ない場合、以下の対応を行ってください。
+
+- こちらのサイトにアクセスを行い、「cacert.pem」をダウンロードします。  
+https://curl.haxx.se/docs/caextract.html
+
+- ダウンロードした「cacert.pem」を、「curl-ca-bundle.crt」にリネームします。  
+
+- リネームした「curl-ca-bundle.crt」を、「C:\xampp\apache\bin」に配置します。  
+
+- apacheを再起動します。  
+
+  
+## 完了
+これで、以下のURLでExmentにアクセスできるようになります。  
+http://localhost/exment/public/admin
+
+※URLに「/public」が必要になります。  
+また、既定の設定だと、「http://localhost/exment」にアクセス時、ファイル一覧が表示されてしまいます。  
+この設定を避けたい場合、以下の「サブドメイン設定」を行うことを強くおすすめします。
+
+
+### (補足)サブドメイン設定
+以前、Exmentはサブディレクトリ("http://localhost/exment/public"のようなURL)で構築することができませんでした。 
+現在はサブディレクトリでも構築可能ですが、サブドメインでの構築する方法を記載します。
+これにより、 http://exment.localhost のようなURLを構成することができます。  
+URLに「public」というフォルダ名を含めたくない場合には、こちらの設定を行ってください。
 
 - "C:\xampp\apache\conf\extra\httpd-vhosts.conf"を開きます。
 
@@ -156,21 +180,3 @@ Exmentのインストールは、通常"C:\xampp\htdocs"フォルダ内で行い
 ~~~
 
 - XAMPPコントロールパネルで、Apacheを再起動します。  
-
-## 証明書の追加
-"C:\xampp\apache\bin"に、"curl-ca-bundle.crt"というファイルがあるかどうかを確認します。  
-ない場合、以下の対応を行ってください。
-
-- こちらのサイトにアクセスを行い、「cacert.pem」をダウンロードします。  
-https://curl.haxx.se/docs/caextract.html
-
-- ダウンロードした「cacert.pem」を、「curl-ca-bundle.crt」にリネームします。  
-
-- リネームした「curl-ca-bundle.crt」を、「C:\xampp\apache\bin」に配置します。  
-
-- apacheを再起動します。  
-
-  
-## 完了
-これで、以下のURLでExmentにアクセスできるようになります。  
-http://exment.localhost/admin
