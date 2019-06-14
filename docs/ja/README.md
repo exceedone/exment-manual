@@ -11,54 +11,321 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 業務に合わせた、さまざまなデモサイトをご用意しております。  
 <a href="https://exment.net/demo-env" target="_blank">デモサイト一覧</a>をご確認ください。
 
-## はじめに
-以下の内容をご覧いただくことをおすすめします。
-- [Exmentのコンセプト](/ja/concept.md)
-- [業務開始までの流れ](/ja/start_flow.md)
-- [インストール手順](/ja/quickstart.md)
-
 ## お問い合わせ
 本マニュアルや、インストール手順についてのお問い合わせは、お気軽にこちらの[無料お問い合わせ](https://exment.net/inquiry)にてお願いいたします。
 
-## 機能
-- ダッシュボード
-- 画面上からデータ登録
-- 独自テーブル・独自列作成
-- データのカレンダー表示
-- データの集計表示
-- データのグラフ表示
-- テンプレートのインポート・エクスポート（独自テーブル・列を、他のExmentで使用することが可能）
-- データのインポート・エクスポート
-- フォーム内での値計算機能(合計額や、税額の計算)
-- 権限管理
-- 組織管理
-- メニュー構成管理
-- 検索（フリーワード検索、情報に関連する単語の検索）
-- メールテンプレート
-- プラグイン（独自のページや機能を作成）
-- 資料作成(見積書や請求書を画面から作成)
-- API（他のシステムなどからデータ連携）
-
-## スクリーンショット
-![Custom Table and Column](https://exment.net/docs/img/common/screenshot_table_and_column.jpg)  
-  
-![Custom Form and view](https://exment.net/docs/img/common/screenshot_form_and_view.jpg)  
-  
-![Custom Data, Dashboard and Template](https://exment.net/docs/img/common/screenshot_data_dashboard_template.jpg)  
+## 機能・スクリーンショット
+<a href="https://exment.net/functions" target="_blank">機能・スクリーンショット</a>をご確認ください。
 
 
-## 動作環境
-### サーバー
-- PHP 7.1.3以上
-- MySQL 5.7.8以上 または MariaDB 10.2.7以上
-- Laravel5.6以上
+## マニュアルメニュー
+「<span style="color:red;">*</span>」で記載されているメニューは、特に重要な内容になります。
 
-※Laravel5.5から5.6に変更を行いました。それに伴い、対象のPHPバージョンを7.1.3に変更しております。
-※Exmentでは、データベースにjson型を使用しています。json型に対応しているデータベースは、MySQLは5.7.8以上、MariaDBは10.2.7以上となります。ご利用予定のデータベースのバージョンをご確認いただきますよう、よろしくお願いします。
+<div class="container-fluid">
+    <div>
+        <h4>1. はじめに</h4>
+        <div class="row">
+            <div class="col-sm-6 tile tile">
+                <a href="/#/ja/concept">
+                    <div class="tile-inner">
+                        <h5>Exmentのコンセプト</h5>
+                        <p>Exmentの考え方やコンセプトをまとめております。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/start_flow">
+                    <div class="tile-inner">
+                        <h5>業務開始までの流れ</h5>
+                        <p>Exmentを使用して業務を開始するまでの、標準的なステップをまとめております。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>2. インストール・初期設定</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/server">
+                    <div class="tile-inner important-topic">
+                        <h5>サーバー設定</h5>
+                        <p>Exmentをインストールするための、Webサーバー・データベースの設定を行います。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/quickstart">
+                    <div class="tile-inner important-topic">
+                        <h5>インストール手順</h5>
+                        <p>Exmentを開始するために必要となるインストール手順です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/quickstart_beta">
+                    <div class="tile-inner">
+                        <h5>インストール手順（お手軽インストール）</h5>
+                        <p>v1.3.0より対応の、画面からお手軽にインストールを行う手順です。現在β版です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/first_setting">
+                    <div class="tile-inner important-topic">
+                        <h5>初期設定</h5>
+                        <p>インストール後、最初の管理者ログインID設定など、初期設定の手順になります。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/update">
+                    <div class="tile-inner important-topic">
+                        <h5>アップデート</h5>
+                        <p>Exmentのアップデート手順になります。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>3. テーブル設定</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/table">
+                    <div class="tile-inner important-topic">
+                        <h5>テーブル設定</h5>
+                        <p>Exmentのもっとも基本となる設定です。データを保存するための、カスタムテーブルの設定手順です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/column">
+                    <div class="tile-inner important-topic">
+                        <h5>カスタム列設定</h5>
+                        <p>カスタムテーブルに属する、カスタム列の設定です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/relation">
+                    <div class="tile-inner">
+                        <h5>リレーション設定</h5>
+                        <p>テーブルとテーブルを関係させる、リレーションの設定です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/form">
+                    <div class="tile-inner">
+                        <h5>カスタムフォーム設定</h5>
+                        <p>データ登録画面で使用する、フォーム項目を管理します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/view">
+                    <div class="tile-inner important-topic">
+                        <h5>カスタムビュー設定</h5>
+                        <p>データ一覧画面で使用する、ビュー項目を管理します。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>4. データ管理</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/data">
+                    <div class="tile-inner important-topic">
+                        <h5>データ</h5>
+                        <p>作成したテーブルに、データを一覧・新規追加・編集・表示・削除するための手順です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/data_grid">
+                    <div class="tile-inner important-topic">
+                        <h5>データ一覧</h5>
+                        <p>登録したデータを一覧表示します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/data_form">
+                    <div class="tile-inner important-topic">
+                        <h5>データフォーム（データ詳細）</h5>
+                        <p>対象のテーブルに、データを登録・編集します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/data_import_export">
+                    <div class="tile-inner">
+                        <h5>データインポート・エクスポート</h5>
+                        <p>対象のテーブルに、CSV・Excelファイルから、データを一括で登録・更新・削除します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/search">
+                    <div class="tile-inner">
+                        <h5>データ検索</h5>
+                        <p>登録したデータを検索するための手順です。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>5. ユーザー・組織・役割権限</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/user">
+                    <div class="tile-inner">
+                        <h5>ユーザー・ログイン管理</h5>
+                        <p>ユーザー情報の管理や、システムにログインをするための設定方法の手順です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/permission">
+                    <div class="tile-inner">
+                        <h5>役割・権限</h5>
+                        <p>特定のデータやページを、特定のユーザーのみが管理できるようにするための設定です。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>6. その他標準機能</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/template">
+                    <div class="tile-inner">
+                        <h5>テンプレート</h5>
+                        <p>カスタムテーブル、列などの情報を、インポートまたはエクスポートします。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/backup">
+                    <div class="tile-inner">
+                        <h5>バックアップ・リストア</h5>
+                        <p>保存しているデータやデータベース情報を、バックアップ・リストアします。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/menu">
+                    <div class="tile-inner">
+                        <h5>メニュー</h5>
+                        <p>左メニューに表示される項目を管理します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/dashboard">
+                    <div class="tile-inner">
+                        <h5>ダッシュボード</h5>
+                        <p>ログイン時に最初に表示される、TOPページの内容を管理します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/mail">
+                    <div class="tile-inner">
+                        <h5>メールテンプレート</h5>
+                        <p>ユーザーにメールを送る場合の、件名や本文の設定を行います。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>7. 機能拡張</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/plugin">
+                    <div class="tile-inner">
+                        <h5>プラグイン</h5>
+                        <p>独自に開発したプラグインの管理方法です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/plugin_quickstart">
+                    <div class="tile-inner">
+                        <h5>プラグイン作成方法</h5>
+                        <p>プラグインの作成方法を、種類ごとに記載しております。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/api">
+                    <div class="tile-inner">
+                        <h5>API</h5>
+                        <p>他のシステムと連携するためのAPIの使用方法です。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>8. リファレンス</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/release_note">
+                    <div class="tile-inner">
+                        <h5>リリースノート</h5>
+                        <p>過去のリリース履歴です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/params">
+                    <div class="tile-inner">
+                        <h5>パラメータ変数</h5>
+                        <p>自動採番やドキュメント出力などで、パラメータを値に置き換える場合の変数一覧です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="https://exment.net/reference/ja/webapi.html">
+                    <div class="tile-inner">
+                        <h5>APIリファレンス</h5>
+                        <p>WebAPIのリファレンスです。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/func_reference">
+                    <div class="tile-inner">
+                        <h5>関数リファレンス</h5>
+                        <p>※情報が古いです。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="/#/ja/plugin_reference">
+                    <div class="tile-inner">
+                        <h5>プラグインリファレンス</h5>
+                        <p>※情報が古いです。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                    <div class="tile-inner">
+                        <h5>設定値一覧</h5>
+                        <p>※準備中です。</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-### 動作確認ブラウザ
-- Google Chrome
-- Microsoft Edge
 
 ## その他
 Exmentは、以下のプラグイン・サービスなどを利用しております。

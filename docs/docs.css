@@ -1,3 +1,7 @@
+.red{
+    color: red;
+}
+
 .markdown-section h3 + h4{
     margin-top: 2rem;
 }
@@ -68,4 +72,52 @@ img{
     border:1px solid #ccc;
     display:block;
     margin:0 auto;
+}
+
+/* tile */
+.tile{
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 5px 0;
+}
+
+.tile a{
+    text-decoration: none;
+}
+
+.tile-inner{
+    background-color: #fff;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    margin: 5px;
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+    color: #34495e;
+}
+.tile-inner:hover{
+    background-color: #eee;
+}
+
+.tile-inner.important-topic{
+    background-color: #ffffef;
+    border: 1px solid #daa520;
+}
+.tile-inner.important-topic:hover{
+    background-color: #fffacd;
+}
+
+.tile-inner h5{
+    margin-top: 0;
+    font-weight:bold;
+}
+
+.tile-inner.important-topic h5::after{
+    content: " *";
+    color: red;
+}
+
+.tile-inner p{
+    margin-bottom: 0;
+    font-weight:normal;
 }
