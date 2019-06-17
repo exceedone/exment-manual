@@ -21,7 +21,8 @@
 * 【4. データ管理】
   * [データ](/ja/data.md)
   * [データ一覧](/ja/data_grid.md)
-  * [データフォーム(データ詳細)](/ja/data_form.md)
+  * [データフォーム](/ja/data_form.md)
+  * [データ詳細](/ja/data_details.md)  
   * [データインポート・エクスポート](/ja/data_import_export.md)
   * [検索](/ja/search.md)
 

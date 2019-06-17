@@ -44,7 +44,7 @@ Exmentに保存している、各テーブルのデータを、一覧・新規�
 ![データ画面](img/data/data_show2.png)
   
 表示画面の詳細は、以下のページをご参照ください。  
-[データ表示](/ja/data_show.md)
+[データ詳細](/ja/data_details.md)
 
 
 ## データの削除
