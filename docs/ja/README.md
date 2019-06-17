@@ -317,10 +317,12 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/ja/config">
                     <div class="tile-inner">
                         <h5>設定値一覧</h5>
-                        <p>※準備中です。</p>
+                        <p>Exmentで設定できる設定値一覧です。</p>
                     </div>
+                </a>
             </div>
             <div class="col-sm-6 tile">
                 <a href="#/ja/license">

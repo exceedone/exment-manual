@@ -54,3 +54,5 @@
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference.md)
   * [プラグインリファレンス](/ja/plugin_reference.md)
+  * [設定値一覧](/ja/config.md)
+  * [ライセンス](/ja/license.md)
