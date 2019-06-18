@@ -50,16 +50,12 @@
 しかし、検索方法を部分一致に切り替えることはできます。  
 システム管理者がサーバー側の設定で、以下の設定を行ってください。
 
-- ファイル"config/exment.php"を開く。
+- ファイル".env"を開く。
 
 - 以下の設定値を追加する。
 
 ~~~ php
-  'disabled_outside_api' => env('EXMENT_DISABLED_OUTSIDE_API', false),
-
-  // 追加ここから
-  'filter_search_full' => true,
-  // 追加ここまで
+EXMENT_FILTER_SEARCH_FULL=true
 ~~~
 
 この設定で、検索を部分一致にすることができます。  
