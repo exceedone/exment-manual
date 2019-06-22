@@ -19,7 +19,7 @@ XAMPPによる構築方法は、[こちら](/ja/install_xampp)をご参照くだ
 [Exment zip版](https://exment.net/downloads/ja/exment.zip)
 
 - zipファイルを、PHP実行可能なパスに展開します。  
-例：C:\xampp\htdocs
+例：C:\xampp\local
 
 
 ## APP_KEY再生成

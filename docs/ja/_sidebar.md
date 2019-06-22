@@ -5,11 +5,11 @@
   * [業務開始までの流れ](/ja/start_flow.md)
 
 * 【2. インストール・初期設定】
+  * [サーバー設定](/ja/server.md)
   * [インストール手順](/ja/quickstart.md)
-  * [インストール手順(画面インストール)](/ja/quickstart_beta.md)
-  * [インストール追加設定](/ja/quickstart_more.md)
   * [初期設定](/ja/first_setting.md)
   * [アップデート](/ja/update.md)
+  * [追加設定](/ja/quickstart_more.md)
 
 * 【3. テーブル設定】
   * [カスタムテーブル](/ja/table.md)
@@ -50,6 +50,7 @@
   * [リリースノート](/ja/release_note.md)
     * [v1.0.Xからv1.1.X](/ja/update/v1_1.md)
     * [v1.1.Xからv1.2.X](/ja/update/v1_2.md)
+    * [v1.2.Xからv1.3.X](/ja/update/v1_3.md)
   * [パラメータ変数](/ja/params.md)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference.md)

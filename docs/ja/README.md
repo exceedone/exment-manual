@@ -63,14 +63,6 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
-                <a href="#/ja/quickstart_beta">
-                    <div class="tile-inner">
-                        <h5>インストール手順（お手軽インストール）</h5>
-                        <p>v1.3.0より対応の、画面からお手軽にインストールを行う手順です。現在β版です。</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 tile">
                 <a href="#/ja/first_setting">
                     <div class="tile-inner important-topic">
                         <h5>初期設定</h5>
@@ -83,6 +75,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     <div class="tile-inner important-topic">
                         <h5>アップデート</h5>
                         <p>Exmentのアップデート手順になります。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/quickstart_more">
+                    <div class="tile-inner">
+                        <h5>追加設定</h5>
+                        <p>シングルサインオンやパス変更など、Exmentの追加設定を行う場合の手順です。</p>
                     </div>
                 </a>
             </div>

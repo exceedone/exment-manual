@@ -341,19 +341,15 @@ Exmentでは、Exmentサーバーから他のサーバーへ通信を行うこ�
 その場合の設定を記載します。 
 
 ### 設定手順 
-- .envファイルに、以下の内容を追加します。
+> 本手順はv1.3.0より変更になりました。
 
-~~~
-EXMENT_DISABLED_OUTSIDE_API=true #他のサーバーへ通信を行わない場合の設定
-~~~
+- 左メニューより、「システム設定」画面に遷移します。  
 
-※当設定は、version1.0.10より追加された機能です。  
-それより前にExmentをインストールしていた場合、config/exment.phpファイルを確認し、以下の内容を追加してください。  
+- 一覧の中から、「サーバー外部通信を行う」項目をNOに設定します。  
+![サーバー外部通信オフ](img/quickstart/outside_api.png)
 
-~~~ php
-'disabled_outside_api' => env('EXMENT_DISABLED_OUTSIDE_API', false),
-~~~
 
+- 保存し、設定完了です。
 
 
 ## ファイルアップロード上限サイズ変更

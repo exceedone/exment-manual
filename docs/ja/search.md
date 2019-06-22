@@ -54,7 +54,7 @@
 
 - 以下の設定値を追加する。
 
-~~~ php
+~~~
 EXMENT_FILTER_SEARCH_FULL=true
 ~~~
 
