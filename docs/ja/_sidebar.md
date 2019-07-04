@@ -8,6 +8,7 @@
   * [サーバー設定](/ja/server.md)
   * [インストール手順](/ja/quickstart.md)
   * [初期設定](/ja/first_setting.md)
+  * [システム設定](/ja/system_setting.md)
   * [アップデート](/ja/update.md)
   * [追加設定](/ja/quickstart_more.md)
 
