@@ -42,7 +42,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 ： UTC
 - 役割 : アプリケーションで使用するタイムゾーンです。日本の場合は「Asia/Tokyo」を記入してください。
 
-
 #### 「/admin」URL変更
 - 設定キー : ADMIN_ROUTE_PREFIX
 - 既定値 ： admin
@@ -53,24 +52,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : EXMENT_API
 - 既定値 ： false
 - 役割 : trueにすることで、ExmentのAPIを使用することができます。詳細は[こちら](/ja/api)をご確認ください。
-
-
-#### エキスパートモード
-- 設定キー : EXMENT_EXPART_MODE
-- 既定値 ： false
-- 役割 : trueにすることで、より柔軟で、システムに詳しい方向けの設定を行うことができるようになります。
-
-
-#### デバッグモード(SQLログ出力)
-- 設定キー : EXMENT_DEBUG_MODE
-- 既定値 ： false
-- 役割 : trueにすることで、ExmentでSQLを実行時、SQL文をログ出力することができます。※開発用です。
-
-
-#### デバッグモード(SQLログ出力 - 関数表示)
-- 設定キー : EXMENT_DEBUG_MODE_SQLFUNCTION
-- 既定値 ： false
-- 役割 : ExmentでSQLを実行時で、「EXMENT_DEBUG_MODE」がtrueのときに、trueにすることで、SQL文と同時に、呼び出し元の関数一覧をログ出力することができます。※開発用です。
 
 
 #### ダッシュボード行数
@@ -85,18 +66,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : ExmentのマニュアルURLを設定します。
 
 
-#### デフォルトログインプロバイダ表示
-- 設定キー : EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER
-- 既定値 : true
-- 役割 : ExmentのID・パスワードを使用したログインフォームを表示するかどうかを切り替えます。シングルサインオンを使用する場合に設定が有効になります。詳細は[こちら](/ja/quickstart_more?id=シングルサインオン)をご確認ください。
-
-
-#### SSOログインプロバイダ文字列
-- 設定キー : EXMENT_LOGIN_PROVIDERS
-- 既定値 : (なし)
-- 役割 : SSOで使用するプロバイダ名一覧を、カンマ区切りで設定します。詳細は[こちら](/ja/quickstart_more?id=シングルサインオン)をご確認ください。
-
-
 #### 更新履歴デフォルト値
 - 設定キー : EXMENT_REVISION_COUNT
 - 既定値 : 100
@@ -109,12 +78,35 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : mysqlコマンドのパスです。特に指定がない場合、環境変数PATHが通っているものとします。
 
 
-#### メール連続通知無視時間(分)
-- 設定キー : EXMENT_NOTIFY_SAVED_SKIP_MINUTES
+### ログイン
+#### デフォルトログインプロバイダ表示
+- 設定キー : EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER
+- 既定値 : true
+- 役割 : ExmentのID・パスワードを使用したログインフォームを表示するかどうかを切り替えます。シングルサインオンを使用する場合に設定が有効になります。詳細は[こちら](/ja/quickstart_more?id=シングルサインオン)をご確認ください。
+
+#### SSOログインプロバイダ文字列
+- 設定キー : EXMENT_LOGIN_PROVIDERS
+- 既定値 : (なし)
+- 役割 : SSOで使用するプロバイダ名一覧を、カンマ区切りで設定します。詳細は[こちら](/ja/quickstart_more?id=シングルサインオン)をご確認ください。
+
+
+#### ログイン失敗回数計測
+- 設定キー : EXMENT_THROTTLE
+- 既定値 : true
+- 役割 : trueの場合、ログイン失敗が一定回数続いた場合に、一定時間経過するまでログインできなくなります。  
+
+#### ログイン失敗回数
+- 設定キー : EXMENT_MAX_ATTEMPTS
 - 既定値 : 5
-- 役割 : データ新規作成・更新でのメール通知時、同一のデータの連続した更新では、2件目以降のメールはスキップされます。その連続した通知の件数を判定するための時間(分)です。
+- 役割 : 一定時間ログインできなくなるまでの、ログイン失敗の回数です。  
+
+#### ログイン失敗回復時間(分)
+- 設定キー : EXMENT_DECAY_MINUTES
+- 既定値 : 60
+- 役割 : ログインできなくなった場合に、再度ログインできるようになるまでの時間(分)です。 
 
 
+### 検索
 #### 検索時全文一致
 - 設定キー : EXMENT_FILTER_SEARCH_FULL
 - 既定値 : false
@@ -139,3 +131,34 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : 関連データ検索時に、1つのテーブルあたりに取得する最大件数です。
 
 
+### メール設定
+#### メール設定値をenvファイルより使用
+- 設定キー : EXMENT_MAIL_SETTING_ENV_FORCE
+- 既定値 : false
+- 役割 : trueにすると、メール設定を、.envファイルの設定から使用します。  
+(falseの場合、システム設定画面で記入した設定値を使用します。)
+
+#### メール連続通知無視時間(分)
+- 設定キー : EXMENT_NOTIFY_SAVED_SKIP_MINUTES
+- 既定値 : 5
+- 役割 : データ新規作成・更新でのメール通知時、同一のデータの連続した更新では、2件目以降のメールはスキップされます。その連続した通知の件数を判定するための時間(分)です。
+
+
+### デバッグ・開発者向け
+
+#### エキスパートモード
+- 設定キー : EXMENT_EXPART_MODE
+- 既定値 ： false
+- 役割 : trueにすることで、より柔軟で、システムに詳しい方向けの設定を行うことができるようになります。
+
+
+#### デバッグモード(SQLログ出力)
+- 設定キー : EXMENT_DEBUG_MODE
+- 既定値 ： false
+- 役割 : trueにすることで、ExmentでSQLを実行時、SQL文をログ出力することができます。※開発用です。
+
+
+#### デバッグモード(SQLログ出力 - 関数表示)
+- 設定キー : EXMENT_DEBUG_MODE_SQLFUNCTION
+- 既定値 ： false
+- 役割 : ExmentでSQLを実行時で、「EXMENT_DEBUG_MODE」がtrueのときに、trueにすることで、SQL文と同時に、呼び出し元の関数一覧をログ出力することができます。※開発用です。

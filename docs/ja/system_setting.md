@@ -100,6 +100,29 @@ Exmentで情報管理をするにあたり、サイトとしての基本情報�
 - Exmentにアップロードできるファイルサイズの上限値です。
 - ファイルサイズの上限値を変更するには[ファイルアップロード上限サイズ変更](/ja/quickstart_more.md?id=ファイルアップロード上限サイズ変更)をご参照ください。
 
+## システムメール設定
+システムからメールを送信する場合の設定を行います。  
+画面から設定を行う場合、SMTPによる設定値を記入します。  
+
+![システム設定画面](img/system_setting/system_setting_mail.png)  
+
+※SMTP設定例(Xserverの場合) ： [こちら](https://www.xserver.ne.jp/manual/man_mail_setting.php)  
+
+※SMTP設定例(さくらインターネットの場合) ： [こちら](https://help.sakura.ad.jp/hc/ja/articles/206054132--%E3%83%A9%E3%82%A4%E3%83%88-%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%89-%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0-%E3%83%A1%E3%83%BC%E3%83%AB%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9-%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%BD%E3%83%95%E3%83%88%E3%81%AE%E4%B8%80%E8%88%AC%E7%9A%84%E3%81%AA%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95)  
+
+#### 注意
+- 送信メールが迷惑メールになる場合、多くはドメインの「SPFレコード」の設定の不備になります。ドメイン設定で、SPFレコードを登録してください。  
+[参考1](https://sendgrid.kke.co.jp/blog/?p=3509)  
+[参考2](https://salt.iajapan.org/wpmu/anti_spam/admin/operation/information/spf_i01/)  
+なお、SPFレコードの設定については、弊社サポート対象外となります。ご了承ください。
+
+#### 注意(システムに詳しい方向け)
+
+- <span class="small">本来Laravelでは、「.env」ファイルの設定値を、メール送信のパラメータとして使用しますが、v1.3.6より、.envファイルの設定値は使用せず、画面の「システム設定」で登録した値を使用するようになりました。</span>
+- <span class="small">ただし、場合によっては「.env」ファイルの設定を継続したい場合もあるはずです。特にLaravelでは、SMTP以外の送信方法でメール送信も可能です。</span>
+- <span class="small">その場合、「.env」ファイルに「EXMENT_MAIL_SETTING_ENV_FORCE=true」を記入してください。引き続き、「.env」ファイルで記入した設定値を使用するようになります。</span>
+
+
 
 ## 権限設定
 上記の[権限管理を使用する](#権限管理を使用する)をYESにしている場合に、システム全体を対象とする権限の設定を行います。  

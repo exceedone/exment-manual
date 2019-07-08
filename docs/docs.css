@@ -2,6 +2,10 @@
     color: red;
 }
 
+.small{
+    font-size: 0.85em;
+}
+
 .markdown-section h3 + h4{
     margin-top: 2rem;
 }

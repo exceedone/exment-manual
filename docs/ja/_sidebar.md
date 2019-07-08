@@ -36,6 +36,7 @@
   * [バックアップ](/ja/backup.md)
   * [メニュー](/ja/menu.md)
   * [ダッシュボード](/ja/dashboard.md)
+  * [通知](/ja/notify.md)
   * [メールテンプレート](/ja/mail.md)
 
 * 【7. 機能拡張】
