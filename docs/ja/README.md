@@ -82,14 +82,43 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 <a href="#/ja/quickstart_more">
                     <div class="tile-inner">
                         <h5>追加設定</h5>
-                        <p>シングルサインオンやパス変更など、Exmentの追加設定を行う場合の手順です。</p>
+                        <p>「/admin」パス変更や、タスクスケジュール設定など、Exmentの追加設定を行う場合の手順です。</p>
                     </div>
                 </a>
             </div>
         </div>
     </div>
     <div>
-        <h4>3. テーブル設定</h4>
+        <h4>3. ログイン設定</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="#/ja/sso">
+                    <div class="tile-inner">
+                        <h5>SSO設定</h5>
+                        <p>シングルサインオンを行う場合の設定です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/login_2factor_setting">
+                    <div class="tile-inner">
+                        <h5>2段階認証設定</h5>
+                        <p>2段階認証の、管理者側の設定方法です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/login_2factor">
+                    <div class="tile-inner">
+                        <h5>ログイン(2段階認証)</h5>
+                        <p>2段階認証を使用してのログイン手順を記載しております。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>4. テーブル設定</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/table">
@@ -134,7 +163,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>4. データ管理</h4>
+        <h4>5. データ管理</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/data">
@@ -179,7 +208,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>5. ユーザー・組織・役割権限</h4>
+        <h4>6. ユーザー・組織・役割権限</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/user">
@@ -200,7 +229,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>6. その他標準機能</h4>
+        <h4>7. その他標準機能</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/template">
@@ -242,10 +271,18 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/notify">
+                    <div class="tile-inner">
+                        <h5>通知</h5>
+                        <p>データの更新時や、ボタンをクリックしてのメール送信を行うための設定手順です。</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>
-        <h4>7. 機能拡張</h4>
+        <h4>8. 機能拡張</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/plugin">
@@ -274,7 +311,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>8. リファレンス</h4>
+        <h4>9. リファレンス</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/release_note">

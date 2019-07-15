@@ -12,14 +12,19 @@
   * [アップデート](/ja/update.md)
   * [追加設定](/ja/quickstart_more.md)
 
-* 【3. テーブル設定】
+* 【3. ログイン設定】
+  * [SSO設定](/ja/sso.md)
+  * [2段階認証設定](/ja/login_2factor_setting.md)
+  * [ログイン(2段階認証)](/ja/login_2factor.md)
+
+* 【4. テーブル設定】
   * [カスタムテーブル](/ja/table.md)
   * [カスタム列](/ja/column.md)
   * [リレーション設定](/ja/relation.md)
   * [カスタムフォーム](/ja/form.md)
   * [カスタムビュー](/ja/view.md)
 
-* 【4. データ管理】
+* 【5. データ管理】
   * [データ](/ja/data.md)
   * [データ一覧](/ja/data_grid.md)
   * [データ詳細](/ja/data_details.md)  
@@ -27,19 +32,19 @@
   * [データインポート・エクスポート](/ja/data_import_export.md)
   * [検索](/ja/search.md)
 
-* 【5. ユーザー・組織・役割権限】
+* 【6. ユーザー・組織・役割権限】
   * [ユーザー・ログインユーザー](/ja/user.md)
   * [役割・権限](/ja/permission.md)
  
-* 【6. その他標準機能】
+* 【7. その他標準機能】
   * [テンプレート](/ja/template.md)
   * [バックアップ](/ja/backup.md)
   * [メニュー](/ja/menu.md)
   * [ダッシュボード](/ja/dashboard.md)
-  * [通知](/ja/notify.md)
   * [メールテンプレート](/ja/mail.md)
+  * [通知](/ja/notify.md)
 
-* 【7. 機能拡張】
+* 【8. 機能拡張】
   * [プラグイン](/ja/plugin.md)
   * [プラグイン作成方法](/ja/plugin_quickstart.md)
     * [トリガー](/ja/plugin_quickstart_trigger.md)
@@ -48,11 +53,12 @@
     * [バッチ](/ja/plugin_quickstart_batch.md)
   * [API](/ja/api.md)
   
-* 【8. リファレンス】
+* 【9. リファレンス】
   * [リリースノート](/ja/release_note.md)
     * [v1.0.Xからv1.1.X](/ja/update/v1_1.md)
     * [v1.1.Xからv1.2.X](/ja/update/v1_2.md)
     * [v1.2.Xからv1.3.X](/ja/update/v1_3.md)
+    * [v1.3.Xからv1.4.X](/ja/update/v1_4.md)
   * [パラメータ変数](/ja/params.md)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference.md)
