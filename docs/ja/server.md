@@ -2,8 +2,11 @@
 Exmentをご利用いただく場合、はじめにWebサーバー設定と、データベース設定が必要です。  
 ご利用する環境によって、以下の手順で設定を行ってください。  
 
-- [XAMPP構築(開発・検証環境)](/ja/install_xampp)  
-→まずは手持ちのパソコンに、Exmentをインストールしたい場合
+- [XAMPP構築(開発・検証環境) Windows](/ja/install_xampp)  
+→まずは手持ちのパソコンに、Exmentをインストールしたい場合(Windows版)
+
+- [XAMPP構築(開発・検証環境) Mac](/ja/install_xampp_mac)  
+→まずは手持ちのパソコンに、Exmentをインストールしたい場合(Mac版)
 
 - [レンタルサーバー構築](/ja/install_rental)  
 →Exmentを公開し、手軽に他のメンバーやスマートフォンからもアクセスを行いたい場合

@@ -13,8 +13,8 @@ PHPやApache、MySQLのある環境構築を、開発環境としてはじめか
 - 以下のサイトにアクセスし、XAMPPをダウンロードします。  
 [XAMPPダウンロード](https://www.apachefriends.org/jp/download.html)  
 
-- OS X向けXAMPPとある項目の中から、「PHP7.1」以上となっているものを選択し、ダウンロードを行ってください。
-> 推奨は「PHP7.2」です。「PHP7.3」の場合、別途php.iniファイル内で変更が必要になります。
+- OS X向けXAMPPとある項目の中から、「PHP7.1」以上となっているものを選択し、ダウンロードを行ってください。※上から3つのPHPの中から、ダウンロードを行ってください。
+> 推奨は「PHP7.2」です。「PHP7.3」の場合、関連ライブラリに不具合があるため、別途対応が必要になります。
 
 ![XAMPPインストール画面](img/xampp_mac/xampp_mac1.png)
 
@@ -46,7 +46,7 @@ pcre.jit=0
 
 #### 【注意点】
 - OSを再起動した場合、再度XAMPPコントロールパネルを起動し、Apacheを起動し直す必要があります。
-
+![XAMPPインストール画面](img/xampp_mac/xampp_mac8.png)
 
 ### 環境変数追加
 - ターミナルからmysqlを実行する場合、ターミナルの設定ファイル.bash_profileにPathを追記します。
@@ -73,7 +73,8 @@ source ~/.bash_profile
 #### データベースを作成
 - XAMPPコントロールパネルを起動後、WEBブラウザで下記のURLを入力し、phpMyadminにアクセスします。
 
-[データベース作成](http://localhost/phpmyadmin/index.php)
+http://localhost/phpmyadmin/index.php  
+
 
 - 左メニューの「新規作成」をクリックします。  
 ![MySQL環境変数](img/xampp_mac/phpmyadmin1.png)
@@ -82,5 +83,81 @@ source ~/.bash_profile
 ![MySQL環境変数](img/xampp_mac/phpmyadmin2.png)
 これで、データベース作成が完了します。
 
-
 ### サブドメイン設定
+通常の設定だと、"/Applications/XAMPP/htdocs"フォルダ内にExmentのプロジェクトファイルを配置することで、Exmentをご利用いただけます。
+ですが、例えば[http://localhost/exment/.env](http://localhost/exment/.env)のURLにアクセスすることで、データベース情報を含めた設定ファイルが画面に表示されるなど、大きな問題があります。  
+そのため、これらの問題が発生しないための設定を強くおすすめします。以下の手順で設定を行ってください。  
+
+- フォルダ「/Applications/XAMPP」に、フォルダ「local」を作成します。
+![XAMPPインストール画面](img/xampp_mac/xampp_mac9.png)
+
+- "/Applications/XAMPP/xamppfiles/etc/extra/httpd-xampp.conf"を開きます。
+
+- 行の末尾に、以下の記述を追加します。**※DocumentRootの末尾に「/public」が必要になります**  
+
+~~~
+<VirtualHost *:80>
+    DocumentRoot "/Applications/XAMPP/xamppfiles/htdocs"
+    ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+  DocumentRoot "/Applications/XAMPP/local/exment/public"
+  ServerName exment.localhost
+  <Directory "/Applications/XAMPP/local/exment/public">
+    Allow from all
+    AllowOverride All
+    Require all granted
+  </Directory>  
+</VirtualHost>
+~~~
+
+- "/Applications/XAMPP/xamppfiles/etc/httpd.conf"を編集します。  
+その後、文字列検索を行い、以下の記述を探します。
+
+~~~
+User daemon
+Group daemon
+</IfModule>
+~~~
+
+この記述を、以下のように修正します。  
+
+~~~
+User (Macのログインユーザー名)
+Group daemon
+</IfModule>
+~~~
+
+
+- "/etc/hosts"を開き、編集します。  
+ターミナルで、以下のコマンドを入力します。  
+※パスワードを求められますので、ログインユーザーのパスワードを入力してください
+
+~~~
+sudo vi /etc/hosts
+~~~
+
+hostsファイルを編集します。以下の項目を追加してください。
+
+~~~
+127.0.0.1       localhost
+127.0.0.1       exment.localhost
+~~~
+
+- XAMPPコントロールパネルで、Apacheを再起動します。  
+![XAMPPインストール画面](img/xampp_mac/xampp_mac8.png)
+
+### Exmentインストール
+Exmentの[インストール手順](/ja/quickstart)に従って、Exmentのインストールを行います。  
+Exmentのインストールは、通常"/Applications/XAMPP/local"フォルダ内で行います。  
+ここでは、"/Applications/XAMPP/local/exment"フォルダ内にインストールを行ったものとします。  
+
+- 今後のExmentのインストールで、データベースの設定を記入する画面がありますが、以下のように入力してください。  
+    - データベース種類：MariaDB
+    - ホスト名：127.0.0.1
+    - ポート：3306
+    - データベース：（上記で作成したデータベース名）
+    - ユーザー名：root
+    - パスワード：(空欄)
+

@@ -4,6 +4,12 @@ Exmentのバージョンが更新され、アップデートが必要になっ�
 
 ## (初回のみ)アップデートバッチのダウンロード
 
+### Windowsの場合
+- 以下のファイルをダウンロードします。  
+https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
+
+- ダウンロードしたファイルを、プロジェクトのルートディレクトリに配置してください。
+
 ### Linuxの場合
 - 以下のコマンドを、プロジェクトのルートディレクトリで実行し、ダウンロードを行ってください。
 
@@ -12,17 +18,22 @@ wget https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
 chmod 775 ExmentUpdateLinux.sh
 ~~~
 
-### Windowsの場合
-- 以下のファイルをダウンロードします。  
-https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
+### Macの場合
+- 以下のファイルをダウンロードします。
+https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
 
 - ダウンロードしたファイルを、プロジェクトのルートディレクトリに配置してください。
 
+- 以下のコマンドを実行してください。
+
+~~~
+chmod 775 ExmentUpdateLinux.sh
+~~~
 
 ## アップデートバッチの実行
 アップデートバッチを実行してください。
 
-### Linuxの場合
+### Linux・Macの場合
 - 以下のコマンドを、プロジェクトのルートディレクトリで実行してください。
 
 ~~~
@@ -41,7 +52,6 @@ ExmentUpdateWindows.bat
  - データのバックアップ
  - 最新ソース取得、反映
  - データベース更新
-
 
 
 ## （補足）アップデート後の画面表示について

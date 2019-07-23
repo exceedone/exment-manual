@@ -80,11 +80,11 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 
 ### サブドメイン設定
 通常の設定だと、"C:\xampp\htdocs"フォルダ内にExmentのプロジェクトファイルを配置することで、Exmentをご利用いただけます。
-ですが、例えば[http://localhost/exment/.env](http://localhost/exment/.env)のURLにアクセスすることで、データベース情報が画面に表示されるなど、大きな問題があります。  
-そのため、データベース設定が画面に表示されないようにするための設定を強くおすすめします。以下の手順で設定を行ってください。  
+ですが、例えば[http://localhost/exment/.env](http://localhost/exment/.env)のURLにアクセスすることで、データベース情報を含めた設定ファイルが画面に表示されるなど、大きな問題があります。  
+そのため、これらの問題が発生しないための設定を強くおすすめします。以下の手順で設定を行ってください。  
 
 - フォルダ「C:\xampp」に、フォルダ「local」を作成します。
-![MySQL環境変数](img/xampp/subdomain1.png)
+![サブドメイン設定](img/xampp/subdomain1.png)
 
 - "C:\xampp\apache\conf\extra\httpd-vhosts.conf"を開きます。
 

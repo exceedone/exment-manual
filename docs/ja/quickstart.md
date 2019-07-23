@@ -29,8 +29,9 @@ Exmentには、composerの導入が必要です。導入方法はこちらをご
 [Exment zipファイル](https://exment.net/downloads/ja/exment.zip)  
 
 - zipファイルを、PHP実行可能なパスに展開します。  
-例1(XAMPP)： C:\xampp\local\exment  
-例2(XServer) : $HOME/domain.com.foobar/exment/
+例1(XAMPP Windows)： C:\xampp\local\exment  
+例2(XAMPP Mac)： /Applications/XAMPP/local/exment  
+例3(XServer) : $HOME/domain.com.foobar/exment/
 
 ## データベース作成
 - Exment用のデータベースを、MySQLで作成してください。
