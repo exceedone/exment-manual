@@ -32,9 +32,9 @@
   * [データインポート・エクスポート](/ja/data_import_export.md)
   * [検索](/ja/search.md)
 
-* 【6. ユーザー・組織・役割権限】
+* 【6. ユーザー・組織・役割グループ】
   * [ユーザー・ログインユーザー](/ja/user.md)
-  * [役割・権限](/ja/permission.md)
+  * [役割グループ・権限設定](/ja/role_group.md)
  
 * 【7. その他標準機能】
   * [テンプレート](/ja/template.md)
@@ -55,10 +55,11 @@
   
 * 【9. リファレンス】
   * [リリースノート](/ja/release_note.md)
-    * [v1.0.Xからv1.1.X](/ja/update/v1_1.md)
-    * [v1.1.Xからv1.2.X](/ja/update/v1_2.md)
-    * [v1.2.Xからv1.3.X](/ja/update/v1_3.md)
-    * [v1.3.Xからv1.4.X](/ja/update/v1_4.md)
+    * [v1.1.X](/ja/update/v1_1.md)
+    * [v1.2.X](/ja/update/v1_2.md)
+    * [v1.3.X](/ja/update/v1_3.md)
+    * [v1.4.X](/ja/update/v1_4.md)
+    * [v2.0.X](/ja/update/v2_0.md)
   * [パラメータ変数](/ja/params.md)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference.md)

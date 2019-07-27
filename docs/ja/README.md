@@ -219,9 +219,9 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
-                <a href="#/ja/permission">
+                <a href="#/ja/role_group">
                     <div class="tile-inner">
-                        <h5>役割・権限</h5>
+                        <h5>役割グループ・権限</h5>
                         <p>特定のデータやページを、特定のユーザーのみが管理できるようにするための設定です。</p>
                     </div>
                 </a>
