@@ -10,11 +10,13 @@ Exmentに新しい画面を作成することができます。
 ~~~ json
 
 {
-    "name": "PluginDemoPage",
-    "explain": "プラグインをアップロードするテストです。",
+    "plugin_name": "PluginDemoPage",
+    "plugin_view_name" : "独自ページテスト",
+    "explain": "独自ページを表示するテストです。",
+    "uuid":  "691a24f2-2c7a-42c5-8cff-23c5277f6f56",
     "author":  "(Your Name)",
     "version": "1.0.0",
-    "type": "page",
+    "plugin_type": "page",
     "controller" : "PluginManagementController",
     "route": [
         {

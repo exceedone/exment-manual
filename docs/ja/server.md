@@ -11,6 +11,8 @@ Exmentをご利用いただく場合、はじめにWebサーバー設定と、�
 - [レンタルサーバー構築](/ja/install_rental)  
 →Exmentを公開し、手軽に他のメンバーやスマートフォンからもアクセスを行いたい場合
 
+- [Linuxに構築](/ja/install_linux)  
+→ExmentをLinux(CentOS)にインストールする場合の手順
 
 ## 動作環境
 ### サーバー
