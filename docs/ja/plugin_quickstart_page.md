@@ -1,8 +1,15 @@
 ## プラグイン(ページ)
+> v2.1.0仕様変更予定です。
+
 Exmentに新しい画面を作成することができます。  
 既存の機能とは全く異なるページを使用する場合にご利用ください。  
 
 ## 作成方法
+ここではサンプルとして、以下のページを作成します。
+- YouTubeでデータ検索を行うための検索バーを表示する。  
+- 入力した検索値で、YouTube検索を行い。上位20件を表示する。  
+- 「登録」ボタンをクリックした動画の、動画IDとタイトル、説明文、リンク、再生数、高評価数、低評価数を、テーブル「YouTube」に登録する。  
+※実行には、YouTubeのアクセスキーが必要です。[こちら](https://www.plusdesign.co.jp/blog/?p=7752)を参考に、キーを取得してください。  
 
 ### config.json作成
 - 以下のconfig.jsonファイルを作成します。  
@@ -10,14 +17,13 @@ Exmentに新しい画面を作成することができます。
 ~~~ json
 
 {
-    "plugin_name": "PluginDemoPage",
-    "plugin_view_name" : "独自ページテスト",
-    "explain": "独自ページを表示するテストです。",
-    "uuid":  "691a24f2-2c7a-42c5-8cff-23c5277f6f56",
+    "plugin_name": "YouTubeSearch",
+    "plugin_view_name" : "YouTube検索",
+    "explain": "YouTubeを検索し、再生数などをデータ保存します。",
+    "uuid":  "c6d8daa0-c255-11e9-bb97-0800200c9a66",
     "author":  "(Your Name)",
     "version": "1.0.0",
     "plugin_type": "page",
-    "controller" : "PluginManagementController",
     "route": [
         {
             "uri": "",
@@ -27,39 +33,18 @@ Exmentに新しい画面を作成することができます。
             "function": "index"
         },
         {
+            "uri": "list",
+            "method": [
+                "get"
+            ],
+            "function": "list"
+        },
+        {
             "uri": "post",
             "method": [
                 "post"
             ],
-            "function": "post"
-        },
-        {
-            "uri": "show_details/{id}",
-            "method": [
-                "get"
-            ],
-            "function": "show_details"
-        },
-        {
-            "uri": "{id}/edit_test",
-            "method": [
-                "get"
-            ],
-            "function": "edit_test"
-        },
-        {
-            "uri": "create_new",
-            "method": [
-                ""
-            ],
-            "function": "create_new"
-        },
-        {
-            "uri": "{id}/update_test",
-            "method": [
-                "put"
-            ],
-            "function": "update_test"
+            "function": "save"
         }
     ]
 }
@@ -71,16 +56,14 @@ Exmentに新しい画面を作成することができます。
 以下のURLなどから、作成を行ってください。  
 https://www.famkruithof.net/uuid/uuidgen
 - plugin_typeは、pageと記入してください。  
-- controllerは、実行するプラグイン内の、Contollerのクラス名を記入してください。  
 - routeは、実行するURLのエンドポイントと、そのHTTPメソッド、Contoller内のメソッドを一覧で定義します。
     - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/admin/plugins/(プラグイン管理画面で設定したURL)/(指定したuri)」になります。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
     - function：実行するContoller内のメソッド
-    - 例：プラグイン管理画面で設定したURLを「test」、config.jsonで指定したuriが「show_details/{id}」、指定したmethodが「get」の場合、「http(s)://(ExmentのURL)/admin/plugins/test/show_details/{id}（メソッド：GET）」。idは整数値が代入される
+    - 例：プラグイン管理画面で設定したURLを「youtube_search」、config.jsonで指定したuriが「list」、指定したmethodが「get」の場合、「http(s)://(ExmentのURL)/admin/plugins/youtube_search/list（メソッド：GET）」。
 
-
-### Contoller作成
-- 以下のようなContollerファイルを作成します。クラス名は、config.jsonのcontrollerに記載の名称にしてください。
+### Pluginファイル作成
+- 以下のようなPHPファイルを作成します。クラス名は、config.jsonのcontrollerに記載の名称にしてください。
 
 ~~~ php
 <?php
@@ -98,24 +81,6 @@ use Illuminate\Http\Request;
 
 class PluginManagementController extends Controller
 {
-    use HasResourceActions;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Content|\Illuminate\Http\Response
-     */
-
-    public function index()
-    {
-        return Admin::content(function (Content $content) {
-
-            $content->header('Plugin Page Management');
-            $content->description('Plugin Page Management');
-
-            $content->body($this->grid());
-        });
-    }
-
     public function show_details($id){
 
         return Admin::content(function (Content $content) use ($id) {
@@ -219,3 +184,24 @@ zipファイル名は、「(plugin_name).zip」にしてください。
     - config.json
     - PluginManagementController.php
     - (その他、必要なPHPファイル、画像ファイルなど)
+
+
+### その他
+- 特定のID値のデータ詳細を表示したい場合、config.jsonのrouteに以下のような記述を追加してください。  
+「{id}」のようにuriを指定することができます。  
+
+~~~ json
+
+{
+    "route": [
+        {
+            "uri": "show_details/{id}",
+            "method": [
+                "get"
+            ],
+            "function": "show_details"
+        }
+    ]
+}
+
+~~~
