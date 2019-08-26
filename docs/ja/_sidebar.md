@@ -51,6 +51,8 @@
     * [ページ](/ja/plugin_quickstart_page.md)
     * [ドキュメント](/ja/plugin_quickstart_document.md)
     * [バッチ](/ja/plugin_quickstart_batch.md)
+    * [スクリプト](/ja/plugin_quickstart_script.md)
+    * [スタイル](/ja/plugin_quickstart_style.md)
   * [API](/ja/api.md)
   
 * 【9. リファレンス】
@@ -60,6 +62,7 @@
     * [v1.3.X](/ja/update/v1_3.md)
     * [v1.4.X](/ja/update/v1_4.md)
     * [v2.0.X](/ja/update/v2_0.md)
+    * [v2.1.X](/ja/update/v2_1.md)
   * [パラメータ変数](/ja/params.md)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference.md)

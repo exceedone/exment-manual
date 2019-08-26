@@ -1,6 +1,4 @@
 # プラグイン(スクリプト)
-> v2.1.0実装予定です。
-
 Exmentの画面上で、独自のスクリプト(javascript)を実行することができます。  
 スクリプトを実行するためのトリガーは、以下の内容があります。  
 - データ一覧表示時：データ一覧画面の読み込み完了時に、トリガーが起動します。  
@@ -93,4 +91,10 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 ※例：「ユーザー」画面の場合："custom_value_user"、「組織」画面の場合："custom_value_organization"
 
 ### サンプルプラグイン
-[住所セットスクリプト](https://exment.net/downloads/sample/plugin/SetAddress.zip)
+- [住所セットスクリプト](https://exment.net/downloads/sample/plugin/SetAddress.zip)  
+
+- [全角英数字→半角英数字変換スクリプト](https://exment.net/downloads/sample/plugin/ReplaceZenHan.zip)  
+全角英数字を、半角英数字に変換するスクリプトです。  
+
+- [半角カナ→全角カナ変換スクリプト](https://exment.net/downloads/sample/plugin/ReplaceKanaHanZen.zip)  
+半角カナを、全角カナに変換するスクリプトです。  
