@@ -23,6 +23,7 @@
   * [リレーション設定](/ja/relation.md)
   * [カスタムフォーム](/ja/form.md)
   * [カスタムビュー](/ja/view.md)
+  * [一括更新](/ja/mass_update.md)
 
 * 【5. データ管理】
   * [データ](/ja/data.md)
