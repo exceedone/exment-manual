@@ -50,6 +50,7 @@
   * [プラグイン作成方法](/ja/plugin_quickstart.md)
     * [トリガー](/ja/plugin_quickstart_trigger.md)
     * [ページ](/ja/plugin_quickstart_page.md)
+    * [ダッシュボード](/ja/plugin_quickstart_dashboard.md)
     * [ドキュメント](/ja/plugin_quickstart_document.md)
     * [バッチ](/ja/plugin_quickstart_batch.md)
     * [スクリプト](/ja/plugin_quickstart_script.md)

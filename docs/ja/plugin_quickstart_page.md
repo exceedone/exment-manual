@@ -20,7 +20,7 @@ Exmentのプラグインページは、PHPのフレームワーク[Laravel](http
   
 ※事前に、[こちら](https://exment.net/downloads/sample/template/YouTube.zip)のテンプレートをインポートしてください。
 
-- サンプルプラグイン[こちら](https://exment.net/downloads/sample/plugin/YouTubeSearch.zip)です。  
+- サンプルプラグイン[こちら](https://exment.net/downloads/sample/plugin/YouTubeSearch.zip)  
 
 
 ### config.json作成
@@ -206,6 +206,7 @@ class Plugin extends PluginPageBase
     }
 }
 ~~~
+
 - (1) namespaceは、**App\Plugins\\(プラグイン名)**としてください。  
 また、クラス名は「Plugin」とし、PluginPageBaseを継承してください。
 
@@ -219,8 +220,8 @@ class Plugin extends PluginPageBase
 
 - (4) ビューを使用する場合、ビュー名の接頭辞は「exment_（プラグイン名のスネークケース）::」を追加してください。  
 
-- (5) プラグインのエンドポイントを取得したい場合、関数「$this->plugin->getRouteUri('エンドポイント名')」を使用してください。  
-※URLフルパスを取得したい場合、admin_url($this->plugin->getRouteUri('エンドポイント名'))を使用してください。
+- (5) プラグインのエンドポイントを取得したい場合、関数「$this->getRouteUri('エンドポイント名')」を使用してください。  
+※URLフルパスを取得したい場合、admin_url($this->getRouteUri('エンドポイント名'))を使用してください。
 
 
 #### (任意)ビューについて
@@ -235,9 +236,9 @@ class Plugin extends PluginPageBase
 ### zipに圧縮
 上記2ファイルを最小構成として、zipに圧縮します。  
 zipファイル名は、「(plugin_name).zip」にしてください。  
-- PluginDemoPage.zip
+- YouTubeSearch.zip
     - config.json
-    - PluginManagementController.php
+    - Plugin.php
     - (その他、必要なPHPファイル、画像ファイルなど)
 
 
@@ -260,3 +261,7 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 }
 
 ~~~
+
+### サンプルプラグイン
+[YouTube検索](https://exment.net/downloads/sample/plugin/YouTubeSearch.zip)  
+※事前に、[こちら](https://exment.net/downloads/sample/template/YouTube.zip)のテンプレートをインポートしてください。
