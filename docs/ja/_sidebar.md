@@ -53,6 +53,7 @@
     * [ダッシュボード](/ja/plugin_quickstart_dashboard.md)
     * [ドキュメント](/ja/plugin_quickstart_document.md)
     * [バッチ](/ja/plugin_quickstart_batch.md)
+    * [インポート](/ja/plugin_quickstart_import.md)
     * [スクリプト](/ja/plugin_quickstart_script.md)
     * [スタイル](/ja/plugin_quickstart_style.md)
   * [API](/ja/api.md)
