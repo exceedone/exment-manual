@@ -2,7 +2,7 @@ FORMAT: 1A
  
 # Group カスタムデータ
 
-## カスタムデータ情報 [/api/data/{tableKey}]
+## カスタムデータ情報 [/api/data/{tableKey}{?count}{&orderby}]
  
 ### カスタムデータ一覧取得 [GET]
  
@@ -31,11 +31,12 @@ v1.1.0
 
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
+    + count: 20 (number, optional) - 1回のリクエストで取得する件数。1～100
+    + orderby: id,created_at (string, optional) - データの並べ替えを行う場合、並べ替えの列名。複数ある場合はカンマ区切り。逆順は、「id desc」のように半角スペースを追加する
  
 + Request (application/json)
 
     + Headers
-
             Accept: application/json
             Authorization: Bearer (Access Token)
 
@@ -96,7 +97,6 @@ v1.1.0
     + Attribute
         + message: `権限がありません。` (string, required) - 該当のカスタムテーブルにアクセスする権限がない場合
 
-
 ### カスタムデータ新規作成 [POST]
  
 #### 処理概要
@@ -118,17 +118,56 @@ v1.1.0
 #### 対応バージョン
 v1.1.0
 
+#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合
+パラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  
+例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  
+
+■通常時：
+```
+{
+    value: {
+        'contract_code': 'C00001',
+        'customer': '1'
+    }
+}
+```
+
+■findKeys使用時：
+```
+{
+    value: {
+        'contract_code': 'C00001',
+        'customer': '株式会社ABC'
+    },
+    findKeys: {
+        'customer': 'customer_name'
+    }
+}
+```
+
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
     
 + Request (application/json)
     + Headers
-
             Accept: application/json
             Authorization: Bearer (Access Token)
             
     + Attributes
-        + value: (object)
+        + value: (object, required)
+            + body: テストの本文です
+            + title: テストです
+            + priority: 3
+            + view_flg: 1
+            + order: 6
+
++ Request findKeys (application/json)
+    + Headers
+            Accept: application/json
+            Authorization: Bearer (Access Token)
+            
+    + Attributes
+        + value: (object, required)
             + body: テストの本文です
             + title: テストです
             + priority: 3
@@ -150,6 +189,125 @@ v1.1.0
             + created_at: `2019-03-29 00:00:00`
             + updated_at: `2019-03-29 00:00:00`
             + label: テストです
+
++ Response 403 (application/json)
+    + Attribute
+        + message: `権限がありません。` (string, required) - 該当のカスタムテーブルにデータを新規追加する権限がない場合
+
+### カスタムデータ新規作成(一括) [POST]
+ 
+#### 処理概要
+* カスタムテーブルに、データを一括で新規作成する
+* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する
+* 登録を行いたいデータは、value配列内に値を複数代入してPOSTする
+* 1件でもエラーが発生した場合は、すべてのデータを登録しない
+* 1度に登録できる件数は100件まで
+
+#### Exment権限(Permission)
++ システム：システム情報
++ システム：カスタムテーブル
++ システム：すべてのデータ
++ テーブル：テーブル
++ テーブル：すべてのデータの編集
++ テーブル：担当者データの編集
+
+#### APIスコープ(scope)
++ value_write
+
+#### 対応バージョン
+v2.1.4
+
+#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合
+パラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  
+例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  
+
+■通常時：
+```
+{
+    value: [
+        {
+            'contract_code': 'C00001',
+            'customer': '1'
+        },
+        {
+            'contract_code': 'C00002',
+            'customer': '2'
+        },
+    ]
+}
+```
+
+■findKeys使用時：
+```
+{
+    value: [
+        {
+            'contract_code': 'C00001',
+            'customer': '株式会社ABC'
+        },
+        {
+            'contract_code': 'C00002',
+            'customer': '株式会社DEF'
+        },
+    ],
+    findKeys: {
+        'customer': 'customer_name'
+    }
+}
+```
+
++ Parameters
+    + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
+    
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Authorization: Bearer (Access Token)
+            
+    + Attributes
+        + value: (array, required)
+            + (object)
+                + body: テストの本文その1です
+                + title: テストその1です
+                + priority: 3
+                + view_flg: 1
+                + order: 6
+            + (object)
+                + body: テストの本文その2です
+                + title: テストその2です
+                + priority: 3
+                + view_flg: 1
+                + order: 7
+
++ Response 201 (application/json)
+    + Attributes(object)
+        + current_page: 1 (number, required)
+        + (array)
+            + (object)
+                + id: 8 (number, required)
+                + suuid: 247dec5d77042eaa10fc (string, required)
+                + value(object): 
+                    + body: テストの本文その1です
+                    + order: 6
+                    + title: テストその1です
+                    + priority: 3
+                    + view_flg: 1
+                + created_at: `2019-03-29 00:00:00`
+                + updated_at: `2019-03-29 00:00:00`
+                + label: テストその1です
+            + (object)
+                + id: 9 (number, required)
+                + suuid: a85c4e6e1793611b173a (string, required)
+                + value(object): 
+                    + body: テストの本文その2です
+                    + order: 7
+                    + title: テストその2です
+                    + priority: 3
+                    + view_flg: 1
+                + created_at: `2019-03-29 00:00:00`
+                + updated_at: `2019-03-29 00:00:00`
+                + label: テストその2です
 
 + Response 403 (application/json)
     + Attribute
@@ -242,6 +400,33 @@ v1.1.0
 #### 対応バージョン
 v1.1.0
 
+#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合
+パラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  
+例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  
+
+■通常時：
+```
+{
+    value: {
+        'contract_code': 'C00001',
+        'customer': '1'
+    }
+}
+```
+
+■findKeys使用時：
+```
+{
+    value: {
+        'contract_code': 'C00001',
+        'customer': '株式会社ABC'
+    },
+    findKeys: {
+        'customer': 'customer_name'
+    }
+}
+```
+
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
     + id: 8 (number, required) - カスタムデータのID
@@ -320,3 +505,4 @@ v1.1.0
 + Response 403 (application/json)
     + Attribute
         + message: `権限がありません。` (string, required) - 該当のデータを削除する権限がない場合
+

@@ -46,6 +46,7 @@
   * [通知](/ja/notify.md)
 
 * 【8. 機能拡張】
+  * [API](/ja/api.md)
   * [プラグイン](/ja/plugin.md)
   * [プラグイン作成方法](/ja/plugin_quickstart.md)
     * [トリガー](/ja/plugin_quickstart_trigger.md)
@@ -56,7 +57,6 @@
     * [インポート](/ja/plugin_quickstart_import.md)
     * [スクリプト](/ja/plugin_quickstart_script.md)
     * [スタイル](/ja/plugin_quickstart_style.md)
-  * [API](/ja/api.md)
   
 * 【9. リファレンス】
   * [リリースノート](/ja/release_note.md)

@@ -2,7 +2,7 @@ FORMAT: 1A
 
 # Group カスタムテーブル
  
-## カスタムテーブル一覧 [/api/table]
+## カスタムテーブル一覧 [/api/table{?count}]
  
 ### 一覧取得 [GET]
  
@@ -29,6 +29,9 @@ FORMAT: 1A
 #### 対応バージョン
 v1.1.0
 
++ Parameters
+    + count: 20 (number, optional) - 1回のリクエストで取得する件数。1～100
+ 
 + Request (application/json)
 
     + Headers

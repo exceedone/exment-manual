@@ -285,6 +285,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         <h4>8. 機能拡張</h4>
         <div class="row">
             <div class="col-sm-6 tile">
+                <a href="#/ja/api">
+                    <div class="tile-inner">
+                        <h5>API</h5>
+                        <p>他のシステムと連携するためのAPIの使用方法です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/plugin">
                     <div class="tile-inner">
                         <h5>プラグイン</h5>
@@ -297,14 +305,6 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     <div class="tile-inner">
                         <h5>プラグイン作成方法</h5>
                         <p>プラグインの作成方法を、種類ごとに記載しております。</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 tile">
-                <a href="#/ja/api">
-                    <div class="tile-inner">
-                        <h5>API</h5>
-                        <p>他のシステムと連携するためのAPIの使用方法です。</p>
                     </div>
                 </a>
             </div>

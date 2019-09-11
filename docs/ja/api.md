@@ -1,9 +1,9 @@
 # API設定
-Exmentでは、APIを実行可能です。（機能は徐々に追加予定です）  
+Exmentでは、APIを実行可能です。  
 Exmentのアカウントを使用する、OAuthを用いた認証によって実施可能です。  
   
 Exmentでは、[laravel/passport](https://github.com/laravel/passport)を使用した認証を行っております。  
-参考：[Laravel 5.6 API認証](https://readouble.com/laravel/5.6/ja/passport.html)
+参考：[Laravel 5.6 API認証](https://readouble.com/laravel/5.6/ja/passport.html)  
 そのため、認証はlaravel/passportに依存した方式となりますが、当マニュアルは2種類の認証方式をご紹介します。  
 
 ## .env修正
@@ -15,10 +15,10 @@ EXMENT_API=true
 
 
 ## API認証方法
-1. OAuth 2.0, Authorization Code Flow : ユーザーが画面から、ExmentのログインID、パスワードを入力することにより、APIを使用できるようになる形式です。Web上からAPIを実行する場合におすすめです。
-1. Password Grant Token : APIを呼び出す実行元で、あらかじめログインID、パスワードを設定しておき、APIを使用する形式です。バッチ実行におすすめです。
+1. OAuth 2.0, Authorization Code Flow(画面ログイン形式) : ユーザーが画面から、ExmentのログインID、パスワードを入力することにより、APIを使用できるようになる形式です。Web上からAPIを実行する場合におすすめです。
+1. Password Grant Token(パスワード形式) : APIを呼び出す実行元で、あらかじめログインID、パスワードを設定しておき、APIを使用する形式です。バッチ実行におすすめです。
 
-### 1. OAuth 2.0, Authorization Code Flow
+### 1. OAuth 2.0, Authorization Code Flow(画面ログイン形式)
 この認証方式は、新たに構築するWebサービス（例：会計システム）から、ユーザーがExmentのログインを行い、Exmentのデータを使用する利用に利用可能です。  
 - ユーザーが認証時、Webブラウザ上で、ExmentのID・パスワードを入力する画面が表示されます。  
 
@@ -30,41 +30,42 @@ EXMENT_API=true
 他の言語やフレームワークでも構築可能です。  
 
 #### 設定方法
-- 先に、Exmentの初期設定(initialize)まで完了させます。
-- 以下のコマンドを、ルートディレクトリで実行します。
 
-~~~
-php artisan passport:client
-~~~
+##### Exmentページ内設定
+- システム管理者が、以下のURLを入力します。  
+http(s)://(ExmentのURL)/admin/api_setting  
+※上記で記載の「.env修正」を行うことで、アクセスが出来るようになります。
 
-- 対話式で必要事項入力画面が表示されますので、情報を入力します。  
+- もしくは、メニューに「APIアプリ設定」を追加します。  
+「管理者設定」 > 「メニュー」ページを開き、メニュー種類「システムメニュー」を選択すると、対象「APIアプリ設定」が表示されますので、選択し、保存を行ってください。  
+※「APIアプリ設定」は、デフォルトの設定ではメニューに表示されません。
 
-~~~
-Which user ID should the client be assigned to?:
-> (このアプリを管理するユーザーID。通常は1)
 
-What should we name the client?:
-> (Exmentを使用するWebアプリの名前)
+![API認証画面](img/api/api_setting1.png)  
 
- Where should we redirect the request after authorization? [http://localhost/auth/callback]:
- > (Exmentを認証として使用するWebアプリの、callback URL)
-~~~
+- APIアプリ設定画面が表示されますので、「新規」をクリックします。  
 
-- 入力完了後、Client IDとClient Secretが表示されますので、コピーします。  
+- 必要事項を入力します。
+    - 認証形式：「画面ログイン形式」を選択します。
+	- アプリ名：任意の名称を記入してください。
+	- リダイレクトURL：ユーザーが画面から認証を完了した時に、リダイレクトするURLを記入してください。
 
-~~~
-New client created successfully.
-Client ID: 1af52b10-BBBB-CCCC-XXXX-YYYYYYYY
-Client secret: qhP34AlxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-~~~
+![API認証画面](img/api/api_setting2.png)  
 
+
+- 保存完了後、認証に必要なClient IDとClient Secretが表示されるので、コピーします。  
+※Client Secretは、目アイコンをクリックすることで表示されます。  
+
+![API認証画面](img/api/api_setting3.png)  
+
+##### 独自で開発するWebサービス側の実装
 - Webサービス側で、Exment認証画面を呼び出すためのエンドポイントを作成します。
 
 ~~~
 http(s)://(ExmentのURL)/admin/oauth/authorize'  GET  
 response_type: code
-client_id: (コマンド実施時にコピーしたClient ID)
-redirect_uri: (コマンド実施時に入力したcallback URL)
+client_id: (コピーしたClient ID)
+redirect_uri: (入力したcallback URL)
 scope: (アクセスを行うためのスコープ。一覧は下記に記載。複数ある場合はスペース区切り)
 ~~~
 
@@ -73,8 +74,8 @@ scope: (アクセスを行うためのスコープ。一覧は下記に記載。
 // Webサービス側の実装
 Route::get('/redirect', function () {
     $query = http_build_query([
-        'client_id' => '(コマンド実施時にコピーしたClient ID)',
-        'redirect_uri' => '(コマンド実施時に入力したcallback URL)',
+        'client_id' => '(コピーしたClient ID)',
+        'redirect_uri' => '(入力したcallback URL)',
         'response_type' => 'code',
         'scope' => 'me',
     ]);
@@ -87,25 +88,29 @@ Route::get('/redirect', function () {
 
 ~~~
 http(s)://(ExmentのURL)/admin/oauth/token'  POST  
-grant_type: authorization_code
-client_id: (コマンド実施時にコピーしたClient ID)
-client_secret: (コマンド実施時にコピーしたClient Secret)
-redirect_uri: (コマンド実施時に入力したcallback URL)
-code: (リダイレクトされたURLより取得したcode)
+Content-Type: application/json
+
+{
+    "grant_type": "authorization_code",
+    "client_id": "(コピーしたClient ID)",
+    "client_secret": "(コピーしたClient Secret)",
+    "redirect_uri": "(入力したcallback URL)",
+    "code": "(リダイレクトされたURLより取得したcode)"
+}
 ~~~
 
 - 例：
 ~~~ php
-// Webサービス側の実装。エンドポイントは、コマンド実施時に入力したcallback URL
+// Webサービス側の実装。エンドポイントは、入力したcallback URL
 Route::get('/callback', function (Request $request) {
     $http = new GuzzleHttp\Client;
 
     $response = $http->post('(ExmentのURL)/admin/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
-            'client_id' => '(コマンド実施時にコピーしたClient ID)',
-            'client_secret' => '(コマンド実施時にコピーしたClient Secret)',
-            'redirect_uri' => '(コマンド実施時に入力したcallback URL)',
+            'client_id' => '(コピーしたClient ID)',
+            'client_secret' => '(コピーしたClient Secret)',
+            'redirect_uri' => '(入力したcallback URL)',
             'code' => $request->code,
         ],
     ]);
@@ -128,49 +133,61 @@ Route::get('/callback', function (Request $request) {
 このアクセストークンを使用して、APIを実行します。
 
 
-### 2. Password Grant Token
+### 2. Password Grant Token(パスワード形式)
 この認証方式は、APIを呼び出す実行元で、あらかじめログインID、パスワードを設定しておき、APIを使用する形式です。  
 
 - ユーザーが画面でID・パスワードを入力する必要がないため、バッチ処理などでも実行可能です。  
 
 - ユーザーのIDパスワードを、あらかじめシステムに設定する必要があります。  
 
+- OAuthを使用した認証を設定していた場合、この形式は使用できません。
+
 ※本マニュアルでは、Exmentとは別のWebサービスを、Laravelで構築した場合の例を記載します。  
 他の言語やフレームワークでも構築可能です。  
 
 #### 設定方法
-- 先に、Exmentの初期設定(initialize)まで完了させます。
-- 以下のコマンドを、ルートディレクトリで実行します。
 
-~~~
-php artisan passport:client --password
-~~~
+##### Exmentページ内設定
+- システム管理者が、以下のURLを入力します。  
+http(s)://(ExmentのURL)/admin/api_setting  
+※上記で記載の「.env修正」を行うことで、アクセスが出来るようになります。
 
-- 対話式で必要事項入力画面が表示されますので、情報を入力します。  
+- もしくは、メニューに「APIアプリ設定」を追加します。  
+「管理者設定」 > 「メニュー」ページを開き、メニュー種類「システムメニュー」を選択すると、対象「APIアプリ設定」が表示されますので、選択し、保存を行ってください。  
+※「APIアプリ設定」は、デフォルトの設定ではメニューに表示されません。
 
-~~~
- What should we name the password grant client? [Laravel Password Grant Client]:
- > (Exmentを使用するWebアプリの名前)
-~~~
+![API認証画面](img/api/api_setting1.png)  
 
-- 入力完了後、Client IDとClient Secretが表示されますので、コピーします。  
+- APIアプリ設定画面が表示されますので、「新規」をクリックします。  
 
-~~~
-Password grant client created successfully.
-Client ID: 1adssk10-BBBB-CCCC-XXXX-YYYYYYYY
-Client secret: cskjsjnlxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-~~~
+- 必要事項を入力します。
+    - 認証形式：「パスワード形式」を選択します。
+	- アプリ名：任意の名称を記入してください。
 
+![API認証画面](img/api/api_setting4.png)  
+
+
+- 保存完了後、認証に必要なClient IDとClient Secretが表示されるので、コピーします。  
+※Client Secretは、目アイコンをクリックすることで表示されます。  
+
+![API認証画面](img/api/api_setting5.png)  
+
+
+##### 独自で開発するプログラム側の実装
 - アクセストークンを取得するためのリクエストを、呼び出し元で作成します。
 
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/token'  POST  
-grant_type: password
-client_id: (コマンド実施時にコピーしたClient ID)
-client_secret: (コマンド実施時にコピーしたClient Secret)
-username: (ログインするユーザーIDまたはメールアドレス)
-password: (ログインするユーザーパスワード)
-scope: (アクセスを行うスコープ。一覧は下記に記載。複数ある場合はスペース区切り)
+http(s)://(ExmentのURL)/admin/oauth/token'  POST
+Content-Type: application/json
+
+{
+    "grant_type": "password",
+    "client_id": "(コピーしたClient ID)",
+    "client_secret": "(コピーしたClient Secret)",
+    "username": "(ログインするユーザーIDまたはメールアドレス)",
+    "password": "(ログインするユーザーパスワード)",
+    "scope": "(アクセスを行うスコープ。一覧は下記に記載。複数ある場合はスペース区切り)"
+}
 ~~~
 
 - これにより、レスポンス値に、access_token、refresh_token、expires_in属性を含むjsonが返却されます。  
@@ -241,15 +258,21 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 ~~~
 
 ## トークンリフレッシュ
+アクセストークンは、一定時間経過後に有効期限が切れ、無効化されます。  
+その場合、リフレッシュトークンを使用することで、再度アクセストークンを取得できます。  
 リフレッシュトークンを使用して、アクセストークンを取得する方法です。  
 以下の内容を、HTTP POSTを実行してください。  
 
 ~~~
 http(s)://(ExmentのURL)/admin/oauth/token'  POST  
-grant_type: refresh_token
-client_id: (コマンド実施時にコピーしたClient ID)
-client_secret: (コマンド実施時にコピーしたClient Secret)
-refresh_token: (取得したリフレッシュトークン)
+Content-Type: application/json
+
+{
+    "grant_type": "refresh_token",
+    "client_id": "(コピーしたClient ID)",
+    "client_secret": "(コピーしたClient Secret)",
+    "refresh_token": "(取得したリフレッシュトークン)"
+}
 ~~~
 
 結果：
@@ -268,7 +291,7 @@ refresh_token: (取得したリフレッシュトークン)
 アクセストークン取得までの流れをイメージしてください。  
 
 - 以下のURLにアクセスを行います。  
-http(s)://(ExmentのURL)/admin/oauth/authorize?client_id=(コマンド実施時にコピーしたClient ID)&redirect_uri=(コマンド実施時に入力したcallback URL)&response_type=code&scope=me  
+http(s)://(ExmentのURL)/admin/oauth/authorize?client_id=(コピーしたClient ID)&redirect_uri=(入力したcallback URL)&response_type=code&scope=me  
   
 例：  
 http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redirect_uri=http%3a%2f%2flocalhost%2fadmin%2fauth%2fcallback&response_type=code&scope=me  
@@ -287,9 +310,9 @@ http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYY
 ~~~
 http(s)://(ExmentのURL)/admin/oauth/token'  POST  
 grant_type: authorization_code
-client_id: (コマンド実施時にコピーしたClient ID)
-client_secret: (コマンド実施時にコピーしたClient Secret)
-redirect_uri: (コマンド実施時に入力したcallback URL)
+client_id: (コピーしたClient ID)
+client_secret: (コピーしたClient Secret)
+redirect_uri: (入力したcallback URL)
 code: (取得したcode値)  
 ~~~
   
@@ -366,8 +389,8 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 | me | ログインユーザーの情報を取得できます。 |
 | system_read | システム情報を取得できます。 |
 | system_write | システム情報を取得・新規追加・更新・削除できます。 |
-| table_read | カスタムテーブルの情報を取得できます。 |
-| table_write | カスタムテーブルの情報を取得・新規追加・更新・削除できます。 |
+| table_read | カスタムテーブルの設定情報を取得できます。 |
+| table_write | カスタムテーブルの設定情報を取得・新規追加・更新・削除できます。 |
 | value_read | カスタムデータの情報を取得できます。 |
 | value_write | カスタムデータの情報を取得・新規追加・更新・削除できます。 |
 

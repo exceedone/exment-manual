@@ -3,7 +3,7 @@ FORMAT: 1A
 # Exment WebAPIリファレンス
 ExmentのWeb APIリファレンスです。  
 アプリの登録方法や、アクセストークンの取得方法は[こちら](https://exment.net/docs/#/ja/api)をご参照ください。  
-その他マニュアルは、[こちら](https://exment.net/docs/#/ja)をご参照ください。
+その他マニュアルは、[こちら](https://exment.net/docs/#/ja/)をご参照ください。
 
 # Group システム
  
