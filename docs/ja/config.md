@@ -48,12 +48,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/quickstart_more?id=urlに含む「admin」の変更・削除)をご確認ください。
 
 
-#### API有効・無効
-- 設定キー : EXMENT_API
-- 既定値 ： false
-- 役割 : trueにすることで、ExmentのAPIを使用することができます。詳細は[こちら](/ja/api)をご確認ください。
-
-
 #### ダッシュボード行数
 - 設定キー : EXMENT_DASHBOARD_ROWS
 - 既定値 : 4
@@ -149,22 +143,35 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : trueにすることで、画面からメールで添付ファイルを送信する場合に、添付ファイルをzip暗号化し送信します。  
 復号化パスワードは別途送信されます。
 
+### API
+
+#### API有効・無効
+- 設定キー : EXMENT_API
+- 既定値 ： false
+- 役割 : trueにすることで、ExmentのAPIを使用することができます。詳細は[こちら](/ja/api)をご確認ください。
+
+#### APIの標準取得件数
+- 設定キー : API_DEFAULT_DATA_COUNT
+- 既定値 ： 20
+- 役割 : APIのデータ一覧取得で、countを未使用のときのデータ取得件数です。
+
 
 ### その他
 
 #### ユーザービュー無効
-> v2.1.2対応予定です。
-
 - 設定キー : USER_VIEW_DISABLED
 - 既定値 : false
 - 役割 : trueにすることで、一般ユーザーがユーザービューを作成できなくなります。
 
 #### ユーザーダッシュボード無効
-> v2.1.2対応予定です。
-
 - 設定キー : USER_DASHBOARD_DISABLED
 - 既定値 : false
 - 役割 : trueにすることで、一般ユーザーがユーザーダッシュボードを作成できなくなります。
+
+#### 組織一覧ページで階層表示を行う
+- 設定キー : EXMENT_SHOW_ORGANIZATION_TREE
+- 既定値 : false
+- 役割 : trueにすることで、組織一覧ページで、組織の階層表示が出来るようになります。
 
 ### デバッグ・開発者向け
 

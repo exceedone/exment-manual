@@ -13,3 +13,15 @@ ARCHIVE_MAIL_ATTACHMENT=1
 
 ## Windows
 - 暗号化されたzipファイルを作成するためには、7-zipをインストールします。  
+[7-zip](https://sevenzip.osdn.jp/)
+
+## Linux
+- yumなど、OS側のパッケージコマンドで、zipをインストールします。
+
+~~~
+// CentOSの場合
+yum install zip
+~~~
+
+これにて設定完了です。
+

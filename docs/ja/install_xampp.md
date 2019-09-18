@@ -117,6 +117,9 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 
 - XAMPPコントロールパネルで、Apacheを再起動します。  
 
+- これにより、今後は以下のURLで、Exmentにアクセス出来るようになります。  
+http://exment.localhost/admin
+
 ### Exmentインストール
 Exmentの[インストール手順](/ja/quickstart)に従って、Exmentのインストールを行います。  
 Exmentのインストールは、通常"C:\xampp\local"フォルダ内で行います。  

@@ -15,8 +15,8 @@ EXMENT_API=true
 
 
 ## API認証方法
-1. OAuth 2.0, Authorization Code Flow(画面ログイン形式) : ユーザーが画面から、ExmentのログインID、パスワードを入力することにより、APIを使用できるようになる形式です。Web上からAPIを実行する場合におすすめです。
-1. Password Grant Token(パスワード形式) : APIを呼び出す実行元で、あらかじめログインID、パスワードを設定しておき、APIを使用する形式です。バッチ実行におすすめです。
+1. **OAuth 2.0, Authorization Code Flow(画面ログイン形式)** : ユーザーが画面から、ExmentのログインID、パスワードを入力することにより、APIを使用できるようになる形式です。Web上からAPIを実行する場合におすすめです。
+1. **Password Grant Token(パスワード形式)** : APIを呼び出す実行元で、あらかじめログインID、パスワードを設定しておき、APIを使用する形式です。バッチ実行におすすめです。
 
 ### 1. OAuth 2.0, Authorization Code Flow(画面ログイン形式)
 この認証方式は、新たに構築するWebサービス（例：会計システム）から、ユーザーがExmentのログインを行い、Exmentのデータを使用する利用に利用可能です。  
