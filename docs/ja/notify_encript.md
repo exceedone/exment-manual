@@ -8,7 +8,7 @@
 - 以下の内容を、".env"に追加します。  
 
 ~~~
-ARCHIVE_MAIL_ATTACHMENT=1
+EXMENT_ARCHIVE_MAIL_ATTACHMENT=1
 ~~~
 
 ## Windows

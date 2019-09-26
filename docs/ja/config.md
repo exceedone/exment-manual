@@ -138,7 +138,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : データ新規作成・更新でのメール通知時、同一のデータの連続した更新では、2件目以降のメールはスキップされます。その連続した通知の件数を判定するための時間(分)です。
 
 #### メールの添付ファイル暗号化
-- 設定キー : ARCHIVE_MAIL_ATTACHMENT
+- 設定キー : EXMENT_ARCHIVE_MAIL_ATTACHMENT
 - 既定値 : false
 - 役割 : trueにすることで、画面からメールで添付ファイルを送信する場合に、添付ファイルをzip暗号化し送信します。  
 復号化パスワードは別途送信されます。
@@ -151,20 +151,25 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : trueにすることで、ExmentのAPIを使用することができます。詳細は[こちら](/ja/api)をご確認ください。
 
 #### APIの標準取得件数
-- 設定キー : API_DEFAULT_DATA_COUNT
+- 設定キー : EXMENT_API_DEFAULT_DATA_COUNT
 - 既定値 ： 20
 - 役割 : APIのデータ一覧取得で、countを未使用のときのデータ取得件数です。
+
+#### APIの一括新規作成件数上限
+- 設定キー : EXMENT_API_MAX_CREATE_COUNT
+- 既定値 ： 100
+- 役割 : APIの一括新規作成で、同時に新規作成できる最大件数です。
 
 
 ### その他
 
 #### ユーザービュー無効
-- 設定キー : USER_VIEW_DISABLED
+- 設定キー : EXMENT_USER_VIEW_DISABLED
 - 既定値 : false
 - 役割 : trueにすることで、一般ユーザーがユーザービューを作成できなくなります。
 
 #### ユーザーダッシュボード無効
-- 設定キー : USER_DASHBOARD_DISABLED
+- 設定キー : EXMENT_USER_DASHBOARD_DISABLED
 - 既定値 : false
 - 役割 : trueにすることで、一般ユーザーがユーザーダッシュボードを作成できなくなります。
 
