@@ -276,10 +276,11 @@ class EventServiceProvider extends ServiceProvider
 ### アクセストークン取得
 > v2.1.7以降で対応予定です。  
 
-- ログイン後、アクセストークンとリフレッシュトークンを取得する場合、以下のセッションに格納されています。
+- ログイン後、アクセストークンとリフレッシュトークンを取得する場合、以下の方法で取得を行ってください。
 
 ~~~ php
-$token = session('provider_token');
+use Exceedone\Exment\Services\LoginService;
 
-// ['access_token' => 'eyJ0eXAiOiJKV1QiLCJub25jZ...', 'refresh_token' => 'OAQABAAAAAAAP0wLlq....']
+$access_token = LoginService::getAccessToken();
+$refresh_token = LoginService::getRefreshToken();
 ~~~

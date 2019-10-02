@@ -2,7 +2,7 @@ FORMAT: 1A
  
 # Group カスタムデータ
 
-## カスタムデータ情報 [/api/data/{tableKey}{?count}{&orderby}]
+## カスタムデータ情報 [/api/data/{tableKey}{?page}{&count}{&orderby}]
  
 ### カスタムデータ一覧取得 [GET]
  
@@ -31,6 +31,7 @@ v1.1.0
 
 + Parameters
     + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
+    + page: 1 (number, optional) - 取得するページ番号
     + count: 20 (number, optional) - 1回のリクエストで取得する件数。1～100
     + orderby: id,created_at (string, optional) - データの並べ替えを行う場合、並べ替えの列名。複数ある場合はカンマ区切り。逆順は、「id desc」のように半角スペースを追加する
  
@@ -312,6 +313,90 @@ v2.1.4
 + Response 403 (application/json)
     + Attribute
         + message: `権限がありません。` (string, required) - 該当のカスタムテーブルにデータを新規追加する権限がない場合
+
+
+
+
+## カスタムデータ検索 [/api/data/{tableKey}/query{?q}{&count}]
+ 
+### カスタムデータ検索 [GET]
+ 
+#### 処理概要
+* 特定のカスタムテーブルに登録している、カスタムデータを検索する
+* ログインユーザーに権限のあるデータのみ、一覧の対象となる
+* 「検索インデックス」に登録している列が、検索対象列となる
+* 検索は前方一致。全文一致で検索を行いたい場合は、<a href="https://exment.net/docs/#/ja/search?id=%e8%a3%9c%e8%b6%b3%e3%83%87%e3%83%bc%e3%82%bf%e6%a4%9c%e7%b4%a2%e3%82%92%e9%83%a8%e5%88%86%e4%b8%80%e8%87%b4%e3%81%ab%e5%88%87%e3%82%8a%e6%9b%bf%e3%81%88" target="_blank">こちら</a>に従い、設定が必要
+
+#### Exment権限(Permission)
++ システム：システム情報
++ システム：カスタムテーブル
++ システム：すべてのデータ
++ テーブル：テーブル
++ テーブル：すべてのデータの編集
++ テーブル：すべてのデータの閲覧
++ テーブル：すべてのデータの参照
++ テーブル：担当者データの編集
++ テーブル：担当者データの閲覧
++ テーブル：担当者データの参照
+
+#### APIスコープ(scope)
++ value_read
++ value_write
+
+#### 対応バージョン
+v2.1.6
+
++ Parameters
+    + tableKey: information (string, required) - カスタムテーブルのID(Ex. 5)、もしくはテーブル名(Ex. information)
+    + q: Exment (string, required) - 検索文字列
+    + page: 1 (number, optional) - 取得するページ番号
+    + count: 20 (number, optional) - 1回のリクエストで取得する件数。1～100
+ 
++ Request (application/json)
+
+    + Headers
+            Accept: application/json
+            Authorization: Bearer (Access Token)
+
++ Response 200 (application/json)
+    + Attributes(object)
+        + current_page: 1 (number, required)
+        + data: (array)
+            + (object)
+                + id: 3 (number, required)
+                + suuid: 39c97ba08c6e392a125a (string, required)
+                + parent_type: null (string, required)
+                + parent_id: null (required)
+                + value(object): 
+                    + body: Exmentは、かんたん、おやすいOSSシステムです。
+                    + order: 5
+                    + title: Exmentへようこそ！
+                    + priority: 3
+                    + view_flg: 1
+                + created_at: `2019-03-28 00:00:00`
+                + updated_at: `2019-03-28 00:00:00`
+                + deleted_at: null
+                + created_user_id: null
+                + updated_user_id: null
+                + deleted_user_id: null
+                + label: Exmentへようこそ！
+
+        + first_page_url: `http://local-exment-master/admin/api/data/information/query?q=Exment&page=1`
+        + from: 1
+        + last_page: 1
+        + last_page_url: `http://local-exment-master/admin/api/data/information/query?q=Exment&page=1`
+        + next_page_url: null
+        + path: `http://local-exment-master/admin/api/data/information`
+        + per_page: 15
+        + prev_page_url: null
+        + to: 5
+        + total: 5
+
++ Response 403 (application/json)
+    + Attribute
+        + message: `権限がありません。` (string, required) - 該当のカスタムテーブルにアクセスする権限がない場合
+
+
 
 
 ## カスタムデータ詳細 [/api/data/{tableKey}/{id}]
