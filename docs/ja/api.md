@@ -6,13 +6,10 @@ Exmentでは、[laravel/passport](https://github.com/laravel/passport)を使用�
 参考：[Laravel 5.6 API認証](https://readouble.com/laravel/5.6/ja/passport.html)  
 そのため、認証はlaravel/passportに依存した方式となりますが、当マニュアルは2種類の認証方式をご紹介します。  
 
-## .env修正
-ExmentでAPIを使用するには、.envに以下を追加します。  
+## システム設定変更
+> v2.1.7より、画面から設定変更になりました。
 
-~~~
-EXMENT_API=true
-~~~
-
+ExmentでAPIを使用するには、メニュー「管理者設定 > システム設定」より、「APIを使用する」をYESに変更してください。
 
 ## API認証方法
 1. **OAuth 2.0, Authorization Code Flow(画面ログイン形式)** : ユーザーが画面から、ExmentのログインID、パスワードを入力することにより、APIを使用できるようになる形式です。Web上からAPIを実行する場合におすすめです。

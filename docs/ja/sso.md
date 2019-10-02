@@ -45,14 +45,14 @@ composer require laravel/socialite=~3.2.0
 'github' => [
     'client_id'     => 'xxxxxxxxxxxxxxxx',
     'client_secret' => 'yyyyyyyyyyyyyyyy',
-    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7以降で対応予定
+    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
 ],
 
 // このように記載した場合、.envファイルにFB_CLIENT_IDとFB_CLIENT_SECRETを記入してください
 'facebook' => [
     'client_id'     => env('FB_CLIENT_ID'),
     'client_secret' => env('FB_CLIENT_SECRET'),
-    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7以降で対応予定
+    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
 ],
 
 
@@ -60,7 +60,7 @@ composer require laravel/socialite=~3.2.0
 'google' => [
     'client_id' => env('GOOGLE_CLIENT_ID'),
     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7以降で対応予定
+    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
 ]
 
 ~~~
@@ -106,7 +106,7 @@ composer require exment-oauth/microsoft-graph
     'font_color' => '#FFFFFF', // フォント色
     'background_color_hover' => '#ff501e', // オンマウスしたときの背景色
     'font_color_hover' => '#FFFFFF', // オンマウスしたときの文字色
-    'scope' => 'offline_access', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7以降で対応予定
+    'scope' => 'offline_access', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
 ],
 ~~~
 
@@ -274,7 +274,7 @@ class EventServiceProvider extends ServiceProvider
 
 
 ### アクセストークン取得
-> v2.1.7以降で対応予定です。  
+> v2.1.7より対応しました。
 
 - ログイン後、アクセストークンとリフレッシュトークンを取得する場合、以下の方法で取得を行ってください。
 

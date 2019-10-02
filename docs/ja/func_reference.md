@@ -1,6 +1,6 @@
 # 関数リファレンス
-※申し訳ございません。下記は古い情報になります。  
-近日最新化いたします。
+> 本リファレンスでは、プラグインなどのカスタマイズを行うにあたり、特に重要となるクラスと関数のみ、記載しています。
+
 ## はじめに
 ExmentはPHPを使用したオープンソースシステムです。  
 また、フレームワークに[Laravel](https://laravel.com/)、[laravel-admin](http://laravel-admin.org/docs/#/)を使用しています。  
@@ -9,84 +9,119 @@ ExmentはPHPを使用したオープンソースシステムです。
 ただしExmentでは、主にカスタムテーブルの実現のために、通常のLaravelのEloquentとは異なる、特殊な記法が必要な箇所があります。  
 また、より有効に開発するために、必要な関数処理などを定義しています。  
 このページでは、Exmentで独自に定義している関数を記載します。
-(レイアウトは調整中です)
+
+
+## ModelBase / モデルの基底クラス
+各モデルの基底クラスになります。
+
+- namespace Exceedone\Exment\Model
+- extends Exceedone\Exment\Model\ModelBase
+
+### プロパティ
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| created_user | CustomValue(user) | データを作成したユーザーインスタンス |
+| updated_user | CustomValue(user) | データを更新したユーザーインスタンス |
 
 
 
-## 関数一覧
+## CustomTable / カスタムテーブル
+カスタムテーブルのクラスです。
 
-### ファイル・フォルダ・パス
+- namespace Exceedone\Exment\Model
+- extends Exceedone\Exment\Model\ModelBase
 
-#### path_join
----
-ファイルパスを結合します。
+### プロパティ
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| table_name | string | テーブル名(英数字) |
+| table_view_name | string | カラム表示名 |
+| description | string | 説明文 |
+
+
+### プロパティ(hasMany)
+LaravelのHasManyオブジェクトとして定義しているプロパティ一覧です。
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_columns | CustomColumn | カスタム列 |
+| custom_forms | CustomForm | フォーム |
+| custom_views | CustomView | ビュー |
+| custom_operations | CustomOperation | 一括更新 |
+| notifies | Notify | 通知 |
+| custom_relations | CustomRelation | (そのテーブルが親となる)リレーション |
+| child_custom_relations | CustomRelation | (そのテーブルが子となる)リレーション |
+
+### 関数一覧
+
+
+#### (static)getEloquent
+カスタムテーブルのオブジェクトを取得します。  
+キーとなる$objは、id、table_name、CustomTable、CustomColumn、CustomValueを使用できます。  
+そのリクエスト内で、すでに取得済みのカスタムテーブル情報は、メモリ上に保持するため、再度取得する必要がありません。
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| pass_array | string(可変長引数) | 対象のファイルパス配列 |
+| $obj | mixed | 取得を行いたいキー値（id、table_name、CustomTable、CustomColumn、CustomValue） |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | 結合したファイルパス |
+| CustomTable | 取得したカスタムテーブルの情報 |
 
+##### 使用例
 
-#### getFullpath
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+
+$info = CustomTable::getEloquent('information');
+\Log::debug($info->table_name); // information
+
+$user = CustomTable::getEloquent(4);
+\Log::debug($user->table_view_name); // user
+~~~
+
 ---
-特定のファイルを対象に、ファイルのフルパスを取得します。
+
+#### getValueModel
+カスタムデータのモデルを取得します。  
+※カスタムデータのModelは、クラスCustomValueを元とし、そのクラスを継承した動的なクラス名によって、インスタンス化されます。
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| filename | string | ファイル名 |
-| disk | string | Laravelのファイル名のディスク名 |
+| $id | string,int | 指定のカスタムデータIDのモデルを取得したい場合、そのid。初期値はnull |
+| $withTrashed | bool | 削除済みのモデルを取得したい場合はtrue。初期値はfalse |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | 対象のファイルのファイル名 |
+| CustomValue | カスタムデータ(を継承した、動的なクラス)のオブジェクト |
 
+##### 使用例
 
-### 文字列
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
 
-#### make_password
+// 1.お知らせのデータを取得するためのクエリ作成
+$info = CustomTable::getEloquent('information');
+$query = $info->getValueModel()->query();
+// $queryに対し、データベースのクエリビルダを記述していく
+
+// 2.お知らせデータのIDが1のデータを取得する
+$value = $info->getValueModel(1);
+\Log::debug($value->getValue('title')); // Exmentへようこそ！
+\Log::debug($value->getValue('body')); // Exmentは、かんたん、お手頃なデータ管理Webシステムです。 ・・・・
+
+~~~
+
 ---
-パスワードを作成します。  
-※作成対象となる文字列：abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!$#%_-
 
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| length | int | 文字列(既定値：16) |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | パスワード文字列 |
-
-
-#### make_randomstr
----
-ランダム文字列を作成します。  
-※作成対象となる文字列：abcdefghjkmnpqrstuvwxyz23456789
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| length | int | 文字列 |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | ランダム文字列 |
-
-
-
-#### make_uuid
----
-UUIDを作成します。  
-例： "15682b80-97cf-11e8-b287-2b0751d38875"
+#### getSearchEnabledColumns
+検索可能なカスタム列一覧を取得します。
 
 ##### 引数
 なし
@@ -94,358 +129,414 @@ UUIDを作成します。
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | UUID |
+| Collection(CustomColumn) | カスタム列オブジェクト一覧 |
 
+##### 使用例
 
-#### short_uuid
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+
+$info = CustomTable::getEloquent('information');
+return $info->getSearchEnabledColumns();
+
+~~~
+
 ---
-20文字の短縮UUIDを作成します。データベースの各テーブル名、カラム名、データの一意キー作成に使用しています。  
-例："39bde6af771372f65cad"
 
-##### 引数
-なし
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | 短縮ID |
-
-
-#### make_licensecode
----
-5*5文字の文字列(ハイフン区切り)のライセンスコード系文字列を作成します。
-例："ghkn7-7xwmm-6sedf-8dn37-9wwg9"
-
-##### 引数
-なし
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | 5*5文字の文字列(ハイフン区切り) |
-
-
-#### pascalize
----
-文字列をパスカルケースに変換します。
+#### getOption
+カスタムテーブルのオプション設定を取得します。  
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| string | string | 変換対象の文字列 |
+| $key | string | 取得する設定のキー。color、icon、search_enabledなど |
+| $default | mixed | キー値が存在しなかった場合の既定値。指定しない場合はnull |
+
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | パスカルケース文字列 |
+| mixed | カスタムテーブルのオプション値 |
 
+##### 使用例
 
-### Laravel
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
 
-#### getModelName
+$info = CustomTable::getEloquent('information');
+\Log::debug($info->getOption('icon')); //fa-exclamation
+
+~~~
+
 ---
-カスタムテーブルのModelのフルパス文字列を取得します。  
-テーブル間のリレーションや権限情報取得のためのメソッドも、同時に定義します。  
-※カスタムテーブルのModelを取得する場合、必ずこの関数を使用してください。  
+
+#### hasPermission
+ログインユーザーが、そのテーブルにアクセスする権限を持っているかどうかを判定します。  
+
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| obj | string,CustomTable | カスタムテーブル名、もしくはCustomTableインスタンス |
-| get_name_only | bool | フルパス文字列のみ取得し、他の関数定義などは行いません。(既定値：false) |
+| $role_key | \Exceedone\Exment\Enums\Permission | 判定するパーミッションのキー。初期値はAVAILABLE_VIEW_CUSTOM_VALUE（カスタムテーブルの表示権限） |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | カスタムテーブルのModelのフルパス文字列 |
+| bool | 権限があればtrue、なければfalse |
 
+##### 使用例
 
-#### getDBTableName
+~~~ php
+
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Enums\Permission;
+
+// ログインユーザーが、「契約」テーブルに表示権限があるかどうかの判定
+\Log::debug(CustomTable::getEloquent('contract')->hasPermission());
+
+// ログインユーザーが、「売上」テーブルに編集権限があるかどうかの判定
+\Log::debug(CustomTable::getEloquent('sale')->hasPermission(Permission::AVAILABLE_EDIT_CUSTOM_VALUE));
+
+~~~
+
 ---
-カスタムテーブルのデータベースのテーブル名を取得します。  
-※カスタムテーブルのDBテーブルは、ランダム文字列を使用して作成しています。  
-そのため、データベースを取得するときは、この関数を使用してください。
+
+#### hasPermissionData
+ログインユーザーが、指定のテーブルの指定のidを表示する権限を持っているかどうかを判定します。  
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| obj | string,CustomTable,array | カスタムテーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
+| $id | string,int | 対象のcustom_valueのid |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | カスタムテーブルのテーブル名 |
+| bool | 権限があればtrue、なければfalse |
+
+##### 使用例
+
+~~~ php
+
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Enums\Permission;
+
+// ログインユーザーが、「契約」テーブルのid3のデータに表示権限があるかどうかの判定
+\Log::debug(CustomTable::getEloquent('contract')->hasPermissionData(3));
+
+~~~
+
+---
+
+#### hasPermissionEditData
+---
+ログインユーザーが、指定のテーブルの指定のidを編集する権限を持っているかどうかを判定します。  
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $id | string,int | 対象のcustom_valueのid |
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| bool | 権限があればtrue、なければfalse |
+
+##### 使用例
+
+~~~ php
+
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Enums\Permission;
+
+// ログインユーザーが、「売上」テーブルのid5のデータに表示権限があるかどうかの判定
+\Log::debug(CustomTable::getEloquent('sale')->hasPermissionEditData(5));
+
+~~~
+
+
+## CustomColumn / カスタム列
+カスタム列のクラスです。
+
+- namespace Exceedone\Exment\Model
+- extends Exceedone\Exment\Model\ModelBase
+
+### プロパティ
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| column_name | string | カラム名(英数字) |
+| column_view_name | string | カラム表示名 |
+| required | bool | 必須列かどうか |
+| index_enabled | bool | 検索インデックス列かどうか |
+| unique | bool | ユニーク列かどうか |
+
+
+### プロパティ(hasMany)
+LaravelのHasManyオブジェクトとして定義しているプロパティ一覧です。
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_form_columns | CustomFormColumn | フォーム列 |
+| custom_view_columns | CustomViewColumn | ビュー列 |
+
+
+### プロパティ(belongsTo)
+LaravelのbelongsToオブジェクトとして定義しているプロパティ一覧です。
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_table | CustomTable | カスタムテーブル |
+
+
+### 関数一覧
+
+#### (static)getEloquent
+カスタム列オブジェクトを取得します。  
+キーとなる$objは、id、column_name、CustomColumnを使用できます。  
+そのリクエスト内で、すでに取得済みのカスタム列情報は、メモリ上に保持するため、再度取得する必要がありません。
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $column_obj | mixed | 取得を行いたいキー値（id、column_name、CustomColumn） |
+| $table_obj | mixed | $column_objをcolumn_name指定した場合、テーブルを絞り込むために、対象のカスタムテーブルのid、table_name、CustomTableなど |
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| CustomColumn | 取得したカスタム列の情報 |
+
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Model\CustomColumn;
+
+// 「お知らせ」テーブルの「タイトル」列の情報を、カスタム列のIDを指定して取得
+$column = CustomColumn::getEloquent(45);
+\Log::debug($column->column_name); // title
+
+// 「お知らせ」テーブルの「本文」列の情報を、カスタム列名を指定して取得。
+// 列名は別テーブルでも使用している可能性があるため、テーブル情報も引数に必要
+$column = CustomColumn::getEloquent('body', 'information');
+\Log::debug($column->column_view_name); // 列表示名
+~~~
+
+---
 
 
 #### getIndexColumnName
----
-カスタム列の列名を取得します。  
-※この列名は、「検索可能」フィールドに使用します。  
+その列が検索インデックスを有効にしていた場合、データベースのINDEX名を取得します。
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| obj | CustomColumn,array | CustomColumnインスタンス、もしくはCustomColumnインスタンス配列 |
+| $alterColumn | bool | その列の仮想列がデータベースに存在しなかった場合、仮想列を作成するかどうか。初期値はtrue |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | カスタム列名 |
+| string | インデックス名です。 |
 
+##### 使用例
 
-#### getIndexColumnNameByTable
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Model\CustomColumn;
+
+// 「お知らせ」テーブルの「タイトル」が「Exment」ではじまる列の検索
+$info = CustomTable::getEloquent('information');
+$title = CustomColumn::getEloquent('title', $info);
+
+$query = $info->getValueModel()->query();
+$query->where($title->getIndexColumnName(), 'LIKE', 'Exment%')
+    ->get();
+~~~
+
 ---
-テーブルも指定して、カスタム列の列名を取得します。  
-※この列名は、「検索可能」フィールドに使用します。  
+
+
+
+
+
+## CustomValue / カスタムデータ
+カスタムデータのクラスです。  
+※このクラスは抽象クラスです。このクラスをbaseとし、各カスタムテーブルごとに、クラスが動的に生成されます。
+各テーブルごとのカスタムデータクラスを取得したい場合は、[CustomTableクラスのgetValueModel](#getValueModel)をご参照ください。
+
+- namespace Exceedone\Exment\Model
+- extends Exceedone\Exment\Model\ModelBase
+
+### プロパティ
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| parent_type | string | そのデータに親テーブルがある場合、親テーブル名 |
+| parent_id | int | そのデータに親テーブルがある場合、親テーブルのカスタムデータのid |
+| label | string | そのデータを画面表示するときの見出し |
+
+
+### プロパティ(belongsTo)
+LaravelのbelongsToオブジェクトとして定義しているプロパティ一覧です。
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_table | CustomTable | カスタムテーブル |
+
+
+### 関数一覧
+
+#### notify
+そのカスタムデータの通知を実行します。
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| tableObj | string,CustomTable,array | テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-| column_name | string | 画面上で入力した列名 |
+| $notifySavedType | \Exceedone\Exment\Enums\NotifySavedType | 通知の種類 |
 
 ##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | カスタム列名 |
+なし
 
+##### 使用例
 
-#### getLabelColumn
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+
+// データ作成時の通知を、お知らせテーブルのid1のデータに対し実行
+CustomTable::getEloquent('information')
+    ->getValueModel(1)
+    ->notify(\Exceedone\Exment\Enums\NotifySavedType::CREATE);
+~~~
+
 ---
-カスタムテーブルのデータを、検索結果や選択肢の見出しとして使用する場合に、その見出しのカスタム列を取得します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| tableObj | string,CustomTable,array | テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-| column_name | string | 画面上で入力した列名 |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| CustomColumn | カスタム列 |
-
-
-#### getRelationName
----
-関連テーブルのリレーション名を取得します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| obj | CustomRelation | CustomRelationのインスタンス |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | リレーション名 |
-
-
-#### getRelationNameByTables
----
-親テーブル・子テーブルを指定して、関連テーブルのリレーション名を取得します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| parent | string,CustomTable,array | 親テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-| child | string,CustomTable,array | 子テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | リレーション名 |
-
-
-#### getRoleName
----
-権限名を取得します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| obj | Role | Roleのインスタンス |
-| related_type | stirng | 権限種類 |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | 権限名 |
-
-
 
 #### getValue
----
-指定した列のカスタムテーブルの値を取得します。  
+指定したカスタム列をキーとして、保存している値を取得します。  
+※引数$labelがfalseのとき、カスタム列種類によって、オブジェクトとして取得する場合があります。  
+例えば、カスタム列種類が「選択肢（他のテーブルから取得）」の場合、$labelがfalseの場合、選択したデータのオブジェクトや、データベースに登録している値を返却します。  
+$labelがtrueの場合、画面表示するための見出し列を返却します。  
+
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| custom_value | CustomValue | CustomValueのインスタンス |
-| column | string,CustomColumn,array | カスタムテーブル名、CustomColumnインスタンス、もしくはCustomColumnインスタンス配列 |
-| isonly_label | bool | 画面表示するラベル値のみ取得するかどうか(既定値:false) |
+| $column | CustomColumn,string,int | CustomColumnのインスタンス,column_name,idのいずれか |
+| $label | bool | ラベルとして取得するかどうか。初期値はfalse |
+| $options | array | 取得方法のオプション |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| mixed | 指定した列の、カスタムテーブルの値 |
+| mixed | 指定した列の、カスタムデータの値 |
 
 
-#### getValueUseTable
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+
+// お知らせテーブルのid1のデータを取得
+$value = CustomTable::getEloquent('information')->getValueModel(1);
+
+$title = $value->getValue('title');  // Exmentへようこそ！
+$priority = $value->getValue('priority');  // 3
+$priority = $value->getValue('priority', true); // 通常 
+~~~
+
 ---
-指定した列のカスタムテーブルの値を取得します。  
-※テーブルと、カスタム値のvalueフィールドの配列を引数に指定します。
+
+#### setValue
+指定したカスタム列をキーとして、値を代入します。  
+※Exmentでは、カスタムデータに記入した値は、データベースの"value"列にjson型として保存します。  
+また、CustomValueインスタンスでは、そのvalueプロパティは連想配列にキャストされています。  
+この関数では、value列に、キーを指定して値を代入する処理です。
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| custom_table | string,CustomTable,array | テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-| value | array | カスタム値のvalue配列 |
-| column | string,CustomColumn,array | カスタムテーブル名、CustomColumnインスタンス、もしくはCustomColumnインスタンス配列 |
-| isonly_label | bool | 画面表示するラベル値のみ取得するかどうか(既定値:false) |
+| $key | string | カスタム列名 |
+| $val | mixed | 代入する値 |
+| $forgetIfNull | bool | $valがnullの場合、連想配列からキーを削除するかどうか。初期値はfalse |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| mixed | 指定した列の、カスタムテーブルの値 |
+| CustomValue | CustomValueインスタンス(マジックメソッド)) |
 
 
-#### getParentValue
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+
+// お知らせテーブルのid1のデータを取得
+$value = CustomTable::getEloquent('information')->getValueModel(1);
+
+// 更新してデータベースに保存
+$value->setValue('title', 'タイトル更新');
+$value->save();
+~~~
+
 ---
-カスタムデータの親となる値を取得します。  
+
+
+#### getLabel
+カスタムデータの見出し文字列を取得します。  
 
 ##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| custom_value | CustomValue | CustomValueのインスタンス |
-| isonly_label | bool | 画面表示するラベル値のみ取得するかどうか(既定値:false) |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| mixed | カスタムデータの親となる値 |
-
-
-
-#### getChildrenValues
----
-カスタムデータに関連する、子データ一覧を取得します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| custom_value | CustomValue | CustomValueのインスタンス |
-| relation_table | string,CustomTable,array | 取得対象のテーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| collect(CustomValue) | カスタムデータに関連する |
-
-
-#### getSearchEnabledColumns
----
-検索可能な列一覧を取得します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| table_name | string | テーブル名 |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| array | 検索可能なCustomColumn一覧 |
-
-
-#### createTable
----
-DBにカスタムテーブルを作成します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| obj | string,CustomTable,array | テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-
-##### 戻り値
 なし
 
-
-#### alterColumn
----
-DBのテーブルに、検索可能な列を作成します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| table_name | string | テーブル名 |
-| column_name | string | 列名 |
-
 ##### 戻り値
-なし
+| 種類 | 説明 |
+| ---- | ---- |
+| string | カスタムデータの見出し文字列 |
 
+##### 使用例
 
-### laravel-admin
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
 
-#### getOptions
+// お知らせテーブルのid1のデータを取得
+$value = CustomTable::getEloquent('information')->getValueModel(1);
+
+$label = $value->getLabel();  // Exmentへようこそ！
+~~~
+
 ---
-laravel-adminの、selectの選択肢を作成します。  
-※選択肢が100件を超える場合、ajaxによる絞り込み形式となるため、結果は選択済の項目のみになります。  
+
+#### getUrl
+カスタムデータのページへリンクするURLを取得します。  
+
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| custom_table | string,CustomTable,array | テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-| selected_value | string | 選択済の値(id) |
+| $options | array | 取得方法を指定する連想配列です。 <br />tag : aタグとして取得したい場合true。初期値はfalse<br />list : 一覧ページとして取得したい場合true。初期値はfalse<br />icon : アイコンを追加したい場合、font-awesomeのクラス名   |
 
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| array | 件数が101件以上のとき：選択した値のキーと見出し それ以外のとき：選択したテーブルの、キーの見出しと一覧 |
+| string | URLもしくはタグ |
+
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+
+// お知らせテーブルのid1のデータを取得
+$value = CustomTable::getEloquent('information')->getValueModel(1);
+
+$value->getUrl(); // http://localhost/admin/data/information/1
+$value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/information/1">Exmentへようこそ！</a>
+
+~~~
 
 
-#### getOptionAjaxUrl
----
-laravel-adminの、option作成用のajaxのURLを作成します。  
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| table | string,CustomTable,array | テーブル名、CustomTableインスタンス、もしくはCustomTableインスタンス配列 |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| string | option作成用のajaxのURL |
 
 
-#### createSelectOptions
----
-カスタム列の列種類が"select"もしくは"select_valtext"のときの、選択肢を作成します。
-
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| obj | string,array | 選択肢の文字列もしくは配列 |
-| isValueText | bool | 値・見出しの形式かどうか |
-
-##### 戻り値
-| 種類 | 説明 |
-| ---- | ---- |
-| array | 選択肢の配列 |
 
 
-#### setSelectOptionItem
----
-関数createSelectOptionsで使用する、選択肢の要素の作成します。  
-※引数optionsに追加します。
 
-##### 引数
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| item | string | 選択肢の文字列 |
-| options | array | 選択肢の配列(参照渡し) |
-| isValueText | bool | 値・見出しの形式かどうか |
 
-##### 戻り値
-なし
+

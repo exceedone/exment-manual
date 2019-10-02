@@ -341,7 +341,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 <a href="#/ja/func_reference">
                     <div class="tile-inner">
                         <h5>関数リファレンス</h5>
-                        <p>※情報が古いです。</p>
+                        <p>カスタムテーブル・カスタム列・カスタムデータなどのクラス・関数のリファレンスです。</p>
                     </div>
                 </a>
             </div>
@@ -349,7 +349,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 <a href="#/ja/plugin_reference">
                     <div class="tile-inner">
                         <h5>プラグインリファレンス</h5>
-                        <p>※情報が古いです。</p>
+                        <p>独自プラグインを開発する場合に使用するクラス・関数のリファレンスです。</p>
                     </div>
                 </a>
             </div>
