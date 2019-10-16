@@ -57,6 +57,7 @@
     * [インポート](/ja/plugin_quickstart_import.md)
     * [スクリプト](/ja/plugin_quickstart_script.md)
     * [スタイル](/ja/plugin_quickstart_style.md)
+    * [バリデーション](/ja/plugin_quickstart_validate.md)
   
 * 【9. リファレンス】
   * [リリースノート](/ja/release_note.md)
