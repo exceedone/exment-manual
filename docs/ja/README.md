@@ -229,7 +229,28 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>7. その他標準機能</h4>
+        <h4>7. ワークフロー</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="#/ja/workflow_setting">
+                    <div class="tile-inner important-topic">
+                        <h5>ワークフロー設定</h5>
+                        <p>管理者による、ワークフローの設定を行います。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/data_workflow">
+                    <div class="tile-inner">
+                        <h5>ワークフロー実行</h5>
+                        <p>各ユーザーが、ワークフローを実行するための手順です。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>8. その他標準機能</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/template">
@@ -282,7 +303,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>8. 機能拡張</h4>
+        <h4>9. 機能拡張</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/api">
@@ -311,7 +332,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>9. リファレンス</h4>
+        <h4>10. リファレンス</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/release_note">

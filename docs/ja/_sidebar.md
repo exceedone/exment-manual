@@ -37,7 +37,11 @@
   * [ユーザー・ログインユーザー](/ja/user.md)
   * [役割グループ・権限設定](/ja/role_group.md)
  
-* 【7. その他標準機能】
+* 【7. ワークフロー】
+  * [ワークフロー設定](/ja/workflow_setting.md)
+  * [ワークフロー実施](/ja/data_workflow.md)
+ 
+* 【8. その他標準機能】
   * [テンプレート](/ja/template.md)
   * [バックアップ](/ja/backup.md)
   * [メニュー](/ja/menu.md)
@@ -45,7 +49,7 @@
   * [メールテンプレート](/ja/mail.md)
   * [通知](/ja/notify.md)
 
-* 【8. 機能拡張】
+* 【9. 機能拡張】
   * [API](/ja/api.md)
   * [プラグイン](/ja/plugin.md)
   * [プラグイン作成方法](/ja/plugin_quickstart.md)
@@ -58,7 +62,7 @@
     * [スクリプト](/ja/plugin_quickstart_script.md)
     * [スタイル](/ja/plugin_quickstart_style.md)
   
-* 【9. リファレンス】
+* 【10. リファレンス】
   * [リリースノート](/ja/release_note.md)
     * [v1.1.X](/ja/update/v1_1.md)
     * [v1.2.X](/ja/update/v1_2.md)
