@@ -10,6 +10,14 @@ https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
 
 - ダウンロードしたファイルを、プロジェクトのルートディレクトリに配置してください。
 
+### さくらインターネットの場合
+- 以下のコマンドを、プロジェクトのルートディレクトリで実行し、ダウンロードを行ってください。
+
+~~~
+wget https://exment.net/downloads/cmd/ExmentUpdateLinuxSakura.sh
+chmod 775 ExmentUpdateLinuxSakura.sh
+~~~
+
 ### Linuxの場合
 - 以下のコマンドを、プロジェクトのルートディレクトリで実行し、ダウンロードを行ってください。
 
@@ -17,6 +25,7 @@ https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
 wget https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
 chmod 775 ExmentUpdateLinux.sh
 ~~~
+
 
 ### Macの場合
 - 以下のファイルをダウンロードします。
@@ -32,6 +41,13 @@ chmod 775 ExmentUpdateLinux.sh
 
 ## アップデートバッチの実行
 アップデートバッチを実行してください。
+
+### さくらインターネットの場合
+- 以下のコマンドを、プロジェクトのルートディレクトリで実行してください。
+
+~~~
+sh ExmentUpdateLinuxSakura.sh
+~~~
 
 ### Linux・Macの場合
 - 以下のコマンドを、プロジェクトのルートディレクトリで実行してください。

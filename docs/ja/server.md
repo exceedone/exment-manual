@@ -18,10 +18,13 @@ Exmentをご利用いただく場合、はじめにWebサーバー設定と、�
 ### サーバー
 - PHP 7.1.3以上
 - MySQL 5.7.8以上、8.0.0未満 または MariaDB 10.2.7以上
-- Laravel5.6以上
+- Laravel5.6
 
 <span class="red">※Exmentでは、データベースにjson型を使用しています。json型に対応しているデータベースは、MySQLは5.7.8以上、MariaDBは10.2.7以上となります。ご利用予定のデータベースのバージョンをご確認いただきますよう、よろしくお願いします。</span>
 
 ### 動作確認ブラウザ
 - Google Chrome
 - Microsoft Edge
+
+> Internet Explorerは、技術的負債が大きい点に加え、[マイクロソフトが使用を止めるよう求めている](https://japanese.engadget.com/2019/02/08/internet-explorer-ie/)という現状から、Exmentでは対応しておりません。  
+使用しているjavascriptも、IEは対応していないものを採用しております。ご了承をお願いいたします。
