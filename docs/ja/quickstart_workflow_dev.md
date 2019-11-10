@@ -78,3 +78,15 @@ Exment用データベースのパスワード
 
 ## 設定完了
 クイックスタートが完了したら、引き続き[初期設定](/ja/first_setting.md)を行ってください。  
+
+## テスト環境を更新する場合
+以下の内容を実施してください。  
+
+- コマンドラインで、以下のコマンドを実行します。  
+
+~~~
+cd (プロジェクトのルートディレクトリ)
+composer require exceedone/laravel-admin
+composer require exceedone/exment=dev-workflow_test
+php artisan exment:update
+~~~
