@@ -1,6 +1,6 @@
 # プラグインリファレンス
 各プラグイン独自の関数やプロパティ一覧になります。  
-※カスタムテーブルやカスタム列、カスタムデータのリファレンスは、[こちら](#func_reference)をご参照ください。
+※カスタムテーブルやカスタム列、カスタムデータのリファレンスは、[こちら](/ja/func_reference)をご参照ください。
 
 
 ## PluginBase / プラグイン共通クラス
@@ -14,7 +14,7 @@
 ### 関数一覧
 
 #### setCustomOptionForm
-プラグイン独自の設定を定義します。詳細は[こちら](plugin_quickstart#プラグイン設定画面で独自の設定を行う)をご参照ください。  
+プラグイン独自の設定を定義します。詳細は[こちら](/ja/plugin_quickstart#プラグイン設定画面で独自の設定を行う)をご参照ください。  
 
 ##### 引数
 | 名前 | 種類 | 説明 |
@@ -25,7 +25,7 @@
 なし
 
 ##### 使用例
-[こちら](plugin_quickstart#プラグイン設定画面で独自の設定を行う)をご参照ください。
+[こちら](/ja/plugin_quickstart#プラグイン設定画面で独自の設定を行う)をご参照ください。
 
 ---
 
@@ -33,7 +33,7 @@
 
 ## PluginBatchBase
 プラグイン(バッチ)の抽象クラスです。バッチプラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](plugin_quickstart_batch)をご参照ください。
+詳細は[こちら](/ja/plugin_quickstart_batch)をご参照ください。
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -58,7 +58,7 @@
 
 ## PluginDashboardBase
 プラグイン(ダッシュボード)の抽象クラスです。ダッシュボードプラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](plugin_quickstart_dashboard)をご参照ください。
+詳細は[こちら](/ja/plugin_quickstart_dashboard)をご参照ください。
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -136,7 +136,7 @@
 
 ## PluginDocumentBase
 プラグイン(ドキュメント)の抽象クラスです。ドキュメントプラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](plugin_quickstart_document)をご参照ください。
+詳細は[こちら](/ja/plugin_quickstart_document)をご参照ください。
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -180,7 +180,7 @@
 
 ## PluginImportBase
 プラグイン(インポート)の抽象クラスです。インポートプラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](plugin_quickstart_import)をご参照ください。
+詳細は[こちら](/ja/plugin_quickstart_import)をご参照ください。
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -211,7 +211,7 @@
 
 ## PluginPageBase
 プラグイン(ページ)の抽象クラスです。ページプラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](plugin_quickstart_page)をご参照ください。
+詳細は[こちら](/ja/plugin_quickstart_page)をご参照ください。
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -244,7 +244,7 @@
 
 ## PluginTriggerBase
 プラグイン(トリガー)の抽象クラスです。トリガープラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](plugin_quickstart_trigger)をご参照ください。
+詳細は[こちら](/ja/plugin_quickstart_trigger)をご参照ください。
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -267,6 +267,41 @@
 
 ##### 戻り値
 なし
+
+---
+
+
+
+
+## PluginValidatorBase
+プラグイン(バリデーション)の抽象クラスです。バリデーションプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_validate)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+
+##### プロパティ
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_table | CustomTable | カスタムテーブルのインスタンス |
+| original_value | CustomValue | カスタムデータの変更前インスタンス |
+| input_value | array | 画面入力値を格納した連想配列（キー：列名、値：入力値） |
+| messages | array | エラーメッセージを格納します<br>（キー：列名、値：エラーメッセージ※複数ある場合は配列） |
+
+
+### 関数一覧
+
+#### validate
+バリデーションを実行します。実行したい処理は、こちらの関数内に記載してください。
+
+##### 引数
+なし
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| boolean | バリデーションの結果（true：正常、false：エラーあり） |
+
 
 ---
 
