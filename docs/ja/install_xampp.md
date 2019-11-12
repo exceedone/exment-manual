@@ -99,12 +99,13 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 <VirtualHost *:80>
   DocumentRoot "C:/xampp/local/exment/public"
   ServerName exment.localhost
-  <Directory "C:\xampp\local\exment\public">
-    Allow from all
-    AllowOverride All
-    Require all granted
-  </Directory>  
 </VirtualHost>
+
+<Directory "C:\xampp\local\exment\public">
+  Allow from all
+  AllowOverride All
+  Require all granted
+</Directory>
 ~~~
 
 - "C:\WINDOWS\system32\drivers\etc\hosts"を開き、編集します。  
@@ -115,7 +116,8 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 127.0.0.1       exment.localhost
 ~~~
 
-- XAMPPコントロールパネルで、Apacheを再起動します。  
+- XAMPPコントロールパネルで、Apacheを再起動します。XAMPPコントロールパネルで、「Apache」行の「Stop」ボタンをクリック語、再度「Start」をクリックしてください。  
+![XAMPPインストール画面](img/xampp/xampp7.png)
 
 - これにより、今後は以下のURLで、Exmentにアクセス出来るようになります。  
 http://exment.localhost/admin

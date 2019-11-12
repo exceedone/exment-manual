@@ -7,7 +7,6 @@
 * 【2. インストール・初期設定】
   * [サーバー設定](/ja/server.md)
   * [インストール手順](/ja/quickstart.md)
-  * [インストール手順(ワークフローテスト用)](/ja/quickstart_workflow_dev.md)
   * [初期設定](/ja/first_setting.md)
   * [システム設定](/ja/system_setting.md)
   * [アップデート](/ja/update.md)

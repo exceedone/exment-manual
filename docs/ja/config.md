@@ -42,10 +42,17 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 ： UTC
 - 役割 : アプリケーションで使用するタイムゾーンです。日本の場合は「Asia/Tokyo」を記入してください。
 
+
 #### 「/admin」URL変更
 - 設定キー : ADMIN_ROUTE_PREFIX
 - 既定値 ： admin
 - 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/quickstart_more?id=urlに含む「admin」の変更・削除)をご確認ください。
+
+
+#### キャッシュを有効にする
+- 設定キー : EXMENT_USE_CACHE
+- 既定値 ： false
+- 役割 : trueの場合、キャッシュを有効にします。カスタムテーブルや列、ビュー、ワークフローなどのマスターデータをキャッシュ化します。環境によって、高速化する場合があります。
 
 
 #### ダッシュボード行数

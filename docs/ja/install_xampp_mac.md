@@ -104,12 +104,13 @@ http://localhost/phpmyadmin/index.php
 <VirtualHost *:80>
   DocumentRoot "/Applications/XAMPP/local/exment/public"
   ServerName exment.localhost
-  <Directory "/Applications/XAMPP/local/exment/public">
-    Allow from all
-    AllowOverride All
-    Require all granted
-  </Directory>  
 </VirtualHost>
+
+<Directory "/Applications/XAMPP/local/exment/public">
+  Allow from all
+  AllowOverride All
+  Require all granted
+</Directory>  
 ~~~
 
 - "/Applications/XAMPP/xamppfiles/etc/httpd.conf"を編集します。  
