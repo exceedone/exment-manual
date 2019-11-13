@@ -1,0 +1,304 @@
+# (上級者向け)ファイルの保存先変更
+Exmentでは標準設定の場合、添付ファイルはWebサーバー上に保存されます。  
+ですが、Webサーバー以外の場所に保存したい場合も考えられます。例えば、以下のような場合です。
+
+- バックアップファイルを、FTPに保存する
+- 冗長化を行うため、ファイルをAWS S3に保存する
+
+このように、ファイルの保存先を変更したい場合の設定方法を記載します。  
+
+## ファイルの種類
+現在Exmentでは、以下のようなファイルの種類があります。  
+※キー名は、後に記載する設定で使用します
+
+- **添付ファイル** : 画面から保存する、データの添付ファイル。キー名 : exment
+- **バックアップ** : バックアップ画面から実行する、Exmentデータのバックアップファイル。キー名 : backup
+- **プラグイン** : Exmentの拡張機能としてアップロードした、プラグインファイル。キー名 : plugin
+- **テンプレート** : Exmentのカスタムテーブルやカスタム列などの設定ファイル。キー名 : template
+
+
+## アップロード先(ドライバ)の種類
+現在Exmentでは、以下のアップロード先(ドライバ)に対応しています。
+※キー名は、後に記載する設定で使用します
+
+- **ローカル(既定)** : Webサーバー。キー名 : local
+- **FTP** : FTP。キー名 : ftp
+- **SFTP** : SFTP。キー名 : sftp
+- **Amazon S3** : Amazon S3。キー名 : s3
+- **Azure Blob** : Azure Blob。キー名 : azure
+
+
+## 設定方法
+
+### 共通設定
+- ".env"を開き、変更したいファイルの種類ごとに、ドライバを指定します。
+
+~~~
+EXMENT_DRIVER_EXMENT=(添付ファイルで使用したいドライバのキー名)
+EXMENT_DRIVER_BACKUP=(バックアップで使用したいドライバのキー名)
+EXMENT_DRIVER_TEMPLATE=(テンプレートで使用したいドライバのキー名)
+EXMENT_DRIVER_PLUGIN=(プラグインで使用したいドライバのキー名)
+
+// 例1：バックアップ先のみFTPにしたい場合
+EXMENT_DRIVER_BACKUP=ftp
+
+// 例2：すべてのアップロード先を、Amazon S3に変更したい場合
+EXMENT_DRIVER_EXMENT=s3
+EXMENT_DRIVER_BACKUP=s3
+EXMENT_DRIVER_TEMPLATE=s3
+EXMENT_DRIVER_PLUGIN=s3
+~~~
+
+### (1 推奨)ドライバごとの設定 - configと.env設定
+configの記載は最低限にし、.envに設定値を記載する方法です。  
+ファイルの種類ごとに設定値は使い回せるので、比較的かんたんに設定を行うことができます。
+
+#### FTP
+- "config/filesystems.php"を開き、"disks.ftp"の設定値を確認します。  
+存在していなかった場合、以下の設定を追加します。
+
+~~~php
+    'disks' => [
+        // ここから追加
+        'ftp' => [
+            'driver'   => 'ftp',
+            'host'     => env('FTP_HOST'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+    
+            // FTP設定のオプション
+            'port'     => env('FTP_PORT', 21),
+            'ssl'      => env('FTP_SSL', false),
+            'timeout'  => env('FTP_TIMEOUT', 30),
+        ],
+    ],
+~~~
+
+- ".env"を開き、以下の内容を追加します。  
+
+~~~
+FTP_HOST=(FTPのホスト名)
+FTP_USERNAME=(FTPのユーザー名)
+FTP_PASSWORD=(FTPのパスワード)
+~~~
+
+- FTPを使用したいファイルの種類ごとに、以下の設定を追記します。
+
+~~~
+FTP_ROOT_EXMENT=(添付ファイルで使用するFTPのルートパス)
+FTP_ROOT_BACKUP=(バックアップで使用するFTPのルートパス)
+FTP_ROOT_TEMPLATE=(テンプレートで使用するFTPのルートパス)
+FTP_ROOT_PLUGIN=(プラグインで使用するFTPのルートパス)
+
+// 例1：バックアップのFTPのルートパスを指定
+FTP_ROOT_EXMENT=/var/foo/exment/ftp/backup
+
+// 例2：すべてのFTPのルートパスを指定
+FTP_ROOT_EXMENT=/var/foo/exment/ftp/admin
+FTP_ROOT_BACKUP=/var/foo/exment/ftp/backup
+FTP_ROOT_TEMPLATE=/var/foo/exment/ftp/template
+FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
+~~~
+
+
+
+#### SFTP
+
+- 以下のコマンドを実行します。
+
+~~~
+composer require league/flysystem-sftp ~1.0
+~~~
+
+- "config/filesystems.php"を開き、"disks.sftp"の設定値を確認します。  
+存在していなかった場合、以下の設定を追加します。
+
+~~~php
+    'disks' => [
+
+        // ここから追加
+        'sftp' => [
+            'driver'   => 'sftp',
+            'host'     => env('SFTP_HOST'),
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+
+            // SSH keyベースの認証の設定
+            'privateKey' => env('SFTP_PRIVATE_KEY'),
+            'password' => env('SFTP_PASSWORD'),
+
+            // FTP設定のオプション
+            'port' => env('SFTP_PORT', 22),
+            'timeout' => env('SFTP_TIMEOUT', 30),
+        ],
+    ],
+~~~
+
+- ".env"を開き、以下の内容を追加します。  
+
+~~~
+SFTP_HOST=(FTPのホスト名)
+SFTP_USERNAME=(FTPのユーザー名)
+SFTP_PASSWORD=(FTPのパスワード)
+~~~
+
+- SFTPを使用したいファイルの種類ごとに、以下の設定を追記します。
+
+~~~
+SFTP_ROOT_EXMENT=(添付ファイルで使用するSFTPのルートパス)
+SFTP_ROOT_BACKUP=(バックアップで使用するSFTPのルートパス)
+SFTP_ROOT_TEMPLATE=(テンプレートで使用するSFTPのルートパス)
+SFTP_ROOT_PLUGIN=(プラグインで使用するSFTPのルートパス)
+
+// 例1：バックアップのSFTPのルートパスを指定
+SFTP_ROOT_EXMENT=/var/foo/exment/sftp/backup
+
+// 例2：すべてのSFTPのルートパスを指定
+SFTP_ROOT_EXMENT=/var/foo/exment/sftp/admin
+SFTP_ROOT_BACKUP=/var/foo/exment/sftp/backup
+SFTP_ROOT_TEMPLATE=/var/foo/exment/sftp/template
+SFTP_ROOT_PLUGIN=/var/foo/exment/sftp/plugin
+~~~
+
+
+#### Amazon S3
+- AWS S3のバケット作成、IAM作成を行います。  
+※参考：[超簡単！LaravelでS3を利用する手順](https://qiita.com/tiwu_official/items/ecb115a92ebfebf6a92f)  
+上記URLの「S3用のIAMを作成」「Bucketの作成」を実施してください  
+※複数のファイルの種類を対応させる場合、ファイルの種類ごとにバケットを分けて作成してください
+
+- 以下のコマンドを実行します。
+
+~~~
+composer require league/flysystem-aws-s3-v3 ~1.0
+~~~
+
+- "config/filesystems.php"を開き、"disks.s3"の設定値を確認します。  
+存在していなかった場合、以下の設定を追加します。
+
+~~~php
+    'disks' => [
+
+        // ここから追加
+        's3' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+        ],
+    ],
+~~~
+
+- 以下の内容を、".env"に追加します。  
+
+~~~
+AWS_ACCESS_KEY_ID=(AWS S3のアクセスキー)
+AWS_SECRET_ACCESS_KEY=(AWS S3のシークレットアクセスキー)
+AWS_DEFAULT_REGION=(AWS S3のリージョン)
+~~~
+
+- Amazon S3を使用したいファイルの種類ごとに、以下の設定を追記します。
+
+~~~
+AWS_BUCKET_EXMENT=(添付ファイルで使用するAWS S3のバケット)
+AWS_BUCKET_BACKUP=(バックアップで使用するAWS S3のバケット)
+AWS_BUCKET_TEMPLATE=(テンプレートで使用するAWS S3のバケット)
+AWS_BUCKET_PLUGIN=(プラグインで使用するAWS S3のバケット)
+
+// 例1：バックアップのAWS S3のバケットを指定
+AWS_BUCKET_BACKUP=exment_backup
+
+// 例2：すべてのAWS S3のバケットを指定
+AWS_BUCKET_EXMENT=exment_default
+AWS_BUCKET_BACKUP=exment_backup
+AWS_BUCKET_TEMPLATE=exment_template
+AWS_BUCKET_PLUGIN=exment_plugin
+~~~
+
+
+#### Azure Blob
+- AzureのBlobを作成します。  
+※複数のファイルの種類を対応させる場合、ファイルの種類ごとにコンテナを分けて作成してください
+
+- 以下のコマンドを実行します。
+
+~~~
+composer require league/flysystem-azure-blob-storage ~0.1.6
+~~~
+
+- "config/filesystems.php"を開き、"disks.azure"の設定値を確認します。  
+存在していなかった場合、以下の設定を追加します。
+
+~~~php
+    'disks' => [
+        // ここから追加
+        'azure' => [
+            'driver' => 'azure',
+            'account' => env('AZURE_STORAGE_ACCOUNT'),
+            'key' => env('AZURE_STORAGE_KEY'),
+        ],
+    ],
+~~~
+
+- 以下の内容を、".env"に追加します。  
+
+~~~
+AZURE_STORAGE_ACCOUNT=(Azure Blobのアカウント)
+AZURE_STORAGE_KEY=(Azure Blobのアクセスキー)
+~~~
+
+- Azure Blobを使用したいファイルの種類ごとに、以下の設定を追記します。
+
+~~~
+AZURE_STORAGE_CONTAINER_EXMENT=(添付ファイルで使用するAzure Blobのコンテナ)
+AZURE_STORAGE_CONTAINER_BACKUP=(バックアップで使用するAzure Blobのコンテナ)
+AZURE_STORAGE_CONTAINER_TEMPLATE=(テンプレートで使用するAzure Blobのコンテナ)
+AZURE_STORAGE_CONTAINER_PLUGIN=(プラグインで使用するAzure Blobのコンテナ)
+
+// 例1：バックアップのAzure Blobのコンテナを指定
+AZURE_STORAGE_CONTAINER_BACKUP=exment_backup
+
+// 例2：すべてのAzure Blobのコンテナを指定
+AZURE_STORAGE_CONTAINER_EXMENT=exment_default
+AZURE_STORAGE_CONTAINER_BACKUP=exment_backup
+AZURE_STORAGE_CONTAINER_TEMPLATE=exment_template
+AZURE_STORAGE_CONTAINER_PLUGIN=exment_plugin
+~~~
+
+
+### (2 非推奨)ドライバごとの設定 - configに個別に指定
+ファイルの種類ごとに、各ドライバ情報をconfigに細かく設定する方法です。
+
+#### 例：FTP
+- "config/filesystems.php"を開き、以下の値を追加します。  
+
+~~~php
+    'disks' => [
+        // ファイルの種類がバックアップの場合、ここから追加
+        'backup' => [ // ファイルの種類のキー名を入力
+            'driver'   => 'ftp',
+            'host'     => env('FTP_HOST'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'root' => env('FTP_ROOT'),
+    
+            // FTP設定のオプション
+            'port'     => env('FTP_PORT', 21),
+            'ssl'      => env('FTP_SSL', false),
+            'timeout'  => env('FTP_TIMEOUT', 30),
+        ],
+
+        // 他のファイル種類のドライバを変更する場合は、こちらに同様の設定を記載
+    ],
+~~~
+
+- ".env"を開き、上記の「env」関数内に記載の設定値を追加します。
+
+- 他のファイル種類のドライバを変更する場合は、".env"ファイルに設定を追加してください。
+
+
+### 注意事項
+- サーバーによって、ファイル保存が実施できない場合がございます。  
+特にレンタルサーバーの場合、**提供会社の設定により、FTPなどを制限している場合がございます。**あらかじめご了承ください。
+
+[←追加設定一覧へ戻る](/ja/quickstart_more)

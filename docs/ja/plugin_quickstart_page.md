@@ -31,7 +31,7 @@ Exmentのプラグインページは、PHPのフレームワーク[Laravel](http
 {
     "plugin_name": "YouTubeSearch",
     "plugin_view_name" : "YouTube検索",
-    "explain": "YouTubeを検索し、再生数などをデータ保存します。",
+    "description": "YouTubeを検索し、再生数などをデータ保存します。",
     "uuid":  "c6d8daa0-c255-11e9-bb97-0800200c9a66",
     "author":  "(Your Name)",
     "version": "1.0.0",
