@@ -36,5 +36,5 @@ We use [redoc-cli](https://github.com/Redocly/redoc/tree/master/cli) and [Stopli
 - Create html page. Execute this command on root directory
 
 ~~~
-redoc-cli bundle reference/webapi/yaml/webapi.v1.yaml -o reference/webapi.html
+redoc-cli bundle reference/webapi/yaml/webapi.v1.yaml -o reference/webapi/webapi.html
 ~~~

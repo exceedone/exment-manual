@@ -9,6 +9,86 @@ info:
 servers:
   - url: 'http://localhost/admin'
 paths:
+  /api/version:
+    get:
+      summary: システムバージョン情報取得
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    description: Exmentバージョン
+                required:
+                  - version
+              examples:
+                Example:
+                  value:
+                    version: v3.0.1
+      description: |
+        #### 処理概要
+        * インストールしているExmentのシステムバージョンを取得
+
+        #### Exment権限(Permission)
+        なし
+
+        #### APIスコープ(scope)
+        なし
+
+        #### 対応バージョン
+        v1.1.0
+      security:
+        - OAuth2認証: []
+      operationId: get-version
+  /api/me:
+    get:
+      summary: ログインユーザー情報取得
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomValue'
+              examples:
+                Example:
+                  value:
+                    id: 1
+                    suuid: b6ba6222ebb2aa455521
+                    parent_type: null
+                    parent_id: null
+                    value:
+                      email: admin@foobar.test
+                      user_code: admin
+                      user_name: admin
+                    created_at: '2019-11-13 17:00:38'
+                    updated_at: '2019-11-13 17:06:11'
+                    deleted_at: null
+                    deleted_user_id: null
+                    created_user_id: null
+                    updated_user_id: '1'
+                    label: admin
+      description: |-
+        #### 処理概要
+        * ログインユーザー自身のユーザー情報を取得する
+
+        #### Exment権限(Permission)
+        なし
+
+        #### APIスコープ(scope)
+        + me
+
+        #### 対応バージョン
+        v1.1.0
+      security:
+        - OAuth2認証: []
+      operationId: get-me
   /api/table:
     get:
       summary: カスタムテーブル一覧
@@ -441,86 +521,6 @@ paths:
       security:
         - OAuth2認証: []
       operationId: get-column
-  /api/version:
-    get:
-      summary: システムバージョン情報取得
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  version:
-                    type: string
-                    description: Exmentバージョン
-                required:
-                  - version
-              examples:
-                Example:
-                  value:
-                    version: dev-master
-      description: |
-        #### 処理概要
-        * インストールしているExmentのシステムバージョンを取得
-
-        #### Exment権限(Permission)
-        なし
-
-        #### APIスコープ(scope)
-        なし
-
-        #### 対応バージョン
-        v1.1.0
-      security:
-        - OAuth2認証: []
-      operationId: get-version
-  /api/me:
-    get:
-      summary: ログインユーザー情報取得
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomValue'
-              examples:
-                Example:
-                  value:
-                    id: 1
-                    suuid: b6ba6222ebb2aa455521
-                    parent_type: null
-                    parent_id: null
-                    value:
-                      email: admin@foobar.test
-                      user_code: admin
-                      user_name: admin
-                    created_at: '2019-11-13 17:00:38'
-                    updated_at: '2019-11-13 17:06:11'
-                    deleted_at: null
-                    deleted_user_id: null
-                    created_user_id: null
-                    updated_user_id: '1'
-                    label: admin
-      description: |-
-        #### 処理概要
-        * ログインユーザー自身のユーザー情報を取得する
-
-        #### Exment権限(Permission)
-        なし
-
-        #### APIスコープ(scope)
-        + me
-
-        #### 対応バージョン
-        v1.1.0
-      security:
-        - OAuth2認証: []
-      operationId: get-me
   '/api/data/{tableKey}':
     parameters:
       - type: string
