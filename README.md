@@ -24,25 +24,17 @@ docsify serve docs
 - Show http://localhost:3000 on browser.
 
 
-# How to make WebAPI reference
-We use [API Blueprint](https://apiblueprint.org/)to make WebAPI reference.
+# How to make WebAPI 
+We use [redoc-cli](https://github.com/Redocly/redoc/tree/master/cli) and [Stoplight Studio](https://stoplight.io/studio/) to make WebAPI reference.
 
 - Install node.js
 
-- Install aglio
+- Install Stoplight Studio.
+
+- Install redoc-cli
+
+- Create html page. Execute this command on root directory
 
 ~~~
-npm install -g aglio
-~~~
-
-- Preview single page. Execute this command on root directory
-
-~~~
-aglio -i reference/CustomValue.md --server
-~~~
-
-- Create merged html page. Execute this command on root directory
-
-~~~
-aglio -i reference/merge_webapi.txt -o reference/webapi.html
+redoc-cli bundle reference/webapi/yaml/webapi.v1.yaml -o reference/webapi.html
 ~~~
