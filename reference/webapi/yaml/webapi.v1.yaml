@@ -99,45 +99,16 @@ paths:
           content:
             application/json:
               schema:
+                allOf:
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CustomTable'
+                  - properties:
+                      data:
+                        $ref: ''
                 type: object
-                properties:
-                  current_page:
-                    type: integer
-                    default: 1
-                    description: 現在のページ
-                  first_page_url:
-                    type: string
-                    description: 最初のページのURL
-                  last_page:
-                    type: integer
-                    description: 最後のページ番号
-                  path:
-                    type: string
-                  per_page:
-                    type: integer
-                    description: 1ページあたりの表示件数
-                  to:
-                    type: integer
-                    description: 表示しているデータの終了番号
-                  total:
-                    type: integer
-                    description: データの全件数
-                  from:
-                    type: integer
-                    description: 表示しているデータの開始番号
-                  last_page_url:
-                    type: string
-                    description: 最後のページのURL
-                  prev_page_url:
-                    type: string
-                    description: 前のページのURL
-                  next_page_url:
-                    type: string
-                    description: 次のページのURL
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/CustomTable'
               examples:
                 Example:
                   value:
@@ -539,45 +510,14 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/CustomValue'
-                  next_page_url:
-                    type: string
-                    description: 次のページのURL
-                  prev_page_url:
-                    type: string
-                    description: 前のページのURL
-                  last_page_url:
-                    type: string
-                    description: 最後のページのURL
-                  from:
-                    type: integer
-                    description: 表示しているデータの開始番号
-                  total:
-                    type: integer
-                    description: データの全件数
-                  to:
-                    type: integer
-                    description: 表示しているデータの終了番号
-                  per_page:
-                    type: integer
-                    description: 1ページあたりの表示件数
-                  path:
-                    type: string
-                  last_page:
-                    type: integer
-                    description: 最後のページ番号
-                  first_page_url:
-                    type: string
-                    description: 最初のページのURL
-                  current_page:
-                    type: integer
-                    default: 1
-                    description: 現在のページ
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CustomValue'
+                  - $ref: '#/components/schemas/Paginate'
               examples:
                 Example:
                   value:
@@ -1116,7 +1056,7 @@ components:
   schemas:
     CustomTable:
       title: CustomTable
-      description: カスタムテーブルです。
+      description: カスタムテーブル情報
       x-examples:
         example-1: {}
       allOf:
@@ -1188,7 +1128,7 @@ components:
         - $ref: '#/components/schemas/ModelBase'
     CustomColumn:
       title: CustomColumn
-      description: カスタム列です。
+      description: カスタム列情報
       allOf:
         - type: object
           properties:
@@ -1230,7 +1170,7 @@ components:
         - $ref: '#/components/schemas/ModelBase'
     CustomValue:
       title: CustomValue
-      description: カスタムデータです。
+      description: カスタムデータ情報
       allOf:
         - type: object
           properties:
@@ -1299,7 +1239,7 @@ components:
     ModelBase:
       title: ModelBase
       type: object
-      description: Exmentモデルの基底クラスです。
+      description: Exmentモデルの基底クラス
       properties:
         id:
           type: integer
@@ -1318,6 +1258,38 @@ components:
           type: integer
       required:
         - id
+    Workflow:
+      title: Workflow
+      description: ワークフロー情報
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              description: ID
+            workflow_type:
+              type: integer
+              description: (未利用)
+            workflow_view_name:
+              type: string
+              description: ワークフロー表示名
+            start_status_name:
+              type: string
+              description: 開始ステータス名
+            setting_completed_flg:
+              type: integer
+              default: 0
+              description: 設定完了フラグ
+          required:
+            - id
+            - workflow_view_name
+            - start_status_name
+            - setting_completed_flg
+        - $ref: '#/components/schemas/ModelBase'
+    WorkflowStatus:
+      title: WorkflowStatus
+      description: ワークフローステータス情報
+      allOf: []
   securitySchemes:
     OAuth2認証:
       type: oauth2
