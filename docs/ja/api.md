@@ -390,6 +390,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 | table_write | カスタムテーブルの設定情報を取得・新規追加・更新・削除できます。 |
 | value_read | カスタムデータの情報を取得できます。 |
 | value_write | カスタムデータの情報を取得・新規追加・更新・削除できます。 |
+| notify_read | 通知の情報を取得できます。 |
+| notify_write | 通知を新規追加できます。 |
+| workflow_read | ワークフローの情報を取得できます。 |
+| workflow_execute | ワークフローの実行ができます。 |
 
 ※複数のスコープを指定する場合、スペース区切りでパラメータに設定してください。  
 

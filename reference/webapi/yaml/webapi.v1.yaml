@@ -12,7 +12,8 @@ paths:
   /api/version:
     get:
       summary: システムバージョン情報取得
-      tags: []
+      tags:
+        - システム
       responses:
         '200':
           description: OK
@@ -48,7 +49,8 @@ paths:
   /api/me:
     get:
       summary: ログインユーザー情報取得
-      tags: []
+      tags:
+        - システム
       responses:
         '200':
           description: OK
@@ -92,7 +94,8 @@ paths:
   /api/table:
     get:
       summary: カスタムテーブル一覧
-      tags: []
+      tags:
+        - テーブル
       responses:
         '200':
           description: OK
@@ -206,7 +209,8 @@ paths:
 
 
         #### 対応バージョン
-        v1.1.0
+        + v1.1.0 新規追加
+        + v3.0.X パラメータ「id」「expands」追加
       parameters:
         - schema:
             type: integer
@@ -216,6 +220,16 @@ paths:
           in: query
           name: count
           description: 1回のリクエストで取得する件数。1～100
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: 取得したいテーブルの、ID絞り込みを行う場合設定。カンマ区切り
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'テーブルに紐づく、カスタム列一覧を取得可能。"columns"を指定可能'
       requestBody: {}
       operationId: get-tables
       security:
@@ -230,7 +244,8 @@ paths:
         description: カスタムテーブルのID(Ex. 3)、もしくはテーブル名(Ex. user)
     get:
       summary: カスタムテーブル情報取得
-      tags: []
+      tags:
+        - テーブル
       responses:
         '200':
           description: OK
@@ -301,7 +316,8 @@ paths:
         description: カスタムテーブルのID(Ex. 3)、もしくはテーブル名(Ex. user)
     get:
       summary: カスタムテーブル内のカスタム列一覧取得
-      tags: []
+      tags:
+        - テーブル
       responses:
         '200':
           description: ''
@@ -436,7 +452,8 @@ paths:
           type: integer
     get:
       summary: カスタム列情報取得
-      tags: []
+      tags:
+        - テーブル
       responses:
         '200':
           description: OK
@@ -503,7 +520,8 @@ paths:
         description: テーブル名(Ex. information)
     get:
       summary: カスタムデータ一覧取得
-      tags: []
+      tags:
+        - データ
       responses:
         '200':
           description: OK
@@ -574,12 +592,12 @@ paths:
                         created_user_id: '1'
                         updated_user_id: '1'
                         label: テスト
-                    first_page_url: 'http://local-exment/admin/api/data/information?count=20&page=1'
+                    first_page_url: 'http://localhost/admin/api/data/information?count=20&page=1'
                     from: 1
                     last_page: 1
-                    last_page_url: 'http://local-exment/admin/api/data/information?count=20&page=1'
+                    last_page_url: 'http://localhost/admin/api/data/information?count=20&page=1'
                     next_page_url: null
-                    path: 'http://local-exment/admin/api/data/information'
+                    path: 'http://localhost/admin/api/data/information'
                     per_page: 20
                     prev_page_url: null
                     to: 3
@@ -627,11 +645,18 @@ paths:
           in: query
           name: orderby
           description: データの並べ替えを行う場合、並べ替えの列名。複数ある場合はカンマ区切り。逆順は、「id desc」のように半角スペースを追加する
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: 取得したいデータの、ID絞り込みを行う場合設定。カンマ区切り
       security:
         - OAuth2認証: []
       operationId: get-values
     post:
       summary: カスタムデータ新規作成
+      tags:
+        - データ
       responses:
         '201':
           description: Created
@@ -642,7 +667,7 @@ paths:
                   - {}
                 type: object
               examples:
-                Exaple(1件のみ登録):
+                Example(1件のみ登録):
                   value:
                     id: 8
                     suuid: 946a85f121a7d9b2ab72
@@ -661,7 +686,7 @@ paths:
                     created_user_id: '1'
                     updated_user_id: '1'
                     label: テスト
-                Exaple(複数件登録):
+                Example(複数件登録):
                   value:
                     - id: 10
                       suuid: 1001025f0f3715dbc80b
@@ -697,7 +722,7 @@ paths:
                       created_user_id: '1'
                       updated_user_id: '1'
                       label: テスト2
-      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\nv1.1.0\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```"
+      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\nv1.1.0\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
       parameters: []
       requestBody:
         content:
@@ -759,7 +784,8 @@ paths:
         description: テーブル名(Ex. information)
     get:
       summary: カスタムデータ検索
-      tags: []
+      tags:
+        - データ
       responses:
         '200':
           description: OK
@@ -828,12 +854,12 @@ paths:
                         updated_user_id: null
                         label: Exmentへようこそ！
                         workflow_value: null
-                    first_page_url: 'http://local-exment/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    first_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
                     from: 1
                     last_page: 1
-                    last_page_url: 'http://local-exment/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    last_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
                     next_page_url: null
-                    path: 'http://local-exment/admin/api/data/information/query'
+                    path: 'http://localhost/admin/api/data/information/query'
                     per_page: 20
                     prev_page_url: null
                     to: 1
@@ -888,7 +914,7 @@ paths:
           required: true
       security:
         - OAuth2認証: []
-      operationId: get-values-seach
+      operationId: get-values-query
   '/api/data/{tableKey}/{id}':
     parameters:
       - type: string
@@ -907,7 +933,8 @@ paths:
           type: integer
     get:
       summary: カスタムデータ情報取得
-      tags: []
+      tags:
+        - データ
       responses:
         '200':
           description: OK
@@ -964,6 +991,8 @@ paths:
       operationId: get-value
     put:
       summary: カスタムデータ情報更新
+      tags:
+        - データ
       responses:
         '200':
           description: OK
@@ -1027,6 +1056,8 @@ paths:
       operationId: put-value
     delete:
       summary: カスタムデータ情報削除
+      tags:
+        - データ
       responses:
         '204':
           description: No Content
@@ -1052,6 +1083,875 @@ paths:
       security:
         - OAuth2認証: []
       operationId: delete-value
+  /api/wf/workflow:
+    get:
+      summary: ワークフロー一覧取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Workflow'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 1
+                        suuid: 4a6e46c8f716dda2f2a5
+                        workflow_type: '0'
+                        workflow_view_name: 申請フロー
+                        start_status_name: 未実施
+                        setting_completed_flg: '1'
+                        created_at: '2019-11-14 13:27:45'
+                        updated_at: '2019-11-14 16:59:37'
+                        created_user_id: '1'
+                        updated_user_id: '1'
+                      - id: 2
+                        suuid: e78c0fdefac9bb91623a
+                        workflow_type: '0'
+                        workflow_view_name: フロー2
+                        start_status_name: 未実施
+                        setting_completed_flg: '1'
+                        created_at: '2019-11-14 17:07:04'
+                        updated_at: '2019-11-18 13:38:47'
+                        created_user_id: '1'
+                        updated_user_id: '1'
+                    first_page_url: 'http://localhost/admin/webapi/wf/workflow?page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/webapi/wf/workflow?page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/webapi/wf/workflow'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 2
+                    total: 2
+      description: " #### 処理概要\n* ワークフロー一覧を取得する\n* 「設定完了」が実行されているワークフローのみ、一覧で取得する\n\n#### Exment権限(Permission)\nなし\n\n#### APIスコープ(scope)\n+ workflow_read\n+ workflow_execute\n\n#### 対応バージョン\nv3.0.X\n"
+      parameters:
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: 1回のリクエストで取得する件数。1～100
+          required: true
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: all
+          description: 1の場合、設定完了されていないワークフローも含める
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'ワークフローに紐づく、ステータス設定一覧、アクション設定一覧を取得可能。"statuses"、"actions"を指定可能。複数の場合はカンマ区切り。'
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: 取得したいワークフローの、ID絞り込みを行う場合設定。カンマ区切り
+      security:
+        - OAuth2認証: []
+      operationId: get-workflows
+    parameters: []
+  '/api/wf/workflow/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ワークフローID
+    get:
+      summary: ワークフロー情報取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+      description: |
+        #### 処理概要
+        * ワークフローのIDから、ワークフロー情報を取得する
+
+        #### Exment権限(Permission)
+        なし
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'ワークフローに紐づく、ステータス設定一覧、アクション設定一覧を取得可能。"statuses"、"actions"を指定可能。複数の場合はカンマ区切り。'
+      security:
+        - OAuth2認証: []
+      operationId: get-workflow
+  '/api/wf/workflow/{workflow_id}/statuses':
+    parameters:
+      - type: string
+        name: workflow_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ワークフローID
+    get:
+      summary: 指定のワークフローのステータス一覧取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStatus'
+      description: |
+        #### 処理概要
+        * workflow_idで指定したワークフローの、ワークフローステータス一覧を取得する
+
+        #### Exment権限(Permission)
+        + なし
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      security:
+        - OAuth2認証: []
+      parameters:
+        - schema:
+            type: string
+          in: header
+          description: ''
+      operationId: get-workflow-statuses
+  '/api/wf/workflow/{workflow_id}/actions':
+    parameters:
+      - type: string
+        name: workflow_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ワークフローID
+    get:
+      summary: 指定のワークフローのアクション一覧取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowAction'
+      description: |-
+        #### 処理概要
+        * workflow_idで指定したワークフローの、ワークフローアクション一覧を取得する
+
+        #### Exment権限(Permission)
+        + なし
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      security:
+        - OAuth2認証: []
+      operationId: get-workflow-actions
+  '/api/wf/status/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ステータスID
+    get:
+      summary: ワークフローのステータス取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowStatus'
+      description: |-
+        #### 処理概要
+        * ワークフローのステータス情報を取得する
+
+        #### Exment権限(Permission)
+        なし
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      security:
+        - OAuth2認証: []
+      parameters: []
+      operationId: get-workflow-status
+  '/api/wf/action/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+        description: ワークフローアクションID
+        schema:
+          type: integer
+    get:
+      summary: ワークフローのアクション取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowAction'
+      description: |
+        #### 処理概要
+        * ワークフローアクション情報を取得する
+
+        #### Exment権限(Permission)
+        なし
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      security:
+        - OAuth2認証: []
+      operationId: get-workflow-action
+  '/api/wf/data/{tableKey}/{id}/value':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: テーブル名(Ex. information)
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: カスタムデータのID
+    get:
+      summary: 特定のデータに対し、現在のワークフローの実行値を取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/WorkflowValue'
+                  - type: object
+                    properties:
+                      workflow_status_from:
+                        $ref: '#/components/schemas/WorkflowStatus'
+                      workflow_status_to:
+                        $ref: '#/components/schemas/WorkflowStatus'
+                      workflow_action:
+                        $ref: '#/components/schemas/WorkflowAction'
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのカスタムデータの、現在のワークフローの実行値を取得する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      security:
+        - OAuth2認証: []
+      operationId: get-workflow-value
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'ワークフロー実行値に紐づく、実行前ステータス情報、実行後ステータス情報、アクション情報を取得可能。"status_from"、"status_to"、"actions"を指定可能。複数の場合はカンマ区切り。'
+    post:
+      summary: 特定のデータに対し、ワークフローを実行
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、ワークフローを実行する
+        * ワークフローアクションIDをPOSTすることによって、ワークフローを実行する
+        * アクション設定の「実行可能ユーザー」の値が「前アクションの実行可能ユーザーが選択」の場合、次パラメータの"users(アクションを実行するユーザーID一覧)"、もしくは"organizations(組織ID一覧)"どちらかが必須となる
+        * 現在のステータスと合わないアクションを実行した場合、エラーコードXXXXを返却する
+        * 実行ユーザーが、そのアクションを行う権限が無かった場合、エラーコードYYYYを返却する
+
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+
+
+        #### APIスコープ(scope)
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workflow_action_id:
+                  type: integer
+                  description: 実行するワークフローアクションID
+                comment:
+                  type: string
+                  description: 'ワークフローのコメント。そのアクションが、comment_typeが"required"の場合は必須。"not_use"の場合は無視される'
+                next_users:
+                  type: string
+                  description: アクション設定の「実行可能ユーザー」が、「前アクションの実行可能ユーザーが選択」の場合、次のアクションを実行するユーザーIDをカンマ区切りで入力
+                next_organizations:
+                  type: string
+                  description: アクション設定の「実行可能ユーザー」が、「前アクションの実行可能ユーザーが選択」の場合、次のアクションを実行する組織IDをカンマ区切りで入力
+              required:
+                - workflow_action_id
+        description: ''
+  '/api/wf/data/{tableKey}/{id}/work_users':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: テーブル名(Ex. information)
+        schema:
+          type: string
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: カスタムデータのID
+    get:
+      summary: 特定のデータに対し、作業ユーザーの一覧を取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    description: ユーザー一覧
+                    items:
+                      $ref: '#/components/schemas/CustomValue'
+                  organizations:
+                    type: array
+                    description: 組織一覧
+                    items:
+                      $ref: '#/components/schemas/CustomValue'
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのカスタムデータの、現在の作業ユーザー一覧を取得する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      security:
+        - OAuth2認証: []
+      parameters:
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: as_user
+          description: 1のとき、「組織」としてアクション設定している作業者を、その組織に所属しているユーザー一覧に変換する
+      operationId: get-workflow-value-users
+  '/api/wf/data/{tableKey}/{id}/actions':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: テーブル名(Ex. information)
+        schema:
+          type: string
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: カスタムデータのID
+    get:
+      summary: 特定のデータに対し、実行できる次のアクションの一覧を取得
+      tags:
+        - ワークフロー
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowAction'
+        '':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowAction'
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのカスタムデータの、実行できる次のアクションの一覧を取得する
+        * ログインユーザーが実行できるアクションのみに絞り込む
+        * ログインユーザーが実行できるかどうかを問わず、すべてのアクションを取得する場合、クエリ文字列「all=1」を追加する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      parameters:
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: all
+          description: 1のとき、ログインユーザーが実行できるかどうかを問わず、すべてのアクションを取得する
+          required: true
+      security:
+        - OAuth2認証: []
+      operationId: get-workflow-value-actions
+  '/api/wf/data/{tableKey}/{id}/histories':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: テーブル名(Ex. information)
+        schema:
+          type: string
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: カスタムデータのID
+    get:
+      summary: 特定のデータに対し、ワークフローの履歴一覧を取得
+      tags:
+        - ワークフロー
+      responses: {}
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのカスタムデータの、ワークフローの履歴一覧を取得する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.X
+      security:
+        - OAuth2認証: []
+      operationId: get-workflow-value-histories
+  '/api/data/{tableKey}/query-column':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: テーブル名(Ex. information)
+    get:
+      summary: カスタムデータ検索(列指定)
+      tags:
+        - データ
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current_page:
+                    type: integer
+                    default: 1
+                    description: 現在のページ
+                  first_page_url:
+                    type: string
+                    description: 最初のページのURL
+                  last_page:
+                    type: integer
+                    description: 最後のページ番号
+                  path:
+                    type: string
+                  per_page:
+                    type: integer
+                    description: 1ページあたりの表示件数
+                  to:
+                    type: integer
+                    description: 表示しているデータの終了番号
+                  total:
+                    type: integer
+                    description: データの全件数
+                  from:
+                    type: integer
+                    description: 表示しているデータの開始番号
+                  last_page_url:
+                    type: string
+                    description: 最後のページのURL
+                  prev_page_url:
+                    type: string
+                    description: 前のページのURL
+                  next_page_url:
+                    type: string
+                    description: 次のページのURL
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomValue'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 1
+                        suuid: 39c97ba08c6e392a125a
+                        parent_type: null
+                        parent_id: null
+                        value:
+                          body: '<p>Exmentは、かんたん、お手頃なデータ管理Webシステムです。&nbsp;</p>'
+                          order: '5'
+                          title: Exmentへようこそ！
+                          priority: '3'
+                          view_flg: '1'
+                        created_at: '2019-01-04 18:48:15'
+                        updated_at: '2019-01-04 19:50:55'
+                        deleted_at: null
+                        deleted_user_id: null
+                        created_user_id: null
+                        updated_user_id: null
+                        label: Exmentへようこそ！
+                        workflow_value: null
+                    first_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/data/information/query'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 1
+                    total: 1
+      description: "#### 処理概要\n* 特定のカスタムテーブルに登録している、カスタムデータを検索する\n* ログインユーザーに権限のあるデータのみ、一覧の対象となる\n* カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n+ テーブル：担当者データの参照\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\nv3.0.X\n\n#### 検索条件の指定方法\n* パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。\n* 検索条件は、現在は「完全一致」のみ対応している。クエリの設定方法は、\"(列名) eq (検索値)\"となる。  \n※URLエンコードは行うこと\n\n■例1：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n■例2：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"、\"タイトル(title)\"が\"テスト\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1,title eq テスト\n```"
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: q
+          description: 検索文字列。クエリ検索の指定方法は、上記の例を参考にすること
+          required: true
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: 取得するページ番号
+          required: true
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: 1回のリクエストで取得する件数。1～100
+          required: true
+      security:
+        - OAuth2認証: []
+      operationId: get-values-seach-column
+  /api/notify:
+    get:
+      summary: 通知一覧を取得
+      tags:
+        - 通知
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Notify'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 7
+                        notify_id: '0'
+                        parent_type: null
+                        parent_id: null
+                        target_user_id: '2'
+                        trigger_user_id: '2'
+                        notify_subject: テストテストテスト
+                        notify_body: 本文です本文です本文です本文です本文です本文です本文です本文です
+                        read_flg: '0'
+                        created_at: '2019-11-18 19:21:36'
+                        updated_at: '2019-11-18 19:21:36'
+                        created_user_id: null
+                        updated_user_id: null
+                      - id: 4
+                        notify_id: '1'
+                        parent_type: information
+                        parent_id: '8'
+                        target_user_id: '2'
+                        trigger_user_id: '1'
+                        notify_subject: '[テスト]データが作成されました'
+                        notify_body: |
+                          ユーザーにより、お知らせのデータが作成されました。
+                          以下の内容をご確認ください。
+
+                          作成ユーザー:
+                          作成日時:2019-11-15 16:44:41
+                          作成データ:<a href='http://localhost/admin/data/information/8'>テスト</a>
+                        read_flg: '0'
+                        created_at: '2019-11-15 16:44:43'
+                        updated_at: '2019-11-15 16:44:43'
+                        created_user_id: null
+                        updated_user_id: null
+                    first_page_url: 'http://localhost/admin/api/notify?count=5&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/notify?count=5&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/notify'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 5
+                    total: 5
+      operationId: get-notifies
+      description: |-
+        #### 処理概要
+        * 通知バーの通知一覧を取得する
+        * 未読の通知のみ取得する。すべての通知を取得する場合、パラメータ"all=1"を追加する
+
+        #### Exment権限(Permission)
+        + なし
+
+        #### APIスコープ(scope)
+        + notify_read
+        + notify_write
+
+        #### 対応バージョン
+        v3.0.X
+      parameters:
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: all
+          description: 1の場合、すべての通知を取得する
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: 1回のリクエストで取得する件数。1～100
+    post:
+      summary: 通知追加
+      tags:
+        - 通知
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notify'
+              examples:
+                Example:
+                  value:
+                    notify_id: 0
+                    target_user_id: '2'
+                    notify_subject: テストテストテスト
+                    notify_body: 本文です本文です本文です本文です本文です本文です本文です本文です
+                    trigger_user_id: '2'
+                    updated_at: '2019-11-18 19:21:36'
+                    created_at: '2019-11-18 19:21:36'
+                    id: 7
+      description: |-
+        #### 処理概要
+        * 指定ユーザーに通知を送信する
+        * 通知は通知バーにのみ追加される
+
+        #### Exment権限(Permission)
+        + なし
+
+        #### APIスコープ(scope)
+        + notify_write
+
+        #### 対応バージョン
+        v3.0.X
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target_users:
+                  type: string
+                  description: 通知送信先のユーザーID。複数ある場合にはカンマ区切り
+                notify_subject:
+                  type: string
+                  description: 通知件名
+                notify_body:
+                  type: string
+                  description: 通知本文
+              required:
+                - target_users
+                - notify_subject
+                - notify_body
+            examples:
+              Example:
+                value:
+                  target_users: '2'
+                  notify_subject: テストテストテスト
+                  notify_body: 本文です本文です本文です本文です本文です本文です本文です本文です
+        description: ''
+      operationId: post-notify
 components:
   schemas:
     CustomTable:
@@ -1280,6 +2180,16 @@ components:
               type: integer
               default: 0
               description: 設定完了フラグ
+            workflow_statuses:
+              type: array
+              description: ワークフローステータス一覧 ※クエリで「expands=statuses」指定した場合のみ追加される
+              items:
+                $ref: '#/components/schemas/WorkflowStatus'
+            workflow_actions:
+              type: array
+              description: ワークフローアクション一覧 ※クエリで「expands=actions」指定した場合のみ追加される
+              items:
+                $ref: '#/components/schemas/WorkflowAction'
           required:
             - id
             - workflow_view_name
@@ -1289,7 +2199,210 @@ components:
     WorkflowStatus:
       title: WorkflowStatus
       description: ワークフローステータス情報
-      allOf: []
+      allOf:
+        - type: object
+          properties:
+            id:
+              description: ID
+              type: integer
+            workflow_id:
+              type: integer
+              description: Workflow ID
+            status_type:
+              type: integer
+              description: (未利用)
+            status_name:
+              type: string
+              description: ステータス表示名
+            datalock_flg:
+              type: integer
+              default: 1
+              description: 1のとき、このステータスのデータは画面から変更不可
+            completed_flg:
+              type: integer
+              default: 1
+              description: 1のとき、ワークフローの終了
+          required:
+            - id
+            - workflow_id
+            - status_name
+            - datalock_flg
+            - completed_flg
+        - $ref: '#/components/schemas/ModelBase'
+    WorkflowAction:
+      title: WorkflowAction
+      description: ワークフローのアクション
+      allOf:
+        - properties:
+            id:
+              type: integer
+              description: ID
+            workflow_id:
+              type: integer
+              description: Workflow ID
+            status_from:
+              type: string
+              description: 'アクション実行前のステータスID。"start"文字列の場合、ワークフロー開始時のステータス'
+            action_name:
+              type: string
+              description: アクション表示名
+            ignore_work:
+              type: integer
+              default: 0
+              description: 1のとき、そのアクションは特殊アクションとなり、作業ユーザーから除外される
+            comment_type:
+              type: string
+              description: 'コメントの記入方法。required:必須、nullable：任意、not_use：未利用'
+            flow_next_type:
+              type: string
+              description: 次のステータスに進む方法。some：X人以上、all：全員が承認
+            flow_next_count:
+              type: integer
+              description: flow_next_typeがsomeのとき、何人以上の実施で次のステータスへ進むかどうか
+            work_targets:
+              type: object
+              description: このワークフローを実施できる権限のある人の情報
+              properties:
+                work_target_type:
+                  type: string
+                  description: ワークフローの実行対象。fix：固定のユーザー、action_select：前のアクションユーザーが指定
+                system:
+                  type: array
+                  description: 0：そのデータの作成ユーザーID
+                  items:
+                    type: integer
+                user:
+                  type: array
+                  description: アクションを実行できるユーザーのID配列
+                  items:
+                    type: integer
+                organization:
+                  type: array
+                  description: アクションを実行できる組織のID配列
+                  items:
+                    type: integer
+                column:
+                  type: array
+                  description: カスタム列ID配列。そのカスタム列に指定しているユーザーが、アクションの実行ユーザーになる
+                  items:
+                    type: integer
+            work_conditions:
+              description: ワークフローの実行条件
+              type: array
+              items:
+                type: object
+                properties:
+                  status_to:
+                    type:
+                      - string
+                      - integer
+                    description: 'アクション実行後のステータスID。"start"文字列の場合、ワークフロー開始時のステータス'
+                  enabled_flg:
+                    type:
+                      - string
+                      - integer
+                    description: 1の場合、その条件は有効となる
+                required:
+                  - enabled_flg
+          required:
+            - id
+            - workflow_id
+            - action_name
+            - ignore_work
+      type: object
+    WorkflowValue:
+      title: WorkflowValue
+      description: ワークフローの実行値
+      allOf:
+        - properties:
+            id:
+              type: integer
+              description: ID
+            workflow_id:
+              type: integer
+              description: ワークフローID
+            morph_type:
+              type: string
+              description: 紐付くカスタムデータのテーブル名
+            morph_id:
+              type: integer
+              description: 紐付くカスタムデータのID
+            workflow_action_id:
+              type: integer
+              description: ワークフローのアクションID
+            workflow_status_from_id:
+              type: integer
+              description: アクション実行前のワークフローステータスID。nullの場合、実行前のステータスは、ワークフロー未実施のステータスであることを示す
+            workflow_status_to_id:
+              type: integer
+              description: アクション実行後のワークフローステータスID。nullの場合、実行後のステータスは、ワークフロー未実施のステータスであることを示す
+            comment:
+              type: string
+              description: コメント
+            action_executed_flg:
+              type: integer
+              default: 0
+              description: 1のときは、現在そのワークフローステータスが実行中であることを示す
+            latest_flg:
+              type: integer
+              default: 0
+              description: 1のときは、そのワークフロー実行値がもっとも最新であることを示す
+          required:
+            - id
+            - workflow_id
+            - morph_type
+            - morph_id
+            - workflow_action_id
+            - action_executed_flg
+            - latest_flg
+      type: object
+    Notify:
+      title: Notify
+      description: 通知バーの通知情報
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 通知バーID
+        notify_id:
+          type: integer
+          description: 通知定義のID。フリーフォーマットの通知の場合、0が入る
+        parent_type:
+          type: string
+          description: 特定のカスタムデータに紐付く通知の場合、カスタムテーブルのテーブル名
+        parent_id:
+          type: integer
+          description: 特定のカスタムデータに紐付く通知の場合、カスタムデータのID
+        target_user_id:
+          type: integer
+          description: 通知対象のユーザーID
+        trigger_user_id:
+          type: integer
+          description: 通知の実行元になったユーザーのID
+        notify_subject:
+          type: string
+          description: 通知の件名
+        notify_body:
+          type: string
+          description: 通知の本文
+        read_flg:
+          type: integer
+          default: 0
+          description: 既読の場合1
+        created_at:
+          type: string
+          description: 作成日時
+        updated_at:
+          type: string
+          description: 更新日時
+      required:
+        - id
+        - notify_id
+        - target_user_id
+        - trigger_user_id
+        - notify_subject
+        - notify_body
+        - read_flg
   securitySchemes:
     OAuth2認証:
       type: oauth2
