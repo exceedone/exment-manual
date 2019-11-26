@@ -213,8 +213,16 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
             <div class="col-sm-6 tile">
                 <a href="#/ja/user">
                     <div class="tile-inner important-topic">
-                        <h5>ユーザー・ログイン管理</h5>
+                        <h5>ユーザー・ログインユーザー管理</h5>
                         <p>ユーザー情報の管理や、システムにログインをするための設定方法の手順です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/organization">
+                    <div class="tile-inner important-topic">
+                        <h5>組織管理</h5>
+                        <p>ユーザーが所属する組織の設定方法の手順です。</p>
                     </div>
                 </a>
             </div>
