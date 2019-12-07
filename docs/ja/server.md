@@ -14,6 +14,9 @@ Exmentをご利用いただく場合、はじめにWebサーバー設定と、�
 - [Linuxに構築](/ja/install_linux)  
 →ExmentをLinux(CentOS)にインストールする場合の手順
 
+- [AWSに構築](/ja/install_aws)  
+→(β版)ExmentをAWSに構築する場合の手順
+
 # composer導入
 Exmentには、composerの導入が必要です。導入方法はこちらをご参照ください。  
 ※すでに導入済の方は不要です。  
