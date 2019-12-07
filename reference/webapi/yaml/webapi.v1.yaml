@@ -210,7 +210,7 @@ paths:
 
         #### 対応バージョン
         + v1.1.0 新規追加
-        + v3.1.0 パラメータ「id」「expands」追加
+        + v3.0.8 パラメータ「id」「expands」追加
       parameters:
         - schema:
             type: integer
@@ -1135,7 +1135,7 @@ paths:
                     prev_page_url: null
                     to: 2
                     total: 2
-      description: " #### 処理概要\n* ワークフロー一覧を取得する\n* 「設定完了」が実行されているワークフローのみ、一覧で取得する\n\n#### Exment権限(Permission)\nなし\n\n#### APIスコープ(scope)\n+ workflow_read\n+ workflow_execute\n\n#### 対応バージョン\nv3.1.0\n"
+      description: " #### 処理概要\n* ワークフロー一覧を取得する\n* 「設定完了」が実行されているワークフローのみ、一覧で取得する\n\n#### Exment権限(Permission)\nなし\n\n#### APIスコープ(scope)\n+ workflow_read\n+ workflow_execute\n\n#### 対応バージョン\nv3.0.8\n"
       parameters:
         - schema:
             type: integer
@@ -1198,7 +1198,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       parameters:
         - schema:
             type: string
@@ -1242,7 +1242,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       security:
         - OAuth2認証: []
       parameters: []
@@ -1281,7 +1281,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       security:
         - OAuth2認証: []
       operationId: get-workflow-actions
@@ -1317,7 +1317,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       security:
         - OAuth2認証: []
       parameters: []
@@ -1354,7 +1354,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       security:
         - OAuth2認証: []
       operationId: get-workflow-action
@@ -1416,7 +1416,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       security:
         - OAuth2認証: []
       operationId: get-workflow-value
@@ -1460,7 +1460,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       requestBody:
         content:
           application/json:
@@ -1543,7 +1543,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       security:
         - OAuth2認証: []
       parameters:
@@ -1618,7 +1618,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       parameters:
         - schema:
             type: integer
@@ -1671,7 +1671,7 @@ paths:
         + workflow_execute
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       security:
         - OAuth2認証: []
       operationId: get-workflow-value-histories
@@ -1766,7 +1766,7 @@ paths:
                     prev_page_url: null
                     to: 1
                     total: 1
-      description: "#### 処理概要\n* 特定のカスタムテーブルに登録している、カスタムデータを検索する\n* ログインユーザーに権限のあるデータのみ、一覧の対象となる\n* カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n+ テーブル：担当者データの参照\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\nv3.1.0\n\n#### 検索条件の指定方法\n* パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。\n* 検索条件は、現在は「完全一致」のみ対応している。クエリの設定方法は、\"(列名) eq (検索値)\"となる。  \n※URLエンコードは行うこと\n\n■例1：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n■例2：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"、\"タイトル(title)\"が\"テスト\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1,title eq テスト\n```"
+      description: "#### 処理概要\n* 特定のカスタムテーブルに登録している、カスタムデータを検索する\n* ログインユーザーに権限のあるデータのみ、一覧の対象となる\n* カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n+ テーブル：担当者データの参照\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\nv3.0.8\n\n#### 検索条件の指定方法\n* パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。\n* 検索条件は、現在は「完全一致」のみ対応している。クエリの設定方法は、\"(列名) eq (検索値)\"となる。  \n※URLエンコードは行うこと\n\n■例1：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n■例2：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"、\"タイトル(title)\"が\"テスト\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1,title eq テスト\n```"
       parameters:
         - schema:
             type: string
@@ -1871,7 +1871,7 @@ paths:
         + notify_write
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       parameters:
         - schema:
             type: integer
@@ -1921,7 +1921,7 @@ paths:
         + notify_write
 
         #### 対応バージョン
-        v3.1.0
+        v3.0.8
       requestBody:
         content:
           application/json:
