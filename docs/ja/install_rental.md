@@ -105,12 +105,12 @@ composer --version
 cd ~/(ドメイン名)
 mkdir laravel
 cd laravel
-composer create-project "laravel/laravel=5.6.*" exment
+wget https://exment.net/downloads/ja/exment.zip
+unzip exment.zip
+rm exment.zip
 ~~~
 
-- その後は、[インストール手順](/ja/quickstart)に従い、Exmentをインストールします。
-
-- 手順が完了したら、「$HOME/(ドメイン名)/public_html」フォルダに、先ほど作成した「$HOME/(ドメイン名)/laravel/exment/public」フォルダのシンボリックリンクを作成します。  
+- 「$HOME/(ドメイン名)/public_html」フォルダに、先ほど作成した「$HOME/(ドメイン名)/laravel/exment/public」フォルダのシンボリックリンクを作成します。  
 シンボリックリンクを作成することで、Laravel本体や設定値は、Web公開のフォルダにない場合でも、laravelのpublicフォルダがpublic_htmlフォルダ内に存在することになります。
 
 ~~~ bash
@@ -119,9 +119,9 @@ rm -r $HOME/(ドメイン名)/public_html
 ln -s $HOME/(ドメイン名)/laravel/exment/public $HOME/(ドメイン名)/public_html
 ~~~
 
-- これで、Laravelにアクセスできるようになります。  
-Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。
-
+- これで、Exmentにアクセスするための準備が整います。  
+[インストール手順](/ja/quickstart)に従い、設定を完了してください。  
+※Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。  
 
 
 ### さくらインターネットの場合
@@ -183,18 +183,19 @@ nice -n 20 composer --version
 cd ~
 mkdir laravel
 cd laravel
-nice -n 20 composer create-project "laravel/laravel=5.6.*" exment
+wget https://exment.net/downloads/ja/exment.zip
+unzip exment.zip
+rm exment.zip
 ~~~
 
-- その後は、[インストール手順](/ja/quickstart)に従い、Exmentをインストールします。
-
-- 手順が完了したら、「$HOME/www/exment」フォルダに、先ほど作成した「$HOME/laravel/exment/public」フォルダのシンボリックリンクを作成します。  
+- 「$HOME/www/exment」フォルダに、先ほど作成した「$HOME/laravel/exment/public」フォルダのシンボリックリンクを作成します。  
 シンボリックリンクを作成することで、Laravel本体や設定値は、Web公開のフォルダにない場合でも、laravelのpublicフォルダがwwwフォルダ内に存在することになります。
 
 ~~~
 ln -s $HOME/laravel/exment/public $HOME/www/exment
 ~~~
 
-- これで、Laravelにアクセスできるようになります。  
-Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。
+- これで、Exmentにアクセスするための準備が整います。  
+[インストール手順](/ja/quickstart)に従い、設定を完了してください。  
+※Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。  
 
