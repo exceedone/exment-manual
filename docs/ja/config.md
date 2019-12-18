@@ -47,6 +47,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : ダッシュボードに配置できる行数を変更します。  
 
 
+#### ダッシュボードの最新バージョン表示無効化
+- 設定キー : EXMENT_DISABLE_LATEST_VERSION_DASHBOARD
+- 既定値 : false
+- 役割 : trueにすることで、ダッシュボードの「新しいバージョンがあります」表示を無効化します。  
+
+
 #### マニュアルURL
 - 設定キー : EXMENT_MANUAL_URL
 - 既定値 : https://exment.net/docs/#/
@@ -184,6 +190,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 
 ### その他
+
+#### HTTPレスポンス内の改行コード削除
+- 設定キー : EXMENT_REMOVE_RESPONSE_SPACE
+- 既定値 : false
+- 役割 : trueにすることで、レスポンス内の改行コードを削除します。
 
 #### ユーザービュー無効
 - 設定キー : EXMENT_USER_VIEW_DISABLED
