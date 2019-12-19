@@ -57,23 +57,6 @@ Exmentの開発・運用会社である株式会社カジトリは、Docurainの
 Docurainを使用する場合、通常のExmentのパラメータ記載方法とは別の、パラメータ記載方法が必要です。
 
 ## 変数一覧
-### 日付
-
-| 項目 | 説明 |
-| ---- | ---- |
-| ${ENTITY.y} or ${ENTITY.year} | 実行時の年が、4桁で設定されます。(例：2018) |
-| ${ENTITY.m} or ${ENTITY.month} | 実行時の月が設定されます。(例：8) |
-| ${ENTITY.d} or ${ENTITY.day} | 実行時の日が設定されます。(例：9) |
-| ${ENTITY.h} or ${ENTITY.hour} | 実行時の時間が設定されます。(例：7) |
-| ${ENTITY.i} or ${ENTITY.minute} | 実行時の分が設定されます。(例：6) |
-| ${ENTITY.s} or ${ENTITY.second} | 実行時の秒が設定されます。(例：5) |
-| ${ENTITY.ymdhms} or ${ENTITY.ymdhis} | yyyymmddhhiiss文字列(例：20180217112032) |
-| ${ENTITY.ymdhm} or ${ENTITY.ymdhi} | yyyymmddhhii文字列(例：201802171120) |
-| ${ENTITY.ymdh} | yyyymmddHH文字列(例：2018021711) |
-| ${ENTITY.ymd} | yyyymmdd文字列(例：20180217) |
-| ${ENTITY.ym} | yyyyMM文字列(例：201802) |
-| ${ENTITY.hms} or ${ENTITY.his} | hhiiss文字列(例：112032) |
-| ${ENTITY.hm} or ${ENTITY.hi} | hhii文字列(例：1120) |
 
 ### システム値
 | 項目 | 説明 |
@@ -91,3 +74,5 @@ Docurainを使用する場合、通常のExmentのパラメータ記載方法と
 | ${ENTITY.suuid} | 登録されているデータの、suuid(Short UUID. 20桁のランダム文字列))が設定されます。 |
 | ${ENTITY.value_url} | 登録されているデータを表示するリンクが設定されます。 |
 | ${ENTITY.value.(列名)} | 登録されているデータの列の値が設定されます。(例：ユーザーデータに対し、${ENTITY.value.user_code}と記入した場合、ユーザーコードが設定される) |
+| ${ENTITY.select_table.(列名).(参照先のテーブルの列名)} | 「列名」に該当する列が、「選択肢 (他のテーブルの値一覧から選択)」「ユーザー」「組織」の場合、参照先の列の値が設定されます。(例：「顧客情報(customer)」を参照する「契約情報(contract)」テーブルで、顧客名(customer_name)を設定したい場合、${ENTITY.select_table.customer.customer_name}と記入した場合、ユーザーコードが設定される) |
+| ${ENTITY.parent.(参照先のテーブルの列名)} | 親テーブルの列の値が設定されます。(例：「契約明細情報(contract_detail)」テーブルから、「契約情報(contract)」テーブルの契約コード(contract_code)を参照する場合、${ENTITY.parent.contract_code}と記入した場合、契約コードが設定される) |
