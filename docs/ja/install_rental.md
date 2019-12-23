@@ -26,6 +26,9 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 ## レンタルサーバーによるインストール手順
 
 ### Xserverの場合
+
+<iframe width="560" height="420" src="https://www.youtube.com/embed/RB6i0F2fev0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 - あらかじめ、Exment用のMySQLを作成しておきます。
 
 - PHPのバージョンを変更します。  
