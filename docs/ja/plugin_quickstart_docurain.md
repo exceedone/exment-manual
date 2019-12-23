@@ -3,7 +3,7 @@ Excelとjsonだけで帳票開発ができるクラウド帳票エンジン **Do
 
 ## Docurainとは
 Docurainは、Excelとjsonだけで帳票開発ができるクラウド帳票エンジンです。  
-さまざまなレイアウトの帳票も、Excelファイルのテンプレートから作成することができ、またPDF形式の出力にも対応しています。
+さまざまなレイアウトの帳票も、Excelファイルのテンプレートから作成することができ、またPDF形式の出力にも対応しています。  
 [Docurainのサイトはこちら](https://docurain.jp/)
 
 > Docurainは、ルート42株式会社が開発・運用のサービスになります。  
@@ -92,6 +92,3 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 
 ##### テンプレート   
 ![Docurain](img/docurain/docurain_setting10.png)
-
-##### 出力結果   
-![Docurain](img/docurain/docurain_setting11.png)

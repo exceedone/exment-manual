@@ -58,12 +58,13 @@
     * [トリガー](/ja/plugin_quickstart_trigger.md)
     * [ページ](/ja/plugin_quickstart_page.md)
     * [ダッシュボード](/ja/plugin_quickstart_dashboard.md)
-    * [ドキュメント](/ja/plugin_quickstart_document.md)
     * [バッチ](/ja/plugin_quickstart_batch.md)
     * [インポート](/ja/plugin_quickstart_import.md)
     * [スクリプト](/ja/plugin_quickstart_script.md)
     * [スタイル](/ja/plugin_quickstart_style.md)
     * [バリデーション](/ja/plugin_quickstart_validate.md)
+    * [ドキュメント](/ja/plugin_quickstart_document.md)
+    * [Docurain(PDF出力)](/ja/plugin_quickstart_docurain.md)
   
 * 【10. リファレンス】
   * [リリースノート](/ja/release_note.md)
