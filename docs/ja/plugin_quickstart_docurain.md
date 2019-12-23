@@ -1,5 +1,5 @@
 # ドキュメント出力(Docurain)
-Excelとjsonだけで帳票開発ができるクラウド帳票エンジン **Docurain** を使用し、PDF出力またはExcel(xlsx)出力を行います。  
+Excelとjsonだけで帳票開発ができるクラウド帳票エンジン **Docurain** を使用し、PDF出力を行います。  
 
 ## Docurainとは
 Docurainは、Excelとjsonだけで帳票開発ができるクラウド帳票エンジンです。  
@@ -31,7 +31,10 @@ Exmentの開発・運用会社である株式会社カジトリは、Docurainの
 
 ![Docurain](img/docurain/docurain_setting2.png)  
 
-- テーブル名と帳票ファイル名一覧： 帳票出力を行うテーブル名と、帳票ファイル名を組み合わせを、カンマ区切りで入力してください。複数の場合は改行区切りを行ってください。  
+- テーブル名と帳票ファイル名一覧： 帳票出力を行うテーブル名とテンプレートファイル名、出力する帳票ファイル名、ボタンのラベルをカンマ区切りで入力してください。複数の場合は改行区切りを行ってください。  
+※帳票ファイル名を省略した場合はテンプレートファイル名になります。  
+※ボタンのラベルを省略した場合はプラグイン共通で設定したラベルになります。  
+※帳票ファイル名には日付などの[パラメータ](ja/params.md)を含めることができます。
 
 ![Docurain](img/docurain/docurain_setting4.png)  
 
@@ -53,12 +56,15 @@ Exmentの開発・運用会社である株式会社カジトリは、Docurainの
 ![Docurain](img/docurain/docurain_setting8.png)
 ![Docurain](img/docurain/docurain_setting9.png)  
 
-## パラメータ一覧
-Docurainを使用する場合、通常のExmentのパラメータ記載方法とは別の、パラメータ記載方法が必要です。
+### テンプレートExcelファイル作成
+帳票の元となるExcelファイルを作成します。  
+※テンプレートファイルのパラメータは、通常のExmentのパラメータ記載方法とは異なり、Docurain専用の記載方法が必要です。  
 
-## 変数一覧
+#### パラメータ
+テンプレートのExcelファイルに設定するパラメータです。
+Excelセルに特定の形式の変数を入力することで、帳票出力時に、様々な値に変換されます。  
 
-### システム値
+##### システム値
 | 項目 | 説明 |
 | ---- | ---- |
 | ${ENTITY.system.site_name} | システムのサイト名 |
@@ -67,12 +73,25 @@ Docurainを使用する場合、通常のExmentのパラメータ記載方法と
 | ${ENTITY.system.system_url} | システムのホームURL |
 | ${ENTITY.system.login_url} | システムのログインURL |
 
-### データ
+##### データ
 | 項目 | 説明 |
 | ---- | ---- |
-| ${ENTITY.id} | 登録されているデータのIDが設定されます。(例：123) |
-| ${ENTITY.suuid} | 登録されているデータの、suuid(Short UUID. 20桁のランダム文字列))が設定されます。 |
-| ${ENTITY.value_url} | 登録されているデータを表示するリンクが設定されます。 |
-| ${ENTITY.value.(列名)} | 登録されているデータの列の値が設定されます。(例：ユーザーデータに対し、${ENTITY.value.user_code}と記入した場合、ユーザーコードが設定される) |
-| ${ENTITY.select_table.(列名).(参照先のテーブルの列名)} | 「列名」に該当する列が、「選択肢 (他のテーブルの値一覧から選択)」「ユーザー」「組織」の場合、参照先の列の値が設定されます。(例：「顧客情報(customer)」を参照する「契約情報(contract)」テーブルで、顧客名(customer_name)を設定したい場合、${ENTITY.select_table.customer.customer_name}と記入した場合、ユーザーコードが設定される) |
+| ${ENTITY.id} | 対象データのIDが設定されます。(例：123) |
+| ${ENTITY.suuid} | 対象データの、suuid(Short UUID. 20桁のランダム文字列))が設定されます。 |
+| ${ENTITY.value_url} | 対象データを表示するリンクが設定されます。 |
+| ${ENTITY.value.(列名)} | 対象データの列の値が設定されます。(例：ユーザーデータに対し、${ENTITY.value.user_code}と記入した場合、ユーザーコードが設定される) |
+| ${ENTITY.select_table.(列名).(参照先のテーブルの列名)} | 「列名」に該当する列が、「選択肢 (他のテーブルの値一覧から選択)」「ユーザー」「組織」の場合、参照先の列の値が設定されます。(例：「顧客情報(customer)」を参照する「契約情報(contract)」テーブルで、顧客名(customer_name)を設定したい場合、${ENTITY.value.user_code}と記入した場合、ユーザーコードが設定される) |
 | ${ENTITY.parent.(参照先のテーブルの列名)} | 親テーブルの列の値が設定されます。(例：「契約明細情報(contract_detail)」テーブルから、「契約情報(contract)」テーブルの契約コード(contract_code)を参照する場合、${ENTITY.parent.contract_code}と記入した場合、契約コードが設定される) |
+| ${ENTITY.children.(子テーブル名)} | 「#foreach」などのブロック構文を用いて子テーブルの情報を設定します。（子テーブルの情報は複数存在するケースがあるので、${ENTITY.children.(子テーブル名).(子テーブルの列名)}のように設定することはできません）下記で一例を説明します。 |
+
+
+#### 設定例
+##### 基本ルール
+- 多くのEXCEL関数や書式設定が使用可能です。  
+- A列はロジック記述専用の列です。#ifや#foreach、#setなどの処理を記述します。
+
+##### テンプレート   
+![Docurain](img/docurain/docurain_setting10.png)
+
+##### 出力結果   
+![Docurain](img/docurain/docurain_setting11.png)
