@@ -394,6 +394,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 | notify_write | 通知を新規追加できます。 |
 | workflow_read | ワークフローの情報を取得できます。 |
 | workflow_execute | ワークフローの実行ができます。 |
+| plugin | プラグインとして追加されたAPIを利用できます。 |
 
 ※複数のスコープを指定する場合、スペース区切りでパラメータに設定してください。  
 
