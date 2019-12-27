@@ -26,5 +26,8 @@ Exmentの更新情報など、サーバーから外部サーバーへの通信�
 - [IPフィルター](/ja/additional_ip_filter)  
 Webページのリクエスト、ならびにAPI実行を、IPアドレスで制限することができます。
 
+- [APIで429エラーが発生時](/ja/additional_429_too_many)  
+API実施時に、429 Too Many Requestsが発生する場合の対処法です。
+
 - [エキスパートモード](/ja/additional_expert)  
 より柔軟な設定項目を表示するための手順です。
