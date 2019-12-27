@@ -3,7 +3,7 @@ Exmentに新しいAPIを作成することができます。
 [APIリファレンス](https://exment.net/reference/ja/webapi.html)に存在しない機能を追加する場合にご利用ください。  
 
 ## はじめに
-ExmentのAPIプラグインは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに[laravel-admin](https://laravel-admin.org/docs/) を使用して開発します。  
+ExmentのAPIプラグインは、PHPのフレームワーク[Laravel](http://laravel.jp/) を使用して開発します。  
 APIの開発を行う場合には、特にLaravelの知識がある方が開発することをおすすめします。
 
 ## 作成方法
