@@ -1,97 +1,110 @@
-# User/Login User Setting
-We will manage users who use this system or login users.
+# User / Login user
+Manage users who use this system or login users.
 
 ## Name definition
-#### user
-It is an employee or a person belonging to your company or organization.  
-Even those who do not use this system can add as a user.  
+#### User
+An employee or person belonging to your company or organization.  
+If you don't use this system, you can still add it as a user.  
 User code and e-mail address are required.  
-You can register users by associating them with other tables, but you can not log in to the system.  
+You can link users and register them by linking them to other tables, but you cannot log in to the system.  
 
-#### Login User
-It is an employee / person who can log in to this system among users.  
-Password is allocated, you can log in from the login screen, register and reference data etc.
+#### Login user
+This is the employee / person who can log in to Exment.  
+Since a password is assigned to the user information, you can log in from the Exment login screen, and you can register and reference data.  
+
+#### User and login user setting procedure
+![User screen](img/user/user_loginuser_flow.png)
+The flow before you can log in to Exment is as above.  
+① On the user management screen, register the user's user code, user name, and e-mail address.  
+After that, set the password of the user registered in ① on the login user management screen in ②.  
+The registered user can now log in to Exment.  
+
+> If a user sets a wrong password a certain number of times during login, the user will not be able to log in for a certain period of time.  
+
+![User screen](img/user/user_restriction.png)
 
 ## User management
-I will describe how to manage all user information.
+Describes how to manage all user information.
 
 ### List screen display
-From the left menu, click "User".  
-Or please visit the following URL.  
-This displays the user setting screen.  
-http(s)://(URL of Exment)/admin/data/user
+Click "Users" from the left menu.  
+Or access the following URL.  
+This will display the user settings screen. http (s): // (Exment URL) / admin / data / user  
 A list of users currently registered in the system is displayed.  
 ![User screen](img/user/user_grid1.png)
 
-### Add a new user
-- On the "Users" screen, click the "New" button at the top right of the page.
+### Add new user
+- On the "User" list screen, click the "New" button at the top right of the page.
 
-- New addition screen will be displayed, so enter necessary information.  
+- A new addition screen will be displayed. Enter necessary information.
 ![User screen](img/user/user_new1.png)
 
+#### Affiliation organization setting
+If there is an organization to which the user belongs, select from the candidate data list and move to the selected data.
+※ If the organization has not been created, this item will not be displayed.
+
+#### Role group settings
+If there is a role group to be assigned to the user, select from the candidate data list and move to the selected data.
+
+#### Login settings
+By setting the login authority to YES, you can create a user as a login user. Please refer to the following [login user management](#login-user-management) for the setting method.
+
 ### Save
-After filling in the settings, please click "Send".
+After filling in the settings, click “Submit”.
 
 ### Edit
-If you want to edit a user, please click the "Edit" link in the corresponding line.  
+If you want to edit a user, click the "Edit" link in the appropriate row.
 ![User screen](img/user/user_edit.png)
 
 ### Delete
-If you want to delete a user, please click the "Delete" link on the corresponding line.  
+To delete a user, click the "Delete" link in the corresponding row.
 ![User screen](img/user/user_delete.png)
 
 
 ## Login user management
-We will manage login users based on the user created on the above screen.  
-You can add password information, reissue a password, delete login role, and so on.
+Manage login users based on the user created on the above screen.  
+You can add password information, reissue a password, delete login authority, etc.
 
 ### Screen display
-From the left menu, click "Login User".  
-Or please visit the following URL.  
-This displays the user setting screen.  
-http(s)://(URL of Exment)/loginuser  
-The user currently registered in the system and its login information are displayed.  
-![Login user screen](img/user/loginuser_grid1.png)  
+Click "Login User" from the left menu.  
+Or access the following URL.  
+This will display the user settings screen. http (s): // (URL of Exment) / loginuser Displays the users  
+currently registered in the system and their login information.  
+![Login user screen](img/user/loginuser_grid1.png)
 
 ### Add login information
-Click the "Edit" link in the user's line to add login information.  
-![Login user screen](img/user/loginuser_grid2.png)  
-  
+Click the "Edit" link in the row of the user for whom you want to add login information.  
+![Login user screen](img/user/loginuser_grid2.png)
+
 The login information edit screen is displayed.  
-![Login user screen](img/user/loginuser_edit1.png)  
-To add login privileges, click the "Login role" checkbox.  
+![Login user screen](img/user/loginuser_edit1.png)
 
-#### Automatic password generation
-When adding login permission, check if you want to generate passwords automatically.  
-After automatic generation, password mail is automatically sent to the corresponding mail address.  
-![Login user screen](img/user/loginuser_password.png)  
+To add login authority, set "Login authority" to YES.  
+By selecting YES, the "Automatically generate password" item will be displayed.
 
-#### password input
-If you do not want to generate a password automatically, uncheck it.
-In that case, the item for entering the password will be displayed.
-Please enter the password of the login user.
+#### Automatically generate password
+If YES, automatically generate a password when adding login authority.  
+After automatic generation, a password e-mail is automatically sent to the corresponding e-mail address.  
+**※ To execute this function, you need to configure the [mail settings](/system_setting#System-mail-settings).**  
+![Login user screen](img/user/loginuser_password.png)
+If NO, a text box for entering the password and the item "Send User Information by Email" will be displayed.  
+
+#### Password input
+Displayed when "Automatically generate password" is NO.  
+Enter the password of the login user.  
 ![Login user screen](img/user/loginuser_password2.png)
 
-### Save
-After filling in the settings, please click "Save".  
-The login user is added.  
-*If you have checked "Automatic password generation", password mail will be sent automatically.
+#### Email user information
+Displayed when "Automatically generate password" is NO.  
+If this item is YES, a password email will be sent to the appropriate email address.  
+**※ To execute this function, you need to configure the [mail settings](/system_setting#System-mail-settings).**
 
-
-## Password reset
-Perform password reset.  
-On the list screen, click the "Edit" link of the user whose column "Login user setting" is "YES".  
-![Login user screen](img/user/loginuser_grid3.png)  
-  
-Add a "Reset password" checkbox.  
-![Login user screen](img/user/loginuser_reset.png)  
-Then click "Save".  
-
-## Remove login user
-Delete the login permission.  
+### Delete login authority
+Delete login authority.  
 On the list screen, click the "Edit" link of the user whose column "Login user setting" is "YES".  
 ![Login user screen](img/user/loginuser_grid3.png)  
 
-Clear the "Grant login role" check box.  
+Change "Login Authorization" to NO.  
 ![Login user screen](img/user/loginuser_remove.png)  
-Then click "Save".
+
+Then, click "Send".
