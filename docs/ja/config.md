@@ -201,6 +201,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueにすることで、レスポンス内の改行コードを削除します。
 
+#### ダッシュボードの最新バージョン通知無効
+- 設定キー : EXMENT_DISABLE_LATEST_VERSION_DASHBOARD
+- 既定値 : false
+- 役割 : trueにすることで、ダッシュボードに表示される、最新バージョン通知機能を無効にします。
+
 #### ユーザービュー無効
 - 設定キー : EXMENT_USER_VIEW_DISABLED
 - 既定値 : false
