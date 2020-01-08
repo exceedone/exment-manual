@@ -926,9 +926,9 @@ paths:
         name: id
         in: path
         required: true
-        description: カスタムデータのID
+        description: カスタムデータのID。複数件を削除する場合、カンマ区切りで指定
         schema:
-          type: integer
+          type: string
     get:
       summary: カスタムデータ情報取得
       tags:
@@ -1063,7 +1063,7 @@ paths:
         #### 処理概要
         * カスタムデータ情報を論理削除する
         * ログインユーザーに権限のないデータだった場合、403エラーが発生する
-
+        * 複数件を同時に削除する場合、同時に削除できる件数は100件まで
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -1077,7 +1077,8 @@ paths:
         + value_write
 
         #### 対応バージョン
-        v1.1.0
+        - v1.1.0 追加
+        - v3.0.13 複数件削除に対応
       security:
         - OAuth2認証: []
       operationId: delete-value

@@ -1,58 +1,57 @@
-# Mail Template
-Set the subject, body, etc. of the mail when sending mail from the system.
+# Mail template
+Set the subject, body, etc. of the email when sending email from the system.
 
 ## Management method
-### Page indication
-- From the left menu, select "Mail Template".  
-Or please visit the following URL.  
-http(s)://(URL of Exment)/admin/mail  
-This will display the plug-in screen.  
-![Template screen](img/mail/mail_grid1.png)  
+### Page display
+- From the left menu, select "Email template".  
+Or access the following URL.  
+http (s): // (Exment URL) / admin / mail  
+This will display the plugin screen.  
+![Email template screen](img/mail/mail_grid1.png)  
 
-### New template addition
-- On the "Mail Template" screen, click the "New" button at the top right of the page.
+### Add new template
+- On the "Email Template" screen, click the "New" button at the top right of the page.
 
-- The new mail template addition screen will be displayed.
-![Template screen](img/mail/mail_new1.png)
+- The new mail template addition screen is displayed.
+![Email template screen](img/mail/mail_new1.png)
 
-- Enter necessary information.
-![Template screen](img/mail/mail_new2.png)
+- Enter the required information.
+![Email template screen](img/mail/mail_new2.png)
 
 ### Save
-After filling in the settings, please click "Save".
+After entering the settings, click “Save”.
 
 ### Edit
-If you want to edit the template, please click "Edit" link in the corresponding line.
-![Template screen](img/mail/mail_edit.png)
+If you want to edit a template, click the "Edit" link in the corresponding row.
+![Email template screen](img/mail/mail_edit.png)
 
 ### Delete
-If you want to delete a column, please click the "Delete" link in the corresponding line.
-![Template screen](img/mail/mail_delete.png)  
-** <span style="color: red;"> * However, you can not delete templates installed on the system. </span> **
+To delete a column, click the "Delete" link in the corresponding row.
+![Email template screen](img/mail/mail_delete.png)
+**<span style="color: red; ">※ However, templates installed on the system cannot be deleted.</span>**
 
 
-## Rule of variables
-Variables can be used for "mail subject" and "mail body".  
-By using variables, you can add registered data, system name, etc. to the subject / body.
+## Variable rules
+Variables can be used in "Email subject" and "Email body".  
+By using variables, registered data and system names can be added to the subject and body.  
 
 ### Variable list
-#### general purpose
+#### Common
+Check the following pages for common parameter variables.  
+[Parameter variables](/params)
 
-| Item | Description |
+#### Destination user
+
+| item | Description |
 | ---- | ---- |
-| ${system.site_name} | system site name |
-| ${system.site_name_short} | system site name (shortened) |
-| ${system.system_mail_from} | system source |
-| ${system.system_url} | system home URL |
-| ${system.login_url} | system login URL |
-| ${user.user_name} | user name of the user to whom the mail is sent |
-| ${user.user_code} | user's user code of the mail recipient |
-| ${user.email} | E-mail address of e-mail recipient user |
+| ${user.user_name} | User name of the mail destination user |
+| ${user.user_code} | User code of the mail destination user |
+| ${user.email} | E-mail address of the e-mail destination user |
 
 #### Password reset
-It can be used only when sending mail of password reset.
+It can be used only when sending a password reset e-mail.  
 
-| Item | Description |
+| item | Description |
 | ---- | ---- |
 | ${system.password_reset_url} | System password reset URL |
-| ${user.password} | login password of mail sending user |
+| ${user.password} | Login password of the mail destination user |

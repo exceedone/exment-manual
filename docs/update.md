@@ -1,0 +1,102 @@
+# Update
+This is the procedure when the version of Exment has been updated and an update is required.
+**※ A special procedure is required to update to version 2.1.X (required). Follow the instructions [here](/update/v2_1) to update.**
+
+## (First time only) Download update batch
+
+### For Windows
+- Download the following files:  
+https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
+
+- Place the downloaded file in the project root directory.
+
+### For Sakura Internet
+- Execute the following command in the project root directory to download.
+
+~~~
+wget https://exment.net/downloads/cmd/ExmentUpdateLinuxSakura.sh
+chmod 775 ExmentUpdateLinuxSakura.sh
+~~~
+
+### For Linux
+- Execute the following command in the project root directory to download.  
+
+~~~
+wget https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
+chmod 775 ExmentUpdateLinux.sh
+~~~
+
+
+### For Mac
+- Download the following files:  
+https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
+
+- Place the downloaded file in the project root directory.
+
+- Execute the following command.
+
+~~~
+chmod 775 ExmentUpdateLinux.sh
+~~~
+
+## Execute update batch
+Execute the update batch.
+
+### For Sakura Internet
+- Execute the following command in the root directory of the project.  
+
+~~~
+sh ExmentUpdateLinuxSakura.sh
+~~~
+
+### Linux / Mac
+- Execute the following command in the root directory of the project.  
+
+~~~
+sh ExmentUpdateLinux.sh
+~~~
+
+### For Windows
+- Execute the following batch file.  
+
+~~~
+ExmentUpdateWindows.bat
+~~~
+
+## Update batch execution contents
+The following contents are executed in the update batch.  
+ - ata backup
+ - Acquire and reflect the latest sources
+ - Database update
+
+
+## (Supplement) Screen display after update
+If the latest version exists, the following is displayed on the dashboard screen.
+![Custom table screen](img/update/show_version.png)
+
+In order to display this screen, the "currently installed version" and the "latest version" are acquired by the system.  
+This item is managed by a mechanism called "session" so that it is not acquired each time the screen is displayed, and retains its value until you log out.  
+
+Therefore, **even if an update is performed, the notation of "There is a new version" does not disappear and remains displayed.**  
+After the update, log out and log in again to get the latest version.
+
+## (old) Manual update method
+The following is the backup method for v1.3.0 or earlier. If you want to execute the update manually from the command, please execute this.  
+
+### (Recommended) Data backup
+Perform a data backup. For more information [backup](/backup) Please confirm.  
+- Log in to Exment as an administrator and select "Administrator Settings" → "Backup" from the left menu.
+- Click the "Backup" button at the top right of the "Backup" page.
+- A backup of the latest data as well as attachments is created.
+- Then click on the backup file at the time of execution and download it.
+
+### Get latest source, reflect, update database
+- At the command line, execute the following command:  
+※ The latest version may not be detected immediately after release. In this case, execute the following command again after about 10 to 20 minutes have passed.  
+
+~~~
+cd (Project root directory)
+composer require exceedone/laravel-admin
+composer require exceedone/exment
+php artisan exment:update
+~~~

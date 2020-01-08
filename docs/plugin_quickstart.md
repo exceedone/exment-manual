@@ -1,285 +1,145 @@
-# How to Develop Plugin
-## First
-This section describes how to develop the Exment plugin.  
-Please refer to [Plug-in](plugin.md) for details about plug-in function and management method.  
+# Plugin creation method
+## Introduction
+This section describes how to create an Exment plug-in.  
+For more information on plug-in functions and management methods, see [Plugins](/plugin.md).
+
+## Creation method link
+- [trigger](/plugin_quickstart_trigger.md)
+- [page](/plugin_quickstart_page.md)
+- [document](/plugin_quickstart_document.md)
+- [dashboard](/plugin_quickstart_dashboard.md)
+- [batch](/plugin_quickstart_batch.md)
+- [script](/plugin_quickstart_script.md)
+- [style](/plugin_quickstart_style.md)
 
 
-# Create Plugin (trigger)
+## Other special settings
+In addition to the basic creation method described above, special setting information is described.
 
-### Created config.json
-- Create the following config.json file.
+- [Make your own settings on the plugin settings screen](#Make-your-own-settings-on-the-plugin-settings-screen)
+- [Support multiple plugin types with one plugin](#Support-multiple-plugin-types-with-one-plugin)
 
-~~~ json
-{
-    "plugin_name": "PluginDemoTrigger",
-    "uuid": "fa7de170-992a-11e8-b568-0800200c9a66",
-    "plugin_view_name": "Plugin Trigger",
-    "description": "This is a test to upload the plugin.",
-    "author": "(Your Name)",
-    "version": "1.0.0",
-    "plugin_type": "trigger"
-}
-~~~
+### Make your own settings on the plugin settings screen
 
-- Please fill in the plugin_name with an alphanumeric character.
-- uuid is a string of 32 characters plus a hyphen, a total of 36 characters. It is used to make the plugin unique.
-Please make from the following URL etc.
-https://www.famkruithof.net/uuid/uuidgen
-- For row "plugin_type", please enter "trigger".
+Add a plugin-specific setting if you want to do it from the screen.  
+Example: Set the access key required to execute the YouTube Data API from the screen.  
 
-### PHP file creation
-- Create a PHP file like the following. Please name "Plugin.php".
+![page](img/plugin/plugin_page1.png)
 
-~~~ php
-<?php
-namespace App\Plugins\PluginDemoTrigger;
-
-use Exceedone\Exment\Services\Plugin\PluginTriggerBase;
-class Plugin extends PluginTriggerBase
-{
-    /**
-     * Plugin Trigger
-     */
-    public function execute()
-    {
-        admin_toastr('Plugin calling');
-        return true;
-    }
-}
-~~~
-- Namespace should be ** App\Plugins\(plugin name) **.
-- When it matches the trigger condition registered on the plugin management screen, the plugin is called and the execute function in Plugin.php is executed.
-
-- The Plugin class extends class "PluginTriggerBase".  
-PluginTriggerBase owns properties such as the caller's custom table $custom_table and table value $custom_value,  
-When the execute function is called, its value is assigned to that property.  
-For details on properties, please refer to [Plugin Reference](plugin_reference.md).
-
-### Compressed to zip
-Compress the above two files to zip with minimum configuration.  
-The zip file name should be "(plugin_name) .zip".  
-- PluginDemoTrigger.zip
-     - config.json
-     - Plugin.php
-     - (Other necessary PHP files, image files etc)
-
-### Sample Plugin
-Now Preparing...
-
-## Create plug-in (page)
-
-### Created config.json
-- Create the following config.json file.
-
-~~~ json
-
-{
-    "name": "PluginDemoPage",
-    "explain": "This is a test to upload the plugin.",
-    "author":  "(Your Name)",
-    "version": "1.0.0",
-    "type": "page",
-    "controller" : "PluginManagementController",
-    "route": [
-        {
-            "uri": "",
-            "method": [
-                "get"
-            ],
-            "function": "index"
-        },
-        {
-            "uri": "post",
-            "method": [
-                "post"
-            ],
-            "function": "post"
-        },
-        {
-            "uri": "show_details/{id}",
-            "method": [
-                "get"
-            ],
-            "function": "show_details"
-        },
-        {
-            "uri": "{id}/edit_test",
-            "method": [
-                "get"
-            ],
-            "function": "edit_test"
-        },
-        {
-            "uri": "create_new",
-            "method": [
-                ""
-            ],
-            "function": "create_new"
-        },
-        {
-            "uri": "{id}/update_test",
-            "method": [
-                "put"
-            ],
-            "function": "update_test"
-        }
-    ]
-}
-
-~~~
-- Please fill in the plugin_name with an alphanumeric character.
-- uuid is a string of 32 characters plus a hyphen, a total of 36 characters. It is used to make the plugin unique.  
-Please make from the following URL etc.  
-https://www.famkruithof.net/uuid/uuidgen
-- For plugin_type, enter page.
-- For controller, enter the class name of Contoller in the plugin to be executed.
-- route defines the endpoint of the URL to be executed, its HTTP method, methods in Contoller in a list.  
-    - uri: This is uri for page display. The actual URL is "http (s)://(URL of Exment)/admin/plugins/(URL set in the plugin administration screen)/(specified uri)".
-    - method: HTTP method. Please fill in with get, post, put, delete.
-    - function: Method in the Contoller to execute
-    - Example: If the URL set on the plugin management screen is "test", the uri specified by config.json is "show_details / {id}" and the specified method is "get", "http(s)://(URL of Exment)/admin/plugins/test/show_details/{id}(method: GET)". An integer value is substituted for id.
-
-
-### Creating Contoller
-- Create a Contoller file like the following. The class name should be the name described in controller of config.json.
+- The Plugin.php file is described as follows.  
 
 ~~~ php
 <?php
 
-namespace App\Plugins\PluginDemoPage;
+// (1)
+namespace App\Plugins\YouTubeSearch;
 
-use Encore\Admin\Form;
-use Encore\Admin\Grid;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Layout\Content;
-use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\HasResourceActions;
-use Exceedone\Exment\Model\PluginPage;
-use Illuminate\Http\Request;
+use Encore\Admin\Widgets\Box;
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Services\Plugin\PluginPageBase;
+use GuzzleHttp\Client;
 
-class PluginManagementController extends Controller
+class Plugin extends PluginXXXXBase
 {
-    use HasResourceActions;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Content|\Illuminate\Http\Response
-     */
-
-    public function index()
-    {
-        return Admin::content(function (Content $content) {
-
-            $content->header('Plugin Page Management');
-            $content->description('Plugin Page Management');
-
-            $content->body($this->grid());
-        });
-    }
-
-    public function show_details($id){
-
-        return Admin::content(function (Content $content) use ($id) {
-
-            $content->header('Show');
-            $content->description('Show');
-
-            $content->body($this->form()->edit($id));
-        });
-    }
-
-    protected function grid()
-    {
-        return Admin::grid(PluginPage::class, function (Grid $grid) {
-
-            $grid->column('plugin_name', 'Plugin Name')->sortable();
-            $grid->column('plugin_author', 'Author')->sortable();
-
-            $grid->disableExport();
-
-        });
-    }
+    // (1)
+    protected $useCustomOption = true;
 
     /**
-     * Edit interface.
+     * (2) Options set on the plug-in edit screen
      *
-     * @param $id
-     * @return Content
+     * @param $form
+     * @return void
      */
-    public function edit_test($id)
+    public function setCustomOptionForm(&$form)
     {
-        return Admin::content(function (Content $content) use ($id) {
-
-            $content->header('header');
-            $content->description('description');
-
-            $content->body($this->form($id)->edit($id));
-        });
+        $form->text('access_key', 'access key')
+            ->help('Please enter your YouTube access key.');
     }
-
-    public function update_test($id){
-        return $this->form()->update($id);
-    }
-
-    /**
-     * Create interface.
-     *
-     * @return Content
-     */
-    public function create_new()
-    {
-        return Admin::content(function (Content $content) {
-
-            $content->header('header');
-            $content->description('description');
-
-            $content->body($this->form());
-        });
-    }
-
-    public function post(Request $request)
-    {
-        dd($request);
-        return Admin::content(function (Content $content) {
-
-            $content->header('header');
-            $content->description('description');
-
-            $content->body($this->form());
-        });
-    }
-
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
-    protected function form()
-    {
-        return Admin::form(PluginPage::class, function (Form $form) {
-
-            $form->display('id', 'ID');
-            $form->text('plugin_name', 'Plugin Name');
-            $form->text('plugin_author', 'Author');
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
-        });
-    }
-
 }
+~~~
+
+- (1) Add "protected $ useCustomOption = true;"  
+- (2) The function "public function setCustomOptionForm (& $ form)" is an item displayed on the plug-in setting screen.  
+※ To use custom settings, add "protected $ useCustomOption = true;"  
+※ To get the set value, use the function "$ this-> plugin-> getCustomOption ('parameter name')".
+
+### Support multiple plug-in types with one plugin
+Usually, only one plug-in type can be supported by one plug-in file.  
+Therefore, for example, if you want to extend the function using both the type "Page" and "Dashboard", you need to create two plug-in files.  
+However, by using a special style, multiple plug-in types can be handled with a single plug-in file.  
+This section describes how to create multiple types of plug-in files.  
+
+#### config.json modified
+Modify plugin_type in config.json as follows.  
 
 ~~~
-- Namespace should be ** App\Plugins\(plugin name) **.
+// config.json Excerpt
+"plugin_type": "dashboard,page"
+~~~
 
-- The public method name in Contoller is the name described in the function of config.json.
+Enter multiple plugin_type values ​​separated by commas.
 
-### Compressed to zip
-Compress the above two files to zip with minimum configuration.  
+
+#### php file modification
+※ If the plug-in type is "Script" or "Style", this process is not required.
+  
+- In the case of one type, change the file name from "Plugin.php" to "Plugin (the initial capital letter of the plug-in type) .php".
+    - PluginTrigger.php
+    - PluginPage.php
+    - PluginDocument.php
+    - PluginBatch.php
+    - PluginDashboard.php
+
+- Modify the above file partially so that the class name is the same as the file name.  
+
+~~~ php
+<?php
+
+// Class name change (for trigger)
+class PluginTrigger extends PluginPageBase
+{
+~~~
+
+
+#### (Optional) Create php file for configuration
+- "[Do your own settings in the plug-in settings screen](#Do-your-own-settings-in-the-plugin-settings-screen) if you want to do your own settings as described in" to create a "PluginSetting.php" file.  
+
+~~~ php
+// File name：PluginSetting.php
+<?php
+
+namespace App\Plugins\PageMulti;
+
+use Exceedone\Exment\Services\Plugin\PluginSettingBase;
+use Exceedone\Exment\Model\CustomTable;
+
+// Class name：PluginSetting
+class PluginSetting extends PluginSettingBase
+{
+    protected $useCustomOption = true;
+    
+    /**
+     * @param [type] $form
+     * @return void
+     */
+    public function setCustomOptionForm(&$form)
+    {
+        $form->text('text', 'text')
+            ->help('Show text');
+    }
+}
+~~~
+
+
+#### Compress to zip
+Compress these files into a zip as a minimal configuration.  
 The zip file name should be "(plugin_name) .zip".  
-- PluginDemoPage.zip
-     - config.json
-     - PluginManagementController.php
-     - (Other necessary PHP files, image files etc)
+- XXXX.zip
+    - config.json
+    - PluginDashboard.php
+    - PluginPage.php
+    - PluginSetting.php(optional)
+    - (Other required PHP files, image files, etc.)
 
-### Sample Plugin
-Now Preparing...
+### Sample plugin
+[Page and dashboard display](https://exment.net/downloads/sample/plugin/PageMulti.zip)  

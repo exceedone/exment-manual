@@ -159,6 +159,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 ： 100
 - 役割 : APIの一括新規作成で、同時に新規作成できる最大件数です。
 
+#### APIの一括削除件数上限
+- 設定キー : EXMENT_API_MAX_DELETE_COUNT
+- 既定値 ： 100
+- 役割 : APIの一括削除で、同時に削除できる最大件数です。
+
 
 ### 一覧(グリッド)
 
