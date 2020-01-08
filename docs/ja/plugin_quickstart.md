@@ -12,6 +12,7 @@
 - [スクリプト](/ja/plugin_quickstart_script.md)
 - [スタイル](/ja/plugin_quickstart_style.md)
 - [バリデーション](/ja/plugin_quickstart_validate.md)
+- [API](/ja/plugin_quickstart_api.md)
 - [ドキュメント](/ja/plugin_quickstart_document.md)
 - [Docurain(PDF出力)](/ja/plugin_quickstart_docurain.md)
 

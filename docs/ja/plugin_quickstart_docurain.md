@@ -8,7 +8,7 @@ Docurainは、Excelとjsonだけで帳票開発ができるクラウド帳票エ
 
 > Docurainは、ルート42株式会社が開発・運用のサービスになります。  
 ご利用の際には、ライセンストークンが必要となります。帳票出力の回数ごとの従量課金となります。（試用トークンの発行は可能です。）  
-Exmentの開発・運用会社である株式会社カジトリは、Docurainの代理店です。試用のご要望、お申し込み、お問い合わせは、[こちら](https://exment.net/inquiry)からお願いします。
+Exmentの開発・運用会社である株式会社カジトリは、Docurainの代理店です。試用のご要望、お申し込み、お問い合わせは、[こちら](https://exment.net/docurain)からお願いします。
 
 
 ## 実行方法
@@ -86,7 +86,6 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 | %{parent.(参照先のテーブルの列名)} | 親テーブルの列の値が設定されます。(例：「契約明細情報(contract_detail)」テーブルから、親である「契約情報(contract)」テーブルの契約コード(contract_code)を参照する場合、%{parent.contract_code}と記入した場合、契約コードが設定される) |
 | $ENTITY.children.(子テーブル名) | 「#foreach」などのブロック構文を用いて子テーブルの情報を設定します。子テーブルの情報は複数存在するケースがあるので、%{children.(子テーブル名).(子テーブルの列名)}のように設定することはできません。下記で一例を説明しています。 |
 
-
 #### 設定例
 ##### 基本ルール
 - 一般的なEXCEL関数や書式設定が使用可能です。  
@@ -94,8 +93,6 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 
 ##### ※テンプレートの一例   
 ![Docurain](img/docurain/docurain_setting10.png)
-
-
 
 - 上記テンプレートを出力した結果のPDFです。   
 ![Docurain](img/docurain/docurain_setting11.png)
@@ -105,3 +102,12 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 [製品バージョン情報](https://exment.net/downloads/product/plugin/Docurain/product_version.xlsx)  
 [契約情報](https://exment.net/downloads/product/plugin/Docurain/contract.xlsx)  
 ※製品バージョン情報と契約情報を使用するためには、事前に「製品販売会社用テンプレート」をインポートする必要があります。
+
+
+### エラーについて
+- 出力の実行後、エラーが表示される場合があります。  
+その場合はエラー内容をご確認いただき、対応を行ってください。
+![Docurain](img/docurain/docurain_error1.png)
+
+- エラーのうち、「HTTPステータスコード」が「413」のエラーは、Docurainのクラウドサービス側で、サービス許容値の変更対応を行う必要があります。  
+その場合は、[こちら](https://exment.net/docurain)よりお問い合わせください。
