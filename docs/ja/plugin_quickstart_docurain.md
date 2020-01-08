@@ -92,11 +92,16 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 - 一般的なEXCEL関数や書式設定が使用可能です。  
 - A列はロジック記述専用の列です。#ifや#foreach、#setなどのブロック構文を記述します。
 
-##### ※テンプレートのサンプル   
+##### ※テンプレートの一例   
 ![Docurain](img/docurain/docurain_setting10.png)
 
 
 
-- 上記サンプルを出力した結果のPDFです。   
+- 上記テンプレートを出力した結果のPDFです。   
 ![Docurain](img/docurain/docurain_setting11.png)
 
+#### サンプルテンプレートのダウンロード
+[ユーザー情報](https://exment.net/downloads/product/plugin/Docurain/user.xlsx)  
+[製品バージョン情報](https://exment.net/downloads/product/plugin/Docurain/product_version.xlsx)  
+[契約情報](https://exment.net/downloads/product/plugin/Docurain/contract.xlsx)  
+※製品バージョン情報と契約情報を使用するためには、事前に「製品販売会社用テンプレート」をインポートする必要があります。
