@@ -12,7 +12,7 @@ Exmentの開発・運用会社である株式会社カジトリは、Docurainの
 
 
 ## 実行方法
-- [こちらのプラグイン](https://exment.net/downloads/product/plugin/Docurain.zip)をダウンロードします。
+- [こちらのプラグイン](https://exment.net/downloads/product/plugin/Docurain/Docurain.zip)をダウンロードします。
 
 - Exmentのプラグインとしてアップロードします。  
 手順は[こちら](/ja/plugin?id=プラグインアップロード)をご参照ください。
