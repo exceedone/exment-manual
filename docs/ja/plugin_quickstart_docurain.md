@@ -8,7 +8,7 @@ Docurainは、Excelとjsonだけで帳票開発ができるクラウド帳票エ
 
 > Docurainは、ルート42株式会社が開発・運用のサービスになります。  
 ご利用の際には、ライセンスキーが必要となります。帳票出力の回数ごとの従量課金となります。（試用キーの発行は可能です。）  
-Exmentの開発・運用会社である株式会社カジトリは、DocurainのXXXXXです。試用のご要望、お申し込み、お問い合わせは、[こちら](https://exment.net/inquiry)からお願いします。
+Exmentの開発・運用会社である株式会社カジトリは、Docurainの代理店です。試用のご要望、お申し込み、お問い合わせは、[こちら](https://exment.net/inquiry)からお願いします。
 
 
 ## 実行方法
@@ -67,22 +67,22 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 ##### システム値
 | 項目 | 説明 |
 | ---- | ---- |
-| ${ENTITY.system.site_name} | システムのサイト名 |
-| ${ENTITY.system.site_name_short} | システムのサイト名(短縮) |
-| ${ENTITY.system.system_mail_from} | システムの送信元 |
-| ${ENTITY.system.system_url} | システムのホームURL |
-| ${ENTITY.system.login_url} | システムのログインURL |
+| %{system.site_name} | システムのサイト名 |
+| %{system.site_name_short} | システムのサイト名(短縮) |
+| %{system.system_mail_from} | システムの送信元 |
+| %{system.system_url} | システムのホームURL |
+| %{system.login_url} | システムのログインURL |
 
 ##### データ
 | 項目 | 説明 |
 | ---- | ---- |
-| ${ENTITY.id} | 対象データのIDが設定されます。(例：123) |
-| ${ENTITY.suuid} | 対象データの、suuid(Short UUID. 20桁のランダム文字列))が設定されます。 |
-| ${ENTITY.value_url} | 対象データを表示するリンクが設定されます。 |
-| ${ENTITY.value.(列名)} | 対象データの列の値が設定されます。(例：ユーザーデータに対し、${ENTITY.value.user_code}と記入した場合、ユーザーコードが設定される) |
-| ${ENTITY.select_table.(列名).(参照先のテーブルの列名)} | 「列名」に該当する列が、「選択肢 (他のテーブルの値一覧から選択)」「ユーザー」「組織」の場合、参照先の列の値が設定されます。(例：「顧客情報(customer)」を参照する「契約情報(contract)」テーブルで、顧客名(customer_name)を設定したい場合、${ENTITY.value.user_code}と記入した場合、ユーザーコードが設定される) |
-| ${ENTITY.parent.(参照先のテーブルの列名)} | 親テーブルの列の値が設定されます。(例：「契約明細情報(contract_detail)」テーブルから、「契約情報(contract)」テーブルの契約コード(contract_code)を参照する場合、${ENTITY.parent.contract_code}と記入した場合、契約コードが設定される) |
-| ${ENTITY.children.(子テーブル名)} | 「#foreach」などのブロック構文を用いて子テーブルの情報を設定します。子テーブルの情報は複数存在するケースがあるので、${ENTITY.children.(子テーブル名).(子テーブルの列名)}のように設定することはできません。下記で一例を説明しています。 |
+| %{id} | 対象データのIDが設定されます。(例：123) |
+| %{suuid} | 対象データの、suuid(Short UUID. 20桁のランダム文字列))が設定されます。 |
+| %{value_url} | 対象データを表示するリンクが設定されます。 |
+| %{value.(列名)} | 対象データの列の値が設定されます。(例：ユーザーデータに対し、%{value.user_code}と記入した場合、ユーザーコードが設定される) |
+| %{select_table.(列名).(参照先のテーブルの列名)} | 「列名」に該当する列が、「選択肢 (他のテーブルの値一覧から選択)」「ユーザー」「組織」の場合、参照先の列の値が設定されます。(例：「顧客情報(customer)」を参照する「契約情報(contract)」テーブルで、顧客名(customer_name)を設定したい場合、%{value.user_code}と記入した場合、ユーザーコードが設定される) |
+| %{parent.(参照先のテーブルの列名)} | 親テーブルの列の値が設定されます。(例：「契約明細情報(contract_detail)」テーブルから、「契約情報(contract)」テーブルの契約コード(contract_code)を参照する場合、%{parent.contract_code}と記入した場合、契約コードが設定される) |
+| %{children.(子テーブル名)} | 「#foreach」などのブロック構文を用いて子テーブルの情報を設定します。子テーブルの情報は複数存在するケースがあるので、%{children.(子テーブル名).(子テーブルの列名)}のように設定することはできません。下記で一例を説明しています。 |
 
 
 #### 設定例
@@ -92,6 +92,8 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 
 ##### ※テンプレートのサンプル   
 ![Docurain](img/docurain/docurain_setting10.png)
+
+
 
 - 上記サンプルを出力した結果のPDFです。   
 ![Docurain](img/docurain/docurain_setting11.png)
