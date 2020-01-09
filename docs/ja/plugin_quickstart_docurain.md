@@ -1,6 +1,8 @@
 # ドキュメント出力(Docurain)
 Excelとjsonだけで帳票開発ができるクラウド帳票エンジン **Docurain** を使用し、PDF出力を行います。  
 
+> Excel形式での出力は、[こちら](/ja/plugin_quickstart_document)をご参照ください。  
+
 ## Docurainとは
 Docurainは、Excelとjsonだけで帳票開発ができるクラウド帳票エンジンです。  
 さまざまなレイアウトの帳票も、Excelファイルのテンプレートから作成することができ、またPDF形式の出力にも対応しています。  
