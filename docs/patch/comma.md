@@ -15,10 +15,9 @@ It is displayed as a comma character string on the screen, but when saving data,
 
 However, there was a bug in this process, and the data was saved with the comma character string included.
 
-![Version update](../img/update/v1_2_6_comma3.png)    
 
 As a result, there was a problem that the calculation could not be performed correctly at the time of aggregation.
-In the case of the example below, the total amount is calculated for each employee. However, the total amount of employee 1 is displayed as "51" regardless of "51400".
+In the case of the example below, the total amount is calculated for each employee. However, the total amount of employee 1 is displayed as "2" regardless of "2660".
 
 ![Version update](../img/update/v1_2_6_comma4.png)    
 ![Version update](../img/update/v1_2_6_comma5.png)    
@@ -43,5 +42,5 @@ php artisan exment:patchdata rmcomma
 
 - The commas in the data have now been successfully deleted and calculated successfully.
 
-![Version update](../img/update/v1_2_6_comma6.png)    
+
 ![Version update](../img/update/v1_2_6_comma7.png)    
