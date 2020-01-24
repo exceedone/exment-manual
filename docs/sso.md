@@ -34,7 +34,7 @@ Example 3 For Google: http(s)://(Exment URL)/admin/auth/login/google/callback
 - Execute the following command in the Exment root directory.  
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 ~~~
 
 - Enter the client_id and client_secret of each provider in config/services.php.  
@@ -136,7 +136,7 @@ Example For Office365: http(s)://(Exment URL)/admin/ auth / login / graph / call
 - Execute the following command in the Exment root directory.  
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 composer require socialiteproviders/microsoft-graph
 ~~~
 
