@@ -28,19 +28,19 @@ Exment requires the introduction of composer. Please refer here for the introduc
 
 ## Zip download / expansion
 - Download the zip file from the following URL.
-[Exment zip file](https://exment.net/downloads/exment.zip)  
+[Exment zip file](https://exment.net/downloads/en/exment.zip)  
 
 - Extract the zip file to a PHP executable path.  
-Example 1 (XAMPP Windows): C: \ xampp \ local \ exment  
-Example 2 (XAMPP Mac): / Applications / XAMPP / local / exment  
-Example 3 (XServer): $ HOME / domain.com.foobar / exment /  
+Example 1 (XAMPP Windows): C:\xampp\local\exment  
+Example 2 (XAMPP Mac): /Applications/XAMPP/local/exment  
+Example 3 (XServer): $HOME/domain.com.foobar/exment/
 
 ## Create database
 - Create a database for Exment with MySQL.
 
 ## Installation of initial data
 - Access the Exment page and make settings.  
-Example 1 (XAMPP): http (s): // (your site URL) / admin
+Example 1 (XAMPP): http(s)://(your site URL)/admin
 
 - Set the language and time zone.  
 Change from the initial value as necessary.  

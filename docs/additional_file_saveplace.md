@@ -54,7 +54,7 @@ EXMENT_DRIVER_PLUGIN=s3
 If the version of Exment installed for the first time is less than v3.0.8, the following modifications are required.  
 (If you are not sure which version you have installed, please check it just in case)
 
-- Open "config / exment.php" in the root folder of the project.
+- Open "config/exment.php" in the root folder of the project.
 
 - Look for a description similar to the following:
 
@@ -96,7 +96,7 @@ The description of config is the minimum and the method of describing the settin
 Since the setting values can be reused for each file type, settings can be made relatively easily.  
 
 #### FTP
-- Open "config / filesystems.php" and check the setting value of "disks.ftp".  
+- Open "config/filesystems.php" and check the setting value of "disks.ftp".  
 If not, add the following settings:  
 
 ~~~php
@@ -152,7 +152,7 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 composer require league/flysystem-sftp ~1.0
 ~~~
 
-- Open "config / filesystems.php" and check the setting value of "disks.sftp".  
+- Open "config/filesystems.php" and check the setting value of "disks.sftp".  
 If not, add the following settings:
 
 ~~~php
@@ -215,7 +215,7 @@ Please execute "Create IAM for S3" and "Create Bucket" of the above URL
 composer require league/flysystem-aws-s3-v3 ~1.0
 ~~~
 
-- Open "config / filesystems.php" and check the setting value of "disks.s3".  
+- Open "config/filesystems.php" and check the setting value of "disks.s3".  
 If not, add the following settings:
 
 ~~~php
@@ -268,7 +268,7 @@ AWS_BUCKET_PLUGIN=exment_plugin
 composer require league/flysystem-azure-blob-storage ~0.1.6
 ~~~
 
-- Open "config / filesystems.php" and check the setting value of "disks.azure".  
+- Open "config/filesystems.php" and check the setting value of "disks.azure".  
 If not, add the following settings:  
 
 ~~~php
@@ -312,7 +312,7 @@ AZURE_STORAGE_CONTAINER_PLUGIN=exment_plugin
 This is a method of setting each driver information in config for each file type.  
 
 #### Example：FTP
-- Open "config / filesystems.php" and add the following values.
+- Open "config/filesystems.php" and add the following values.
 
 ~~~php
     'disks' => [

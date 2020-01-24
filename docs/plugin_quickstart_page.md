@@ -69,10 +69,10 @@ Please create from the following URL etc.
 https://www.famkruithof.net/uuid/uuidgen
 - For plugin_type, enter page.  
 - route defines a list of URL endpoints to be executed, their HTTP methods, and methods in the controller.  
-    - uri：uri for page display. The actual URL is "http (s): // (URL of Exment) / admin / plugins / (URL set on the plugin management screen) / (specified uri)".  
+    - uri：uri for page display. The actual URL is "http(s):// (URL of Exment) / admin / plugins / (URL set on the plugin management screen) / (specified uri)".  
     - method：HTTP method. Please fill in with get, post, put, delete.
     - function：Method in Contoller to execute
-    - Example: If the URL set on the plugin management screen is "youtube_search", the uri specified in config.json is "list", and the specified method is "get", "http (s): // (URL of Exment) / admin / plugins / youtube_search / list (method: GET) ".
+    - Example: If the URL set on the plugin management screen is "youtube_search", the uri specified in config.json is "list", and the specified method is "get", "http(s):// (URL of Exment) / admin / plugins / youtube_search / list (method: GET) ".
 - Be sure to include a route whose uri is empty (""). Access this endpoint when screen transition from the menu to the plugin page.
 
 ### Plugin file creation
