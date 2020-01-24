@@ -34,7 +34,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 ~~~
 
 - config/services.phpに、各プロバイダのclient_id, client_secretを記入します。  
@@ -135,7 +135,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 composer require socialiteproviders/microsoft-graph
 ~~~
 
