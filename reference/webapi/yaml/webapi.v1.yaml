@@ -624,7 +624,8 @@ paths:
         + value_write
 
         #### 対応バージョン
-        v1.1.0
+        - v1.1.0 対応
+        - v3.0.18 複数件登録、ならびに親データを指定しての新規追加に対応
       parameters:
         - schema:
             type: integer
@@ -769,7 +770,7 @@ paths:
                       description: 参照先のテーブルのカラム名を設定
                 data:
                   type: array
-                  description: 複数件登録時かつvalueを設定しない場合のみ
+                  description: 複数件登録時、かつvalueを設定しない場合のみ指定可能
                   items:
                     type: object
                     properties:
@@ -791,10 +792,10 @@ paths:
                             description: 項目は、登録するテーブルのカスタム列に合わせる
                 parent_type:
                   type: string
-                  description: 登録データが1件で親データを指定する場合のみ
+                  description: 親テーブル名。登録データが1件で親データを指定する場合のみ指定する
                 parent_id:
                   type: integer
-                  description: 登録データが1件で親データを指定する場合のみ
+                  description: 親テーブルのデータID。登録データが1件で親データを指定する場合のみ指定する
             examples: {}
         description: ''
       security:
