@@ -236,12 +236,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### csv形式によるインポート・エクスポートの無効
 - 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_CSV
 - 既定値 : false
-- 役割 : trueにすることで、データのインポート・エクスポートから、csv形式が表示されなくなります。
+- 役割 : trueにすることで、データのインポート・エクスポートボタンから、csv形式が表示されなくなります。
 
 #### xlsx形式によるインポート・エクスポートの無効
 - 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_EXCEL
 - 既定値 : false
-- 役割 : trueにすることで、データのインポート・エクスポートから、xlsx形式が表示されなくなります。
+- 役割 : trueにすることで、データのインポート・エクスポートボタンから、xlsx形式が表示されなくなります。
 
 
 
