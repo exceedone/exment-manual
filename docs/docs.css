@@ -6,6 +6,14 @@
     font-size: 0.85em;
 }
 
+.big{
+    font-size: 1.15em;
+}
+
+.bold{
+    font-weight: bold;
+}
+
 .markdown-section h3 + h4{
     margin-top: 2rem;
 }

@@ -11,6 +11,7 @@
   * [システム設定](/ja/system_setting.md)
   * [アップデート](/ja/update.md)
   * [追加設定](/ja/quickstart_more.md)
+  * [メール送信設定](/ja/mailsend_setting.md)
 
 * 【3. ログイン設定】
   * [SSO設定](/ja/sso.md)
