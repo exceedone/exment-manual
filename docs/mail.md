@@ -5,7 +5,7 @@ Set the subject, body, etc. of the email when sending email from the system.
 ### Page display
 - From the left menu, select "Email template".  
 Or access the following URL.  
-http (s): // (Exment URL) / admin / mail  
+http(s)://(Exment URL)/admin/ mail  
 This will display the plugin screen.  
 ![Email template screen](img/mail/mail_grid1.png)  
 

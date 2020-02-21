@@ -24,7 +24,7 @@ In addition, tables that are imported as templates are also displayed on the lis
 
 #### Table name (alphanumeric) ※ required
 - Represents the name of the table. (Example: user, information, estimate)
-- The set alphanumeric characters are used in the URL when the table is opened. (Example: http (s): // (Exment URL) / admin / data / user)
+- The set alphanumeric characters are used in the URL when the table is opened. (Example: http(s)://(Exment URL)/admin/ data / user)
 - Only alphanumeric characters and symbols "-" and "_" can be used.
 - Table names used in other tables cannot be used.
 - The table name can be no longer than 30 characters, and the table name must begin with a letter.

@@ -70,7 +70,7 @@ Please use it to implement complicated checks and related checks between items.
 ### Page display
 - Select "Plug-in" from the left menu.  
 Or access the following URL.  
-http (s): // (Exment URL) / admin / plugin  
+http(s)://(Exment URL)/admin/ plugin  
 This will display the plugin screen.  
 ![Plugin screen](img/plugin/plugin_grid1.png)  
 

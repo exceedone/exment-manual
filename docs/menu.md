@@ -13,7 +13,7 @@ Describes how to manage menus.
 Click "Menu" from the left menu.  
 Or access the following URL.  
 This will display the menu setting screen.  
-http (s): // (Exment URL) / admin / auth / menu  
+http(s)://(Exment URL)/admin/auth/menu  
 A list of menus currently registered in the system is displayed.
 ![Menu screen](img/menu/menu_grid1.png)
 
@@ -53,7 +53,7 @@ Enter the URI to transition to when clicked.
 ![Menu screen](img/menu/menu_new7.png)
 
 - If the menu type is "Custom URL": Enter the URI that will transition when clicked.  
-※ The URL of the page that actually transitions is as follows. http (s): // (Exment URL) / admin / (filled URI)  
+※ The URL of the page that actually transitions is as follows. http(s)://(Exment URL)/admin/ (filled URI)  
 http(s)://(Exment URL)/admin/(filled URI)
 ![Menu screen](img/menu/menu_new8.png)
 

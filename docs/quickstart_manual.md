@@ -133,7 +133,7 @@ Please check the link below.
 ※ These settings are no longer required from v1.2.0.  
 However, I keep a record of the settings in the past version. (Will be removed in the future)  
 
-- Open "config / admin.php" and modify the key "auth.providers.admin.driver" as follows.
+- Open "config/admin.php" and modify the key "auth.providers.admin.driver" as follows.
 
 ~~~ php
     'auth' => [
@@ -149,7 +149,7 @@ However, I keep a record of the settings in the past version. (Will be removed i
     ],
 ~~~
 
-- If you want to change the language and time zone, open "config / app.php" and modify the following line.
+- If you want to change the language and time zone, open "config/app.php" and modify the following line.
 
 ~~~ php
 

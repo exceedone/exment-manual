@@ -6,7 +6,7 @@ In addition, you can export custom tables created with this system as templates 
 ## Page display
 - Select "Template" from the left menu.  
 Or access the following URL.  
-http (s): // (Exment URL) / admin / template  
+http(s)://(Exment URL)/admin/ template  
 This will display the template screen.  
 ![Template screen](img/template/template1.png)  
 

@@ -11,6 +11,7 @@
   * [システム設定](/ja/system_setting.md)
   * [アップデート](/ja/update.md)
   * [追加設定](/ja/quickstart_more.md)
+  * [メール送信設定](/ja/mailsend_setting.md)
 
 * 【3. ログイン設定】
   * [SSO設定](/ja/sso.md)
@@ -30,6 +31,7 @@
   * [データ一覧](/ja/data_grid.md)
   * [データ詳細](/ja/data_details.md)  
   * [データ登録](/ja/data_form.md)
+  * [削除済データ](/ja/deleted_data.md)
   * [データインポート・エクスポート](/ja/data_import_export.md)
   * [検索](/ja/search.md)
 

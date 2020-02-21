@@ -624,7 +624,8 @@ paths:
         + value_write
 
         #### 対応バージョン
-        v1.1.0
+        - v1.1.0 対応
+        - v3.0.18 複数件登録、ならびに親データを指定しての新規追加に対応
       parameters:
         - schema:
             type: integer
@@ -722,7 +723,7 @@ paths:
                       created_user_id: '1'
                       updated_user_id: '1'
                       label: テスト2
-      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\nv1.1.0\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
+      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\nv1.1.0\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'num': 10,\n        'price': 10000\n    }\n}\n```\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n* 配列の指定方法は2パターン存在するが、機能に差異はない\n\n■パターン１：\n```\n{\n   'value': [\n      {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'num': 10,\n        'price': 10000\n      },\n      {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'num': 3,\n        'price': 8000\n      }\n    ]\n}\n```\n\n■パターン２：\n```\n{\n   'data': [\n     {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'value':{\n          'num': 10,\n          'price': 10000\n        }\n     },\n     {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'value':{\n          'num': 3,\n          'price': 8000\n        }\n      }\n    ]\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
       parameters: []
       requestBody:
         content:
@@ -733,34 +734,32 @@ paths:
                 value:
                   oneOf:
                     - type: object
-                      description: (1)登録するデータ。1件のみの場合。項目は、登録するテーブルのカスタム列に合わせる
+                      description: (1)登録するデータ。1件のみの場合。
                       properties:
-                        body:
+                        column_1:
                           type: string
-                        title:
+                          description: 項目は、登録するテーブルのカスタム列に合わせる
+                        column_n:
                           type: string
-                        priority:
-                          type: integer
-                        order:
-                          type: integer
-                        view_flg:
-                          type: integer
+                          description: 項目は、登録するテーブルのカスタム列に合わせる
                     - type: array
                       description: (2)登録するデータ。複数件登録する場合
                       items:
                         type: object
-                        description: 項目は、登録するテーブルのカスタム列に合わせる
+                        description: ''
                         properties:
-                          body:
+                          parent_type:
                             type: string
-                          title:
+                            description: 親データを指定する場合のみ
+                          parent_id:
+                            type: integer
+                            description: 親データを指定する場合のみ
+                          column_1:
                             type: string
-                          priority:
-                            type: integer
-                          order:
-                            type: integer
-                          view_flg:
-                            type: integer
+                            description: 項目は、登録するテーブルのカスタム列に合わせる
+                          column_n:
+                            type: string
+                            description: 項目は、登録するテーブルのカスタム列に合わせる
                   description: ※1件登録するか、複数件登録するかで、送信するパラメータが変更になる
                 findKeys:
                   type: object
@@ -769,6 +768,35 @@ paths:
                     (column_name):
                       type: string
                       description: 参照先のテーブルのカラム名を設定
+                data:
+                  type: array
+                  description: 複数件登録時、かつvalueを設定しない場合のみ指定可能
+                  items:
+                    type: object
+                    properties:
+                      parent_type:
+                        type: string
+                        description: 親データを指定する場合のみ
+                      parent_id:
+                        type: integer
+                        description: 親データを指定する場合のみ
+                      value:
+                        type: object
+                        description: ''
+                        properties:
+                          column_1:
+                            type: string
+                            description: 項目は、登録するテーブルのカスタム列に合わせる
+                          column_n:
+                            type: string
+                            description: 項目は、登録するテーブルのカスタム列に合わせる
+                parent_type:
+                  type: string
+                  description: 親テーブル名。登録データが1件で親データを指定する場合のみ指定する
+                parent_id:
+                  type: integer
+                  description: 親テーブルのデータID。登録データが1件で親データを指定する場合のみ指定する
+            examples: {}
         description: ''
       security:
         - OAuth2認証: []
@@ -1018,7 +1046,7 @@ paths:
                     created_user_id: null
                     updated_user_id: '1'
                     label: テスト更新
-      description: "#### 処理概要\n* カスタムデータ情報を更新する\n* ログインユーザーに権限のないデータだった場合、403エラーが発生する\n* 更新が発生する列の情報のみ、value配列内に値を代入してPUTする\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\nv1.1.0\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
+      description: "#### 処理概要\n* カスタムデータ情報を更新する\n* ログインユーザーに権限のないデータだった場合、403エラーが発生する\n* 更新が発生する列の情報のみ、value配列内に値を代入してPUTする\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\nv1.1.0\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'price': 10000\n    }\n}\n```\n"
       requestBody:
         content:
           application/json:
@@ -1028,27 +1056,37 @@ paths:
               properties:
                 value:
                   type: object
-                  description: 項目は、登録するテーブルのカスタム列に合わせる
+                  description: ''
                   properties:
                     view_flg:
                       type: integer
+                      description: 項目は、登録するテーブルのカスタム列に合わせる
                     order:
                       type: integer
+                      description: 項目は、登録するテーブルのカスタム列に合わせる
                     priority:
                       type: integer
+                      description: 項目は、登録するテーブルのカスタム列に合わせる
                     title:
                       type: string
+                      description: 項目は、登録するテーブルのカスタム列に合わせる
                     body:
                       type: string
+                      description: 項目は、登録するテーブルのカスタム列に合わせる
                 findKeys:
                   type: object
-                  description: スタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合。項目は、登録するテーブルのカスタム列に合わせる
+                  description: カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合。項目は、登録するテーブルのカスタム列に合わせる
                   properties:
                     (column_name):
                       type: string
                       description: 参照先のテーブルのカラム名を設定
-            examples:
-              Example: {}
+                parent_type:
+                  type: string
+                  description: 親データを指定する場合のみ
+                parent_id:
+                  type: integer
+                  description: 親データを指定する場合のみ
+            examples: {}
       security:
         - OAuth2認証: []
       operationId: put-value

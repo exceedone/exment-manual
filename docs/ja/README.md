@@ -86,6 +86,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/mailsend_setting">
+                    <div class="tile-inner">
+                        <h5>メール送信設定</h5>
+                        <p>ユーザーにメールを送信する場合の手順です。テストメールの送信手順も記載しています。</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>

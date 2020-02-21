@@ -29,7 +29,7 @@ Describes how to manage all user information.
 ### List screen display
 Click "Users" from the left menu.  
 Or access the following URL.  
-This will display the user settings screen. http (s): // (Exment URL) / admin / data / user  
+This will display the user settings screen. http(s)://(Exment URL)/admin/ data / user  
 A list of users currently registered in the system is displayed.  
 ![User screen](img/user/user_grid1.png)
 
@@ -68,7 +68,7 @@ You can add password information, reissue a password, delete login authority, et
 ### Screen display
 Click "Login User" from the left menu.  
 Or access the following URL.  
-This will display the user settings screen. http (s): // (URL of Exment) / loginuser Displays the users  
+This will display the user settings screen. http(s):// (URL of Exment) / loginuser Displays the users  
 currently registered in the system and their login information.  
 ![Login user screen](img/user/loginuser_grid1.png)
 

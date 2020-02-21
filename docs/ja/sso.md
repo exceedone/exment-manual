@@ -12,7 +12,7 @@ Exmentでは、シングルサインオン(SSO)が可能です。
 Exmentのユーザーに追加されていない利用者が、各プロバイダのユーザー情報を使用してExmentにログインを行おうとした場合、エラーが発生します。
 - Exmentでは、[Socialite](https://github.com/laravel/socialite)でシングルサインオン処理を実装しています。
 - **このマニュアルでは、OAuthに詳しい方向けの手順になります。各プロバイダのClient IDやClient Secretの作成方法などは、各資料をご参照ください。**
-
+- <span class="red">v3.0.16以下で、Googleログインができない方は、[こちらの手順](/ja/patch/sso_google)で、対応を行ってください。</span>
 
 ### 設定手順 
 #### 例1 Socialite標準で用意されているプロバイダの場合
@@ -34,7 +34,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 ~~~
 
 - config/services.phpに、各プロバイダのclient_id, client_secretを記入します。  
@@ -135,7 +135,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 composer require socialiteproviders/microsoft-graph
 ~~~
 

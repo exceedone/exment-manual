@@ -26,18 +26,18 @@ If a user who has not been added as an Exment user attempts to log in to Exment 
 
 - For each provider, create an application for Exment.  
 ※ The callback URL is as follows.  
-http (s): // (Exment URL) / admin / auth / login / (socialite provider name) / callback  
-Example 1 For GitHub: http (s): // (Exment URL) / admin / auth / login / github / callback  
-Example 2 For Facebook: http (s): // (Exment URL) / admin / auth / login / facebook / callback  
-Example 3 For Google: http (s): // (Exment URL ) / admin / auth / login / google / callback  
+http(s)://(Exment URL)/admin/auth/ login/(socialite provider name)/callback  
+Example 1 For GitHub: http(s)://(Exment URL)/admin/ auth/login/github/callback  
+Example 2 For Facebook: http(s)://(Exment URL)/admin/ auth/login/facebook/callback  
+Example 3 For Google: http(s)://(Exment URL)/admin/auth/login/google/callback  
 
 - Execute the following command in the Exment root directory.  
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 ~~~
 
-- Enter the client_id and client_secret of each provider in config / services.php.  
+- Enter the client_id and client_secret of each provider in config/services.php.  
 The "redirect" property is set automatically.  
 
 ~~~ php
@@ -85,7 +85,7 @@ EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER=true #Whether to show normal login. False rec
 - For each provider, create an application for Exment.  
 ※ The callback URL is as follows.  
 http(s): // (Exment URL) / admin / auth / login / (socialite provider name) / callback  
-Example For Office365: http (s): // (Exment URL) / admin / auth / login / graph / callback  
+Example For Office365: http(s)://(Exment URL)/admin/ auth / login / graph / callback  
 
 - Execute the following command in the Exment root directory.  
 
@@ -93,7 +93,7 @@ Example For Office365: http (s): // (Exment URL) / admin / auth / login / graph 
 composer require exment-oauth/microsoft-graph
 ~~~
 
-- Enter the client_id and client_secret of each provider in config / services.php.  
+- Enter the client_id and client_secret of each provider in config/services.php.  
 By default, there is no button style for Office365, so you need to make additional settings.  
 
 ~~~ php
@@ -130,17 +130,17 @@ Therefore, if anyone implements login with a provider that is not in Example 1 o
 
 - For each provider, create an application for Exment.  
 ※ The callback URL is as follows.  
-http (s): // (Exment URL) / admin / auth / login / (socialite provider name) / callback  
-Example For Office365: http (s): // (Exment URL) / admin / auth / login / graph / callback  
+http(s)://(Exment URL)/admin/ auth / login / (socialite provider name) / callback  
+Example For Office365: http(s)://(Exment URL)/admin/ auth / login / graph / callback  
 
 - Execute the following command in the Exment root directory.  
 
 ~~~
-composer require laravel/socialite=~3.2.0
+composer require laravel/socialite=~3.3.0
 composer require socialiteproviders/microsoft-graph
 ~~~
 
-- Enter the client_id and client_secret of each provider in config / services.php.  
+- Enter the client_id and client_secret of each provider in config/services.php.  
 By default, there is no button style for Office365, so you need to make additional settings.  
 
 ~~~ php
