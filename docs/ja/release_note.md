@@ -1,5 +1,11 @@
 # リリースノート
 
+## v3.1.0(2020/02/22)
+- 論理削除データの復元機能の追加。詳細は[こちら](/ja/deleted_data)
+- データAPIで、画像・ファイル列へファイル保存機能の追加。詳細は[こちら](https://exment.net/reference/webapi/webapi.html#operation/post-values)
+- Excelファイルからのテンプレートのインポート機能に対応。詳細は[こちら](/ja/template#import-excel)
+- その他、細かな修正
+
 ## v3.0.22(2020/02/21)
 - テストメール送信機能の追加。詳細は[こちら](/ja/mailsend_setting)
 - データのインポート時、ユニークキーをカスタム列で設定した場合に、正常に取込が行われない不具合の修正
