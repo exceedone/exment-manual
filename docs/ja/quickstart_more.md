@@ -29,5 +29,8 @@ Webページのリクエスト、ならびにAPI実行を、IPアドレスで制
 - [APIで429エラーが発生時](/ja/additional_429_too_many)  
 API実施時に、429 Too Many Requestsが発生する場合の対処法です。
 
+- [データ取得APIで、label列を追加する](/ja/additional_api_label)  
+データ一覧取得、もしくはデータ新規作成・更新の実行時に、"label"列を追加することができます。
+
 - [エキスパートモード](/ja/additional_expert)  
 より柔軟な設定項目を表示するための手順です。

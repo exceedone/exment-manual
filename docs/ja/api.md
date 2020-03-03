@@ -358,7 +358,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 			"created_user_id": null,
 			"updated_user_id": null,
 			"deleted_user_id": null,
-			"label": "admin"
 		}
 	],
 	"first_page_url": "http://localhost/admin/api/data/user?page=1",

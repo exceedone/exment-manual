@@ -164,6 +164,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 ： 100
 - 役割 : APIの一括削除で、同時に削除できる最大件数です。
 
+#### データのlabel取得
+- 設定キー : EXMENT_API_APPEND_LABEL
+- 既定値 ： true(2020/05/01以降よりfalse予定)
+- 役割 : trueにすることで、データ一覧取得、もしくはデータ新規作成・更新の実行時に、label列を含めることができます。
+
 
 ### 一覧(グリッド)
 
