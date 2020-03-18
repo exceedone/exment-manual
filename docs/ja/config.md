@@ -71,6 +71,13 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : mysqlコマンドのパスです。特に指定がない場合、環境変数PATHが通っているものとします。
 
 
+#### 検索インデックス件数
+- 設定キー : EXMENT_COLUMN_INDEX_ENABLED_COUNT
+- 既定値 : 20
+- 役割 : 各テーブルで設定する、検索インデックス列数の上限値です。  
+<span class="red">※設定値の変更は、自己責任で行ってください。開発元では、21件以上での動作確認を行っておりません。</span>
+
+
 ### ログイン
 #### デフォルトログインプロバイダ表示
 - 設定キー : EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER
@@ -199,6 +206,35 @@ EXMENT_FILTER_SEARCH_FULL=true
     - 2 : ログインユーザーと、所属するすべての組織
 
 
+### インポート・エクスポート
+
+#### インポートの無効
+- 設定キー : EXMENT_IMPORT_DISABLED
+- 既定値 : false
+- 役割 : trueにすることで、データのインポート機能を非表示にします。
+
+#### エクスポートの無効
+- 設定キー : EXMENT_EXPORT_DISABLED
+- 既定値 : false
+- 役割 : trueにすることで、データのエクスポート機能を非表示にします。
+
+#### エクスポート(ビュー)の無効
+- 設定キー : EXMENT_EXPORT_VIEW_DISABLED
+- 既定値 : false
+- 役割 : trueにすることで、データのエクスポート(ビュー)機能を非表示にします。
+
+#### csv形式によるインポート・エクスポートの無効
+- 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_CSV
+- 既定値 : false
+- 役割 : trueにすることで、データのインポート・エクスポートボタンから、csv形式が表示されなくなります。
+
+#### xlsx形式によるインポート・エクスポートの無効
+- 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_EXCEL
+- 既定値 : false
+- 役割 : trueにすることで、データのインポート・エクスポートボタンから、xlsx形式が表示されなくなります。
+
+
+
 ### その他
 
 #### HTTPレスポンス内の改行コード削除
@@ -235,19 +271,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : EXMENT_FILE_DELETE_USERONLY
 - 既定値 : false
 - 役割 : trueにすることで、データ詳細画面でアップロードされているファイルは、アップロード者以外は削除できないようになります。
-
-
-### インポート・エクスポート
-#### csv形式によるインポート・エクスポートの無効
-- 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_CSV
-- 既定値 : false
-- 役割 : trueにすることで、データのインポート・エクスポートボタンから、csv形式が表示されなくなります。
-
-#### xlsx形式によるインポート・エクスポートの無効
-- 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_EXCEL
-- 既定値 : false
-- 役割 : trueにすることで、データのインポート・エクスポートボタンから、xlsx形式が表示されなくなります。
-
 
 
 

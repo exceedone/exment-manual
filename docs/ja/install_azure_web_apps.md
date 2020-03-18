@@ -1,48 +1,43 @@
-# (上級者向け、ベータ版)AWSによる環境構築
-本ページでは、Amazon Linux2でExmentを構築する手順を記載します。  
-Webサーバーのインストールをはじめとして、完全に新規にインストールを行う手順となります。  
-また、本手順では**Webサーバーを冗長化した構成としております。**
-
-## 環境
-本ページでは、以下の構成で構築を行っております。
-- VPC
-- サブネット
-    - パブリックA
-    - パブリックB
-- ルートテーブル
-- インターネットゲートウェイ
-- セキュリティグループ
-- Amazon S3
-- Amazon RDS
-    - MySQL 5.7.25
-- Amazon ElastiCache
-    - Redis 5.0.5
-- Amazon Linux2-A
-    - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
-    - Apache 2.4.41
-    - PHP 7.2.24
-- Amazon Linux2-B
-    - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
-    - Apache 2.4.41
-    - PHP 7.2.24
-- Amazon Linux2-踏み台
-    - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
-- Amazon Elastic Load Balancing
-    - Application Load Balancer
-
+# (上級者向け、ベータ版)Azure Web Appsによる環境構築
+本ページでは、Azure Web AppsでExmentを構築する手順を記載します。  
+Azure Web AppsならびにMySQLを作成し、実行するための手順です。
 
 ## 注意点
 
 - ご利用の環境やバージョンなどにより、本手順では正常に設定できない場合がございます。ご了承ください。
 
-- 本手順では、ExmentをLinuxで動作させるための手順のみの記載となります。  
-AWSについて、SSHやデータベース作成、Linuxコマンドなど、一般的なIT系のナレッジについては記載致しておりません。ご了承ください。  
-
-- **本手順では、管理者アカウントで実行している前提です。管理者アカウントでないユーザーが実行する場合、"sudo"を頭に付与してください。**
-
-- 本手順は、こちらの[AWSチュートリアル](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html#setting-file-permissions-2)をもとに作成しています。
+- 本手順では、ExmentをAzure Web Appsで動作させるための手順のみの記載となります。  
+Azure Web Appsの一般的なIT系のナレッジについては記載致しておりません。ご了承ください。  
 
 ## 手順
+
+### MySQL作成
+- Azureポータルで、MySQLを作成します。
+
+
+
+### Azure Web Apps
+- Azureポータルで、Azure Web Appsを作成します。  
+その後、Azureのリソースにアクセスします。
+(要画像)
+
+
+- 左メニューより、「拡張機能」→「Composer」を選択し、composerをインストールします。
+
+- 左メニューより、「高度なツール」を選択し、「移動」を選択します。
+
+- KuduのGUIで、以下のパスに移動します。
+D:\home\site
+
+- 以下のコマンドを実行します。
+
+```
+composer create-project laravel/laravel  --prefer-dist . "5.6.*" 
+composer require exceedone/exment
+php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
+```
+
+
 
 ### VPC
 VPCを、以下の設定で作成します。

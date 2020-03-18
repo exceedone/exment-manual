@@ -12,6 +12,7 @@
   <meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/themes/vue.css">
   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
   <link rel="stylesheet" href="./bootstrap-grid.min.css">
   <link rel="stylesheet" href="./docs.css">
 
@@ -59,11 +60,17 @@
           '/': 'Search'
         }
       },
+
+      toc: {
+        scope: '.markdown-section',
+        headings: 'h1, h2, h3',
+      },
     };
   </script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/docsify.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/plugins/search.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/docsify/4.9.4/plugins/zoom-image.min.js"></script>
+  <script src="//unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>
 </body>
 
 </html>

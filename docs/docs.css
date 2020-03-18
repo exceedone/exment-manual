@@ -137,3 +137,12 @@ img{
     margin-bottom: 0;
     font-weight:normal;
 }
+
+
+.page_toc p.title{
+    display:none;
+}
+
+.page_toc ul a{
+    margin:.1em .2em .1em 0;
+}
