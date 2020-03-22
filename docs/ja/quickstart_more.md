@@ -32,5 +32,8 @@ API実施時に、429 Too Many Requestsが発生する場合の対処法です�
 - [データ取得APIで、label列を追加する](/ja/additional_api_label)  
 データ一覧取得、もしくはデータ新規作成・更新の実行時に、"label"列を追加することができます。
 
+- [通知処理の遅延実行](/ja/additional_queue)  
+通知など、一部の処理を遅延実行(キュー実行)することができます。
+
 - [エキスパートモード](/ja/additional_expert)  
 より柔軟な設定項目を表示するための手順です。
