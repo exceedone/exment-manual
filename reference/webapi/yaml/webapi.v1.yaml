@@ -626,6 +626,7 @@ paths:
         #### 対応バージョン
         - v1.1.0 新規作成
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
+        - v3.1.7 valuetypeパラメータ追加
       parameters:
         - schema:
             type: integer
@@ -657,6 +658,11 @@ paths:
           in: query
           name: label
           description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
       security:
         - OAuth2認証: []
       operationId: get-values
@@ -729,7 +735,7 @@ paths:
                       created_user_id: '1'
                       updated_user_id: '1'
                       label: テスト2
-      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 複数件登録、ならびに親データを指定しての新規追加に対応。ならびに、画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'num': 10,\n        'price': 10000\n    }\n}\n```\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n* 配列の指定方法は2パターン存在するが、機能に差異はない\n\n■パターン１：\n```\n{\n   'value': [\n      {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'num': 10,\n        'price': 10000\n      },\n      {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'num': 3,\n        'price': 8000\n      }\n    ]\n}\n```\n\n■パターン２：\n```\n{\n   'data': [\n     {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'value':{\n          'num': 10,\n          'price': 10000\n        }\n     },\n     {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'value':{\n          'num': 3,\n          'price': 8000\n        }\n      }\n    ]\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
+      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 複数件登録、ならびに親データを指定しての新規追加に対応。ならびに、画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.7 valuetypeパラメータ追加\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'num': 10,\n        'price': 10000\n    }\n}\n```\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n* 配列の指定方法は2パターン存在するが、機能に差異はない\n\n■パターン１：\n```\n{\n   'value': [\n      {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'num': 10,\n        'price': 10000\n      },\n      {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'num': 3,\n        'price': 8000\n      }\n    ]\n}\n```\n\n■パターン２：\n```\n{\n   'data': [\n     {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'value':{\n          'num': 10,\n          'price': 10000\n        }\n     },\n     {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'value':{\n          'num': 3,\n          'price': 8000\n        }\n      }\n    ]\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
       parameters: []
       requestBody:
         content:
@@ -928,6 +934,7 @@ paths:
         #### 対応バージョン
         - v2.1.6 追加
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
+        - v3.1.7 valuetypeパラメータ追加
       parameters:
         - schema:
             type: string
@@ -955,6 +962,11 @@ paths:
           in: query
           name: label
           description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
       security:
         - OAuth2認証: []
       operationId: get-values-query
@@ -1050,7 +1062,7 @@ paths:
                     prev_page_url: null
                     to: 1
                     total: 1
-      description: "#### 処理概要\n* 特定のカスタムテーブルに登録している、カスタムデータを検索する\n* ログインユーザーに権限のあるデータのみ、一覧の対象となる\n* カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n+ テーブル：担当者データの参照\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\n- v3.0.8 追加\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n\n#### 検索条件の指定方法\n* パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。\n* 検索条件は、以下のものに対応している。  \n    - eq : 完全一致\n    - ne : 一致しない\n    - gt : より上\n    - gte : 以上\n    - lt : より下\n    - lte : 以下\n      \n* クエリの設定方法は、\"(列名) eq (検索値)\"となる。  \n※URLエンコードは行うこと\n\n■例1：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n■例2：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"、\"タイトル(title)\"が\"テスト\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1,title eq テスト\n```"
+      description: "#### 処理概要\n* 特定のカスタムテーブルに登録している、カスタムデータを検索する\n* ログインユーザーに権限のあるデータのみ、一覧の対象となる\n* カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n+ テーブル：担当者データの参照\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\n- v3.0.8 追加\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。- v3.1.7 valuetypeパラメータ追加\n\n#### 検索条件の指定方法\n* パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。\n* 検索条件は、以下のものに対応している。  \n    - eq : 完全一致\n    - ne : 一致しない\n    - gt : より上\n    - gte : 以上\n    - lt : より下\n    - lte : 以下\n      \n* クエリの設定方法は、\"(列名) eq (検索値)\"となる。  \n※URLエンコードは行うこと\n\n■例1：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n■例2：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"、\"タイトル(title)\"が\"テスト\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1,title eq テスト\n```"
       parameters:
         - schema:
             type: string
@@ -1078,9 +1090,14 @@ paths:
           in: query
           name: label
           description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
       security:
         - OAuth2認証: []
-      operationId: get-values-seach-column
+      operationId: get-values-query-column
   '/api/data/{tableKey}/{id}':
     parameters:
       - type: string
@@ -1152,6 +1169,7 @@ paths:
         #### 対応バージョン
         - v1.1.0 追加
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
+        - v3.1.7 valuetypeパラメータ追加
       requestBody: {}
       security:
         - OAuth2認証: []
@@ -1163,6 +1181,11 @@ paths:
           in: query
           name: label
           description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
     put:
       summary: カスタムデータ情報更新
       tags:
@@ -2024,6 +2047,76 @@ paths:
                   notify_body: 本文です本文です本文です本文です本文です本文です本文です本文です
         description: ''
       operationId: post-notify
+  '/api/files/{uuid}':
+    parameters:
+      - schema:
+          type: string
+        name: uuid
+        in: path
+        required: true
+        description: ファイルに割り振られたランダム文字列
+    get:
+      summary: ファイルのダウンロード
+      tags:
+        - データ
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                description: ※ファイルのストリームが返却される。Content-Typeは、ファイルの種類によって変わる
+            application/json:
+              schema:
+                type: object
+                description: base64=1の場合。
+                properties:
+                  type:
+                    type: string
+                    description: ファイル形式
+                  name:
+                    type: string
+                    description: ファイル名
+                  base64:
+                    type: string
+                    description: ファイルのbase64文字列
+              examples:
+                base64 is 1:
+                  value:
+                    type: image/jpeg
+                    name: test.jpg
+                    base64: aaaaaXXXXXXX.....
+      operationId: get-files
+      description: |
+        #### 処理概要
+        * ファイルのダウンロードを実施する
+        * クエリ文字列がない場合、ファイルはストリーム形式でダウンロードされる。"base64=1"の場合、base64形式で返却する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+        #### APIスコープ(scope)
+        + value_read
+        + value_write
+
+        #### 対応バージョン
+        v3.1.7
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: base64
+          description: 1の場合、base64文字列を含んだjson型で返却する
 components:
   schemas:
     CustomTable:

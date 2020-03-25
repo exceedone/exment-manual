@@ -21,7 +21,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 ## マニュアルメニュー
 「<span style="color:red;">*</span>」で記載されているメニューは、特に重要な内容になります。
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-bottom:2em;">
     <div>
         <h4>1. はじめに</h4>
         <div class="row">
@@ -359,14 +359,6 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         <h4>10. リファレンス</h4>
         <div class="row">
             <div class="col-sm-6 tile">
-                <a href="#/ja/release_note">
-                    <div class="tile-inner">
-                        <h5>リリースノート</h5>
-                        <p>過去のリリース履歴です。</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 tile">
                 <a href="#/ja/params">
                     <div class="tile-inner">
                         <h5>パラメータ変数</h5>
@@ -403,6 +395,22 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     <div class="tile-inner">
                         <h5>設定値一覧</h5>
                         <p>Exmentで設定できる設定値一覧です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/release_note">
+                    <div class="tile-inner">
+                        <h5>リリースノート</h5>
+                        <p>過去のリリース履歴です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/patch_weakness">
+                    <div class="tile-inner">
+                        <h5>パッチ・脆弱性リスト</h5>
+                        <p>手動での対応が必要な過去の不具合、過去に発生した脆弱性の一覧です。</p>
                     </div>
                 </a>
             </div>

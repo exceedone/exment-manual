@@ -54,7 +54,7 @@
   * [通知](/ja/notify.md)
 
 * 【9. 機能拡張】
-  * [API](/ja/api.md)
+  * [API設定](/ja/api.md)
   * [プラグイン](/ja/plugin.md)
   * [プラグイン作成方法](/ja/plugin_quickstart.md)
     * [トリガー](/ja/plugin_quickstart_trigger.md)
@@ -70,16 +70,11 @@
     * [Docurain(PDF出力)](/ja/plugin_quickstart_docurain.md)
   
 * 【10. リファレンス】
-  * [リリースノート](/ja/release_note.md)
-    * [v1.1.X](/ja/update/v1_1.md)
-    * [v1.2.X](/ja/update/v1_2.md)
-    * [v1.3.X](/ja/update/v1_3.md)
-    * [v1.4.X](/ja/update/v1_4.md)
-    * [v2.0.X](/ja/update/v2_0.md)
-    * [v2.1.X](/ja/update/v2_1.md)
   * [パラメータ変数](/ja/params.md)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference.md)
   * [プラグインリファレンス](/ja/plugin_reference.md)
   * [設定値一覧](/ja/config.md)
+  * [リリースノート](/ja/release_note.md)
+  * [パッチ・脆弱性リスト](/ja/patch_weakness.md)
   * [ライセンス](/ja/license.md)
