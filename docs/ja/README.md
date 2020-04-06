@@ -206,6 +206,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/ja/data_import_export">
+                    <div class="tile-inner">
+                        <h5>データインポート(大量データ)</h5>
+                        <p>対象のテーブルに、CSVデータを一括で登録します。大量データに対応しております。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/search">
                     <div class="tile-inner">
                         <h5>データ検索</h5>

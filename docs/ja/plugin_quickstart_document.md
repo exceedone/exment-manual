@@ -108,7 +108,7 @@ class Plugin extends PluginDocumentBase
 
 ~~~
 
-- namespaceは、**App\Plugins\(プラグイン名)**としてください。
+- namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 - ドキュメント出力実行前、ならびにドキュメント出力実行後に、これらの関数は実行されます。  
 出力前になにかの処理を実行したい場合に、このPlugin.phpファイルを作成し、処理を追加してください。  

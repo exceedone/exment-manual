@@ -60,7 +60,7 @@ class Plugin extends PluginValidatorBase
     }
 }
 ~~~
-- namespaceは、**App\Plugins\(プラグイン名)**としてください。
+- namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 - プラグイン管理画面で設定した「対象テーブル」を保存する直前に、プラグインが呼び出され、Plugin.php内のvalidate関数を実行します。validate関数でtrueを返した場合、処理はそのまま続行します。falseを返した場合、処理を中断して、プロパティ$messagesに設定したエラーメッセージを画面に表示します。  
 

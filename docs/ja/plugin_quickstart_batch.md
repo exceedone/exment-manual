@@ -66,7 +66,7 @@ class Plugin extends PluginBatchBase{
     
 }
 ~~~
-- namespaceは、**App\Plugins\\(プラグイン名)**としてください。
+- namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 - プラグイン管理画面で登録した、トリガーの条件に合致した場合に、プラグインが呼び出され、Plugin.php内のexecute関数が実行されます。  
 

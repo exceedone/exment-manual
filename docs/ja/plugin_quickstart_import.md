@@ -109,7 +109,7 @@ class Plugin extends PluginImportBase{
     
 }
 ~~~
-- namespaceは、**App\Plugins\\(プラグイン名)**としてください。
+- namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 - Pluginクラスは、クラスPluginImportBaseを継承する必要があります。  
 

@@ -118,7 +118,8 @@ class Plugin extends PluginApiBase
 }
 ~~~
 
-- (1) namespaceは、**App\Plugins\\(プラグイン名)**としてください。  
+- (1) namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
+
 また、クラス名は「Plugin」とし、PluginApiBaseを継承してください。
 
 - (2) クラス内のpublicメソッド名は、config.jsonのfunctionに記載の名称になります。  

@@ -1217,7 +1217,7 @@ paths:
                     created_user_id: null
                     updated_user_id: '1'
                     label: テスト更新
-      description: "#### 処理概要\n* カスタムデータ情報を更新する\n* ログインユーザーに権限のないデータだった場合、403エラーが発生する\n* 更新が発生する列の情報のみ、value配列内に値を代入してPUTする\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'price': 10000\n    }\n}\n```\n"
+      description: "#### 処理概要\n* カスタムデータ情報を更新する\n* ログインユーザーに権限のないデータだった場合、403エラーが発生する\n* 更新が発生する列の情報のみ、value配列内に値を代入してPUTする\n* 列\"updated_at\"を行うことで、排他制御を行うことが可能\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.10 排他制御に対応\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n* 例：ファイル列\"file\"に、ファイルを保存する場合\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'price': 10000\n    }\n}\n```\n\n\n#### 排他制御\n* updated_at列に日付を追加することで、排他制御を行うことができます。指定した日時と、対象データの最新の更新日時が異なっていた場合、エラーを返却します。\n\n```\n{\n   \"value\": {\n        \"price\": 10000\n    },\n    \"updated_at\": \"2020/04/03 12:00:00\"\n}\n```\n"
       requestBody:
         content:
           application/json:
@@ -2057,8 +2057,6 @@ paths:
         description: ファイルに割り振られたランダム文字列
     get:
       summary: ファイルのダウンロード
-      tags:
-        - データ
       responses:
         '200':
           description: OK
@@ -2087,11 +2085,69 @@ paths:
                     type: image/jpeg
                     name: test.jpg
                     base64: aaaaaXXXXXXX.....
-      operationId: get-files
+      operationId: get-file
       description: |
         #### 処理概要
         * ファイルのダウンロードを実施する
         * クエリ文字列がない場合、ファイルはストリーム形式でダウンロードされる。"base64=1"の場合、base64形式で返却する
+
+        #### ファイルURL取得方法
+        ダウンロード用のファイルURLを取得する方法です。
+
+        ##### カスタムデータ取得APIで、クエリ文字列「valuetype=text」を追加する
+        カスタム列の種類がファイル・画像の場合、値がURLになります。
+
+        ```
+        例：GET
+        /api/data/testtable/1?valuetype=text
+
+        戻り値(一部)
+        {
+            "id": 1,
+            "value": {
+                "text": "test_1",
+                "file": "http://locallost/admin/api/files/c09ff3a0-7677-11ea-9edf-178831242ff9"
+            }
+        }
+        ```
+
+
+        ##### ドキュメント(添付ファイル)一覧の取得APIで取得する
+        「api_url」が、APIから実行するためのURLです。
+
+        ```
+        例：GET
+        /api/document/testtable/1
+
+        戻り値(一部)
+        {
+            "data": [
+                {
+                    "name": "information.htm",
+                    "url": "http://locallost/admin/files/91ed9b30-767b-11ea-a225-07e73286c089",
+                    "api_url": "http://locallost/admin/api/files/91ed9b30-767b-11ea-a225-07e73286c089",
+                    "created_at": "2020-04-04 22:52:48",
+                    "created_user_id": "1"
+                }
+            ]
+        }
+        ```
+
+        #### リクエスト時のクエリ文字列と、レスポンスの内容
+        ##### リクエスト時にbase64=1を入れない場合
+        レスポンス値は、ファイルのストリーム形式となります。
+
+        ##### リクエスト時にbase64=1を入れる場合
+        レスポンス値は、以下の形式のjsonとなります。
+
+        ```
+        {
+          "type": "image/jpeg",
+          "name": "test.jpg",
+          "base64": "aaaaaXXXXXXX....."
+        }
+        ```
+
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -2117,6 +2173,266 @@ paths:
           in: query
           name: base64
           description: 1の場合、base64文字列を含んだjson型で返却する
+      tags:
+        - ファイル・ドキュメント
+    delete:
+      summary: ファイルの削除
+      responses:
+        '204':
+          description: No Content
+      operationId: delete-files
+      description: |
+        #### 処理概要
+        * ファイルの削除を実施する
+        * 特定のデータに紐付く添付ファイルの場合、添付ファイル情報も同時に削除する
+
+        #### ファイルURL取得方法
+        「ファイルのダウンロード」をご確認ください。
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：担当者データの編集
+
+        #### APIスコープ(scope)
+        + value_write
+
+        #### 対応バージョン
+        v3.1.10
+      parameters: []
+      tags:
+        - ファイル・ドキュメント
+  '/api/files/{tableKey}/{filename}':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: テーブル名(Ex. information)
+      - schema:
+          type: string
+        name: filename
+        in: path
+        required: true
+        description: ファイル名
+    get:
+      summary: ファイルのダウンロード
+      tags:
+        - ファイル・ドキュメント
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+              examples: {}
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  name:
+                    type: string
+                  base64:
+                    type: string
+              examples:
+                base64 is 1:
+                  value:
+                    type: image/jpeg
+                    name: test.jpg
+                    base64: aaaaaXXXXXXX.....
+      operationId: get-file2
+      description: "#### 処理概要\n* ファイルのダウンロードを実施する\n* クエリ文字列がない場合、ファイルはストリーム形式でダウンロードされる。\"base64=1\"の場合、base64形式で返却する\n\n#### ファイルURL取得方法\nダウンロード用のファイルURLを取得する方法です。\n\n##### カスタムデータ取得APIで取得する\nカスタム列の種類がファイル・画像の場合、取得した値を加工します。\n\n```\n例：GET\n/api/data/testtable/1\n\n戻り値(一部)\n{\n    \"id\": 1,\n    \"value\": {\n        \"text\": \"test_1\",\n        \"file\": \"testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\"\n    }\n}\n```\n\nこの値を使用し、以下のようなURLで、APIを実行します。  \nhttp://localhost/api/files/testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\n\n\n#### リクエスト時のクエリ文字列と、レスポンスの内容\n##### リクエスト時にbase64=1を入れない場合\nレスポンス値は、ファイルのストリーム形式となります。\n\n##### リクエスト時にbase64=1を入れる場合\nレスポンス値は、以下の形式のjsonとなります。\n\n```\n{\n  \"type\": \"image/jpeg\",\n  \"name\": \"test.jpg\",\n  \"base64\": \"aaaaaXXXXXXX.....\"\n}\n```\n\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n+ テーブル：担当者データの参照\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\nv3.1.10\n"
+      requestBody: {}
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: base64
+          description: 1の場合、base64文字列を含んだjson型で返却する
+    delete:
+      summary: ファイルの削除
+      operationId: delete-file2
+      responses:
+        '200':
+          description: OK
+      description: |
+        #### 処理概要
+        * ファイルの削除を実施する
+        * 特定のデータに紐付く添付ファイルの場合、添付ファイル情報も同時に削除する
+
+        #### ファイルURL取得方法
+        「ファイルのダウンロード」をご確認ください。
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：担当者データの編集
+
+        #### APIスコープ(scope)
+        + value_write
+
+        #### 対応バージョン
+        v3.1.10
+      tags:
+        - ファイル・ドキュメント
+  '/api/document/{tableKey}/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: テーブル名(Ex. information)
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: カスタムデータのID
+    get:
+      summary: ドキュメント(添付ファイル)一覧の取得
+      tags:
+        - ファイル・ドキュメント
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Paginate'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Document'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - name: test.txt
+                        url: 'http://localhost/admin/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                        api_url: 'http://localhost/admin/api/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                        created_at: '2020-04-02 21:53:45'
+                        created_user_id: '1'
+                      - name: test2.txt
+                        url: 'http://localhost/admin/files/abaf364d-71d0-4958-88ed-8a5378d2722e'
+                        api_url: 'http://localhost/admin/api/files/abaf364d-71d0-4958-88ed-8a5378d2722e'
+                        created_at: '2020-04-02 21:53:45'
+                        created_user_id: '1'
+                    first_page_url: 'http://localhost/admin/api/document/footable/1?count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/document/footable/1?count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/document/footable/1'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 1
+                    total: 2
+      operationId: get-documents
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのカスタムデータの、ドキュメント（添付ファイル）一覧を取得する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+
+        #### APIスコープ(scope)
+        + value_read
+        + value_write
+
+        #### 対応バージョン
+        v3.1.10
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: 取得するページ番号
+        - schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            default: '20'
+          in: query
+          name: count
+          description: 1回のリクエストで取得する件数。1～100
+    post:
+      summary: ドキュメント(添付ファイル)の作成
+      operationId: post-document
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+              examples:
+                Example:
+                  value:
+                    name: test.txt
+                    url: 'http://localhost/admin/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                    api_url: 'http://localhost/admin/api/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                    created_at: '2020-04-02 21:53:45'
+                    created_user_id: '1'
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのデータに紐付くドキュメント（添付ファイル）をアップロードする
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：担当者データの編集
+
+
+        #### APIスコープ(scope)
+        + value_write
+
+        #### 対応バージョン
+        v3.1.10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ファイル名
+                base64:
+                  type: string
+                  description: base64文字列
+              required:
+                - name
+                - base64
+        description: ''
+      tags:
+        - ファイル・ドキュメント
 components:
   schemas:
     CustomTable:
@@ -2568,6 +2884,25 @@ components:
         - notify_subject
         - notify_body
         - read_flg
+    Document:
+      title: Document
+      type: object
+      properties:
+        name:
+          type: string
+          description: ファイル名
+        url:
+          type: string
+          description: 画面からアクセスする場合のURL。※ログイン画面での認証が必要
+        api_url:
+          type: string
+          description: APIからアクセスする場合のURL。※アクセストークン認証が必要
+        created_at:
+          type: string
+          description: アップロード日時
+        created_user_id:
+          type: integer
+          description: アップロードユーザーID
   securitySchemes:
     OAuth2認証:
       type: oauth2

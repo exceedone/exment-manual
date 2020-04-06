@@ -17,12 +17,19 @@
 - [Docurain(PDF出力)](/ja/plugin_quickstart_docurain.md)
 
 
+## プラグイン名のnamespace
+プラグインのnamespaceは、以下の法則で付けてください。
+- namespaceは、 **App\Plugins\\(プラグイン名のパスカルケース)** としてください。
+    - 例：プラグイン名：testplugin　→ App\Plugins\\Testplugin
+    - 例：プラグイン名：customer_list　→ App\Plugins\\CustomerList
+    - 例：プラグイン名：get-user　→ App\Plugins\\GetUser
+
+
 ## その他、特別な設定方法
 上記に記載している、基本的な作成方法の他に、特別な設定情報の記載を行います。
 
 - [プラグイン設定画面で独自の設定を行う](#プラグイン設定画面で独自の設定を行う)
 - [複数のプラグイン種類を1つのプラグインで対応する](#複数のプラグイン種類を1つのプラグインで対応する)
-
 
 ### プラグイン設定画面で独自の設定を行う
 

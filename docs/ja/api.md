@@ -4,16 +4,15 @@ Exmentのアカウントを使用する、OAuthを用いた認証によって実
   
 Exmentでは、[laravel/passport](https://github.com/laravel/passport)を使用した認証を行っております。  
 参考：[Laravel 5.6 API認証](https://readouble.com/laravel/5.6/ja/passport.html)  
-そのため、認証はlaravel/passportに依存した方式となりますが、当マニュアルは2種類の認証方式をご紹介します。  
+そのため、認証はlaravel/passportに依存した方式となりますが、当マニュアルは3種類の認証方式をご紹介します。  
 
 ## システム設定変更
-> v2.1.7より、画面から設定変更になりました。
-
 ExmentでAPIを使用するには、メニュー「管理者設定 > システム設定」より、「APIを使用する」をYESに変更してください。
 
 ## API認証方法
 1. **OAuth 2.0, Authorization Code Flow(画面ログイン形式)** : ユーザーが画面から、ExmentのログインID、パスワードを入力することにより、APIを使用できるようになる形式です。Web上からAPIを実行する場合におすすめです。
-1. **Password Grant Token(パスワード形式)** : APIを呼び出す実行元で、あらかじめログインID、パスワードを設定しておき、APIを使用する形式です。バッチ実行におすすめです。
+1. **Password Grant Token(パスワード形式)** : APIを呼び出す実行元で、あらかじめログインID、パスワードを設定しておき、APIを使用する形式です。Web画面を呼び出しにくい、クライアントアプリにおすすめです。
+1. **API Key(APIキー形式)** : APIアプリの作成時に、APIキーを作成します。その後、APIを呼び出す実行元で、APIキーを設定することで、APIを使用する形式です。バッチ実行におすすめです。
 
 ### 1. OAuth 2.0, Authorization Code Flow(画面ログイン形式)
 この認証方式は、新たに構築するWebサービス（例：会計システム）から、ユーザーがExmentのログインを行い、Exmentのデータを使用する利用に利用可能です。  
@@ -64,6 +63,8 @@ response_type: code
 client_id: (コピーしたClient ID)
 redirect_uri: (入力したcallback URL)
 scope: (アクセスを行うためのスコープ。一覧は下記に記載。複数ある場合はスペース区切り)
+
+例： http://localhost/admin/oauth/authorize?response_type=code&client_id=aaaaaaaa-aaaa-aaaa-aaaaaaaa&redirect_uri=http://localhost/callback&scope=me value_read
 ~~~
 
 - 例：
@@ -137,8 +138,6 @@ Route::get('/callback', function (Request $request) {
 
 - ユーザーのIDパスワードを、あらかじめシステムに設定する必要があります。  
 
-- OAuthを使用した認証を設定していた場合、この形式は使用できません。
-
 ※本マニュアルでは、Exmentとは別のWebサービスを、Laravelで構築した場合の例を記載します。  
 他の言語やフレームワークでも構築可能です。  
 
@@ -183,6 +182,92 @@ Content-Type: application/json
     "client_secret": "(コピーしたClient Secret)",
     "username": "(ログインするユーザーIDまたはメールアドレス)",
     "password": "(ログインするユーザーパスワード)",
+    "scope": "(アクセスを行うスコープ。一覧は下記に記載。複数ある場合はスペース区切り)"
+}
+~~~
+
+- これにより、レスポンス値に、access_token、refresh_token、expires_in属性を含むjsonが返却されます。  
+
+~~~ json
+{
+"token_type": "Bearer",
+"expires_in": 31622400,
+"access_token": "eyJ0eXAiOiJKV1Q.....",
+"refresh_token": "def50200e5f5eb458....."
+}
+~~~
+
+このアクセストークンを使用して、APIを実行します。
+
+
+
+### 3. API Key(APIキー形式)
+APIアプリの作成時に、APIキーを作成します。その後、APIを呼び出す実行元で、APIキーを設定することで、APIを使用する形式です。
+
+- ユーザーが画面でID・パスワードを入力する必要がありません。  
+また、パスワードを実行元に設定する必要もないため、バッチ処理などを開発する場合でも、パスワードを埋め込む必要はなく、セキュリティリスクを下げられます。
+
+- **この設定でAPIアプリを登録した場合、REST APIは、APIアプリを作成したユーザーとして実行されます。**  
+
+※本マニュアルでは、Exmentとは別のWebサービスを、Laravelで構築した場合の例を記載します。  
+他の言語やフレームワークでも構築可能です。  
+
+#### (補足)API Keyで設定する場合に推奨するユーザー・役割グループ設定
+
+この設定でAPIアプリを登録した場合、REST APIは、APIアプリを作成したユーザーとして実行されます。  
+そのため、システム管理者がAPIアプリを登録することは、あまり推奨しません。  
+以下のような手順で、ユーザー・役割グループを設定することをオススメします。  
+
+- [役割グループ設定](/ja/role_group)を新規作成します。
+    - 「APIアプリ管理」権限を追加します。
+	- APIで実行したいテーブルに対し、権限を追加します。
+
+- APIで実行するユーザーを追加します。
+    - 役割グループは、上記で作成した役割グループを選択します。
+
+- 上記で作成したユーザーでログインを行い、APIアプリ設定画面を表示し、APIアプリを登録してください。
+
+
+#### 設定方法
+
+##### Exmentページ内設定
+- システム管理者が、以下のURLを入力します。  
+http(s)://(ExmentのURL)/admin/api_setting  
+※上記で記載の「システム設定変更」を行うことで、アクセスが出来るようになります。
+
+- もしくは、メニューに「APIアプリ設定」を追加します。  
+「管理者設定」 > 「メニュー」ページを開き、メニュー種類「システムメニュー」を選択すると、対象「APIアプリ設定」が表示されますので、選択し、保存を行ってください。  
+※「APIアプリ設定」は、デフォルトの設定ではメニューに表示されません。
+
+![API認証画面](img/api/api_setting1.png)  
+
+- APIアプリ設定画面が表示されますので、「新規」をクリックします。  
+
+- 必要事項を入力します。
+    - 認証形式：「APIキー形式」を選択します。
+	- アプリ名：任意の名称を記入してください。
+
+![API認証画面](img/api/api_setting4.png)  
+
+
+- 保存完了後、認証に必要なClient IDとClient Secret、APIキーが表示されるので、コピーします。  
+※Client Secret、APIキーは、目アイコンをクリックすることで表示されます。  
+
+![API認証画面](img/api/api_setting6.png)  
+
+
+##### 独自で開発するプログラム側の実装
+- アクセストークンを取得するためのリクエストを、呼び出し元で作成します。
+
+~~~
+http(s)://(ExmentのURL)/admin/oauth/token'  POST
+Content-Type: application/json
+
+{
+    "grant_type": "api_key",
+    "client_id": "(コピーしたClient ID)",
+    "client_secret": "(コピーしたClient Secret)",
+    "api_key": "(コピーしたAPIキー)",
     "scope": "(アクセスを行うスコープ。一覧は下記に記載。複数ある場合はスペース区切り)"
 }
 ~~~
