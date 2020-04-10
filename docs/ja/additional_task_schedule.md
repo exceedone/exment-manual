@@ -18,7 +18,7 @@ crontab -e
 この設定により、artisan scheduleコマンドが毎分実行されます。その後はExmentのシステムにより、決まった時間にタスクが実行されます。  
 
 ~~~
-* * * * * php /(Exmentのルートディレクトリ)/artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /(Exmentのルートディレクトリ) && php artisan schedule:run >> /dev/null 2>&1
 ~~~
 
 ### 設定手順(Windows)

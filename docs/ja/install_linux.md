@@ -34,8 +34,8 @@ yum install -y wget firewalld unzip
 - epelを更新し、rpmをインストールします。
 
 ~~~
-wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm ~/
-rpm -ivh ~/epel-release-7-11.noarch.rpm 
+wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm ~/
+rpm -ivh ~/epel-release-7-12.noarch.rpm 
 yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ~~~
 

@@ -161,6 +161,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 ： 20
 - 役割 : APIのデータ一覧取得で、countを未使用のときのデータ取得件数です。
 
+#### APIの一覧取得件数上限
+- 設定キー : EXMENT_API_MAX_DATA_COUNT
+- 既定値 ： 100
+- 役割 : APIのデータ一覧取得で、同時に取得できる最大件数です。
+
 #### APIの一括新規作成件数上限
 - 設定キー : EXMENT_API_MAX_CREATE_COUNT
 - 既定値 ： 100

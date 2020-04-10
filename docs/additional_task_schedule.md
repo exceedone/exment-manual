@@ -19,7 +19,7 @@ With this setting, the artisan schedule command is executed every minute.
 After that, the Exment system will execute the task at a fixed time.  
 
 ~~~
-* * * * * php /(Exment root directory)/artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /(Exment root directory) && php artisan schedule:run >> /dev/null 2>&1
 ~~~
 
 ### Setup steps(Windows)
