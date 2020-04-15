@@ -41,42 +41,17 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 composer require laravel/socialite=~3.3.0
 ~~~
 
-- config/services.phpに、各プロバイダのclient_id, client_secretを記入します。  
-なお、"redirect"プロパティは自動的に設定されます。
+- 管理者アカウントで、システム設定画面に遷移します。  
+ページの右上の「ログイン設定」ボタンから、ログイン設定画面に遷移します。
+![ログイン設定画面](img/login/login_setting1.png)  
 
-~~~ php
+- 新規ボタンを押して、ログイン設定を作成します。  
+※クライアントID／クライアントシークレットにはプロバイダから提供された文字列を設定してください。
 
-'github' => [
-    'client_id'     => 'xxxxxxxxxxxxxxxx',
-    'client_secret' => 'yyyyyyyyyyyyyyyy',
-    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
-],
+![ログイン設定作成画面](img/login/login_setting2.png)  
 
-// このように記載した場合、.envファイルにFB_CLIENT_IDとFB_CLIENT_SECRETを記入してください
-'facebook' => [
-    'client_id'     => env('FB_CLIENT_ID'),
-    'client_secret' => env('FB_CLIENT_SECRET'),
-    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
-],
-
-
-// このように記載した場合、.envファイルにGOOGLE_CLIENT_IDとGOOGLE_CLIENT_SECRETを記入してください
-'google' => [
-    'client_id' => env('GOOGLE_CLIENT_ID'),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'scope' => '', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
-]
-
-~~~
-
-- .envファイルに、以下の内容を追加します。
-
-~~~
-EXMENT_LOGIN_PROVIDERS=github,facebook,google #SSOを使用するプロバイダの一覧をカンマ区切りで記入
-EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER=true #通常のログインを表示させるか。SSOを使用する場合はfalse推奨
-~~~
-
-- ログイン画面にて、SSOのボタンが表示されます。  
+- 有効フラグをYESにした場合、ログイン画面にSSO認証用のボタンが表示されます。  
+※通常はユーザーIDとパスワードを入力する既定のログインフォームも併せて表示されます。[SSO設定](/ja/system_setting?id=sso設定)で画像のように非表示にすることもできます。
 ![SSOログイン画面](img/quickstart/sso1.png)
 
 
