@@ -2433,6 +2433,132 @@ paths:
         description: ''
       tags:
         - ファイル・ドキュメント
+  '/api/table/{tableKey}/column/{columnKey}':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: カスタムテーブルのID(Ex. 3)、もしくはテーブル名(Ex. user)
+        schema:
+          type: string
+      - schema:
+          type: string
+        name: columnKey
+        in: path
+        required: true
+        description: カスタム列名(Ex. user_code)
+    get:
+      summary: カスタム列情報取得(テーブル名・列名指定)
+      tags:
+        - テーブル
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomColumn'
+              examples:
+                Example:
+                  value:
+                    id: 45
+                    suuid: 9ce2740b044ea7143a55
+                    custom_table_id: '8'
+                    column_name: title
+                    column_view_name: タイトル
+                    column_type: text
+                    description: null
+                    system_flg: '0'
+                    order: '0'
+                    options:
+                      required: '1'
+                      index_enabled: '1'
+                    created_at: '2019-11-13 17:00:11'
+                    updated_at: '2019-11-13 17:00:15'
+                    created_user_id: null
+                    updated_user_id: null
+                    required: '1'
+                    index_enabled: '1'
+                    unique: false
+        '':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomColumn'
+              examples:
+                Example:
+                  value:
+                    id: 25
+                    suuid: a10469f586b847c5ef89
+                    custom_table_id: '4'
+                    column_name: user_code
+                    column_view_name: ユーザーコード
+                    column_type: text
+                    description: null
+                    system_flg: '1'
+                    order: '0'
+                    options:
+                      required: '1'
+                      index_enabled: '1'
+                      init_only: '1'
+                      unique: '1'
+                      available_characters:
+                        - lower
+                        - upper
+                        - number
+                        - hyphen_underscore
+                    created_at: '2020-04-20 17:01:13'
+                    updated_at: '2020-04-20 17:01:13'
+                    created_user_id: null
+                    updated_user_id: null
+                    required: '1'
+                    index_enabled: '1'
+                    unique: '1'
+                    custom_table:
+                      id: 4
+                      suuid: 2930e334326a96f5d5c3
+                      table_name: user
+                      table_view_name: ユーザー
+                      description: null
+                      system_flg: '1'
+                      showlist_flg: '1'
+                      order: '0'
+                      options:
+                        search_enabled: '1'
+                        icon: fa-user
+                        one_record_flg: '0'
+                        attachment_flg: '0'
+                      created_at: '2020-04-20 17:01:13'
+                      updated_at: '2020-04-20 17:01:13'
+                      created_user_id: null
+                      updated_user_id: null
+      description: |
+        #### 処理概要
+        * テーブル名・カスタム列名から、カスタム列情報を取得する。
+        * ログインユーザーがアクセスできないカスタムテーブルの列だった場合、403エラーが発生する。
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+        #### APIスコープ(scope)
+        + table_read
+        + table_write
+
+        #### 対応バージョン
+        v3.1.12
+      security:
+        - OAuth2認証: []
+      operationId: get-table-column
 components:
   schemas:
     CustomTable:
