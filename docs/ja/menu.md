@@ -58,6 +58,8 @@ http(s)://(ExmentのURL)/admin/auth/menu
 http(s)://(ExmentのURL)/admin/(記入したURI)
 ![メニュー画面](img/menu/menu_new8.png)
 
+> v3.0.2未満で初回インストールを行った方で、URIに登録できる文字数上限が50字未満に設定されていました。それ以上の文字数のURIを登録する場合、[こちら](/ja/patch/menu_uri_length)で対応を行ってください。
+
 
 #### メニュー名
 メニューの名前を半角英数字で記入します。一意である必要があります。他のメニューとの重複はできません。  
