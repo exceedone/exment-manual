@@ -40,7 +40,7 @@ https://www.famkruithof.net/uuid/uuidgen
 $(function () {
     $(window).off('exment:form_loaded', setAddressEvent).on('exment:form_loaded', setAddressEvent);
 
-    function setAddressEvent(){
+    function setAddressEvent(ev){
         $('.value_zip01,.value_zip02').off('change', setAddressKeyup).on('change', setAddressKeyup);
     }
 
@@ -64,7 +64,8 @@ $(function () {
 - ※の部分で、イベントを定義します。現在Exmentで定義済のイベント名は、以下の通りです。
     - **exment:list_loaded** ・・・ データ一覧画面の読み込み完了時に、イベントが実行されます。  
     - **exment:show_loaded** ・・・ データ詳細画面の読み込み完了時に、イベントが実行されます。  
-    - **exment:form_loaded** ・・・ データ新規作成・編集画面の読み込み完了時に、イベントが実行されます。  
+    - **exment:form_loaded** ・・・ データ新規作成・編集画面の読み込み完了時に、イベントが実行されます。
+    - **exment:dashbaord_loaded** ・・・ TOP画面のダッシュボードBOXの読み込み完了時に、イベントが実行されます。 ※各々のダッシュボードBOXの読み込みが完了した時点で、ダッシュボードの数だけ実行されます。  
 - 作成したスクリプトは、「public」フォルダ内に配置してください。  
 配置するスクリプトは、拡張子が「js」であれば、複数配置できます。関連ライブラリが必要な場合は、すべてフォルダ内に配置してください。  
 このサンプルでは、[ajaxzip3](https://github.com/ajaxzip3/ajaxzip3.github.io)をカスタマイズしたjsファイルも、配置しています。
@@ -90,7 +91,101 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 特定のテーブルでのみスクリプトを実行したい場合、上記のクラス名で絞り込みを設定してください。  
 ※例：「ユーザー」画面の場合："custom_value_user"、「組織」画面の場合："custom_value_organization"
 
-### サンプルプラグイン
+
+## スクリプトの記載方法
+
+### データ一覧画面、データ詳細画面、データ新規作成・編集画面
+
+以下のように記載してください。
+
+~~~ js
+// script.js
+$(function () {
+    // exment:list_loaded
+    // exment:show_loaded
+    // exment:form_loaded
+    $(window).off('exment:form_loaded', setEvent).on('exment:form_loaded', setEvent);
+
+    function setEvent(ev){
+        // 独自の処理
+    }
+});
+~~~
+
+
+### TOP画面のダッシュボードBOX
+
+- 以下のように記載してください。
+
+~~~ js
+// script.js
+$(function () {
+    $(window).off('exment:dashboard_loaded', '.box-dashboard', {}, setEvent).on('exment:dashboard_loaded', '.box-dashboard', {}, setEvent);
+
+    function setEvent(ev){
+        let target = ev.target;
+        // 独自の処理
+    }
+});
+~~~
+
+- このイベントは、各々のダッシュボードBOXの読み込みが完了した時点で、ダッシュボードの数だけ実行されます。これは、各々のダッシュボードBOXを、非同期で呼び出ししているためです。  
+
+- ダッシュボードBOXのdivクラス「.box-dashboard」には、ダッシュボードの設定内容によって、data属性が設定されています。
+
+- 読み込んでいるダッシュボードBOXを判別したい場合は、イベントevのtargetに設定されているdata属性で、判別する処理を追加してください。
+
+~~~ js
+// 例
+function setEvent(ev){
+    let $target = $(ev.target);
+    let dashboard_box_type = $target.data('dashboard_box_type');
+    // dashboard_box_type : system, list, chart, calendar, plugin
+}
+~~~
+
+#### ダッシュボードBOXに設定されているdata属性
+
+##### 共通
+
+| 名前 | 説明 |
+| ---- | ---- |
+| row_no | ダッシュボードBOXが設定されている行番号 |
+| column_no | ダッシュボードBOXが設定されている列番号 |
+| dashboard_box_view_name | ダッシュボードBOXの表示名 |
+| dashboard_box_type | ダッシュボードBOXの種類。<br />system, list, chart, calendar, plugin |
+
+
+##### システム
+
+| 名前 | 説明 |
+| ---- | ---- |
+| target_system_name | ダッシュボードBOXのシステムのアイテム種類。 <br />guideline, news, editor, html |
+
+
+##### データ一覧、チャート、カレンダー
+
+| 名前 | 説明 |
+| ---- | ---- |
+| target_table_id | 表示対象のテーブルID |
+| target_table_name | 表示対象のテーブル英名 |
+| target_table_name | 表示対象のテーブル英名 |
+| target_view_view_name | 表示対象のビュー表示名 |
+
+
+##### プラグイン
+
+| 名前 | 説明 |
+| ---- | ---- |
+| plugin_id | 表示対象のプラグインID |
+| plugin_uuid | 表示対象のプラグインのUUID |
+| plugin_name | 表示対象のプラグイン英名 |
+| plugin_view_name | 表示対象のプラグイン表示名 |
+
+
+
+
+## サンプルプラグイン
 - [住所セットスクリプト](https://exment.net/downloads/sample/plugin/SetAddress.zip)  
 
 - [全角英数字→半角英数字変換スクリプト](https://exment.net/downloads/sample/plugin/ReplaceZenHan.zip)  
