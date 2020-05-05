@@ -120,43 +120,8 @@ php artisan exment:install
 ## 設定完了
 インストールが完了したら、引き続き[初期設定](/ja/first_setting.md)を行ってください。  
 
+
 ## その他の初期設定
 以上の作業で、Exmentを開始することは可能ですが、一部の機能を使うために、追加で設定が必要になる場合があります。  
 以下のリンクをご確認ください。  
-- [URLに含む「admin」の変更・削除](/ja/quickstart_more.md#URLに含む「admin」の変更・削除)
-- [タスクスケジュール機能](/ja/quickstart_more.md#タスクスケジュール機能)
-- [サーバー外部通信オフ](/ja/quickstart_more.md#サーバー外部通信オフ)
-- [ファイルアップロード上限サイズ変更](/ja/quickstart_more.md#ファイルアップロード上限サイズ変更)
-
-
-## (old)config変更
-※これらの設定は、v1.2.0より不要になりました。  
-ですが、過去バージョンでの設定の記録として残しておきます。(将来的に削除します)
-
-- "config/admin.php"を開き、 キー "auth.providers.admin.driver" を以下のように修正します。  
-
-~~~ php
-    'auth' => [
-        'providers' => [
-            'admin' => [
-                // Exment Edit------s
-                // 'driver' => 'eloquent',
-                //'model'  => Encore\Admin\Auth\Database\Administrator::class,
-                'driver' => 'exment-auth',
-                // Exment Edit------e
-            ],
-        ],  
-    ],
-~~~
-
-- 言語とタイムゾーンを変更したい場合、"config/app.php"を開き、 以下の行を修正します。
-
-~~~ php
-
-    // 'timezone' => 'UTC',
-    'timezone' => 'Asia/Tokyo',
-
-    //'locale' => 'en',
-     'locale' => 'ja',
-
-~~~
+- [追加設定](/ja/quickstart_more)

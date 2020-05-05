@@ -2,6 +2,8 @@
 カスタムテーブルを保存する際に独自のバリデーションを実行することができます。  
 文字種のチェックや桁数のチェックはカスタム列の設定で実装することが可能ですが、より複雑なチェックや項目間の関連チェックを実装したい場合は、このプラグインの使用をおすすめします。
 
+> 単純な2値による比較(バリデーション)を行いたい場合は、[画面での設定](/ja/table?id=_2つの列を比較)もお試しください。
+
 ## 作成方法
 
 ### config.json作成
@@ -9,7 +11,7 @@
 
 ~~~ json
 {
-    "plugin_name": "PluginValidatorTest",
+    "plugin_name": "PluginDemoTrigger",
     "uuid": "63d80590-4aad-11e9-b475-0800200c9a66",
     "plugin_view_name": "Plugin Validator",
     "description": "カスタムテーブルのバリデーションを行います。",
@@ -33,7 +35,7 @@ https://www.famkruithof.net/uuid/uuidgen
 
 ~~~ php
 <?php
-namespace App\Plugins\PluginDemoValidator;
+namespace App\Plugins\PluginDemoTrigger;
 
 use Exceedone\Exment\Services\Plugin\PluginValidatorBase;
 class Plugin extends PluginValidatorBase

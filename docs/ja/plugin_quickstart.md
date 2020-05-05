@@ -5,7 +5,8 @@
 
 ## 作成方法リンク
 
-- [トリガー](/ja/plugin_quickstart_trigger.md)
+- [ボタン](/ja/plugin_quickstart_button.md)
+- [イベント](/ja/plugin_quickstart_event.md)
 - [ページ](/ja/plugin_quickstart_page.md)
 - [ダッシュボード](/ja/plugin_quickstart_dashboard.md)
 - [バッチ](/ja/plugin_quickstart_batch.md)
@@ -15,6 +16,7 @@
 - [API](/ja/plugin_quickstart_api.md)
 - [ドキュメント](/ja/plugin_quickstart_document.md)
 - [Docurain(PDF出力)](/ja/plugin_quickstart_docurain.md)
+- [トリガー ※非推奨](/ja/plugin_quickstart_trigger.md)
 
 
 ## プラグイン名のnamespace
@@ -48,7 +50,7 @@ namespace App\Plugins\YouTubeSearch;
 
 use Encore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
-use Exceedone\Exment\Services\Plugin\PluginPageBase;
+use Exceedone\Exment\Services\Plugin\PluginXXXXBase;
 use GuzzleHttp\Client;
 
 class Plugin extends PluginXXXXBase
@@ -96,7 +98,8 @@ plugin_typeの値を、カンマ区切りで複数記入します。
 ※プラグイン種類が「スクリプト」「スタイル」の場合は、この処理は不要です。  
   
 - 1種類の場合は「Plugin.php」としていたファイル名を、「Plugin(プラグイン種類の頭大文字).php」に変更します。
-    - PluginTrigger.php
+    - PluginButton.php
+    - PluginEvent.php
     - PluginPage.php
     - PluginDocument.php
     - PluginBatch.php
@@ -107,8 +110,8 @@ plugin_typeの値を、カンマ区切りで複数記入します。
 ~~~ php
 <?php
 
-// クラス名変更（トリガーの場合）
-class PluginTrigger extends PluginPageBase
+// クラス名変更（イベントの場合）
+class PluginEvent extends PluginEventBase
 {
 ~~~
 

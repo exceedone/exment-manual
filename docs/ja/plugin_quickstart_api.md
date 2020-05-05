@@ -51,7 +51,7 @@ https://www.famkruithof.net/uuid/uuidgen
     - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/admin/plugins/(プラグイン共通のエンドポイント)/(指定したuri)」になります。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
     - function：実行するContoller内のメソッド名です。
-    - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「http(s)://(ExmentのURL)/admin/plugins/sampleapi/column（メソッド：GET）」。
+    - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「plugins/sampleapi/column（メソッド：GET）」。
 
 ### Pluginファイル作成
 
@@ -139,6 +139,15 @@ zipファイル名は、「(plugin_name).zip」にしてください。
     - config.json
     - Plugin.php
     - (その他、必要なPHPファイル等)
+
+
+### アクセス
+URLを入力し、APIにアクセスを行います。  
+URLは、以下のように設定されます。  
+http(s)://(ExmentのURL)/admin/api/plugins/(プラグイン名)  
+
+例：プラグイン名が"sampleapi"の場合  
+http(s)://(ExmentのURL)/admin/api/plugins/sampleapi
 
 
 ### その他
