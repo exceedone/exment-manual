@@ -123,7 +123,7 @@ $(function () {
 ~~~ js
 // script.js
 $(function () {
-    $(window).off('exment:dashboard_loaded', '.box-dashboard', {}, setEvent).on('exment:dashboard_loaded', '.box-dashboard', {}, setEvent);
+    $(window).off('exment:dashboard_loaded', setEvent).on('exment:dashboard_loaded', setEvent);
 
     function setEvent(ev){
         let target = ev.target;
@@ -171,7 +171,6 @@ function setEvent(ev){
 | 名前 | 説明 |
 | ---- | ---- |
 | target_table_id | 表示対象のテーブルID |
-| target_table_name | 表示対象のテーブル英名 |
 | target_table_name | 表示対象のテーブル英名 |
 | target_view_view_name | 表示対象のビュー表示名 |
 

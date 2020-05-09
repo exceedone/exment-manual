@@ -2,6 +2,8 @@
 カスタムデータ一覧のエクスポートを独自に実装したい場合に使用できます。  
 オリジナルフォーマットのファイルをエクスポートする場合や、特殊な変換処理を実装する場合にご利用ください。  
 
+> この機能は、v3.2.0より追加されました。
+
 ## 出力形式について
 出力形式は、Excelの他、それ以外のフォーマットでの出力も可能です。  
 ※Excel形式の場合、処理をより最適化しております。
@@ -40,8 +42,7 @@ https://www.famkruithof.net/uuid/uuidgen
 - icon : エクスポートのダイアログに表示するアイコンです。    
 - export_description : エクスポートのダイアログに表示する説明文です。
 
-※target_tablesは後から画面で変更できます。複数指定した場合は、それぞれのテーブルのエクスポートダイアログにプラグインの選択欄が表示されます。  
-※label、icon、export_descriptionは後から画面で変更できます。
+※target_tables、label、icon、export_descriptionは後から画面で変更できます。
 
 
 ### PHPファイル作成
@@ -64,6 +65,8 @@ class Plugin extends PluginExportBase
         // ※実行後、一時tmpファイルは自動的に削除されます。
         $tmp = $this->getTmpFullPath();
 
+
+        ///// 独自の実装処理---ここから
         // csvファイルを開く
         $fp = fopen($tmp, 'w');
 
@@ -76,12 +79,13 @@ class Plugin extends PluginExportBase
         // CustomValueのCollectionでデータ一覧取得
         // $data = $this->getRecords();
 
-
         foreach ($data as $fields) {
             fputcsv($fp, $fields);
         }
 
         fclose($fp);
+        ///// 独自の実装処理---ここまで
+
 
         // $tmpのstring文字列を返却する
         return $tmp;
@@ -168,7 +172,7 @@ class Plugin extends PluginExportExcel
         $data = $this->getRecords();
 
 
-        ///// データの独自の出力処理---ここから
+        ///// 独自の実装処理---ここから
         $sheet = $spreadsheet->getActiveSheet();
         $column = 3;
         foreach($data as $record){
@@ -197,7 +201,7 @@ class Plugin extends PluginExportExcel
         
         // 印刷範囲の設定
         $sheet->getPageSetup()->setPrintArea("A1:D{$laseRow}");
-        ///// データの独自の出力処理---ここまで
+        ///// 独自の実装処理---ここまで
 
 
         // tmpファイルに作成したファイルを保存して、そのファイルパスを返却
