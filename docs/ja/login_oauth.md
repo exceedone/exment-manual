@@ -1,17 +1,11 @@
 # シングルサインオン(OAuth)
-Exmentでは、シングルサインオン(SSO)が可能です。  
+Exmentでは、[ログイン設定](/ja/login_setting)により、シングルサインオン(SSO)を追加することが可能です。  
 これにより、Exment専用のログインパスワードを管理することなく、各プロバイダのIDとパスワードを使用することができます。  
   
 ここでは、OAuthを使用したSSOの設定方法を記載します。  
 
-- [設定手順](#設定手順)
-- [アクセストークン取得](#アクセストークン取得)
-
 
 #### 注意点
-- シングルサインオンを使用する場合でも、[ユーザー管理画面](/ja/user.md#ユーザー管理)で、ユーザーをあらかじめ追加する必要があります。  
-これは、管理者が意図しないユーザーがExmentにログインし、利用してしまうことを防ぐためです。  
-Exmentのユーザーに追加されていない利用者が、各プロバイダのユーザー情報を使用してExmentにログインを行おうとした場合、エラーが発生します。
 - Exmentでは、[Socialite](https://github.com/laravel/socialite)でシングルサインオン処理を実装しています。
 - **このマニュアルでは、OAuthに詳しい方向けの手順になります。各プロバイダのClient IDやClient Secretの作成方法などは、各資料をご参照ください。**
 - <span class="red">v3.0.16以下で、Googleログインができない方は、[こちらの手順](/ja/patch/sso_google)で、対応を行ってください。</span>
@@ -20,8 +14,10 @@ Exmentのユーザーに追加されていない利用者が、各プロバイ�
 - [オープンソースWebデータベース『Exment』で、GoogleアカウントによるSSOに対応する](https://qiita.com/hirossyi73/items/70dcc35305a96abace08)
 
 
-### 設定手順 
-#### 例1 Socialite標準で用意されているプロバイダの場合
+## サーバー・各プロバイダ設定
+ログイン設定画面でプロバイダを追加する前に、サーバーでコマンドを入力し、拡張機能をインストールする必要があります。
+
+### 例1 Socialite標準で用意されているプロバイダの場合
 - Socialite標準で用意されているプロバイダは、以下になります。（カッコの文字列は、後ほどのservice指定で使用します）
     - Google (google)
     - Facebook (facebook)
@@ -43,21 +39,12 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 composer require laravel/socialite=~3.3.0
 ~~~
 
-- 管理者アカウントで、システム設定画面に遷移します。  
-ページの右上の「ログイン設定」ボタンから、ログイン設定画面に遷移します。
-![ログイン設定画面](img/login/login_setting1.png)  
-
-- 新規ボタンを押して、ログイン設定を作成します。  
-※クライアントID／クライアントシークレットにはプロバイダから提供された文字列を設定してください。
-
-![ログイン設定作成画面](img/login/login_setting2.png)  
-
-- 有効フラグをYESにした場合、ログイン画面にSSO認証用のボタンが表示されます。  
-※通常はユーザーIDとパスワードを入力する既定のログインフォームも併せて表示されます。[SSO設定](/ja/system_setting?id=sso設定)で画像のように非表示にすることもできます。
-![SSOログイン画面](img/quickstart/sso1.png)
+- [画面での設定](#画面での設定)を実施します。
 
 
-#### 例2 Exment拡張で用意しているプロバイダの場合
+
+
+### 例2 Exment拡張で用意しているプロバイダの場合
 - 一部のプロバイダは、Exmentの拡張として、プロバイダを用意しております。（カッコの文字列は、後ほどのservice指定で使用します）
     - Office365、Microsoft Graph (graph)
 
@@ -74,35 +61,10 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 composer require exment-oauth/microsoft-graph
 ~~~
 
-- config/services.phpに、各プロバイダのclient_id, client_secretを記入します。  
-標準では、Office365用のボタンのスタイルが用意されていないので、追加で設定を行います。
-
-~~~ php
-'graph' => [
-    'client_id'     => 'xxxxxxxxxxxxxxxx',
-    'client_secret' => 'yyyyyyyyyyyyyyyy',
-    'font_owesome' => 'fa-windows', // アイコン。font-awesomeで指定
-    'display_name' => 'Office365', // 画面に表示する文言
-    'background_color' => '#D83B01', // 背景色
-    'font_color' => '#FFFFFF', // フォント色
-    'background_color_hover' => '#ff501e', // オンマウスしたときの背景色
-    'font_color_hover' => '#FFFFFF', // オンマウスしたときの文字色
-    'scope' => 'offline_access', //任意。スコープを変更する場合に設定。複数はカンマ区切り。v2.1.7で対応
-],
-~~~
-
-- .envファイルに、以下の内容を追加します。
-
-~~~
-EXMENT_LOGIN_PROVIDERS=graph #SSOを使用するプロバイダの一覧をカンマ区切りで記入
-EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER=true #通常のログインを表示させるか。SSOを使用する場合はfalse推奨
-~~~
-
-- ログイン画面にて、SSOのボタンが表示されます。
-![SSOログイン画面](img/quickstart/sso2.png)
+- [画面での設定](#画面での設定)を実施します。
 
 
-#### 例3 各自でプロバイダを用意する場合
+### 例3 各自でプロバイダを用意する場合
 ※例1、2にないプロバイダの場合は、[Socialite Providers](https://socialiteproviders.github.io/)で非公式プロバイダーを追加します。  
 また、非公式プロバイダーにもアバター取得のための処理が含まれていませんので、処理を追加します。(任意)  
 
@@ -118,29 +80,6 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 ~~~
 composer require laravel/socialite=~3.3.0
 composer require socialiteproviders/microsoft-graph
-~~~
-
-- config/services.phpに、各プロバイダのclient_id, client_secretを記入します。  
-標準では、Office365用のボタンのスタイルが用意されていないので、追加で設定を行います。
-
-~~~ php
-'graph' => [
-    'client_id'     => 'xxxxxxxxxxxxxxxx',
-    'client_secret' => 'yyyyyyyyyyyyyyyy',
-    'font_owesome' => 'fa-windows', // アイコン。font-awesomeで指定
-    'display_name' => 'Office365', // 画面に表示する文言
-    'background_color' => '#D83B01', // 背景色
-    'font_color' => '#FFFFFF', // フォント色
-    'background_color_hover' => '#ff501e', // オンマウスしたときの背景色
-    'font_color_hover' => '#FFFFFF', // オンマウスしたときの文字色
-],
-~~~
-
-- .envファイルに、以下の内容を追加します。
-
-~~~
-EXMENT_LOGIN_PROVIDERS=graph #SSOを使用するプロバイダの一覧をカンマ区切りで記入
-EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER=true #通常のログインを表示させるか。SSOを使用する場合はfalse推奨
 ~~~
 
 - (任意)アバター取得のために、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
@@ -248,14 +187,79 @@ class EventServiceProvider extends ServiceProvider
 
 ~~~
 
+- [画面での設定](#画面での設定)を実施します。
 
-- ログイン画面にて、SSOのボタンが表示されます。
-![SSOログイン画面](img/quickstart/sso2.png)
 
+
+## 画面での設定
+サーバーによる設定が完了したら、[ログイン設定画面](/ja/login_setting)に遷移し、プロバイダを追加します。
+
+- 管理者アカウントで、システム設定画面に遷移します。  
+ページの右上の「ログイン設定」ボタンから、ログイン設定画面に遷移します。
+![ログイン設定画面](img/login/login_setting1.png)  
+
+- 新規ボタンを押して、ログイン設定を作成します。  
+※クライアントID／クライアントシークレットにはプロバイダから提供された文字列を設定してください。
+
+![ログイン設定作成画面](img/login/login_setting2.png)  
+
+
+<!---
+  OAuth、Samlで同じものを記載
+-->
+### ユーザー設定
+ログインを行ったユーザーの設定を行います。
+
+![ユーザー設定](img/login/login_setting5.png)  
+
+#### アカウント検索列
+SSOで取得したアカウントから、どの列を使用し、Exmentのアカウントを検索するかどうかを設定します。
+
+#### ユーザー新規作成
+YESの場合、ログインしたユーザーがExmentに存在しなかった場合に、ログイン情報を使用し、Exmentユーザーを新規作成します。  
+NOの場合は、事前にExmentにユーザーを作成する必要があります。ログインしたユーザーがExmentに存在しなかった場合は、エラーが表示されます。
+
+#### 役割グループ設定
+YESの場合、Exmentユーザーを新規作成時に、役割グループに紐付けることができます。  
+
+#### ユーザー情報を更新する
+YESの場合、再ログイン時に、ユーザー名などのユーザー情報を更新します。
+
+
+- データを一度以上保存することで、「有効化」ボタンと「ログインテスト」ボタンが表示されます。
+
+- 有効フラグをYESにした場合、ログイン画面にSSO認証用のボタンが表示されます。  
+※通常はユーザーIDとパスワードを入力する既定のログインフォームも併せて表示されます。[SSO設定](/ja/system_setting?id=sso設定)で画像のように非表示にすることもできます。
+![SSOログイン画面](img/quickstart/sso1.png)
+
+
+
+### ログインボタン設定
+ログイン胃画面に表示する、ログインボタンの設定を行います。  
+※この設定を行わなくても、上記の「例1 Socialite標準で用意されているプロバイダの場合」にあるプロバイダの場合は、それぞれのフォーマットで表示されます。
+
+![ユーザー設定](img/login/login_setting6.png)  
+
+
+### 有効化とログインテスト
+- データを一度以上保存することで、「有効化」ボタンと「ログインテスト」ボタンが表示されます。
+
+![ユーザー設定](img/login/login_setting7.png)  
+
+- 有効化を実行することで、ログイン画面にSSO認証用のボタンが表示されます。  
+![ユーザー設定](img/login/login_setting8.png)  
+
+- また、「ログインテスト」ボタンをクリックすることで、設定したログイン情報で、ログインのテストを行うことができます。これは、ログイン設定を有効化していなくても実施できます。  
+**その際に、「テスト用リダイレクトURL」に表示されているURLを、プロバイダのOAuth認証設定のコールバックURLに、上記のURLを、一時的に追加もしくは変更してください。**
+
+![ユーザー設定](img/login/login_setting9.png)  
+
+
+- 「ログイン」ボタンをクリックすることで、設定が正常に行われているか、テストを行うことができます。  
+ログイン結果は、「実施結果」項目に表示されます。
 
 
 ### アクセストークン取得
-> v2.1.7より対応しました。
 
 - ログイン後、アクセストークンとリフレッシュトークンを取得する場合、以下の方法で取得を行ってください。
 
