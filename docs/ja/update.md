@@ -1,6 +1,7 @@
 # アップデート
 Exmentのバージョンが更新され、アップデートが必要になった場合の手順です。  
-**※version2.1.Xにアップデートする場合、特別な手順が必要です(必須)。[こちら](/ja/update/v2_1)の手順に従い、アップデートを行ってください。**
+
+> 自動アップデート対応を、プレビュー版として公開しました。詳細は[こちら](/ja/update_auto)をご確認ください。
 
 ## (初回のみ)アップデートバッチのダウンロード
 
@@ -16,6 +17,14 @@ https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
 ~~~
 wget https://exment.net/downloads/cmd/ExmentUpdateLinuxSakura.sh
 chmod 775 ExmentUpdateLinuxSakura.sh
+~~~
+
+### Xserverの場合
+- 以下のコマンドを、プロジェクトのルートディレクトリで実行し、ダウンロードを行ってください。
+
+~~~
+wget https://exment.net/downloads/cmd/ExmentUpdateLinuxXserver.sh
+chmod 775 ExmentUpdateLinuxXserver.sh
 ~~~
 
 ### Linuxの場合
@@ -42,18 +51,15 @@ chmod 775 ExmentUpdateLinux.sh
 ## アップデートバッチの実行
 アップデートバッチを実行してください。
 
-### さくらインターネットの場合
-- 以下のコマンドを、プロジェクトのルートディレクトリで実行してください。
-
-~~~
-sh ExmentUpdateLinuxSakura.sh
-~~~
-
 ### Linux・Macの場合
 - 以下のコマンドを、プロジェクトのルートディレクトリで実行してください。
 
 ~~~
 sh ExmentUpdateLinux.sh
+# さくらインターネットの場合
+# sh ExmentUpdateLinuxSakura.sh
+# Xserverの場合
+# sh ExmentUpdateLinuxXserver.sh
 ~~~
 
 ### Windowsの場合
