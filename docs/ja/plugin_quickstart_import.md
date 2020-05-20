@@ -131,4 +131,7 @@ class Plugin extends PluginImportBase{
 
 
 ### サンプルプラグイン
-[契約データのインポートプラグイン](https://exment.net/downloads/sample/plugin/PluginImportContract.zip)
+※こちらのサンプルプラグインは、テンプレート設定で、「製品販売会社用テンプレート」の追加を行ってください。  
+[契約データのインポートプラグイン](https://exment.net/downloads/sample/plugin/PluginImportContract/PluginImportContract.zip)  
+[契約データの取込ファイル](https://exment.net/downloads/sample/plugin/PluginImportContract/contract_sample.xlsx)  
+

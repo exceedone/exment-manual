@@ -214,7 +214,7 @@ Content-Type: application/json
     "client_id": "(コピーしたClient ID)",
     "client_secret": "(コピーしたClient Secret)",
 	"login_type": "ldap",
-	"provider_name": "(ログインするプロバイダ名)",
+	"provider_name": "(ログイン設定画面で入力した、「LDAP名(英数字)」)",
     "username": "(ログインするユーザーIDまたはメールアドレス)",
     "password": "(ログインするユーザーパスワード)",
     "scope": "(アクセスを行うスコープ。一覧は下記に記載。複数ある場合はスペース区切り)"

@@ -27,8 +27,8 @@ Exmentでは、2段階認証に対応しております。
 - プロジェクトのルートフォルダより、以下のコマンドを実行します。
 
 ~~~
-composer remove pragmarx/google2fa
-composer remove  simplesoftwareio/simple-qrcode
+composer require pragmarx/google2fa
+composer require simplesoftwareio/simple-qrcode
 ~~~
 
 - プロジェクトのルートフォルダより、「.env」ファイルを開き、以下のように追記を行ってください。  
@@ -43,7 +43,7 @@ EXMENT_LOGIN_USE_2FACTOR=true
 - まずはメール設定を行います。メール送信の設定値を記入してください。詳細は[システムメール設定](/ja/system_setting#システムメール設定)をご参照ください。  
 設定が完了したら、1度「送信」をクリックし、保存します。  
 
-- その後、システム設定画面下部の「2段階認証」を表示します。  
+- その後、ログイン設定画面下部の「2段階認証」を表示します。  
 ![システム設定画面](img/login/login_2factor1.png)  
 
 - 「2段階認証を使用する」項目を、「YES」に設定します。  

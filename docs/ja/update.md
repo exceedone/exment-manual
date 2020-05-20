@@ -7,7 +7,7 @@ Exmentのバージョンが更新され、アップデートが必要になっ�
 
 ### Windowsの場合
 - 以下のファイルをダウンロードします。  
-https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
+[ExmentUpdateWindows.bat](https://exment.net/downloads/cmd/ExmentUpdateWindows.bat)
 
 - ダウンロードしたファイルを、プロジェクトのルートディレクトリに配置してください。
 
