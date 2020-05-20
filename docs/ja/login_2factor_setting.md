@@ -12,7 +12,6 @@ Exmentでは、2段階認証に対応しております。
 
 ## 前提事項
 - Exmentでの2段階認証は、ログインユーザー個々による設定ではなく、システム全体で設定を行います。  
-例えば、2段階認証の方式を「Google認証システム」に選択していた場合、全ユーザーがGoogle認証システムによる2段階認証を行うことになります。
 
 - Exmentで2段階認証を行う場合、システムからメール送信が実行できることが必須になります。これは2段階認証の種類を「Google認証システム」に選択していた場合でも同様です。
 
@@ -27,8 +26,8 @@ Exmentでは、2段階認証に対応しております。
 - プロジェクトのルートフォルダより、以下のコマンドを実行します。
 
 ~~~
-composer remove pragmarx/google2fa
-composer remove  simplesoftwareio/simple-qrcode
+composer require pragmarx/google2fa
+composer require simplesoftwareio/simple-qrcode
 ~~~
 
 - プロジェクトのルートフォルダより、「.env」ファイルを開き、以下のように追記を行ってください。  
