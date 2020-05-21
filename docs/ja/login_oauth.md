@@ -48,8 +48,6 @@ composer require laravel/socialite=~3.3.0
 - 一部のプロバイダは、Exmentの拡張として、プロバイダを用意しております。（カッコの文字列は、後ほどのservice指定で使用します）
     - Office365、Microsoft Graph (graph)
 
-> Office365ログインは当初、下記の「例3」の方法での案内を行っておりましたが、手間の削減のため、例2による手順に改善しました。
-
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
 http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
@@ -68,22 +66,26 @@ composer require exment-oauth/microsoft-graph
 ※(1)(2)にないプロバイダの場合は、[Socialite Providers](https://socialiteproviders.github.io/)で非公式プロバイダーを追加します。  
 また、非公式プロバイダーにもアバター取得のための処理が含まれていませんので、処理を追加します。(任意)  
 
-> 現在Exment運営では、様々なプロバイダでのログイン実装を実現したいと考えております。そのため、例1ならびに例2にないプロバイダでのログインを実装された方がいらっしゃいましたら、ソースコードをご提供いただけますと、非常に嬉しいです。
-
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
 http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
-例 Office365の場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
+例 Microsoft Graphの場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
 ~~~
 composer require laravel/socialite=~3.3.0
+~~~
+
+- [Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
+例：Microsoft Graphの場合
+
+~~~
 composer require socialiteproviders/microsoft-graph
 ~~~
 
 - (任意)アバター取得のために、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
-作成方法は、プロバイダ作成方法をご確認ください。
+作成方法は、[プロバイダ作成方法](#プロバイダ作成方法)をご確認ください。
 
 
 - [画面での設定](#画面での設定)を実施します。
@@ -98,9 +100,24 @@ composer require socialiteproviders/microsoft-graph
 ![ログイン設定画面](img/login/login_setting1.png)  
 
 - 新規ボタンを押して、ログイン設定を作成します。  
-※クライアントID／クライアントシークレットにはプロバイダから提供された文字列を設定してください。
 
-![ログイン設定作成画面](img/login/login_setting2.png)  
+### プロバイダ種類
+![ログイン設定作成画面](img/login/login_oauth1.png)  
+
+- 「サーバー・各プロバイダ設定」で、(1)のプロバイダを選択した場合、そのプロバイダ名を選択してください。  
+
+- 「サーバー・各プロバイダ設定」で、(2)(3)のプロバイダを選択した場合、「その他」を選択してください。  
+また、「その他」を選択した場合に表示される「プロバイダ種類(英数字)」には、Socialiteで指定されているプロバイダ種類の英数字を入力してください。  
+例 Microsoft Graphの場合："graph"
+
+![ログイン設定作成画面](img/login/login_oauth2.png)  
+
+
+### クライアントID、クライアントシークレット
+プロバイダから提供された文字列を設定してください。
+
+### スコープ
+ログイン時には基本的に、明確な用途はありませんが、[アクセストークン取得](#アクセストークン取得)でアクセストークンを取得する場合、設定することをおすすめします。
 
 
 <!---
@@ -174,7 +191,7 @@ $refresh_token = LoginService::getRefreshToken();
 
 
 ## プロバイダ作成方法
-※(3)の方法でのプロバイダの作成方法を記載します。
+※(3)のログイン方法で、独自のプロバイダの作成方法を記載します。
 
 
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
@@ -296,3 +313,6 @@ class EventServiceProvider extends ServiceProvider
 
 - [画面での設定](#画面での設定)を実施します。
 
+  
+  
+[←ログイン設定へ戻る](/ja/login_setting)

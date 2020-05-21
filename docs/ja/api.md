@@ -405,6 +405,8 @@ Content-Type: application/json
 この項では、実際にExmentに認証し、アクセストークン取得までの流れを、ツールやブラウザを使用して行います。  
 アクセストークン取得までの流れをイメージしてください。  
 
+- API設定にて、「画面ログイン形式」でアプリを作成します。
+
 - 以下のURLにアクセスを行います。  
 http(s)://(ExmentのURL)/admin/oauth/authorize?client_id=(コピーしたClient ID)&redirect_uri=(入力したcallback URL)&response_type=code&scope=me  
   
@@ -413,8 +415,10 @@ http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYY
 
 
 - これにより、アプリ認証のためのシンプルな画面が表示されます。  
+
 ![API認証画面](img/api/authorize1.png)  
-「Authonize」をクリックします。  
+
+「認証」をクリックします。  
 
 - URL欄に、「code=xxxxx」になるクエリが追加されております。  
 このコードをコピーします。  
@@ -501,10 +505,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 | パラメータ名 | 説明 |
 | ---- | ---- |
 | me | ログインユーザーの情報を取得できます。 |
-| system_read | システム情報を取得できます。 |
-| system_write | システム情報を取得・新規追加・更新・削除できます。 |
+| system_read | システム情報を取得できます。 (現在未使用。予約語として記載) |
+| system_write | システム情報を取得・新規追加・更新・削除できます。(現在未使用。予約語として記載) |
 | table_read | カスタムテーブルの設定情報を取得できます。 |
-| table_write | カスタムテーブルの設定情報を取得・新規追加・更新・削除できます。 |
+| table_write | カスタムテーブルの設定情報を取得・新規追加・更新・削除できます。(現在未使用。予約語として記載) |
 | value_read | カスタムデータの情報を取得できます。 |
 | value_write | カスタムデータの情報を取得・新規追加・更新・削除できます。 |
 | notify_read | 通知の情報を取得できます。 |

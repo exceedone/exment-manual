@@ -14,7 +14,10 @@
   * [メール送信設定](/ja/mailsend_setting)
 
 * 【3. ログイン設定】
-  * [SSO設定](/ja/sso)
+  * [ログイン設定](/ja/login_setting)
+  * [OAuthログイン](/ja/login_oauth)
+  * [SAMLログイン](/ja/login_saml)
+  * [LDAPログイン](/ja/login_ldap)
   * [2段階認証設定](/ja/login_2factor_setting)
   * [ログイン(2段階認証)](/ja/login_2factor)
 

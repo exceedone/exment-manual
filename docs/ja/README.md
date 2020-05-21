@@ -100,10 +100,34 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         <h4>3. ログイン設定</h4>
         <div class="row">
             <div class="col-sm-6 tile">
-                <a href="#/ja/sso">
+                <a href="#/ja/login_setting">
                     <div class="tile-inner">
-                        <h5>SSO設定</h5>
-                        <p>シングルサインオンを行う場合の設定です。</p>
+                        <h5>ログイン設定</h5>
+                        <p>Exmentにログインを行う時の、各種ログイン設定を行います。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/login_oauth">
+                    <div class="tile-inner">
+                        <h5>OAuthログイン</h5>
+                        <p>ExmentにOAuth形式でログインを行う時の設定を行います。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/login_oauth">
+                    <div class="tile-inner">
+                        <h5>SAMLログイン</h5>
+                        <p>ExmentにSAML形式でログインを行う時の設定を行います。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/login_oauth">
+                    <div class="tile-inner">
+                        <h5>LDAPログイン</h5>
+                        <p>ExmentにLDAP形式でログインを行う時の設定を行います。</p>
                     </div>
                 </a>
             </div>
