@@ -238,6 +238,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueにすることで、データのインポート・エクスポートボタンから、xlsx形式が表示されなくなります。
 
+#### csv形式のエクスポート時、BOMを追加
+- 設定キー : EXMENT_EXPORT_APPEND_CSV_BOM
+- 既定値 : false
+- 役割 : trueにすることで、CSVデータのエクスポート時、BOMを追加します。(Excelで開いても文字化けが発生しません。)
+
 
 
 ### その他
