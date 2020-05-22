@@ -29,9 +29,10 @@ Exmentでは、[ログイン設定](/ja/login_setting)により、シングル�
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
 http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
-例1 GitHubの場合：http(s)://(ExmentのURL)/admin/auth/login/github/callback  
-例2 Facebookの場合：http(s)://(ExmentのURL)/admin/auth/login/facebook/callback  
-例3 Googleの場合：http(s)://(ExmentのURL)/admin/auth/login/google/callback  
+
+    - 例1 GitHubの場合：http(s)://(ExmentのURL)/admin/auth/login/github/callback  
+    - 例2 Facebookの場合：http(s)://(ExmentのURL)/admin/auth/login/facebook/callback  
+    - 例3 Googleの場合：http(s)://(ExmentのURL)/admin/auth/login/google/callback  
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
@@ -51,7 +52,8 @@ composer require laravel/socialite=~3.3.0
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
 http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
-例 Office365の場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
+
+    - 例 Office365の場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
@@ -69,7 +71,8 @@ composer require exment-oauth/microsoft-graph
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
 http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
-例 Microsoft Graphの場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
+
+    - 例 Microsoft Graphの場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
@@ -78,7 +81,7 @@ composer require laravel/socialite=~3.3.0
 ~~~
 
 - [Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
-例：Microsoft Graphの場合
+    - 例：Microsoft Graphの場合
 
 ~~~
 composer require socialiteproviders/microsoft-graph
@@ -193,20 +196,7 @@ $refresh_token = LoginService::getRefreshToken();
 ## プロバイダ作成方法
 ※(3)のログイン方法で、独自のプロバイダの作成方法を記載します。
 
-
-- 各プロバイダで、Exment用のアプリケーションを作成します。  
-※callback URLは以下になります。  
-http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
-例 Office365の場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
-
-- 以下のコマンドを、Exmentのルートディレクトリで実行します。
-
-~~~
-composer require laravel/socialite=~3.3.0
-composer require socialiteproviders/microsoft-graph
-~~~
-
-- (任意)アバター取得のために、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
+- アバター取得のために、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
 1つ目は、MicrosoftGraphProvider.phpです。インタフェースProviderAvatarをimplementsし、getAvatarを実装します。
 
 ~~~ php
