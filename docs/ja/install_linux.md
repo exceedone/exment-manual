@@ -31,7 +31,8 @@ yum install -y wget firewalld unzip
 ~~~
 
 
-- epelを更新し、rpmをインストールします。
+- epelを更新し、rpmをインストールします。  
+※バージョンアップなどにより、以下のバージョンが存在しない場合があります。その場合、[こちら](https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/)のリンクから、**「epel-release-7-XX.noarch.rpm」**に該当するrpmを指定してください。
 
 ~~~
 wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm ~/
@@ -62,7 +63,8 @@ firewall-cmd --add-service=https --zone=public --permanent
 systemctl reload firewalld
 ~~~
 
-- SELinuxを無効化します。
+- 必要に合わせ、SELinuxを無効化します。  
+※ご希望のセキュリティ設定に合わせ、設定内容を変更してください。
 
 ~~~
 vi /etc/selinux/config
@@ -78,26 +80,14 @@ service httpd restart
 ln -s /usr/bin/php72 /usr/bin/php
 ~~~
 
-- phpinfoで、ここまでの作業が正常に実行できているかどうかの確認を行います。パス「/var/www/html/info.php」を新規作成し、以下の記述を追加します。
+- phpinfoで、ここまでの作業が正常に実行できているかどうかの確認を行います。以下のコマンドを実行します。  
 
 ~~~
-vi /var/www/html/info.php
+php --version
 
-# 以下の記述を追加
-<?php
-phpinfo();
+# PHPのバージョンが表示されれば成功
 ~~~
 
-
-- 以下のコマンドを実行します。正常にアクセスできていれば、結果が返却されます。
-~~~
-curl http://localhost/info.php
-~~~
-
-- テスト用のinfo.phpを削除します。
-~~~
-rm /var/www/html/info.php -f
-~~~
 
 - composerをインストールします。
 ~~~
@@ -164,12 +154,21 @@ cd exment
 
 ~~~
 chown apache:apache -R /var/www/exment
-chmod 755 -R /var/www/exment/storage
-chmod 755 -R /var/www/exment/bootstrap/cache
+chmod 775 -R /var/www/exment/storage
+chmod 775 -R /var/www/exment/bootstrap/cache
 ~~~
 
-### MySQL
-任意の設定内容になります。MySQLをインストールする場合の手順です。  
+- (推奨)ログインユーザーを、apacheグループに追加します。この設定を行うことで、ログインユーザーが、自由にexmentフォルダ内のファイルを編集することができます。SSH再接続後、グループは反映されます。  
+※以下、ログインユーザーが「ec2-user」の場合
+
+~~~
+usermod -aG apache ec2-user
+~~~
+
+
+
+### MySQL(任意)
+任意の設定内容になります。MySQLサーバーを別に構築すると想定し、MySQLをインストールする場合の手順です。  
 Webサーバー側の手順と、MySQLサーバー側の手順を記載します。  
 ※AWS RDSサービスを使用する場合など、外部サービスを使用する場合は、MySQLサーバー側の手順は不要です。
 
