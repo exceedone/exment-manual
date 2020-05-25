@@ -38,10 +38,14 @@ composer require adldap2/adldap2-laravel
 
 > TODO:Linux 検証中。下記の方法でインストールできない場合、ご連絡いただけると幸いです。
 
-- 以下のコマンドを実行し、パッケージをインストールします。
+- 以下のコマンドを実行し、パッケージをインストールします。  
+※事前に、[Linuxによる環境構築](/ja/install_linux)などで実施している、epelの更新・rpmインストールを行ってください。
 
 ```
-yum install openldap openldap-clients
+sudo yum install --enablerepo=remi-php72 php-ldap
+
+#以下が必要かもしれない。要検証。
+sudo yum install openldap openldap-clients
 ```
 
 - php.iniファイルを開きます。  
