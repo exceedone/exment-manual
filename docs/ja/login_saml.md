@@ -21,7 +21,7 @@ composer require aacotroneo/laravel-saml2
 
 - 各SAMLプロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
-http(s)://(ExmentのURL)/admin/saml/login/(後ほど追加するSAML名)/callback  
+http(s)://(ExmentのURL)/admin/saml/login/(後ほど追加するSAML名)/acs  
 
 - [画面での設定](#画面での設定)を実施します。
 
