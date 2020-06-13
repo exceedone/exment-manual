@@ -43,9 +43,6 @@ composer require adldap2/adldap2-laravel
 
 ```
 sudo yum install --enablerepo=remi-php72 php-ldap
-
-#以下が必要かもしれない。要検証。
-sudo yum install openldap openldap-clients
 ```
 
 - php.iniファイルを開きます。  
@@ -62,6 +59,7 @@ extension=ldap.so
 
 ```
 composer require adldap2/adldap2-laravel
+sudo service httpd restart
 ```
 
 

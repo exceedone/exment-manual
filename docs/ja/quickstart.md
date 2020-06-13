@@ -1,13 +1,5 @@
-# インストール手順(SSO開発版)
+# インストール手順
 Exmentを開始するために必要となる手順です。画面で設定を行い、インストールを行うことができます。  
-
-
-## 注意点(SSO開発版特記)
-- <span class="bold">当マニュアルは、ExmentのSSO開発版をインストールする場合の手順になります。</span>  
-通常のExmentのインストールの場合、[こちら](https://exment.net/docs/#/ja/)から行ってください。
-
-- <span class="red bold">本番環境で、決してこのパッケージをインストールしないでください。</span>あくまでも検証用となります。  
-本リリース時は、このバージョンからのアップデートは考慮しない形式とする予定です。そのため、新規インストールでお試しください。
 
 
 ## 注意点
@@ -35,8 +27,7 @@ Exmentには、composerの導入が必要です。導入方法はこちらをご
 
 ## zipダウンロード・展開
 - 以下のURLより、zipファイルをダウンロードします。  
-<span class="red">※SSO開発版の場合、URLが通常版と異なります。</span>  
-[Exment zipファイル](https://exment.net/downloads/ja/exment_sso.zip)  
+[Exment zipファイル](https://exment.net/downloads/ja/exment.zip)  
 
 - zipファイルを、PHP実行可能なパスに展開します。  
 例1(XAMPP Windows)： C:\xampp\local\exment  
@@ -77,20 +68,7 @@ Exment用データベースのパスワード
 ## 設定完了
 クイックスタートが完了したら、引き続き[初期設定](/ja/first_setting.md)を行ってください。  
 
-## ログイン設定
-以下のリンクから、ログイン設定を行ってください。  
-- [ログイン設定](/ja/login_setting)
-
 ## その他の初期設定
 以上の作業で、Exmentを開始することは可能ですが、一部の機能を使うために、追加で設定が必要になる場合があります。  
 以下のリンクをご確認ください。  
 - [追加設定](/ja/quickstart_more)
-
-## 不具合などがあった場合
-- 不具合や、SSOログイン時の設定で不足している点がありましたら、[issue](https://github.com/exceedone/exment/issues)や[お問い合わせ](https://exment.net/inquiry)にてご連絡ください。
-
-- なお以下の機能は、需要が非常に高いことは重々理解しているのですが、開発量の都合もあり、今後の更新予定です。
-    - ログイン時に、ログインユーザーを特定の組織と紐付け
-    - LDAPの組織情報一覧を同期するバッチ
-    - LDAPのユーザー情報一覧を一括で同期するバッチ
-
