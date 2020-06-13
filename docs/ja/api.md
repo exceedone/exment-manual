@@ -33,7 +33,7 @@ http(s)://(ExmentのURL)/admin/api_setting
 ※上記で記載の「システム設定変更」を行うことで、アクセスが出来るようになります。
 
 - もしくは、メニューに「APIアプリ設定」を追加します。  
-「管理者設定」 > 「メニュー」ページを開き、メニュー種類「システムメニュー」を選択すると、対象「APIアプリ設定」が表示されますので、選択し、保存を行ってください。  
+「管理者設定」 > 「メニュー」ページを開き、メニュー種類「システムメニュー」を選択すると、対象の「APIアプリ設定」が表示されますので、選択し、保存を行ってください。  
 ※「APIアプリ設定」は、デフォルトの設定ではメニューに表示されません。
 
 
@@ -138,6 +138,8 @@ Route::get('/callback', function (Request $request) {
 
 - ユーザーのIDパスワードを、あらかじめシステムに設定する必要があります。  
 
+- SSOのうち、LDAPに対応しております。OAuthとSAML認証には対応しておりません。
+
 ※本マニュアルでは、Exmentとは別のWebサービスを、Laravelで構築した場合の例を記載します。  
 他の言語やフレームワークでも構築可能です。  
 
@@ -187,6 +189,37 @@ Content-Type: application/json
 ~~~
 
 - これにより、レスポンス値に、access_token、refresh_token、expires_in属性を含むjsonが返却されます。  
+
+~~~ json
+{
+"token_type": "Bearer",
+"expires_in": 31622400,
+"access_token": "eyJ0eXAiOiJKV1Q.....",
+"refresh_token": "def50200e5f5eb458....."
+}
+~~~
+
+このアクセストークンを使用して、APIを実行します。
+
+
+##### 独自で開発するプログラム側の実装(LDAP認証の場合)
+- LDAP認証の場合、以下のようにPOSTを行ってください。
+
+~~~
+http(s)://(ExmentのURL)/admin/oauth/token'  POST
+Content-Type: application/json
+
+{
+    "grant_type": "password",
+    "client_id": "(コピーしたClient ID)",
+    "client_secret": "(コピーしたClient Secret)",
+	"login_type": "ldap",
+	"provider_name": "(ログイン設定画面で入力した、「LDAP名(英数字)」)",
+    "username": "(ログインするユーザーIDまたはメールアドレス)",
+    "password": "(ログインするユーザーパスワード)",
+    "scope": "(アクセスを行うスコープ。一覧は下記に記載。複数ある場合はスペース区切り)"
+}
+~~~
 
 ~~~ json
 {
@@ -372,6 +405,8 @@ Content-Type: application/json
 この項では、実際にExmentに認証し、アクセストークン取得までの流れを、ツールやブラウザを使用して行います。  
 アクセストークン取得までの流れをイメージしてください。  
 
+- API設定にて、「画面ログイン形式」でアプリを作成します。
+
 - 以下のURLにアクセスを行います。  
 http(s)://(ExmentのURL)/admin/oauth/authorize?client_id=(コピーしたClient ID)&redirect_uri=(入力したcallback URL)&response_type=code&scope=me  
   
@@ -380,8 +415,10 @@ http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYY
 
 
 - これにより、アプリ認証のためのシンプルな画面が表示されます。  
+
 ![API認証画面](img/api/authorize1.png)  
-「Authonize」をクリックします。  
+
+「認証」をクリックします。  
 
 - URL欄に、「code=xxxxx」になるクエリが追加されております。  
 このコードをコピーします。  
@@ -468,10 +505,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 | パラメータ名 | 説明 |
 | ---- | ---- |
 | me | ログインユーザーの情報を取得できます。 |
-| system_read | システム情報を取得できます。 |
-| system_write | システム情報を取得・新規追加・更新・削除できます。 |
+| system_read | システム情報を取得できます。 (現在未使用。予約語として記載) |
+| system_write | システム情報を取得・新規追加・更新・削除できます。(現在未使用。予約語として記載) |
 | table_read | カスタムテーブルの設定情報を取得できます。 |
-| table_write | カスタムテーブルの設定情報を取得・新規追加・更新・削除できます。 |
+| table_write | カスタムテーブルの設定情報を取得・新規追加・更新・削除できます。(現在未使用。予約語として記載) |
 | value_read | カスタムデータの情報を取得できます。 |
 | value_write | カスタムデータの情報を取得・新規追加・更新・削除できます。 |
 | notify_read | 通知の情報を取得できます。 |

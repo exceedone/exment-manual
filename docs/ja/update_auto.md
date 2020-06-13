@@ -113,9 +113,9 @@ home_path='/home/xxx'
 
 
 ### 設定手順(Windows)
-- [アップデートバッチ ExmentUpdateWindows.bat](/ja/update)をダウンロードし、Exmentプロジェクトフォルダに配置します。  
+- [アップデートバッチ ExmentUpdateWindows.bat](https://exment.net/downloads/cmd/ExmentUpdateWindows.bat)をダウンロードし、Exmentプロジェクトフォルダに配置します。  
 
-- [こちら](https://exment.net/downloads/cmd/ExmentAutoUpdateWindows.zip)より、アップデートバッチzipをダウンロードします。  
+- [こちら](https://exment.net/downloads/cmd/ExmentAutoUpdateWindows.zip)より、自動アップデートプログラムのzipをダウンロードします。  
 
 - ダウンロードしたzipファイルを解凍し、Exmentプロジェクトフォルダに、"ExmentAutoUpdateWindows"フォルダごと配置します。
 
