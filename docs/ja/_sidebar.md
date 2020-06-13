@@ -80,4 +80,5 @@
   * [設定値一覧](/ja/config)
   * [リリースノート](/ja/release_note)
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
+  * [トラブルシューティング](/ja/troubleshooting)
   * [ライセンス](/ja/license)

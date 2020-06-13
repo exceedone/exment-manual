@@ -43,6 +43,8 @@ AWSについて、SSHやデータベース作成、Linuxコマンドなど、一
 
 - **本手順では、管理者アカウントで実行している前提です。管理者アカウントでないユーザーが実行する場合、"sudo"を頭に付与してください。**
 
+- インストール時にエラーが発生した場合、[トラブルシューティング](/ja/troubleshooting)をご参照ください。
+
 - 本手順は、こちらの[AWSチュートリアル](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html#setting-file-permissions-2)をもとに作成しています。
 
 ## 手順
