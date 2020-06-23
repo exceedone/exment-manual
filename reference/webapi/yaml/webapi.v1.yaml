@@ -509,6 +509,249 @@ paths:
       security:
         - OAuth2認証: []
       operationId: get-column
+  '/api/view/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: カスタムテーブルのID(Ex. 3)、もしくはsuuid(20桁の文字列)
+    get:
+      summary: カスタムビュー情報取得
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/CustomView'
+              examples:
+                example-1:
+                  value:
+                    id: 10
+                    suuid: 3d62f5b9ea3241e6a417
+                    custom_table_id: '8'
+                    view_type: '0'
+                    view_kind_type: '9'
+                    view_view_name: View Sample
+                    created_at: '2020-06-16 00:24:20'
+                    updated_at: '2020-06-16 00:24:20'
+                    created_user_id: '10'
+                    updated_user_id: '10'
+      operationId: get-view
+      description: |
+        #### 処理概要
+        * ビューidもしくはsuuidから、ビュー情報を取得する
+        * ログインユーザーがアクセスできないカスタムテーブルのビューだった場合、403エラーが発生する。
+        * 現在、ビュー列やビューフィルタなどの取得はできません。「カスタムデータ一覧取得(ビュー使用)」や「カスタムデータ情報取得(ビュー使用)」で、ビューを指定するために実行してください。
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの参照
+
+        #### APIスコープ(scope)
+        + view_read
+
+        #### 対応バージョン
+        v3.3.X
+      parameters: []
+      tags:
+        - ビュー
+  '/api/table/{tableKey}/views':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: カスタムテーブルのID(Ex. 3)、もしくはテーブル名(Ex. user)
+    get:
+      summary: カスタムテーブル内のカスタムビュー一覧取得
+      tags:
+        - ビュー
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomView'
+              examples:
+                Example:
+                  value:
+                    - id: 45
+                      suuid: 9ce2740b044ea7143a55
+                      custom_table_id: '8'
+                      column_name: title
+                      column_view_name: タイトル
+                      column_type: text
+                      description: null
+                      system_flg: '0'
+                      order: '0'
+                      options:
+                        required: '1'
+                        index_enabled: '1'
+                      created_at: '2019-11-13 17:00:11'
+                      updated_at: '2019-11-13 17:00:15'
+                      created_user_id: null
+                      updated_user_id: null
+                      required: '1'
+                      index_enabled: '1'
+                      unique: false
+                      custom_table:
+                        id: 8
+                        suuid: 5c86fb70562dd56f34c0
+                        table_name: information
+                        table_view_name: お知らせ
+                        description: ユーザーに通知するお知らせです。ダッシュボードなどに表示することができます。
+                        system_flg: '0'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-exclamation
+                          comment_flg: '0'
+                          revision_flg: '0'
+                          attachment_flg: '1'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          use_label_id_flg: '0'
+                          all_user_editable_flg: '0'
+                          all_user_viewable_flg: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:08:31'
+                        created_user_id: null
+                        updated_user_id: '1'
+                    - id: 46
+                      suuid: c5ade37d68066e8eb7c4
+                      custom_table_id: '8'
+                      column_name: body
+                      column_view_name: 本文
+                      column_type: editor
+                      description: null
+                      system_flg: '0'
+                      order: '0'
+                      options:
+                        string_length: '2000'
+                      created_at: '2019-11-13 17:00:11'
+                      updated_at: '2019-11-13 17:00:11'
+                      created_user_id: null
+                      updated_user_id: null
+                      required: false
+                      index_enabled: false
+                      unique: false
+                      custom_table:
+                        id: 8
+                        suuid: 5c86fb70562dd56f34c0
+                        table_name: information
+                        table_view_name: お知らせ
+                        description: ユーザーに通知するお知らせです。ダッシュボードなどに表示することができます。
+                        system_flg: '0'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-exclamation
+                          comment_flg: '0'
+                          revision_flg: '0'
+                          attachment_flg: '1'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          use_label_id_flg: '0'
+                          all_user_editable_flg: '0'
+                          all_user_viewable_flg: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:08:31'
+                        created_user_id: null
+                        updated_user_id: '1'
+        '':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomView'
+              examples:
+                Example:
+                  value:
+                    - id: 5
+                      suuid: b6d5afcda4ce26091f36
+                      custom_table_id: '8'
+                      view_type: '0'
+                      view_kind_type: '9'
+                      view_view_name: 全件ビュー
+                      created_at: '2020-06-16 00:24:12'
+                      updated_at: '2020-06-16 00:24:12'
+                      created_user_id: null
+                      updated_user_id: null
+                    - id: 6
+                      suuid: 99120fd4b360e15993d2
+                      custom_table_id: '8'
+                      view_type: '0'
+                      view_kind_type: '0'
+                      view_view_name: お知らせ一覧
+                      created_at: '2020-06-16 00:24:12'
+                      updated_at: '2020-06-16 00:24:12'
+                      created_user_id: null
+                      updated_user_id: null
+      description: |
+        #### 処理概要
+        * カスタムテーブルのIDもしくはテーブル名を指定し、そのカスタムテーブル内のカスタムビュー一覧を取得する
+        * ログインユーザーがアクセスできないテーブルの場合、403エラーが発生する
+        * 現在、ビュー列やビューフィルタなどの取得はできません。「カスタムデータ一覧取得(ビュー使用)」や「カスタムデータ情報取得(ビュー使用)」で、ビューを指定するために実行してください。
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+        + テーブル：担当者データの閲覧
+
+        #### APIスコープ(scope)
+        + view_read
+
+        #### 対応バージョン
+        v3.3.X
+      security:
+        - OAuth2認証: []
+      operationId: get-view-columns
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: view_type
+          description: |-
+            指定した場合、ビュー権限で絞り込みを行う。
+            0=システムビュー、1=ユーザービュー
+        - schema:
+            type: string
+          in: query
+          name: view_kind_type
+          description: |-
+            指定した場合、ビュー種類で絞り込みを行う。
+            0=通常ビュー、1=集計ビュー、2=カレンダービュー、3=条件ビュー、9=全件ビュー
+        - schema:
+            type: string
+          in: query
+          name: view_view_name
+          description: 指定した場合、ビュー表示名で絞り込みを行う
+      requestBody: {}
   '/api/data/{tableKey}':
     parameters:
       - type: string
@@ -2559,251 +2802,6 @@ paths:
       security:
         - OAuth2認証: []
       operationId: get-table-column
-  '/api/view/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: カスタムテーブルのID(Ex. 3)、もしくはsuuid(20桁の文字列)
-    get:
-      summary: カスタムビュー情報取得
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: '#/components/schemas/CustomView'
-              examples:
-                example-1:
-                  value:
-                    id: 10
-                    suuid: 3d62f5b9ea3241e6a417
-                    custom_table_id: '8'
-                    view_type: '0'
-                    view_kind_type: '9'
-                    view_view_name: View Sample
-                    created_at: '2020-06-16 00:24:20'
-                    updated_at: '2020-06-16 00:24:20'
-                    created_user_id: '10'
-                    updated_user_id: '10'
-      operationId: get-view
-      description: |
-        #### 処理概要
-        * ビューidもしくはsuuidから、ビュー情報を取得する
-        * ログインユーザーがアクセスできないカスタムテーブルのビューだった場合、403エラーが発生する。
-        * 現在、ビュー列やビューフィルタなどの取得はできません。「カスタムデータ一覧取得(ビュー使用)」や「カスタムデータ情報取得(ビュー使用)」で、ビューを指定するために実行してください。
-
-        #### Exment権限(Permission)
-        + システム：システム情報
-        + システム：カスタムテーブル
-        + システム：すべてのデータ
-        + テーブル：テーブル
-        + テーブル：すべてのデータの編集
-        + テーブル：すべてのデータの閲覧
-        + テーブル：すべてのデータの参照
-        + テーブル：担当者データの編集
-        + テーブル：担当者データの閲覧
-        + テーブル：担当者データの参照
-
-        #### APIスコープ(scope)
-        + table_read
-        + table_write
-
-        #### 対応バージョン
-        v3.3.X
-      parameters: []
-      tags:
-        - ビュー
-  '/api/table/{tableKey}/views':
-    parameters:
-      - type: string
-        name: tableKey
-        in: path
-        required: true
-        description: カスタムテーブルのID(Ex. 3)、もしくはテーブル名(Ex. user)
-    get:
-      summary: カスタムテーブル内のカスタムビュー一覧取得
-      tags:
-        - ビュー
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomView'
-              examples:
-                Example:
-                  value:
-                    - id: 45
-                      suuid: 9ce2740b044ea7143a55
-                      custom_table_id: '8'
-                      column_name: title
-                      column_view_name: タイトル
-                      column_type: text
-                      description: null
-                      system_flg: '0'
-                      order: '0'
-                      options:
-                        required: '1'
-                        index_enabled: '1'
-                      created_at: '2019-11-13 17:00:11'
-                      updated_at: '2019-11-13 17:00:15'
-                      created_user_id: null
-                      updated_user_id: null
-                      required: '1'
-                      index_enabled: '1'
-                      unique: false
-                      custom_table:
-                        id: 8
-                        suuid: 5c86fb70562dd56f34c0
-                        table_name: information
-                        table_view_name: お知らせ
-                        description: ユーザーに通知するお知らせです。ダッシュボードなどに表示することができます。
-                        system_flg: '0'
-                        showlist_flg: '1'
-                        order: '0'
-                        options:
-                          icon: fa-exclamation
-                          comment_flg: '0'
-                          revision_flg: '0'
-                          attachment_flg: '1'
-                          one_record_flg: '0'
-                          search_enabled: '1'
-                          use_label_id_flg: '0'
-                          all_user_editable_flg: '0'
-                          all_user_viewable_flg: '1'
-                          all_user_accessable_flg: '1'
-                        created_at: '2019-11-13 17:00:11'
-                        updated_at: '2019-11-13 17:08:31'
-                        created_user_id: null
-                        updated_user_id: '1'
-                    - id: 46
-                      suuid: c5ade37d68066e8eb7c4
-                      custom_table_id: '8'
-                      column_name: body
-                      column_view_name: 本文
-                      column_type: editor
-                      description: null
-                      system_flg: '0'
-                      order: '0'
-                      options:
-                        string_length: '2000'
-                      created_at: '2019-11-13 17:00:11'
-                      updated_at: '2019-11-13 17:00:11'
-                      created_user_id: null
-                      updated_user_id: null
-                      required: false
-                      index_enabled: false
-                      unique: false
-                      custom_table:
-                        id: 8
-                        suuid: 5c86fb70562dd56f34c0
-                        table_name: information
-                        table_view_name: お知らせ
-                        description: ユーザーに通知するお知らせです。ダッシュボードなどに表示することができます。
-                        system_flg: '0'
-                        showlist_flg: '1'
-                        order: '0'
-                        options:
-                          icon: fa-exclamation
-                          comment_flg: '0'
-                          revision_flg: '0'
-                          attachment_flg: '1'
-                          one_record_flg: '0'
-                          search_enabled: '1'
-                          use_label_id_flg: '0'
-                          all_user_editable_flg: '0'
-                          all_user_viewable_flg: '1'
-                          all_user_accessable_flg: '1'
-                        created_at: '2019-11-13 17:00:11'
-                        updated_at: '2019-11-13 17:08:31'
-                        created_user_id: null
-                        updated_user_id: '1'
-        '':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomView'
-              examples:
-                Example:
-                  value:
-                    - id: 5
-                      suuid: b6d5afcda4ce26091f36
-                      custom_table_id: '8'
-                      view_type: '0'
-                      view_kind_type: '9'
-                      view_view_name: 全件ビュー
-                      created_at: '2020-06-16 00:24:12'
-                      updated_at: '2020-06-16 00:24:12'
-                      created_user_id: null
-                      updated_user_id: null
-                    - id: 6
-                      suuid: 99120fd4b360e15993d2
-                      custom_table_id: '8'
-                      view_type: '0'
-                      view_kind_type: '0'
-                      view_view_name: お知らせ一覧
-                      created_at: '2020-06-16 00:24:12'
-                      updated_at: '2020-06-16 00:24:12'
-                      created_user_id: null
-                      updated_user_id: null
-      description: |
-        #### 処理概要
-        * カスタムテーブルのIDもしくはテーブル名を指定し、そのカスタムテーブル内のカスタムビュー一覧を取得する
-        * ログインユーザーがアクセスできないテーブルの場合、403エラーが発生する
-        * 現在、ビュー列やビューフィルタなどの取得はできません。「カスタムデータ一覧取得(ビュー使用)」や「カスタムデータ情報取得(ビュー使用)」で、ビューを指定するために実行してください。
-
-        #### Exment権限(Permission)
-        + システム：システム情報
-        + システム：カスタムテーブル
-        + システム：すべてのデータ
-        + テーブル：テーブル
-        + テーブル：すべてのデータの編集
-        + テーブル：すべてのデータの閲覧
-        + テーブル：すべてのデータの参照
-        + テーブル：担当者データの編集
-        + テーブル：担当者データの閲覧
-        + テーブル：担当者データの閲覧
-
-        #### APIスコープ(scope)
-        + table_read
-        + table_write
-
-        #### 対応バージョン
-        v3.3.X
-      security:
-        - OAuth2認証: []
-      operationId: get-view-columns
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: view_type
-          description: |-
-            指定した場合、ビュー権限で絞り込みを行う。
-            0=システムビュー、1=ユーザービュー
-        - schema:
-            type: string
-          in: query
-          name: view_kind_type
-          description: |-
-            指定した場合、ビュー種類で絞り込みを行う。
-            0=通常ビュー、1=集計ビュー、2=カレンダービュー、3=条件ビュー、9=全件ビュー
-        - schema:
-            type: string
-          in: query
-          name: view_view_name
-          description: 指定した場合、ビュー表示名で絞り込みを行う
-      requestBody: {}
   '/api/viewdata/{tableKey}/{viewId}':
     parameters:
       - type: string
@@ -2831,14 +2829,13 @@ paths:
                   - type: object
                     properties:
                       data:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/CustomValue'
+                        type: object
+                        description: データ結果
                       column_definitions:
                         type: array
                         description: 対象の列定義情報を記載した配列。キー名は、valueと合致するsuuid。
                         items:
-                          $ref: ''
+                          $ref: '#/components/schemas/ViewColumnDefinition'
                   - $ref: '#/components/schemas/Paginate'
               examples:
                 Example:
@@ -2895,9 +2892,10 @@ paths:
         * ログインユーザーに権限のあるデータのみ、一覧の対象となる
 
         #### 結果の列名について
-        * ビューを使用して結果を取得する場合、取得対象の列は、さまざまなケースがあります。（例：親テーブルのデータ、グループ化の集計結果）そのことも関連し、列名が重複するケースが想定されます。
+        * ビューを使用して結果を取得する場合、取得対象の列は、さまざまなケースがあります。（例：親テーブルのデータ、グループ化の集計結果）
+        * ビューの設定によっては、列名が重複するケースがあり、列名のキーでは、列の種類が判別できない場合があります。
         * そのため、json形式で取得される、データ値の列名は、suuid(ランダムの20桁英数字)となっています。
-        * 結果のjson"columnDefinitions"に、対象のsuuidのテーブル名、カスタム列名などの情報がセットされていますので、それらの値から、該当の列情報を分析・取得してください。
+        * 結果のjson"column_definitions"に、対象のsuuidのテーブル名、カスタム列名などの情報がセットされていますので、それらの値から、該当の列情報を分析・取得してください。
 
         ##### 例（一部省略）
         ``` json
@@ -2906,17 +2904,17 @@ paths:
             "data": [
                 {
                     "82c58b9bc8a68842c292": null,
-                    "12fc3d6f970afc5a7f28": "test20200616002525",
-                    "6968926f2de4fa658b97": "test20200616002525"
+                    "12fc3d6f970afc5a7f28": "child value 1",
+                    "6968926f2de4fa658b97": "parent value 1"
                 },
                 {
                     "82c58b9bc8a68842c292": null,
-                    "12fc3d6f970afc5a7f28": "test202006160025261",
+                    "12fc3d6f970afc5a7f28": "child value 2",
                     "6968926f2de4fa658b97": null
                 },
                 {
                     "82c58b9bc8a68842c292": null,
-                    "12fc3d6f970afc5a7f28": "test202006160025273",
+                    "12fc3d6f970afc5a7f28": "child value 1",
                     "6968926f2de4fa658b97": null
                 }
             ],
@@ -3088,17 +3086,18 @@ paths:
         * ログインユーザーに権限のあるデータのみ、取得の対象となる
 
         #### 結果の列名について
-        * ビューを使用して結果を取得する場合、取得対象の列は、さまざまなケースがあります。（例：親テーブルのデータ、グループ化の集計結果）そのことも関連し、列名が重複するケースが想定されます。
+        * ビューを使用して結果を取得する場合、取得対象の列は、さまざまなケースがあります。（例：親テーブルのデータ、グループ化の集計結果）
+        * ビューの設定によっては、列名が重複するケースがあり、列名のキーでは、列の種類が判別できない場合があります。
         * そのため、json形式で取得される、データ値の列名は、suuid(ランダムの20桁英数字)となっています。
-        * 結果のjson"columnDefinitions"に、対象のsuuidのテーブル名、カスタム列名などの情報がセットされていますので、それらの値から、該当の列情報を分析・取得してください。
+        * 結果のjson"column_definitions"に、対象のsuuidのテーブル名、カスタム列名などの情報がセットされていますので、それらの値から、該当の列情報を分析・取得してください。
 
         ##### 例（一部省略）
         ``` json
         {
             "value": {
                 "82c58b9bc8a68842c292": null,
-                "12fc3d6f970afc5a7f28": "test20200616002525",
-                "6968926f2de4fa658b97": "test_5"
+                "12fc3d6f970afc5a7f28": "child value 3",
+                "6968926f2de4fa658b97": "parent value 1"
             },
             "column_definitions": {
                 "82c58b9bc8a68842c292": {
@@ -3661,7 +3660,7 @@ components:
           description: 対象の列名
         label:
           type: string
-          description: 画面表示時の文言
+          description: 画面表示時の、列の文言
         summary_condition:
           type: string
           description: 該当のビューが集計ビューの場合で、集計列の場合、集計の種類。sum、count、min、max
