@@ -735,7 +735,7 @@ paths:
                       created_user_id: '1'
                       updated_user_id: '1'
                       label: テスト2
-      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 複数件登録、ならびに親データを指定しての新規追加に対応。ならびに、画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.7 valuetypeパラメータ追加\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'num': 10,\n        'price': 10000\n    }\n}\n```\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n* 配列の指定方法は2パターン存在するが、機能に差異はない\n\n■パターン１：\n```\n{\n   'value': [\n      {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'num': 10,\n        'price': 10000\n      },\n      {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'num': 3,\n        'price': 8000\n      }\n    ]\n}\n```\n\n■パターン２：\n```\n{\n   'data': [\n     {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'value':{\n          'num': 10,\n          'price': 10000\n        }\n     },\n     {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'value':{\n          'num': 3,\n          'price': 8000\n        }\n      }\n    ]\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
+      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 複数件登録、ならびに親データを指定しての新規追加に対応。ならびに、画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.7 valuetypeパラメータ追加\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n\n```\n{\n   \"value\": {\n        \"title\": \"test\",\n        \"file\": {\n            \"name\" : \"hello.txt\",\n            \"base64\" : \"aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE=\"\n        }\n    }\n}\n```\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   \"parent_type\": \"contract\",\n   \"parent_id\": 2,\n   \"value\": {\n        \"num\": 10,\n        \"price\": 10000\n    }\n}\n```\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n* 配列の指定方法は2パターン存在するが、機能に差異はない\n\n■パターン１：\n```\n{\n   \"value\": [\n      {\n        \"parent_type\": \"contract\",\n        \"parent_id\": 2,\n        \"num\": 10,\n        \"price\": 10000\n      },\n      {\n        \"parent_type\": \"contract\",\n        \"parent_id\": 5,\n        \"num\": 3,\n        \"price\": 8000\n      }\n    ]\n}\n```\n\n■パターン２：\n```\n{\n   \"data\": [\n     {\n        \"parent_type\": \"contract\",\n        \"parent_id\": 2,\n        \"value\":{\n          \"num\": 10,\n          \"price\": 10000\n        }\n     },\n     {\n        \"parent_type\": \"contract\",\n        \"parent_id\": 5,\n        \"value\":{\n          \"num\": 3,\n          \"price\": 8000\n        }\n      }\n    ]\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        \"contract_code\": \"C00001\",\n        \"customer\": \"1\"\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        \"contract_code\": \"C00001\",\n        \"customer\": \"株式会社ABC\"\n    },\n    findKeys: {\n        \"customer\": \"customer_name\"\n    }\n}\n```\n"
       parameters: []
       requestBody:
         content:
@@ -812,7 +812,26 @@ paths:
                   type: integer
                   default: 0
                   description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
-            examples: {}
+            examples:
+              Example(1件のみ登録):
+                value:
+                  value:
+                    body: テストです。
+                    order: '1'
+                    title: テスト
+                    priority: 3
+                    view_flg: 1
+              Example(複数件登録):
+                value:
+                  value:
+                    - parent_type: contract
+                      parent_id: 2
+                      num: 10
+                      price: 10000
+                    - parent_type: contract
+                      parent_id: 5
+                      num: 3
+                      price: 8000
         description: ''
       security:
         - OAuth2認証: []
@@ -1217,7 +1236,7 @@ paths:
                     created_user_id: null
                     updated_user_id: '1'
                     label: テスト更新
-      description: "#### 処理概要\n* カスタムデータ情報を更新する\n* ログインユーザーに権限のないデータだった場合、403エラーが発生する\n* 更新が発生する列の情報のみ、value配列内に値を代入してPUTする\n* 列\"updated_at\"を行うことで、排他制御を行うことが可能\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.10 排他制御に対応\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n* 例：ファイル列\"file\"に、ファイルを保存する場合\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'price': 10000\n    }\n}\n```\n\n\n#### 排他制御\n* updated_at列に日付を追加することで、排他制御を行うことができます。指定した日時と、対象データの最新の更新日時が異なっていた場合、エラーを返却します。\n\n```\n{\n   \"value\": {\n        \"price\": 10000\n    },\n    \"updated_at\": \"2020/04/03 12:00:00\"\n}\n```\n"
+      description: "#### 処理概要\n* カスタムデータ情報を更新する\n* ログインユーザーに権限のないデータだった場合、403エラーが発生する\n* 更新が発生する列の情報のみ、value配列内に値を代入してPUTする\n* 列\"updated_at\"を行うことで、排他制御を行うことが可能\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.10 排他制御に対応\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n* 例：ファイル列\"file\"に、ファイルを保存する場合\n\n```\n{\n   \"value\": {\n        \"title\": \"test\",\n        \"file\": {\n            \"name\": \"hello.txt\",\n            \"base64\": \"aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE=\"\n        }\n    }\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    \"value\": {\n        \"contract_code\": \"C00001\",\n        \"customer\": \"1\"\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    \"value\": {\n        \"contract_code\": \"C00001\",\n        \"customer\": \"株式会社ABC\"\n    },\n    \"findKeys\": {\n        \"customer\": \"customer_name\"\n    }\n}\n```\n\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   \"parent_type\": \"contract\",\n   \"parent_id\": 2,\n   \"value\": {\n        \"price\": 10000\n    }\n}\n```\n\n\n#### 排他制御\n* updated_at列に日付を追加することで、排他制御を行うことができます。指定した日時と、対象データの最新の更新日時が異なっていた場合、エラーを返却します。\n\n```\n{\n   \"value\": {\n        \"price\": 10000\n    },\n    \"updated_at\": \"2020/04/03 12:00:00\"\n}\n```\n"
       requestBody:
         content:
           application/json:
@@ -1261,7 +1280,11 @@ paths:
                   type: integer
                   default: 0
                   description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
-            examples: {}
+            examples:
+              Example:
+                value:
+                  value:
+                    title: テスト更新
       security:
         - OAuth2認証: []
       operationId: put-value
