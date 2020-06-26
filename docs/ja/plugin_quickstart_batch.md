@@ -114,8 +114,6 @@ php artisan exment:batch --name=harddelete_data
 php artisan exment:batch --uuid=b5c0a5d2-2716-4161-98d0-b490c1ebc521
 ~~~
 
-※コマンド実行の場合、有効フラグが「無効」の設定であっても実行できます。  
-
 
 ### サンプルプラグイン
 [データの物理削除プラグイン](https://exment.net/downloads/sample/plugin/HarddeleteBatch.zip)

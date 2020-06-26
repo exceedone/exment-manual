@@ -11,9 +11,6 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 業務に合わせた、さまざまなデモサイトをご用意しております。  
 <a href="https://exment.net/demo-env" target="_blank">デモサイト一覧</a>をご確認ください。
 
-## お問い合わせ
-本マニュアルや、インストール手順についてのお問い合わせは、お気軽にこちらの[無料お問い合わせ](https://exment.net/inquiry)にてお願いいたします。
-
 ## 機能・スクリーンショット
 <a href="https://exment.net/functions" target="_blank">機能・スクリーンショット</a>をご確認ください。
 
@@ -427,6 +424,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     <div class="tile-inner">
                         <h5>ライセンス</h5>
                         <p>Exmentで使用しているオープンソースライブラリです。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/troubleshooting">
+                    <div class="tile-inner">
+                        <h5>トラブルシューティング</h5>
+                        <p>Exmentでのトラブル解決法や、Exmentの技術的なよくある質問に回答しております。</p>
                     </div>
                 </a>
             </div>

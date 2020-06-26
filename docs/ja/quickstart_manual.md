@@ -6,7 +6,6 @@ Exmentを開始するために必要となる手順です。
 - **Webサーバーを構築していない場合、はじめに[サーバー設定](/ja/server)を行ってください。**   
 (「サーバー構築したかどうか分からない」という方も、一度ご確認をお願いします)
 - インストール時にエラーが発生した場合、[トラブルシューティング](/ja/troubleshooting)をご参照ください。
-- その他お問い合わせは、お気軽にこちらの[無料お問い合わせ](https://exment.net/inquiry)にてお願いいたします。
 
 ## サーバー設定
 Exmentには、PHP7.1.3以上が必要です。ならびに、MySQL 5.7.8以上8.0.0未満 または MariaDB 10.2.7以上が必要です。  
@@ -30,6 +29,12 @@ Exmentには、composerの導入が必要です。導入方法はこちらをご
 ~~~
 composer create-project "laravel/laravel=5.6.*" (プロジェクト名)
 cd (プロジェクト名)
+composer require exceedone/exment
+
+# Exmentのバージョンを指定したい場合、代わりに以下を実行。例：v3.2.6
+composer require exceedone/exment=3.2.6
+# Exmentのバージョンを指定したい場合、代わりに以下を実行。例2：develop(開発バージョン)
+composer require exceedone/exment=dev-develop
 ~~~
 
 ## データベース作成
@@ -38,8 +43,9 @@ cd (プロジェクト名)
 
 ## .env変更
 
-- ".env" を開き、以下の内容を追加・変更します。  
-**※お使いのデータベースが、MySQLか、MariaDBかで、DB_CONNECTIONの値が異なりますので、ご注意ください。**
+- ".env" を開き、以下の内容を追加・変更します。<span class="red bold">特に、以下の値をご確認ください。</span>  
+    - DB_CONNECTION : ※お使いのデータベースが、MySQLか、MariaDBかで、DB_CONNECTIONの値が異なります
+    - APP_TIMEZONE、APP_LOCALE : 言語とタイムゾーンです。インストール前に値を記入してください。
 
 ~~~
 # 以下、必須設定項目 --------------------
@@ -65,26 +71,11 @@ APP_LOCALE=ja
 
 # 以下、任意設定項目 --------------------
 
-# メール送信用の設定値変更。パスワードリセットメールなどを送付する場合に設定
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.mailtrap.io #メールサーバー用のホスト名
-MAIL_PORT=2525 #メールサーバー用のポート番号
-MAIL_USERNAME=null  #メールサーバーのユーザー名
-MAIL_PASSWORD=null #メールサーバーのパスワード
-MAIL_ENCRYPTION=null #ssl使用の場合"ssl"と記入
-
 # https通信の場合に追加
 ADMIN_HTTPS=true
 
 ~~~
 
-## コマンド実行
-- 以下のコマンドを実行します。
-
-~~~
-composer require exceedone/exment
-php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
-~~~
 
 ## （推奨）エラーページ追加
 
@@ -113,6 +104,7 @@ php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 - 以下のコマンドを実行します。
 
 ~~~
+php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 php artisan passport:keys
 php artisan exment:install
 ~~~

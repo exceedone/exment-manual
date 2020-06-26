@@ -48,7 +48,7 @@
  
 * 【8. その他標準機能】
   * [テンプレート](/ja/template)
-  * [バックアップ](/ja/backup)
+  * [バックアップ・リストア](/ja/backup)
   * [メニュー](/ja/menu)
   * [ダッシュボード](/ja/dashboard)
   * [メールテンプレート](/ja/mail)
