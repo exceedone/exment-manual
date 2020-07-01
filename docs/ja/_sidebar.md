@@ -40,6 +40,7 @@
   * [ユーザー・ログインユーザー](/ja/user)
   * [組織](/ja/organization)
   * [役割グループ・権限設定](/ja/role_group)
+  * [外部ポータルサイト向け設定](/ja/multiuser)
  
 * 【7. ワークフロー】
   * [ワークフロー設定](/ja/workflow_setting)
