@@ -84,6 +84,13 @@
     margin-top: 0.2rem;
 }
 
+.heading_smaller_than_h5{
+    margin: 2rem 0 0.2rem;
+    font-size:15px;
+    font-weight:bold;
+}
+
+
 img{
     border:1px solid #ccc;
     display:block;

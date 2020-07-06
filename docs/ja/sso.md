@@ -134,7 +134,7 @@ EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER=true #通常のログインを表示させる
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
 http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
-例 Office365の場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
+例：Office365の場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
