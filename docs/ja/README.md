@@ -224,6 +224,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         <h4>6. ユーザー・組織・役割権限</h4>
         <div class="row">
             <div class="col-sm-6 tile">
+                <a href="#/ja/permission">
+                    <div class="tile-inner important-topic">
+                        <h5>役割・権限の概要</h5>
+                        <p>Exmentにおける、役割・権限の概要のご説明です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/user">
                     <div class="tile-inner important-topic">
                         <h5>ユーザー・ログインユーザー管理</h5>

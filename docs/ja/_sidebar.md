@@ -37,6 +37,7 @@
   * [検索](/ja/search)
 
 * 【6. ユーザー・組織・役割グループ】
+  * [役割・権限の概要](/ja/permission)
   * [ユーザー・ログインユーザー](/ja/user)
   * [組織](/ja/organization)
   * [役割グループ・権限設定](/ja/role_group)
