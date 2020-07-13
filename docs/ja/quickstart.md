@@ -33,6 +33,7 @@ Exmentには、composerの導入が必要です。導入方法はこちらをご
 例3(XServer) : $HOME/domain.com.foobar/exment/  
   
 - <span class="red bold">各サーバーの公開フォルダ(例linuxの場合 : /var/www/html)直下に、zipファイルをそのまま入れないでください。データベースの設定値や、メールのパスワードなどが記載された設置ファイルなどが外部公開され、致命的な情報流出に繋がります。</span>  
+
 インストール時の手順は、必ず各手順の[サーバー設定](/ja/server)をご確認ください。
 
 ## データベース作成
