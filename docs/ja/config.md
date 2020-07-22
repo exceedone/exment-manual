@@ -41,18 +41,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : trueの場合、キャッシュを有効にします。カスタムテーブルや列、ビュー、ワークフローなどのマスターデータをキャッシュ化します。環境によって、高速化する場合があります。
 
 
-#### ダッシュボード行数
-- 設定キー : EXMENT_DASHBOARD_ROWS
-- 既定値 : 4
-- 役割 : ダッシュボードに配置できる行数を変更します。  
-
-
-#### ダッシュボードの最新バージョン表示無効化
-- 設定キー : EXMENT_DISABLE_LATEST_VERSION_DASHBOARD
-- 既定値 : false
-- 役割 : trueにすることで、ダッシュボードの「新しいバージョンがあります」表示を無効化します。  
-
-
 #### マニュアルURL
 - 設定キー : EXMENT_MANUAL_URL
 - 既定値 : https://exment.net/docs/#/
@@ -273,6 +261,42 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueにすることで、CSVデータのエクスポート時、BOMを追加します。(Excelで開いても文字化けが発生しません。)
 
+### ダッシュボード
+
+#### ダッシュボード行数
+- 設定キー : EXMENT_DASHBOARD_ROWS
+- 既定値 : 4
+- 役割 : ダッシュボードに配置できる行数を変更します。  
+
+
+#### ダッシュボードの最新バージョン通知無効
+- 設定キー : EXMENT_DISABLE_LATEST_VERSION_DASHBOARD
+- 既定値 : false
+- 役割 : trueにすることで、ダッシュボードに表示される、最新バージョン通知機能を無効にします。
+
+#### ダッシュボードのグラフ表示の色を変更
+- 設定キー : EXMENT_CHART_BG_COLOR
+- 既定値 : #FF6384,#36A2EB,#FFCE56,#339900,#FF6633,#CC0099
+- 役割 : ダッシュボードに表示するグラフの色の種類を、カンマ区切りで変更できます。指定した色数を超えた件数のグラフを表示する場合は、循環して色を指定します。
+
+※この設定は、v3.4.3より追加されています。v3.4.2以下でExmentのインストールを行ったユーザーは、上記の設定値が固定値になっています。  
+変更する場合、"config/exment.php"ファイルを開き、以下の記載の変更を行ってください。  
+
+``` php
+///// from
+    // 'chart_backgroundColor' => [
+    //     "#FF6384",
+    //     "#36A2EB",
+    //     "#FFCE56",
+    //     "#339900",
+    //     "#ff6633",
+    //     "#cc0099"
+    // ],
+
+///// to
+    'chart_backgroundColor' => env('EXMENT_CHART_BG_COLOR', '#FF6384,#36A2EB,#FFCE56,#339900,#ff6633,#cc0099'),
+```
+
 
 
 ### その他
@@ -281,11 +305,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : EXMENT_REMOVE_RESPONSE_SPACE
 - 既定値 : false
 - 役割 : trueにすることで、レスポンス内の改行コードを削除します。
-
-#### ダッシュボードの最新バージョン通知無効
-- 設定キー : EXMENT_DISABLE_LATEST_VERSION_DASHBOARD
-- 既定値 : false
-- 役割 : trueにすることで、ダッシュボードに表示される、最新バージョン通知機能を無効にします。
 
 #### ユーザービュー無効
 - 設定キー : EXMENT_USER_VIEW_DISABLED

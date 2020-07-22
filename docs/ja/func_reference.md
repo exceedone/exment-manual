@@ -480,6 +480,52 @@ $value->save();
 
 ---
 
+#### setValueStrictly
+
+> 3.4.3より実装
+
+指定したカスタム列と値の配列を、オブジェクトに代入します。  
+※値の代入前に、バリデーションを実施します。  
+バリデーションエラーが発生した場合、\Illuminate\Validation\ValidationExceptionが発生します。
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $list | array | カスタム列名をキー、代入値を値とした配列 |
+| $forgetIfNull | bool | $valがnullの場合、連想配列からキーを削除するかどうか。初期値はfalse |
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| CustomValue | CustomValueインスタンス(マジックメソッド)) |
+
+
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+use Illuminate\Validation\ValidationException;
+
+// テーブル"foo"のid1のデータを取得
+$value = CustomTable::getEloquent('foo')->getValueModel(1);
+
+try{
+    // オブジェクトに値をセット
+    $value->setValueStrictly(['value1' => '値1']);
+    //更新してデータベースに保存
+    $value->save();
+}
+// バリデーションエラーが発生した場合
+catch(ValidationException $ex){
+    // エラー内容の取得
+    $messages = $ex->validator->getMessages();
+}
+
+~~~
+
+---
+
+
 
 #### getLabel
 カスタムデータの見出し文字列を取得します。  

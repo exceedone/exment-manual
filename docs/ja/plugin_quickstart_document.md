@@ -104,6 +104,20 @@ class Plugin extends PluginDocumentBase
         // 例：
         \Log::debug('見積出力実施後');
     }
+
+    
+    /**
+    * (v3.4.3対応)画面にボタンを表示するかどうかの判定。デフォルトはtrue
+    * 
+    * @return bool true: 描写する false 描写しない
+    */
+    public function enableRender(){
+        // 例1：選択しているデータのidが2の場合ボタンを表示する
+        //return $this->custom_value->id % 2 === 0;
+
+        // カスタム列の値「status」が「active」の場合にボタンを表示する
+        return $this->custom_value->getValue('status')  === 'active';
+    }
 }
 
 ~~~
@@ -119,6 +133,9 @@ class Plugin extends PluginDocumentBase
 PluginDocumentBaseは、呼び出し元のカスタムテーブル$custom_table、テーブル値$custom_valueなどのプロパティを所有しており、  
 execute関数が呼び出された時点で、そのプロパティに値が代入されます。  
 プロパティの詳細については、[プラグインリファレンス](plugin_reference.md)をご参照ください。  
+
+- (v3.4.3対応) 登録しているデータを用いて、ボタンの表示・非表示を制御したい場合、メソッド"enableRender"を実装します。  
+ボタンを表示する場合はtrueを、非表示にしたい場合はfalseを返却してください。(デフォルトはtrueです。)
 
 
 ### zipに圧縮

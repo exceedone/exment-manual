@@ -24,6 +24,7 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 ## レンタルサーバーによるインストール手順
 
 ### Xserverの場合
+※X10プランで動作確認を行っています。
 
 <iframe width="560" height="420" src="https://www.youtube.com/embed/RB6i0F2fev0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -126,6 +127,7 @@ ln -s $HOME/(ドメイン名)/laravel/exment/public $HOME/(ドメイン名)/publ
 
 
 ### さくらインターネットの場合
+※スタンダードプランで動作確認を行っています。  
 ※さくらインターネットの場合、「composer」実施時に、途中で終了してしまう場合があります。  
 そのため、「nice -n 20 composer」と、「nice -n 20」と付けて実行します。
 
