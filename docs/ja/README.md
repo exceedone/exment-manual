@@ -404,6 +404,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/ja/column_reference">
+                    <div class="tile-inner">
+                        <h5>カスタム列リファレンス</h5>
+                        <p>カスタム列の仕様明細、ならびにプラグインで列の値の取得・セットを行う場合のリファレンスです。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/plugin_reference">
                     <div class="tile-inner">
                         <h5>プラグインリファレンス</h5>

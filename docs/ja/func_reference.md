@@ -413,16 +413,15 @@ CustomTable::getEloquent('information')
 
 #### getValue
 指定したカスタム列をキーとして、保存している値を取得します。  
-※引数$labelがfalseのとき、カスタム列種類によって、オブジェクトとして取得する場合があります。  
-例えば、カスタム列種類が「選択肢（他のテーブルから取得）」の場合、$labelがfalseの場合、選択したデータのオブジェクトや、データベースに登録している値を返却します。  
-$labelがtrueの場合、画面表示するための見出し列を返却します。  
-
+※引数$valueTypeの内容によって、戻り値の型や内容が異なります。  
+例えば、カスタム列種類が「選択肢（他のテーブルから取得）」の場合、$valueTypeがfalseの場合、選択したデータのオブジェクトを返却します。  
+**※カスタム列種類毎の返却値は、[こちら](#カスタム列ごとのgetValueの返却値)をご確認ください。**  
 
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | $column | CustomColumn,string,int | CustomColumnのインスタンス,column_name,idのいずれか |
-| $label | bool | ラベルとして取得するかどうか。初期値はfalse |
+| $valueType | bool or \Exceedone\Exment\Enums\ValueType | 以下の内容で返却する。 <br />・引数なし、false、ValueType::VALUEのいずれか：valueとして返却  <br /> ・true、ValueType::TEXTのいずれか：textとして返却 <br />・ValueType::HTML ： htmlとして返却 <br />・ValueType::PURE_VALUE ： pureValueとして返却 <br /><br />※pureValue,value,text,htmlの内容については[こちら](/ja/column_reference)をご確認ください。 |
 | $options | array | 取得方法のオプション |
 
 ##### 戻り値
@@ -435,13 +434,14 @@ $labelがtrueの場合、画面表示するための見出し列を返却しま�
 
 ~~~ php
 use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Enums\ValueType;
 
 // お知らせテーブルのid1のデータを取得
 $value = CustomTable::getEloquent('information')->getValueModel(1);
 
 $title = $value->getValue('title');  // Exmentへようこそ！
 $priority = $value->getValue('priority');  // 3
-$priority = $value->getValue('priority', true); // 通常 
+$priority = $value->getValue('priority', ValueType::TEXT); // 通常 
 ~~~
 
 ---
@@ -486,7 +486,8 @@ $value->save();
 
 指定したカスタム列と値の配列を、オブジェクトに代入します。  
 ※値の代入前に、バリデーションを実施します。  
-バリデーションエラーが発生した場合、\Illuminate\Validation\ValidationExceptionが発生します。
+バリデーションエラーが発生した場合、\Illuminate\Validation\ValidationExceptionが発生します。  
+
 
 ##### 引数
 | 名前 | 種類 | 説明 |
@@ -510,8 +511,8 @@ use Illuminate\Validation\ValidationException;
 $value = CustomTable::getEloquent('foo')->getValueModel(1);
 
 try{
-    // オブジェクトに値をセット
-    $value->setValueStrictly(['value1' => '値1']);
+    // オブジェクトに値をセット。「カスタム列名 => 値」の配列
+    $value->setValueStrictly(['value1' => '値1', 'value2' => 2]);
     //更新してデータベースに保存
     $value->save();
 }

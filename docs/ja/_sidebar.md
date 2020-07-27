@@ -78,6 +78,7 @@
   * [パラメータ変数](/ja/params)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference)
+  * [カスタム列リファレンス](/ja/column_reference)
   * [プラグインリファレンス](/ja/plugin_reference)
   * [設定値一覧](/ja/config)
   * [リリースノート](/ja/release_note)

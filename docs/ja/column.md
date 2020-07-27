@@ -42,6 +42,9 @@ id,suuid,parent_id,parent_type,created_at,updated_at,deleted_at,created_user,upd
 
 ### 列種類
 設定する列の種類です。この項目で登録した内容が、データ登録時のフォームに適用されます。
+
+> カスタム列ごとの、システムの仕様詳細は、[カスタム列リファレンス](/ja/column_reference)をご確認ください。
+
 #### 1行テキスト
 1行テキスト(テキストボックス)です。  
 ![カスタムビュー画面](img/column/column_type1.png)
