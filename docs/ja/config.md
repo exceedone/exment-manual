@@ -307,14 +307,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : trueにすることで、レスポンス内の改行コードを削除します。
 
 #### ユーザービュー無効
-- 設定キー : EXMENT_USER_VIEW_DISABLED
-- 既定値 : false
-- 役割 : trueにすることで、一般ユーザーがユーザービューを作成できなくなります。
+
+> v3.5.0より、システム設定画面から変更するように変更になりました。
 
 #### ユーザーダッシュボード無効
-- 設定キー : EXMENT_USER_DASHBOARD_DISABLED
-- 既定値 : false
-- 役割 : trueにすることで、一般ユーザーがユーザーダッシュボードを作成できなくなります。
+
+> v3.5.0より、システム設定画面から変更するように変更になりました。
 
 #### パスワードポリシーを適用する
 - 設定キー : EXMENT_PASSWORD_POLICY
@@ -330,6 +328,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : EXMENT_FILE_DELETE_USERONLY
 - 既定値 : false
 - 役割 : trueにすることで、データ詳細画面でアップロードされているファイルは、アップロード者以外は削除できないようになります。
+
+#### ファイルのドラッグ＆ドロップの無効
+- 設定キー : EXMENT_FILE_DRAG_DROP_DISABLED
+- 既定値 : false
+- 役割 : trueにすることで、カスタム列のファイル・画像列などのドラッグ＆ドロップ表示項目を無効にします。
 
 
 
