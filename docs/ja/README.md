@@ -165,6 +165,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/operation">
+                    <div class="tile-inner">
+                        <h5>データ更新イベント設定</h5>
+                        <p>データの新規作成時や更新時、ボタンをクリック時などに、列の値を更新します。</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>

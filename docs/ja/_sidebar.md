@@ -24,7 +24,7 @@
   * [リレーション設定](/ja/relation)
   * [カスタムフォーム](/ja/form)
   * [カスタムビュー](/ja/view)
-  * [一括更新](/ja/mass_update)
+  * [データ更新設定](/ja/operation)
 
 * 【5. データ管理】
   * [データ](/ja/data)
