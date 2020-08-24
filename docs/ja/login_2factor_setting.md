@@ -29,7 +29,7 @@ ID/パスワードによるログイン後、Google認証システムを使用�
 
 ~~~
 composer require pragmarx/google2fa
-composer require simplesoftwareio/simple-qrcode
+composer require simplesoftwareio/simple-qrcode=^2.0.0
 ~~~
 
 - プロジェクトのルートフォルダより、「.env」ファイルを開き、以下のように追記を行ってください。  
