@@ -33,8 +33,8 @@
   * [データ登録](/ja/data_form)
   * [削除済データ](/ja/deleted_data)
   * [データインポート・エクスポート](/ja/data_import_export)
-  * [データインポート（バッチ）](/ja/data_cmd_import)
-  * [データインポート（大量データ）](/ja/data_bulk_insert)
+  * [インポート・エクスポート（コマンド](/ja/data_cmd_import_export)
+  * [インポート（大量データ）](/ja/data_bulk_insert)
   * [検索](/ja/search)
 
 * 【6. ユーザー・組織・役割グループ】

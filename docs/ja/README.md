@@ -209,12 +209,20 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 <a href="#/ja/data_import_export">
                     <div class="tile-inner">
                         <h5>データインポート・エクスポート</h5>
-                        <p>対象のテーブルに、CSV・Excelファイルから、データを一括で登録・更新・削除します。</p>
+                        <p>対象のテーブルに、CSV・Excelファイルから、データを一括で登録・更新・削除します。また、対象のテーブルのデータを、CSV・Excelファイルに出力します。</p>
                     </div>
                 </a>
             </div>
             <div class="col-sm-6 tile">
-                <a href="#/ja/data_import_export">
+                <a href="#/ja/data_cmd_import_export">
+                    <div class="tile-inner">
+                        <h5>データインポート・エクスポート(コマンド)</h5>
+                        <p>データのインポート・エクスポートを、コマンドから実行します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/data_bulk_insert">
                     <div class="tile-inner">
                         <h5>データインポート(大量データ)</h5>
                         <p>対象のテーブルに、CSVデータを一括で登録します。大量データに対応しております。</p>
