@@ -14,6 +14,9 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
 ## 機能・スクリーンショット
 <a href="https://exment.net/functions" target="_blank">機能・スクリーンショット</a>をご確認ください。
 
+## 更新履歴・リリースノート
+<a href="https://exment.net/docs/#/ja/release_note">リリースノート</a>をご確認ください。
+
 
 ## マニュアルメニュー
 「<span style="color:red;">*</span>」で記載されているメニューは、特に重要な内容になります。

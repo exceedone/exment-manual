@@ -29,7 +29,7 @@ This is how to set up two-factor authentication.
 
 ~~~
 composer remove pragmarx/google2fa
-composer remove  simplesoftwareio/simple-qrcode
+composer remove  simplesoftwareio/simple-qrcode=^2.0.0
 ~~~
 
 - Open the ".env" file from the root folder of the project, and add as follows.  
