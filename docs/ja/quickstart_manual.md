@@ -59,14 +59,16 @@ APP_URL=http://XXXX.com #そのサイトにアクセスするURL。"admin"は不
 DB_CONNECTION=mysql
 # MariaDBの場合、以下の設定値に修正します
 DB_CONNECTION=mariadb
+# SQL Serverの場合、以下の設定値に修正します
+DB_CONNECTION=sqlsrv
 
-DB_HOST=127.0.0.1 #MySQLのホスト名
-DB_PORT=3306 #MySQLのポート番号
-DB_DATABASE=homestead #MySQLのExment用データベース名
-DB_USERNAME=homestead #MySQLのExment用データベースのユーザー名
-DB_PASSWORD=secret #MySQLのExment用データベースの1パスワード
+DB_HOST=127.0.0.1 #データベースのホスト名
+DB_PORT=3306 #データベースのポート番号
+DB_DATABASE=homestead #データベースのExment用データベース名
+DB_USERNAME=homestead #データベースのExment用データベースのユーザー名
+DB_PASSWORD=secret #データベースのExment用データベースの1パスワード
 
-# v1.2.0より、日本語と日本時間の設定。コピー・ペーストで設定する
+# 日本語と日本時間の設定。コピー・ペーストで設定する
 APP_TIMEZONE=Asia/Tokyo
 APP_LOCALE=ja
 
