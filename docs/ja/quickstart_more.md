@@ -38,5 +38,8 @@ API実施時に、429 Too Many Requestsが発生する場合の対処法です�
 - [通知処理の遅延実行](/ja/additional_queue)  
 通知など、一部の処理を遅延実行(キュー実行)することができます。
 
+- [リバースプロキシ設定](/ja/additional_reverse_proxy)  
+リバースプロキシで環境構築時の追加設定です。
+
 - [エキスパートモード](/ja/additional_expert)  
 より柔軟な設定項目を表示するための手順です。
