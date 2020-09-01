@@ -27,6 +27,7 @@ Exmentでは標準設定の場合、添付ファイルはWebサーバー上に�
 - **Amazon S3** : Amazon S3。キー名 : s3
 - **Azure Blob** : Azure Blob。キー名 : azure
 
+> v3.6.2より、独自のドライバに対応しました。詳細は、このページ下部の「独自のドライバ追加」をご確認ください。
 
 ## 設定方法
 
@@ -341,5 +342,164 @@ AZURE_STORAGE_CONTAINER_PLUGIN=exment_plugin
 ### 注意事項
 - サーバーによって、ファイル保存が実施できない場合がございます。  
 特にレンタルサーバーの場合、**提供会社の設定により、FTPなどを制限している場合がございます。**あらかじめご了承ください。
+
+
+
+
+## (上級者・開発者向け)独自のドライバ追加
+Exmentでは、FTPやAmazon S3といったドライバに対応しております。  
+ここでは、Exment標準では対応していない、独自のドライバを使用する方法を記載します。  
+
+### 前提
+- ※Exmentでは、前述の「ファイルの種類(添付ファイル、バックアップ、プラグイン、テンプレート)」ごとに、ルートフォルダを分ける必要があります。  
+
+- 使用するファイルシステムで、ルートフォルダを分ける機能がない場合、アップロード先を変更する、ファイルの種類ごとのアプリケーションを作成する、といった対応が必要になります。
+
+### 利用条件
+Exmentでは、[Laravelのファイルシステム](https://readouble.com/laravel/5.6/ja/filesystem.html)の機能を使用して、独自のドライバを管理します。  
+そのため、Laravelのファイルシステムが用意されているサービスのみ、Exmentのファイル管理に対応します。(もしくは、ご自身でドライバを準備する必要があります。)
+
+### 開発方法
+ここでは例として、ファイルのアップロード先をDropboxにする方法について、記載します。
+
+#### 必要なパッケージの取得
+LaravelでDropboxを管理するために必要なパッケージを追加します。
+
+```
+composer require spatie/flysystem-dropbox
+```
+
+#### ファイルの作成・追記
+以下のファイルを追加・追記します。
+
+- ##### アダプタ
+"app/Exment/Driver"フォルダを新規作成し、ファイル"ExmentAdapterDropbox.php"を作成します。
+
+``` php
+<?php
+
+namespace App\Exment\Driver;
+
+use Spatie\FlysystemDropbox\DropboxAdapter;
+
+use Exceedone\Exment\Model\File;
+use Exceedone\Exment\Enums\Driver;
+use Exceedone\Exment\Storage\Adapter\ExmentAdapterInterface2;
+use Exceedone\Exment\Storage\Adapter\AdapterTrait;
+
+// (1) DropboxAdapterを継承。※DropboxAdapterは、\League\Flysystem\Adapter\AbstractAdapterを継承
+// (2) ExmentAdapterInterface もしくは ExmentAdapterInterface2を継承
+class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterface2
+{
+    //(3)AdapterTraitをuseする
+    use AdapterTrait;
+    
+    /**
+     * (4)ファイルのURLを取得。基本的には、下記の処理をそのまま使用してください
+     */
+    public function getUrl(string $path): string
+    {
+        return File::getUrl($path);
+    }
+    
+    /**
+     * (5) アダプタのインスタンス時に呼び出されるメソッド
+     */
+    public static function getAdapter($app, $config, $driverKey)
+    {
+        $mergeFrom = array_get($config, 'mergeFrom');
+        $mergeConfig = static::mergeFileConfig('filesystems.disks.dropbox', "filesystems.disks.$mergeFrom", $mergeFrom);
+
+        $client = new \Spatie\Dropbox\Client(array_get($mergeConfig, 'token'));
+
+        // Let's teach Flysystem to interact with Dropdox,
+        // thanks to an adapter made by Spatie as usual.
+        $driver = new self($client);
+        return $driver;
+    }
+
+
+    /**
+     * (6) 設定ファイルのマージ
+     * @param string $mergeFrom 'exment', 'backup', 'plugin', 'template' 文字列
+     */
+    public static function getMergeConfigKeys(string $mergeFrom, array $options = []) : array{
+        return [
+            'token' => config('filesystems.disks.dropbox.access_token_' . $mergeFrom),
+        ];
+    }
+}
+
+```
+
+```
+(1) アダプタファイルでは、\League\Flysystem\Adapter\AbstractAdapterを継承するようにしてください。  
+Dropboxでは、\Spatie\FlysystemDropbox\DropboxAdapterが上記クラスを継承しているので、そちらを継承してください。　　
+
+(2) \Exceedone\Exment\Storage\Adapter\ExmentAdapterInterface2 もしくは \Exceedone\Exment\Storage\Adapter\ExmentAdapterInterface を実装してください。  
+※ExmentAdapterInterfaceとExmentAdapterInterface2は、関数getUrlの引数と戻り値に、型の明示化が行われているかどうかのみ、異なります。  
+
+(3)AdapterTraitをuseしてください。  
+
+(4)基本的には、記載の処理をそのまま使用してください。  
+
+(5)アダプタのインスタンス化の際に呼び出されるメソッドです。基本的に、各自のファイルサービスのインスタンス化方法に従い、実装を行ってください。    
+
+(6)設定値のマージを行うための、キー値と設定値の一覧を設定します。  
+※Exmentでは、前述の「ファイルの種類(添付ファイル、バックアップ、プラグイン、テンプレート)」ごとに、ルートフォルダを分ける必要があります。  
+Dropboxの場合、同一のアプリで、ルートフォルダを分ける機能はありません。  
+そのため、ファイルの種類ごとに、個別のDropBoxアプリを作成する必要があります。  
+このマージ処理では、ファイルの種類ごとにそれぞれ作成されるアクセストークンを、設定値として振り分けるための処理になります。
+```
+
+    
+- ##### フック
+"app/Exment"フォルダの"bootstrap.php"に、以下を追記します。
+
+``` php
+<?php
+// \Exceedone\Exment\Enums\Driver::extendメソッド実行
+// 第一引数：アダプタのキー名
+// 第二引数：実装したAdapterのパス
+\Exceedone\Exment\Enums\Driver::extend('dropbox', \App\Exment\Driver\ExmentAdapterDropbox::class);
+
+```
+
+    
+- ##### 設定値
+"config"フォルダの"filesystems.php"に、以下を追記します。  
+ファイルの種類ごとに、Dropboxのアプリを分ける必要があるため、ファイルの種類ごとのトークンを設定します。
+
+``` php
+    'dropbox' => [
+        'driver' => 'dropbox',
+        'access_token_exment' => env('DROPBOX_ACCESS_TOKEN_EXMENT'),
+        'access_token_backup' => env('DROPBOX_ACCESS_TOKEN_BACKUP'),
+        'access_token_plugin' => env('DROPBOX_ACCESS_TOKEN_PLUGIN'),
+        'access_token_template' => env('DROPBOX_ACCESS_TOKEN_TEMPLATE'),
+    ],
+```
+
+    
+- ##### .envファイル
+ルートフォルダの".env"に、以下を追記します。
+
+```
+# 以下、必要なもののみ追記
+EXMENT_DRIVER_EXMENT=dropbox
+EXMENT_DRIVER_BACKUP=dropbox
+EXMENT_DRIVER_TEMPLATE=dropbox
+EXMENT_DRIVER_PLUGIN=dropbox
+
+# 以下、必要なもののみ追記
+DROPBOX_ACCESS_TOKEN_EXMENT=XXXXXX
+DROPBOX_ACCESS_TOKEN_BACKUP=YYYYYY
+DROPBOX_ACCESS_TOKEN_TEMPLATE=ZZZZZZ
+DROPBOX_ACCESS_TOKEN_PLUGIN=VVVVVV
+
+```
+
+これで、実装完了です。
+
 
 [←追加設定一覧へ戻る](/ja/quickstart_more)
