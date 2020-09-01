@@ -82,6 +82,7 @@
   * [カスタム列リファレンス](/ja/column_reference)
   * [プラグインリファレンス](/ja/plugin_reference)
   * [設定値一覧](/ja/config)
+  * [コマンド一覧](/ja/command)
   * [リリースノート](/ja/release_note)
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
   * [トラブルシューティング](/ja/troubleshooting)
