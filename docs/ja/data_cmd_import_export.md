@@ -3,7 +3,7 @@ Exmentに保存している、各テーブルのデータを、コマンドか�
 
 > データのインポート・エクスポートの概要については、[こちら](/ja/data_import_export)をご確認ください。
 
-## データエクスポート（コマンド）
+## データエクスポート
 Exmentに保存している、各テーブルのデータを、コマンドからエクスポート（出力）します。  
 出力データのフォーマットは、csv、xlsxに対応しております。  
 
@@ -24,7 +24,7 @@ php artisan exment:export information
 ### コマンドの引数
 
 ```
-php artisan exment:export (テーブル名) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0}
+php artisan exment:export (テーブル名) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0} {--chunk=0} {--chunkcount=1000}
 ```
 
 - ##### テーブル名  
@@ -63,12 +63,47 @@ php artisan exment:export (テーブル名) {--action=default} {--type=all} {--p
 - ##### add_setting  
 (オプション)設定データも出力するかどうか。既定値は0(出力しない)。
 
+- ##### chunk  
+(オプション)chunkモードで出力します。詳細は下記の「データエクスポート(chunkモード)」をご確認ください。
+
+- ##### chunkcount  
+(オプション)chunkモードのときの、1ファイルごとの出力件数です。既定値は1000です。詳細は下記の「データエクスポート(chunkモード)」をご確認ください。
+
+
+
+## データエクスポート(chunkモード)
+指定の件数(既定値：1000件)毎に、データを分割して出力します。大量データの出力を行う場合、1ファイルの行数を削減することができます。  
+
+- ファイル名は、 **「(カスタムテーブルの名前).連番.csv」** (例：client.01.csv)のように、連番で出力されます。
+```
+#例
+client.01.csv
+client.02.csv
+client.03.csv
+```
+
+### 操作方法
+「データエクスポート」と同様ですが、"--chunk=1"を追加してください。
+
+~~~
+php artisan exment:export (テーブル名) --chunk=1
+
+# 例
+php artisan exment:export information --chunk=1
+~~~
+
+### コマンドの引数
+「データエクスポート」と同様ですが、以下の制限がかかります。
+
+- "type"は"all"(全件出力)になります。
+- "page"、"count"の指定はできません。
+- "add_relation"、"add_setting"の指定はできず、リレーションデータ、設定ファイルは未出力になります。
 
 
 
 
 
-## データインポート（コマンド）
+## データインポート
 Exmentのカスタムテーブルに、指定フォルダ内のファイルからデータを一括投入します。  
 ※使用できるファイルは、画面からのインポートと同じ形式のEXCELファイル又はcsvファイルです。  
 ※画面では制限されている1000件を超えるデータも投入できます。  

@@ -447,6 +447,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/ja/command">
+                    <div class="tile-inner">
+                        <h5>コマンド一覧</h5>
+                        <p>Exmentで実行できるコマンド一覧です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/release_note">
                     <div class="tile-inner">
                         <h5>リリースノート</h5>
