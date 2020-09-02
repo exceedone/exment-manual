@@ -24,7 +24,7 @@ php artisan exment:export information
 ### コマンドの引数
 
 ```
-php artisan exment:export (テーブル名) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0} {--chunk=0} {--chunkcount=1000}
+php artisan exment:export (テーブル名) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0}
 ```
 
 - ##### テーブル名  
@@ -63,43 +63,83 @@ php artisan exment:export (テーブル名) {--action=default} {--type=all} {--p
 - ##### add_setting  
 (オプション)設定データも出力するかどうか。既定値は0(出力しない)。
 
-- ##### chunk  
-(オプション)chunkモードで出力します。詳細は下記の「データエクスポート(chunkモード)」をご確認ください。
-
-- ##### chunkcount  
-(オプション)chunkモードのときの、1ファイルごとの出力件数です。既定値は1000です。詳細は下記の「データエクスポート(chunkモード)」をご確認ください。
 
 
 
-## データエクスポート(chunkモード)
-指定の件数(既定値：1000件)毎に、データを分割して出力します。大量データの出力を行う場合、1ファイルの行数を削減することができます。  
+<h2 id="export_chunk">データエクスポート(chunkモード)</h2>
+指定の件数(既定値：1000件)毎に、データを分割して出力します。大量データの出力を行う場合、1ファイル内の行数を削減することができます。  
 
-- ファイル名は、 **「(カスタムテーブルの名前).連番.csv」** (例：client.01.csv)のように、連番で出力されます。
-```
-#例
-client.01.csv
-client.02.csv
-client.03.csv
-```
 
 ### 操作方法
-「データエクスポート」と同様ですが、"--chunk=1"を追加してください。
+
+- コマンドラインで、以下のコマンドを実行します。
 
 ~~~
-php artisan exment:export (テーブル名) --chunk=1
+php artisan exment:chunkexport (テーブル名)
 
 # 例
-php artisan exment:export information --chunk=1
+php artisan exment:chunkexport information
 ~~~
 
+- 上記のコマンドを実行することで、フォルダ「(Exmentのルートフォルダ)/storage/app/export/(実行日時：yyyyMMddHHiiss)」に、csvデータが出力されます。
+
+
 ### コマンドの引数
-「データエクスポート」と同様ですが、以下の制限がかかります。
 
-- "type"は"all"(全件出力)になります。
-- "page"、"count"の指定はできません。
-- "add_relation"、"add_setting"の指定はできず、リレーションデータ、設定ファイルは未出力になります。
+```
+exment:chunkexport {テーブル名} {--action=default} {--start=1} {--end=1000} {--count=1000} {--seqlength=1}  {--format=csv} {--view=} {--dirpath=}
+```
+
+- ##### テーブル名  
+(必須)出力する対象のテーブル名(英数字)。
+
+- ##### action  
+(オプション)エクスポートを実施する方法。
+    - default : すべてのシステム列・カスタム列を出力。既定値。
+    - view : 指定のビュー形式で出力。
+
+- ##### start  
+(オプション)出力を開始する番号。エクスポートが途中で終了してしまった場合、指定の連番からエクスポートを再開することもできます。未指定の場合、1。
+
+- ##### end  
+(オプション)出力を終了する番号。未指定の場合、1000。
+
+- ##### count    
+(オプション)1ファイルに出力する最大データ件数。未指定の場合、1000。
+
+- ##### seqlength    
+(オプション)連番の0埋めの桁数。例として「3」と入力した場合、"001", "002"のように連番を出力。未指定の場合、1。
+
+- ##### format  
+(オプション)エクスポートするファイル形式。
+    - csv : CSV形式。既定値。
+    - xlsx : Xlsx(Excel)形式。
+
+- ##### view  
+(オプション)出力対象のビュー。idかsuuidで指定。未設定の場合、全件ビューで出力。
+
+- ##### dirpath  
+(オプション)エクスポートするフォルダパス。フルパス。未設定の場合、(Exmentのルートフォルダ)/storage/app/export/(実行日時：yyyyMMddHHiiss)。
 
 
+
+### 出力仕様
+
+- ファイル名は、 **「(カスタムテーブルの名前).連番.csv」** (例：client.1.csv)のように、連番で出力されます。
+
+```
+#例
+client.1.csv
+client.2.csv
+client.3.csv
+
+#例(seqlength=3と指定した場合)
+client.001.csv
+client.002.csv
+client.003.csv
+```
+
+- データ件数やcountオプションによらず、1回の実行での最大ファイル数は、1000件です。
 
 
 

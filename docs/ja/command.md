@@ -7,7 +7,8 @@ Exmentで利用可能なコマンド一覧です。
 <h3 class="asterisk">インストール</h3>
 
 Exmentを手動でインストールするためのコマンドです。  
-詳細は[こちら](/ja/quickstart_manual)をご確認ください。
+詳細は[こちら](/ja/quickstart_manual)をご確認ください。 
+※インストールは、下記のコマンド以外にも必要な作業がございます。インストール実行時には、基本的に上記のリンク先の内容に従い、実行してください。
 
 ```
 php artisan exment:install
@@ -39,6 +40,14 @@ php artisan exment:publish
 
 ~~~
 php artisan exment:export (テーブル名)
+~~~
+
+### データエクスポート(chunkモード)
+データのエクスポート(chunkモード、分割出力)をコマンドから実行します。  
+詳細は[こちら](/ja/data_cmd_import_export#export_chunk)をご確認ください。
+
+~~~
+php artisan exment:chunkexport (テーブル名)
 ~~~
 
 
