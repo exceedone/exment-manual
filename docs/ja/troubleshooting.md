@@ -19,17 +19,40 @@ Killed
 # パターン2
 mmap() failed: [12] Cannot allocate memory
 PHP Fatal error:  Out of memory (allocated XXXXX) (tried to allocate XXXXX bytes) in phar:///usr/local/bin/composer/src/Composer/Console/Application.php on line 82
+
+# パターン3
+Fatal error: Allowed memory size of XXXXXXXX bytes exhausted
 ```
 
 これはメモリ不足によるエラーです。  
-その場合、swapを作成することで解決する場合があります。
+
+その場合、以下のいずれかの内容を実施することで、解決する場合があります。
+
+#### swap作成
+以下のコマンドでswapを作成後、再度インストールやアップデートを実施してください。  
+※環境に応じ、適宜コマンドの頭に"sudo"を追加してください。
 
 ~~~
-sudo dd if=/dev/zero of=/swapfile bs=2M count=2048
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
+dd if=/dev/zero of=/swapfile bs=2M count=2048
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
 ~~~
+
+#### メモリ上限の変更
+以下の内容を実施してください。
+
+- php.iniファイルのmemory_limitを修正します。
+
+```
+memory_limit=000M #適宜、現在よりサイズを大きくする
+memory_limit=-1 #もしくはこちらの指定。メモリを無制限に使用する可能性があるので、自己責任で設定してください
+```
+
+- composerの環境変数を設定(アップデート時の問題の場合、バッチに追加してください)
+COMPOSER_MEMORY_LIMIT=-1 composer update
+
+
 
 
 ### 初回インストール後、管理画面にアクセス時、「SQLSTATE[HY000][202] Permission denied」エラーが発生する
