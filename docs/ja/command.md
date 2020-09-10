@@ -136,6 +136,15 @@ php artisan exment:schedule
 
 ## その他、開発用
 
+### パスワードリセット
+Exmentのログインパスワードリセットを、コマンドから実行します。  
+詳細は[こちら](/ja/login_setting#パスワードリセットコマンド)をご確認ください。
+
+```
+php artisan exment:resetpassword --email=(対象ユーザーのメールアドレス) --password=(変更後パスワード)
+```
+
+
 ### テストデータ作成
 Exmentのテストデータ一式を作成します。  
 <span class="red">※登録済みの全データが削除されますので、ご注意ください。</span>
