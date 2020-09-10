@@ -101,9 +101,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 ### 検索
 #### 検索時全文一致
-- 設定キー : EXMENT_FILTER_SEARCH_FULL
-- 既定値 : false
-- 役割 : データ検索時に、全文一致とするかどうかです。trueの場合は全文一致、falseの場合は前方一致です。詳細は[こちら](/ja/search?id=補足データ検索を部分一致に切り替え)をご確認ください。
+> システム設定画面から変更するように変更になりました。
 
 
 #### 検索画面から一覧画面へ遷移時の、フィルタ有無
@@ -150,9 +148,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 ### API
 
 #### API有効・無効
-- 設定キー : EXMENT_API
-- 既定値 ： false
-- 役割 : trueにすることで、ExmentのAPIを使用することができます。詳細は[こちら](/ja/api)をご確認ください。
+> システム設定画面から変更するように変更になりました。
 
 #### APIの標準取得件数
 - 設定キー : EXMENT_API_DEFAULT_DATA_COUNT
@@ -176,7 +172,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 #### データのlabel取得
 - 設定キー : EXMENT_API_APPEND_LABEL
-- 既定値 ： true(2020/05/01以降よりfalse予定)
+- 既定値 ： false
 - 役割 : trueにすることで、データ一覧取得、もしくはデータ新規作成・更新の実行時に、label列を含めることができます。
 
 
@@ -244,27 +240,27 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### インポートの無効
 - 設定キー : EXMENT_IMPORT_DISABLED
 - 既定値 : false
-- 役割 : trueにすることで、データのインポート機能を非表示にします。
+- 役割 : trueにすることで、全テーブルの一覧画面で、データのインポート機能を非表示にします。
 
 #### エクスポートの無効
 - 設定キー : EXMENT_EXPORT_DISABLED
 - 既定値 : false
-- 役割 : trueにすることで、データのエクスポート機能を非表示にします。
+- 役割 : trueにすることで、全テーブルの一覧画面で、データのエクスポート機能を非表示にします。
 
 #### エクスポート(ビュー)の無効
 - 設定キー : EXMENT_EXPORT_VIEW_DISABLED
 - 既定値 : false
-- 役割 : trueにすることで、データのエクスポート(ビュー)機能を非表示にします。
+- 役割 : trueにすることで、全テーブルの一覧画面で、データのエクスポート(ビュー)機能を非表示にします。
 
 #### csv形式によるインポート・エクスポートの無効
 - 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_CSV
 - 既定値 : false
-- 役割 : trueにすることで、データのインポート・エクスポートボタンから、csv形式が表示されなくなります。
+- 役割 : trueにすることで、全テーブルの一覧画面で、データのインポート・エクスポートボタンから、csv形式が表示されなくなります。
 
 #### xlsx形式によるインポート・エクスポートの無効
 - 設定キー : EXMENT_IMPORT_EXPORT_DISABLED_EXCEL
 - 既定値 : false
-- 役割 : trueにすることで、データのインポート・エクスポートボタンから、xlsx形式が表示されなくなります。
+- 役割 : trueにすることで、全テーブルの一覧画面で、データのインポート・エクスポートボタンから、xlsx形式が表示されなくなります。
 
 #### csv形式のエクスポート時、BOMを追加
 - 設定キー : EXMENT_EXPORT_APPEND_CSV_BOM
@@ -323,11 +319,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### ユーザーダッシュボード無効
 
 > v3.5.0より、システム設定画面から変更するように変更になりました。
-
-#### パスワードポリシーを適用する
-- 設定キー : EXMENT_PASSWORD_POLICY
-- 既定値 : false
-- 役割 : trueにすることで、パスワードの複雑性、有効日数、最近使用した履歴との比較件数、などを設定出来るようになります。
 
 #### データ詳細画面で「隠しフィールド」を非表示にする
 - 設定キー : EXMENT_HIDE_HIDDENFIELD
