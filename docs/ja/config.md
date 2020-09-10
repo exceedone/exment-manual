@@ -98,6 +98,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueの場合、ブラウザを閉じた場合に、自動的にログアウトします。
 
+#### ログイン画面のヘッダーロゴ未使用
+- 設定キー : EXMENT_DISABLE_LOGIN_HEADER_LOGO
+- 既定値 : false
+- 役割 : trueの場合、Exmentのシステム設定でロゴを設定していても、ログイン画面でヘッダーを使用しません。
+
 
 ### 検索
 #### 検索時全文一致
@@ -123,6 +128,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 
 ### メール・通知設定
+#### ページ右上の通知バー表示・非表示
+- 設定キー : EXMENT_NOTIFY_NAVBAR
+- 既定値 : true
+- 役割 : falseの場合、ヘッダー右上の通知アイコンが非表示になります。
+
 #### メール設定値をenvファイルより使用
 - 設定キー : EXMENT_MAIL_SETTING_ENV_FORCE
 - 既定値 : false
