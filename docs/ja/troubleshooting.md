@@ -53,6 +53,22 @@ memory_limit=-1 #もしくはこちらの指定。メモリを無制限に使用
 COMPOSER_MEMORY_LIMIT=-1 composer update
 
 
+### 手動インストールやアップデート時、エラーが発生する
+
+手動インストールやアップデート時、以下のようなエラーが発生する場合があります。
+
+```
+Installation failed, reverting ./composer.json to its original content.
+
+  [RuntimeException]
+  Could not load package XXX/XXX in http://repo.packagist.org: [UnexpectedValueException] Could not parse version constraint ~4.*: Invalid version string "~4.*"
+```
+
+この場合、composerのバージョンを上げることにより、解決する場合があります。以下のコマンドで、composerのバージョンを最新版に更新してください。
+
+```
+composer selfupdate
+```
 
 
 ### 初回インストール後、管理画面にアクセス時、「SQLSTATE[HY000][202] Permission denied」エラーが発生する
