@@ -53,7 +53,7 @@ memory_limit=-1 #もしくはこちらの指定。メモリを無制限に使用
 COMPOSER_MEMORY_LIMIT=-1 composer update
 
 
-### 手動インストールやアップデート時、エラーが発生する
+### 手動インストールやアップデート時、composerエラーが発生する
 
 手動インストールやアップデート時、以下のようなエラーが発生する場合があります。
 
@@ -64,11 +64,41 @@ Installation failed, reverting ./composer.json to its original content.
   Could not load package XXX/XXX in http://repo.packagist.org: [UnexpectedValueException] Could not parse version constraint ~4.*: Invalid version string "~4.*"
 ```
 
-この場合、composerのバージョンを上げることにより、解決する場合があります。以下のコマンドで、composerのバージョンを最新版に更新してください。
+この場合、composerのバージョンを上げることにより、解決する場合があります。以下のコマンドで、composerのバージョンを最新版に更新してください。  
+**※環境により、アップデート方法が異なるようです。以下の内容のいずれかで、composer更新をご検証ください。**
+
+
+#### (1)以下のコマンドを実施
 
 ```
 composer selfupdate
 ```
+
+#### (2)以下のコマンドを実施
+
+```
+composer self-update
+```
+
+#### (3)上記のどちらでも更新ができない場合、以下の手順を実施
+
+- ##### composer削除
+すでにインストールされているcomposerを、一度削除します。
+
+```
+which composer
+#結果例 : /usr/bin/composer
+###以下のコマンドを実施
+rm /usr/bin/composer
+```
+
+- ##### composer再インストール
+以下の手順で、composerを再インストールしてください。
+    - [公式サイト](https://getcomposer.org/download/)
+    - [Windows版 解説サイト](https://weblabo.oscasierra.net/php-composer-windows-install/)
+    - [Linux版 解説サイト](https://weblabo.oscasierra.net/php-composer-centos-install/)
+    - [Mac版 解説サイト](https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
+
 
 
 ### 初回インストール後、管理画面にアクセス時、「SQLSTATE[HY000][202] Permission denied」エラーが発生する
