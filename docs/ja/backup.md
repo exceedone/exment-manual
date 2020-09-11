@@ -83,7 +83,9 @@ Exmentでは、決まった時刻に自動的にバックアップを行うこ�
 
 - その後、ページ下部の［保存］ボタンをクリックします。  
 
-<h3 id="backup_command">(上級者向け)コマンドによるバックアップ</h3>
+<h3 id="backup_command">
+<a href="#/ja/backup?id=backup_command" data-id="backup_command" class="anchor"><span>(上級者向け)コマンドによるバックアップ</span></a>
+</h3>
 
 コマンドによるバックアップも可能です。プロジェクトのルートディレクトリで、以下のコマンドを実行してください。
 
