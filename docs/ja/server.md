@@ -21,7 +21,7 @@ Exmentをご利用いただく場合、はじめにWebサーバー設定と、�
 →ExmentをIISに構築する場合の手順
 
 - [AWSに構築](/ja/install_aws)  
-→(β版)ExmentをAWSに構築する場合の手順
+→ExmentをAWSに構築する場合の手順
 
 
 # composer導入

@@ -118,6 +118,9 @@ extension=mysqli.so
 extension=pdo.so
 extension=pdo_mysql.so
 extension_dir=/usr/lib64/php/modules/
+
+#以下の記述が含まれていれば、値を変更、もしくは追加
+safe_mode=Off
 ~~~
 
 - httpd.confを修正します。
