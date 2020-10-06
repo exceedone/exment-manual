@@ -2,14 +2,13 @@
 本ページでは、DockerでExmentを構築する手順を記載します。  
 
 ## Special thanks!
-Dockerによる構築は、[yamada28go氏によるdockerリポジトリ](https://github.com/yamada28go/docker-exment)をベースに、構築しております。誠にありがとうございます！
+Dockerイメージは、[yamada28go氏によるdockerリポジトリ](https://github.com/yamada28go/docker-exment)をベースに、構築しております。誠にありがとうございます！
 
 ## 環境
 本ページでは、以下の内容で構築を行っております。  
 - nginx 最新版
 - PHP 7.3.XX
 - Debian
-- Apache 2.4.6
 - MySQL 5.7.XX
 
 ## 注意点
@@ -42,7 +41,6 @@ http://localhost:8080/admin
 
 - データベース情報は以下の通りです。
 
-
 | 項目 | 設定値 |
 | ---- | ---- |
 | ホスト名 | db |
@@ -60,7 +58,7 @@ docker ps
 123412341234        exment-docker_php   "docker-php-entrypoi…"   8 minutes ago       Up 8 minutes        9000/tcp                             exment-docker_php_1
 ```
 
-- 結果のうち、「exment-docker_php」となっているイメージの、「CONTAINER ID」の値をコピーします。
+- 結果のうち、「exment-docker_php」となっているイメージの、「CONTAINER ID」の値をコピーします。上記の例の場合、「123412341234」が該当します。  
 
 - 以下のコマンドを実行します。
 
@@ -72,3 +70,7 @@ docker exec -it 123412341234 /bin/bash
 
 - これで、Exmentが起動しているWebサーバーに接続できます。
 
+
+## その他
+現在、このDockerイメージは検証中、ならびに機能追加中です。  
+機能要望は、[こちら](https://github.com/exment-git/docker-exment/issues)よりお願いします。
