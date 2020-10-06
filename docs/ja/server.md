@@ -23,6 +23,8 @@ Exmentをご利用いただく場合、はじめにWebサーバー設定と、�
 - [AWSに構築](/ja/install_aws)  
 →ExmentをAWSに構築する場合の手順
 
+- [Dockerで構築](/ja/install_docker)  
+→ExmentをDockerで構築する場合の手順
 
 # composer導入
 Exmentには、composerの導入が必要です。導入方法はこちらをご参照ください。  
