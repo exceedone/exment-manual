@@ -111,6 +111,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/ja/login_sso">
+                    <div class="tile-inner">
+                        <h5>SSO認証設定</h5>
+                        <p>SSO認証の、管理者側の設定方法です。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/login_2factor_setting">
                     <div class="tile-inner">
                         <h5>2段階認証設定</h5>

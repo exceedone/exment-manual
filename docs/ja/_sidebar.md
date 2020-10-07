@@ -16,6 +16,7 @@
 * 【3. ログイン設定】
   * [ログイン設定](/ja/login_setting)
   * [2段階認証設定](/ja/login_2factor_setting)
+  * [SSO認証設定](/ja/login_sso)
   * [ログイン(2段階認証)](/ja/login_2factor)
 
 * 【4. テーブル設定】
