@@ -16,6 +16,7 @@
 * 【3. ログイン設定】
   * [ログイン設定](/ja/login_setting)
   * [2段階認証設定](/ja/login_2factor_setting)
+  * [SSO認証設定](/ja/login_sso)
   * [ログイン(2段階認証)](/ja/login_2factor)
 
 * 【4. テーブル設定】
@@ -82,6 +83,7 @@
   * [カスタム列リファレンス](/ja/column_reference)
   * [プラグインリファレンス](/ja/plugin_reference)
   * [設定値一覧](/ja/config)
+  * [コマンド一覧](/ja/command)
   * [リリースノート](/ja/release_note)
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
   * [トラブルシューティング](/ja/troubleshooting)

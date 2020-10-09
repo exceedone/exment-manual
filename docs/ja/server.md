@@ -21,8 +21,10 @@ Exmentをご利用いただく場合、はじめにWebサーバー設定と、�
 →ExmentをIISに構築する場合の手順
 
 - [AWSに構築](/ja/install_aws)  
-→(β版)ExmentをAWSに構築する場合の手順
+→ExmentをAWSに構築する場合の手順
 
+- [Dockerで構築](/ja/install_docker)  
+→ExmentをDockerで構築する場合の手順
 
 # composer導入
 Exmentには、composerの導入が必要です。導入方法はこちらをご参照ください。  
@@ -34,7 +36,7 @@ Exmentには、composerの導入が必要です。導入方法はこちらをご
 
 ## 動作環境
 ### サーバー
-- PHP 7.1.3以上 PHP7.3以下 ※現在PHP7.4非対応
+- PHP 7.1.3以上
 - MySQL 5.7.8以上、8.0.0未満 または MariaDB 10.2.7以上
 - Laravel5.6
 

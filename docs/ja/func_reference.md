@@ -584,6 +584,281 @@ $value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/informa
 
 
 
+## NotifyService / 通知サービス
+通知を実施する時に呼び出すサービスです。
 
+- namespace Exceedone\Exment\Services
+
+
+### 関数一覧
+
+
+#### (static)notifyMail
+メール通知を実施します。
+
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $params | array | 通知パラメータ。キーと説明は下記 |
+| $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
+| $params['user'] | CustomValue(user) or string | メール送信先のユーザーオブジェクト、もしくはメールアドレス |
+| $params['custom_value'] | CustomValue | メール送信対象のカスタムデータ |
+| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['subject'] | string | 件名 |
+| $params['body'] | string | 本文 |
+| $params['to'] | string | メール送信先。複数の場合はカンマ区切り |
+| $params['cc'] | string | メールCC。複数の場合はカンマ区切り |
+| $params['bcc'] | string | メールBCC。複数の場合はカンマ区切り |
+
+
+##### 使用例
+
+~~~ php
+    // 例1 シンプルなメール送信
+    NotifyService::notifyMail([
+        'subject' => 'テスト',
+        'body' => '本文です',
+        'to' => 'foobar@test.com',
+        'cc' => 'foobar1@test.com,foobar2@test.com',
+        'bcc' => 'foobar3@test.com,foobar4@test.com',
+    ]);
+    
+
+    // 例2 メールテンプレート使用
+    $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
+    NotifyService::notifyMail([
+        'mail_template' => $mail_template,
+        'to' => 'foobar1@test.com',
+    ]);
+    
+
+    // 例3 パラメータ置き換え
+    NotifyService::notifyMail([
+        'subject' => 'テスト ${prms1} ${prms2}',
+        'body' => '本文です。${prms3} ${prms4}',
+        'to' => 'foobar@test.com',
+        'prms' => [
+            'prms1' => 'AAA',
+            'prms2' => 'BBB',
+            'prms3' => 'CCC',
+            'prms4' => 'DDD',
+        ],
+    ]);
+
+    
+    // 例4 カスタムデータでパラメータ置き換え
+    $custom_value = CustomTable::getEloquent('contract')->getValueModel()->first();
+    NotifyService::notifyMail([
+        'subject' => 'テスト',
+        'body' => '本文です。${value:contract_code}', // $custom_valueのcontract_codeの値で置き換え
+        'custom_value' => $custom_value,
+        'to' => 'foobar@test.com',
+    ]);
+~~~
+
+---
+
+
+
+
+#### (static)notifyNavbar
+ページ右上のヘッダー通知を表示します。
+
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $params | array | 通知パラメータ。キーと説明は下記 |
+| $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
+| $params['user'] | CustomValue(user) | 通知送信先のユーザーオブジェクト |
+| $params['custom_value'] | CustomValue | 通知対象のカスタムデータ |
+| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['subject'] | string | 件名 |
+| $params['body'] | string | 本文 |
+
+
+##### 使用例
+
+~~~ php
+    // 例1 ユーザーID1のユーザーに、シンプルな通知
+    $user = CustomTable::getEloquent('user')->getValueModel()->find(1);
+    NotifyService::notifyNavbar([
+        'subject' => 'テスト',
+        'body' => '本文です',
+        'user' => $user,
+    ]);
+    
+
+    // 例2 メールテンプレート使用
+    $user = CustomTable::getEloquent('user')->getValueModel()->find(1);
+    $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
+    NotifyService::notifyNavbar([
+        'mail_template' => $mail_template,
+        'user' => $user,
+    ]);
+    
+
+    // 例3 パラメータ置き換え
+    $user = CustomTable::getEloquent('user')->getValueModel()->find(1);
+    NotifyService::notifyNavbar([
+        'subject' => 'テスト ${prms1} ${prms2}',
+        'body' => '本文です。${prms3} ${prms4}',
+        'user' => $user,
+        'prms' => [
+            'prms1' => 'AAA',
+            'prms2' => 'BBB',
+            'prms3' => 'CCC',
+            'prms4' => 'DDD',
+        ],
+    ]);
+
+    
+    // 例4 カスタムデータでパラメータ置き換え
+    $user = CustomTable::getEloquent('user')->getValueModel()->find(1);
+    $custom_value = CustomTable::getEloquent('contract')->getValueModel()->first();
+    NotifyService::notifyNavbar([
+        'subject' => 'テスト',
+        'body' => '本文です。${value:contract_code}', // $custom_valueのcontract_codeの値で置き換え
+        'custom_value' => $custom_value,
+        'user' => $user,
+    ]);
+~~~
+
+---
+
+
+
+
+#### (static)notifySlack
+Slackに通知を送信します。
+
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $params | array | 通知パラメータ。キーと説明は下記 |
+| $params['webhook_url'] | string | WebHookのURL |
+| $params['webhook_name'] | string | Slackに投稿する名前 |
+| $params['webhook_icon'] | string | Slackに投稿するアイコン |
+| $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
+| $params['custom_value'] | CustomValue | 通知対象のカスタムデータ |
+| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['subject'] | string | 件名 |
+| $params['body'] | string | 本文 |
+
+
+##### 使用例
+
+~~~ php
+    // 例1 Slackにシンプルな通知
+    NotifyService::notifySlack([
+        'webhook_url' => 'https://hooks.slack.com/services/XXXXX/YYYY',
+        'subject' => 'テスト',
+        'body' => '本文です',
+    ]);
+    
+
+    // 例2 メールテンプレート使用
+    $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
+    NotifyService::notifySlack([
+        'webhook_url' => 'https://hooks.slack.com/services/XXXXX/YYYY',
+        'mail_template' => $mail_template,
+    ]);
+    
+
+    // 例3 パラメータ置き換え
+    NotifyService::notifySlack([
+        'webhook_url' => 'https://hooks.slack.com/services/XXXXX/YYYY',
+        'subject' => 'テスト ${prms1} ${prms2}',
+        'body' => '本文です。${prms3} ${prms4}',
+        'prms' => [
+            'prms1' => 'AAA',
+            'prms2' => 'BBB',
+            'prms3' => 'CCC',
+            'prms4' => 'DDD',
+        ],
+    ]);
+
+    
+    // 例4 カスタムデータでパラメータ置き換え
+    $custom_value = CustomTable::getEloquent('contract')->getValueModel()->first();
+    NotifyService::notifySlack([
+        'webhook_url' => 'https://hooks.slack.com/services/XXXXX/YYYY',
+        'subject' => 'テスト',
+        'body' => '本文です。${value:contract_code}', // $custom_valueのcontract_codeの値で置き換え
+        'custom_value' => $custom_value,
+    ]);
+~~~
+
+---
+
+
+
+
+
+
+
+
+#### (static)notifyTeams
+Microsoft Teamsに通知を送信します。
+
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $params | array | 通知パラメータ。キーと説明は下記 |
+| $params['webhook_url'] | string | WebHookのURL |
+| $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
+| $params['custom_value'] | CustomValue | 通知対象のカスタムデータ |
+| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['subject'] | string | 件名 |
+| $params['body'] | string | 本文 |
+
+
+##### 使用例
+
+~~~ php
+    // 例1 Teamsにシンプルな通知
+    NotifyService::notifyTeams([
+        'webhook_url' => 'https://outlook.office.com/webhook/XXXXX/YYYYYY',
+        'subject' => 'テスト',
+        'body' => '本文です',
+    ]);
+    
+
+    // 例2 メールテンプレート使用
+    $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
+    NotifyService::notifyTeams([
+        'webhook_url' => 'https://outlook.office.com/webhook/XXXXX/YYYYYY',
+        'mail_template' => $mail_template,
+    ]);
+    
+
+    // 例3 パラメータ置き換え
+    NotifyService::notifyTeams([
+        'webhook_url' => 'https://outlook.office.com/webhook/XXXXX/YYYYYY',
+        'subject' => 'テスト ${prms1} ${prms2}',
+        'body' => '本文です。${prms3} ${prms4}',
+        'prms' => [
+            'prms1' => 'AAA',
+            'prms2' => 'BBB',
+            'prms3' => 'CCC',
+            'prms4' => 'DDD',
+        ],
+    ]);
+
+    
+    // 例4 カスタムデータでパラメータ置き換え
+    $custom_value = CustomTable::getEloquent('contract')->getValueModel()->first();
+    NotifyService::notifyTeams([
+        'webhook_url' => 'https://outlook.office.com/webhook/XXXXX/YYYYYY',
+        'subject' => 'テスト',
+        'body' => '本文です。${value:contract_code}', // $custom_valueのcontract_codeの値で置き換え
+        'custom_value' => $custom_value,
+    ]);
+~~~
+
+---
 
 

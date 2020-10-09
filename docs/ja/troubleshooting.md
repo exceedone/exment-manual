@@ -19,17 +19,86 @@ Killed
 # パターン2
 mmap() failed: [12] Cannot allocate memory
 PHP Fatal error:  Out of memory (allocated XXXXX) (tried to allocate XXXXX bytes) in phar:///usr/local/bin/composer/src/Composer/Console/Application.php on line 82
+
+# パターン3
+Fatal error: Allowed memory size of XXXXXXXX bytes exhausted
 ```
 
 これはメモリ不足によるエラーです。  
-その場合、swapを作成することで解決する場合があります。
+
+その場合、以下のいずれかの内容を実施することで、解決する場合があります。
+
+#### swap作成
+以下のコマンドでswapを作成後、再度インストールやアップデートを実施してください。  
+※環境に応じ、適宜コマンドの頭に"sudo"を追加してください。
 
 ~~~
-sudo dd if=/dev/zero of=/swapfile bs=2M count=2048
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
+dd if=/dev/zero of=/swapfile bs=2M count=2048
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
 ~~~
+
+#### メモリ上限の変更
+以下の内容を実施してください。
+
+- php.iniファイルのmemory_limitを修正します。
+
+```
+memory_limit=000M #適宜、現在よりサイズを大きくする
+memory_limit=-1 #もしくはこちらの指定。メモリを無制限に使用する可能性があるので、自己責任で設定してください
+```
+
+- composerの環境変数を設定(アップデート時の問題の場合、バッチに追加してください)
+COMPOSER_MEMORY_LIMIT=-1 composer update
+
+
+### 手動インストールやアップデート時、composerエラーが発生する
+
+手動インストールやアップデート時、以下のようなエラーが発生する場合があります。
+
+```
+Installation failed, reverting ./composer.json to its original content.
+
+  [RuntimeException]
+  Could not load package XXX/XXX in http://repo.packagist.org: [UnexpectedValueException] Could not parse version constraint ~4.*: Invalid version string "~4.*"
+```
+
+この場合、composerのバージョンを上げることにより、解決する場合があります。以下のコマンドで、composerのバージョンを最新版に更新してください。  
+**※環境により、アップデート方法が異なるようです。以下の内容のいずれかで、composer更新をご検証ください。**
+
+
+#### (1)以下のコマンドを実施
+
+```
+composer selfupdate
+```
+
+#### (2)以下のコマンドを実施
+
+```
+composer self-update
+```
+
+#### (3)上記のどちらでも更新ができない場合、以下の手順を実施
+
+- ##### composer削除
+すでにインストールされているcomposerを、一度削除します。
+
+```
+which composer
+#結果例 : /usr/bin/composer
+###以下のコマンドを実施
+rm /usr/bin/composer
+```
+
+- ##### composer再インストール
+以下の手順で、composerを再インストールしてください。
+    - [公式サイト](https://getcomposer.org/download/)
+    - [Windows版 解説サイト](https://weblabo.oscasierra.net/php-composer-windows-install/)
+    - [Linux版 解説サイト](https://weblabo.oscasierra.net/php-composer-centos-install/)
+    - [Mac版 解説サイト](https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
+
 
 
 ### 初回インストール後、管理画面にアクセス時、「SQLSTATE[HY000][202] Permission denied」エラーが発生する
@@ -57,3 +126,46 @@ nice -n 20 composer .....
 ※上記のようにコマンドを実行しても、再度「Killed」が表示される場合があります。ご了承ください。
 
 
+### バックアップ・リストアに失敗する
+バックアップ画面やコマンドで、以下のようなメッセージが表示される場合があります。
+
+![バックアップ画面](img/backup/backup_error.png)  
+
+このエラーが表示される場合、Exmentのバックアップ・リストアに必要な設定が行われていない場合があります。  
+以下の内容をご確認ください。
+
+#### mysql-clientがWebサーバーにインストールされていない、パスが通っていない  
+Exmentのバックアップ・リストアでは、以下のコマンドを、Webサーバー上で実行しています。  
+
+- mysqlコマンド
+- mysqldumpコマンド  
+
+これらのコマンドがインストールされていない場合、mysqlコマンド・mysqldumpコマンドをインストールする必要があります。  
+これらのコマンドのインストール方法は、環境によって異なります。  
+例：[Amazon Linux 2](http://tech-wiki.pomme-verte.net/?p=793)  
+
+また、Webサーバーを動作させるユーザーでは、mysqlコマンド・mysqldumpコマンドまでのパスが通っていない可能性があります。  
+その場合、以下の方法で、フルパスでコマンドを実行できるよう、修正してください。  
+※設定変更の詳細は、[こちら](/ja/config)からご確認ください。  
+
+- envファイルを開く。  
+- 以下の記載を追加する。  
+
+
+```
+EXMENT_MYSQL_BIN_DIR=("mysql"実行ファイルがあるフォルダまでのパス)
+#例
+EXMENT_MYSQL_BIN_DIR=/usr/bin
+```
+
+
+#### php.iniで"safe_mode=Off"を追加する
+mysqlコマンド・mysqldumpコマンドをサーバーから実行する都合上、safe_modeをOffにする必要があります。  
+以下の内容を実施してください。
+
+- php.iniファイルを開く。
+- 以下の内容を追記する。
+
+```
+safe_mode=Off
+```

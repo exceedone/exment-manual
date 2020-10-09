@@ -6,7 +6,7 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 本ページでは、以下の内容で構築を行っております。  
 - CentOS 7.6.1810 64bit (**現在、8系で下記の手順でエラーが出ることを確認しております。**下記の手順でインストールする場合、7系でインストールしてください。)
 - Apache 2.4.6
-- PHP 7.2.21(**PHP7.4未満**を選択してください)
+- PHP 7.2.21
 - MySQL 5.7.25
 
 ## 注意点
@@ -118,6 +118,9 @@ extension=mysqli.so
 extension=pdo.so
 extension=pdo_mysql.so
 extension_dir=/usr/lib64/php/modules/
+
+#以下の記述が含まれていれば、値を変更、もしくは追加
+safe_mode=Off
 ~~~
 
 - httpd.confを修正します。
