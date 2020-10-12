@@ -362,7 +362,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
             <div class="col-sm-6 tile">
                 <a href="#/ja/mail">
                     <div class="tile-inner">
-                        <h5>メールテンプレート</h5>
+                        <h5>通知テンプレート</h5>
                         <p>ユーザーにメールを送る場合の、件名や本文の設定を行います。</p>
                     </div>
                 </a>

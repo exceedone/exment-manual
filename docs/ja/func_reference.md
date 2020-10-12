@@ -604,7 +604,7 @@ $value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/informa
 | $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
 | $params['user'] | CustomValue(user) or string | メール送信先のユーザーオブジェクト、もしくはメールアドレス |
 | $params['custom_value'] | CustomValue | メール送信対象のカスタムデータ |
-| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['mail_template'] | MailTemplate or string or id | 通知テンプレート情報 |
 | $params['subject'] | string | 件名 |
 | $params['body'] | string | 本文 |
 | $params['to'] | string | メール送信先。複数の場合はカンマ区切り |
@@ -625,7 +625,7 @@ $value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/informa
     ]);
     
 
-    // 例2 メールテンプレート使用
+    // 例2 通知テンプレート使用
     $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
     NotifyService::notifyMail([
         'mail_template' => $mail_template,
@@ -673,7 +673,7 @@ $value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/informa
 | $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
 | $params['user'] | CustomValue(user) | 通知送信先のユーザーオブジェクト |
 | $params['custom_value'] | CustomValue | 通知対象のカスタムデータ |
-| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['mail_template'] | MailTemplate or string or id | 通知テンプレート情報 |
 | $params['subject'] | string | 件名 |
 | $params['body'] | string | 本文 |
 
@@ -690,7 +690,7 @@ $value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/informa
     ]);
     
 
-    // 例2 メールテンプレート使用
+    // 例2 通知テンプレート使用
     $user = CustomTable::getEloquent('user')->getValueModel()->find(1);
     $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
     NotifyService::notifyNavbar([
@@ -743,7 +743,7 @@ Slackに通知を送信します。
 | $params['webhook_icon'] | string | Slackに投稿するアイコン |
 | $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
 | $params['custom_value'] | CustomValue | 通知対象のカスタムデータ |
-| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['mail_template'] | MailTemplate or string or id | 通知テンプレート情報 |
 | $params['subject'] | string | 件名 |
 | $params['body'] | string | 本文 |
 
@@ -759,7 +759,7 @@ Slackに通知を送信します。
     ]);
     
 
-    // 例2 メールテンプレート使用
+    // 例2 通知テンプレート使用
     $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
     NotifyService::notifySlack([
         'webhook_url' => 'https://hooks.slack.com/services/XXXXX/YYYY',
@@ -811,7 +811,7 @@ Microsoft Teamsに通知を送信します。
 | $params['webhook_url'] | string | WebHookのURL |
 | $params['prms'] | array | 件名と本文で置き換える、キー・値の配列 |
 | $params['custom_value'] | CustomValue | 通知対象のカスタムデータ |
-| $params['mail_template'] | MailTemplate or string or id | メールテンプレート情報 |
+| $params['mail_template'] | MailTemplate or string or id | 通知テンプレート情報 |
 | $params['subject'] | string | 件名 |
 | $params['body'] | string | 本文 |
 
@@ -827,7 +827,7 @@ Microsoft Teamsに通知を送信します。
     ]);
     
 
-    // 例2 メールテンプレート使用
+    // 例2 通知テンプレート使用
     $mail_template = CustomTable::getEloquent('mail_template')->getValueModel()->where('value->mail_key_name', 'foobar')->first();
     NotifyService::notifyTeams([
         'webhook_url' => 'https://outlook.office.com/webhook/XXXXX/YYYYYY',
