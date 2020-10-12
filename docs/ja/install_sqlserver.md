@@ -33,11 +33,6 @@ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-
 ![SQL Server インストール](img/database/sqlserver7.png)  
 ![SQL Server インストール](img/database/sqlserver8.png)  
 
-- 「TCP/IP」を右クリックし、「プロパティ」をクリックします。  
-その後、「IPアドレス」タブを開き、最下部の「TCP 動的ポート」の値を確認します。(後ほど使用します。)
-![SQL Server インストール](img/database/sqlserver9.png)  
-![SQL Server インストール](img/database/sqlserver10.png)  
-
 - スタートメニューボタンをクリックし、「サービス」と記入し、表示された「サービス」アプリを実行します。
 ![SQL Server インストール](img/database/sqlserver11.png)  
 
@@ -87,6 +82,18 @@ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-
 ![SQL Server インストール](img/database/sqlserver20.png) 
 
 - 「セキュリティ」メニューより、「サーバー認証」を「SQL Server 認証モードと Windows 認証モード」を選択し、OKをクリックします。  
+
+- スタートメニューボタンをクリックし、「サービス」と記入し、表示された「サービス」アプリを実行します。
+![SQL Server インストール](img/database/sqlserver11.png)  
+
+- 「サービス」アプリで、再度「SQL Server (エディション名)」を選択し、「サービスの再起動」をクリックします。
+![SQL Server インストール](img/database/sqlserver12.png)  
+
+#### ポート確認
+- 「SQL Server 構成マネージャー」で、「TCP/IP」を右クリックし、「プロパティ」をクリックします。  
+その後、「IPアドレス」タブを開き、最下部の「TCP 動的ポート」の値を確認します。(後ほど使用します。)
+![SQL Server インストール](img/database/sqlserver9.png)  
+![SQL Server インストール](img/database/sqlserver10.png)  
 
 
 ## Exment設定
