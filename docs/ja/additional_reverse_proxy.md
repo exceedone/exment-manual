@@ -20,7 +20,7 @@ Exmentのサーバー構築に、リバースプロキシを使用していた�
 
 ~~~
 #リバースプロキシサーバーまでのURL。"admin"は不要
-APP_URL=http://XXXX.com 
+APP_URL=https://XXXX.com 
 
 # インターネット⇔リバースプロキシサーバーをHTTPS、リバースプロキシサーバー⇔Webサーバーの通信をHTTPにする場合、新規追加する
 ADMIN_HTTPS=true

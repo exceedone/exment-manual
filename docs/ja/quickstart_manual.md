@@ -3,27 +3,40 @@ Exmentを開始するために必要となる手順です。
 ※手動によるインストール方法です。  
 
 ## 注意点
-- **Webサーバーを構築していない場合、はじめに[サーバー設定](/ja/server)を行ってください。**   
-(「サーバー構築したかどうか分からない」という方も、一度ご確認をお願いします)
 - インストール時にエラーが発生した場合、[トラブルシューティング](/ja/troubleshooting)をご参照ください。
 - ※現在、大変申し訳ございませんが、インストール手順やサーバー構築についての個別のお問い合わせは承っておりません。個別対応をご希望の場合、有償のサポートをご希望ください。　　
 
+## サーバー構築
+サーバーの構築をまだ行っていない場合、Webサーバーやデータベースサーバーの構築を行ってください。  
+構築方法は、[こちら](/ja/server)をご確認ください。
 
-## サーバー設定
-Exmentには、PHP7.1.3以上が必要です。ならびに、MySQL 5.7.8以上8.0.0未満 または MariaDB 10.2.7以上が必要です。  
-PHPやApache、MySQLのある環境構築を、開発環境としてはじめから構築する場合、XAMPPをおすすめしております。  
-サーバー設定は、[こちら](/ja/install_xampp)をご参照ください。  
-※すでに環境がある方は、当設定は不要です。
+### Webサーバー構築
+Exmentには、PHP7.1.3以上が必要です。  
+サーバーの構築をまだ行っていない場合、[こちら](/ja/server)をご確認いただき、構築を行ってください。
 
-## composer導入
-Exmentには、composerの導入が必要です。導入方法はこちらをご参照ください。  
+### composer導入
+Exmentには、Webサーバーにcomposerの導入が必要です。導入方法はこちらをご参照ください。  
 ※すでに導入済の方は不要です。  
 - [公式サイト](https://getcomposer.org/download/)
 - [Windows版 解説サイト](https://weblabo.oscasierra.net/php-composer-windows-install/)
 - [Linux版 解説サイト](https://weblabo.oscasierra.net/php-composer-centos-install/)
 - [Mac版 解説サイト](https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
 
-## Laravelインストール(プロジェクト作成)
+
+### データベース構築
+Exmentのデータベースエンジンには、以下のいずれかが必要です。
+
+- MySQL 5.7.8以上8.0.0未満
+- MariaDB 10.2.7以上
+- SQL Server 13.0.0以上
+
+データベースサーバーの設定をまだ行っていない場合、[こちら](/ja/server#データベース)をご確認いただき、構築を行ってください。
+
+
+## Exmentアプリ設定
+サーバー構築が完了したら、Exmentのアプリ設定を行います。
+
+### Laravelインストール(プロジェクト作成)
 - コマンドラインで、以下のコマンドを実行します。  
 ※作成したプロジェクトのフォルダを、このマニュアルでは「ルートディレクトリ」と呼びます。  
 ※Exmentは現在、バージョン5.6のみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。
@@ -39,14 +52,14 @@ composer require exceedone/exment=3.2.6
 composer require exceedone/exment=dev-develop
 ~~~
 
-## データベース作成
-- Exment用のデータベースを、MySQLで作成してください。
+### データベース作成
+- ご利用のデータベース環境に、Exment用のデータベースを作成してください。
 
 
-## .env変更
+### .env変更
 
 - ".env" を開き、以下の内容を追加・変更します。<span class="red bold">特に、以下の値をご確認ください。</span>  
-    - DB_CONNECTION : ※お使いのデータベースが、MySQLか、MariaDBかで、DB_CONNECTIONの値が異なります
+    - DB_CONNECTION : ※お使いのデータベースが、MySQLか、MariaDBか、SQL Serverかで、DB_CONNECTIONの値が異なります
     - APP_TIMEZONE、APP_LOCALE : 言語とタイムゾーンです。インストール前に値を記入してください。
 
 ~~~
@@ -81,7 +94,7 @@ ADMIN_HTTPS=true
 ~~~
 
 
-## （推奨）エラーページ追加
+### （推奨）エラーページ追加
 
 - "app/Exceptions/Handler.php"を開き、 "render"関数に以下を追加します。  
 ※エラーの内容によっては、ここで制御したエラーページが表示されず、Laravelのエラーが表示されることがあります。
@@ -104,7 +117,7 @@ ADMIN_HTTPS=true
 ~~~
 
 
-## コマンド実行
+### コマンド実行
 - 以下のコマンドを実行します。
 
 ~~~

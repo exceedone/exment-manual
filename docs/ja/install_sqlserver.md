@@ -1,7 +1,7 @@
 # SQL Serverインストール手順
 Exmentで、SQL Serverを使用するための手順です。  
-※各種手順は、OSやバージョン、インストール時期などにより、異なる場合があります。
-
+※各種手順は、OSやバージョン、インストール時期などにより、異なる場合があります。  
+<span class="red bold">※現在、バックアップ・リストア機能に非対応です。</span>
 
 ## SQL Server設定
 
@@ -55,10 +55,6 @@ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-
 ![SQL Server インストール](img/database/sqlserver16.png)  
 
 #### ユーザー追加
-- 左メニューより、「セキュリティ」→「ログイン」を右クリックします。
-![SQL Server インストール](img/database/sqlserver17.png)  
-
-
 - 左メニューより、「セキュリティ」→「ログイン」を右クリックし、「新しいログイン」を選択します。
 ![SQL Server インストール](img/database/sqlserver17.png)  
 
@@ -96,6 +92,24 @@ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-
 ![SQL Server インストール](img/database/sqlserver10.png)  
 
 
+## 接続確認
+SQL Serverに接続できるかどうかの確認を行います。  
+
+- 「SQL Server Management Studio」を実行します。
+![SQL Server インストール](img/database/sqlserver13.png)  
+
+- ログインを、以下の内容で実施します。
+    - サーバー名：既定のサーバー名
+    - 認証：SQL Server認証
+    - ユーザー名：作成したユーザーのユーザー名
+    - パスワード：作成したユーザーのパスワード
+
+![SQL Server インストール](img/database/sqlserver22.png)  
+
+- 正常にログインができることを確認してください。  
+設定が正常に完了していない場合、エラーが発生します。
+
+
 ## Exment設定
 ExmentからSQL Serverに接続するための環境構築・設定を行います。  
 
@@ -129,7 +143,7 @@ extension_dir => C:\xampp\php\ext => C:\xampp\php\ext
 
 - php.iniファイルを開きます。
 
-- ファイルの末尾に、以下の内容を記入します。
+- ファイルの末尾に、以下の内容を記入します。※ファイル名は、コメントの内容に従い、適宜変更を行ってください。
 
 ```
 extension=php_pdo_sqlsrv_72_ts_x64.dll
@@ -141,9 +155,9 @@ extension=php_pdo_sqlsrv_72_ts_x64.dll
 - PHPを再起動します。これにて、Windowsでの設定は完了です。
 
 
-
 #### Linux
-準備中。。。
+
+[こちら](https://docs.microsoft.com/ja-jp/sql/connect/php/installation-tutorial-linux-mac?view=sql-server-ver15)の手順に従い、各OSに、ODBC ドライバー・PHP ドライバーをインストールしてください。
 
 
 ### Exment設定

@@ -1,6 +1,8 @@
-# (old)MySQLインストール手順
-> ※本マニュアル作成時は、XAMPPに付属していたMariaDBがExmentに非対応のバージョンであり、個別にインストールが必要でした。  
-現在はExmentに対応バージョンに更新され、本手順は不要です。
+# MySQLインストール手順
+Exmentで、MySQLを使用するための手順です。  
+※各種手順は、OSやバージョン、インストール時期などにより、異なる場合があります。  
+
+## MySQL設定
 
 - 以下のサイトにアクセスし、MySQLをダウンロードします。  
 [MySQLダウンロード](https://downloads.mysql.com/archives/installer/)  

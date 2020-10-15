@@ -1,9 +1,12 @@
 # サーバー設定
 Exmentをご利用いただく場合、はじめにWebサーバー設定と、データベース設定が必要です。  
 ご利用する環境によって、以下の手順で設定を行ってください。  
-※現在、大変申し訳ございませんが、インストール手順やサーバー構築についての個別のお問い合わせは承っておりません。個別対応をご希望の場合、有償のサポートをご希望ください。　　
+※現在、大変申し訳ございませんが、インストール手順やサーバー構築についての個別のお問い合わせは承っておりません。個別対応をご希望の場合、有償のサポートをご希望ください。  
 また、現在、下記以外の環境の、マニュアルのご用意はございません。ご了承ください。
 
+## Webサーバー
+Webサーバーの構築手順です。以下のいずれかの手順で、Webサーバーを構築してください。  
+※PHPやApache、MySQLのある環境構築を、開発環境としてはじめから構築する場合、XAMPPをおすすめしております。  
 
 - [XAMPP構築(開発・検証環境) Windows](/ja/install_xampp)  
 →まずは手持ちのパソコンに、Exmentをインストールしたい場合(Windows版)
@@ -26,21 +29,36 @@ Exmentをご利用いただく場合、はじめにWebサーバー設定と、�
 - [Dockerで構築](/ja/install_docker)  
 →ExmentをDockerで構築する場合の手順
 
-# composer導入
-Exmentには、composerの導入が必要です。導入方法はこちらをご参照ください。  
-※すでに導入済の方は不要です。  
-- [公式サイト](https://getcomposer.org/download/)
-- [Windows版 解説サイト](https://weblabo.oscasierra.net/php-composer-windows-install/)
-- [Linux版 解説サイト](https://weblabo.oscasierra.net/php-composer-centos-install/)
-- [Mac版 解説サイト](https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
+
+## データベース
+Exmentのデータベースエンジンには、以下のいずれかが必要です。
+
+- MySQL 5.7.8以上8.0.0未満
+- MariaDB 10.2.7以上
+- SQL Server 13.0.0以上
+
+### データベース環境構築
+- データベースサーバーの設定をまだ行っていない場合、データベースサーバーの構築を行ってください。  
+構築方法は、以下のリンク先をご確認ください。  
+※すでに導入済の場合は不要です。  
+
+    - [MySQL](/ja/install_mysql)
+    - [SQL Server](/ja/install_sqlserver)
+
+### データベース作成
+
+- Exment用のデータベースを、各データベースエンジンで作成してください。  
+
+
 
 ## 動作環境
 ### サーバー
 - PHP 7.1.3以上
-- MySQL 5.7.8以上、8.0.0未満 または MariaDB 10.2.7以上
 - Laravel5.6
-
-<span class="red">※Exmentでは、データベースにjson型を使用しています。json型に対応しているデータベースは、MySQLは5.7.8以上、MariaDBは10.2.7以上となります。ご利用予定のデータベースのバージョンをご確認いただきますよう、よろしくお願いします。</span>
+- データベース：以下のいずれか
+    - MySQL 5.7.8以上、8.0.0未満
+    - MariaDB 10.2.7以上
+    - SQL Server 13.0.0以上
 
 ### 動作確認ブラウザ
 - Google Chrome
