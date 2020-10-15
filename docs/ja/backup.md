@@ -177,6 +177,11 @@ php artisan exment:update
 詳細は[こちら](/ja/refresh_data)をご参照ください。
 
 
+### SQL Serverを使用している場合
+SQLServerを使用している場合、現状Exmentでは画面からのバックアップ／リストアに対応しておりません。手動で作業を行っていただく必要があります。  
+詳細は[こちら](/ja/backup_sqlserver)をご参照ください。
+
+
 
 <h3 id="restore_command">(上級者向け)コマンドによるリストア</h3>
 
