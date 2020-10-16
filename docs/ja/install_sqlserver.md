@@ -69,6 +69,7 @@ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-
    - db_datawriter
    - db_datareader
    - public
+   - dbcreator(※手動でのデータのバックアップ・リストアに使用します。手動でのデータのバックアップ・リストアを実施する場合、チェックしてください。)
 ![SQL Server インストール](img/database/sqlserver19.png)    
 
 - すべて完了したら、OKをクリックします。
