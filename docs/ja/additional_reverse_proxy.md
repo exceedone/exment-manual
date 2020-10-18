@@ -19,11 +19,14 @@ Exmentのサーバー構築に、リバースプロキシを使用していた�
 - .envファイルを編集します。
 
 ~~~
-#リバースプロキシサーバーまでのURL。"admin"は不要
+# （すでにある値の追記）リバースプロキシサーバーまでのURL。"admin"は不要
 APP_URL=https://XXXX.com 
 
 # インターネット⇔リバースプロキシサーバーをHTTPS、リバースプロキシサーバー⇔Webサーバーの通信をHTTPにする場合、新規追加する
 ADMIN_HTTPS=true
+
+# 上記の"APP_URL"の値をURL生成に使用する
+ADMIN_USE_APP_URL=true
 ~~~
 
 - [SAML認証](/ja/login_saml)を行っている場合、「オプション設定」で、「Proxy使用」をYESにしてください。
