@@ -66,6 +66,18 @@ EXMENT_FILTER_SEARCH_FULL=true
 <span class="red">※設定値の変更は、自己責任で行ってください。開発元では、21件以上での動作確認を行っておりません。</span>
 
 
+#### リバースプロキシを許可するIP
+- 設定キー : ADMIN_TRUST_PROXY_IPS
+- 既定値 : なし
+- 役割 : 詳細は[こちら](/ja/additional_reverse_proxy)をご確認ください。
+
+
+#### リバースプロキシの判別ヘッダー
+- 設定キー : ADMIN_TRUST_PROXY_HEADERS
+- 既定値 : なし
+- 役割 : 詳細は[こちら](/ja/additional_reverse_proxy)をご確認ください。
+
+
 ### ログイン
 #### デフォルトログインプロバイダ表示
 - 設定キー : EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER
@@ -377,8 +389,14 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : trueにすることで、より柔軟で、システムに詳しい方向けの設定を行うことができるようになります。
 
 
+#### デバッグモード(リクエスト値出力)
+- 設定キー : EXMENT_DEBUG_MODE_REQUEST
+- 既定値 ： false
+- 役割 : trueにすることで、ExmentのWebサービスへのリクエスト値をログ出力します。  
+
+
 #### デバッグモード(SQLログ出力)
-- 設定キー : EXMENT_DEBUG_MODE
+- 設定キー : EXMENT_DEBUG_MODE_SQL
 - 既定値 ： false
 - 役割 : trueにすることで、ExmentでSQLを実行時、SQL文をログ出力することができます。※開発用です。
 
