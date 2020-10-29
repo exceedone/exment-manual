@@ -28,7 +28,12 @@ v3.6.7
 - 以下の記述を修正します。
 
 ``` php
-// L.253
+// L.253付近。バージョンにより行番号に差異があります
+// get insert sql file for each tables
+$files = array_filter(\File::files($dirFullPath), function ($file) {
+    return preg_match('/.+\.sql$/i', $file);
+});
+
 // 修正前
 //return preg_match('/.+\.sql$/i', $file);
 
