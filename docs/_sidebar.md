@@ -88,5 +88,5 @@
   * [Command](/command)
   * [Release notes](/release_note.md)
   * [Patch_weakness](/patch_weakness)
-  * [トラブルシューティング](/troubleshooting)
+  * [Troubleshooting](/troubleshooting)
   * [License](/license.md)
