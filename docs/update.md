@@ -1,6 +1,13 @@
 # Update
-This is the procedure when the version of Exment has been updated and an update is required.
-**※ A special procedure is required to update to version 2.1.X (required). Follow the instructions [here](/update/v2_1) to update.**
+This is the procedure when the version of Exment has been updated and an update is required.  
+
+- <span class = "red bold"> As of 09/11/2020, we have confirmed the phenomenon that composer error occurs when updating Exment. </span>  
+[This page](/troubleshooting?Id=A-composer-error-occurs-during-manual-installation-or-update) describes how to deal with it.  
+If an error occurs in the update, follow the procedure to deal with it. Please go.
+
+- If you get an error during the update, please refer to [Troubleshooting](/troubleshooting).
+
+> We have released support for automatic updates. Please check [here](/update_auto) for details.
 
 ## (First time only) Download update batch
 
@@ -16,6 +23,14 @@ https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
 ~~~
 wget https://exment.net/downloads/cmd/ExmentUpdateLinuxSakura.sh
 chmod 775 ExmentUpdateLinuxSakura.sh
+~~~
+
+### For Xserver
+- Execute the following command in the root directory of the project to download.
+
+~~~
+wget https://exment.net/downloads/cmd/ExmentUpdateLinuxXserver.sh
+chmod 775 ExmentUpdateLinuxXserver.sh
 ~~~
 
 ### For Linux
@@ -62,6 +77,12 @@ sh ExmentUpdateLinux.sh
 ~~~
 ExmentUpdateWindows.bat
 ~~~
+
+## Run update batch
+The update batch does the following:
+  - Data backup
+  - Obtain the latest source and reflect
+  - Database update
 
 ## Update batch execution contents
 The following contents are executed in the update batch.  

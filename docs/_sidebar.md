@@ -9,13 +9,15 @@
   * [Installation procedure](/quickstart.md)
   * [Initial setting](/first_setting.md)
   * [System setting](/system_setting.md)
-  * [update](/update.md)
+  * [Update](/update.md)
   * [Additional settings](/quickstart_more.md)
+  * [Mailsend_setting](/mailsend_setting.md)
 
 * 【3. Login settings】
-  * [SSO settings](/sso.md)
-  * [Two-factor authentication settings](/login_2factor_setting.md)
-  * [Login (two-step verification)](/login_2factor.md)
+  * [Login setting](/login_setting)
+  * [Login 2factor setting](/login_2factor_setting)
+  * [Login sso](/login_sso)
+  * [Login 2factor](/login_2factor)
 
 * 【4. Table settings】
   * [Custom table](/table.md)
@@ -23,20 +25,25 @@
   * [Relation settings](/relation.md)
   * [Custom form](/form.md)
   * [Custom views](/view.md)
-  * [Bulk update](/mass_update.md)
+  * [Operation](/operation)
 
 * 【5. Data management】
   * [Data](/data.md)
   * [List of data](/data_grid.md)
   * [Data details](/data_details.md)  
   * [Data registration](/data_form.md)
+  * [Deleted data](/deleted_data)
   * [Data import / export](/data_import_export.md)
+  * [Data cmd import / export](/data_cmd_import_export)
+  * [Data bulk insert](/data_bulk_insert)
   * [Search](/search.md)
 
 * 【6. User / organization / role group】
+  * [Permission](/permission)
   * [User / Login user](/user.md)
   * [Organization](/organization.md)
   * [Role group / Authority setting](/role_group.md)
+  * [Multiuser](/multiuser)
  
 * 【7. Workflow】
   * [Workflow settings](/workflow_setting.md)
@@ -52,30 +59,34 @@
   * [Notification](/notify.md)
 
 * 【9. Function extension】
-  * [API](/api.md)
+  * [API setting](/api.md)
   * [Plugin](/plugin.md)
   * [Plugin creation method](/plugin_quickstart.md)
     * [Trigger](/plugin_quickstart_trigger.md)
+    * [Button](/plugin_quickstart_button)
+    * [Event](/plugin_quickstart_event)
     * [Page](/plugin_quickstart_page.md)
     * [Dashboard](/plugin_quickstart_dashboard.md)
-    * [Document](/plugin_quickstart_document.md)
     * [Batch](/plugin_quickstart_batch.md)
-    * [Import](/plugin_quickstart_import.md)
+    * [API](/plugin_quickstart_api)
+    * [Validation](/plugin_quickstart_validate.md) 
     * [Script](/plugin_quickstart_script.md)
     * [Style](/plugin_quickstart_style.md)
-    * [Validation](/plugin_quickstart_validate.md)
+    * [Import](/plugin_quickstart_import.md)
+    * [Export](/plugin_quickstart_export)
+    * [Document](/plugin_quickstart_document.md)
+    * [Docurain(PDF output)](/plugin_quickstart_docurain)
+
   
 * 【10. Reference】
-  * [Release notes](/release_note.md)
-    * [v1.1.X](/update/v1_1.md)
-    * [v1.2.X](/update/v1_2.md)
-    * [v1.3.X](/update/v1_3.md)
-    * [v1.4.X](/update/v1_4.md)
-    * [v2.0.X](/update/v2_0.md)
-    * [v2.1.X](/update/v2_1.md)
   * [Parameter variables](/params.md)
   * [API reference](https://exment.net/reference/webapi.html)
   * [Function reference](/func_reference.md)
+  * [Column reference](/column_reference)
   * [Plugin reference](/plugin_reference.md)
   * [List of set values](/config.md)
+  * [Command](/command)
+  * [Release notes](/release_note.md)
+  * [Patch_weakness](/patch_weakness)
+  * [トラブルシューティング](/troubleshooting)
   * [License](/license.md)

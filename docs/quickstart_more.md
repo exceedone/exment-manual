@@ -30,5 +30,17 @@ Web page requests and API execution can be restricted by IP address.
 - [When 429 error occurs in API](additional_429_too_many)  
 This is the solution when 429 Too Many Requests occurs during API implementation.
 
+- [Add label column with data acquisition API](/additional_api_label)  
+You can add the "label" column when you get the data list or create / update new data.
+
+- [Add original option in the setting "Available characters" of column type "1 line text"](/additional_available_characters)  
+Custom column type "One line text" setting You can add available options in "Available characters".
+
+- [Delayed execution of notification processing](/additional_queue)  
+Some processes such as notifications can be delayed (queued).
+
+- [Reverse proxy settings](/additional_reverse_proxy)  
+This is an additional setting when building an environment with a reverse proxy.
+
 - [Expert mode](/additional_expert)  
 This is a procedure for displaying more flexible setting items.

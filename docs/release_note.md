@@ -1,4 +1,520 @@
 # Release notes
+* Click [here](/patch_weakness) for the patch / vulnerability list.
+
+## v3.7.2 (2020/10/27)
+1. Function addition / correction
+    - Supports comparison using system date in "Compare two columns" setting of custom table extension setting.
+    - Added "read-only" and "display-only" as separate settings in the form settings. Click [here](/form#read-only) for details.
+    - Supports data detail screen transition in a separate window on the list screen from the search button.
+    - Slightly improved usability on the form settings screen.
+    - Added a function that can output a log of request value as a debugging function. For details, refer to "Debug mode (request value output)" in [here](/config).
+1. Bug fix
+    - Fixed a bug that the filter cannot be executed when the search index is set in the column type "File".
+    - Changed the reverse proxy settings to take into account settings such as Nginx. Also, amend the manual. Click [here](/additional_reverse_proxy) for details.
+    - Fixed a bug that an error occurs when the column in the corresponding table contains "choices" that can be selected multiple times in the API data update and the corresponding column is not included in the request value.
+    - Fixed a bug that users with table administrator authority cannot display the custom form setting screen.
+
+    
+## v3.7.1 (2020/10/18)
+1. Bug fix
+    - Fixed a bug that custom columns of multiple selectable choices could be sorted.
+    - Fixed a bug that the custom column display screen does not check even if the free word search target is displayed on the custom column list screen.
+    - Fixed a bug that data is not displayed when conditions are set by specifying a month such as "last month" or "this month" in the date item in the custom view condition settings.
+    - Fixed improper reverse proxy settings.
+1. Other
+    - Slightly modified the script on the installation screen.
+    
+## v3.7.0 (2020/10/16)
+1. Addition of functions
+    - Added support for SQL Server (backup / restore function is not supported).
+    - Added "valid flag" to the notification settings. You can turn off notifications by disabling.
+    - Added "Notify work performer" option to notification settings. By setting YES, you can also send a notification to the worker.
+    - Added the ability to add mentions to Slack notifications. Click [here](/notify#Slack) for details.
+    - Regarding the filter function of various list screens, filter items have been added to screens where the item was only "ID".
+1. Bug fix
+    - Fixed a bug that could not be saved normally when the parent-child form was set and the column of the child table was set to "unique".
+    - Fixed a bug that an error may occur when multiple views with workflow status are specified in the same dashboard in the same table.
+    - Other cumulative bug fixes.
+1. Other
+    - Partial refactoring of notification setting method.
+    - The entire source has been reviewed due to the implementation of SQL Server.
+    - Improved the speed of the dashboard "Data list" and "Exment new information list".
+    - Changed the method of retaining version information of Exment from session to cache.
+    - Changed "Mail Template" to "Notification Template". * For Exments installed with less than v3.7.0, the notation will remain "Mail template".
+    - Other minor corrections.
+    
+## v3.6.8 (2020/10/07)
+1. Functional modification
+    - When logging in to SSO, an error message when there is a problem with user information is displayed on the screen.
+    - In SSO login, when logging in as a user who has already been added to Exment, the validation rule when the SSO setting "Update user information" is NO has been relaxed.
+1. Bug fix
+    - Fixed a bug that the file backed up with v3.6.7 did not complete normally when restored to v3.6.7 environment (caused by database view. When restoring to v3.6.7, Please execute [here](/patch/restore_ignore_view)).
+    - Fixed a bug that importing data of a table with multiple n: n relations did not complete normally.
+    - Fixed a bug that an error occurs when a user is completely deleted.
+    - Other minor corrections.
+    
+
+## v3.6.7 (2020/10/05)
+1. Addition of functions
+    - Added a function to display the data associated with the parent from the data details screen on the child side when the n: n relation is set.
+    - Added a function so that the data associated with the parent can be set from the data edit screen on the child side when the n: n relation is set.
+    - Added a function to return a value other than true / false in the plugin (import).
+1. Bug fix
+    - Fixed a bug that was narrowed down by "Match all conditions" even if the workflow "Current status" and "Current working user" were set to "Match any condition" in the view narrowing condition.
+1. Other
+    - I decided to use the MySQL view because the SQL query became too complicated for some processing.
+    - Some comments etc. have been modified to check source consistency with Lint.
+    - Other minor corrections.
+
+
+## v3.6.6 (2020/09/28)
+1. Bug fix
+    - Fixed a bug that when uploading multiple files in the attached file on the data details screen, reloading may occur during upload depending on the file size.
+    - Fixed a bug that a script error occurs when there are multiple custom columns "editors" on the data edit screen.
+1. Other
+    - Fixed the file name of the uploaded file displayed on the attachment list screen when uploading an image with the custom column "Editor" so that it is displayed with the uploaded file name.
+    - Disable preview button in file upload library.
+    - Fixed so that the condition view cannot be deleted when the condition view is set in the custom column "Choice (select from the list of values ​​in other tables)" and the notification condition.
+    - Fixed the data backup / restore function to display an error message and prevent backup / restore in an environment where backup / restore is not possible due to server settings, etc.
+    - Other minor corrections.
+
+
+## v3.6.5 (2020/09/22)
+1. Addition of functions
+    - Support for uploading images in the custom column "Editor". * If you want to disable it, please check "Disable the image upload function of the custom column" Editor "" in [here](/config).
+    - Fixed so that you can search by file name in the custom columns "File" and "Image".
+    - Added the function to search the file attached to the custom data when searching for free words using the header search form. * The default is disabled. If you want to enable it, please check "Disable image upload function of custom column" editor "" in [here](/config).
+1. Bug fix
+    - Fixed the problem that the association is not performed when the filter is executed in the search dialog after clicking the search button when the "association setting" of the form is set.
+    - Fixed a bug that the option may not appear in the input item "Choice (select from the list of values ​​in other tables)" when "Sort setting" is set in the condition view.
+    - Fixed a bug that the option does not appear in the search condition "Choice (select from the list of values ​​in other tables)".
+1. Other
+    - Optimization of plugin editing function.
+    - Other minor corrections.
+
+
+## v3.6.4 (2020/09/12)
+1. Bug fix
+    - 1: n Fixed a bug when displaying the relation form
+
+
+## v3.6.3 (2020/09/11)
+
+> <span class = "red bold"> As of 09/11/2020, we have confirmed the phenomenon that composer error occurs when updating Exment. </span>
+[This page](/troubleshooting?Id=A-composer-error-occurs-during-manual-installation-or-update) describes how to deal with it. If an error occurs in the update, follow the procedure to deal with it. Please go.
+
+1. Addition of functions
+    - Added the function to set the background color and background image of the login page. It can be changed from [Login settings](login_setting).
+    - Supports password reset command execution. Click [here](/login_setting#password_reset_command) for details.
+    - Added the function to use the original driver at the file upload destination. Click [here](/additional_file_saveplace) for details.
+    - Added a check box to select the transition destination after saving on the role group workflow setting screen.
+    - Added a function to select the type of notification email from HTML and text.
+    - Addition of function that can execute plug-in (batch) from the screen
+1. Bug fix
+    - Fixed a bug that the display view of the menu is not reflected when importing a template
+    - - Fixed a bug that the search button does not work properly in the child table in the form with 1: n relation set.
+    - Fixed a bug that the search button does not work properly due to view display conditions, etc.
+    - Fixed a bug that the data linkage setting does not work properly when the custom column type is "Choice (select from the list of values ​​in other tables), User, Organization" and "Search for choice each time" is enabled.
+    - Other fixes for cumulative bugs
+1. Other
+    - Refactored notification processing. In addition, a reference has been added so that notifications can be executed from plugins. For details, refer to "Notify Service" in [here](/func_reference).
+    - Refactoring of new custom data creation / editing screen
+
+## v3.6.2 (2020/09/02)
+1. Addition of functions
+    - Addition of chunk mode (split output) by command data export. Click [here](/data_cmd_import_export#export_chunk) for details.
+    - Added the function to specify and execute a table with the custom data refresh function. Click [here](/refresh_data) for details.
+    - Added the function to use the original driver at the file upload destination. Click [here](/additional_file_saveplace) for details.
+1. Bug fix
+    - Fixed a bug that a validation error occurs when importing csv file, custom column is "1 line text" and only numeric data is imported.
+    - Fixed a bug that a format error occurs when importing xlsx depending on the environment.
+    - When executing the custom data update API, if the column types "Choice (reference to other table)", "User", and "Organization" are executed without including the column for which "Allow multiple columns" is set to YES, Fixed a bug that caused an error
+    - Other cumulative bug fixes
+1. Other
+    - Making PHP 7.4 tentatively installable
+    - Custom column type can no longer be changed after saving custom column
+    - Added the process to delete the corresponding custom column data from the target custom data list when deleting the custom column.
+    - Added the command list manual. Click [here](/command) for details.
+
+
+## v3.6.1 (2020/08/25)
+1. Addition of functions
+    - Added the function to execute the data import / export function by command. Click [here](/data_cmd_import_export) for details.
+    - Addition of form copy function on custom form screen
+1. Bug fix
+    - Fixed a bug that the action for which "Perform previous action selected by user" cannot be executed in the "Workflow executable" user setting in the workflow settings when there are 100 or more users.
+    - Fixed a bug that a validation error occurs when executing APIs "Create new data" and "Update data" when the required settings have been made for the custom column type "Image".
+    - - Fixed a bug that the search button does not work properly when selecting a parent table when creating a new child table when 1: n relation is set.
+
+
+## v3.6.0 (2020/08/19)
+1. Vulnerability response
+    - Cross-site scripting support. Clarification of script execution availability and HTML input in the form that can input HTML. Click [here](/weakness/20200819) for details.
+    - Changed the format to download the file instead of displaying the attached file in the browser when clicking the URL of the attached file. Click [here](/weakness/20200819_2) for details.
+1. Bug fix
+    - Fixed a bug that the table cannot be deleted when there is one or more user views and there is a user view that the logged-in user cannot access.
+    - Fixed a bug that the column data of the parent table is not displayed when the column data of the parent table is set to be displayed from the view of the child table when the n: n relation is performed.
+    - Fixed a bug that "Data auto sharing setting" of custom table is not exported normally when exporting template
+    - Fixed a bug that data is not displayed when "Workflow status" is selected in the calendar view condition settings.
+1. Addition of functions
+    - Addition of reverse proxy option with SAML authentication (added to the option settings on the SAML setting screen)
+1. Other
+    - When installing with v3.6.0 or later, change the initial value of the user dashboard / user view from use to not use.
+    - When performing a free word search, the request was made for each table, but changed to 5 tables (reduction of the number of simultaneous requests).
+
+
+## v3.5.4 (2020/08/06)
+1. Addition of functions
+    - Addition of option to skip notification if the notification target is the logged-in user at the time of notification (default is skip). * For setting changes, refer to "Skip notification if the notification target is a logged-in user" in [here](/config).
+1. Bug fix
+    - Fixed a bug that the custom view with sorting may not be displayed.
+    - Fixed a bug that the form cannot be deleted when the form priority is set.
+    - Fixed a bug that the initial value is not set when the initial value setting of the custom column is "0".
+    - Other minor corrections
+
+
+## v3.5.3 (2020/07/30)
+* There were some defects at the time of release. Please note that v3.5.0 → 3.5.3.
+
+1. Addition of functions
+    - Added the function to automatically set the organization of the logged-in user in the data update settings. Data update settings are [here](/operation)
+1. Bug fix
+    - Fixed a bug when custom columns of custom columns "User" and "Organization" were specified as group columns in the summary view.
+    - Fixed a bug that the field selected from two lists, such as "Organization settings" on the user data edit screen, may not respond even if clicked.
+    - Other minor corrections
+1. Other
+    - Fixed so that the button is not displayed when there is only one menu of "Detailed table settings" on the data list screen.
+
+    
+## v3.5.0 (2020/07/28)
+1. Addition of functions
+    - Added data update settings. A specific trigger such as "click a button" or "create new data" updates the data saved in Exment in a batch. Click [here](/operation) for details.
+    - You can now select the screen type in the form priority settings. You can make settings such as "form that is displayed only when creating a new form" and "form that is displayed only on the data details screen". Form priority setting is [here](/form # form display condition setting)
+    - Added the editing function of the plug-in. You can edit, upload new, and delete plug-in files from the screen.
+    - Fixed so that the user view / user dashboard can be enabled / disabled from the system settings.
+    - Drag and drop is supported for file / image columns. * To disable it, click [here](/config#disable-drag-and-drop-of-file).
+1. Bug fix
+    - Fixed a bug that the radio button is not displayed on another screen after transitioning to the form screen.
+    - Other minor corrections
+
+    
+
+## v3.4.3 (2020/07/20)
+1. Addition of functions
+    - Added a setting to change the color of the graph displayed on the dashboard. Click [here](/config # Change the color of the dashboard graph display) for details.
+    - Added the function to control the display / non-display of buttons by logic in "Button" and "Document" of the plug-in. For details, see [here (button)](/plugin_quickstart_button) or [here (document)](/plugin_quickstart_document).
+1. Bug fix
+    - Fixed a bug that an exclusive control error occurs when data is saved as it is after deleting a file in the custom columns "File" and "Image".
+    - Fixed a bug that the "current status" of the workflow is not displayed under certain conditions.
+    - Fixed a bug that an error occurs when deleting an image in the table "Basic information"
+1. Other
+    - Fixed to display a caution statement when restoring backup data
+    - Enhanced custom column validation logic, assuming saving data from plugins.
+    - Added a function to check validation when setting a value in custom data by plugin. Click here for details (/ ja / func_reference # setValueStrictly)
+    - Other minor corrections
+    
+
+## v3.4.2 (2020/07/14)
+1. Addition of functions
+    - Added a setting value that disables the data search dialog function of "Choice (reference to other tables)", "User", and "Organization". For details, refer to "Disable the data search dialog function of" Choice (reference to other tables) "," User "and" Organization "" in [here](/config).
+1. Bug fix
+    - Fixed a bug that the search button is displayed even when the item is displayed only in the data search dialog of "Choice (reference to other table)", "User", and "Organization".
+    - Fixed validation bugs by creating new users and importing data
+    - Control correction when an error occurs when the password expires or the password is reset by the first login
+    
+    
+
+## v3.4.1 (2020/07/13)
+1. Addition of functions
+    - Added data search dialog function when entering data for "Choice (reference to other tables)", "User", and "Organization". You will be able to search from the list of target tables and select data.
+    - Added the function to get the checked data of the list when the button is displayed on the list screen with the plug-in "button". Click [here](/plugin_quickstart_button) for details.
+    - Added the function to display your own button with the plug-in "button". Click [here](/plugin_quickstart_button) for details.
+    - Addition of setting to synchronize data sharing settings with users / organizations set in columns in automatic data sharing settings for each table
+    - Fixed so that multiple files can be uploaded at once in the attached file on the data details screen.
+1. Bug fix
+    - Fixed a bug that free word search in "Choice (reference to other table)" column does not hit when "Heading column" is registered in 0 in the search destination table.
+    - Fixed a bug that import does not complete normally when "Cannot create new / Allow import" is set in the "Cannot change from screen" setting of the table.
+    - Fixed a bug that the status name at the start is always displayed when the data list is displayed when "Workflow status" is selected in the group column in the summary view.
+1. Other
+    - Corrected the internal description of the data list screen and data detail screen.
+    - Add an overview manual around roles and privileges. Please check [here](/permission)
+    - Other minor corrections
+    
+
+
+## v3.4.0 (2020/07/03)
+1. Addition of functions
+    - Addition of settings for external portal sites. You can prevent each user from viewing user information outside your organization. Click [here](/multiuser) for details.
+    - Added automatic data sharing setting for each table. When saving data, you can automatically share the data with the organization or user that is set as the value. Click [here](/table#data_automatic_sharing_settings) for details.
+    - Addition of an option that allows users / organizations who cannot access the table to be displayed as candidate choices in the "User" and "Organization" settings of the custom column.
+    - Changed to select the search target column in the header, the search bar on the data list screen, and the data search by API (performance measures)
+    - Changed to output the margin by tag when multi-line text is displayed in html and the body contains a half-width space.
+    - Fixed the function so that it can be added to the "heading column" when creating a new column.
+    - Changed the form decision button from "Submit" to "Save"
+    - Changed the function to keep the check box when saving data after checking the "Continue creation" and "Continue editing" check boxes.
+1. Bug fix
+    - Fixed a bug that caused an error in "Display summary data details" display in the summary view.
+1. Other
+    - Fixed some judgments about "Is Exment installed?"
+    - Lint is being supported (We are preparing for more detailed automatic tests for future error confirmation)
+    - Other minor corrections
+
+## v3.3.2 (2020/06/25)
+1. Addition of functions
+    - Added LIKE search in "Custom data search (column specification)" of API. Also, add OR search. Click [here](https://exment.net/reference/ja/webapi.html#operation/get-values-query) for details.
+    - Added API to retrieve data using views. Click [here](https://exment.net/reference/ja/webapi.html#operation/get-view-values) for details.
+    - In the case of a table that has a reference to itself, such as an organization, correct it so that it is not included in the registration of the reference destination.
+1. Bug fix
+    - Fixed a bug that the graph is not displayed on the dashboard of the TOP page.
+    - Fixed a bug that an error occurs due to duplicate values ​​and validation that the value of "Unique" column cannot be changed even if the user information is not updated when logging in to SSO.
+    - In the form with 1: n relation, when "Choice (reference to other table)" with 100 or more data is added to the child data, the choice is not displayed.
+    - Fixed a bug that if there is a column for which required & initial value is set in API, it will be registered empty without becoming a required error even if that column is not included when creating new data.
+    - Other minor corrections
+
+
+## v3.3.1 (2020/06/23)
+1. Addition of functions
+    - When a custom column (choice to refer to another table) to a table with parent-child / reference relationship exists in the same form, by selecting the parent item, only the child item associated with that parent is automatically automatically Expansion of functions to be narrowed down. Click [here](/form#related_refinement_settings) for details.
+    - Changed to call the "Filter" item on the data list screen asynchronously. * Since it takes time to get the option list, the function has been modified to render only when necessary.
+1. Bug fix
+    - Fixed a cumulative bug related to "Custom column (choice to refer to another table)". In particular, fixed a bug when "Allow multiple selection" was performed.
+    - Fixed a bug that the description of the role group was not updated
+    - Fixed so that the parent table cannot be deleted when there is a child table
+    - Fixed a bug that an error occurs in the "Notification list" display when deleting a custom table that has been notified.
+    - Fixed a bug that only the last content is displayed on the detail screen display when items such as "Heading" are set in the form.
+    - Other minor corrections
+
+
+## v3.3.0 (2020/06/14)
+1. Addition of features (SSO)
+    - Added LDAP authentication and SAML authentication. Click [here](/login_setting) for details.
+    - Added function to set SSO login settings from the screen
+    - You can now perform a login test in advance with SSO login. Please use for communication confirmation etc.
+    - Adding a setting to add a user to Exment when logging in for the first time from SSO, even if you have not added the user in advance
+    - Addition of setting to deny login depending on the domain of the logged-in user
+    - Added a function to automatically link to the set role group only when logging in for the first time.
+    - Added "dot" to "Available characters" option of custom column "1 line text"
+1. Addition of functions (others)
+    - Addition of setting that requires password change when logging in for the first time with a normal account
+    - Added sharing function for [User View](/view) and [User Dashboard](/dashboard)
+    - Added a button to display a dialog on the "System Settings" related screen.
+    - Many other minor corrections
+
+
+
+## v3.2.8 (2020/06/10)
+1. Addition of functions
+    - Added setting value to hide "Table details" and "Change view" buttons on the custom data screen. Click [here](/config#"Table-details"button-on-the-custom-data-screen-is-hidden) for details.
+1. Bug fix
+    - Fixed a bug that Japanese characters in file names are garbled when exporting data in Edge
+    - Fixed a bug that an error occurs when the character string "parent table name_small table name" becomes 31 characters or more in total due to the relation setting when exporting data.
+    - Fixed a bug that the filter is not filtered properly when the view display condition "Does not include search value" is set in the column type "Choice" and the setting of multiple selection "YES".
+    - Other minor corrections
+1. Other
+    - Modification of template import (Excel)
+    
+
+## v3.2.7 (2020/06/01)
+1. Bug fix
+    - Fixed a bug that the role group list screen was not displayed properly
+
+## v3.2.6 (2020/05/29)
+1. Bug fix
+    - Fixed a bug that the reference destination of "Choice (select from the list of values ​​in other tables)" for which the search index was not set was displayed on the setting screen of the summary view.
+    - Fixed a bug that did not work effectively when the workflow status was selected in the "Match any condition" setting in the view condition.
+    - Fixed a bug that "Display count" in view settings is not valid
+    - Fixed a bug in importing CSV and numerical values ​​in the YES column and the option column where "Allow multiple columns"
+1. Other
+    - Added a process to redirect to the edit screen when the URL is directly entered on some endpoints.
+    - Added a manual for batch import function of logged-in users. Click [here](/user?Id=Bulk-import-of-login-user-information) for details.
+
+
+## v3.2.4 (2020/05/22)
+1. Addition of functions
+    - BOM can now be added when exporting csv data. (The characters are not garbled even if opened in Excel.) The setting method is [here](/config#csv-format) (BOM is added when exporting in).
+1. Bug fix
+    - Fixed a bug that backup loading did not end when "Keep backup generation" was set when backing up data.
+
+
+## v3.2.3 (2020/05/18)
+1. Bug fix
+    - Fixed a bug when two or more plugins are installed and the plugin button, trigger, batch export is executed.
+
+
+## v3.2.2 (2020/05/14)
+1. Addition of functions
+    - Added the function to change the backup file name
+    - Performance improvement when importing data
+    - When importing data, if there is already a target image in the "files" table in the URL of the file / image column, the function is corrected so that it is automatically linked at the time of import (optimization at the time of data migration)
+    - Added the function to display an error in MySQL 8.0.0 or higher during easy installation.
+1. Bug fix
+    - Fixed a bug that the status name at the start is always displayed when the dashboard is displayed when "Workflow status" is selected in the group column in the summary view.
+    - Fixed a bug that an error occurs when displaying "Display summary data details" from the data list when the group column "Workflow status" is selected in the summary view.
+    - Fixed a bug that backup did not complete normally in some versions of mysqldump v8.0.X. [Reference](https://serverfault.com/questions/912162/mysqldump-throws-unknown-table-column-statistics-in-information-schema-1109)
+    - Fixed a bug where workflows that were not enabled could be selected as notification targets in the notification settings.
+    - Fixed a bug that the display wording of the target data may be corrupted on the notification bar details screen.
+1. Other minor corrections
+
+
+## v3.2.1 (2020/05/07)
+- Fixed to add column name class to td tag of dashboard data list table
+- When importing data, if the target file of the URL exists in "File" and "Image" of the custom column, it can be imported.
+- Fixed a bug that an error occurs when saving a role group if the plugin is not installed.
+-Fixed a bug that an error occurred when executing the extension: publish command during development with [Develop](https://github.com/exceedone/exment/blob/master/Develop.md).
+- Other minor corrections
+
+## v3.2.0 (May 05, 2020)
+- Added a function so that "Match any condition" can be selected in the view display condition, form switching condition, and workflow action setting condition.
+- Added a function that allows you to set binary comparison validation from the screen when saving data. Click [here](/table?Id=comparing-two-columns)
+- Changed "Detailed table settings", "Import / export", and "Change view settings" to a dialog display format.
+- Added the role authority management function of the plugin. Click [here](/plugin?Id=role-authority-management) for details.
+- Added "Export" to the plugin type. Click [here](/plugin_quickstart_export) for details.
+- Deprecated "Trigger" in the plugin type, and added [Button](/plugin_quickstart_button) and [Event](/plugin_quickstart_event) instead.
+- Added "When screen is loaded" and "When dashboard is loaded" events in the plug-in type "Script". Click [here](/plugin_quickstart_script) for details
+- Changed not to get "label" value by default when getting API data list
+- Added the function to add your own options in the setting "Available characters" of the custom column type "1 line text". Click [here](/additional_available_characters) for details.
+- Other minor corrections.
+
+
+## v3.1.14 (2020/05/01)
+-(Version numbering error. The contents are the same as v3.1.13.)
+
+## v3.1.13 (2020/05/01)
+- Fixed a bug that an error occurs when the custom column type is "File" and "Image" and the "Required" setting is set and the file is not attached when updating the data.
+- Fixed a bug that the cache is not refreshed when "Role group" is set on the "User" screen when the cache is enabled.
+- Fixed a bug that the plug-in type "script" is not loaded at runtime with F5
+- Enhanced validation of custom column setting "Enter only once"
+- Other minor corrections
+
+
+## v3.1.12 (2020/04/20)
+- Added an option to give edit permission to "Next Working User" when executing a workflow. It has been added to the action setting screen.
+- Added "Get custom column information by specifying table name / column name" to API
+- Fixed a bug in permissions other than the administrator in the plugin (page). And optimization of authority processing
+- Fixed file path when running Linux with bulk insert function
+- Other minor corrections
+
+## v3.1.11 (2020/04/10)
+- Corrected the output format when the column type is "Date" or "Date" in the parameter settings.
+- Fixed a bug that the button name setting is not valid in the plug-in type "Document".
+- In addition, carry out detailed refactoring, etc.
+
+## v3.1.10 (2020/04/05)
+- Addition of exclusive control. When updating data from the screen or API, an error message will be displayed if another user has updated it.
+- Added "API key" to API authentication method. When authenticating from batch, API can be executed without using ID / password. Click [here](/api) for details.
+- Added "Get document (attached file) list" and "Delete file" to API. Also, for "File Download", add an endpoint with a specified file name.
+- Added "Overall API App Management" and "API App Management" to the authority of the role group.
+- Added an option to hide "ID", "Created date" and "Updated date" in the filter of the data list screen to the system setting screen.
+- Changed the file path character string for Windows from "\" to "/" (unified with Linux). In addition, patching of the data registered so far
+- In addition, carry out detailed refactoring, etc.
+
+## v3.1.9 (2020/04/02)
+- Supported to search for values ​​such as "Select (other table)" in the header search bar and custom data list search form.
+- Supports large amount of data registration (bulk insert). Click [here](/data_bulk_insert) for details.
+- Variable form display conditions on the data details screen
+- Other bug fixes
+
+## v3.1.8 (2020/03/27)
+- Fixed to display an error if PHP7.4 was used during installation
+- Fixed a bug that a non-administrator user would get an error when logging in when the user who was set in the menu deleted the table (occurs when the table was deleted in the past version)
+- Fixed a bug that an error occurs when editing when "Enter only once" is set in the custom column setting and not "hidden field" is set in the custom form.
+- Fixed a bug when deleting multiple data by deleting custom data of API
+- Other minor corrections
+
+## v3.1.7 (2020/03/25)
+- Fixed a bug that cross-site scripting occurs when the system administrator inputs a script tag in the custom view, notification, and workflow list screens.
+- When importing data, set the maximum number of items that can be imported at one time (Since the content was very inquired, we set a limit of 1000 items.)
+- Added a query to change the format of the acquired data when acquiring API data
+- Other minor corrections
+
+## v3.1.6 (2020/03/22)
+- Added "HTML" and "Editor" boxes to the dashboard. It can be set by setting "System" from the "Dashboard" settings. Click [here](/dashboard) for details.
+- Support for delayed execution in the notification function. Click [here](/additional_queue) for details * This is a function for advanced users.
+- Fixed a bug in the list screen when the workflow was aggregated.
+- Fixed a bug when the number of lines on the dashboard is set to 5 or more.
+- Other minor corrections
+
+## v3.1.5 (2020/03/18)
+- Added export function using the displayed view on the data list screen. Click [here](/data_import_export) for details.
+* Currently, the data export / import menu is very long. If there are unnecessary items, they can be hidden by [Setting value](/config#Import_Export).
+- Fixed the notification to the right of the header so that the bell sways when a notification is added
+- Strengthen deletion check for table deletion when performing relations and table references
+- Other minor corrections
+
+## v3.1.4 (2020/03/07)
+- Changed the number of search indexes so that it can be changed from config
+- Changed the number of filter items on the data list screen to balance left and right.
+- Other minor corrections
+
+## v3.1.2 (2020/03/02)
+- Performance improvement on the data list screen <br /> * If the column "label" is used in the data list acquisition API, it will not be possible to acquire it by default after 2020/04/30. For details, follow [here](/additional_api_label) to add.
+- Added "now" to [Parameter](/params)
+- Fixed a bug that data cannot be saved when the date system custom column is required, input only once, and the execution date and time is registered at the time of creation.
+- Fixed a bug that an error occurs when the data list screen is displayed without setting the target table after uploading the "trigger" of the plug-in.
+
+
+## v3.1.1 (2020/02/26)
+- Addition of notification before and after execution to the trigger condition of plugin (trigger)
+- Along with that, "Notification name (alphanumeric characters)" was added to the notification item.
+
+## v3.1.0 (2020/02/22)
+- Added the function to restore logically deleted data. Click [here](/deleted_data) for details.
+- Added a file save function to image / file columns using the data API. Click [here](https://exment.net/reference/ja/webapi.html#operation/post-values) for details.
+- Supports the function to import templates from Excel files. Click [here](/template # import-excel) for details.
+- Changed the system setting screen to be divided into "basic settings" and "detailed settings"
+- Other minor corrections
+
+## v3.0.22 (2020/02/21)
+- Added test mail sending function. Click [here](/mailsend_setting) for details.
+- Fixed a bug that the unique key is not imported normally when the unique key is set in the custom column when importing the data.
+- Other minor corrections
+
+## v3.0.21 (2020/02/16)
+- In the data export, in the case of "Parent data ID", "User", "Organization", and "Choice (select from the value list of other tables)", the function to output the value other than id has been added. Click [here](/ata_import_export#Change-output-value-when-exporting) for details.
+- Added setting to disable file type csv, xlsx in data import / export. Click [here](/config#import-export) for details.
+- Other minor corrections
+
+## v3.0.20 (2020/02/12)
+- Fixed a run-time scope bug in the plugin API
+
+## v3.0.19 (2020/02/10)
+- Fixed a bug that an error occurs on the data list screen when multiple selections are allowed when the column is "Choice" or "Choice (register value / heading)".
+- Fixed a bug that an error occurs on the workflow action setting screen when a user / organization is specified as an action target in a workflow action and then the user / organization is deleted.
+- Fixed to output log when template list could not be acquired normally
+- Fixed a bug that unnecessary contents were displayed on the setting screen at the time of initial installation (contents managed on the system setting screen)
+- Fixed a bug that an error message may be displayed even though the backup was completed normally when executing the backup.
+- Other minor corrections
+
+
+## v3.0.18 (2020/01/30)
+- Added the function to specify the parent data (parent_id) when registering the data of the table on the n side with the relation of 1: n in the "Add new data" function of API. Click [here](https://exment.net/reference/ja/webapi.html#operation/post-values) for details.
+- Fixed the parameter so that the value of the referenced table in the column "Choice (select from the list of values ​​in other tables)" can be displayed.
+- Fixed plugin scripts, styles and pages to load js and css at the end of HTML loading
+- Fixed to display even if you are not in expert mode from "Executable setting from screen" of table extension setting
+- Fixed a bug that password policy and IP filter settings are not displayed when "Use organizational management" in the system settings is set to NO.
+- Fixed a bug that the condition view may not work properly with the notification function.
+- Fixed a bug that the notification function does not notify normally when registering data from a situation where you are not logged in.
+- Other minor corrections
+
+## v3.0.17 (2020/01/24)
+- Fixed a relation bug when "User" and "Organization" were in the form at the same time.
+- Fixed a bug that parent-child form remains when the relation is deleted after registering the form.
+* If the form remains in the relation deleted in the past, delete it with [here](/patch / remove_deleted_relation).
+- Fixed a bug that an error occurs when linking settings are made in the user column and organization column.
+- Fixed a bug that images could not be acquired normally when SSO login was performed with a Google account. Click [here](/patch/sso_google) for details.
+
+## v3.0.16 (2020/01/17)
+- Fixed custom view sort settings
+
+## v3.0.15 (2020/01/16)
+- Fixed a bug in uploading and restoring files
+- Fixed a bug when deleting a custom column
+- Fixed a bug that plugins (pages, documents) may not be displayed properly
+- Other minor corrections
+
+## v3.0.14 (2020/01/09)
+- Partially modified dialog specifications (with Docurain support)
+
 
 ## v3.0.13 (2019/12/27)
 - Added an option to set the login user to the initial value when the column type is "User".
@@ -13,12 +529,12 @@
 - Fixed a bug that HTTP logs were not saved.
 - Fixed a bug that password reset email was not sent properly.
 - When restoring, if the target is local, nothing is executed and the process ends.
-- "Process to reduce line feed code in HTML response" is added as an option. [Click here](/config#Line-feed-code-removal-in-HTTP-response) for details.
+- "Process to reduce line feed code in HTML response" is added as an option. Click [here](/config#Line-feed-code-removal-in-HTTP-response) for details.
 
 ## v3.0.10(2019/12/12)
-- Added option to not show latest version of dashboard. [Click here](/config#Disable-latest-version-display-of-dashboard) for details. 
+- Added option to not show latest version of dashboard. Click [here](/config#Disable-latest-version-display-of-dashboard) for details. 
 - Added processing to save execution log when executing API.
-- Fixed a bug that history is not displayed properly when creating / updating custom data with API. [Click here](/patch/api_revision) for details.
+- Fixed a bug that history is not displayed properly when creating / updating custom data with API. Click [here](/patch/api_revision) for details.
 - Fixed a bug that workflow parameters were not displayed correctly in workflow email notifications.
 - Other minor fixes.
 
@@ -27,9 +543,9 @@
 - Improve performance when users belong to multiple organizations.
 
 ## v3.0.8(2019/12/07)
-- Support uploading files to other services (FTP, SFTP, AWS S3, Azure Blob) instead of local server. [Click here](/additional_file_saveplace) for details.
+- Support uploading files to other services (FTP, SFTP, AWS S3, Azure Blob) instead of local server. Click [here](/additional_file_saveplace) for details.
 - Supports Web server redundancy.
-- Added IP filter setting function. Executable IP addresses can be registered as whitelists on the Web screen and API. [Click here](/additional_ip_filter) for details.
+- Added IP filter setting function. Executable IP addresses can be registered as whitelists on the Web screen and API. Click [here](/additional_ip_filter) for details.
 - Add workflow and notification function to API.
 - Added custom data search (column specification) to API.
 - Added "expand" option to collectively retrieve child data list in some APIs.
@@ -57,8 +573,8 @@
 - Other minor fixes.
 
 ## v3.0.4(2019/11/25)
-- Added a setting that is automatically shared to the login user's organization when saving custom data. [Click here](/organization#kyouyu_jidou) for details.
-- Added the setting of whether to refer to parent organization and child organization in sharing of organization of custom data organization when setting organization hierarchy. [Click here](/organization#kaisou_syurui) for details.
+- Added a setting that is automatically shared to the login user's organization when saving custom data. Click [here](/organization#kyouyu_jidou) for details.
+- Added the setting of whether to refer to parent organization and child organization in sharing of organization of custom data organization when setting organization hierarchy. Click [here](/organization#kaisou_syurui) for details.
 - Added [organization manual](/organization).
 - Other minor fixes.
 
@@ -82,9 +598,9 @@
 - Fixed the problem that layout collapse occurred on data detail screen and edit screen. And smartphone optimization.
 
 ## v3.0.0(2019/11/13)
-- **Added support for workflow function.** [Click here](/workflow_setting) for details.
+- **Added support for workflow function.** Click [here](/workflow_setting) for details.
 - Supports multiple form settings. You can switch the usage form depending on the conditions.
-- Added support for cache settings. [Click here](/additional_cache) for details.
+- Added support for cache settings. Click [here](/additional_cache) for details.
 - Change the display method such as ID and update date on the data detail screen and data edit screen.
 - "Validation" added to plugin.
 - Added a setting that does not perform page transition when clicking a row in the list.
@@ -234,8 +750,8 @@
 - Other minor fixes
 
 ## v2.0.0(2019/07/26)
-- Changed role / authority management method to role group management. [Click here](/role_group) for details.
-- Added a function to display notifications in the upper right corner of the header. [Click here](/notify) for details.
+- Changed role / authority management method to role group management. Click [here](/role_group) for details.
+- Added a function to display notifications in the upper right corner of the header. Click [here](/notify) for details.
 - Added a reload button at the top right of the header.
 - Added a function that can execute a notification when commenting / attaching to data.
 - Added the ability to share data.
@@ -259,7 +775,7 @@
 
 ## v1.4.0(2019/07/11)
 - Compatible with two-step authentication. Click [here](/login_2factor_setting) for details.
-- Added the function to send an email from the data details screen to the target user or email address. [Click here](/notify) for details.
+- Added the function to send an email from the data details screen to the target user or email address. Click [here](/notify) for details.
 - Modified to be unable to log in for a certain period of time after a certain number of failed logins.
 - Added the function to configure the SMTP setting of mail on the system setting screen.
 - Support duplicate notification.
