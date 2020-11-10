@@ -77,6 +77,7 @@
     * [Docurain(PDF出力)](/ja/plugin_quickstart_docurain)
   
 * 【10. リファレンス】
+  * [リリースノート](/ja/release_note)
   * [パラメータ変数](/ja/params)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference)
@@ -84,7 +85,6 @@
   * [プラグインリファレンス](/ja/plugin_reference)
   * [設定値一覧](/ja/config)
   * [コマンド一覧](/ja/command)
-  * [リリースノート](/ja/release_note)
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
   * [トラブルシューティング](/ja/troubleshooting)
   * [ライセンス](/ja/license)

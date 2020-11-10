@@ -67,12 +67,6 @@
   
 * 【10. Reference】
   * [Release notes](/release_note.md)
-    * [v1.1.X](/update/v1_1.md)
-    * [v1.2.X](/update/v1_2.md)
-    * [v1.3.X](/update/v1_3.md)
-    * [v1.4.X](/update/v1_4.md)
-    * [v2.0.X](/update/v2_0.md)
-    * [v2.1.X](/update/v2_1.md)
   * [Parameter variables](/params.md)
   * [API reference](https://exment.net/reference/webapi.html)
   * [Function reference](/func_reference.md)
