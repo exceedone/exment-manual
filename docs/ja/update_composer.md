@@ -1,7 +1,7 @@
-# composer更新(現在検証中)
+# composer更新
 composerのアップデートを行うための手順です。  
 
-> 2020/11/24現在、内容の検証中です。「正常にアップデートできた」「エラーが発生したと」いうご報告を、[こちら](https://github.com/exceedone/exment/issues/849)にいただけると、非常に幸いです。  
+> 万が一、本アップデート実行により、Exmentの更新時にエラーが発生するようになった場合は、[こちら](https://github.com/exceedone/exment/issues/849)にご報告いただけると、非常に幸いです。  
 
 
 2020/10に、composerのver2がリリースされました。  
