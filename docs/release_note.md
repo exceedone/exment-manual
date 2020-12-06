@@ -1,6 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.7.7 (2020/12/06)
+1. Bug fix
+     - Fixed a bug that an error occurs when some custom columns are selected in "Display only" of form settings or "Enter only once" of custom columns.
+     - Fixed a bug that the email address may not be obtained normally when the notification target is "Choice (refer to other table)" including the email column in the notification settings.
+     - Other minor corrections.
+1. Other
+     - Added the update procedure to composer2. Click [here](/update_composer) for details
+
 ## v3.7.6 (2020/11/25)
 1. Bug fix
      - Fixed a bug that an error occurs in export (view)
