@@ -1,6 +1,42 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.7.6 (2020/11/25)
+1. Bug fix
+     - Fixed a bug that an error occurs in export (view)
+     - Fixed the phenomenon that a problem occurs when N: N relation is performed and the child table side does not have the authority and the data on the parent table side is accessed (and the logged-in user is not an administrator).
+     - Corrected an error in the notification executor display when commenting / attaching data. * If you installed with v3.7.5 or lower, please change the settings manually by clicking [here](/patch/mail_template_comment_attachment).
+
+## v3.7.5 (2020/11/24)
+1. Addition of functions  
+     - Fixed so that the type of validation can be obtained in the plugin (validation). Click [here](/plugin_quickstart_validate) for details
+1. Bug fix
+     - Fixed a bug that an error occurs when the workflow "status" and "working user" are used as conditions in the notification settings.
+1. Other
+     - Added the update procedure to composer2. Click [here](/update_composer) for details
+
+
+## v3.7.4 (2020/11/16)
+1. Bug fix
+     - Fixed a bug that the same user may be notified twice by notification  
+     - Fixed a bug that emails may not be sent normally when the user column is specified in the notification.
+     - Fixed a bug that the decimal digits may be incorrect in the custom column "decimal".
+     - Fixed a bug that the filter for the current day was not narrowed down properly in the filter related to the custom column "Date".
+1. Other
+     - The notification email has been refactored.
+     - Significantly added test code for notifications. In the future, we will continue to add test code to improve quality, focusing on areas that are likely to cause problems.
+     - The source for Lint execution has been prepared.
+
+    
+## v3.7.3 (2020/11/10)
+1. Function addition / correction  
+     - Added an option to specify the extension that can be displayed on the browser when downloading the file. For details, refer to "Changing the extension displayed on the browser when clicking an attached file" in [here](/config).
+     - Fixed to be able to copy and paste images in the custom column "Editor"
+1. Bug fix
+     - Fixed a bug that the custom column set to "Enter only once" cannot be used in the calculation formula.
+     - Fixed a bug that an error occurred when setting "This year", "Next year", and "Last year" in the view condition.
+     - Other minor corrections
+    
 ## v3.7.2 (2020/10/27)
 1. Function addition / correction
     - Supports comparison using system date in "Compare two columns" setting of custom table extension setting.
