@@ -15,7 +15,8 @@ Exmentで使用する、ワークフローの設定例をいくつかご紹介�
 
 
 
-<h2 id="example1">ワークフロー設定例 - 申請 → 承認・却下</h2>
+<h2 id="example1"><a href="#/ja/workflow_example?id=example1" data-id="example1" class="anchor"><span>申請 → 承認・却下</span></a></h2>
+
 データの申請、承認・却下を行う、シンプルなフローの設定方法です。  
 
 ![ワークフロー画面](img/workflow/workflow1.png)  
@@ -85,7 +86,8 @@ Exmentで使用する、ワークフローの設定例をいくつかご紹介�
 
 
 
-<h2 id="example2">申請 → 部長承認or課長承認・却下</h2>
+<h2 id="example2"><a href="#/ja/workflow_example?id=example2" data-id="example2" class="anchor"><span>申請 → 部長承認or課長承認・却下</span></a></h2>
+
 申請したデータの金額に応じて、アクションの振り分け、担当者の変更を行う場合の、設定方法のご紹介です。    
 
 ![ワークフロー画面](img/workflow/workflow_example2_0.png)

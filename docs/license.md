@@ -24,6 +24,9 @@ https://dbushell.com/Nestable/
 #### PhpSpreadsheet
 https://github.com/phpoffice/phpspreadsheet
 
+#### SpOut
+https://github.com/box/spout
+
 #### TinyMCE
 https://www.tiny.cloud/
 

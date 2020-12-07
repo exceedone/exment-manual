@@ -66,7 +66,8 @@ php artisan exment:export (テーブル名) {--action=default} {--type=all} {--p
 
 
 
-<h2 id="export_chunk">データエクスポート(chunkモード)</h2>
+<h2 id="export_chunk"><a href="#/ja/data_cmd_import_export?id=export_chunk" data-id="export_chunk" class="anchor"><span>データエクスポート(chunkモード)</span></a></h2>
+
 指定の件数(既定値：1000件)毎に、データを分割して出力します。大量データの出力を行う場合、1ファイル内の行数を削減することができます。  
 
 

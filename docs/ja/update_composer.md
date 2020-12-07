@@ -69,10 +69,10 @@ composer self-update -–2
 composer selfupdate -–2
 ```
 
-- アップデート後、なんらかの不具合が発生してしまった場合、以下のコマンドで、version1.X.Xにロールバックできます。
+- アップデート後、なんらかの不具合が発生してしまった場合、以下のコマンドで、version1.X.Xにロールバックできます。  
+ただし、下記のコマンドは、**Exmentのフォルダ以外のパス**で実行をしてください。Exmentのフォルダ内で実行すると、エラーになるようです。
 
 ```
 composer self-update -–1
 composer selfupdate -–1
 ```
-
