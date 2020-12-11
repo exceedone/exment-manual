@@ -58,10 +58,10 @@ php artisan exment:export (テーブル名) {--action=default} {--type=all} {--p
 (オプション)エクスポートするフォルダパス。フルパス。未設定の場合、(Exmentのルートフォルダ)/storage/app/export/(実行日時：yyyyMMddHHiiss)。
 
 - ##### add_relation  
-(オプション)リレーションデータも出力するかどうか。既定値は0(出力しない)。Xlsx形式でのみ有効。
+(オプション)リレーションデータも出力するかどうか。既定値は0(出力しない)。Xlsx形式、ならびにactionがdefaultの場合でのみ有効。
 
 - ##### add_setting  
-(オプション)設定データも出力するかどうか。既定値は0(出力しない)。Xlsx形式でのみ有効。
+(オプション)設定データも出力するかどうか。既定値は0(出力しない)。Xlsx形式、ならびにactionがdefaultの場合でのみ有効。
 
 
 
