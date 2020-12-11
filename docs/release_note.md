@@ -1,6 +1,16 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.8.0 (2020/12/11)
+**There are some points to check when updating to v3.8.0 or higher. Please check the contents of [here] (/ja/update/v3_8) once and then update.**
+1. Function addition / improvement
+    - Improved data import / export performance and memory usage. For details, please check the contents of [here] (/ja/update/v3_8).
+    - Improvement of screen display contents when import command is executed, modified so that you can see which line is currently being imported.
+    - In addition, refactoring of import / export
+1. Bug fix
+    - Fixed a bug that an error occurs when sorting the list screen by data creation date / time / update date / time, etc.(Remand v3.7.7 fixes)
+
+
 ## v3.7.7 (2020/12/06)
 1. Bug fix
      - Fixed a bug that an error occurs when some custom columns are selected in "Display only" of form settings or "Enter only once" of custom columns.
