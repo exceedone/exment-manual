@@ -86,9 +86,7 @@ Exmentでは、決まった時刻に自動的にバックアップを行うこ�
 
 - その後、ページ下部の［保存］ボタンをクリックします。  
 
-<h3 id="backup_command">
-<a href="#/ja/backup?id=backup_command" data-id="backup_command" class="anchor"><span>(上級者向け)コマンドによるバックアップ</span></a>
-</h3>
+<h3 id="backup_command"><a href="#/ja/backup?id=backup_command" data-id="backup_command" class="anchor"><span>(上級者向け)コマンドによるバックアップ</span></a></h3>
 
 コマンドによるバックアップも可能です。プロジェクトのルートディレクトリで、以下のコマンドを実行してください。
 
@@ -186,7 +184,7 @@ SQLServerを使用している場合、現状Exmentでは画面からのバッ�
 
 
 
-<h3 id="restore_command">(上級者向け)コマンドによるリストア</h3>
+<h3 id="restore_command"><a href="#/ja/backup?id=restore_command" data-id="restore_command" class="anchor"><span>(上級者向け)コマンドによるリストア</span></a></h3>
 
 コマンドによるリストアも可能です。
 
@@ -202,9 +200,8 @@ SQLServerを使用している場合、現状Exmentでは画面からのバッ�
 php artisan exment:restore (zipファイル名)
 ~~~
 
+<h3 id="change_backup_target"><a href="#/ja/backup?id=change_backup_target" data-id="change_backup_target" class="anchor"><span>(上級者向け)バックアップ先の変更</span></a></h3>
 
-
-### (上級者向け)バックアップ先の変更
 通常は、バックアップファイルはWebサーバー上に配置されます。  
 しかし、バックアップファイルを別の場所に配置したいというご要望はあるはずです。  
 別の場所に配置すれば、Webサーバーが何らかの理由で故障し、起動できなくなっても、別の場所からバックアップファイルをダウンロードし、Exmentを復元できます。  

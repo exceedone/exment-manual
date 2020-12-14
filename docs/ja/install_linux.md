@@ -28,7 +28,7 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 
 ~~~
 yum -y update
-yum install -y wget firewalld unzip
+yum install -y wget firewalld unzip git
 ~~~
 
 

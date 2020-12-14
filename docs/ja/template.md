@@ -72,11 +72,7 @@ Exmentで用意しているテンプレート、もしくは過去にアップ�
 それにより、テンプレートで定義しているテーブル・フォーム・ビュー・ダッシュボードなどの情報が、システムにインストールされます。
 
 
-<h3 id="import-excel">
-    <a href="#/ja/templae?id=import-excel" data-id="import-excel" class="anchor">
-        <span>インポート - Excelテンプレート</span>
-    </a>
-</h3>
+<h3 id="import-excel"><a href="#/ja/template?id=import-excel" data-id="import-excel" class="anchor"><span>インポート - Excelテンプレート</span></a></h3>
 
 Excelテンプレートファイルに、必要事項を記入し、テーブル設定などをインポートすることができます。  
 画面から1からテーブルを作成する場合と比較し、一括で複数のテーブルなどを作成できます。

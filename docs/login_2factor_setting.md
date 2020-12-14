@@ -65,6 +65,7 @@ In that case, follow [these steps](/update/v1_4) to import the email template.
 
 ※In addition, an error like the image below may occur.  
 Occurs when the e-mail transmission settings are not performed properly. In that case, make the correct settings according to the [system mail settings](/system_setting#System-mail-settings).  
+![System setting screen](img/login/login_2factor_error2.png)  
 
 - Then click "Send" to save the settings.
 
