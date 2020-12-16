@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.9.0 (2020/12/16)
+1. Function addition / improvement
+    - Formally supports the calculation formula in the input form. Please check [here](/ja/column) for how to set the calculation formula.
+1. Bug fix
+    - Fixed a bug that the same value is displayed when the same column type is set on the data list screen. Also, fix a bug that causes an error when sorting data.
+    - Fixed a bug that comments are displayed when alphabetic characters continue on the data details screen.
+1. Other
+    - Enhanced validation of input form
+
 ## v3.8.0 (2020/12/11)
 **There are some points to check when updating to v3.8.0 or higher. Please check the contents of [here] (/ja/update/v3_8) once and then update.**
 1. Function addition / improvement
