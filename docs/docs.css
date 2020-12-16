@@ -153,3 +153,9 @@ img{
 .page_toc ul a{
     margin:.1em .2em .1em 0;
 }
+
+article::after{
+    content: '';
+    height: 30px;
+    display: block;
+}
