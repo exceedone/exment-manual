@@ -48,10 +48,10 @@ https://www.famkruithof.net/uuid/uuidgen
 - plugin_typeは、apiと記入してください。  
 - uriは、このプラグイン共通のエンドポイントを記入してください。プラグイン管理画面で設定し直すことができます。  
 - routeは、処理毎のエンドポイントとHTTPメソッド、Contoller内でのメソッド名を一覧で定義します。
-    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/admin/plugins/(プラグイン共通のエンドポイント)/(指定したuri)」になります。  
+    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/admin/api/plugins/(プラグイン共通のエンドポイント)/(指定したuri)」になります。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
     - function：実行するContoller内のメソッド名です。
-    - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「plugins/sampleapi/column（メソッド：GET）」。
+    - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「admin/api/plugins/sampleapi/column（メソッド：GET）」。
 
 ### Pluginファイル作成
 
