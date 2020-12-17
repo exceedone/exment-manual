@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.9.1 (2020/12/17)
+1. Function addition 
+    - Added an option to set the default value of the checkbox to select the transition destination after saving the data. Click [here](/ja/data_form) for details 
+1. Bug fix
+    - Fixed a bug that could not be saved due to validation error on the plugin setting screen
+
 ## v3.9.0 (2020/12/16)
 1. Function addition / improvement
     - Formally supports the calculation formula in the input form. Please check [here](/ja/column) for how to set the calculation formula.
