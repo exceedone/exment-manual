@@ -158,8 +158,18 @@ cd exment
 
 ~~~
 chown apache:apache -R /var/www/exment
+chown apache:apache -R /var/www/exment/.env
 chmod 775 -R /var/www/exment/storage
 chmod 775 -R /var/www/exment/bootstrap/cache
+~~~
+
+- [かんたんインストール](/ja/quickstart)によってインストールを実行する場合は、追加で所有者・パーミッション設定を行います。  
+※インストール時のみ必要です。より厳密に権限設定する場合は、かんたんインストール実行後に、フォルダの書き込み権限を削除してください。
+
+~~~
+chmod 775 -R /var/www/exment/app
+chmod 775 -R /var/www/exment/config
+chmod 775 -R /var/www/exment/public
 ~~~
 
 - (推奨)ログインユーザーを、apacheグループに追加します。この設定を行うことで、ログインユーザーが、自由にexmentフォルダ内のファイルを編集することができます。SSH再接続後、グループは反映されます。  
