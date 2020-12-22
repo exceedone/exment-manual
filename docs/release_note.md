@@ -1,6 +1,11 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.9.2 (2020/12/21)
+1. Bug fix
+    - Fixed a bug that could not be saved normally when there are "Key column at the time of import" and "Key column at the time of export" on the custom column setting screen.
+    - Fixed a bug that system columns could not be sorted normally on the data list screen.
+
 ## v3.9.1 (2020/12/17)
 1. Function addition 
     - Added an option to set the default value of the checkbox to select the transition destination after saving the data. Click [here](/ja/data_form) for details 
