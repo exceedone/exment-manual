@@ -52,6 +52,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
             <div class="col-sm-6 tile">
                 <a href="#/ja/server">
                     <div class="tile-inner important-topic">
+                        <h5>はじめに</h5>
+                        <p>Exmentの利用を開始するために、はじめに確認が必要となる手順の概要をまとめています。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/server">
+                    <div class="tile-inner important-topic">
                         <h5>サーバー設定</h5>
                         <p>Exmentをインストールするための、Webサーバー・データベースの設定を行います。</p>
                     </div>

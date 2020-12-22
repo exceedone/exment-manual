@@ -10,28 +10,6 @@ Exmentを開始するために必要となる手順です。
 サーバーの構築をまだ行っていない場合、Webサーバーやデータベースサーバーの構築を行ってください。  
 構築方法は、[こちら](/ja/server)をご確認ください。
 
-### Webサーバー構築
-Exmentには、PHP7.1.3以上が必要です。  
-サーバーの構築をまだ行っていない場合、[こちら](/ja/server)をご確認いただき、構築を行ってください。
-
-### composer導入
-Exmentには、Webサーバーにcomposerの導入が必要です。導入方法はこちらをご参照ください。  
-※すでに導入済の方は不要です。  
-- [公式サイト](https://getcomposer.org/download/)
-- [Windows版 解説サイト](https://weblabo.oscasierra.net/php-composer-windows-install/)
-- [Linux版 解説サイト](https://weblabo.oscasierra.net/php-composer-centos-install/)
-- [Mac版 解説サイト](https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
-
-
-### データベース構築
-Exmentのデータベースエンジンには、以下のいずれかが必要です。
-
-- MySQL 5.7.8以上8.0.0未満
-- MariaDB 10.2.7以上
-- SQL Server 13.0.0以上(現在、自動のバックアップ・リストアが未対応です)
-
-データベースサーバーの設定をまだ行っていない場合、[こちら](/ja/server#データベース)をご確認いただき、構築を行ってください。
-
 
 ## Exmentアプリ設定
 サーバー構築が完了したら、Exmentのアプリ設定を行います。
@@ -51,9 +29,6 @@ composer require exceedone/exment=3.2.6
 # Exmentのバージョンを指定したい場合、代わりに以下を実行。例2：develop(開発バージョン)
 composer require exceedone/exment=dev-develop
 ~~~
-
-### データベース作成
-- ご利用のデータベース環境に、Exment用のデータベースを作成してください。
 
 
 ### .env変更
@@ -130,7 +105,11 @@ php artisan exment:install
 インストールが完了したら、引き続き[初期設定](/ja/first_setting.md)を行ってください。  
 
 
-## その他の初期設定
+## その他の追加設定
 以上の作業で、Exmentを開始することは可能ですが、一部の機能を使うために、追加で設定が必要になる場合があります。  
 以下のリンクをご確認ください。  
 - [追加設定](/ja/quickstart_more)
+
+
+
+[←インストール-概要へ戻る](/ja/quickstart)
