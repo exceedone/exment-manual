@@ -49,7 +49,8 @@ Exmentのプロジェクトフォルダのうち、以下のフォルダに、We
 
 
 ## composer導入
-Exmentには、Webサーバーにcomposerの導入が必要です。導入方法はこちらをご参照ください。  
+Exmentには、Webサーバーにcomposerの導入が必要です。composerは、Exmentに必要なパッケージのインストール、Exmentのアップデートに使用しています。  
+導入方法は以下のURLをご参照ください。  
 - [公式サイト](https://getcomposer.org/download/)
 - [Windows版 解説サイト](https://weblabo.oscasierra.net/php-composer-windows-install/)
 - [Linux版 解説サイト](https://weblabo.oscasierra.net/php-composer-centos-install/)

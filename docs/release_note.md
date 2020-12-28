@@ -1,6 +1,18 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.9.3 (2020/12/28)
+1. Function addition 
+    - Added the function to check the system requirements from the screen and commands. Click [here](/server) for details
+1. Bug fix
+    - Fixed a bug that menu cannot be newly registered
+    - Fixed some query bugs when using SQL Server
+1. Other
+    - Refactor the code for data filtering
+    - Create automated tests for plugins
+    - Optimized the manual for initial setting and installation. The contents are [here] (/quickstart)
+
+
 ## v3.9.2 (2020/12/21)
 1. Bug fix
     - Fixed a bug that could not be saved normally when there are "Key column at the time of import" and "Key column at the time of export" on the custom column setting screen.

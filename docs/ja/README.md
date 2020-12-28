@@ -7,8 +7,8 @@
 Exmentは、情報資産をWeb上で管理するための、オープンソースソフトウェアです。  
 <a href="https://exment.net" target="_blank">Exment公式サイト</a>
 
-## インストール方法
-インストール方法は、[こちら](/ja/quickstart)をご確認ください。
+## 導入方法
+サーバー設定・インストールなどを行う場合、まずは[こちら](/ja/quickstart)をご確認ください。
 
 ## デモサイト一覧
 業務に合わせた、さまざまなデモサイトをご用意しております。  
@@ -50,7 +50,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         <h4>2. インストール・初期設定</h4>
         <div class="row">
             <div class="col-sm-6 tile">
-                <a href="#/ja/server">
+                <a href="#/ja/quickstart">
                     <div class="tile-inner important-topic">
                         <h5>はじめに</h5>
                         <p>Exmentの利用を開始するために、はじめに確認が必要となる手順の概要をまとめています。</p>
@@ -66,9 +66,9 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
-                <a href="#/ja/quickstart">
+                <a href="#/ja/quickstart_easy">
                     <div class="tile-inner important-topic">
-                        <h5>インストール手順</h5>
+                        <h5>Exmentアプリケーションインストール手順</h5>
                         <p>Exmentを開始するために必要となるインストール手順です。</p>
                     </div>
                 </a>
