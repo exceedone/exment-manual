@@ -99,7 +99,7 @@ Therefore, we strongly recommend that you avoid these issues. Please set accordi
 
 <VirtualHost *:80>
   DocumentRoot "C:/xampp/local/exment/public"
-  ServerName exment.localhost
+  ServerName exment.localapp
 </VirtualHost>
 
 <Directory "C:\xampp\local\exment\public">
@@ -114,14 +114,14 @@ Therefore, we strongly recommend that you avoid these issues. Please set accordi
 
 ~~~
 127.0.0.1       localhost
-127.0.0.1       exment.localhost
+127.0.0.1       exment.localapp
 ~~~
 
 - Restart Apache in the XAMPP control panel. In the XAMPP control panel, click the "Stop" button in the "Apache" line and click "Start" again.  
 ![XAMPP installation screen](img/xampp/xampp7.png)
 
 - This will allow you to access Exment from the URL below.  
-http://exment.localhost/admin
+http://exment.localapp/admin
 
 ### Exmentインストール
 Install Exment according to the Exment [installation procedure](/quickstart).

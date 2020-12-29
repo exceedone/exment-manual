@@ -102,7 +102,7 @@ http://localhost/phpmyadmin/index.php
 
 <VirtualHost *:80>
   DocumentRoot "/Applications/XAMPP/local/exment/public"
-  ServerName exment.localhost
+  ServerName exment.localapp
 </VirtualHost>
 
 <Directory "/Applications/XAMPP/local/exment/public">
@@ -142,7 +142,7 @@ hostsファイルを編集します。以下の項目を追加してください
 
 ~~~
 127.0.0.1       localhost
-127.0.0.1       exment.localhost
+127.0.0.1       exment.localapp
 ~~~
 
 - XAMPPコントロールパネルで、Apacheを再起動します。  
