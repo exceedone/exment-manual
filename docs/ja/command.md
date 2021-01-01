@@ -180,3 +180,11 @@ php artisan exment:patchdata {実施アクション}
 ```
 
 
+
+### データベースの接続確認
+データベースに接続されているかどうかの確認を行います。  
+接続されている場合は1を、未接続の場合は0を返却します。
+
+```
+php artisan exment:check-connection
+```

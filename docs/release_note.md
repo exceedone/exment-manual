@@ -1,6 +1,13 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.9.4 (2021/01/01)
+1. Function addition / improvement
+    - Added a command to check the database connection.
+    - Fixed so that "Refer all data", "Edit assigned data" and "View assigned data" cannot be set at the same time in the role group setting.
+1. Other
+    - Some minor fixes
+
 ## v3.9.3 (2020/12/28)
 1. Function addition 
     - Added the function to check the system requirements from the screen and commands. Click [here](/server) for details
