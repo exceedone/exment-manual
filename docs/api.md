@@ -1,4 +1,4 @@
-# API設定
+# API Setting
 In Exment, API can be executed.  
 This can be done by OAuth-based authentication using an Exment account.  
   

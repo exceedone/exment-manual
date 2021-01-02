@@ -1,0 +1,3673 @@
+openapi: 3.0.0
+info:
+  title: Exment API
+  version: '1.0'
+  description: "Exment's Web API reference.  \nClick [here](https://exment.net/docs/#/api) for application registration method, access token acquisition method, and scope list.  \nClick [here](https://exment.net/docs/#/) for other manuals.\n\nThis is the specification of Rest API of Exment. It is created in OpenAPI format.\n\nSorry, Now this document creates by translating from Japanese."
+  termsOfService: 'https://exment.net'
+  contact:
+    email: info@exment.net
+servers:
+  - url: 'http://localhost/admin'
+paths:
+  /api/version:
+    get:
+      summary: Get system version information
+      tags:
+        - System
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    description: Exment version
+                required:
+                  - version
+              examples:
+                Example:
+                  value:
+                    version: v3.0.1
+      description: |
+        #### Outline of processing
+        * Get the system version of the installed Exment
+
+        #### Exment Permission
+        Nothing
+
+        #### API scope
+        Nothing
+
+        #### Append version
+        v1.1.0
+      security:
+        - OAuth2: []
+      operationId: get-version
+  /api/me:
+    get:
+      summary: Get login user information
+      tags:
+        - System
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomValue'
+              examples:
+                Example:
+                  value:
+                    id: 1
+                    suuid: b6ba6222ebb2aa455521
+                    parent_type: null
+                    parent_id: null
+                    value:
+                      email: admin@foobar.test
+                      user_code: admin
+                      user_name: admin
+                    created_at: '2019-11-13 17:00:38'
+                    updated_at: '2019-11-13 17:06:11'
+                    deleted_at: null
+                    deleted_user_id: null
+                    created_user_id: null
+                    updated_user_id: '1'
+                    label: admin
+      description: |-
+        #### Outline of processing
+        * Get user information of the logged-in user
+
+        #### Exment Permission
+        Nothing
+
+        #### API scope
+        + me
+
+        #### Append version
+        v1.1.0
+      security:
+        - OAuth2: []
+      operationId: get-me
+  /api/table:
+    get:
+      summary: Custom table list
+      tags:
+        - Table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CustomTable'
+                  - properties:
+                      data:
+                        $ref: ''
+                type: object
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 3
+                        suuid: 4131b102c1c3f3879114
+                        table_name: base_info
+                        table_view_name: Base Info
+                        description: null
+                        system_flg: '1'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-building
+                          comment_flg: '0'
+                          attachment_flg: '0'
+                          one_record_flg: '1'
+                          search_enabled: '0'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:00:11'
+                        created_user_id: null
+                        updated_user_id: null
+                      - id: 4
+                        suuid: 54e448bbd64731a061aa
+                        table_name: user
+                        table_view_name: User
+                        description: null
+                        system_flg: '1'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-user
+                          comment_flg: '0'
+                          attachment_flg: '0'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:00:11'
+                        created_user_id: null
+                        updated_user_id: null
+                      - id: 5
+                        suuid: e338ce723f7da614d377
+                        table_name: organization
+                        table_view_name: Organization
+                        description: null
+                        system_flg: '1'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-sitemap
+                          comment_flg: '0'
+                          attachment_flg: '0'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:00:11'
+                        created_user_id: null
+                        updated_user_id: null
+                    first_page_url: 'http://localhost/admin/api/table?page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/table?page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/table'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 11
+                    total: 11
+      description: |-
+        #### Outline of processing
+        * Get a custom table list
+        * Only tables that the logged-in user can access can be retrieved as a list
+
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : Biew data
+        + Table : Access data
+
+
+        #### API scope
+        + table_read
+        + table_write
+
+
+        #### Append version
+        + v1.1.0 Append
+        + v3.0.8 Added parameters "id" and "expands"
+      parameters:
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: Set when narrowing down the ID of the table you want to acquire. Comma separated
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'You can get a custom column list linked to the table. "columns" can be specified'
+      requestBody: {}
+      operationId: get-tables
+      security:
+        - OAuth2: []
+  '/api/table/{tableKey}':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Custom table ID (Ex. 3) or table name (Ex. user)
+    get:
+      summary: Get custom table information
+      tags:
+        - Table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomTable'
+              examples:
+                Example:
+                  value:
+                    id: 8
+                    suuid: 5c86fb70562dd56f34c0
+                    table_name: information
+                    table_view_name: Information
+                    description: Information to notify the user. It can be displayed on a dashboard etc.
+                    system_flg: '0'
+                    showlist_flg: '1'
+                    order: '0'
+                    options:
+                      icon: fa-exclamation
+                      comment_flg: '0'
+                      revision_flg: '0'
+                      attachment_flg: '1'
+                      one_record_flg: '0'
+                      search_enabled: '1'
+                      use_label_id_flg: '0'
+                      all_user_editable_flg: '0'
+                      all_user_viewable_flg: '1'
+                      all_user_accessable_flg: '1'
+                    created_at: '2019-11-13 17:00:11'
+                    updated_at: '2019-11-13 17:08:31'
+                    created_user_id: null
+                    updated_user_id: '1'
+          headers: {}
+      description: |
+        #### Outline of processing
+        * Specify the ID or table name of the custom table and get the custom column information list in the custom table.
+        * For tables that the logged-in user cannot access, a 403 error occurs
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + table_read
+        + table_write
+
+        #### Append version
+        v1.1.0
+      parameters: []
+      security:
+        - OAuth2: []
+      operationId: get-table
+  '/api/table/{tableKey}/columns':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Custom table ID (Ex. 3) or table name (Ex. user)
+    get:
+      summary: Get a list of custom columns in a custom table
+      tags:
+        - Table
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomColumn'
+              examples:
+                Example:
+                  value:
+                    - id: 45
+                      suuid: 9ce2740b044ea7143a55
+                      custom_table_id: '8'
+                      column_name: title
+                      column_view_name: Title
+                      column_type: text
+                      description: null
+                      system_flg: '0'
+                      order: '0'
+                      options:
+                        required: '1'
+                        index_enabled: '1'
+                      created_at: '2019-11-13 17:00:11'
+                      updated_at: '2019-11-13 17:00:15'
+                      created_user_id: null
+                      updated_user_id: null
+                      required: '1'
+                      index_enabled: '1'
+                      unique: false
+                      custom_table:
+                        id: 8
+                        suuid: 5c86fb70562dd56f34c0
+                        table_name: information
+                        table_view_name: Information
+                        description: Information to notify the user. It can be displayed on a dashboard etc.
+                        system_flg: '0'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-exclamation
+                          comment_flg: '0'
+                          revision_flg: '0'
+                          attachment_flg: '1'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          use_label_id_flg: '0'
+                          all_user_editable_flg: '0'
+                          all_user_viewable_flg: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:08:31'
+                        created_user_id: null
+                        updated_user_id: '1'
+                    - id: 46
+                      suuid: c5ade37d68066e8eb7c4
+                      custom_table_id: '8'
+                      column_name: body
+                      column_view_name: Body
+                      column_type: editor
+                      description: null
+                      system_flg: '0'
+                      order: '0'
+                      options:
+                        string_length: '2000'
+                      created_at: '2019-11-13 17:00:11'
+                      updated_at: '2019-11-13 17:00:11'
+                      created_user_id: null
+                      updated_user_id: null
+                      required: false
+                      index_enabled: false
+                      unique: false
+                      custom_table:
+                        id: 8
+                        suuid: 5c86fb70562dd56f34c0
+                        table_name: information
+                        table_view_name: Information
+                        description: Information to notify the user. It can be displayed on a dashboard etc.
+                        system_flg: '0'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-exclamation
+                          comment_flg: '0'
+                          revision_flg: '0'
+                          attachment_flg: '1'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          use_label_id_flg: '0'
+                          all_user_editable_flg: '0'
+                          all_user_viewable_flg: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:08:31'
+                        created_user_id: null
+                        updated_user_id: '1'
+      description: |
+        #### Outline of processing
+        * Specify the ID or table name of the custom table and get the custom column information list in the custom table
+        * For tables that the logged-in user cannot access, a 403 error occurs
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + table_read
+        + table_write
+
+        #### Append version
+        v1.1.0
+      security:
+        - OAuth2: []
+      operationId: get-table-columns
+  '/api/column/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+        description: Custom column ID
+        schema:
+          type: integer
+    get:
+      summary: Get custom column information
+      tags:
+        - Table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomColumn'
+              examples:
+                Example:
+                  value:
+                    id: 45
+                    suuid: 9ce2740b044ea7143a55
+                    custom_table_id: '8'
+                    column_name: title
+                    column_view_name: Title
+                    column_type: text
+                    description: null
+                    system_flg: '0'
+                    order: '0'
+                    options:
+                      required: '1'
+                      index_enabled: '1'
+                    created_at: '2019-11-13 17:00:11'
+                    updated_at: '2019-11-13 17:00:15'
+                    created_user_id: null
+                    updated_user_id: null
+                    required: '1'
+                    index_enabled: '1'
+                    unique: false
+      description: |
+        #### Outline of processing
+        * Get custom column information from custom column ID
+        * If the column is a custom table that the logged-in user cannot access, a 403 error will occur
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + table_read
+        + table_write
+
+        #### Append version
+        v1.1.0
+      security:
+        - OAuth2: []
+      operationId: get-column
+  '/api/view/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Custom table ID (Ex. 3) or suuid (20 digit string)
+    get:
+      summary: Get custom view information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/CustomView'
+              examples:
+                example-1:
+                  value:
+                    id: 10
+                    suuid: 3d62f5b9ea3241e6a417
+                    custom_table_id: '8'
+                    view_type: '0'
+                    view_kind_type: '9'
+                    view_view_name: View Sample
+                    created_at: '2020-06-16 00:24:20'
+                    updated_at: '2020-06-16 00:24:20'
+                    created_user_id: '10'
+                    updated_user_id: '10'
+      operationId: get-view
+      description: |
+        #### Outline of processing
+        * Get view information from view id or suuid
+        * If the view is a custom table that the logged-in user cannot access, a 403 error will occur
+        * Currently, you cannot get view columns, view filters, etc. Use "Get Custom Value List (Use View)" or "Get Custom Value Information (Use View)" to specify the view.
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + view_read
+
+        #### Append version
+        v3.3.X
+      parameters: []
+      tags:
+        - View
+  '/api/table/{tableKey}/views':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Custom table ID (Ex. 3) or table name (Ex. user)
+    get:
+      summary: Get a list of custom views in a custom table
+      tags:
+        - View
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomView'
+              examples:
+                Example:
+                  value:
+                    - id: 45
+                      suuid: 9ce2740b044ea7143a55
+                      custom_table_id: '8'
+                      column_name: title
+                      column_view_name: Title
+                      column_type: text
+                      description: null
+                      system_flg: '0'
+                      order: '0'
+                      options:
+                        required: '1'
+                        index_enabled: '1'
+                      created_at: '2019-11-13 17:00:11'
+                      updated_at: '2019-11-13 17:00:15'
+                      created_user_id: null
+                      updated_user_id: null
+                      required: '1'
+                      index_enabled: '1'
+                      unique: false
+                      custom_table:
+                        id: 8
+                        suuid: 5c86fb70562dd56f34c0
+                        table_name: information
+                        table_view_name: Information
+                        description: Information to notify the user. It can be displayed on a dashboard etc.
+                        system_flg: '0'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-exclamation
+                          comment_flg: '0'
+                          revision_flg: '0'
+                          attachment_flg: '1'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          use_label_id_flg: '0'
+                          all_user_editable_flg: '0'
+                          all_user_viewable_flg: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:08:31'
+                        created_user_id: null
+                        updated_user_id: '1'
+                    - id: 46
+                      suuid: c5ade37d68066e8eb7c4
+                      custom_table_id: '8'
+                      column_name: body
+                      column_view_name: Body
+                      column_type: editor
+                      description: null
+                      system_flg: '0'
+                      order: '0'
+                      options:
+                        string_length: '2000'
+                      created_at: '2019-11-13 17:00:11'
+                      updated_at: '2019-11-13 17:00:11'
+                      created_user_id: null
+                      updated_user_id: null
+                      required: false
+                      index_enabled: false
+                      unique: false
+                      custom_table:
+                        id: 8
+                        suuid: 5c86fb70562dd56f34c0
+                        table_name: information
+                        table_view_name: Information
+                        description: Information to notify the user. It can be displayed on a dashboard etc.
+                        system_flg: '0'
+                        showlist_flg: '1'
+                        order: '0'
+                        options:
+                          icon: fa-exclamation
+                          comment_flg: '0'
+                          revision_flg: '0'
+                          attachment_flg: '1'
+                          one_record_flg: '0'
+                          search_enabled: '1'
+                          use_label_id_flg: '0'
+                          all_user_editable_flg: '0'
+                          all_user_viewable_flg: '1'
+                          all_user_accessable_flg: '1'
+                        created_at: '2019-11-13 17:00:11'
+                        updated_at: '2019-11-13 17:08:31'
+                        created_user_id: null
+                        updated_user_id: '1'
+        '':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomView'
+              examples:
+                Example:
+                  value:
+                    - id: 5
+                      suuid: b6d5afcda4ce26091f36
+                      custom_table_id: '8'
+                      view_type: '0'
+                      view_kind_type: '9'
+                      view_view_name: All data view
+                      created_at: '2020-06-16 00:24:12'
+                      updated_at: '2020-06-16 00:24:12'
+                      created_user_id: null
+                      updated_user_id: null
+                    - id: 6
+                      suuid: 99120fd4b360e15993d2
+                      custom_table_id: '8'
+                      view_type: '0'
+                      view_kind_type: '0'
+                      view_view_name: Infomation list
+                      created_at: '2020-06-16 00:24:12'
+                      updated_at: '2020-06-16 00:24:12'
+                      created_user_id: null
+                      updated_user_id: null
+      description: |
+        #### Outline of processing
+        * Specify the ID or table name of the custom table and get the custom view list in the custom table
+        * If the view is a custom table that the logged-in user cannot access, a 403 error will occur
+        * Currently, you cannot get view columns, view filters, etc. Use "Get Custom Value List (Use View)" or "Get Custom Value Information (Use View)" to specify the view.
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+        + Table : View data
+
+        #### API scope
+        + view_read
+
+        #### Append version
+        v3.3.X
+      security:
+        - OAuth2: []
+      operationId: get-view-columns
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: view_type
+          description: |-
+            If specified, narrow down by view authority.
+            0=System view, 1=User view
+        - schema:
+            type: string
+          in: query
+          name: view_kind_type
+          description: |-
+            If specified, narrow down by view type.
+            0=Default View, 1=Summary View, 2=Calendar View, 3=Filter View, 9=AllData View
+        - schema:
+            type: string
+          in: query
+          name: view_view_name
+          description: If specified, narrow down by view display name
+      requestBody: {}
+  '/api/data/{tableKey}':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Table Name(Ex. information)
+    get:
+      summary: Get custom data list
+      tags:
+        - Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CustomValue'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 8
+                        suuid: 946a85f121a7d9b2ab72
+                        parent_type: null
+                        parent_id: null
+                        value:
+                          body: This is test.
+                          order: '1'
+                          title: Test
+                          priority: 3
+                          view_flg: 1
+                        created_at: '2019-11-15 16:44:41'
+                        updated_at: '2019-11-15 16:44:41'
+                        deleted_at: null
+                        deleted_user_id: null
+                        created_user_id: null
+                        updated_user_id: null
+                        label: Test
+                      - id: 9
+                        suuid: 4c7944646420b5b5c0d3
+                        parent_type: null
+                        parent_id: null
+                        value:
+                          body: This is test.
+                          order: '1'
+                          title: Test
+                          priority: 3
+                          view_flg: 1
+                        created_at: '2019-11-15 16:48:46'
+                        updated_at: '2019-11-15 16:48:46'
+                        deleted_at: null
+                        deleted_user_id: null
+                        created_user_id: '1'
+                        updated_user_id: '1'
+                        label: Test
+                      - id: 10
+                        suuid: 1001025f0f3715dbc80b
+                        parent_type: null
+                        parent_id: null
+                        value:
+                          body: This is test.
+                          order: '1'
+                          title: Test
+                          priority: 3
+                          view_flg: 1
+                        created_at: '2019-11-15 17:41:54'
+                        updated_at: '2019-11-15 17:41:54'
+                        deleted_at: null
+                        deleted_user_id: null
+                        created_user_id: '1'
+                        updated_user_id: '1'
+                        label: Test
+                    first_page_url: 'http://localhost/admin/api/data/information?count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/data/information?count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/data/information'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 3
+                    total: 3
+      description: |-
+        #### Outline of processing
+        * Get a list of custom data registered in a specific custom table
+        * Only data for which the logged-in user is authorized will be listed
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        - v1.1.0 Append
+        - v3.1.2 Added label parameter. When 1, label is added to the result.
+        - v3.1.7 valuetype parameter added
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            default: '20'
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+        - schema:
+            type: string
+          in: query
+          name: orderby
+          description: 'When sorting data, the column name of the sort. If there are multiple, separate them with commas. In reverse order, add a half-width space like "id desc"'
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: Set when narrowing down the ID of the data you want to acquire. Comma separated
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: label
+          description: Whether to include label in the result. Include in case of 1 (*The speed will be slightly slower)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+      security:
+        - OAuth2: []
+      operationId: get-values
+    post:
+      summary: Create new custom data
+      tags:
+        - Data
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - {}
+                type: object
+              examples:
+                Example(Register only 1):
+                  value:
+                    id: 8
+                    suuid: 946a85f121a7d9b2ab72
+                    parent_type: null
+                    parent_id: null
+                    value:
+                      body: This is test.
+                      order: '1'
+                      title: Test
+                      priority: 3
+                      view_flg: 1
+                    created_at: '2019-11-15 16:44:41'
+                    updated_at: '2019-11-15 16:44:41'
+                    deleted_at: null
+                    deleted_user_id: null
+                    created_user_id: '1'
+                    updated_user_id: '1'
+                    label: Test
+                Example(Register multiple records):
+                  value:
+                    - id: 10
+                      suuid: 1001025f0f3715dbc80b
+                      parent_type: null
+                      parent_id: null
+                      value:
+                        body: This is test.
+                        order: '1'
+                        title: Test
+                        priority: 3
+                        view_flg: 1
+                      created_at: '2019-11-15 17:41:54'
+                      updated_at: '2019-11-15 17:41:54'
+                      deleted_at: null
+                      deleted_user_id: null
+                      created_user_id: '1'
+                      updated_user_id: '1'
+                      label: Test
+                    - id: 11
+                      suuid: 273dda2cfcd1e0a21708
+                      parent_type: null
+                      parent_id: null
+                      value:
+                        body: This is test 2.
+                        order: '2'
+                        title: Test 2
+                        priority: 4
+                        view_flg: 1
+                      created_at: '2019-11-15 17:41:54'
+                      updated_at: '2019-11-15 17:41:54'
+                      deleted_at: null
+                      deleted_user_id: null
+                      created_user_id: '1'
+                      updated_user_id: '1'
+                      label: Test 2
+      description: "#### Outline of processing\n* Create new data in a custom table\n* If the logged-in user does not have permission to add new to the custom table, a 403 error will occur\n* For the data you want to register, assign the value in the value array and POST\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : Edit data\n\n#### API scope\n+ value_write\n\n#### Append version\n- v1.1.0 Appended\n- v3.1.0 Supports multiple registrations and new additions by specifying the parent data. Also supports saving files to image / file columns\n- v3.1.2 Added label parameter. When 1, label is added to the result.\n- v3.1.7 valuetype parameter added\n\n#### When saving a file in a file/image column\n\n* Specify the file name and base64 character string of the file in value->(file/image string) as shown below.\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### When specifying the parent data\n* Parent data can be registered by setting parent_id and parent_type\n* As prerequisites, '1: n relation is set' and 'parent data is already registered'\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'num': 10,\n        'price': 10000\n    }\n}\n```\n\n\n#### When registering multiple items\n* Multiple data can be registered by sending multiple POST data in an array.\n* If even one error occurs, do not register all data\n* Up to 100 items can be registered at one time\n* There are two patterns for specifying an array, but there is no difference in function.\n\n* Patturn 1:\n```\n{\n   'value': [\n      {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'num': 10,\n        'price': 10000\n      },\n      {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'num': 3,\n        'price': 8000\n      }\n    ]\n}\n```\n\n* Patturn 2:\n```\n{\n   'data': [\n     {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'value':{\n          'num': 10,\n          'price': 10000\n        }\n     },\n     {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'value':{\n          'num': 3,\n          'price': 8000\n        }\n      }\n    ]\n}\n```\n\n#### When the custom column type is 'Choice (select from the list of values ​​in other tables)' and you want to create a new one using a key other than id\nBy adding the parameter 'findKeys', values ​​other than id can be used as keys.  \nEx:When registering custom data in the 'Contract' table, if you want to use the data in the column 'Customer' and the 'Customer name (customer_code)' in the 'Customer' table  \n\n* Default: \n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n* Use findKeys: \n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': 'CompABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  oneOf:
+                    - type: object
+                      description: (1)Data to register. If there is only one.
+                      properties:
+                        column_1:
+                          type: string
+                          description: Match the items to the custom columns of the table to be registered
+                        column_n:
+                          type: string
+                          description: Match the items to the custom columns of the table to be registered
+                    - type: array
+                      description: (2)Data to register. When registering multiple items
+                      items:
+                        type: object
+                        description: ''
+                        properties:
+                          parent_type:
+                            type: string
+                            description: Only if you specify the parent data
+                          parent_id:
+                            type: integer
+                            description: Only if you specify the parent data
+                          column_1:
+                            type: string
+                            description: Match the items to the custom columns of the table to be registered
+                          column_n:
+                            type: string
+                            description: Match the items to the custom columns of the table to be registered
+                  description: The parameters to be sent will change depending on whether one item is registered or multiple items are registered.
+                findKeys:
+                  type: object
+                  description: 'When the custom column type is "Choice (select from the list of values ​​in other tables)" and you want to create a new one using a key other than id. Match the items to the custom columns of the table to be registered'
+                  properties:
+                    (column_name):
+                      type: string
+                      description: Set the column name of the referenced table
+                data:
+                  type: array
+                  description: Can be specified only when multiple records are registered and value is not set
+                  items:
+                    type: object
+                    properties:
+                      parent_type:
+                        type: string
+                        description: Only if you specify the parent data
+                      parent_id:
+                        type: integer
+                        description: Only if you specify the parent data
+                      value:
+                        type: object
+                        description: ''
+                        properties:
+                          column_1:
+                            type: string
+                            description: Match the items to the custom columns of the table to be registered
+                          column_n:
+                            type: string
+                            description: Match the items to the custom columns of the table to be registered
+                parent_type:
+                  type: string
+                  description: Parent table name. Specify only when there is one registered data and the parent data is specified
+                parent_id:
+                  type: integer
+                  description: The data ID of the parent table. Specify only when there is one registered data and the parent data is specified
+                label:
+                  type: integer
+                  default: 0
+                  description: Whether to include label in the result. Include in case of 1 (*The speed will be slightly slower)
+            examples: {}
+        description: ''
+      security:
+        - OAuth2: []
+      operationId: post-values
+  '/api/data/{tableKey}/query':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Table Name(Ex. information)
+    get:
+      summary: Search custom data
+      tags:
+        - Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current_page:
+                    type: integer
+                    default: 1
+                    description: current page
+                  first_page_url:
+                    type: string
+                    description: URL of the first page
+                  last_page:
+                    type: integer
+                    description: URL of the last page
+                  path:
+                    type: string
+                  per_page:
+                    type: integer
+                    description: Number of items displayed per page
+                  to:
+                    type: integer
+                    description: End number of the displayed data
+                  total:
+                    type: integer
+                    description: Total number of data
+                  from:
+                    type: integer
+                    description: Start number of the displayed data
+                  last_page_url:
+                    type: string
+                    description: URL of the last page
+                  prev_page_url:
+                    type: string
+                    description: URL of the previous page
+                  next_page_url:
+                    type: string
+                    description: URL of the next page
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomValue'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 1
+                        suuid: 39c97ba08c6e392a125a
+                        parent_type: null
+                        parent_id: null
+                        value:
+                          body: '<p>Exment is a simple and affordable data management web system.&nbsp;</p>'
+                          order: '5'
+                          title: Welcome to Exment!
+                          priority: '3'
+                          view_flg: '1'
+                        created_at: '2019-01-04 18:48:15'
+                        updated_at: '2019-01-04 19:50:55'
+                        deleted_at: null
+                        deleted_user_id: null
+                        created_user_id: null
+                        updated_user_id: null
+                        label: Welcome to Exment!
+                        workflow_value: null
+                    first_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/data/information/query'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 1
+                    total: 1
+      description: |-
+        #### Outline of processing
+        * Search for custom data registered in a specific custom table
+        * Only data for which the logged-in user is authorized will be listed
+        * The columns registered in the search index are the search target columns.
+        * The search is a prefix match. If you want to search by full text match, you need to set according to <a href="https://exment.net/docs/#/search" target="_blank">here</a>
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        - v2.1.6 Appended
+        - v3.1.2 Added label parameter. When 1, label is added to the result.
+        - v3.1.7 valuetype parameter added
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: q
+          description: Search string
+          required: true
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: label
+          description: Whether to include label in the result. Include in case of 1 (* The speed will be slightly slower)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+      security:
+        - OAuth2: []
+      operationId: get-values-query
+      requestBody: {}
+  '/api/data/{tableKey}/query-column':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Table Name(Ex. information)
+    get:
+      summary: Custom value search (column specification)
+      tags:
+        - Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current_page:
+                    type: integer
+                    default: 1
+                    description: current page
+                  first_page_url:
+                    type: string
+                    description: URL of the first page
+                  last_page:
+                    type: integer
+                    description: URL of the last page
+                  path:
+                    type: string
+                  per_page:
+                    type: integer
+                    description: Number of items displayed per page
+                  to:
+                    type: integer
+                    description: End number of the displayed data
+                  total:
+                    type: integer
+                    description: Total number of data
+                  from:
+                    type: integer
+                    description: Start number of the displayed data
+                  last_page_url:
+                    type: string
+                    description: URL of the last page
+                  prev_page_url:
+                    type: string
+                    description: URL of the previous page
+                  next_page_url:
+                    type: string
+                    description: URL of the next page
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomValue'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 1
+                        suuid: 39c97ba08c6e392a125a
+                        parent_type: null
+                        parent_id: null
+                        value:
+                          body: '<p>Exment is a simple and affordable data management web system.&nbsp;</p>'
+                          order: '5'
+                          title: Welcome to Exment!
+                          priority: '3'
+                          view_flg: '1'
+                        created_at: '2019-01-04 18:48:15'
+                        updated_at: '2019-01-04 19:50:55'
+                        deleted_at: null
+                        deleted_user_id: null
+                        created_user_id: null
+                        updated_user_id: null
+                        label: Welcome to Exment!
+                        workflow_value: null
+                    first_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/data/information/query?q=Exment&count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/data/information/query'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 1
+                    total: 1
+      description: "#### Outline of processing\n* Search for custom data registered in a specific custom table\n* Only data for which the logged-in user is authorized will be listed\n* Specify search criteria and values ​​for each custom column. Execute the search when all the search conditions are matched.\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : View all data\n+ Table : Access all data\n+ Table : Edit data\n+ Table : View data\n\n#### API scope\n+ value_read\n+ value_write\n\n#### Append version\n- v3.0.8 Appended\n- v3.1.2 Added label parameter. When 1, label is added to the result.\n- v3.1.7 valuetype parameter added\n- v3.3.2 Added 'like' to the search conditions. Supports OR search, adds order by parameter\n\n#### How to specify search conditions\n* Search by specifying each column name in the parameter 'q'. When specifying multiple columns, separate them with commas.\n* The search conditions correspond to the following.  \n    - eq : Equal\n    - ne : Not equal\n    - gt : Greater than\n    - gte : Greater than or equal\n    - lt : Less than\n    - lte : Less than or equal\n    - like : LIKE search. '%' available for value\n* The query setting method is'(column name) eq (search value)'.  \n* URL encoding should be performed\n* When searching with multiple search values, usually perform an AND search. If the parameter 'or=1' is specified, an OR search will be performed.\n\n* Example 1: In the information table, when you want to get the data list with'1'in the'display flag (view_flg)'\n\n```\n// Please encode URL\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n* Example 2: In the information table, when you want to get the data list where'view flag (view_flg)'is '1' and'Title (title)' is'Test'\n\n```\n// Please encode URL\n/api/data/information/query-column?q=view_flg eq 1,title eq Test\n```\n\n* Example 3: In the information table, when you want to get the data list where'view flag (view_flg)'is '1' or'Title (title)'is'Test'.\n\n```\n// Please encode URL\n/api/data/information/query-column?q=view_flg eq 1,title eq Test&or=1\n```"
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: q
+          description: Search string. Refer to the above example for how to specify the query search.
+          required: true
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: label
+          description: Whether to include label in the result. Include in case of 1 (* The speed will be slightly slower)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+        - schema:
+            type: integer
+          in: query
+          name: or
+          description: When searching in multiple columns, if 1 is set, OR search is performed.
+        - schema:
+            type: string
+          in: query
+          name: orderby
+          description: 'When sorting data, the column name of the sort. If there are multiple, separate them with commas. In reverse order, add a half-width space like "id desc"'
+      security:
+        - OAuth2: []
+      operationId: get-values-query-column
+  '/api/data/{tableKey}/{id}':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+        schema:
+          type: string
+      - type: string
+        name: id
+        in: path
+        required: true
+        description: The ID of the custom data. When deleting multiple items, specify them separated by commas.
+        schema:
+          type: string
+    get:
+      summary: Get custom data information
+      tags:
+        - Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomValue'
+              examples:
+                Example:
+                  value:
+                    id: 8
+                    suuid: 946a85f121a7d9b2ab72
+                    parent_type: null
+                    parent_id: null
+                    value:
+                      body: This is test.
+                      order: '1'
+                      title: Test
+                      priority: 3
+                      view_flg: 1
+                    created_at: '2019-11-15 16:44:41'
+                    updated_at: '2019-11-15 16:44:41'
+                    deleted_at: null
+                    deleted_user_id: null
+                    created_user_id: null
+                    updated_user_id: null
+                    label: Test
+      description: |-
+        #### Outline of processing
+        * Get custom data information registered in a specific custom table
+        * If the logged-in user has unauthorized data, a 403 error will occur
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        - v1.1.0 Appended
+        - v3.1.2 Added label parameter. When 1, label is added to the result.
+        - v3.1.7 valuetype parameter added
+      requestBody: {}
+      security:
+        - OAuth2: []
+      operationId: get-value
+      parameters:
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: label
+          description: Whether to include label in the result. Include in case of 1 (* The speed will be slightly slower)
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+    put:
+      summary: Update custom data
+      tags:
+        - Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomValue'
+              examples:
+                Example:
+                  value:
+                    id: 8
+                    suuid: 946a85f121a7d9b2ab72
+                    parent_type: null
+                    parent_id: null
+                    value:
+                      body: This is test.
+                      order: '1'
+                      title: Test update
+                      priority: 3
+                      view_flg: 1
+                    created_at: '2019-11-15 16:44:41'
+                    updated_at: '2019-11-15 18:01:34'
+                    deleted_at: null
+                    deleted_user_id: null
+                    created_user_id: null
+                    updated_user_id: '1'
+                    label: Test update
+      description: "#### Outline of processing\n* Update custom data information\n* If the logged-in user has unauthorized data, a 403 error will occur\n* PUT by assigning a value in the value array only for the information of the column where the update occurs\n* Exclusive control can be performed by performing column 'updated_at'\n\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : Edit data\n\n#### API scope\n+ value_write\n\n#### Append version\n- v1.1.0 Appended\n- v3.1.0 Supports saving files to image / file columns\n- v3.1.2 Added label parameter. When 1, label is added to the result.\n- v3.1.10 Supports exclusive control\n\n#### When saving a file in a file/image column\n\n* Specify the file name and base64 character string of the file in value->(file/image string) as shown below.\n* Ex: When saving a file in the file column 'file'\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### When the custom column type is 'Choice (select from the list of values ​​in other tables)' and you want to update using a key other than id\nBy adding the parameter 'findKeys', values ​​other than id can be used as keys.\nEx:When updating the custom data in the 'Contract' table, if you want to use the data in the column 'Customer' and the 'Customer name (customer_code)' in the 'Customer' table\n\n*Default:\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n*Use findKeys:\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': 'Company ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n\n\n#### When specifying the parent data\n* Parent data can be registered by setting parent_id and parent_type\n* As prerequisites, '1: n relation is set' and 'parent data is already registered'\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'price': 10000\n    }\n}\n```\n\n\n#### exclusion control\n* Exclusive control can be performed by adding a date to the updated_at column. If the specified date and time and the latest update date and time of the target data are different, an error will be returned.\n\n```\n{\n   'value': {\n        'price': 10000\n    },\n    'updated_at': '2020/04/03 12:00:00'\n}\n```"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ''
+              properties:
+                value:
+                  type: object
+                  description: ''
+                  properties:
+                    view_flg:
+                      type: integer
+                      description: Match the items to the custom columns of the table to be registered
+                    order:
+                      type: integer
+                      description: Match the items to the custom columns of the table to be registered
+                    priority:
+                      type: integer
+                      description: Match the items to the custom columns of the table to be registered
+                    title:
+                      type: string
+                      description: Match the items to the custom columns of the table to be registered
+                    body:
+                      type: string
+                      description: Match the items to the custom columns of the table to be registered
+                findKeys:
+                  type: object
+                  description: 'When the custom column type is "Choice (select from the list of values ​​in other tables)" and you want to create a new one using a key other than id. Match the items to the custom columns of the table to be registered'
+                  properties:
+                    (column_name):
+                      type: string
+                      description: Set the column name of the referenced table
+                parent_type:
+                  type: string
+                  description: Only if you specify the parent data
+                parent_id:
+                  type: integer
+                  description: Only if you specify the parent data
+                label:
+                  type: integer
+                  default: 0
+                  description: Whether to include label in the result. Include in case of 1 (* The speed will be slightly slower)
+            examples: {}
+      security:
+        - OAuth2: []
+      operationId: put-value
+    delete:
+      summary: Delete custom data
+      tags:
+        - Data
+      responses:
+        '204':
+          description: No Content
+      description: |
+        #### Outline of processing
+        * Logically delete custom data information
+        * If the logged-in user has unauthorized data, a 403 error will occur
+        * When deleting multiple items at the same time, up to 100 items can be deleted at the same time.
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : Edit data
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        - v1.1.0 Appended
+        - v3.0.13 Supports deletion of multiple items
+      security:
+        - OAuth2: []
+      operationId: delete-value
+  /api/wf/workflow:
+    get:
+      summary: Get workflow list
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Workflow'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 1
+                        suuid: 4a6e46c8f716dda2f2a5
+                        workflow_type: '0'
+                        workflow_view_name: Application flow
+                        start_status_name: Not implemented
+                        setting_completed_flg: '1'
+                        created_at: '2019-11-14 13:27:45'
+                        updated_at: '2019-11-14 16:59:37'
+                        created_user_id: '1'
+                        updated_user_id: '1'
+                      - id: 2
+                        suuid: e78c0fdefac9bb91623a
+                        workflow_type: '0'
+                        workflow_view_name: Flow2
+                        start_status_name: Not implemented
+                        setting_completed_flg: '1'
+                        created_at: '2019-11-14 17:07:04'
+                        updated_at: '2019-11-18 13:38:47'
+                        created_user_id: '1'
+                        updated_user_id: '1'
+                    first_page_url: 'http://localhost/admin/webapi/wf/workflow?page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/webapi/wf/workflow?page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/webapi/wf/workflow'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 2
+                    total: 2
+      description: " #### Outline of processing\n* Get workflow list\n* Get a list of only workflows for which Setting Complete is executed\n\n#### Exment Permission\nNothing\n\n#### API scope\n+ workflow_read\n+ workflow_execute\n\n#### Append version\nv3.0.8\n"
+      parameters:
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: all
+          description: If 1, include workflows that have not been set up
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'You can get the status setting list and action setting list associated with the workflow. "statuses" and "actions" can be specified. Separate multiple items with commas.'
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: Set when narrowing down the ID of the workflow you want to acquire. Comma separated
+      security:
+        - OAuth2: []
+      operationId: get-workflows
+    parameters: []
+  '/api/wf/workflow/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Workflow ID
+    get:
+      summary: Get a workflow info
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+      description: |
+        #### Outline of processing
+        * Get workflow information from workflow ID
+
+        #### Exment Permission
+        Nothing
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'You can get the status setting list and action setting list associated with the workflow. "statuses" and "actions" can be specified. Separate multiple items with commas.'
+      security:
+        - OAuth2: []
+      operationId: get-workflow
+  '/api/wf/workflow/{workflow_id}/statuses':
+    parameters:
+      - type: string
+        name: workflow_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Workflow ID
+    get:
+      summary: Get status list of specified workflow
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStatus'
+      description: |
+        #### Outline of processing
+        * Get the workflow status list of the workflow specified by workflow_id
+
+        #### Exment Permission
+        + Nothing
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      security:
+        - OAuth2: []
+      parameters: []
+      operationId: get-workflow-statuses
+  '/api/wf/workflow/{workflow_id}/actions':
+    parameters:
+      - type: string
+        name: workflow_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Workflow ID
+    get:
+      summary: Get a list of actions for a specified workflow
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowAction'
+      description: |-
+        #### Outline of processing
+        * Get the workflow action list of the workflow specified by workflow_id
+
+        #### Exment Permission
+        + Nothing
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      security:
+        - OAuth2: []
+      operationId: get-workflow-actions
+  '/api/wf/status/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Status ID
+    get:
+      summary: Get workflow status
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowStatus'
+      description: |-
+        #### Outline of processing
+        * Get workflow status information
+
+        #### Exment Permission
+        Nothing
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      security:
+        - OAuth2: []
+      parameters: []
+      operationId: get-workflow-status
+  '/api/wf/action/{id}':
+    parameters:
+      - type: string
+        name: id
+        in: path
+        required: true
+        description: Workflow action ID
+        schema:
+          type: integer
+    get:
+      summary: Workflow action information
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowAction'
+      description: |
+        #### Outline of processing
+        * Get workflow action information
+
+        #### Exment Permission
+        Nothing
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      security:
+        - OAuth2: []
+      operationId: get-workflow-action
+  '/api/wf/data/{tableKey}/{id}/value':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Table Name(Ex. information)
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Custom value ID
+    get:
+      summary: Get the current workflow execution value for specific data
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/WorkflowValue'
+                  - type: object
+                    properties:
+                      workflow_status_from:
+                        $ref: '#/components/schemas/WorkflowStatus'
+                      workflow_status:
+                        $ref: '#/components/schemas/WorkflowStatus'
+                      workflow_action:
+                        $ref: '#/components/schemas/WorkflowAction'
+      description: |
+        #### Outline of processing
+        * Select specific custom data and get the current workflow execution value of that custom data
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      security:
+        - OAuth2: []
+      operationId: get-workflow-value
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: expands
+          description: 'Pre-execution status information, post-execution status information, and action information associated with the workflow execution value can be acquired. "status_from", "status_to", "action" can be specified. Separate multiple items with commas.'
+    post:
+      summary: Run workflow for specific data
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+      description: |
+        #### Outline of processing
+        * Select specific custom data and run the workflow
+        * Execute the workflow by POSTing the workflow action ID
+        * If the value of "Executable user" in the action setting is "Selected by the executable user of the previous action", either "users (list of user IDs that execute the action)" or "organizations (list of organization IDs)" of the next parameter Is essential
+        * If an action that does not match the current status is executed, error code 204 is returned.
+        * If the executing user does not have permission to perform the action, error code 204 is returned.
+
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+
+        #### API scope
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workflow_action_id:
+                  type: integer
+                  description: Workflow action ID to execute
+                comment:
+                  type: string
+                  description: 'Workflow comments. Required if the action is comment_type "required". Ignored for "not_use"'
+                next_users:
+                  type: string
+                  description: If "Executable user" of the action setting is "Selected by the executable user of the previous action", enter the user ID to execute the next action separated by commas.
+                next_organizations:
+                  type: string
+                  description: If "Executable user" of the action setting is "Selected by the executable user of the previous action", enter the organization ID to execute the next action separated by commas.
+              required:
+                - workflow_action_id
+        description: ''
+  '/api/wf/data/{tableKey}/{id}/work_users':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+        schema:
+          type: string
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Custom value ID
+    get:
+      summary: Get a list of working users for specific data
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    description: User list
+                    items:
+                      $ref: '#/components/schemas/CustomValue'
+                  organizations:
+                    type: array
+                    description: Organization list
+                    items:
+                      $ref: '#/components/schemas/CustomValue'
+      description: |
+        #### Outline of processing
+        * Select specific custom data and get a list of current working users for that custom data
+        * Only actions for which "Special Action" is not checked in the action settings will be acquired.
+        * Add the query string "all=1" to get the working users of all actions
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      security:
+        - OAuth2: []
+      parameters:
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: as_user
+          description: When it is 1, the worker whose action is set as "organization" is converted to the list of users belonging to that organization.
+        - schema:
+            type: integer
+          in: query
+          name: all
+          description: When 1, get the target users of all actions
+      operationId: get-workflow-value-users
+  '/api/wf/data/{tableKey}/{id}/actions':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+        schema:
+          type: string
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Custom value ID
+    get:
+      summary: Get a list of the next actions you can take on specific data
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowAction'
+        '':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowAction'
+      description: |
+        #### Outline of processing
+        * Select specific custom data and get a list of the next actions you can take for that custom data
+        * Narrow down to actions that the logged-in user can perform
+        * Add the query string "all=1" to get all actions, whether or not the logged-in user can perform them
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      parameters:
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: all
+          description: When 1, get all actions, whether or not the logged-in user can perform them
+      security:
+        - OAuth2: []
+      operationId: get-workflow-value-actions
+  '/api/wf/data/{tableKey}/{id}/histories':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+        schema:
+          type: string
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Custom value ID
+    get:
+      summary: Get a list of workflow history for specific data
+      tags:
+        - Workflow
+      responses: {}
+      description: |
+        #### Outline of processing
+        * Select specific custom data and get a workflow history list of that custom data
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
+      security:
+        - OAuth2: []
+      operationId: get-workflow-value-histories
+  /api/notify:
+    get:
+      summary: Get notify list
+      tags:
+        - Notify
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Notify'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 7
+                        notify_id: '0'
+                        parent_type: null
+                        parent_id: null
+                        target_user_id: '2'
+                        trigger_user_id: '2'
+                        notify_subject: TestTest
+                        notify_body: This is body.
+                        read_flg: '0'
+                        created_at: '2019-11-18 19:21:36'
+                        updated_at: '2019-11-18 19:21:36'
+                        created_user_id: null
+                        updated_user_id: null
+                      - id: 4
+                        notify_id: '1'
+                        parent_type: information
+                        parent_id: '8'
+                        target_user_id: '2'
+                        trigger_user_id: '1'
+                        notify_subject: '[Test]The data has been created'
+                        notify_body: |
+                          The notification data has been created by the user.
+                          Please check the following contents.
+
+                          Created by:
+                          Created datetime:2019-11-15 16:44:41
+                          Created data:<a href='http://localhost/admin/data/information/8'>Test</a>
+                        read_flg: '0'
+                        created_at: '2019-11-15 16:44:43'
+                        updated_at: '2019-11-15 16:44:43'
+                        created_user_id: null
+                        updated_user_id: null
+                    first_page_url: 'http://localhost/admin/api/notify?count=5&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/notify?count=5&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/notify'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 5
+                    total: 5
+      operationId: get-notifies
+      description: |-
+        #### Outline of processing
+        * Get the notification list in the notification bar
+        * Get only unread notifications. Add parameter "all=1" to get all notifications
+
+        #### Exment Permission
+        + Nothing
+
+        #### API scope
+        + notify_read
+        + notify_write
+
+        #### Append version
+        v3.0.8
+      parameters:
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: all
+          description: If 1, get all notifications
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+    post:
+      summary: Add notify
+      tags:
+        - Notify
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notify'
+              examples:
+                Example:
+                  value:
+                    notify_id: 0
+                    target_user_id: '2'
+                    notify_subject: TestTest
+                    notify_body: This is body.
+                    trigger_user_id: '2'
+                    updated_at: '2019-11-18 19:21:36'
+                    created_at: '2019-11-18 19:21:36'
+                    id: 7
+      description: |-
+        #### Outline of processing
+        * Send a notification to the specified user
+        * Notifications are only added to the notification bar
+
+        #### Exment Permission
+        + Nothing
+
+        #### API scope
+        + notify_write
+
+        #### Append version
+        v3.0.8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target_users:
+                  type: string
+                  description: The user ID to which the notification is sent. Separated by commas if there are multiple
+                notify_subject:
+                  type: string
+                  description: Notification subject
+                notify_body:
+                  type: string
+                  description: Notification body
+              required:
+                - target_users
+                - notify_subject
+                - notify_body
+            examples:
+              Example:
+                value:
+                  target_users: '2'
+                  notify_subject: TestTest
+                  notify_body: This is body.
+        description: ''
+      operationId: post-notify
+  '/api/files/{uuid}':
+    parameters:
+      - schema:
+          type: string
+        name: uuid
+        in: path
+        required: true
+        description: Random string assigned to the file
+    get:
+      summary: File download
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                description: The file stream is returned. Content-Type depends on the file type
+            application/json:
+              schema:
+                type: object
+                description: When base64=1
+                properties:
+                  type:
+                    type: string
+                    description: file format
+                  name:
+                    type: string
+                    description: file name
+                  base64:
+                    type: string
+                    description: Base64 string in the file
+              examples:
+                base64 is 1:
+                  value:
+                    type: image/jpeg
+                    name: test.jpg
+                    base64: aaaaaXXXXXXX.....
+      operationId: get-file
+      description: |
+        #### Outline of processing
+        * Download the file
+        * If there is no query string, the file will be downloaded in stream format. If "base64=1", return in base64 format
+
+        #### How to get the file URL
+        How to get the file URL for download.
+
+        ##### Add query string "value type = text" in custom data acquisition API
+        If the custom column type is file/image, the value will be the URL.
+
+        ```
+        Ex:GET
+        /api/data/testtable/1?valuetype=text
+
+        Return value(partial)
+        {
+            "id": 1,
+            "value": {
+                "text": "test_1",
+                "file": "http://locallost/admin/api/files/c09ff3a0-7677-11ea-9edf-178831242ff9"
+            }
+        }
+        ```
+
+
+        ##### Get document (attached file) list Get with API
+        "api_url" is the URL to execute from the API.
+
+        ```
+        Ex:GET
+        /api/document/testtable/1
+
+        Return value(partial)
+        {
+            "data": [
+                {
+                    "name": "information.htm",
+                    "url": "http://locallost/admin/files/91ed9b30-767b-11ea-a225-07e73286c089",
+                    "api_url": "http://locallost/admin/api/files/91ed9b30-767b-11ea-a225-07e73286c089",
+                    "created_at": "2020-04-04 22:52:48",
+                    "created_user_id": "1"
+                }
+            ]
+        }
+        ```
+
+        #### Query string at the time of request and response content
+        ##### If base64=1 is not included in the request
+        The response value will be in the file stream format.
+
+        ##### When base64=1 is entered at the time of request
+        The response value will be json in the following format.
+
+        ```
+        {
+          "type": "image/jpeg",
+          "name": "test.jpg",
+          "base64": "aaaaaXXXXXXX....."
+        }
+        ```
+
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        v3.1.7
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: base64
+          description: If 1, return as json type including base64 character string
+      tags:
+        - FileDocument
+    delete:
+      summary: Delete file
+      responses:
+        '204':
+          description: No Content
+      operationId: delete-files
+      description: |
+        #### Outline of processing
+        * Delete files
+        * For attachments associated with specific data, delete the attachment information at the same time.
+
+        #### How to get the file URL
+        Please check "File Download".
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : Edit data
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        v3.1.10
+      parameters: []
+      tags:
+        - FileDocument
+  '/api/files/{tableKey}/{filename}':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+      - schema:
+          type: string
+        name: filename
+        in: path
+        required: true
+        description: File Name
+    get:
+      summary: File download
+      tags:
+        - FileDocument
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+              examples: {}
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  name:
+                    type: string
+                  base64:
+                    type: string
+              examples:
+                base64 is 1:
+                  value:
+                    type: image/jpeg
+                    name: test.jpg
+                    base64: aaaaaXXXXXXX.....
+      description: "#### Outline of processing\n* Download the file\n*If there is no query string, the file will be downloaded in stream format.If \"base64=1\", return in base64 format\n\n#### How to get the file URL\nHow to get the file URL for download.\n\n##### Get with custom data get API\nIf the custom column type is file/image, the acquired value will be processed.\n\n```\nEx:GET\n/api/data/testtable/1\n\nReturn value(partial)\n{\n    \"id\": 1,\n    \"value\": {\n        \"text\": \"test_1\",\n        \"file\": \"testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\"\n    }\n}\n```\n\nUse this value to run the API at a URL like this: \nhttp://localhost/api/files/testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\n\n\n#### Query string at the time of request and response content\n##### If base64=1 is not included in the request\nThe response value will be in the file stream format.\n\n##### When base64=1 is entered at the time of request\nThe response value will be json in the following format.\n\n```\n{\n  \"type\": \"image/jpeg\",\n  \"name\": \"test.jpg\",\n  \"base64\": \"aaaaaXXXXXXX.....\"\n}\n```\n\n\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : View all data\n+ Table : Access all data\n+ Table : Edit data\n+ Table : View data\n\n#### API scope\n+ value_read\n+ value_write\n\n#### Append version\nv3.1.10\n"
+      operationId: get-file2
+      requestBody: {}
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: base64
+          description: If 1, return as json type including base64 character string
+    delete:
+      summary: Delete file
+      operationId: delete-file2
+      responses:
+        '200':
+          description: OK
+      description: |
+        #### Outline of processing
+        * Delete files
+        * For attachments associated with specific data, delete the attachment information at the same time.
+
+        #### How to get the file URL
+        Please check "File Download".
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : Edit data
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        v3.1.10
+      tags:
+        - FileDocument
+  '/api/document/{tableKey}/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Custom value ID
+    get:
+      summary: Get a list of documents (attached files)
+      tags:
+        - FileDocument
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Paginate'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Document'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - name: test.txt
+                        url: 'http://localhost/admin/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                        api_url: 'http://localhost/admin/api/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                        created_at: '2020-04-02 21:53:45'
+                        created_user_id: '1'
+                      - name: test2.txt
+                        url: 'http://localhost/admin/files/abaf364d-71d0-4958-88ed-8a5378d2722e'
+                        api_url: 'http://localhost/admin/api/files/abaf364d-71d0-4958-88ed-8a5378d2722e'
+                        created_at: '2020-04-02 21:53:45'
+                        created_user_id: '1'
+                    first_page_url: 'http://localhost/admin/api/document/footable/1?count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/document/footable/1?count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/document/footable/1'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 1
+                    total: 2
+      operationId: get-documents
+      description: |
+        #### Outline of processing
+        * Select specific custom data and get a list of documents (attachments) for that custom data
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        v3.1.10
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            default: '20'
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+    post:
+      summary: Creating a document (attachment)
+      operationId: post-document
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+              examples:
+                Example:
+                  value:
+                    name: test.txt
+                    url: 'http://localhost/admin/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                    api_url: 'http://localhost/admin/api/files/fcc7fea0-74e0-11ea-a1b4-8fd756c2e4b5'
+                    created_at: '2020-04-02 21:53:45'
+                    created_user_id: '1'
+      description: |
+        #### Outline of processing
+        * Select specific custom data and upload the document (attachment) associated with that data
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : Edit data
+
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        v3.1.10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: File name
+                base64:
+                  type: string
+                  description: base64 string
+              required:
+                - name
+                - base64
+        description: ''
+      tags:
+        - FileDocument
+  '/api/table/{tableKey}/column/{columnKey}':
+    parameters:
+      - type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Custom table ID (Ex. 3) or table name (Ex. user)
+        schema:
+          type: string
+      - schema:
+          type: string
+        name: columnKey
+        in: path
+        required: true
+        description: Custom column name(Ex. user_code)
+    get:
+      summary: Get custom column information (table name / column name specification)
+      tags:
+        - Table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomColumn'
+              examples:
+                Example:
+                  value:
+                    id: 45
+                    suuid: 9ce2740b044ea7143a55
+                    custom_table_id: '8'
+                    column_name: title
+                    column_view_name: Title
+                    column_type: text
+                    description: null
+                    system_flg: '0'
+                    order: '0'
+                    options:
+                      required: '1'
+                      index_enabled: '1'
+                    created_at: '2019-11-13 17:00:11'
+                    updated_at: '2019-11-13 17:00:15'
+                    created_user_id: null
+                    updated_user_id: null
+                    required: '1'
+                    index_enabled: '1'
+                    unique: false
+        '':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomColumn'
+              examples:
+                Example:
+                  value:
+                    id: 25
+                    suuid: a10469f586b847c5ef89
+                    custom_table_id: '4'
+                    column_name: user_code
+                    column_view_name: User code
+                    column_type: text
+                    description: null
+                    system_flg: '1'
+                    order: '0'
+                    options:
+                      required: '1'
+                      index_enabled: '1'
+                      init_only: '1'
+                      unique: '1'
+                      available_characters:
+                        - lower
+                        - upper
+                        - number
+                        - hyphen_underscore
+                    created_at: '2020-04-20 17:01:13'
+                    updated_at: '2020-04-20 17:01:13'
+                    created_user_id: null
+                    updated_user_id: null
+                    required: '1'
+                    index_enabled: '1'
+                    unique: '1'
+                    custom_table:
+                      id: 4
+                      suuid: 2930e334326a96f5d5c3
+                      table_name: user
+                      table_view_name: User
+                      description: null
+                      system_flg: '1'
+                      showlist_flg: '1'
+                      order: '0'
+                      options:
+                        search_enabled: '1'
+                        icon: fa-user
+                        one_record_flg: '0'
+                        attachment_flg: '0'
+                      created_at: '2020-04-20 17:01:13'
+                      updated_at: '2020-04-20 17:01:13'
+                      created_user_id: null
+                      updated_user_id: null
+      description: |
+        #### Outline of processing
+        * Get custom column information from table name / custom column name.
+        * If the column is a custom table that the logged-in user cannot access, a 403 error will occur.
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + table_read
+        + table_write
+
+        #### Append version
+        v3.1.12
+      security:
+        - OAuth2: []
+      operationId: get-table-column
+  '/api/viewdata/{tableKey}/{viewId}':
+    parameters:
+      - type: string
+        name: viewId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'View ID (Ex. 2, 5) or suuid (Ex. 22e715cf7f4ce5f319f0)'
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Custom table ID (Ex. 3) or table name (Ex. user)
+    get:
+      summary: Get custom data list (using view)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        description: Data Result
+                      column_definitions:
+                        type: array
+                        description: An array that describes the target column definition information. The key name is suuid that matches value.
+                        items:
+                          $ref: '#/components/schemas/ViewColumnDefinition'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - 82c58b9bc8a68842c292: null
+                        12fc3d6f970afc5a7f28: test20200616002525
+                        6968926f2de4fa658b97: test_5
+                      - 82c58b9bc8a68842c292: null
+                        12fc3d6f970afc5a7f28: test202006160025261
+                        6968926f2de4fa658b97: test_4
+                      - 82c58b9bc8a68842c292: null
+                        12fc3d6f970afc5a7f28: test202006160025262
+                        6968926f2de4fa658b97: test_4
+                      - 82c58b9bc8a68842c292: null
+                        12fc3d6f970afc5a7f28: test202006160025263
+                        6968926f2de4fa658b97: test_4
+                      - 82c58b9bc8a68842c292: null
+                        12fc3d6f970afc5a7f28: test20200616002531_update
+                        6968926f2de4fa658b97: test_6
+                      - 82c58b9bc8a68842c292: null
+                        12fc3d6f970afc5a7f28: test20200616002531_update
+                        6968926f2de4fa658b97: test_7
+                      - 82c58b9bc8a68842c292: null
+                        12fc3d6f970afc5a7f28: test202006160025273
+                        6968926f2de4fa658b97: test_8
+                    first_page_url: 'http://localhost/admin/api/viewdata/child_table/be8cc0e9cd22f8bf6401?count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/viewdata/child_table/be8cc0e9cd22f8bf6401?count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/viewdata/child_table/be8cc0e9cd22f8bf6401'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 7
+                    total: 7
+                    column_definitions:
+                      82c58b9bc8a68842c292:
+                        table_name: child_table
+                        column_name: id
+                        label: ID
+                      12fc3d6f970afc5a7f28:
+                        table_name: child_table
+                        column_name: text
+                        label: text
+                      6968926f2de4fa658b97:
+                        table_name: parent_table
+                        column_name: text
+                        label: 'parent_table : text'
+      description: |-
+        #### Outline of processing
+        * Specify a view and use that view to get a list of data
+        * Only data for which the logged-in user is authorized will be listed
+        * Supported view types: All views, normal view, aggregate view
+
+        #### About the result column name
+        * When using a view to get the results, there are various cases for the columns to get. (Ex: Data in parent table, aggregation result of grouping)
+        * Depending on the view settings, column names may be duplicated, and the column name key may not be able to determine the column type.
+        * Therefore, the column name of the data value obtained in json format is suuid (random 20-digit alphanumeric characters).
+        * Information such as the target suuid table name and custom column name is set in the resulting json "column_definitions", so analyze and obtain the relevant column information from those values.
+
+        ##### Example (partially omitted)
+        ``` json
+        {
+            "current_page": 1,
+            "data": [
+                {
+                    "82c58b9bc8a68842c292": null,
+                    "12fc3d6f970afc5a7f28": "child value 1",
+                    "6968926f2de4fa658b97": "parent value 1"
+                },
+                {
+                    "82c58b9bc8a68842c292": null,
+                    "12fc3d6f970afc5a7f28": "child value 2",
+                    "6968926f2de4fa658b97": null
+                },
+                {
+                    "82c58b9bc8a68842c292": null,
+                    "12fc3d6f970afc5a7f28": "child value 1",
+                    "6968926f2de4fa658b97": null
+                }
+            ],
+            "first_page_url": "http://localhost/admin/api/viewdata/child_table/be8cc0e9cd22f8bf6401?count=20&page=1",
+            "total": 7,
+            "column_definitions": {
+                "82c58b9bc8a68842c292": {
+                    "table_name": "child_table",
+                    "column_name": "id",
+                    "label": "ID"
+                },
+                "12fc3d6f970afc5a7f28": {
+                    "table_name": "child_table",
+                    "column_name": "text",
+                    "label": "text"
+                },
+                "6968926f2de4fa658b97": {
+                    "table_name": "parent_table",
+                    "column_name": "text",
+                    "label": "parent_table : text"
+                }
+            }
+        }
+        ```
+
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        - v3.3.X Added
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            default: '20'
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+        - schema:
+            type: string
+          in: query
+          name: valuetype
+          description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+      security:
+        - OAuth2: []
+      operationId: get-view-values
+      tags:
+        - Data
+  '/api/viewdata/{tableKey}/{viewId}/{id}':
+    parameters:
+      - type: string
+        name: viewId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'View ID (Ex. 2, 5) or suuid (Ex. 22e715cf7f4ce5f319f0)'
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Custom table ID (Ex. 3) or table name (Ex. user)
+      - type: string
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Data ID
+    get:
+      summary: Get custom data information (using view)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - properties:
+                      value:
+                        type: object
+                        description: The result value of the view. The key name is suuid in the corresponding column.
+                      column_definitions:
+                        type: array
+                        description: An array that describes the target column definition information. The key name is suuid that matches value.
+                        items:
+                          $ref: '#/components/schemas/ViewColumnDefinition'
+                type: object
+              examples:
+                Example:
+                  value:
+                    value:
+                      82c58b9bc8a68842c292: null
+                      12fc3d6f970afc5a7f28: test20200616002525
+                      cd7672e19232308b00bf: 2
+                      5e4736ea860fe41d2574: test20200616002525
+                      1787a6afa95fc9059340: null
+                      91bbad4146f78dc9faa6: 0
+                      846e75fa6b1092e93a35: null
+                      cde08af21db3fe8275ca: null
+                      5e6b9c251a1ec37543bb: null
+                      6968926f2de4fa658b97: test_5
+                    column_definitions:
+                      82c58b9bc8a68842c292:
+                        table_name: child_table
+                        column_name: id
+                        label: ID
+                      12fc3d6f970afc5a7f28:
+                        table_name: child_table
+                        column_name: text
+                        label: text
+                      cd7672e19232308b00bf:
+                        table_name: child_table
+                        column_name: user
+                        label: user
+                      5e4736ea860fe41d2574:
+                        table_name: child_table
+                        column_name: index_text
+                        label: index_text
+                      1787a6afa95fc9059340:
+                        table_name: child_table
+                        column_name: odd_even
+                        label: odd_even
+                      91bbad4146f78dc9faa6:
+                        table_name: child_table
+                        column_name: multiples_of_3
+                        label: multiples_of_3
+                      846e75fa6b1092e93a35:
+                        table_name: child_table
+                        column_name: file
+                        label: file
+                      cde08af21db3fe8275ca:
+                        table_name: child_table
+                        column_name: date
+                        label: date
+                      5e6b9c251a1ec37543bb:
+                        table_name: child_table
+                        column_name: init_text
+                        label: init_text
+                      6968926f2de4fa658b97:
+                        table_name: parent_table
+                        column_name: text
+                        label: 'parent_table : text'
+      description: |-
+        #### Outline of processing
+        * Specify the ID of the view and the data and use that view to get the data information
+        * Only data for which the logged-in user has authority will be acquired.
+        * Supported view types: All views, Normal view
+
+        #### About the result column name
+        * When using a view to get the results, there are various cases for the columns to get. (Ex: Data in parent table, aggregation result of grouping)
+        * Depending on the view settings, column names may be duplicated, and the column name key may not be able to determine the column type.
+        * Therefore, the column name of the data value obtained in json format is suuid (random 20-digit alphanumeric characters).
+        * Information such as the target suuid table name and custom column name is set in the resulting json "column_definitions", so analyze and obtain the relevant column information from those values.
+
+        ##### Example (partially omitted)
+        ``` json
+        {
+            "value": {
+                "82c58b9bc8a68842c292": null,
+                "12fc3d6f970afc5a7f28": "child value 3",
+                "6968926f2de4fa658b97": "parent value 1"
+            },
+            "column_definitions": {
+                "82c58b9bc8a68842c292": {
+                    "table_name": "child_table",
+                    "column_name": "id",
+                    "label": "ID"
+                },
+                "12fc3d6f970afc5a7f28": {
+                    "table_name": "child_table",
+                    "column_name": "text",
+                    "label": "text"
+                },
+                "6968926f2de4fa658b97": {
+                    "table_name": "parent_table",
+                    "column_name": "text",
+                    "label": "parent_table : text"
+                }
+            }
+        }
+        ```
+
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        - v3.3.X Added
+      parameters: []
+      security:
+        - OAuth2: []
+      operationId: get-view-values
+      tags:
+        - Data
+components:
+  schemas:
+    CustomTable:
+      title: CustomTable
+      description: Custom Table info
+      x-examples:
+        example-1: {}
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+            table_name:
+              type: string
+              description: Table name
+            table_view_name:
+              type: string
+              description: Table display name
+            description:
+              type: string
+              description: Description
+            system_flg:
+              type: boolean
+              default: 0
+              description: Whether the table was created by the system
+            showlist_flg:
+              type: boolean
+              default: 0
+              description: Whether to display in the list
+            order:
+              type: integer
+              description: Order
+            options:
+              type: object
+              properties:
+                icon:
+                  type: string
+                  description: Font-awesome icon
+                comment_flg:
+                  type: boolean
+                  description: Use comment function
+                  default: true
+                attachment_flg:
+                  type: boolean
+                  description: Use attachment
+                  default: true
+                one_record_flg:
+                  type: boolean
+                  default: false
+                  description: Whether it is only one data
+                search_enabled:
+                  type: boolean
+                  default: true
+                  description: Do you allow search
+                all_user_editable_flg:
+                  type: boolean
+                  default: false
+                  description: Whether all users are allowed to edit
+                all_user_viewable_flg:
+                  default: false
+                  description: Whether all users are allowed to view
+                  type: boolean
+                all_user_accessable_flg:
+                  type: boolean
+                  default: false
+                  description: Whether all users are allowed to browse
+          required:
+            - table_name
+            - table_view_name
+            - system_flg
+            - showlist_flg
+            - order
+            - id
+        - $ref: '#/components/schemas/ModelBase'
+    CustomColumn:
+      title: CustomColumn
+      description: Custom column info
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+            column_name:
+              type: string
+              description: Column name
+            column_view_name:
+              type: string
+              description: Column display name
+            required:
+              type: boolean
+              default: true
+              description: Whether required column
+            index_enabled:
+              type: boolean
+              default: 1
+              description: Whether search index column
+            unique:
+              type: boolean
+              default: 1
+              description: Whether unique column
+            column_type:
+              type: string
+              description: Column type
+            custom_table_id:
+              type: integer
+              description: Custom table's id
+          required:
+            - id
+            - column_name
+            - column_view_name
+            - required
+            - index_enabled
+            - unique
+            - column_type
+            - custom_table_id
+        - $ref: '#/components/schemas/ModelBase'
+    CustomValue:
+      title: CustomValue
+      description: Custom value information
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              description: id
+            value:
+              description: Key-value column of data entered on the screen
+              type: object
+            parent_id:
+              type: integer
+              description: If that data has parent data, the id of the custom data in the parent table
+            parent_type:
+              type: string
+              description: If that data has parent data, the parent table name
+            label:
+              description: Heading when displaying the data on the screen (read-only)
+              type: string
+            deleted_at:
+              type: string
+              description: Delete datetime
+            deteled_user_id:
+              type: integer
+              description: Delete user ID
+          required:
+            - id
+        - $ref: '#/components/schemas/ModelBase'
+    Paginate:
+      title: Paginate
+      type: object
+      description: List result model
+      properties:
+        current_page:
+          type: integer
+          default: 1
+          description: current page
+        first_page_url:
+          type: string
+          description: URL of the first page
+        last_page:
+          type: integer
+          description: URL of the last page
+        path:
+          type: string
+        per_page:
+          type: integer
+          description: Number of items displayed per page
+        to:
+          type: integer
+          description: End number of the displayed data
+        total:
+          type: integer
+          description: Total number of data
+        from:
+          type: integer
+          description: Start number of the displayed data
+        last_page_url:
+          type: string
+          description: URL of the last page
+        prev_page_url:
+          type: string
+          description: URL of the previous page
+        next_page_url:
+          type: string
+          description: URL of the next page
+    ModelBase:
+      title: ModelBase
+      type: object
+      description: Exment model base class
+      properties:
+        id:
+          type: integer
+          description: id
+        created_at:
+          description: Create datetime
+          type: string
+        updated_at:
+          description: Update datetime
+          type: string
+        updated_user_id:
+          description: Create user ID
+          type: integer
+        created_user_id:
+          description: Update user ID
+          type: integer
+      required:
+        - id
+    Workflow:
+      title: Workflow
+      description: Workflow info
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              description: ID
+            workflow_type:
+              type: integer
+              description: (Not use)
+            workflow_view_name:
+              type: string
+              description: Workflow display name
+            start_status_name:
+              type: string
+              description: Start status name
+            setting_completed_flg:
+              type: integer
+              default: 0
+              description: Setting completed flg
+            workflow_statuses:
+              type: array
+              description: Workflow status list *Added only when "expands=statuses" is specified in the query
+              items:
+                $ref: '#/components/schemas/WorkflowStatus'
+            workflow_actions:
+              type: array
+              description: Workflow action list * Added only when "expands=actions" is specified in the query
+              items:
+                $ref: '#/components/schemas/WorkflowAction'
+          required:
+            - id
+            - workflow_view_name
+            - start_status_name
+            - setting_completed_flg
+        - $ref: '#/components/schemas/ModelBase'
+    WorkflowStatus:
+      title: WorkflowStatus
+      description: Workflow status info
+      allOf:
+        - type: object
+          properties:
+            id:
+              description: ID
+              type: integer
+            workflow_id:
+              type: integer
+              description: Workflow ID
+            status_type:
+              type: integer
+              description: (Not use)
+            status_name:
+              type: string
+              description: Status display name
+            datalock_flg:
+              type: integer
+              default: 1
+              description: When 1, the data of this status cannot be changed from the screen
+            completed_flg:
+              type: integer
+              default: 1
+              description: When 1, the workflow ends
+          required:
+            - id
+            - workflow_id
+            - status_name
+            - datalock_flg
+            - completed_flg
+        - $ref: '#/components/schemas/ModelBase'
+    WorkflowAction:
+      title: WorkflowAction
+      description: Workflow action
+      allOf:
+        - properties:
+            id:
+              type: integer
+              description: ID
+            workflow_id:
+              type: integer
+              description: Workflow ID
+            status_from:
+              type: string
+              description: 'Status ID before executing the action. For the "start" string, the status at the start of the workflow'
+            action_name:
+              type: string
+              description: Action display name
+            ignore_work:
+              type: integer
+              default: 0
+              description: When 1, the action is a special action and is excluded from working users.
+            comment_type:
+              type: string
+              description: 'How to write a comment. required: required, nullable: optional, not_use: unused'
+            flow_next_type:
+              type: string
+              description: 'How to proceed to the next status. some: X or more, all: all approved'
+            flow_next_count:
+              type: integer
+              description: When flow_next_type is some, how many executions will advance to the next status
+            work_targets:
+              type: object
+              description: Information about the authorized person who can perform this workflow
+              properties:
+                work_target_type:
+                  type: string
+                  description: 'Workflow execution target. fix: fixed user, action_select: specified by previous action user'
+                system:
+                  type: array
+                  description: '0: User ID that created the data'
+                  items:
+                    type: integer
+                user:
+                  type: array
+                  description: An array of user IDs that can perform actions
+                  items:
+                    type: integer
+                organization:
+                  type: array
+                  description: ID array of organizations that can perform actions
+                  items:
+                    type: integer
+                column:
+                  type: array
+                  description: Custom column ID array. The user specified in the custom column becomes the user who executes the action.
+                  items:
+                    type: integer
+            work_conditions:
+              description: Workflow execution conditions
+              type: array
+              items:
+                type: object
+                properties:
+                  status_to:
+                    type:
+                      - string
+                      - integer
+                    description: 'Status ID after executing the action. For the "start" string, the status at the start of the workflow'
+                  enabled_flg:
+                    type:
+                      - string
+                      - integer
+                    description: If 1, the condition is valid
+                required:
+                  - enabled_flg
+          required:
+            - id
+            - workflow_id
+            - action_name
+            - ignore_work
+      type: object
+    WorkflowValue:
+      title: WorkflowValue
+      description: Workflow execution value
+      allOf:
+        - properties:
+            id:
+              type: integer
+              description: ID
+            workflow_id:
+              type: integer
+              description: Workflow ID
+            morph_type:
+              type: string
+              description: Table name of custom data to be linked
+            morph_id:
+              type: integer
+              description: ID of custom data to be linked
+            workflow_action_id:
+              type: integer
+              description: Workflow action ID
+            workflow_status_from_id:
+              type: integer
+              description: Workflow status ID before executing the action. If null, the status before execution indicates that the workflow has not been executed.
+            workflow_status_to_id:
+              type: integer
+              description: Workflow status ID after executing the action. If null, the status after execution indicates that the workflow has not been executed.
+            comment:
+              type: string
+              description: Comment
+            action_executed_flg:
+              type: integer
+              default: 0
+              description: A value of 1 indicates that the workflow status is currently running.
+            latest_flg:
+              type: integer
+              default: 0
+              description: When it is 1, it indicates that the workflow execution value is the latest.
+          required:
+            - id
+            - workflow_id
+            - morph_type
+            - morph_id
+            - workflow_action_id
+            - action_executed_flg
+            - latest_flg
+      type: object
+    Notify:
+      title: Notify
+      description: Notification information in the notification bar
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Notification bar ID
+        notify_id:
+          type: integer
+          description: Notification definition ID. Enter 0 for free format notifications
+        parent_type:
+          type: string
+          description: For notifications associated with specific custom data, the table name of the custom table
+        parent_id:
+          type: integer
+          description: For notifications associated with specific custom data, the ID of the custom data
+        target_user_id:
+          type: integer
+          description: User ID to be notified
+        trigger_user_id:
+          type: integer
+          description: ID of the user who executed the notification
+        notify_subject:
+          type: string
+          description: Notification subject
+        notify_body:
+          type: string
+          description: Notification body
+        read_flg:
+          type: integer
+          default: 0
+          description: If read, 1
+        created_at:
+          type: string
+          description: Create datetime
+        updated_at:
+          type: string
+          description: Update datetime
+      required:
+        - id
+        - notify_id
+        - target_user_id
+        - trigger_user_id
+        - notify_subject
+        - notify_body
+        - read_flg
+    Document:
+      title: Document
+      type: object
+      properties:
+        name:
+          type: string
+          description: File name
+        url:
+          type: string
+          description: URL when accessing from the screen. *Authentication on the login screen is required
+        api_url:
+          type: string
+          description: URL when accessing from API. *Access token authentication is required
+        created_at:
+          type: string
+          description: Upload datetime
+        created_user_id:
+          type: integer
+          description: Upload user ID
+    CustomView:
+      title: CustomView
+      description: Custom view information
+      x-examples:
+        example-1: {}
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+            suuid:
+              type: string
+              description: SUUID(20 alphanumeric characters)
+            custom_table_id:
+              type: integer
+              description: ID of the target table
+            view_view_name:
+              type: string
+              description: View information display name
+            view_kind_type:
+              type: integer
+              description: View type. 0=Normal view, 1=Aggregate view, 2=Calendar view, 3=Condition view, 9=All view
+            view_type:
+              type: string
+              description: View permissions. 0=system view, 1=user view
+          required:
+            - id
+            - suuid
+            - custom_table_id
+            - view_view_name
+            - view_kind_type
+            - view_type
+        - $ref: '#/components/schemas/ModelBase'
+    ViewColumnDefinition:
+      title: ViewColumnDefinition
+      type: object
+      description: View column information
+      properties:
+        table_name:
+          type: string
+          description: Table name of the column target
+        column_name:
+          type: string
+          description: Target column name
+        label:
+          type: string
+          description: Column wording when displayed on the screen
+        summary_condition:
+          type: string
+          description: If the view is a summary view and it is a summary column, the type of summary. sum, count, min, max
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /oauth/token
+          refreshUrl: /oauth/token
+          scopes: []
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          refreshUrl: /oauth/token
+          scopes: []
