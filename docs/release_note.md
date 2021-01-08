@@ -1,6 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v3.9.5 (2021/01/08)
+1. Bug fix
+    - Fixed a bug that jpg image could not be uploaded in custom column type "image"
+    - Fixed a bug that an error occurs when submitting a form containing an array in the setting value "debug mode (request value output)".
+    - Fixed a bug that cannot be executed if a custom column is set for the workflow executable user and the column is not registered as data.
+1. Other
+    - Some minor fixes
+
 ## v3.9.4 (2021/01/01)
 1. Function addition / improvement
     - Added a command to check the database connection.
