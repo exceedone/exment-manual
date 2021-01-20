@@ -32,7 +32,7 @@ D:\home\site
 - 以下のコマンドを実行します。
 
 ```
-composer create-project laravel/laravel  --prefer-dist . "5.6.*" 
+composer create-project laravel/laravel  --prefer-dist . "6.*" 
 composer require exceedone/exment
 php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 ```

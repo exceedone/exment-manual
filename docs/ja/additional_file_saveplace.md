@@ -356,7 +356,7 @@ Exmentでは、FTPやAmazon S3といったドライバに対応しておりま�
 - 使用するファイルシステムで、ルートフォルダを分ける機能がない場合、アップロード先を変更する、ファイルの種類ごとのアプリケーションを作成する、といった対応が必要になります。
 
 ### 利用条件
-Exmentでは、[Laravelのファイルシステム](https://readouble.com/laravel/5.6/ja/filesystem.html)の機能を使用して、独自のドライバを管理します。  
+Exmentでは、[Laravelのファイルシステム](https://readouble.com/laravel/6.x/ja/filesystem.html)の機能を使用して、独自のドライバを管理します。  
 そのため、Laravelのファイルシステムが用意されているサービスのみ、Exmentのファイル管理に対応します。(もしくは、ご自身でドライバを準備する必要があります。)
 
 ### 開発方法

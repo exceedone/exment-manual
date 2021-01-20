@@ -17,10 +17,10 @@ Exmentを開始するために必要となる手順です。
 ### Laravelインストール(プロジェクト作成)
 - コマンドラインで、以下のコマンドを実行します。  
 ※作成したプロジェクトのフォルダを、このマニュアルでは「ルートディレクトリ」と呼びます。  
-※Exmentは現在、バージョン5.6のみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。
+※Exmentは現在、バージョン6.Xのみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。
 
 ~~~
-composer create-project "laravel/laravel=5.6.*" (プロジェクト名)
+composer create-project "laravel/laravel=6.*" (プロジェクト名)
 cd (プロジェクト名)
 composer require exceedone/exment
 
