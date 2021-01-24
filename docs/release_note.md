@@ -6,6 +6,7 @@
 1. Functional modification
     - Changed the framework version to Laravel 6.X. Corrected some descriptions associated with it
     - Addition of judgment whether composer version is 2.0.0 or higher in system requirement check
+    - Fixed the display method of the current version and the latest version on the system setting screen
 1. Bug fixes
     - Fixed a bug that jpg files could not be uploaded when uploading images from a text editor
 
