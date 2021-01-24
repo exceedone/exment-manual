@@ -3,7 +3,7 @@ Exmentでは、APIを実行可能です。
 Exmentのアカウントを使用する、OAuthを用いた認証によって実施可能です。  
   
 Exmentでは、[laravel/passport](https://github.com/laravel/passport)を使用した認証を行っております。  
-参考：[Laravel 5.6 API認証](https://readouble.com/laravel/5.6/ja/passport.html)  
+参考：[Laravel 6.X API認証](https://readouble.com/laravel/6.x/ja/passport.html)  
 そのため、認証はlaravel/passportに依存した方式となりますが、当マニュアルは3種類の認証方式をご紹介します。  
 
 ## システム設定変更

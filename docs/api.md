@@ -3,7 +3,7 @@ In Exment, API can be executed.
 This can be done by OAuth-based authentication using an Exment account.  
   
 Exment uses [laravel / passport](https://github.com/laravel/passport) for authentication.  
-Reference: [Laravel 5.6 API authentication](https://readouble.com/laravel/5.6/en/passport.html)  
+Reference: [Laravel 6.X API authentication](https://readouble.com/laravel/6.x/en/passport.html)  
 Therefore, authentication depends on laravel / passport, but this manual introduces two types of authentication.  
 
 ## Change system settings

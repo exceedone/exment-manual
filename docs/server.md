@@ -52,7 +52,7 @@ Please check the link below for the construction method.
 ### server
 - PHP 7.1.3 or higher
 - MySQL 5.7.8 or higher, lower than 8.0.0 or MariaDB 10.2.7 or higher
-- Laravel5.6aravel5.6
+- Laravel6.X (Exment 4.X or above, Laravel version change 5.6.X to 6.X)
 
 <span class="red">※ In Exment, json type is used for the database. Databases that support json type are MySQL 5.7.8 or higher and MariaDB 10.2.7 or higher. Please check the version of the database you plan to use.</span>
 

@@ -248,24 +248,6 @@ Exment で必要となる PHP ライブラリー管理ツール (Composer) を�
 
 ### Exment のダウンロードと実行準備
 
-<!--
-ここの部分は不要かと思われる
-
-### Laravelのインストールと構成
-Exment で必要となる PHP フレームワーク (Laravel) をインストールして、Exment が実行できるよう構成します
-1. 管理者コマンドプロンプトを起動し、C:\inetpub\wwwroot\ に移動します  
-   > 以前の作業で開いているコマンドプロンプトがある場合は、すべて閉じて新しいコマンドプロンプト ウィンドウを開いてください
-2. 以下のコマンドを実行します  
-    ```
-    composer create-project "laravel/laravel=5.6.*" (プロジェクト名)
-    ```
-    プロジェクト名は任意です (例 exment )。プロジェクト名が exment の場合、コマンドは以下のようになります
-    ```
-    composer create-project "laravel/laravel=5.6.*" exment
-    ```
-
--->
-
 1. Exment のインストール手順のページ ([https://exment.net/docs/#/ja/quickstart](https://exment.net/docs/#/ja/quickstart)) から Exment zipファイル (exment.zip) をダウンロードします
 2. ダウンロードした ZIP ファイルを右クリックしてプロパティを表示し、\[全般\] タブの\[セキュリティ\] にある「ブロックの解除」にチェックを入れて \[OK\] をクリックします  
    ![ブロックの解除](img/iis/iis_exment01.png)

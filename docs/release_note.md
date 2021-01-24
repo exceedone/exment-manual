@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.0.0 (2021/01/21)
+**Updating to v4.0.0 requires a manual update. Please check [here](/update/v4_0) once and update it.**
+1. Functional modification
+    - Changed the framework version to Laravel 6.X. Corrected some descriptions associated with it
+    - Addition of judgment whether composer version is 2.0.0 or higher in system requirement check
+    - Fixed the display method of the current version and the latest version on the system setting screen
+1. Bug fixes
+    - Fixed a bug that jpg files could not be uploaded when uploading images from a text editor
+
 ## v3.9.5 (2021/01/08)
 1. Bug fix
     - Fixed a bug that jpg image could not be uploaded in custom column type "image"
