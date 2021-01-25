@@ -50,7 +50,7 @@ Please check the link below for the construction method.
 
 ## Operating environment
 ### server
-- PHP 7.1.3 or higher
+- PHP 7.2.0 or higher
 - MySQL 5.7.8 or higher, lower than 8.0.0 or MariaDB 10.2.7 or higher
 - Laravel6.X (Exment 4.X or above, Laravel version change 5.6.X to 6.X)
 
