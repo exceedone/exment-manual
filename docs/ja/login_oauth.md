@@ -37,7 +37,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
 ~~~
-composer require laravel/socialite=~3.3.0
+composer require laravel/socialite=~5.1
 ~~~
 
 - [画面での設定](#画面での設定)を実施します。
@@ -77,7 +77,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
 ~~~
-composer require laravel/socialite=~3.3.0
+composer require laravel/socialite=~5.1
 ~~~
 
 - [Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  

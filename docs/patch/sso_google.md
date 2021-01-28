@@ -16,7 +16,7 @@ Due to the termination of Google+ service
 - Execute the following command.
 
 ~~~
-composer require laravel/socialite=~3.3.0
+composer require laravel/socialite=~5.1
 ~~~
 
 - You can now log in.
