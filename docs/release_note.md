@@ -1,8 +1,34 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.0.2 (2021/02/13)
+**Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
+
+1. Functional modification
+    - Added "Workflow status" and "Workflow execution user" to the conditions in the form priority setting.
+1. Bug fix
+    - Fixed a bug that the parent data cannot be selected when the saved child data is edited after setting the 1: n relation later.
+    - Fixed a bug that error log is output when searching related data of self-referencing custom table
+    - Fixed a bug that loading does not end when trying to delete itself on the user setting screen
+1. Others
+    - Added test for stability
+    - A lot of refactoring is done mainly for condition setting
+
+
+## v4.0.1 (2021/02/02)
+
+1. Bug fix
+    - Fixed a bug that text editor images cannot be inserted by users who do not have system administration privileges.
+    - Fixed a bug that an error occurs when the date column of the child table is specified as "specified date" in the summary view of the table with parent-child relationship.
+    - Column type Fixed a bug that data cannot be updated if other than yourself is entered in the table and user column that have required items.
+    - Fixed a bug that custom table cannot be deleted when setting data copy
+    - Fixed a bug that filtering is not executed when the normal view with filtering is specified in "Graph" for the item on the dashboard.
+    - Other cumulative bug fixes.
+1. Other
+    - Added test for stability.
+
+
 ## v4.0.0 (2021/01/21)
-**Updating to v4.0.0 requires a manual update. Please check [here](/update/v4_0) once and update it.**
 1. Functional modification
     - Changed the framework version to Laravel 6.X. Corrected some descriptions associated with it
     - Addition of judgment whether composer version is 2.0.0 or higher in system requirement check
