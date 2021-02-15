@@ -21,9 +21,124 @@ ExmentはPHPを使用したオープンソースシステムです。
 
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
+| id | string(整数) | ID |
 | created_user | CustomValue(user) | データを作成したユーザーインスタンス |
 | updated_user | CustomValue(user) | データを更新したユーザーインスタンス |
 
+
+
+## LoginUser / ログインユーザークラス
+ログインユーザー情報です。
+
+- namespace Exceedone\Exment\Model
+- extends Exceedone\Exment\Model\ModelBase
+
+### プロパティ
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| id | string(整数) | ログインユーザーテーブルのID |
+| base_user_id | string(整数) | カスタムデータ「ユーザー」のID。<br/><span class="red">※画面の作成ユーザーID、更新ユーザーIDなどは、すべてこちらのIDを使用</span> |
+| user_code | string | ユーザーコード |
+| user_name | string | ユーザー表示名 |
+| email | string | Eメールアドレス |
+| display_avatar | string | ユーザーアバター(未設定の場合、デフォルトのアバター) |
+| login_type | string | ログインプロバイダ種類。<br/>pure:通常<br/>oauth:OAuth2認証<br/>saml:SAML認証<br/>ldap:LDAP認証 |
+| login_provider | string | ログインプロバイダ名。通常のログイン以外で設定される。google、githubなど |
+
+
+
+### 関数一覧
+
+#### \Exment::user()
+ログインしているユーザー情報を取得します。  
+※LoginUserの関数ではございませんが、便宜上こちらに記載しております。
+
+##### 引数
+なし
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| ?LoginUser | ログインしていれば、ログインユーザー情報。未ログインの場合はnull |
+
+##### 使用例
+
+~~~ php
+$login_user = \Exment::user();
+\Log::debug($login_user->user_code); //Ex. admin
+\Log::debug($login_user->user_name); //Ex. Administrator
+\Log::debug($login_user->email); //Ex. admin@admin.admin
+~~~
+
+---
+
+#### getUserId
+カスタムデータ「ユーザー」のIDを返却します。
+
+##### 引数
+なし
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| string(整数) | カスタムデータ「ユーザー」のID |
+
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+
+$login_user = \Exment::user();
+\Log::debug($login_user->getUserId()); //Ex.1
+~~~
+
+---
+
+
+### 補足：idとbase_user_idについて
+Exmentでは、ユーザーに関するDBテーブルとして、「カスタムデータの『ユーザー(user)』」テーブルと「ログインユーザー(login_users)」テーブルの2つがあります。  
+主に、以下のような特徴があります。
+
+- **「カスタムデータの『ユーザー(user)』」テーブル**
+    - ユーザーコード・ユーザー名・Eメールアドレスを持つ
+    - 画面では、URL「/data/user」で管理
+    - APIから一覧取得可
+
+- **「ログインユーザー(login_users)」テーブル**
+    - ログインプロバイダ種類(デフォルト、LDAP、OAuthなど)、パスワード、アバターなどの情報を持つ<br/>(※ユーザーコード・ユーザー名・Eメールアドレス情報は、Laravelの関数で、プログラムで取得)
+    - 画面では、URL「/loginuser」で管理
+    - APIから一覧取得不可。自分のログイン情報のみ取得可能
+    - 「カスタムデータの『ユーザー(user)』のID」をbase_user_id列に持つ。1:nの関係
+
+#### 2つのテーブルのIDがずれる場合
+**複数のログイン方法を設定している場合、「カスタムデータの『ユーザー(user)』」テーブルと、「ログインユーザー(login_users)」テーブルのIDがずれる場合があります。**これは、以下のようなケースです。
+
+##### 「カスタムデータの『ユーザー(user)』」テーブル
+| ID | ユーザーコード | ユーザー名 | Eメールアドレス |
+| ---- | ---- | ---- | ---- |
+| 1 | admin | Administrator | admin@admin.admin |
+| 2 | user1 | User1 | user1@user1.user1 |
+
+##### 「ログインユーザー(login_users)」テーブル
+| ID | base_user_id | login_type | login_provider | ※補足 |
+| ---- | ---- | ---- | ---- | ---- |
+| 1 | 1 | pure | - | adminユーザーが、通常のログイン方法でログイン |
+| 2 | 1 | oauth | google | adminユーザーが、GoogleによるOAuthでログイン |
+| 3 | 1 | ldap | ad | adminユーザーが、LDAPによるログイン |
+| 4 | 2 | pure | - | user1ユーザーが、通常のログイン方法でログイン |
+
+このような場合、$login_user->idと、$login_user->getUserId()のIDが異なってきます。  
+
+~~~ php
+// 例：adminユーザーが、LDAPによるログインを実施した場合
+
+$login_user = \Exment::user();
+\Log::debug($login_user->id); //Ex.3
+\Log::debug($login_user->getUserId()); //Ex.1
+~~~
+
+なお、<span class="red">※画面の作成ユーザーID、更新ユーザーIDなどは、すべてgetUserId()を使用しています。</span>そのため、プラグインなどでユーザーIDを取得する場合、すべてgetUserId()を使用してください。
 
 
 ## CustomTable / カスタムテーブル
