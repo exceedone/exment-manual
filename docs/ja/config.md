@@ -410,4 +410,4 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### デバッグモード(SQLログ出力 - 関数表示)
 - 設定キー : EXMENT_DEBUG_MODE_SQLFUNCTION
 - 既定値 ： false
-- 役割 : ExmentでSQLを実行時で、「EXMENT_DEBUG_MODE」がtrueのときに、trueにすることで、SQL文と同時に、呼び出し元の関数一覧をログ出力することができます。※開発用です。
+- 役割 : ExmentでSQLを実行時で、「EXMENT_DEBUG_MODE_SQL」がtrueのときに、trueにすることで、SQL文と同時に、呼び出し元の関数一覧をログ出力することができます。※開発用です。
