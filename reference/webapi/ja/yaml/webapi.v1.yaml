@@ -2,7 +2,12 @@ openapi: 3.0.0
 info:
   title: Exment API
   version: '1.0'
-  description: "ExmentのWeb APIリファレンスです。  \nアプリの登録方法や、アクセストークンの取得方法、スコープ一覧は[こちら](https://exment.net/docs/#/ja/api)をご参照ください。  \nその他マニュアルは、[こちら](https://exment.net/docs/#/ja/)をご参照ください。\n\nこちらはExmentのRestAPIの仕様書になります。OpenAPI形式で作成されています。"
+  description: |-
+    ExmentのWeb APIリファレンスです。  
+    アプリの登録方法や、アクセストークンの取得方法、スコープ一覧は[こちら](https://exment.net/docs/#/ja/api)をご参照ください。  
+    その他マニュアルは、[こちら](https://exment.net/docs/#/ja/)をご参照ください。
+
+    こちらはExmentのRestAPIの仕様書になります。OpenAPI形式で作成されています。
   termsOfService: 'https://exment.net'
   contact:
     email: info@exment.net
@@ -214,6 +219,12 @@ paths:
       parameters:
         - schema:
             type: integer
+            default: '1'
+          in: query
+          name: page
+          description: 取得するページ番号
+        - schema:
+            type: integer
             default: '20'
             maximum: 100
             minimum: 1
@@ -229,7 +240,7 @@ paths:
             type: string
           in: query
           name: expands
-          description: 'テーブルに紐づく、カスタム列一覧を取得可能。"columns"を指定可能'
+          description: テーブルに紐づく、カスタム列一覧を取得可能。"columns"を指定可能
       requestBody: {}
       operationId: get-tables
       security:
@@ -902,7 +913,7 @@ paths:
             type: string
           in: query
           name: valuetype
-          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
+          description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
       security:
         - OAuth2認証: []
       operationId: get-values
@@ -975,7 +986,137 @@ paths:
                       created_user_id: '1'
                       updated_user_id: '1'
                       label: テスト2
-      description: "#### 処理概要\n* カスタムテーブルに、データを新規作成する\n* ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する\n* 登録を行いたいデータは、value配列内に値を代入してPOSTする\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 複数件登録、ならびに親データを指定しての新規追加に対応。ならびに、画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.7 valuetypeパラメータ追加\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'num': 10,\n        'price': 10000\n    }\n}\n```\n\n\n#### 複数件登録する場合\n* POSTデータを、配列で複数件送信することで、複数データを登録することができる\n* 1件でもエラーが発生した場合は、すべてのデータを登録しない\n* 1度に登録できる件数は100件まで\n* 配列の指定方法は2パターン存在するが、機能に差異はない\n\n■パターン１：\n```\n{\n   'value': [\n      {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'num': 10,\n        'price': 10000\n      },\n      {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'num': 3,\n        'price': 8000\n      }\n    ]\n}\n```\n\n■パターン２：\n```\n{\n   'data': [\n     {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'value':{\n          'num': 10,\n          'price': 10000\n        }\n     },\n     {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'value':{\n          'num': 3,\n          'price': 8000\n        }\n      }\n    ]\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
+      description: |
+        #### 処理概要
+        * カスタムテーブルに、データを新規作成する
+        * ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する
+        * 登録を行いたいデータは、value配列内に値を代入してPOSTする
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：担当者データの編集
+
+        #### APIスコープ(scope)
+        + value_write
+
+        #### 対応バージョン
+        - v1.1.0 対応
+        - v3.1.0 複数件登録、ならびに親データを指定しての新規追加に対応。ならびに、画像・ファイル列へのファイル保存に対応
+        - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
+        - v3.1.7 valuetypeパラメータ追加
+
+        #### ファイル・画像列にファイルを保存する場合
+
+        * 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。
+
+        ```
+        {
+           'value': {
+                'title': 'test',
+                'file': {
+                    'name' : 'hello.txt',
+                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+                }
+            }
+        }
+        ```
+
+        #### 親データを指定する場合
+        * parent_idとparent_typeを設定することで、親データを登録することができる
+        * 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと
+
+        ```
+        {
+           'parent_type': 'contract',
+           'parent_id': 2
+           'value': {
+                'num': 10,
+                'price': 10000
+            }
+        }
+        ```
+
+
+        #### 複数件登録する場合
+        * POSTデータを、配列で複数件送信することで、複数データを登録することができる
+        * 1件でもエラーが発生した場合は、すべてのデータを登録しない
+        * 1度に登録できる件数は100件まで
+        * 配列の指定方法は2パターン存在するが、機能に差異はない
+
+        ■パターン１：
+        ```
+        {
+           'value': [
+              {
+                'parent_type': 'contract',
+                'parent_id': 2
+                'num': 10,
+                'price': 10000
+              },
+              {
+                'parent_type': 'contract',
+                'parent_id': 5
+                'num': 3,
+                'price': 8000
+              }
+            ]
+        }
+        ```
+
+        ■パターン２：
+        ```
+        {
+           'data': [
+             {
+                'parent_type': 'contract',
+                'parent_id': 2
+                'value':{
+                  'num': 10,
+                  'price': 10000
+                }
+             },
+             {
+                'parent_type': 'contract',
+                'parent_id': 5
+                'value':{
+                  'num': 3,
+                  'price': 8000
+                }
+              }
+            ]
+        }
+        ```
+
+        #### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして新規作成を行いたい場合
+        パラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  
+        例：「契約」テーブルのカスタムデータを登録時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  
+
+        ■通常時：
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': '1'
+            }
+        }
+        ```
+
+        ■findKeys使用時：
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': '株式会社ABC'
+            },
+            findKeys: {
+                'customer': 'customer_name'
+            }
+        }
+        ```
       parameters: []
       requestBody:
         content:
@@ -1125,7 +1266,7 @@ paths:
                         parent_type: null
                         parent_id: null
                         value:
-                          body: '<p>Exmentは、かんたん、お手頃なデータ管理Webシステムです。&nbsp;</p>'
+                          body: <p>Exmentは、かんたん、お手頃なデータ管理Webシステムです。&nbsp;</p>
                           order: '5'
                           title: Exmentへようこそ！
                           priority: '3'
@@ -1205,7 +1346,7 @@ paths:
             type: string
           in: query
           name: valuetype
-          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
+          description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
       security:
         - OAuth2認証: []
       operationId: get-values-query
@@ -1278,7 +1419,7 @@ paths:
                         parent_type: null
                         parent_id: null
                         value:
-                          body: '<p>Exmentは、かんたん、お手頃なデータ管理Webシステムです。&nbsp;</p>'
+                          body: <p>Exmentは、かんたん、お手頃なデータ管理Webシステムです。&nbsp;</p>
                           order: '5'
                           title: Exmentへようこそ！
                           priority: '3'
@@ -1301,7 +1442,67 @@ paths:
                     prev_page_url: null
                     to: 1
                     total: 1
-      description: "#### 処理概要\n* 特定のカスタムテーブルに登録している、カスタムデータを検索する\n* ログインユーザーに権限のあるデータのみ、一覧の対象となる\n* カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\n- v3.0.8 追加\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.7 valuetypeパラメータ追加\n- v3.3.2 検索条件に\"like\"追加。OR検索に対応、orderbyパラメータの追加\n\n#### 検索条件の指定方法\n* パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。\n* 検索条件は、以下のものに対応している。  \n    - eq : 完全一致\n    - ne : 一致しない\n    - gt : より上\n    - gte : 以上\n    - lt : より下\n    - lte : 以下\n    - like : LIKE検索。値に\"%\"使用可能\n* クエリの設定方法は、\"(列名) eq (検索値)\"となる。  \n※URLエンコードは行うこと\n* 複数の検索値で検索を行う場合、通常はAND検索を行う。パラメータ「or=1」を指定した場合、OR検索となる。\n\n■例1：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n■例2：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"、\"タイトル(title)\"が\"テスト\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1,title eq テスト\n```\n\n■例3：お知らせ(information)テーブルで、\"表示フラグ(view_flg)\"が\"1\"、または\"タイトル(title)\"が\"テスト\"のデータ一覧を取得する場合\n\n```\n// URLエンコードは行うこと\n/api/data/information/query-column?q=view_flg eq 1,title eq テスト&or=1\n```"
+      description: |-
+        #### 処理概要
+        * 特定のカスタムテーブルに登録している、カスタムデータを検索する
+        * ログインユーザーに権限のあるデータのみ、一覧の対象となる
+        * カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+
+        #### APIスコープ(scope)
+        + value_read
+        + value_write
+
+        #### 対応バージョン
+        - v3.0.8 追加
+        - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
+        - v3.1.7 valuetypeパラメータ追加
+        - v3.3.2 検索条件に"like"追加。OR検索に対応、orderbyパラメータの追加
+
+        #### 検索条件の指定方法
+        * パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。
+        * 検索条件は、以下のものに対応している。  
+            - eq : 完全一致
+            - ne : 一致しない
+            - gt : より上
+            - gte : 以上
+            - lt : より下
+            - lte : 以下
+            - like : LIKE検索。値に"%"使用可能
+        * クエリの設定方法は、"(列名) eq (検索値)"となる。  
+        ※URLエンコードは行うこと
+        * 複数の検索値で検索を行う場合、通常はAND検索を行う。パラメータ「or=1」を指定した場合、OR検索となる。
+
+        ■例1：お知らせ(information)テーブルで、"表示フラグ(view_flg)"が"1"のデータ一覧を取得する場合
+
+        ```
+        // URLエンコードは行うこと
+        /api/data/information/query-column?q=view_flg eq 1
+        ```
+
+        ■例2：お知らせ(information)テーブルで、"表示フラグ(view_flg)"が"1"、"タイトル(title)"が"テスト"のデータ一覧を取得する場合
+
+        ```
+        // URLエンコードは行うこと
+        /api/data/information/query-column?q=view_flg eq 1,title eq テスト
+        ```
+
+        ■例3：お知らせ(information)テーブルで、"表示フラグ(view_flg)"が"1"、または"タイトル(title)"が"テスト"のデータ一覧を取得する場合
+
+        ```
+        // URLエンコードは行うこと
+        /api/data/information/query-column?q=view_flg eq 1,title eq テスト&or=1
+        ```
       parameters:
         - schema:
             type: string
@@ -1333,7 +1534,7 @@ paths:
             type: string
           in: query
           name: valuetype
-          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
+          description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
         - schema:
             type: integer
           in: query
@@ -1433,7 +1634,7 @@ paths:
             type: string
           in: query
           name: valuetype
-          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
+          description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
     put:
       summary: カスタムデータ情報更新
       tags:
@@ -1465,7 +1666,102 @@ paths:
                     created_user_id: null
                     updated_user_id: '1'
                     label: テスト更新
-      description: "#### 処理概要\n* カスタムデータ情報を更新する\n* ログインユーザーに権限のないデータだった場合、403エラーが発生する\n* 更新が発生する列の情報のみ、value配列内に値を代入してPUTする\n* 列\"updated_at\"を行うことで、排他制御を行うことが可能\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：担当者データの編集\n\n#### APIスコープ(scope)\n+ value_write\n\n#### 対応バージョン\n- v1.1.0 対応\n- v3.1.0 画像・ファイル列へのファイル保存に対応\n- v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。\n- v3.1.10 排他制御に対応\n\n#### ファイル・画像列にファイルを保存する場合\n\n* 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。\n* 例：ファイル列\"file\"に、ファイルを保存する場合\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合\nパラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  \n例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  \n\n■通常時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n■findKeys使用時：\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '株式会社ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n\n\n#### 親データを指定する場合\n* parent_idとparent_typeを設定することで、親データを登録することができる\n* 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'price': 10000\n    }\n}\n```\n\n\n#### 排他制御\n* updated_at列に日付を追加することで、排他制御を行うことができます。指定した日時と、対象データの最新の更新日時が異なっていた場合、エラーを返却します。\n\n```\n{\n   \"value\": {\n        \"price\": 10000\n    },\n    \"updated_at\": \"2020/04/03 12:00:00\"\n}\n```\n"
+      description: |
+        #### 処理概要
+        * カスタムデータ情報を更新する
+        * ログインユーザーに権限のないデータだった場合、403エラーが発生する
+        * 更新が発生する列の情報のみ、value配列内に値を代入してPUTする
+        * 列"updated_at"を行うことで、排他制御を行うことが可能
+
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：担当者データの編集
+
+        #### APIスコープ(scope)
+        + value_write
+
+        #### 対応バージョン
+        - v1.1.0 対応
+        - v3.1.0 画像・ファイル列へのファイル保存に対応
+        - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
+        - v3.1.10 排他制御に対応
+
+        #### ファイル・画像列にファイルを保存する場合
+
+        * 以下のように、value->(ファイル・画像列)に、ファイル名・ファイルのbase64文字列を指定してください。
+        * 例：ファイル列"file"に、ファイルを保存する場合
+
+        ```
+        {
+           'value': {
+                'title': 'test',
+                'file': {
+                    'name' : 'hello.txt',
+                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+                }
+            }
+        }
+        ```
+
+        #### カスタム列の種類が「選択肢 (他のテーブルの値一覧から選択)」で、id以外をキーとして更新を行いたい場合
+        パラメータ「findKeys」を追加することにより、id以外の値をキーとできます。  
+        例：「契約」テーブルのカスタムデータを更新時、列「顧客(customer)」のデータを、「顧客」テーブル内の「顧客名(customer_code)」を使用したい場合  
+
+        ■通常時：
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': '1'
+            }
+        }
+        ```
+
+        ■findKeys使用時：
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': '株式会社ABC'
+            },
+            findKeys: {
+                'customer': 'customer_name'
+            }
+        }
+        ```
+
+
+        #### 親データを指定する場合
+        * parent_idとparent_typeを設定することで、親データを登録することができる
+        * 前提条件として「1:nのリレーションが設定されている」「親データがすでに登録済である」こと
+
+        ```
+        {
+           'parent_type': 'contract',
+           'parent_id': 2
+           'value': {
+                'price': 10000
+            }
+        }
+        ```
+
+
+        #### 排他制御
+        * updated_at列に日付を追加することで、排他制御を行うことができます。指定した日時と、対象データの最新の更新日時が異なっていた場合、エラーを返却します。
+
+        ```
+        {
+           "value": {
+                "price": 10000
+            },
+            "updated_at": "2020/04/03 12:00:00"
+        }
+        ```
       requestBody:
         content:
           application/json:
@@ -1597,7 +1893,59 @@ paths:
                     prev_page_url: null
                     to: 2
                     total: 2
-      description: " #### 処理概要\n* ワークフロー一覧を取得する\n* 「設定完了」が実行されているワークフローのみ、一覧で取得する\n\n#### Exment権限(Permission)\nなし\n\n#### APIスコープ(scope)\n+ workflow_read\n+ workflow_execute\n\n#### 対応バージョン\nv3.0.8\n"
+      description: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         #### 処理概要
+        * ワークフロー一覧を取得する
+        * 「設定完了」が実行されているワークフローのみ、一覧で取得する
+
+        #### Exment権限(Permission)
+        なし
+
+        #### APIスコープ(scope)
+        + workflow_read
+        + workflow_execute
+
+        #### 対応バージョン
+        v3.0.8
       parameters:
         - schema:
             type: integer
@@ -1618,7 +1966,7 @@ paths:
             type: string
           in: query
           name: expands
-          description: 'ワークフローに紐づく、ステータス設定一覧、アクション設定一覧を取得可能。"statuses"、"actions"を指定可能。複数の場合はカンマ区切り。'
+          description: ワークフローに紐づく、ステータス設定一覧、アクション設定一覧を取得可能。"statuses"、"actions"を指定可能。複数の場合はカンマ区切り。
         - schema:
             type: string
           in: query
@@ -1666,7 +2014,7 @@ paths:
             type: string
           in: query
           name: expands
-          description: 'ワークフローに紐づく、ステータス設定一覧、アクション設定一覧を取得可能。"statuses"、"actions"を指定可能。複数の場合はカンマ区切り。'
+          description: ワークフローに紐づく、ステータス設定一覧、アクション設定一覧を取得可能。"statuses"、"actions"を指定可能。複数の場合はカンマ区切り。
       security:
         - OAuth2認証: []
       operationId: get-workflow
@@ -1886,7 +2234,7 @@ paths:
             type: string
           in: query
           name: expands
-          description: 'ワークフロー実行値に紐づく、実行前ステータス情報、実行後ステータス情報、アクション情報を取得可能。"status_from"、"status_to"、"action"を指定可能。複数の場合はカンマ区切り。'
+          description: ワークフロー実行値に紐づく、実行前ステータス情報、実行後ステータス情報、アクション情報を取得可能。"status_from"、"status_to"、"action"を指定可能。複数の場合はカンマ区切り。
     post:
       summary: 特定のデータに対し、ワークフローを実行
       tags:
@@ -1932,7 +2280,7 @@ paths:
                   description: 実行するワークフローアクションID
                 comment:
                   type: string
-                  description: 'ワークフローのコメント。そのアクションが、comment_typeが"required"の場合は必須。"not_use"の場合は無視される'
+                  description: ワークフローのコメント。そのアクションが、comment_typeが"required"の場合は必須。"not_use"の場合は無視される
                 next_users:
                   type: string
                   description: アクション設定の「実行可能ユーザー」が、「前アクションの実行可能ユーザーが選択」の場合、次のアクションを実行するユーザーIDをカンマ区切りで入力
@@ -2490,7 +2838,69 @@ paths:
                     name: test.jpg
                     base64: aaaaaXXXXXXX.....
       operationId: get-file2
-      description: "#### 処理概要\n* ファイルのダウンロードを実施する\n* クエリ文字列がない場合、ファイルはストリーム形式でダウンロードされる。\"base64=1\"の場合、base64形式で返却する\n\n#### ファイルURL取得方法\nダウンロード用のファイルURLを取得する方法です。\n\n##### カスタムデータ取得APIで取得する\nカスタム列の種類がファイル・画像の場合、取得した値を加工します。\n\n```\n例：GET\n/api/data/testtable/1\n\n戻り値(一部)\n{\n    \"id\": 1,\n    \"value\": {\n        \"text\": \"test_1\",\n        \"file\": \"testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\"\n    }\n}\n```\n\nこの値を使用し、以下のようなURLで、APIを実行します。  \nhttp://localhost/api/files/testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\n\n\n#### リクエスト時のクエリ文字列と、レスポンスの内容\n##### リクエスト時にbase64=1を入れない場合\nレスポンス値は、ファイルのストリーム形式となります。\n\n##### リクエスト時にbase64=1を入れる場合\nレスポンス値は、以下の形式のjsonとなります。\n\n```\n{\n  \"type\": \"image/jpeg\",\n  \"name\": \"test.jpg\",\n  \"base64\": \"aaaaaXXXXXXX.....\"\n}\n```\n\n\n\n#### Exment権限(Permission)\n+ システム：システム情報\n+ システム：カスタムテーブル\n+ システム：すべてのデータ\n+ テーブル：テーブル\n+ テーブル：すべてのデータの編集\n+ テーブル：すべてのデータの閲覧\n+ テーブル：すべてのデータの参照\n+ テーブル：担当者データの編集\n+ テーブル：担当者データの閲覧\n\n#### APIスコープ(scope)\n+ value_read\n+ value_write\n\n#### 対応バージョン\nv3.1.10\n"
+      description: |
+        #### 処理概要
+        * ファイルのダウンロードを実施する
+        * クエリ文字列がない場合、ファイルはストリーム形式でダウンロードされる。"base64=1"の場合、base64形式で返却する
+
+        #### ファイルURL取得方法
+        ダウンロード用のファイルURLを取得する方法です。
+
+        ##### カスタムデータ取得APIで取得する
+        カスタム列の種類がファイル・画像の場合、取得した値を加工します。
+
+        ```
+        例：GET
+        /api/data/testtable/1
+
+        戻り値(一部)
+        {
+            "id": 1,
+            "value": {
+                "text": "test_1",
+                "file": "testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt"
+            }
+        }
+        ```
+
+        この値を使用し、以下のようなURLで、APIを実行します。  
+        http://localhost/api/files/testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt
+
+
+        #### リクエスト時のクエリ文字列と、レスポンスの内容
+        ##### リクエスト時にbase64=1を入れない場合
+        レスポンス値は、ファイルのストリーム形式となります。
+
+        ##### リクエスト時にbase64=1を入れる場合
+        レスポンス値は、以下の形式のjsonとなります。
+
+        ```
+        {
+          "type": "image/jpeg",
+          "name": "test.jpg",
+          "base64": "aaaaaXXXXXXX....."
+        }
+        ```
+
+
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+
+        #### APIスコープ(scope)
+        + value_read
+        + value_write
+
+        #### 対応バージョン
+        v3.1.10
       requestBody: {}
       parameters:
         - schema:
@@ -2975,7 +3385,7 @@ paths:
             type: string
           in: query
           name: valuetype
-          description: '返却する値の種類。"text"の場合、画面に表示する文言を返却する'
+          description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
       security:
         - OAuth2認証: []
       operationId: get-view-values
@@ -3141,6 +3551,172 @@ paths:
       operationId: get-view-values
       tags:
         - データ
+  /api/log:
+    get:
+      summary: 操作ログ一覧取得
+      tags:
+        - ログ
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Log'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Result:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 384
+                        user_id: '1'
+                        path: admin/api/log
+                        method: GET
+                        ip: 127.0.0.1
+                        input: '{"base_user_id":"1","count":"2"}'
+                        created_at: '2021-02-17 12:00:41'
+                        updated_at: '2021-02-17 12:00:41'
+                        base_user_id: '1'
+                      - id: 383
+                        user_id: '1'
+                        path: admin/api/log
+                        method: GET
+                        ip: 127.0.0.1
+                        input: '{"base_user_id":"1","count":"100"}'
+                        created_at: '2021-02-17 11:54:55'
+                        updated_at: '2021-02-17 11:54:55'
+                        base_user_id: '1'
+                    first_page_url: 'http://localhost/admin/api/log?page=1'
+                    from: 1
+                    last_page: 70
+                    last_page_url: 'http://localhost/admin/api/log?page=70'
+                    next_page_url: 'http://localhost/admin/api/log?page=2'
+                    path: 'http://localhost/admin/api/log'
+                    per_page: '2'
+                    prev_page_url: null
+                    to: 2
+                    total: 139
+      operationId: get-logs
+      description: |
+        #### 処理概要
+        * 画面・APIの操作ログを取得する。※実行日時の逆順に取得します。
+
+        #### login_user_idとbase_user_idについて
+        * クエリ文字列の「login_user_id」と「base_user_id」の説明については、以下のURLをご確認ください。  
+        https://exment.net/docs/#/ja/func_reference?id=%e8%a3%9c%e8%b6%b3%ef%bc%9aid%e3%81%a8base_user_id%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+
+        #### APIスコープ(scope)
+        + log
+
+        #### 対応バージョン
+        v4.0.3
+      requestBody: {}
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: 取得するページ番号
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: 1回のリクエストで取得する件数。1～100
+        - schema:
+            type: integer
+          in: query
+          name: login_user_id
+          description: ログインユーザーテーブルのID
+        - schema:
+            type: integer
+          in: query
+          name: base_user_id
+          description: 「カスタムデータの『ユーザー(user)』」テーブルのID
+        - schema:
+            type: string
+          in: query
+          name: path
+          description: HTTPリクエストの対象URI
+        - schema:
+            type: string
+          in: query
+          name: method
+          description: 'メソッド(GET, POSTなど)'
+        - schema:
+            type: string
+          in: query
+          name: ip
+          description: 実行ユーザーの中身IPアドレス
+        - schema:
+            type: string
+          in: query
+          name: target_datetime_start
+          description: '取得する実行日時の開始日時。「2021-02-17 11:45:31」とした場合、この日時以降のログを取得'
+        - schema:
+            type: string
+          in: query
+          name: target_datetime_end
+          description: '取得する実行日時の終了日時。「2021-02-17 11:45:31」とした場合、この日時以前のログを取得'
+  '/api/log/{id}':
+    get:
+      summary: 操作ログ取得
+      tags:
+        - ログ
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Log'
+              examples:
+                Result:
+                  value:
+                    id: 390
+                    user_id: '1'
+                    path: admin/api/log/400
+                    method: GET
+                    ip: 127.0.0.1
+                    input: '[]'
+                    created_at: '2021-02-17 12:06:51'
+                    updated_at: '2021-02-17 12:06:51'
+                    base_user_id: '1'
+      operationId: get-log
+      description: |
+        #### 処理概要
+        * 指定のIDの、画面・APIの操作ログを取得する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+
+        #### APIスコープ(scope)
+        + log
+
+        #### 対応バージョン
+        v4.0.3
+      requestBody: {}
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: 操作ログID
 components:
   schemas:
     CustomTable:
@@ -3431,7 +4007,7 @@ components:
               description: Workflow ID
             status_from:
               type: string
-              description: 'アクション実行前のステータスID。"start"文字列の場合、ワークフロー開始時のステータス'
+              description: アクション実行前のステータスID。"start"文字列の場合、ワークフロー開始時のステータス
             action_name:
               type: string
               description: アクション表示名
@@ -3485,7 +4061,7 @@ components:
                     type:
                       - string
                       - integer
-                    description: 'アクション実行後のステータスID。"start"文字列の場合、ワークフロー開始時のステータス'
+                    description: アクション実行後のステータスID。"start"文字列の場合、ワークフロー開始時のステータス
                   enabled_flg:
                     type:
                       - string
@@ -3661,6 +4237,38 @@ components:
         summary_condition:
           type: string
           description: 該当のビューが集計ビューの場合で、集計列の場合、集計の種類。sum、count、min、max
+    Log:
+      title: Log
+      type: object
+      description: 操作ログ情報
+      properties:
+        id:
+          type: integer
+          description: ID
+        user_id:
+          type: integer
+          description: ログインユーザーテーブルのID。※未ログイン時のログは"0"になる
+        base_user_id:
+          type: integer
+          description: 「カスタムデータの『ユーザー(user)』」テーブルのID。※未ログイン時のログは"0"になる
+        path:
+          type: string
+          description: HTTPリクエストの対象URI。※GETメソッドで、クエリ文字列が含まれていた場合でも、この項目には出力されず、代わりに「入力・クエリ」が表示される
+        method:
+          type: string
+          description: 'メソッド(GET, POSTなど)'
+        ip:
+          type: string
+          description: 実行ユーザーのIPアドレス
+        input:
+          type: string
+          description: HTTPリクエストのクエリ文字列、もしくはPOST値
+        created_at:
+          type: string
+          description: 実行日時
+        updated_at:
+          type: string
+          description: 更新日時
   securitySchemes:
     OAuth2認証:
       type: oauth2

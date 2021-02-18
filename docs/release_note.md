@@ -1,8 +1,17 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v4.0.2 (2021/02/13)
+## v4.0.3 (2021/02/17)
 **Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
+
+1. Functional modification
+    - Addition of operation log acquisition function from API. check [Here](https://exment.net/reference/en/webapi.html#log/get-logs)
+1. Bug fix
+    - Fixed a bug that an error that does not exist in the field occurs when adding an administrator on the system setting screen when there are 100 or more users.
+    - Fixed a bug that an error occurs when registering a child record of 1: n with "+New" from the parent record screen.
+
+    
+## v4.0.2 (2021/02/13)
 
 1. Functional modification
     - Added "Workflow status" and "Workflow execution user" to the conditions in the form priority setting.

@@ -400,6 +400,8 @@ For example, you cannot retrieve information for tables for which you do not hav
 | notify_write | You can add new notifications. |
 | workflow_read | You can get workflow information. |
 | workflow_execute | You can execute the workflow. |
+| log | You can get operation log. |
+| plugin | You can use the API added as a plugin.  |
 
 ※When specifying multiple scopes, set them in parameters separated by spaces.  
 
