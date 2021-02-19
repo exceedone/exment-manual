@@ -136,6 +136,14 @@ php artisan exment:schedule
 
 ## その他、開発用
 
+### Exmentバージョン
+現在インストールされている、Exmentのバージョンを表示します。
+
+```
+php artisan exment:version
+```
+
+
 ### パスワードリセット
 Exmentのログインパスワードリセットを、コマンドから実行します。  
 詳細は[こちら](/ja/login_setting#パスワードリセットコマンド)をご確認ください。

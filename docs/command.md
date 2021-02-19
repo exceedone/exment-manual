@@ -136,6 +136,14 @@ php artisan exment: schedule
 
 ## Others for development
 
+### Exment Version
+Showing Exment current version.
+
+```
+php artisan exment:version
+```
+
+
 ### Password reset
 Execute Exment login password reset from the command.  
 For details, see [here](/login_setting#password-reset-command).
