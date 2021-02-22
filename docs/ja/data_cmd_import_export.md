@@ -200,9 +200,11 @@ php artisan exment:import {フォルダ名}
 ![コマンド実行例](img/import/cmd1.png)  
 
 
+### 実行完了後
+- 取込完了後、"storage/app/import"フォルダに配置したファイル一式は、必要に応じて適宜削除してください。（※自動では削除しません。）
 
 
-## データインポート - 画像・ファイル列の添付ファイル取込
+<h2 id="import_file"><a href="#/ja/data_cmd_import_export?id=import_file" data-id="import_file" class="anchor"><span>データインポート - 画像・ファイル列の添付ファイル取込</span></a></h2>
 Exmentのカスタム列種類「画像」「ファイル」列に、添付ファイルを一括で登録することができます。下記の画面に該当する箇所です。  
 
 ![ファイルインポート](img/import/file_import1.png)  
@@ -221,7 +223,7 @@ Exmentのカスタム列種類「画像」「ファイル」列に、添付フ�
 
 - 作成後のフォルダに、「files」フォルダを作成します。
 
-- 「files」フォルダに、インポートを行いたい添付ファイル一覧を配置します。
+- 「files」フォルダに、インポートを行いたい添付ファイル一式を配置します。
 
 ### インポート情報記入
 - インポート用のファイルを作成します。以下からインポート用ファイルをダウンロードしてください。  
@@ -280,9 +282,13 @@ Exmentのカスタム列種類「画像」「ファイル」列に、添付フ�
 php artisan exment:file-import {フォルダ名}
 ~~~
 
+### 実行完了後
+- 実行完了後、"storage/app/file-import"フォルダに配置した添付ファイルは、アプリケーションからダウンロードできるパスにコピーされます。  
+"storage/app/file-import"フォルダに配置したファイル一式は、必要に応じて適宜削除してください。（※自動では削除しません。）
 
 
-## データインポート - ドキュメント(添付ファイル)一覧
+
+<h2 id="import_document"><a href="#/ja/data_cmd_import_export?id=import_document" data-id="import_document" class="anchor"><span>データインポート - ドキュメント(添付ファイル)一覧</span></a></h2>
 指定のカスタムデータの、ドキュメント(添付ファイル)に、ファイルを一括で登録することができます。下記の画面に該当する箇所です。  
 
 ![ファイルインポート](img/import/document_import1.png)  
@@ -301,7 +307,7 @@ php artisan exment:file-import {フォルダ名}
 
 - 作成後のフォルダに、「documents」フォルダを作成します。
 
-- 「documents」フォルダに、インポートを行いたい添付ファイル一覧を配置します。
+- 「documents」フォルダに、インポートを行いたい添付ファイル一式を配置します。
 
 ### インポート情報記入
 - インポート用のファイルを作成します。以下からインポート用ファイルをダウンロードしてください。  
@@ -333,7 +339,7 @@ php artisan exment:file-import {フォルダ名}
 添付ファイルの取込を行う対象の、カスタムデータのIDです。データ登録時に自動的に連番される、正の整数です。  
 
 ##### file_name(添付ファイル名)  
-「files」フォルダに配置した、添付ファイル名を記入してください。
+「documents」フォルダに配置した、添付ファイル名を記入してください。
 
 ##### display_file_name(添付ファイル名（画面表示）)  
 添付ファイルを画面で表示したり、ダウンロードを行う際の添付ファイル名です。※未記入も可能です。未記入の場合、file_nameの値が、ダウンロードを行う際の添付ファイル名になります。
@@ -356,3 +362,7 @@ php artisan exment:file-import {フォルダ名}
 ~~~
 php artisan exment:document-import {フォルダ名}
 ~~~
+
+### 実行完了後
+- 実行完了後、"storage/app/document-import"フォルダに配置した添付ファイルは、アプリケーションからダウンロードできるパスにコピーされます。  
+"storage/app/document-import"フォルダに配置したファイル一式は、必要に応じて適宜削除してください。（※自動では削除しません。）
