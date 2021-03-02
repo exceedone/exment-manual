@@ -35,6 +35,13 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/quickstart_more?id=urlに含む「admin」の変更・削除)をご確認ください。
 
 
+#### 公開フォームの「/publicform」URI変更
+
+- 設定キー : EXMENT_PUBLICFORM_ROUTE_PREFIX
+- 既定値 ： publicform
+- 役割 : 公開フォームを表示する際のパス名です。詳細は[こちら](/ja/publicform)の「URLに含む「publicform」の変更」をご確認ください。
+
+
 #### キャッシュを有効にする
 - 設定キー : EXMENT_USE_CACHE
 - 既定値 ： false
@@ -76,6 +83,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : ADMIN_TRUST_PROXY_HEADERS
 - 既定値 : なし
 - 役割 : 詳細は[こちら](/ja/additional_reverse_proxy)をご確認ください。
+
+
+#### Exment標準のエラーハンドリングを無効化
+- 設定キー : EXMENT_DISABLE_EXMENT_EXCEPTION_HANDLER
+- 既定値 : false
+- 役割 : trueにすることで、Exmentパッケージで付与しているエラーハンドリングを無効化します。
 
 
 ### ログイン
