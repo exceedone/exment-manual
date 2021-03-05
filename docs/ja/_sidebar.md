@@ -58,6 +58,7 @@
   * [ダッシュボード](/ja/dashboard)
   * [通知テンプレート](/ja/mail)
   * [通知](/ja/notify)
+  * [ログ](/ja/logs)
 
 * 【9. 機能拡張】
   * [API設定](/ja/api)

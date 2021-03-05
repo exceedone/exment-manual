@@ -383,6 +383,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/logs">
+                    <div class="tile-inner">
+                        <h5>ログ</h5>
+                        <p>Exmentの各種ログについて記載します。</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>

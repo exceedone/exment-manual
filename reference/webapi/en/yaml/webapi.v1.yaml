@@ -214,6 +214,12 @@ paths:
       parameters:
         - schema:
             type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
             default: '20'
             maximum: 100
             minimum: 1
@@ -3138,6 +3144,168 @@ paths:
       operationId: get-view-values
       tags:
         - Data
+  /api/log:
+    get:
+      summary: Get operation log list
+      tags:
+        - Log
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Log'
+                  - $ref: '#/components/schemas/Paginate'
+              examples:
+                Result:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 384
+                        user_id: '1'
+                        path: admin/api/log
+                        method: GET
+                        ip: 127.0.0.1
+                        input: '{"base_user_id":"1","count":"2"}'
+                        created_at: '2021-02-17 12:00:41'
+                        updated_at: '2021-02-17 12:00:41'
+                        base_user_id: '1'
+                      - id: 383
+                        user_id: '1'
+                        path: admin/api/log
+                        method: GET
+                        ip: 127.0.0.1
+                        input: '{"base_user_id":"1","count":"100"}'
+                        created_at: '2021-02-17 11:54:55'
+                        updated_at: '2021-02-17 11:54:55'
+                        base_user_id: '1'
+                    first_page_url: 'http://localhost/admin/api/log?page=1'
+                    from: 1
+                    last_page: 70
+                    last_page_url: 'http://localhost/admin/api/log?page=70'
+                    next_page_url: 'http://localhost/admin/api/log?page=2'
+                    path: 'http://localhost/admin/api/log'
+                    per_page: '2'
+                    prev_page_url: null
+                    to: 2
+                    total: 139
+      operationId: get-logs
+      description: |
+        #### Outline of processing
+        * Get screen/API operation log. Order by created_at desc.
+
+        #### Exment Permission
+        + System : System information
+
+        #### API scope
+        + log
+
+        #### Append version
+        - v4.0.3 Added
+      requestBody: {}
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
+            default: '20'
+            maximum: 100
+            minimum: 1
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+        - schema:
+            type: integer
+          in: query
+          name: login_user_id
+          description: Login user table ID
+        - schema:
+            type: integer
+          in: query
+          name: base_user_id
+          description: ID of the "user" table of custom data
+        - schema:
+            type: string
+          in: query
+          name: path
+          description: Target URI of HTTP request
+        - schema:
+            type: string
+          in: query
+          name: method
+          description: 'Methods (GET, POST, etc.)'
+        - schema:
+            type: string
+          in: query
+          name: ip
+          description: IP address of the executing user
+        - schema:
+            type: string
+          in: query
+          name: target_datetime_start
+          description: 'The start date and time of the execution date and time to be acquired. If "2021-02-17 11:45:31" is set, the log after this date and time will be acquired.'
+        - schema:
+            type: string
+          in: query
+          name: target_datetime_end
+          description: 'The end date and time of the execution date and time to be acquired. If "2021-02-17 11:45:31" is set, the log before this date and time will be acquired.'
+  '/api/log/{id}':
+    get:
+      summary: Get operation log
+      tags:
+        - Log
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Log'
+              examples:
+                Result:
+                  value:
+                    id: 390
+                    user_id: '1'
+                    path: admin/api/log/400
+                    method: GET
+                    ip: 127.0.0.1
+                    input: '[]'
+                    created_at: '2021-02-17 12:06:51'
+                    updated_at: '2021-02-17 12:06:51'
+                    base_user_id: '1'
+      operationId: get-log
+      description: |
+        #### Outline of processing
+        * Get trget ID's screen/API operation log
+
+        #### Exment Permission
+        + System : System information
+
+        #### API scope
+        + log
+
+        #### Append version
+        - v4.0.3 Added
+      requestBody: {}
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Operation log ID
 components:
   schemas:
     CustomTable:
@@ -3658,6 +3826,38 @@ components:
         summary_condition:
           type: string
           description: If the view is a summary view and it is a summary column, the type of summary. sum, count, min, max
+    Log:
+      title: Log
+      type: object
+      description: Operation Log
+      properties:
+        id:
+          type: integer
+          description: ID
+        user_id:
+          type: integer
+          description: The ID of the login user table. *The log when not logged in will be "0".
+        base_user_id:
+          type: integer
+          description: The ID of the "user" table for custom data. *The log when not logged in will be "0".
+        path:
+          type: string
+          description: The target URI of the HTTP request. *Even if the query string is included in the GET method, it will not be output to this item and "Input / Query" will be displayed instead.
+        method:
+          type: string
+          description: 'Methods (GET, POST, etc.)'
+        ip:
+          type: string
+          description: IP address of the executing user
+        input:
+          type: string
+          description: HTTP request query string or POST value
+        created_at:
+          type: string
+          description: Execution date and time
+        updated_at:
+          type: string
+          description: Update date and time
   securitySchemes:
     OAuth2:
       type: oauth2
