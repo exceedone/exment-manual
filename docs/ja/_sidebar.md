@@ -51,6 +51,9 @@
   * [ワークフロー設定例](/ja/workflow_example)
   * [ワークフロー実施](/ja/workflow_execution)
  
+* 【8. 公開フォーム】
+  * [公開フォーム設定](/ja/publicform)
+ 
 * 【8. その他標準機能】
   * [テンプレート](/ja/template)
   * [バックアップ・リストア](/ja/backup)
