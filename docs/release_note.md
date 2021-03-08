@@ -1,8 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v4.0.5 (2021/03/02)
+## v4.0.6 (2021/03/08)
 **Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
+1. Bug fix
+    - Fixed a bug that functions related to task scheduler (data backup / notification / plugin) are not working properly.
+
+## v4.0.5 (2021/03/02)
 1. Functional modification
     - In the data list screen and the view filter function, the conditions for the custom columns "Choice", "Choice (register values ​​/ headings)", "Choice (select from the value list of other tables)", "User", and "Organization" columns. Fixed to be able to select multiple choices. In that case, it will be judged "whether any of the selected values ​​match".
 1. Bug fix
