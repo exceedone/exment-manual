@@ -150,6 +150,14 @@ php artisan exment:schedule
 ```
 
 
+### 通知(時間の経過)を実行
+通知の実施トリガー「時間の経過」で設定している通知を、「通知時間」設定よらずに、即時実行します。  
+詳細は[こちら](/ja/notify)をご確認ください。
+
+```
+php artisan exment:notify {id?} {--name=}
+```
+
 
 
 ## その他、開発用
