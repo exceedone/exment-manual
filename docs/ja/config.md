@@ -411,3 +411,10 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : EXMENT_DEBUG_MODE_SQLFUNCTION
 - 既定値 ： false
 - 役割 : ExmentでSQLを実行時で、「EXMENT_DEBUG_MODE_SQL」がtrueのときに、trueにすることで、SQL文と同時に、呼び出し元の関数一覧をログ出力することができます。※開発用です。
+
+
+#### デバッグモード(スケジューリングログ出力)
+- 設定キー : EXMENT_DEBUG_MODE_SCHEDULE
+- 既定値 ： false
+- 役割 : スケジューリング実施時に、trueにすることで、スケジューリング定義や実行の途中経過を確認することができます。詳細は[こちら](/ja/additional_task_schedule)の「うまく動作しない場合の検証」をご確認ください。※検証用です。
+
