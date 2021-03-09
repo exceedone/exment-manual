@@ -103,11 +103,12 @@ EXMENT_DEBUG_MODE_SCHEDULE=true
 ~~~
 
 - これにより、/storage/logs/laravel.logに、スケジューリング定義・実行時にログが出力されるようになります。  
+タスクスケジュール設定が正常に行われていれば、1分おきにログが出力されます。
 
 
 #### 出力ログ内容
 
-- Exment schedule debug defined.
+- Exment schedule debug defined.  
 →下記のログ出力・スケジューリング設定が完了した場合に、出力されるログです。  
 →このログが出力されていない場合は、スケジューリング定義や呼び出しが正常に完了されていない場合がありますので、cron設定やタスク スケジューラ設定を見直してください。
 

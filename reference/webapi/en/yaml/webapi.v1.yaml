@@ -2,7 +2,14 @@ openapi: 3.0.0
 info:
   title: Exment API
   version: '1.0'
-  description: "Exment's Web API reference.  \nClick [here](https://exment.net/docs/#/api) for application registration method, access token acquisition method, and scope list.  \nClick [here](https://exment.net/docs/#/) for other manuals.\n\nThis is the specification of Rest API of Exment. It is created in OpenAPI format.\n\nSorry, Now this document creates by translating from Japanese."
+  description: |-
+    Exment's Web API reference.  
+    Click [here](https://exment.net/docs/#/api) for application registration method, access token acquisition method, and scope list.  
+    Click [here](https://exment.net/docs/#/) for other manuals.
+
+    This is the specification of Rest API of Exment. It is created in OpenAPI format.
+
+    Sorry, Now this document creates by translating from Japanese.
   termsOfService: 'https://exment.net'
   contact:
     email: info@exment.net
@@ -235,7 +242,7 @@ paths:
             type: string
           in: query
           name: expands
-          description: 'You can get a custom column list linked to the table. "columns" can be specified'
+          description: You can get a custom column list linked to the table. "columns" can be specified
       requestBody: {}
       operationId: get-tables
       security:
@@ -752,7 +759,7 @@ paths:
             type: string
           in: query
           name: view_view_name
-          description: If specified, narrow down by view display name
+          description: 'If specified, narrow down by view display name'
       requestBody: {}
   '/api/data/{tableKey}':
     parameters:
@@ -979,7 +986,137 @@ paths:
                       created_user_id: '1'
                       updated_user_id: '1'
                       label: Test 2
-      description: "#### Outline of processing\n* Create new data in a custom table\n* If the logged-in user does not have permission to add new to the custom table, a 403 error will occur\n* For the data you want to register, assign the value in the value array and POST\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : Edit data\n\n#### API scope\n+ value_write\n\n#### Append version\n- v1.1.0 Appended\n- v3.1.0 Supports multiple registrations and new additions by specifying the parent data. Also supports saving files to image / file columns\n- v3.1.2 Added label parameter. When 1, label is added to the result.\n- v3.1.7 valuetype parameter added\n\n#### When saving a file in a file/image column\n\n* Specify the file name and base64 character string of the file in value->(file/image string) as shown below.\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### When specifying the parent data\n* Parent data can be registered by setting parent_id and parent_type\n* As prerequisites, '1: n relation is set' and 'parent data is already registered'\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'num': 10,\n        'price': 10000\n    }\n}\n```\n\n\n#### When registering multiple items\n* Multiple data can be registered by sending multiple POST data in an array.\n* If even one error occurs, do not register all data\n* Up to 100 items can be registered at one time\n* There are two patterns for specifying an array, but there is no difference in function.\n\n* Patturn 1:\n```\n{\n   'value': [\n      {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'num': 10,\n        'price': 10000\n      },\n      {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'num': 3,\n        'price': 8000\n      }\n    ]\n}\n```\n\n* Patturn 2:\n```\n{\n   'data': [\n     {\n        'parent_type': 'contract',\n        'parent_id': 2\n        'value':{\n          'num': 10,\n          'price': 10000\n        }\n     },\n     {\n        'parent_type': 'contract',\n        'parent_id': 5\n        'value':{\n          'num': 3,\n          'price': 8000\n        }\n      }\n    ]\n}\n```\n\n#### When the custom column type is 'Choice (select from the list of values ​​in other tables)' and you want to create a new one using a key other than id\nBy adding the parameter 'findKeys', values ​​other than id can be used as keys.  \nEx:When registering custom data in the 'Contract' table, if you want to use the data in the column 'Customer' and the 'Customer name (customer_code)' in the 'Customer' table  \n\n* Default: \n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n* Use findKeys: \n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': 'CompABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n"
+      description: |
+        #### Outline of processing
+        * Create new data in a custom table
+        * If the logged-in user does not have permission to add new to the custom table, a 403 error will occur
+        * For the data you want to register, assign the value in the value array and POST
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : Edit data
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        - v1.1.0 Appended
+        - v3.1.0 Supports multiple registrations and new additions by specifying the parent data. Also supports saving files to image / file columns
+        - v3.1.2 Added label parameter. When 1, label is added to the result.
+        - v3.1.7 valuetype parameter added
+
+        #### When saving a file in a file/image column
+
+        * Specify the file name and base64 character string of the file in value->(file/image string) as shown below.
+
+        ```
+        {
+           'value': {
+                'title': 'test',
+                'file': {
+                    'name' : 'hello.txt',
+                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+                }
+            }
+        }
+        ```
+
+        #### When specifying the parent data
+        * Parent data can be registered by setting parent_id and parent_type
+        * As prerequisites, '1: n relation is set' and 'parent data is already registered'
+
+        ```
+        {
+           'parent_type': 'contract',
+           'parent_id': 2
+           'value': {
+                'num': 10,
+                'price': 10000
+            }
+        }
+        ```
+
+
+        #### When registering multiple items
+        * Multiple data can be registered by sending multiple POST data in an array.
+        * If even one error occurs, do not register all data
+        * Up to 100 items can be registered at one time
+        * There are two patterns for specifying an array, but there is no difference in function.
+
+        * Patturn 1:
+        ```
+        {
+           'value': [
+              {
+                'parent_type': 'contract',
+                'parent_id': 2
+                'num': 10,
+                'price': 10000
+              },
+              {
+                'parent_type': 'contract',
+                'parent_id': 5
+                'num': 3,
+                'price': 8000
+              }
+            ]
+        }
+        ```
+
+        * Patturn 2:
+        ```
+        {
+           'data': [
+             {
+                'parent_type': 'contract',
+                'parent_id': 2
+                'value':{
+                  'num': 10,
+                  'price': 10000
+                }
+             },
+             {
+                'parent_type': 'contract',
+                'parent_id': 5
+                'value':{
+                  'num': 3,
+                  'price': 8000
+                }
+              }
+            ]
+        }
+        ```
+
+        #### When the custom column type is 'Choice (select from the list of values ​​in other tables)' and you want to create a new one using a key other than id
+        By adding the parameter 'findKeys', values ​​other than id can be used as keys.  
+        Ex:When registering custom data in the 'Contract' table, if you want to use the data in the column 'Customer' and the 'Customer name (customer_code)' in the 'Customer' table  
+
+        * Default: 
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': '1'
+            }
+        }
+        ```
+
+        * Use findKeys: 
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': 'CompABC'
+            },
+            findKeys: {
+                'customer': 'customer_name'
+            }
+        }
+        ```
       parameters: []
       requestBody:
         content:
@@ -1019,7 +1156,7 @@ paths:
                   description: The parameters to be sent will change depending on whether one item is registered or multiple items are registered.
                 findKeys:
                   type: object
-                  description: 'When the custom column type is "Choice (select from the list of values ​​in other tables)" and you want to create a new one using a key other than id. Match the items to the custom columns of the table to be registered'
+                  description: When the custom column type is "Choice (select from the list of values ​​in other tables)" and you want to create a new one using a key other than id. Match the items to the custom columns of the table to be registered
                   properties:
                     (column_name):
                       type: string
@@ -1129,7 +1266,7 @@ paths:
                         parent_type: null
                         parent_id: null
                         value:
-                          body: '<p>Exment is a simple and affordable data management web system.&nbsp;</p>'
+                          body: <p>Exment is a simple and affordable data management web system.&nbsp;</p>
                           order: '5'
                           title: Welcome to Exment!
                           priority: '3'
@@ -1282,7 +1419,7 @@ paths:
                         parent_type: null
                         parent_id: null
                         value:
-                          body: '<p>Exment is a simple and affordable data management web system.&nbsp;</p>'
+                          body: <p>Exment is a simple and affordable data management web system.&nbsp;</p>
                           order: '5'
                           title: Welcome to Exment!
                           priority: '3'
@@ -1305,7 +1442,67 @@ paths:
                     prev_page_url: null
                     to: 1
                     total: 1
-      description: "#### Outline of processing\n* Search for custom data registered in a specific custom table\n* Only data for which the logged-in user is authorized will be listed\n* Specify search criteria and values ​​for each custom column. Execute the search when all the search conditions are matched.\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : View all data\n+ Table : Access all data\n+ Table : Edit data\n+ Table : View data\n\n#### API scope\n+ value_read\n+ value_write\n\n#### Append version\n- v3.0.8 Appended\n- v3.1.2 Added label parameter. When 1, label is added to the result.\n- v3.1.7 valuetype parameter added\n- v3.3.2 Added 'like' to the search conditions. Supports OR search, adds order by parameter\n\n#### How to specify search conditions\n* Search by specifying each column name in the parameter 'q'. When specifying multiple columns, separate them with commas.\n* The search conditions correspond to the following.  \n    - eq : Equal\n    - ne : Not equal\n    - gt : Greater than\n    - gte : Greater than or equal\n    - lt : Less than\n    - lte : Less than or equal\n    - like : LIKE search. '%' available for value\n* The query setting method is'(column name) eq (search value)'.  \n* URL encoding should be performed\n* When searching with multiple search values, usually perform an AND search. If the parameter 'or=1' is specified, an OR search will be performed.\n\n* Example 1: In the information table, when you want to get the data list with'1'in the'display flag (view_flg)'\n\n```\n// Please encode URL\n/api/data/information/query-column?q=view_flg eq 1\n```\n\n* Example 2: In the information table, when you want to get the data list where'view flag (view_flg)'is '1' and'Title (title)' is'Test'\n\n```\n// Please encode URL\n/api/data/information/query-column?q=view_flg eq 1,title eq Test\n```\n\n* Example 3: In the information table, when you want to get the data list where'view flag (view_flg)'is '1' or'Title (title)'is'Test'.\n\n```\n// Please encode URL\n/api/data/information/query-column?q=view_flg eq 1,title eq Test&or=1\n```"
+      description: |-
+        #### Outline of processing
+        * Search for custom data registered in a specific custom table
+        * Only data for which the logged-in user is authorized will be listed
+        * Specify search criteria and values ​​for each custom column. Execute the search when all the search conditions are matched.
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        - v3.0.8 Appended
+        - v3.1.2 Added label parameter. When 1, label is added to the result.
+        - v3.1.7 valuetype parameter added
+        - v3.3.2 Added 'like' to the search conditions. Supports OR search, adds order by parameter
+
+        #### How to specify search conditions
+        * Search by specifying each column name in the parameter 'q'. When specifying multiple columns, separate them with commas.
+        * The search conditions correspond to the following.  
+            - eq : Equal
+            - ne : Not equal
+            - gt : Greater than
+            - gte : Greater than or equal
+            - lt : Less than
+            - lte : Less than or equal
+            - like : LIKE search. '%' available for value
+        * The query setting method is'(column name) eq (search value)'.  
+        * URL encoding should be performed
+        * When searching with multiple search values, usually perform an AND search. If the parameter 'or=1' is specified, an OR search will be performed.
+
+        * Example 1: In the information table, when you want to get the data list with'1'in the'display flag (view_flg)'
+
+        ```
+        // Please encode URL
+        /api/data/information/query-column?q=view_flg eq 1
+        ```
+
+        * Example 2: In the information table, when you want to get the data list where'view flag (view_flg)'is '1' and'Title (title)' is'Test'
+
+        ```
+        // Please encode URL
+        /api/data/information/query-column?q=view_flg eq 1,title eq Test
+        ```
+
+        * Example 3: In the information table, when you want to get the data list where'view flag (view_flg)'is '1' or'Title (title)'is'Test'.
+
+        ```
+        // Please encode URL
+        /api/data/information/query-column?q=view_flg eq 1,title eq Test&or=1
+        ```
       parameters:
         - schema:
             type: string
@@ -1342,7 +1539,7 @@ paths:
             type: integer
           in: query
           name: or
-          description: When searching in multiple columns, if 1 is set, OR search is performed.
+          description: 'When searching in multiple columns, if 1 is set, OR search is performed.'
         - schema:
             type: string
           in: query
@@ -1364,7 +1561,7 @@ paths:
         name: id
         in: path
         required: true
-        description: The ID of the custom data. When deleting multiple items, specify them separated by commas.
+        description: 'The ID of the custom data. When deleting multiple items, specify them separated by commas.'
         schema:
           type: string
     get:
@@ -1402,6 +1599,7 @@ paths:
         #### Outline of processing
         * Get custom data information registered in a specific custom table
         * If the logged-in user has unauthorized data, a 403 error will occur
+        * Perform physical deletion by adding the parameter "force=1". Can be implemented for data that has already been logically deleted
 
         #### Exment Permission
         + System : System information
@@ -1422,6 +1620,7 @@ paths:
         - v1.1.0 Appended
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
+        - v4.0.7 Supports hard deletion of data
       requestBody: {}
       security:
         - OAuth2: []
@@ -1469,7 +1668,102 @@ paths:
                     created_user_id: null
                     updated_user_id: '1'
                     label: Test update
-      description: "#### Outline of processing\n* Update custom data information\n* If the logged-in user has unauthorized data, a 403 error will occur\n* PUT by assigning a value in the value array only for the information of the column where the update occurs\n* Exclusive control can be performed by performing column 'updated_at'\n\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : Edit data\n\n#### API scope\n+ value_write\n\n#### Append version\n- v1.1.0 Appended\n- v3.1.0 Supports saving files to image / file columns\n- v3.1.2 Added label parameter. When 1, label is added to the result.\n- v3.1.10 Supports exclusive control\n\n#### When saving a file in a file/image column\n\n* Specify the file name and base64 character string of the file in value->(file/image string) as shown below.\n* Ex: When saving a file in the file column 'file'\n\n```\n{\n   'value': {\n        'title': 'test',\n        'file': {\n            'name' : 'hello.txt',\n            'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='\n        }\n    }\n}\n```\n\n#### When the custom column type is 'Choice (select from the list of values ​​in other tables)' and you want to update using a key other than id\nBy adding the parameter 'findKeys', values ​​other than id can be used as keys.\nEx:When updating the custom data in the 'Contract' table, if you want to use the data in the column 'Customer' and the 'Customer name (customer_code)' in the 'Customer' table\n\n*Default:\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': '1'\n    }\n}\n```\n\n*Use findKeys:\n```\n{\n    value: {\n        'contract_code': 'C00001',\n        'customer': 'Company ABC'\n    },\n    findKeys: {\n        'customer': 'customer_name'\n    }\n}\n```\n\n\n#### When specifying the parent data\n* Parent data can be registered by setting parent_id and parent_type\n* As prerequisites, '1: n relation is set' and 'parent data is already registered'\n\n```\n{\n   'parent_type': 'contract',\n   'parent_id': 2\n   'value': {\n        'price': 10000\n    }\n}\n```\n\n\n#### exclusion control\n* Exclusive control can be performed by adding a date to the updated_at column. If the specified date and time and the latest update date and time of the target data are different, an error will be returned.\n\n```\n{\n   'value': {\n        'price': 10000\n    },\n    'updated_at': '2020/04/03 12:00:00'\n}\n```"
+      description: |-
+        #### Outline of processing
+        * Update custom data information
+        * If the logged-in user has unauthorized data, a 403 error will occur
+        * PUT by assigning a value in the value array only for the information of the column where the update occurs
+        * Exclusive control can be performed by performing column 'updated_at'
+
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : Edit data
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        - v1.1.0 Appended
+        - v3.1.0 Supports saving files to image / file columns
+        - v3.1.2 Added label parameter. When 1, label is added to the result.
+        - v3.1.10 Supports exclusive control
+
+        #### When saving a file in a file/image column
+
+        * Specify the file name and base64 character string of the file in value->(file/image string) as shown below.
+        * Ex: When saving a file in the file column 'file'
+
+        ```
+        {
+           'value': {
+                'title': 'test',
+                'file': {
+                    'name' : 'hello.txt',
+                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+                }
+            }
+        }
+        ```
+
+        #### When the custom column type is 'Choice (select from the list of values ​​in other tables)' and you want to update using a key other than id
+        By adding the parameter 'findKeys', values ​​other than id can be used as keys.
+        Ex:When updating the custom data in the 'Contract' table, if you want to use the data in the column 'Customer' and the 'Customer name (customer_code)' in the 'Customer' table
+
+        *Default:
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': '1'
+            }
+        }
+        ```
+
+        *Use findKeys:
+        ```
+        {
+            value: {
+                'contract_code': 'C00001',
+                'customer': 'Company ABC'
+            },
+            findKeys: {
+                'customer': 'customer_name'
+            }
+        }
+        ```
+
+
+        #### When specifying the parent data
+        * Parent data can be registered by setting parent_id and parent_type
+        * As prerequisites, '1: n relation is set' and 'parent data is already registered'
+
+        ```
+        {
+           'parent_type': 'contract',
+           'parent_id': 2
+           'value': {
+                'price': 10000
+            }
+        }
+        ```
+
+
+        #### exclusion control
+        * Exclusive control can be performed by adding a date to the updated_at column. If the specified date and time and the latest update date and time of the target data are different, an error will be returned.
+
+        ```
+        {
+           'value': {
+                'price': 10000
+            },
+            'updated_at': '2020/04/03 12:00:00'
+        }
+        ```
       requestBody:
         content:
           application/json:
@@ -1498,7 +1792,7 @@ paths:
                       description: Match the items to the custom columns of the table to be registered
                 findKeys:
                   type: object
-                  description: 'When the custom column type is "Choice (select from the list of values ​​in other tables)" and you want to create a new one using a key other than id. Match the items to the custom columns of the table to be registered'
+                  description: When the custom column type is "Choice (select from the list of values ​​in other tables)" and you want to create a new one using a key other than id. Match the items to the custom columns of the table to be registered
                   properties:
                     (column_name):
                       type: string
@@ -1524,11 +1818,12 @@ paths:
       responses:
         '204':
           description: No Content
-      description: |
+      description: |-
         #### Outline of processing
         * Logically delete custom data information
         * If the logged-in user has unauthorized data, a 403 error will occur
         * When deleting multiple items at the same time, up to 100 items can be deleted at the same time.
+        * Perform physical deletion by adding the parameter "force=1". Can be implemented for data that has already been logically deleted
 
         #### Exment Permission
         + System : System information
@@ -1544,9 +1839,16 @@ paths:
         #### Append version
         - v1.1.0 Appended
         - v3.0.13 Supports deletion of multiple items
+        - v4.0.7 Supports hard deletion of data
       security:
         - OAuth2: []
       operationId: delete-value
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: force
+          description: 'When 1, perform physical deletion of data'
   /api/wf/workflow:
     get:
       summary: Get workflow list
@@ -1601,7 +1903,27 @@ paths:
                     prev_page_url: null
                     to: 2
                     total: 2
-      description: " #### Outline of processing\n* Get workflow list\n* Get a list of only workflows for which Setting Complete is executed\n\n#### Exment Permission\nNothing\n\n#### API scope\n+ workflow_read\n+ workflow_execute\n\n#### Append version\nv3.0.8\n"
+      description: |2
+
+
+
+
+
+
+
+         #### Outline of processing
+        * Get workflow list
+        * Get a list of only workflows for which Setting Complete is executed
+
+        #### Exment Permission
+        Nothing
+
+        #### API scope
+        + workflow_read
+        + workflow_execute
+
+        #### Append version
+        v3.0.8
       parameters:
         - schema:
             type: integer
@@ -1616,13 +1938,13 @@ paths:
             default: '0'
           in: query
           name: all
-          description: If 1, include workflows that have not been set up
+          description: 'If 1, include workflows that have not been set up'
           required: true
         - schema:
             type: string
           in: query
           name: expands
-          description: 'You can get the status setting list and action setting list associated with the workflow. "statuses" and "actions" can be specified. Separate multiple items with commas.'
+          description: You can get the status setting list and action setting list associated with the workflow. "statuses" and "actions" can be specified. Separate multiple items with commas.
         - schema:
             type: string
           in: query
@@ -1670,7 +1992,7 @@ paths:
             type: string
           in: query
           name: expands
-          description: 'You can get the status setting list and action setting list associated with the workflow. "statuses" and "actions" can be specified. Separate multiple items with commas.'
+          description: You can get the status setting list and action setting list associated with the workflow. "statuses" and "actions" can be specified. Separate multiple items with commas.
       security:
         - OAuth2: []
       operationId: get-workflow
@@ -1935,13 +2257,13 @@ paths:
                   description: Workflow action ID to execute
                 comment:
                   type: string
-                  description: 'Workflow comments. Required if the action is comment_type "required". Ignored for "not_use"'
+                  description: Workflow comments. Required if the action is comment_type "required". Ignored for "not_use"
                 next_users:
                   type: string
-                  description: If "Executable user" of the action setting is "Selected by the executable user of the previous action", enter the user ID to execute the next action separated by commas.
+                  description: 'If "Executable user" of the action setting is "Selected by the executable user of the previous action", enter the user ID to execute the next action separated by commas.'
                 next_organizations:
                   type: string
-                  description: If "Executable user" of the action setting is "Selected by the executable user of the previous action", enter the organization ID to execute the next action separated by commas.
+                  description: 'If "Executable user" of the action setting is "Selected by the executable user of the previous action", enter the organization ID to execute the next action separated by commas.'
               required:
                 - workflow_action_id
         description: ''
@@ -2014,12 +2336,12 @@ paths:
             default: '0'
           in: query
           name: as_user
-          description: When it is 1, the worker whose action is set as "organization" is converted to the list of users belonging to that organization.
+          description: 'When it is 1, the worker whose action is set as "organization" is converted to the list of users belonging to that organization.'
         - schema:
             type: integer
           in: query
           name: all
-          description: When 1, get the target users of all actions
+          description: 'When 1, get the target users of all actions'
       operationId: get-workflow-value-users
   '/api/wf/data/{tableKey}/{id}/actions':
     parameters:
@@ -2086,7 +2408,7 @@ paths:
             default: '0'
           in: query
           name: all
-          description: When 1, get all actions, whether or not the logged-in user can perform them
+          description: 'When 1, get all actions, whether or not the logged-in user can perform them'
       security:
         - OAuth2: []
       operationId: get-workflow-value-actions
@@ -2222,7 +2544,7 @@ paths:
             default: '0'
           in: query
           name: all
-          description: If 1, get all notifications
+          description: 'If 1, get all notifications'
         - schema:
             type: integer
             default: '20'
@@ -2417,7 +2739,7 @@ paths:
             type: integer
           in: query
           name: base64
-          description: If 1, return as json type including base64 character string
+          description: 'If 1, return as json type including base64 character string'
       tags:
         - FileDocument
     delete:
@@ -2492,7 +2814,69 @@ paths:
                     type: image/jpeg
                     name: test.jpg
                     base64: aaaaaXXXXXXX.....
-      description: "#### Outline of processing\n* Download the file\n*If there is no query string, the file will be downloaded in stream format.If \"base64=1\", return in base64 format\n\n#### How to get the file URL\nHow to get the file URL for download.\n\n##### Get with custom data get API\nIf the custom column type is file/image, the acquired value will be processed.\n\n```\nEx:GET\n/api/data/testtable/1\n\nReturn value(partial)\n{\n    \"id\": 1,\n    \"value\": {\n        \"text\": \"test_1\",\n        \"file\": \"testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\"\n    }\n}\n```\n\nUse this value to run the API at a URL like this: \nhttp://localhost/api/files/testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt\n\n\n#### Query string at the time of request and response content\n##### If base64=1 is not included in the request\nThe response value will be in the file stream format.\n\n##### When base64=1 is entered at the time of request\nThe response value will be json in the following format.\n\n```\n{\n  \"type\": \"image/jpeg\",\n  \"name\": \"test.jpg\",\n  \"base64\": \"aaaaaXXXXXXX.....\"\n}\n```\n\n\n\n#### Exment Permission\n+ System : System information\n+ System : Custom table\n+ System : All data\n+ Table : Table\n+ Table : Edit all data\n+ Table : View all data\n+ Table : Access all data\n+ Table : Edit data\n+ Table : View data\n\n#### API scope\n+ value_read\n+ value_write\n\n#### Append version\nv3.1.10\n"
+      description: |
+        #### Outline of processing
+        * Download the file
+        *If there is no query string, the file will be downloaded in stream format.If "base64=1", return in base64 format
+
+        #### How to get the file URL
+        How to get the file URL for download.
+
+        ##### Get with custom data get API
+        If the custom column type is file/image, the acquired value will be processed.
+
+        ```
+        Ex:GET
+        /api/data/testtable/1
+
+        Return value(partial)
+        {
+            "id": 1,
+            "value": {
+                "text": "test_1",
+                "file": "testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt"
+            }
+        }
+        ```
+
+        Use this value to run the API at a URL like this: 
+        http://localhost/api/files/testtable/c09ff510-7677-11ea-9096-a14cacaee56f.txt
+
+
+        #### Query string at the time of request and response content
+        ##### If base64=1 is not included in the request
+        The response value will be in the file stream format.
+
+        ##### When base64=1 is entered at the time of request
+        The response value will be json in the following format.
+
+        ```
+        {
+          "type": "image/jpeg",
+          "name": "test.jpg",
+          "base64": "aaaaaXXXXXXX....."
+        }
+        ```
+
+
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Access all data
+        + Table : Edit data
+        + Table : View data
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        v3.1.10
       operationId: get-file2
       requestBody: {}
       parameters:
@@ -2500,7 +2884,7 @@ paths:
             type: integer
           in: query
           name: base64
-          description: If 1, return as json type including base64 character string
+          description: 'If 1, return as json type including base64 character string'
     delete:
       summary: Delete file
       operationId: delete-file2
@@ -3436,10 +3820,10 @@ components:
               type: object
             parent_id:
               type: integer
-              description: If that data has parent data, the id of the custom data in the parent table
+              description: 'If that data has parent data, the id of the custom data in the parent table'
             parent_type:
               type: string
-              description: If that data has parent data, the parent table name
+              description: 'If that data has parent data, the parent table name'
             label:
               description: Heading when displaying the data on the screen (read-only)
               type: string
@@ -3571,11 +3955,11 @@ components:
             datalock_flg:
               type: integer
               default: 1
-              description: When 1, the data of this status cannot be changed from the screen
+              description: 'When 1, the data of this status cannot be changed from the screen'
             completed_flg:
               type: integer
               default: 1
-              description: When 1, the workflow ends
+              description: 'When 1, the workflow ends'
           required:
             - id
             - workflow_id
@@ -3603,7 +3987,7 @@ components:
             ignore_work:
               type: integer
               default: 0
-              description: When 1, the action is a special action and is excluded from working users.
+              description: 'When 1, the action is a special action and is excluded from working users.'
             comment_type:
               type: string
               description: 'How to write a comment. required: required, nullable: optional, not_use: unused'
@@ -3612,7 +3996,7 @@ components:
               description: 'How to proceed to the next status. some: X or more, all: all approved'
             flow_next_count:
               type: integer
-              description: When flow_next_type is some, how many executions will advance to the next status
+              description: 'When flow_next_type is some, how many executions will advance to the next status'
             work_targets:
               type: object
               description: Information about the authorized person who can perform this workflow
@@ -3655,7 +4039,7 @@ components:
                     type:
                       - string
                       - integer
-                    description: If 1, the condition is valid
+                    description: 'If 1, the condition is valid'
                 required:
                   - enabled_flg
           required:
@@ -3686,10 +4070,10 @@ components:
               description: Workflow action ID
             workflow_status_from_id:
               type: integer
-              description: Workflow status ID before executing the action. If null, the status before execution indicates that the workflow has not been executed.
+              description: 'Workflow status ID before executing the action. If null, the status before execution indicates that the workflow has not been executed.'
             workflow_status_to_id:
               type: integer
-              description: Workflow status ID after executing the action. If null, the status after execution indicates that the workflow has not been executed.
+              description: 'Workflow status ID after executing the action. If null, the status after execution indicates that the workflow has not been executed.'
             comment:
               type: string
               description: Comment
@@ -3700,7 +4084,7 @@ components:
             latest_flg:
               type: integer
               default: 0
-              description: When it is 1, it indicates that the workflow execution value is the latest.
+              description: 'When it is 1, it indicates that the workflow execution value is the latest.'
           required:
             - id
             - workflow_id
@@ -3723,10 +4107,10 @@ components:
           description: Notification definition ID. Enter 0 for free format notifications
         parent_type:
           type: string
-          description: For notifications associated with specific custom data, the table name of the custom table
+          description: 'For notifications associated with specific custom data, the table name of the custom table'
         parent_id:
           type: integer
-          description: For notifications associated with specific custom data, the ID of the custom data
+          description: 'For notifications associated with specific custom data, the ID of the custom data'
         target_user_id:
           type: integer
           description: User ID to be notified
@@ -3742,7 +4126,7 @@ components:
         read_flg:
           type: integer
           default: 0
-          description: If read, 1
+          description: 'If read, 1'
         created_at:
           type: string
           description: Create datetime
@@ -3797,10 +4181,10 @@ components:
               description: View information display name
             view_kind_type:
               type: integer
-              description: View type. 0=Normal view, 1=Aggregate view, 2=Calendar view, 3=Condition view, 9=All view
+              description: 'View type. 0=Normal view, 1=Aggregate view, 2=Calendar view, 3=Condition view, 9=All view'
             view_type:
               type: string
-              description: View permissions. 0=system view, 1=user view
+              description: 'View permissions. 0=system view, 1=user view'
           required:
             - id
             - suuid
@@ -3825,7 +4209,7 @@ components:
           description: Column wording when displayed on the screen
         summary_condition:
           type: string
-          description: If the view is a summary view and it is a summary column, the type of summary. sum, count, min, max
+          description: 'If the view is a summary view and it is a summary column, the type of summary. sum, count, min, max'
     Log:
       title: Log
       type: object
@@ -3842,7 +4226,7 @@ components:
           description: The ID of the "user" table for custom data. *The log when not logged in will be "0".
         path:
           type: string
-          description: The target URI of the HTTP request. *Even if the query string is included in the GET method, it will not be output to this item and "Input / Query" will be displayed instead.
+          description: 'The target URI of the HTTP request. *Even if the query string is included in the GET method, it will not be output to this item and "Input / Query" will be displayed instead.'
         method:
           type: string
           description: 'Methods (GET, POST, etc.)'

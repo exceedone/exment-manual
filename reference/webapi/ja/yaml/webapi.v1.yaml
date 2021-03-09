@@ -1821,6 +1821,7 @@ paths:
         * カスタムデータ情報を論理削除する
         * ログインユーザーに権限のないデータだった場合、403エラーが発生する
         * 複数件を同時に削除する場合、同時に削除できる件数は100件まで
+        * パラメータ"force=1"を追加することで、物理削除を実行する。すでに論理削除しているデータに対しても実施可能
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -1836,9 +1837,16 @@ paths:
         #### 対応バージョン
         - v1.1.0 追加
         - v3.0.13 複数件削除に対応
+        - v4.0.7 データの物理削除に対応
       security:
         - OAuth2認証: []
       operationId: delete-value
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: force
+          description: 1のとき、データの物理削除を実施する
   /api/wf/workflow:
     get:
       summary: ワークフロー一覧取得
@@ -1894,6 +1902,10 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
+
+
 
 
 
