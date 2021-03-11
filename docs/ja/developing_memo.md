@@ -81,3 +81,32 @@ v4.0.7より見直し。
 - リビジョン：削除される
 - 通知：実施される
 - ワークフロー履歴：削除される
+
+
+
+## 関数getOrganizationIdsの結果が、実際の組織とは入れ替わった結果が取得される理由
+関数\Exment::user()->getOrganizationIds (getOrganizationIdsForQueryにリネーム予定) では、実際の所属の組織とは、入れ替わった結果が取得されます。  
+例えば、以下のような組織構成があったとします。
+
+```
+ Ex. (O):Ogganization, (U):User
+ 
+     (O)Company
+         (O)develop-team
+             (U) Manager
+ 
+             (O) develop-team1
+                  (U) User1
+                  (U) User2
+             (O) develop-team2
+                  (U) User3
+```
+
+ここで、ログインユーザーがManagerで、$filterTypeがJoinedOrgFilterType::ONLY_UPPERの場合、イメージでは(O)develop-team、(O)Companyが取得されそうですが、  
+**実際には(O)develop-team、(O) develop-team1、(O) develop-team2が取得されます。**
+  
+これは、この関数があくまでも、共有されたデータの取得や、権限のあるデータの取得を目的としているためで、実際の組織を取得することを目的としていないからです。  
+例えば、「データAは、(O)develop-team1に共有されている」「データの共有は、親階層の組織を含める(JoinedOrgFilterType::ONLY_UPPER)」という設定の場合、Managerは、(O)develop-team、(O) develop-team1、(O) develop-team2に共有されたデータを取得することになります。  
+この場合、クエリの処理上、Managerは、(O)develop-team、(O) develop-team1、(O) develop-team2に所属しているものとみなし、SQLを実施します。  
+
+そのため、Enumの値のイメージと異なり、実際の結果は入れ替わって取得されます。
