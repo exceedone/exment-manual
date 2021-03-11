@@ -333,7 +333,20 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>8. その他標準機能</h4>
+        <h4>8. 公開フォーム</h4>
+        <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="#/ja/publicform">
+                    <div class="tile-inner">
+                        <h5>公開フォーム</h5>
+                        <p>一般ユーザー（ログインしていないユーザー）がデータを入力できる、公開フォームを設定します。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>9. その他標準機能</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/template">
@@ -394,7 +407,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>9. 機能拡張</h4>
+        <h4>10. 機能拡張</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/api">
@@ -423,7 +436,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
         </div>
     </div>
     <div>
-        <h4>10. リファレンス</h4>
+        <h4>11. リファレンス</h4>
         <div class="row">
             <div class="col-sm-6 tile">
                 <a href="#/ja/params">

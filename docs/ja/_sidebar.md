@@ -51,7 +51,10 @@
   * [ワークフロー設定例](/ja/workflow_example)
   * [ワークフロー実施](/ja/workflow_execution)
  
-* 【8. その他標準機能】
+* 【8. 公開フォーム】
+  * [公開フォーム設定](/ja/publicform)
+ 
+* 【9. その他標準機能】
   * [テンプレート](/ja/template)
   * [バックアップ・リストア](/ja/backup)
   * [メニュー](/ja/menu)
@@ -60,7 +63,7 @@
   * [通知](/ja/notify)
   * [ログ](/ja/logs)
 
-* 【9. 機能拡張】
+* 【10. 機能拡張】
   * [API設定](/ja/api)
   * [プラグイン](/ja/plugin)
   * [プラグイン作成方法](/ja/plugin_quickstart)
@@ -78,7 +81,7 @@
     * [ドキュメント](/ja/plugin_quickstart_document)
     * [Docurain(PDF出力)](/ja/plugin_quickstart_docurain)
   
-* 【10. リファレンス】
+* 【11. リファレンス】
   * [リリースノート](/ja/release_note)
   * [パラメータ変数](/ja/params)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
