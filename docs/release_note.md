@@ -5,7 +5,7 @@
 **Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
 
 1. Functional modification
-    - Added an option to always make physical deletion when deleting with custom data. For the setting method, see in [here] (/config).
+    - Added an option to always make physical deletion when deleting with custom data. For the setting method, see in [here](/config).
     - Added option to physically delete custom data in API. Please check [here](https://exment.net/reference/en/webapi.html#operation/delete-value)
     - Addition of processing to delete associated files (here, "attached files", "files" and "images" in custom columns) when physically deleting custom data.
 1. Other
