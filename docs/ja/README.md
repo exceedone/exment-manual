@@ -498,6 +498,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/ja/troubleshooting">
+                    <div class="tile-inner">
+                        <h5>トラブルシューティング</h5>
+                        <p>Exmentでのトラブル解決法や、Exmentの技術的なよくある質問に回答しております。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/license">
                     <div class="tile-inner">
                         <h5>ライセンス</h5>
@@ -506,10 +514,10 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
-                <a href="#/ja/troubleshooting">
+                <a href="#/ja/develop_memo">
                     <div class="tile-inner">
-                        <h5>トラブルシューティング</h5>
-                        <p>Exmentでのトラブル解決法や、Exmentの技術的なよくある質問に回答しております。</p>
+                        <h5>開発メモ</h5>
+                        <p>細かい仕様などの雑多なまとめになります。</p>
                     </div>
                 </a>
             </div>

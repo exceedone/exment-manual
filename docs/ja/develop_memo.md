@@ -84,8 +84,8 @@ v4.0.7より見直し。
 
 
 
-## 関数getOrganizationIdsの結果が、実際の組織とは入れ替わった結果が取得される理由
-関数\Exment::user()->getOrganizationIds (getOrganizationIdsForQueryにリネーム予定) では、実際の所属の組織とは、入れ替わった結果が取得されます。  
+## 関数getOrganizationIdsForQueryの結果が、実際の組織とは入れ替わった結果が取得される理由
+関数\Exment::user()->getOrganizationIdsForQuery では、実際の所属の組織とは、入れ替わった結果が取得されます。  
 例えば、以下のような組織構成があったとします。
 
 ```
