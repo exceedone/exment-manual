@@ -8,6 +8,8 @@
     - Added an option to always make physical deletion when deleting with custom data. For the setting method, see in [here](/config).
     - Added option to physically delete custom data in API. Please check [here](https://exment.net/reference/en/webapi.html#operation/delete-value)
     - Addition of processing to delete associated files (here, "attached files", "files" and "images" in custom columns) when physically deleting custom data.
+1. Bug fix
+    - Fixed a bug that an error occurs and the backup ends when the attached file is deleted during the backup.
 1. Other
     - In v4.0.6 or lower, added a command to delete files that have already been physically deleted and are no longer linked to any data. Please check [here](/patch/file_deleting)
     - Other minor corrections
