@@ -14,7 +14,7 @@ Exmentのプラグインページは、PHPのフレームワーク[Laravel](http
 ### サンプル
 ここではサンプルとして、以下のページを作成します。
 - カテゴリごとにタスクをかんばんを作成する、かんばんビューを表示する。  
-- 「カテゴリ」に該当する列は、ビュー設定で適宜可能にする。これにより、複数のテーブルで使用できるようにする。
+- 「カテゴリ」に該当する列は、ビュー設定で適宜選択可能にする。これにより、複数のテーブルで、同じプラグインを使用できるようにする。
 
 
 ### config.json作成
@@ -66,7 +66,7 @@ https://www.famkruithof.net/uuid/uuidgen
 <?php
 
 // (1)
-namespace App\Plugins\TestPluginView;
+namespace App\Plugins\KanbanView;
 
 use Exceedone\Exment\Services\Plugin\PluginViewBase;
 use Exceedone\Exment\Enums\ColumnType;
