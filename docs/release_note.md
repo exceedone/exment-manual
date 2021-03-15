@@ -3,8 +3,10 @@
 
 ## v4.0.6 (2021/03/08)
 **Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
-1. Bug fix
-    - Fixed a bug that functions related to task scheduler (data backup / notification / plugin) are not working properly.
+
+1. Functional modification
+    - Addition of function to output debug log at the time of scheduling.
+
 
 ## v4.0.5 (2021/03/02)
 1. Functional modification
