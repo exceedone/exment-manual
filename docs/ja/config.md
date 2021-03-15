@@ -60,6 +60,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : データ保存時に保持する更新履歴の、デフォルト値です。新規にテーブルを作成する際に使用します。
 
 
+#### Composerパス
+- 設定キー : EXMENT_COMPOSER_PATH
+- 既定値 : (なし)
+- 役割 : composerコマンドのパスです。特に指定がない場合、環境変数PATHが通っているものとします。
+
+
 #### MySQLパス
 - 設定キー : EXMENT_MYSQL_BIN_DIR
 - 既定値 : (なし)
