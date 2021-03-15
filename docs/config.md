@@ -180,6 +180,23 @@ The decryption password will be sent separately.
 (The default is the data details screen.)
 
 
+### Custom Data
+#### Disable the image upload function of the custom column "Editor"
+- Setting key : EXMENT_DIABLE_UPLOAD_IMAGES_EDITOR
+- Default value : false
+- Role : By setting it to true, the image upload function in the custom column "Editor" is disabled on the custom data edit screen.
+
+#### Number of custom data attachments that can be uploaded at one time
+- Setting key : EXMENT_DOCUMENT_UPLOAD_MAX_COUNT
+- Default value : 5
+- Role : The number of items that can be uploaded at one time using the custom data attachment form.
+
+#### Always perform physical deletion without using logical deletion
+- Setting key : EXMENT_DELETE_FORCE_CUSTOM_VALUE
+- Default value : false
+- Role : By setting it to true, physical deletion is always performed without using logical deletion of custom data.
+
+
 ### Organization settings
 
 #### Perform hierarchical display on the department list page

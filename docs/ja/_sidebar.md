@@ -94,3 +94,4 @@
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
   * [トラブルシューティング](/ja/troubleshooting)
   * [ライセンス](/ja/license)
+  * [開発メモ](/ja/develop_memo)
