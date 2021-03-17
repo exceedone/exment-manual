@@ -50,19 +50,22 @@
   * [Workflow setting example](/workflow_example.md)
   * [Workflow implementation](/workflow_execution.md)
  
-* 【8. Other standard functions】
+* 【8. Public form】
+  * [Public form settings](/publicform)
+ 
+* 【9. Other standard functions】
   * [Template](/template.md)
   * [Backup](/backup.md)
   * [Menu](/menu.md)
   * [Dashboard](/dashboard.md)
   * [Mail template](/mail.md)
   * [Notification](/notify.md)
+  * [Log](/logs)
 
-* 【9. Function extension】
+* 【10. Function extension】
   * [API setting](/api.md)
   * [Plugin](/plugin.md)
   * [Plugin creation method](/plugin_quickstart.md)
-    * [Trigger](/plugin_quickstart_trigger.md)
     * [Button](/plugin_quickstart_button)
     * [Event](/plugin_quickstart_event)
     * [Page](/plugin_quickstart_page.md)
@@ -78,7 +81,7 @@
     * [Docurain(PDF output)](/plugin_quickstart_docurain)
 
   
-* 【10. Reference】
+* 【11. Reference】
   * [Release notes](/release_note.md)
   * [Parameter variables](/params.md)
   * [API reference](https://exment.net/reference/webapi.html)

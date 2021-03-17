@@ -126,6 +126,25 @@ This lowers the priority and executes the command.
 ※Even if you execute the command as above, "Killed" may be displayed again. Please note.
 
 
+### To pass the composer path
+In order to execute the update function from the screen added from v4.1.0, it is necessary to pass the path of composer.  
+This requires that the server user running the web server knows the location of composer and can successfully run composer.  
+The procedure is described below.  
+
+#### Add setting value
+- Set the path to composer in "Composer path" in [this procedure](/config).
+
+```
+# Ex：Execute the following command
+which composer
+#Output example : /usr/local/bin/composer
+
+# Enter the following values ​​in .env
+EXMENT_COMPOSER_PATH=/usr/local/bin/composer
+```
+
+- This will take the path to composer. You will be able to perform updates from the screen.
+
 ### Backup / restore fails
 The following message may be displayed on the backup screen or command.
 
