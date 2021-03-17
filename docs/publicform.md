@@ -381,7 +381,7 @@ http://localhost/publicform/c4f31330-7a75-11eb-a8b0-279816836d79?value.client_na
 - By adding the following query string to the URL of this form, the initial value will be set when the form is opened.
 
 ```
-http://localhost/publicform/ab3d55e4-1afc-d1de-ac1b-bc64c51d4d7d?value.title=Inquiries&value.body=This%20is%20body
+http://localhost/publicform/ab3d55e4-1afc-d1de-ac1b-bc64c51d4d7d?value.name=Inquiries&value.zip01=123&value.zip02=0001
 ```
 
 ![Public Form Initialize](img/form/public_form_query_result.png)

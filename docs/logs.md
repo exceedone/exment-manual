@@ -22,7 +22,7 @@ The main operations are as follows.
 
 ### Confirmation Method
 - The system administrator enters the following URL.  
-http(s)://(ExmentのURL)/admin/auth/logs  
+http(s)://(Exment URL)/admin/auth/logs  
 
 - Alternatively, add "API App Settings" to the menu.  
 Open the "Administrator Settings" > "Menu" page and select the menu type "System Menu" to display the target "Operation Log". Select it and save it.  
