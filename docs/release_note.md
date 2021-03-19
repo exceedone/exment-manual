@@ -1,9 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v4.0.7 (2021/03/12)
+## v4.0.8 (2021/03/19)
 **Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
+1. Bug fix
+    - Fixed a bug that the status other than the status at the start of workflow is not displayed normally in the form priority setting, "Workflow status" and "Include" settings.
+    - Fixed a bug where the initial role group was not installed during installation.
 
+
+## v4.0.7 (2021/03/12)
 1. Functional modification
     - Added an option to always make physical deletion when deleting with custom data. For the setting method, see in [here](/config).
     - Added option to physically delete custom data in API. Please check [here](https://exment.net/reference/en/webapi.html#operation/delete-value)
