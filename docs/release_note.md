@@ -1,8 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v4.0.9 (2021/03/25)
+## v4.0.10 (2021/04/12)
 **Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
+1. Bug fix
+    - Fixed a bug that the "Display Only" column of the form settings may not be saved due to validation when saving data.
+    - Fixed a bug that an error occurs when exporting data while entering text in the search bar in a table with a 1: n relation.
+    - Fixed a bug that an error may occur when "Current working user" is set in the form display conditions.
+
+## v4.0.9 (2021/03/25)
 
 1. Bug fix
     - In the custom data copy dialog, if the target is "Choice", "Choice (register value / heading)", "Choice (select from the list of values ​​in other tables)", "User", and "Organization" columns, the choices can be narrowed down. Not a bug fix
