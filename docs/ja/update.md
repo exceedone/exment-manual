@@ -59,6 +59,7 @@ composerのパスを通すためには、一度[こちら](/ja/troubleshooting#c
 
 
 ## アップデートバッチからアップデート
+<span class="red bold">※2021/04/13、アップデートバッチを更新しました。最新版のダウンロード・差し替えをお願いします。</span>
 
 ### (初回のみ)アップデートバッチのダウンロード
 
@@ -133,10 +134,8 @@ ExmentUpdateWindows.bat
  - データベース更新
 
 
-
-## (old)手動によるアップデート方法
-以下、v1.3.0以前のバックアップ方法です。手動でコマンドからアップデートを実行する場合、こちらを実施してください。
-
+## 手動によるアップデート方法
+手動でコマンドからアップデートを実行する場合、こちらを実施してください。
 
 ### (推奨)データのバックアップ
 データのバックアップを実行します。詳細は[バックアップ](/ja/backup)をご確認ください。  
@@ -152,7 +151,6 @@ ExmentUpdateWindows.bat
 
 ~~~
 cd (プロジェクトのルートディレクトリ)
-composer require exceedone/laravel-admin
-composer require exceedone/exment
+composer update
 php artisan exment:update
 ~~~

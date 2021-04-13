@@ -1,9 +1,28 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v4.0.7 (2021/03/12)
+## v4.0.10 (2021/04/12)
 **Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
+1. Bug fix
+    - Fixed a bug that the "Display Only" column of the form settings may not be saved due to validation when saving data.
+    - Fixed a bug that an error occurs when exporting data while entering text in the search bar in a table with a 1: n relation.
+    - Fixed a bug that an error may occur when "Current working user" is set in the form display conditions.
 
+## v4.0.9 (2021/03/25)
+
+1. Bug fix
+    - In the custom data copy dialog, if the target is "Choice", "Choice (register value / heading)", "Choice (select from the list of values ​​in other tables)", "User", and "Organization" columns, the choices can be narrowed down. Not a bug fix
+    - Fixed a bug that options are not included in "User / Organization Settings" of the role group when there are 100 or more users / organizations.
+1. Other
+    - In template import (Excel), add a patch to return to the normal custom column when the custom column "Choice (select from the value list of other tables)" and the target table are registered as "User" and "Organization".
+
+## v4.0.8 (2021/03/19)
+1. Bug fix
+    - Fixed a bug that the status other than the status at the start of workflow is not displayed normally in the form priority setting, "Workflow status" and "Include" settings.
+    - Fixed a bug where the initial role group was not installed during installation.
+
+
+## v4.0.7 (2021/03/12)
 1. Functional modification
     - Added an option to always make physical deletion when deleting with custom data. For the setting method, see in [here](/config).
     - Added option to physically delete custom data in API. Please check [here](https://exment.net/reference/en/webapi.html#operation/delete-value)
