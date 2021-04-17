@@ -147,9 +147,7 @@ nice -n 20 composer .....
 
 
 ### composerのパスを通すには
-v4.1.0より追加された、画面からアップデート機能を実施するには、composerのパスを通す必要があります。  
-これは、Webサーバーを実行しているサーバーユーザーが、composerの場所が分かり、正常にcomposerを実施できる必要があります。  
-以下、その手順を記載します。  
+composerのパスを通す手順を記載します。  
 
 #### 設定値を追加する
 - [こちらの手順](/ja/config)の「Composerパス」で、composerまでのパスを設定します。
@@ -163,7 +161,7 @@ which composer
 EXMENT_COMPOSER_PATH=/usr/local/bin/composer
 ```
 
-- これにより、composerまでのパスが通ります。画面からのアップデートが実行できるようになります。
+- これにより、composerまでのパスが通ります。
 
 
 ### メンテナンスモードの解除
