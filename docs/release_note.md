@@ -1,8 +1,38 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.1.0 (2021/04/19)
+1. Functional modification
+    - Supports public forms. General users (users who are not logged in) can enter data. In the public form, you can share the URL and publish it without having to log in with your ID and password.
+    - Update the form setting screen. Main correspondence contents
+        - For form columns, you can set the number of columns for each row, such as "1 column, 2 columns, 1 column"
+        - Up to 4 columns can be set
+        - Column width can be changed
+        - The display position of the headline can be set to horizontal, vertical, or non-display. Can be set for the entire form or for each column
+        - Form display name, initial value, help can be set separately from custom column setting
+        - Images and ruled lines can be set on the form
+        - Addition of preview function that allows you to check the input screen while editing the form
+        - In addition, change the layout of the form setting screen
+    - Custom column updates. Main correspondence contents
+        - Supports uploading multiple files with custom columns "Image" and "File"
+        - Added the function to set the extension that can be uploaded in the custom column "File"
+        - Addition of setting that allows input users to freely input selection items in the custom column "Choice"
+        - Addition of setting to display in check box format in custom column "YES / NO"
+        - Custom column "Choice" "Choice (value and heading)", added setting to display in radio button (when multiple selection is NO), check box (when multiple selection is YES) format
+        - In each custom column setting, the initial value corresponds to the entry method according to the column type
+    - Plugin update. Main correspondence contents
+        - Added plugin (view).
+        - Added mandatory component check function when installing the plugin. If the server does not include the functions required when using the plug-in, an error can be issued during installation.
+        - Addition of template import function when installing plugin. Templates that are required when using the plug-in can be added at the time of installation. Click here for details (/ ja / plugin_quickstart # Install template during installation)
+    - In the notification action, add "specified email address" and "system administrator" to the notification destination options.
+    - Added "View Information Box" to the view settings. By inputting, you can display a message etc. at the top of the view
+1. Other
+    - Move notification settings to the "Detailed Table Settings" button for custom data, and to "Workflow" for workflows.
+    - Fixed to switch to maintenance mode when restoring
+    - Correct the behavior of the error content to be displayed by the setting value "app.debug" of Laravel for the error display method.
+    - In addition, a large number of minor fixes and bug fixes
+
 ## v4.0.10 (2021/04/12)
-**Updating from v3.X.X to v4.X.X requires a manual update. Please check [here](/update/v4_0) once and update it.**
 1. Bug fix
     - Fixed a bug that the "Display Only" column of the form settings may not be saved due to validation when saving data.
     - Fixed a bug that an error occurs when exporting data while entering text in the search bar in a table with a 1: n relation.
