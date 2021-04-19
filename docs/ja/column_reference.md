@@ -8,8 +8,14 @@
 
 
 本リファレンスでは、カスタム列の種類ごとに、以下の内容を記載します。
+- データベースの型　：　カスタム列ごとの、データベースに格納される型
 - 値の取得　：　カスタム列ごとのgetValueの返却値
 - 値のセット　：　カスタム列ごとのsetValueStrictlyによるセット方法
+
+
+## カスタム列ごとの、データベースに格納される型 概要
+データを画面やAPIから保存時に、データベースに保存される値の記載を行っています。  
+※データベースには、すべてのカスタム列の値を、json型の列"value"で格納しています。この記述では、json型の列valueに、どの型で格納されているかどうかを記載しています。  
 
 
 ## 関数getValueの返却値 概要
@@ -96,6 +102,9 @@ $value->save();
 
 ### text : 1行テキスト
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
 - ##### pureValue,value,text,html
@@ -168,7 +177,7 @@ $value->setValueStrictly(['email' => 'foobar@foobar.kajitori.co.jp']);
 ##### pureValue,value,text
 URL文字列
 
-#### html
+##### html
 リンク先をURL文字列に設定した、aタグ
 
 #### setValueStrictly - 値セット時
