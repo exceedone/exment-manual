@@ -121,12 +121,15 @@ $value->setValueStrictly(['text' => '値1']);
 
 ### textarea : 複数行テキスト
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value,text
+- ##### pureValue,value,text
 複数行テキスト
 
-##### html
+- ##### html
 複数行テキストのhtml形式。ただしデータ一覧画面での表示時のみ、50文字以上であれば、50文字まで表示し、それ以降を"..."に置き換える
 
 
@@ -139,12 +142,15 @@ $value->setValueStrictly(['textarea' => "値1です。\n値2です。\n値3で�
 
 ### editor : エディター
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value,text
+- ##### pureValue,value,text
 エディター
 
-##### html
+- ##### html
 エディター。ただしデータ一覧画面での表示時のみ、50文字以上であれば、タグを除去した上で、50文字まで表示し、それ以降を"..."に置き換える
 
 
@@ -157,9 +163,12 @@ $value->setValueStrictly(['editor' => "値1です。\n値2です。\n値3です�
 
 ### email : メールアドレス
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value,text,html
+- ##### pureValue,value,text,html
 メールアドレス
 
 #### setValueStrictly - 値セット時
@@ -172,12 +181,15 @@ $value->setValueStrictly(['email' => 'foobar@foobar.kajitori.co.jp']);
 
 ### url :  URL
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value,text
+- ##### pureValue,value,text
 URL文字列
 
-##### html
+- ##### html
 リンク先をURL文字列に設定した、aタグ
 
 #### setValueStrictly - 値セット時
@@ -190,12 +202,15 @@ $value->setValueStrictly(['url' => 'https://exment.net']);
 
 ### integer : 整数
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 整数。カンマを含まない。
 
-##### text,html
+- ##### text,html
 整数。「数値 カンマ文字列」オプションを有効にしていた場合、カンマを含む。
 
 #### setValueStrictly - 値セット時
@@ -214,12 +229,15 @@ $value->setValueStrictly(['integer' => '1,000']);
 
 ### decimal : 小数
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 小数。カンマを含まない。
 
-##### text,html
+- ##### text,html
 小数。「数値 カンマ文字列」オプションを有効にしていた場合、カンマを含む。
 
 #### setValueStrictly - 値セット時
@@ -238,12 +256,15 @@ $value->setValueStrictly(['decimal' => '1,000.03']);
 
 ### currency : 通貨
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 入力した金額。カンマと通貨単位を含まない。
 
-##### text,html
+- ##### text,html
 入力した金額。「数値 カンマ文字列」オプションを有効にしていた場合、カンマを含む。また、選択した「通貨の表示形式」を含める。
 
 #### setValueStrictly - 値セット時
@@ -265,12 +286,15 @@ $value->setValueStrictly(['currency' => '1,000円']);
 
 ### date : 日付
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 "yyyy-MM-dd"形式の日付。  例： 2020-05-01
 
-##### text,html
+- ##### text,html
 "yyyy-MM-dd"形式の日付。  ただしフォーマットを指定していれば、そのフォーマットで返却。
 
 
@@ -288,12 +312,15 @@ $value->setValueStrictly(['date' => \Carbon\Carbon::now()]);
 
 ### time : 時間
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 "HH:mm:ss"形式の日付。  例： 21:31:00
 
-##### text,html
+- ##### text,html
 "HH:mm:ss"形式の日付。  
 
 #### setValueStrictly - 値セット時
@@ -307,15 +334,18 @@ $value->setValueStrictly(['time' => '08:00']);
 
 ### datetime : 日時
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue
+- ##### pureValue
 "yyyy-MM-dd HH:mm:ss"形式の日付。  例： 2020-05-01 21:31:00
 
-##### value
+- ##### value
 Carbon型オブジェクト
 
-##### text,html
+- ##### text,html
 "yyyy-MM-dd HH:mm:ss"形式の日付。  ただしフォーマットを指定していれば、そのフォーマットで返却。
 
 
@@ -332,9 +362,12 @@ $value->setValueStrictly(['datetime' => \Carbon\Carbon::now()]);
 
 ### select : 選択肢
 
+#### データベースの型
+string型（複数選択可の場合はstring型の配列）
+
 #### getValue - データ取得時
 
-##### pureValue,value,text,html
+- ##### pureValue,value,text,html
 選択した項目。
 
 
@@ -349,12 +382,15 @@ $value->setValueStrictly(['select' => 'Orange']);
 
 ### select_valtext : 選択肢 (値・見出しを登録)
 
+#### データベースの型
+string型（複数選択可の場合はstring型の配列）
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 選択した項目の値。
 
-##### text,html
+- ##### text,html
 選択した項目の見出し。
 
 #### setValueStrictly - 値セット時
@@ -371,18 +407,21 @@ $value->setValueStrictly(['select_valtext' => 'Orange']);
 
 ### select_table : 選択肢 (他のテーブルの値一覧から選択)
 
+#### データベースの型
+string型（複数選択可の場合はstring型の配列）
+
 #### getValue - データ取得時
 
-##### pureValue
+- ##### pureValue
 選択したデータのid。
 
-##### value
+- ##### value
 指定したidのCustomValueオブジェクト。
 
-##### text
+- ##### text
 指定したidのCustomValueオブジェクトで設定されている、[見出し表示列](/ja/table?id=見出し表示列設定)の文字列。
 
-##### html
+- ##### html
 指定したidのデータをモーダルで開くためのaタグ。
 
 
@@ -405,12 +444,15 @@ select_tableと同様。
 
 ### yesno : YES/NO
 
+#### データベースの型
+integer型
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 0(NOを選択した場合)もしくは1(YESを選択した場合)。
 
-##### text,html
+- ##### text,html
 NOもしくはYES。
 
 #### setValueStrictly - 値セット時
@@ -432,12 +474,15 @@ $value->setValueStrictly(['yesno' => false]);
 
 ### boolean : 2値の選択
 
+#### データベースの型
+string型
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 選択した側の、値。
 
-##### text,html
+- ##### text,html
 選択した側の、表示見出し。
 
 
@@ -454,15 +499,18 @@ $value->setValueStrictly(['boolean' => 'Orange']);
 
 ### file : ファイル
 
+#### データベースの型
+string型（複数選択可の場合はstring型の配列）
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 保存しているファイルの、内部のファイルパス。
 
-##### text
+- ##### text
 ファイルへのリンク先へのURL。
 
-##### html
+- ##### html
 ファイルへのリンク先へのaタグ。タグの見出しは、アップロードしたファイルのファイル名。
 
 
@@ -472,15 +520,18 @@ $value->setValueStrictly(['boolean' => 'Orange']);
 
 ### image : 画像
 
+#### データベースの型
+string型（複数選択可の場合はstring型の配列）
+
 #### getValue - データ取得時
 
-##### pureValue,value
+- ##### pureValue,value
 保存しているファイルの、内部のファイルパス。
 
-##### text
+- ##### text
 ファイルへのリンク先へのURL。
 
-##### html
+- ##### html
 ファイルへのリンク先へのimgタグ。
 
 #### setValueStrictly - 値セット時
