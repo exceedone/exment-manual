@@ -1,6 +1,13 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.1.1 (2021/04/22)
+1. Bug fix
+    - Fixed a bug that LDAP login may not work properly
+    - Fixed a bug that the custom column "Choice (select from other table)" may be registered as int type when registering data from API etc. From now on, it will be registered as a string type. * The conversion method of the already registered data will be announced separately.
+    - Fixed a bug that images could not be uploaded in the custom column "Editor"
+    - Other minor corrections
+
 ## v4.1.0 (2021/04/19)
 1. Functional modification
     - Supports public forms. General users (users who are not logged in) can enter data. In the public form, you can share the URL and publish it without having to log in with your ID and password.
