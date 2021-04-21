@@ -858,6 +858,7 @@ paths:
         #### 処理概要
         * 特定のカスタムテーブルに登録している、カスタムデータの一覧を取得する
         * ログインユーザーに権限のあるデータのみ、一覧の対象となる
+        * 取得されるvalue配列の形式や型については、<a href="https://exment.net/docs/#/ja/column_reference" target="_blank">こちら</a>をご参照ください
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -990,7 +991,7 @@ paths:
         #### 処理概要
         * カスタムテーブルに、データを新規作成する
         * ログインユーザーがカスタムテーブルに新規追加する権限のない場合、403エラーが発生する
-        * 登録を行いたいデータは、value配列内に値を代入してPOSTする
+        * 登録を行いたいデータは、value配列内に値を代入してPOSTする。送信値の形式や型については、<a href="https://exment.net/docs/#/ja/column_reference" target="_blank">こちら</a>をご参照ください
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -1295,6 +1296,7 @@ paths:
         * ログインユーザーに権限のあるデータのみ、一覧の対象となる
         * 「検索インデックス」に登録している列が、検索対象列となる
         * 検索は前方一致。全文一致で検索を行いたい場合は、<a href="https://exment.net/docs/#/ja/search?id=%e8%a3%9c%e8%b6%b3%e3%83%87%e3%83%bc%e3%82%bf%e6%a4%9c%e7%b4%a2%e3%82%92%e9%83%a8%e5%88%86%e4%b8%80%e8%87%b4%e3%81%ab%e5%88%87%e3%82%8a%e6%9b%bf%e3%81%88" target="_blank">こちら</a>に従い、設定が必要
+        * 取得されるvalue配列の形式や型については、<a href="https://exment.net/docs/#/ja/column_reference" target="_blank">こちら</a>をご参照ください
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -1447,6 +1449,7 @@ paths:
         * 特定のカスタムテーブルに登録している、カスタムデータを検索する
         * ログインユーザーに権限のあるデータのみ、一覧の対象となる
         * カスタム列ごとに検索条件と値を指定する。それぞれの検索条件がすべて合致した場合に、検索を実行する
+        * 取得されるvalue配列の形式や型については、<a href="https://exment.net/docs/#/ja/column_reference" target="_blank">こちら</a>をご参照ください
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -1599,6 +1602,7 @@ paths:
         #### 処理概要
         * 特定のカスタムテーブルに登録している、カスタムデータ情報を取得する
         * ログインユーザーに権限のないデータだった場合、403エラーが発生する
+        * 取得されるvalue配列の形式や型については、<a href="https://exment.net/docs/#/ja/column_reference" target="_blank">こちら</a>をご参照ください
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -1670,9 +1674,8 @@ paths:
         #### 処理概要
         * カスタムデータ情報を更新する
         * ログインユーザーに権限のないデータだった場合、403エラーが発生する
-        * 更新が発生する列の情報のみ、value配列内に値を代入してPUTする
+        * 更新が発生する列の情報のみ、value配列内に値を代入してPUTする。送信値の形式や型については、<a href="https://exment.net/docs/#/ja/column_reference" target="_blank">こちら</a>をご参照ください
         * 列"updated_at"を行うことで、排他制御を行うことが可能
-
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -1902,6 +1905,19 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3855,7 +3871,7 @@ components:
               type: integer
               description: id
             value:
-              description: 画面で入力したデータのkey-value列
+              description: 画面で入力したデータのkey-value列。
               type: object
             parent_id:
               type: integer
