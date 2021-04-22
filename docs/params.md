@@ -61,7 +61,18 @@ The following example is when the execution date and time is "2018/02/17 11:20:3
 | ${updated_at} | The date and time when the data was updated is set. (example: 2020/08/06 14:00:00) |
 | ${value_url} | A link to display registered data is set. |
 | ${value:(column name)} | The value of the registered data column is set. (example: When ${value:user_code} is entered for user data, the user code is set) |
-| $ {value: (column name) / format = "(date format)"} | When the column type is "Date" or "Date", the value of the registered data column is converted to format and displayed.<br />(example 1: If you have a "Contract Date (contract_date)" column in the "Contract Information (contract)" table and you want to display the contract year, $ {value: contract_date / format = "Y"})<br />(example 2: "Contract" If you have a "contract_date" column in the "contract" table and want to display it in "yyyy/mm/dd" format, $ {value: contract_date / format = "Y/m/d"}) |
+
+### Data(Options)
+You can add options to the parameter by filling like ${value:(column name)/(Option Key 1)=(Option Value 1)}. If there are more than one, separate them with commas.  
+example:
+- ${value:mitsumori_date/format="Y"}
+- ${value:mitsumori_price/disable_number_format=1,disable_currency_symbol=1}
+
+| Option Key | Description |
+| ---- | ---- |
+| $ {value: (column name) / format = "(date format)"} | When the column type is "date" or "datetime", the value of the registered data column is converted to format and displayed.<br />(example 1: If you have a "Contract Date (contract_date)" column in the "Contract Information (contract)" table and you want to display the contract year, $ {value: contract_date / format = "Y"})<br />(example 2: "Contract" If you have a "contract_date" column in the "contract" table and want to display it in "yyyy/mm/dd" format, $ {value: contract_date / format = "Y/m/d"}) |
+| ${value:(column name)/disable_number_format=1} | When the column type is "integer", "decimal", or "currency", the numeric comma character string setting is disabled.|
+| ${value:(column name)/disable_currency_symbol=1} | When the column type is "Currency", the currency display format setting is disabled.|
 
 ### Relations, Related data
 | item | Description |

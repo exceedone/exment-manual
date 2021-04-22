@@ -71,7 +71,8 @@
 | オプションキー | 説明 |
 | ---- | ---- |
 | ${value:(列名)/format="(日付フォーマット)"} | 列種類が「日付」「日時」のとき、登録されているデータの列の値をフォーマット変換して表示します。<br />(例1：「契約情報(contract)」テーブルに「契約日(contract_date)」列があり、契約年を表示したい場合、${value:contract_date/format="Y"}）<br />(例2：「契約情報(contract)」テーブルに「契約日(contract_date)」列があり、「yyyy/mm/dd」形式で表示したい場合、${value:contract_date/format="Y/m/d"}）|
-
+| ${value:(列名)/disable_number_format=1} | 列種類が「整数」「小数」「通貨」のとき、数値カンマ文字列設定を無効にします。|
+| ${value:(列名)/disable_currency_symbol=1} | 列種類が「通貨」のとき、通貨の表示形式設定を無効にします。|
 
 
 ### リレーション、関連データ
