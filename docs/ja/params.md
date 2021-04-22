@@ -61,7 +61,18 @@
 | ${updated_at} | データを更新した日時が設定されます。(例：2020/08/06 14:00:00) |
 | ${value_url} | 登録されているデータを表示するリンクが設定されます。 |
 | ${value:(列名)} | 登録されているデータの列の値が設定されます。<br />(例：ユーザーデータに対し、${value:user_code}と記入した場合、ユーザーコードが設定される) |
+
+#### データ(オプション)
+「${value:(列名)/(オプションキー1)=(オプション値1)}」のように記入することで、パラメータにオプションを追加することができます。複数ある場合はカンマ区切りしてください。  
+例：
+- ${value:mitsumori_date/format="Y"}
+- ${value:mitsumori_price/disable_number_format=1,disable_currency_symbol=1}
+
+| オプションキー | 説明 |
+| ---- | ---- |
 | ${value:(列名)/format="(日付フォーマット)"} | 列種類が「日付」「日時」のとき、登録されているデータの列の値をフォーマット変換して表示します。<br />(例1：「契約情報(contract)」テーブルに「契約日(contract_date)」列があり、契約年を表示したい場合、${value:contract_date/format="Y"}）<br />(例2：「契約情報(contract)」テーブルに「契約日(contract_date)」列があり、「yyyy/mm/dd」形式で表示したい場合、${value:contract_date/format="Y/m/d"}）|
+
+
 
 ### リレーション、関連データ
 | 項目 | 説明 |
