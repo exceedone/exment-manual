@@ -1,6 +1,26 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.1.4 (2021/04/29)
+1. Addition of functions
+    - Supports image output with a plug-in (document output)
+    - Supports export of operation log
+1. Bug fix
+    - Fixed a bug that an error occurs in the form column setting "Display only"
+    - Fixed a bug that an error occurs when editing and displaying the data for which "Allow multiple selection" is registered as NO for the custom columns "File" and "Image" after changing "Allow multiple selection" to YES.
+    - Fixed a bug that an error occurs when "#" or space is included in the database password etc. at the time of easy installation.
+    - Other minor corrections
+
+## v4.1.3 (2021/04/25)
+1. Bug fix
+    - Fixed a bug that the image update did not complete normally in the custom column "Editor" except for the administrator.
+
+## v4.1.2 (2021/04/23)
+1. Bug fix
+    - Fixed a bug that all data search did not work properly when the custom columns "File" and "Image" were set to "Free word search target".
+    - Fixed a bug that the custom column "Choice (select from other table)" may be registered as int type when registering data from API etc. From now on, it will always be registered as a string type.
+    - Other minor corrections
+
 ## v4.1.1 (2021/04/22)
 1. Bug fix
     - Fixed a bug that LDAP login may not work properly
