@@ -16,9 +16,32 @@ Exmentを開始するために必要となる手順です。画面で設定を�
 サーバー構築が完了したら、Exmentのアプリ設定を行います。
 
 ### zipダウンロード・展開
-- 以下のURLより、zipファイルをダウンロードします。  
-[Exment zipファイル](https://exment.net/downloads/ja/exment.zip)  
+<script>
+        //画面を開いた際に実行
+        window.addEventListener('load', (event) => {
+        var link = document.getElementById('link');
+        //a要素のhref属性の値を取得する
+        var oldHref = link.getAttribute('href');
+        //現在時刻を設定（yyyyMMddHHmmss）
+        function formatDate (date, format) {
+        format = format.replace(/yyyy/g, date.getFullYear());
+        format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+        format = format.replace(/dd/g, ('0' + date.getDate()).slice(-2));
+        format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
+        format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+        format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+        return format;
+        };
+        var date = new Date
+        //replaceでoldHrefを新しい値に置き換える
+        var newHref = oldHref.replace(oldHref, 'https://exment.net/downloads/ja/exment.zip?ver='+ formatDate(date,'yyyyMMddHHmmss'));
+        //置き換えた値をa要素のhref属性に設定する
+        link.setAttribute('href', newHref);
+      });
+</script>
 
+- 以下のURLより、zipファイルをダウンロードします。  
+<a id="link" href="https://exment.net/" target="_blank">[Exment zipファイル]</a>        
 - zipファイルを、PHP実行可能なパスに展開します。  
 例1(XAMPP Windows)： C:\xampp\local\exment  
 例2(XAMPP Mac)： /Applications/XAMPP/local/exment  
