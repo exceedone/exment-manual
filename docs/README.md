@@ -10,9 +10,13 @@ Exment is open source software for managing information assets on the Web.
 ## Installation method
 Please check [here] (/quickstart) for the installation method.
 
-## Demo site list
-Various demo sites are available to suit your business. Please check the
-<a href="https://exment.net/demo-env" target="_blank">demo site list.</a>
+## Demo site
+Demo site is available to suit your business. Please check the
+<a href="https://demo.exment.net/admin" target="_blank">demo site.</a>  
+Then please enter  
+Usercode：admin  
+Password：adminadmin
+
 
 ## Features / Screenshots
 Please check<a href="https://exment.net/functions" target="_blank">the functions and screenshots.</a>
