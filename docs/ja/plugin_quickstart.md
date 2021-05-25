@@ -235,3 +235,91 @@ config.jsonに、"templates": trueを追加します。
 
 #### その他補足
 - 該当のプラグインを削除しても、この機能でインストールしたテンプレートは削除されません。
+
+
+### (非推奨)クラスに属さないPHPファイルを使用する
+通常、PHPの各処理はクラスの中に記述しますが、中にはクラスを使用せずに関数を記載する場合があります。  
+例えば、以下のような内容です。
+
+``` php
+<?php
+namespace App\Plugins\TestPluginGlobalFunction;
+
+function testPluginGlobalFunction(){
+    return true;
+}
+```
+
+バージョンv4.1.0以降、プラグインの読み込みには、[spl_autoload_register](https://www.php.net/manual/ja/function.spl-autoload-register.php)を使用しています。  
+この関数はclass、trait、interfaceは対応していますが、クラスに属さない関数には対応していないようです。  
+そのため、通常とは異なる記載が必要です。以下の対応を実施してください。  
+
+#### require_onceを呼び出す
+呼び出し元のクラスの、コンストラクタやexecute関数などで、require_onceを実行してください。
+
+``` php
+<?php
+namespace App\Plugins\TestPluginGlobalFunction;
+
+use Exceedone\Exment\Services\Plugin\PluginBatchBase;
+
+class Plugin extends PluginBatchBase
+{
+    /**
+     * execute
+     */
+    public function execute()
+    {
+        // 同フォルダのfunction.php、Dir1フォルダのfunction.phpをrequire_onceする
+        require_once dirname(__FILE__).'/function.php';
+        require_once dirname(__FILE__).'/Dir1/function.php';
+
+        // 実行する
+        testPluginGlobalFunction();
+        Dir1\testPluginGlobalFunctionDir1();
+    }
+}
+
+```
+
+
+#### 推奨：クラスに属するようにstatic関数を実装する
+なお、他のクラスで定義した関数をstaticに呼び出したい場合、可能な限り、クラスにstaticな関数として実装をお願いします。
+
+
+``` php
+<?php
+namespace App\Plugins\TestPluginGlobalFunction;
+
+//　関数の定義元
+class StaticFunction
+{
+    // staticな関数として、クラスに定義する
+    public static function testPluginStaticFunction(){
+        return true;
+    }
+}
+
+```
+
+``` php
+<?php
+namespace App\Plugins\TestPluginGlobalFunction;
+
+use Exceedone\Exment\Services\Plugin\PluginBatchBase;
+
+// 関数の呼び出し元
+class Plugin extends PluginBatchBase
+{
+    /**
+     * execute
+     */
+    public function execute()
+    {
+        // staticな関数として呼び出す
+        StaticFunction::testPluginStaticFunction();
+        Dir1\StaticFunction::testPluginStaticFunctionDir1();
+    }
+}
+
+```
