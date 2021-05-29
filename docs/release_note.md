@@ -1,6 +1,21 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.1.5 (2021/05/29)
+1. Addition of functions
+    - Added an option to hide columns whose column item settings are "read-only" and "display-only" on the custom data details screen.
+    - Added "Maximum number of POSTs at one time" setting at the time of installation and in "System requirements check" on the system setting screen.
+1. Bug fix
+    - Fixed a bug that the notification at the time of data update is notified with the value before the update.
+    - Fixed a bug that the original column name is displayed on the data input confirmation screen of the public form when the display column name is changed in the form settings.
+    - Fixed a bug that "Error CSRF token mismatch." Is displayed in the alert when some browser operations are performed after the login expiration date has expired.
+    - Fixed a bug that the choices of the child side column are not narrowed down when the initial value of the parent side column is set on the custom data input screen.
+    - Fixed a bug that the "Display data list in this view" button is displayed even if the view type is "Conditional view" on the view setting screen.
+    - Fixed a bug that PHP files are not installed properly when there is a subdirectory in the plugin when installing the plugin.
+1. Other
+    - In the custom form settings, the image insertion is not supported in the "Initial value" item setting of the custom column "Editor".
+
+
 ## v4.1.4 (2021/04/29)
 1. Addition of functions
     - Supports image output with a plug-in (document output)
