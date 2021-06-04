@@ -400,3 +400,8 @@ sudo systemctl restart php-fpm
 - ターゲットグループインスタンス : 作成したWebサーバー2種類を選択肢、「登録済」に追加
 
 設定完了後、ロードバランサーのDNS経由で、Webサーバーにアクセスできるようになります。
+
+
+### その他
+Amazon Elastic Load Balancingによって、リバースプロキシ設定が行われていた場合、以下の手順をご確認いただき、設定してください。  
+[リバースプロキシを採用している場合の設定](/ja/additional_reverse_proxy)
