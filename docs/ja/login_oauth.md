@@ -87,8 +87,8 @@ composer require laravel/socialite=~5.1
 composer require socialiteproviders/microsoft-graph
 ~~~
 
-- (任意)アバター取得のために、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
-作成方法は、[プロバイダ作成方法](#プロバイダ作成方法)をご確認ください。
+- (任意)アバター取得を行いたい場合、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
+作成方法は、[アバター取得のための、独自プロバイダ作成方法](#アバター取得のための、独自プロバイダ作成方法)をご確認ください。
 
 
 - [画面での設定](#画面での設定)を実施します。
@@ -193,11 +193,14 @@ $refresh_token = LoginService::getRefreshToken();
 
 
 
-## プロバイダ作成方法
-※(3)のログイン方法で、独自のプロバイダの作成方法を記載します。
+## アバター取得のための、独自プロバイダ作成方法
+(3)のログイン方法で、アバター取得のための、独自プロバイダ作成方法を記載します。  
+※この独自プロバイダ作成は、アバター取得をするための任意手順となります。アバターの取得が不要な場合は、このプロバイダ作成は不要となります。
 
-- アバター取得のために、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
-1つ目は、MicrosoftGraphProvider.phpです。インタフェースProviderAvatarをimplementsし、getAvatarを実装します。
+- アバター取得のために、既存のプロバイダーを継承したクラスを2つ、フォルダ「app/Socialite」に作成します。※フォルダ「app/Socialite」が存在しない場合は、作成してください。  
+1つ目は、MicrosoftGraphProvider.phpです。インタフェースProviderAvatarをimplementsし、getAvatarを実装します。  
+getAvatarメソッドでは、アバターを取得するためのAPI処理を記載してください。取得のためのURLやエンドポイントは、各種OAuthプロバイダよりご確認ください。  
+下記の例は、Microsoft Graphでの手順です。
 
 ~~~ php
 <?php
@@ -267,7 +270,7 @@ class GraphExtendSocialite
 
 ~~~ 
 
-- App\Providers\EventServiceProvider.phpに、追加したプロバイダを記入します。  
+- ファイルapp/Providers/EventServiceProvider.phpに、追加したプロバイダを記入します。  
 
 ~~~ php
 <?php
