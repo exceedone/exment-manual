@@ -65,33 +65,12 @@ composer require exment-oauth/microsoft-graph
 
 
 ### (3) 各自でプロバイダを用意する場合
-※(1)(2)にないプロバイダの場合は、[Socialite Providers](https://socialiteproviders.github.io/)で非公式プロバイダーを追加します。  
-また、非公式プロバイダーにもアバター取得のための処理が含まれていませんので、処理を追加します。(任意)  
+(1)(2)にないプロバイダの場合は、[Socialite Providers](https://socialiteproviders.github.io/)で非公式プロバイダーを追加します。  
+また、非公式プロバイダーにもアバター取得のための処理が含まれていませんので、アバターを取得したい場合は、処理を追加します。(任意)  
+  
+※いくつかの手順がありますので、詳細は[独自プロバイダ作成方法](#独自プロバイダ作成方法)をご確認ください。
 
-- 各プロバイダで、Exment用のアプリケーションを作成します。  
-※callback URLは以下になります。  
-http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
-
-    - 例 Microsoft Graphの場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
-
-- 以下のコマンドを、Exmentのルートディレクトリで実行します。
-
-~~~
-composer require laravel/socialite=~5.1
-~~~
-
-- [Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
-    - 例：Microsoft Graphの場合
-
-~~~
-composer require socialiteproviders/microsoft-graph
-~~~
-
-- (任意)アバター取得を行いたい場合、既存のプロバイダーを継承したクラスを、App\Socialiteに作成します。  
-作成方法は、[アバター取得のための、独自プロバイダ作成方法](#アバター取得のための、独自プロバイダ作成方法)をご確認ください。
-
-
-- [画面での設定](#画面での設定)を実施します。
+- 手順が完了したら、[画面での設定](#画面での設定)を実施します。
 
 
 
@@ -193,8 +172,32 @@ $refresh_token = LoginService::getRefreshToken();
 
 
 
-## アバター取得のための、独自プロバイダ作成方法
-(3)のログイン方法で、アバター取得のための、独自プロバイダ作成方法を記載します。  
+## 独自プロバイダ作成方法
+[Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
+また、アバター取得のための独自プロバイダを作成します。（任意）
+
+### (必須)プロバイダ設定・追加
+- 各プロバイダで、Exment用のアプリケーションを作成します。  
+※callback URLは以下になります。  
+http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
+
+    - 例 Microsoft Graphの場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
+
+- 以下のコマンドを、Exmentのルートディレクトリで実行します。
+
+~~~
+composer require laravel/socialite=~5.1
+~~~
+
+- [Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
+
+    - 例：Microsoft Graphの場合
+
+~~~
+composer require socialiteproviders/microsoft-graph
+~~~
+
+### (任意)アバター取得のための開発
 ※この独自プロバイダ作成は、アバター取得をするための任意手順となります。アバターの取得が不要な場合は、このプロバイダ作成は不要となります。
 
 - アバター取得のために、既存のプロバイダーを継承したクラスを2つ、フォルダ「app/Socialite」に作成します。※フォルダ「app/Socialite」が存在しない場合は、作成してください。  
@@ -270,7 +273,10 @@ class GraphExtendSocialite
 
 ~~~ 
 
-- ファイルapp/Providers/EventServiceProvider.phpに、追加したプロバイダを記入します。  
+### (必須)サービスプロバイダ追加
+- ファイルapp/Providers/EventServiceProvider.phpに、追加したプロバイダを記入し、サービスプロバイダを追加します。  
+※アバターの取得のために独自開発を行ったか、そうでないかにより、記載内容が異なります。  
+また、「@handle」に記載のクラス名は、[Socialite Providers](https://socialiteproviders.github.io/)で追加したプロバイダのマニュアルに、多くの場合記載されていますので、ご確認ください。
 
 ~~~ php
 <?php
@@ -294,8 +300,8 @@ class EventServiceProvider extends ServiceProvider
         
         /// 追加
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            // 'SocialiteProviders\Graph\GraphExtendSocialite@handle', ///// 通常の取得
-            '\App\Socialite\GraphExtendSocialite@handle', ///// アバター取得のために継承を行った場合
+            '\App\Socialite\GraphExtendSocialite@handle', ///// アバターの取得のために独自開発を行った場合
+            // 'SocialiteProviders\\Graph\\GraphExtendSocialite@handle', ///// 通常の取得の場合は、こちらをコメントアウトして記載
         ],
     ];
 
