@@ -173,7 +173,7 @@ $refresh_token = LoginService::getRefreshToken();
 
 
 ## 独自プロバイダ作成方法
-[Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
+(3)の手順を実施する場合、[Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
 また、アバター取得のための独自プロバイダを作成します。（任意）
 
 ### (必須)プロバイダ設定・追加
@@ -310,7 +310,33 @@ class EventServiceProvider extends ServiceProvider
 
 ~~~
 
-- [画面での設定](#画面での設定)を実施します。
+
+### (プロバイダにより必須)オプション設定の追加
+OAuthサインインのプロバイダにより、追加の設定を行う必要があります。  
+
+  
+例：[OKTA](https://github.com/SocialiteProviders/Okta)の場合
+- config/services.phpを開き、以下の記載を追加します。
+
+``` php
+'okta' => [    
+  'base_url' => env('OKTA_BASE_URL'), 
+],
+```
+
+- .envファイルを開き、以下の記載を追加します。
+
+```
+OKTA_BASE_URL='https://<OKTAのドメイン>'
+```
+
+> 本来、Socialiteでは、config/services.phpの"client_id", "client_secret", "redirect"の設定値を必須としており、ExmentのOAuth認証では、画面で設定した値を、自動的に付与するようになっています。  
+プロバイダ独自の設定値を入力したい場合は、config/services.phpに、上記のように値を追加するようにしてください。
+
+
+### (必須)画面設定の実施
+
+- すべてのサーバーサイドでの設定が完了したら、[画面での設定](#画面での設定)を実施します。
 
   
   
