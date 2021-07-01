@@ -1,6 +1,24 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.0 (2021/07/01)
+1. Addition of functions
+    - Added various functions of view
+        - Fixed so that you can narrow down by specifying the columns of the parent table and related table of the relation in "Data display condition" of the normal view and aggregate view (however, many-to-many relations are excluded).
+        - Fixed so that you can sort by specifying the column of the parent table of the relation and the related table in "Data sort" of the all view / normal view (however, many-to-many relations are excluded).
+        - Added "Specify" filter "item of view" in all view / normal view. The filter displayed at the top of the view will be able to display the specified columns. You can also narrow down the columns of the parent table and related table of the relationship.
+        
+    - In the public form "Set initial value from URL", in the custom columns "Choice (select from other tables)" "User" "Organization", you can set the initial value only with suuid (20-digit random character string) Add settings to do so. The setting method is [here] (/ja/publicform) "Custom column" Choice (select from other tables) ""User "" Organization ", the initial value can be set only with suuid (20-digit random character string) If you want to do so, please check"
+    - Fixed so that "Date" and "Date" columns of the parent table and related table of the relation can be specified in "Time elapsed" of the notification.
+    - Fixed so that the "Email" column of the parent table and related table can be specified when the "Email" column is selected in the "Implementation action" of the notification.
+1. Bug fix
+    - Fixed a bug that the revision function does not delete past revisions when the specified number of revisions is exceeded.
+    - Fixed a bug that past images may be deleted when multiple images are inserted in the custom column "Editor".
+    - Other minor corrections
+1. Other
+   - Added maximum character string control as a system in custom columns "Multi-line text" and "Editor". The default value is 63999 characters.
+    - We are making major internal refactorings and corrections to the acquisition of the data list. We spend a lot of time testing, but if you have any problems, please contact us via an issue on GitHub.
+
 ## v4.1.5 (2021/05/29)
 1. Addition of functions
     - Added an option to hide columns whose column item settings are "read-only" and "display-only" on the custom data details screen.
