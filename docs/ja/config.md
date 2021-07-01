@@ -289,6 +289,10 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueにすることで、カスタムデータの詳細画面で、「表示専用」に設定されている項目を非表示にします。
 
+#### カスタム列「複数行テキスト」「エディタ」の最大文字数
+- 設定キー : EXMENT_CHAR_LENGTH_LIMIT_COUNT
+- 既定値 : 63999
+- 役割 : システムとして設定できる、カスタム列「複数行テキスト」「エディタ」の最大文字数
 
 #### 論理削除を利用せず、常に物理削除を行う
 - 設定キー : EXMENT_DELETE_FORCE_CUSTOM_VALUE
@@ -403,6 +407,13 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 
 ### その他
+
+#### 公開フォームで、カスタム列「選択肢(他のテーブルから選択)」「ユーザー」「組織」で、suuid(20桁のランダム文字列)でのみ初期値をセットできるようにする
+
+- 設定キー : EXMENT_PUBLICFORM_URLPARAM_SUUID
+- 既定値 ： false
+- 役割 :詳細は[こちら](/ja/publicform)の「カスタム列「選択肢(他のテーブルから選択)」「ユーザー」「組織」で、suuid(20桁のランダム文字列)でのみ初期値をセットできるようにしたい場合」をご確認ください。
+
 
 #### HTTPレスポンス内の改行コード削除
 - 設定キー : EXMENT_REMOVE_RESPONSE_SPACE
