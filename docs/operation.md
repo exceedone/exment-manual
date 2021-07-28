@@ -120,7 +120,7 @@ Otherwise, you will only have a "fixed value" option.
 - ##### Update value
     - If "Fixed value" was selected as the update type, enter the value you want to update.  
     - If the custom column type of the target column is "Date", "Time", "Date and time", and "System value" is selected as the update type, "Execution date and time" is displayed as a choice.  
-    - If the custom column type of the target column is "User" and "System Value" is selected as the update type, "Login User" is displayed as a choice.  
+    - If the custom column type of the target column is "User" and "System Value" is selected as the update type, "Login User" and "Created user" are displayed as a choice.  
     - If the custom column type of the target column is "Organization" and "System Value" is selected as the update type, "Affiliation Organization" is displayed as a choice.  
 
 
@@ -130,6 +130,14 @@ Otherwise, you will only have a "fixed value" option.
 
 Specify the conditions for the data that can execute the registered update settings. You can execute the set update settings only when the conditions are met.  
 ※If you have not set any conditions, you can update all the data.
+
+
+### Input dialog settings
+
+![Data screen](img/operation/operation11.png)  
+
+A dialog will be displayed when the update is executed, and you can manually enter the update value for the target column.  
+※This can be selected only when "Update timing" is "When the check on the list screen is selected" or "When the button on the data details screen is pressed".
 
 
 
@@ -142,8 +150,13 @@ However, if "System Value" is selected as the update type, update as follows.
 
     - If the update value is "execution date and time", set the execution date and time when the update process was executed.
     - If the update value is "Login user", set the ID of the login user who performed the update process.
+    - If the update value is "Created user", set the ID of the user who created the data.
     - If the update value is "Affiliated organization", set the ID of the organization to which the logged-in user who performed the update process belongs.  
     ※If the logged-in user belongs to multiple organizations and the column to be updated is not set to "Allow multiple selection", the first organization will be saved in the target data.  
+
+- If the target table column is selected in the setting item "Input dialog setting", the dialog for inputting the update value is displayed.  
+
+![Data screen](img/operation/operation12.png)  
     
 ### Update conditions
 - Data that does not meet the conditions set in "Update conditions" cannot be updated.  
