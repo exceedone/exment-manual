@@ -7,6 +7,7 @@ Exmentの画面上で特定の操作を行った場合に実行され、値の�
 
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
+| loading | ロード開始時 | ページのロード処理の最初に、処理が起動します。 |
 | saving | 保存直前 | データの保存直前に、処理が起動します。 |
 | saved | 保存後 | データの保存後に、処理が起動します。 |
 | workflow_action_executing | ワークフロー実行直前 | ワークフロー実行の直前に、処理が起動します。 |
@@ -69,7 +70,7 @@ class Plugin extends PluginEventBase
 - Pluginクラスは、クラスPluginEventBaseを継承しています。  
 PluginEventBaseは、呼び出し元のカスタムテーブル$custom_table、テーブル値$custom_valueなどのプロパティを所有しており、  
 execute関数が呼び出された時点で、そのプロパティに値が代入されます。  
-プロパティの詳細については、[プラグインリファレンス](plugin_reference.md)をご参照ください。  
+プロパティの詳細については、[プラグインリファレンス](/ja/plugin_reference.md)をご参照ください。  
 
 ### zipに圧縮
 上記2ファイルを最小構成として、zipに圧縮します。  

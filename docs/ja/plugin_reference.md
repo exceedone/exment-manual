@@ -9,7 +9,10 @@
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | plugin | Plugin | プラグインのEloquentインスタンス |
+| pluginOptions | PluginOptionBase | プラグインの各種プロパティを格納するクラスインスタンス（PluginOptionBaseを継承する） |
 | useCustomOption | bool | プラグイン独自の設定を使用するかどうか。初期値はfalse |
+
+※ 従来はプラグインの種類ごとに抽象クラスにプロパティを直接定義していましたが、この方式ではユーザーが独自に定義したプロパティと名前の衝突を起こす可能性があります。そのため、v4.2.2以降はすべてのプロパティをpluginOptions内に定義することにしました。「$this->pluginOptions->プロパティ名」でアクセス可能です。また、既存のプロパティについては互換性を維持するため、今までどおりに利用できます。
 
 ### 関数一覧
 
@@ -242,9 +245,9 @@
 
 
 
-## PluginTriggerBase
-プラグイン(トリガー)の抽象クラスです。トリガープラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](/ja/plugin_quickstart_trigger)をご参照ください。
+## PluginEventBase
+プラグイン(イベント)の抽象クラスです。イベントプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_event)をご参照ください。
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -255,6 +258,13 @@
 | custom_table | CustomTable | カスタムテーブルのインスタンス |
 | custom_value | CustomValue | フォーム表示時、プラグイン呼び出す対象の、カスタムデータのEloquentインスタンス |
 | isCreate | bool | フォーム表示時、新規作成フォームかどうか |
+
+##### PluginOptionEvent（PluginOptionBaseを継承）
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| is_modal | bool | イベントが発生したページがモーダルフォームかどうか |
+| event_type | PluginEventType | イベントの種類 |
+| page_type | PluginPageType | イベントが発生したページの種類 |
 
 
 ### 関数一覧
