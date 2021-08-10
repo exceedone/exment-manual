@@ -96,7 +96,7 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 
 <VirtualHost *:80>
   DocumentRoot "C:/xampp/local/exment/public"
-  ServerName exment.localhost
+  ServerName exment.localapp
 </VirtualHost>
 
 <Directory "C:\xampp\local\exment\public">
@@ -111,14 +111,14 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 
 ~~~
 127.0.0.1       localhost
-127.0.0.1       exment.localhost
+127.0.0.1       exment.localapp
 ~~~
 
 - XAMPPコントロールパネルで、Apacheを再起動します。XAMPPコントロールパネルで、「Apache」行の「Stop」ボタンをクリック語、再度「Start」をクリックしてください。  
 ![XAMPPインストール画面](img/xampp/xampp7.png)
 
 - これにより、今後は以下のURLで、Exmentにアクセス出来るようになります。  
-http://exment.localhost/admin
+http://exment.localapp/admin
 
 ### Exmentインストール
 Exmentの[インストール手順](/ja/quickstart)に従って、Exmentのインストールを行います。  

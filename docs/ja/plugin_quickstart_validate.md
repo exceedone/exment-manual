@@ -22,12 +22,12 @@
 }
 ~~~
 
-- plugin_nameは、半角英数で記入してください。
-- uuidは、32文字列+ハイフンの、合計36文字の文字列です。プラグインを一意にするために使用します。  
+- plugin_name : 半角英数で記入してください。
+- uuid : 32文字列+ハイフンの、合計36文字の文字列です。プラグインを一意にするために使用します。  
 以下のURLなどから、作成を行ってください。  
 https://www.famkruithof.net/uuid/uuidgen
-- plugin_typeは、validatorと記入してください。  
-- target_tables : バリデーション対象のテーブル名を記入してください。  
+- plugin_type : validatorと記入してください。  
+- (任意)target_tables : バリデーション対象のテーブル名を記入してください。  
 
 
 ### PHPファイル作成
@@ -57,11 +57,22 @@ class Plugin extends PluginValidatorBase
                 return false;
             }
         }
+
         // 戻り値にtrue（正常）を返す
         return true;
+
+        
+        ///// (v3.7.5より追加)バリデーションを呼び出した実行元の種類を取得する場合。特定の呼び出し方でのみバリデーションを実施する場合などにご利用ください
+        \Log::debug($this->called_type);
+        ///// $this->called_typeの種類
+        // form : 画面
+        // api : API
+        // import : データインポート
+        // null : それ以外(他のプラグインなど)
     }
 }
 ~~~
+
 - namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 - プラグイン管理画面で設定した「対象テーブル」を保存する直前に、プラグインが呼び出され、Plugin.php内のvalidate関数を実行します。validate関数でtrueを返した場合、処理はそのまま続行します。falseを返した場合、処理を中断して、プロパティ$messagesに設定したエラーメッセージを画面に表示します。  

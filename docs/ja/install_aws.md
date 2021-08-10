@@ -298,6 +298,16 @@ sudo usermod -a -G apache ec2-user
 sudo chmod 2775 /var/www/exment && find /var/www/exment -type d -exec sudo chmod 2775 {} \;
 find /var/www -type f -exec sudo chmod 0664 {} \;
 sudo chown -R ec2-user:apache /var/www/exment
+sudo chown ec2-user:apache -R /var/www/exment/.env
+~~~
+
+- [かんたんインストール](/ja/quickstart)によってインストールを実行する場合は、追加で所有者・パーミッション設定を行います。  
+※インストール時のみ必要です。より厳密に権限設定する場合は、かんたんインストール実行後に、フォルダの書き込み権限を削除してください。
+
+~~~
+sudo chmod 775 -R /var/www/exment/app
+sudo chmod 775 -R /var/www/exment/config
+sudo chmod 775 -R /var/www/exment/public
 ~~~
 
 - MySQL接続し、データベースを作成します。
@@ -390,3 +400,8 @@ sudo systemctl restart php-fpm
 - ターゲットグループインスタンス : 作成したWebサーバー2種類を選択肢、「登録済」に追加
 
 設定完了後、ロードバランサーのDNS経由で、Webサーバーにアクセスできるようになります。
+
+
+### その他
+Amazon Elastic Load Balancingによって、リバースプロキシ設定が行われていた場合、以下の手順をご確認いただき、設定してください。  
+[リバースプロキシを採用している場合の設定](/ja/additional_reverse_proxy)

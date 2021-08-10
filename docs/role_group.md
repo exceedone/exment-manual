@@ -105,7 +105,11 @@ For example, there are the following usage methods.
 ##### Authority list
 - **Table management** : You can modify the table definition and form for the specified custom table.  
 In addition, it is the authority that can add, edit, and delete all data in the specified custom table.
-- **Views** : Allows you to manage system views for specified custom tables.
+- **Form** : You can add / edit / delete public form settings for the specified custom table.
+- **Public Form Management** : You can add / edit / delete public form settings for the specified custom table.  
+※ Displayed only when "Use public form" is set to YES in the system settings.  
+※ The form itself cannot be added / edited / deleted.  
+- **View** : Allows you to manage system views for specified custom tables.
 - **Edit All Data** : Permission to add, edit, and delete all data in the specified custom table.
 - **View All Data** : Permission to view all data in the specified custom table.
 ※ Data cannot be edited or deleted.
@@ -113,6 +117,12 @@ In addition, it is the authority that can add, edit, and delete all data in the 
 - **View assigned data** : This is the right to view the data set by the logged-in user as the assignee in the specified custom table.
 ※ Data cannot be edited or deleted.
 - **Data sharing** : Permissions that allow you to share data that you have permission to edit with other users and organizations.
+- **Data import**  
+Permission to import data from a csv or Excel file into a specified custom table.  
+- **Data export**  
+Permission to export the data of the specified custom table to a file in csv format or Excel format.  
+- **Show Trashed Data**  
+Permission to redisplay the logically deleted data. ※ To restore data, you need edit permission for the data.  
 
 ### User / organization setting method
 How to change the settings of users and organizations that belong to role groups.

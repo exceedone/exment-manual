@@ -28,7 +28,7 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 
 ~~~
 yum -y update
-yum install -y wget firewalld unzip
+yum install -y wget firewalld unzip git
 ~~~
 
 
@@ -118,6 +118,9 @@ extension=mysqli.so
 extension=pdo.so
 extension=pdo_mysql.so
 extension_dir=/usr/lib64/php/modules/
+
+#以下の記述が含まれていれば、値を変更、もしくは追加
+safe_mode=Off
 ~~~
 
 - httpd.confを修正します。
@@ -155,8 +158,18 @@ cd exment
 
 ~~~
 chown apache:apache -R /var/www/exment
+chown apache:apache -R /var/www/exment/.env
 chmod 775 -R /var/www/exment/storage
 chmod 775 -R /var/www/exment/bootstrap/cache
+~~~
+
+- [かんたんインストール](/ja/quickstart)によってインストールを実行する場合は、追加で所有者・パーミッション設定を行います。  
+※インストール時のみ必要です。より厳密に権限設定する場合は、かんたんインストール実行後に、フォルダの書き込み権限を削除してください。
+
+~~~
+chmod 775 -R /var/www/exment/app
+chmod 775 -R /var/www/exment/config
+chmod 775 -R /var/www/exment/public
 ~~~
 
 - (推奨)ログインユーザーを、apacheグループに追加します。この設定を行うことで、ログインユーザーが、自由にexmentフォルダ内のファイルを編集することができます。SSH再接続後、グループは反映されます。  
@@ -170,89 +183,8 @@ usermod -aG apache ec2-user
 
 ### MySQL(任意)
 任意の設定内容になります。MySQLサーバーを別に構築すると想定し、MySQLをインストールする場合の手順です。  
-Webサーバー側の手順と、MySQLサーバー側の手順を記載します。  
-※AWS RDSサービスを使用する場合など、外部サービスを使用する場合は、MySQLサーバー側の手順は不要です。
+※AWS RDSサービスを使用する場合など、外部サービスを使用する場合は、MySQLサーバー側の手順は不要です。  
+※[こちら](/ja/install_mysql)に移動しました。
 
-#### MySQLサーバー側
-- MySQL5.7をインストールし起動します。
-~~~
-rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
-yum -y install mysql-community-server
-systemctl enable mysqld.service
-systemctl start mysqld.service
-~~~
-
-- MySQLの初期パスワードを確認します。
-
-~~~
-cat /var/log/mysqld.log | grep password
-
-#以下のようなログが出力されるので、パスワードを確認する
-2016-09-01T13:09:03.337119Z 1 [Note] A temporary password is generated for root@localhost: uhsd!XXXXXX
-~~~
-
-- (任意)パスワードポリシーを無効化します。
-
-~~~
-vi /etc/my.cnf
-
-#以下のvalidate-passwordを追加
-[mysqld]
-validate-password=OFF
-~~~
-
-
-- mysqlを再起動します。
-~~~
-systemctl restart mysqld.service
-~~~
-
-- mysqlの初期設定を行います。以下のコマンドを実行します。
-
-~~~
-mysql_secure_installation
-
-Enter password for user root: (先ほどコピーしたパスワードを入力)
-
-New password: (新しいパスワードを入力)
-Re-enter new password: (新しいパスワードを入力)
-
-Change the password for root? : y
-
-Remove anonymous users? : y #匿名ユーザーアカウントを削除
-Disallow root login remotely? : y # ローカルホスト以外からアクセス可能な root アカウントを削除
-Remove test database and access to it? : y # test データベースの削除
-Reload privilege tables now? : y #privilegeテーブルを再読込
-~~~
-
-- MySQLにログインします。
-
-~~~
-mysql -u root -p(パスワード)
-~~~
-
-- Exment用のデータベースと、ユーザーを作成します。  
-※ここでは、データベース名を「exment_database」、ユーザーを「exment_user」とします。  
-また、接続元のIPアドレスを「192.168.137.%」とします。
-
-~~~
-CREATE DATABASE exment_database;
-CREATE USER 'exment_user'@'192.168.137.%' IDENTIFIED BY '(exment_user用のパスワード)';
-GRANT ALL ON exment_database.* TO exment_user identified by '(exment_user用のパスワード)';
-FLUSH PRIVILEGES;
-~~~
-
-- ファイアウォール設定で、接続元のIPアドレスからのMySQLアクセスのみ許可します。  
-※ここでは、接続元のIPアドレスを「192.168.137.%」とします。
-
-~~~
-firewall-cmd --permanent --new-zone=from_webserver
-firewall-cmd --reload
-firewall-cmd --permanent --zone=from_webserver --add-source="192.168.137.0/24"
-firewall-cmd --permanent --zone=from_webserver --add-port=3306/tcp
-firewall-cmd --zone=from_webserver --add-service=mysql
-firewall-cmd --reload
-~~~
-
-### Redis
+### Redis(任意)
 ※[こちら](/ja/additional_session_cache_driver)に移動しました。

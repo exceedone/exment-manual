@@ -4,7 +4,7 @@ This page describes the procedure for building an Exment on the rental server.
 
 ## Points to note when building on a rental server
 - Exment requires the following environment.
-    1. PHP 7.1.3 or higher  
+    1. PHP 7.2.0 or higher  
     1. MySQL 5.7.8 or higher, less than 8.0.0  
 or MariaDB 10.2.7 or higher  
   <span class="red">Especially the MySQL version may not meet the requirements depending on the rental server.  

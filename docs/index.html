@@ -42,6 +42,7 @@
       loadSidebar: true,
       auto2top: true,
       noEmoji: true,
+      executeScript: true,
       subMaxLevel: 2,
       nameLink: {
         '/ja': '#/ja/',
@@ -67,7 +68,9 @@
       },
 
       requestHeaders: {
-        'cache-control': 'no-store',
+        'cache-control': 'no-cache',
+        'Pragma': 'no-cache',
+        'If-Modified-Since': 'Thu, 01 Jun 1970 00:00:00 GMT',
       },
     };
   </script>

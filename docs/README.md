@@ -7,16 +7,22 @@
 Exment is open source software for managing information assets on the Web.  
 <a href="https://en.exment.net" target="_blank">Exment official site</a>
 
-## Demo site list
-Various demo sites are available to suit your business. Please check the
-<a href="https://exment.net/demo-env" target="_blank">demo site list.</a>
+## Installation method
+Please check [here] (/quickstart) for the installation method.
 
-## Contact Us
-If you have any questions about this manual or the installation procedure, please feel free to [contact us](https://exment.net/inquiry) for free.
+## Demo site
+Demo site is available to suit your business. Please check the
+<a href="https://demo.exment.net/admin" target="_blank">demo site.</a>  
+Then please enter  
+Usercode：admin  
+Password：adminadmin
+
 
 ## Features / Screenshots
 Please check<a href="https://exment.net/functions" target="_blank">the functions and screenshots.</a>
 
+## Update history / release notes
+Please check <a href="https://exment.net/docs/#/release_note"> Release Notes </a>.
 
 ## Manual menu
 Menus marked with " <span style="color:red;">*</span> " are particularly important.
@@ -86,11 +92,27 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/quickstart_more">
+                    <div class="tile-inner">
+                        <h5>Email sending settings</h5>
+                        <p>This is the procedure for sending an email to a user. It also describes the procedure for sending a test email.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>
         <h4>3. Login settings</h4>
         <div class="row">
+            <div class="col-sm-6 tile">
+                <a href="#/login_2factor">
+                    <div class="tile-inner">
+                        <h5>Login settings</h5>
+                        <p>Make various login settings when logging in to Exment.</p>
+                    </div>
+                </a>
+            </div>
             <div class="col-sm-6 tile">
                 <a href="#/sso">
                     <div class="tile-inner">
@@ -160,6 +182,14 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/operation">
+                    <div class="tile-inner">
+                        <h5>Data update event settings</h5>
+                        <p>The column value is updated when new data is created or updated, or when a button is clicked.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>
@@ -198,6 +228,22 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/data_cmd_import_export">
+                    <div class="tile-inner">
+                        <h5>Data import / export (command)</h5>
+                        <p>Execute data import / export from the command.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/data_bulk_insert">
+                    <div class="tile-inner">
+                        <h5>Data import (large amount of data)</h5>
+                        <p>Register CSV data in a batch in the target table. We support a large amount of data.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/search">
                     <div class="tile-inner">
                         <h5>Data search</h5>
@@ -210,6 +256,14 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
     <div>
         <h4>6. User / Organization / Role Authority</h4>
         <div class="row">
+        <div class="col-sm-6 tile">
+                <a href="#/permission">
+                    <div class="tile-inner important-topic">
+                        <h5>Overview of roles and authorities</h5>
+                        <p>This is an overview of roles and authorities in Exment.</p>
+                    </div>
+                </a>
+            </div>
             <div class="col-sm-6 tile">
                 <a href="#/user">
                     <div class="tile-inner important-topic">
@@ -231,6 +285,14 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                     <div class="tile-inner">
                         <h5>Role group / Authority</h5>
                         <p>Settings that allow only certain users to manage certain data and pages.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/multiuser">
+                    <div class="tile-inner">
+                        <h5>Settings for external portal sites</h5>
+                        <p>This is recommended when you want to set "Display only the organization to which the logged-in user belongs and the user who belongs to it" when displaying the user / organization on the data list screen or edit screen.</p>
                     </div>
                 </a>
             </div>
@@ -351,14 +413,6 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
         <h4>10. Reference</h4>
         <div class="row">
             <div class="col-sm-6 tile">
-                <a href="#/release_note">
-                    <div class="tile-inner">
-                        <h5>Release notes</h5>
-                        <p>Past release history.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 tile">
                 <a href="#/params">
                     <div class="tile-inner">
                         <h5>Parameter variables</h5>
@@ -383,6 +437,14 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/column_reference">
+                    <div class="tile-inner">
+                        <h5>Custom column reference</h5>
+                        <p>It is a reference when you get and set the column value with the specification details of the custom column and the plug-in.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/plugin_reference">
                     <div class="tile-inner">
                         <h5>Plugin reference</h5>
@@ -399,10 +461,42 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/command">
+                    <div class="tile-inner">
+                        <h5>Command list</h5>
+                        <p>A list of commands that can be executed by Exment.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/release_note">
+                    <div class="tile-inner">
+                        <h5>Release notes</h5>
+                        <p>Past release history.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/patch_weakness">
+                    <div class="tile-inner">
+                        <h5>Patch / Vulnerability List</h5>
+                        <p>This is a list of past bugs that need to be dealt with manually and vulnerabilities that have occurred in the past.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/license">
                     <div class="tile-inner">
                         <h5>license</h5>
                         <p>Open source library used in Exment.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/troubleshooting">
+                    <div class="tile-inner">
+                        <h5>trouble shooting</h5>
+                        <p>We answer problems with Exment and frequently asked technical questions about Exment.</p>
                     </div>
                 </a>
             </div>

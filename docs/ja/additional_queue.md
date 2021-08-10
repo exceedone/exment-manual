@@ -14,7 +14,7 @@ Exmentでは、通常はすべての処理を同期実行していますが、�
 そのため、キューワーカの監視を行うなど、細心の注意をはらうよう、お願いします。
 - 処理は遅延実行されるため、画面から通知の実行を呼び出したタイミングでは、「通知が成功したか」「失敗したか」ということをキャッチすることができません。  
 そのため、実際には通知が失敗していても、「通知が実行されました！」というメッセージが表示される場合があります。
-- キュー処理の詳細は、[Laravelマニュアル](https://readouble.com/laravel/5.6/ja/queues.html)をご参照ください。
+- キュー処理の詳細は、[Laravelマニュアル](https://readouble.com/laravel/6.x/ja/queues.html)をご参照ください。
 
 
 ## 設定手順
@@ -38,7 +38,7 @@ php artisan migrate
 - 以下のコマンドを実行します。  
 このコマンドを実行した場合、皆さんが停止するか、ターミナルを閉じるまで実行し続けることに注意してください。
 
-> バックグランドでqueue:workプロセスを永続的に実行し続けるには、キューワーカが止まらずに実行し続けていることを確実にするため、[Supervisor](https://readouble.com/laravel/5.6/ja/queues.html#supervisor-configuration)のようなプロセスモニタを利用する必要があります。
+> バックグランドでqueue:workプロセスを永続的に実行し続けるには、キューワーカが止まらずに実行し続けていることを確実にするため、[Supervisor](https://readouble.com/laravel/6.x/ja/queues.html#supervisor-configuration)のようなプロセスモニタを利用する必要があります。
 
 ```
 php artisan queue:work

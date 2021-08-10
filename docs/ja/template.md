@@ -72,11 +72,7 @@ Exmentで用意しているテンプレート、もしくは過去にアップ�
 それにより、テンプレートで定義しているテーブル・フォーム・ビュー・ダッシュボードなどの情報が、システムにインストールされます。
 
 
-<h3 id="import-excel">
-    <a href="#/ja/templae?id=import-excel" data-id="import-excel" class="anchor">
-        <span>インポート - Excelテンプレート</span>
-    </a>
-</h3>
+<h3 id="import-excel"><a href="#/ja/template?id=import-excel" data-id="import-excel" class="anchor"><span>インポート - Excelテンプレート</span></a></h3>
 
 Excelテンプレートファイルに、必要事項を記入し、テーブル設定などをインポートすることができます。  
 画面から1からテーブルを作成する場合と比較し、一括で複数のテーブルなどを作成できます。
@@ -108,6 +104,10 @@ Excelテンプレートファイルに、必要事項を記入し、テーブル
 
 - カスタム列のうち、「計算式」の設定は対応しておりません。  
 こちらの設定は、画面から設定を行ってください。
+
+- <span class="red">カスタム列で、「ユーザー」「組織」列を追加する場合は、シート「custom_columns」のD列「column_type：列種類」を、「user」「organization」と記入を行ってください。</span>  
+D列「column_type：列種類」を「select_table」に、AD列「options.select_target_table_name：選択肢(対象テーブル名を入力) 」を「user」「organization」にすると、正常に動作しません。  
+なお、すでに取込済だった場合、[こちら](/ja/patch/select_table_user_org)で、更新を行ってください。
 
 - Excelファイルの、各シート名は変更しないでください。また、Excel列の追加も行わないでください。  
 (シートの追加は問題ございません。)

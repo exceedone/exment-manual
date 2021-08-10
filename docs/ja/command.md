@@ -38,35 +38,53 @@ php artisan exment:publish
 データのエクスポートをコマンドから実行します。  
 詳細は[こちら](/ja/data_cmd_import_export#データエクスポート)をご確認ください。
 
-~~~
+```
 php artisan exment:export (テーブル名)
-~~~
+```
 
 ### データエクスポート(chunkモード)
 データのエクスポート(chunkモード、分割出力)をコマンドから実行します。  
 詳細は[こちら](/ja/data_cmd_import_export#export_chunk)をご確認ください。
 
-~~~
+```
 php artisan exment:chunkexport (テーブル名)
-~~~
+```
 
 
 ### データインポート
 データのインポートをコマンドから実行します。  
 詳細は[こちら](/ja/data_cmd_import_export#データインポート)をご確認ください。
 
-~~~
+```
 php artisan exment:import {フォルダ名}
-~~~
+```
+
+
+### データインポート - 画像・ファイル列の添付ファイル取込
+Exmentのカスタム列種類「画像」「ファイル」列に、添付ファイルを一括で登録することができます。  
+詳細は[こちら](/ja/data_cmd_import_export#import_file)をご確認ください。
+
+```
+php artisan exment:file-import {フォルダ名}
+```
+
+
+### データインポート - ドキュメント(添付ファイル)一覧
+指定のカスタムデータの、ドキュメント(添付ファイル)に、ファイルを一括で登録することができます。  
+詳細は[こちら](/ja/data_cmd_import_export#import_document)をご確認ください。
+
+```
+php artisan exment:document-import {フォルダ名}
+```
 
 
 ### 大量データ一括投入
 大量データ一括投入を、コマンドから行います。  
 詳細は[こちら](/ja/data_bulk_insert)をご確認ください。
 
-~~~
+```
 php artisan exment:bulkinsert {フォルダ名}
-~~~
+```
 
 
 ### カスタムデータのリフレッシュ
@@ -74,9 +92,9 @@ Exmentに登録している、カスタムデータを、リフレッシュ(一�
 テーブル定義のみ残し、テストデータを削除する場合などにご利用ください。  
 詳細は[こちら](/ja/refresh_data)をご確認ください。
 
-~~~
+```
 php artisan exment:refreshdata
-~~~
+```
 
 
 ### カスタムデータのリフレッシュ(指定のテーブル)
@@ -84,9 +102,9 @@ Exmentに登録している、カスタムデータのうち、指定のテー�
 テーブル定義のみ残し、テストデータを削除する場合などにご利用ください。  
 詳細は[こちら](/ja/refresh_data)をご確認ください。
 
-~~~
+```
 php artisan exment:refreshtable (テーブル名)
-~~~
+```
 
 
 
@@ -118,23 +136,39 @@ php artisan exment:restore (zipファイル名)
 Exmentに登録しているバッチを実行します。  
 詳細は[こちら](/ja/plugin_quickstart_batch)をご確認ください。
 
-~~~
+```
 php artisan exment:batch 1
-~~~
+```
 
 
 ### スケジュール実行
 Exmentに登録しているスケジューラに従い、ジョブを実行します。  
 詳細は[こちら](/ja/additional_task_schedule)をご確認ください。
 
-~~~
+```
 php artisan exment:schedule
-~~~
+```
 
+
+### 通知(時間の経過)を実行
+通知の実施トリガー「時間の経過」で設定している通知を、「通知時間」設定よらずに、即時実行します。  
+詳細は[こちら](/ja/notify)をご確認ください。
+
+```
+php artisan exment:notify {id?} {--name=}
+```
 
 
 
 ## その他、開発用
+
+### Exmentバージョン
+現在インストールされている、Exmentのバージョンを表示します。
+
+```
+php artisan exment:version
+```
+
 
 ### パスワードリセット
 Exmentのログインパスワードリセットを、コマンドから実行します。  
@@ -180,3 +214,11 @@ php artisan exment:patchdata {実施アクション}
 ```
 
 
+
+### データベースの接続確認
+データベースに接続されているかどうかの確認を行います。  
+接続されている場合は1を、未接続の場合は0を返却します。
+
+```
+php artisan exment:check-connection
+```

@@ -105,7 +105,7 @@ Please set according to the following procedure.
 
 <VirtualHost *:80>
   DocumentRoot "/Applications/XAMPP/local/exment/public"
-  ServerName exment.localhost
+  ServerName exment.localapp
 </VirtualHost>
 
 <Directory "/Applications/XAMPP/local/exment/public">
@@ -145,7 +145,7 @@ Edit the hosts file. Add the following items.
 
 ~~~
 127.0.0.1       localhost
-127.0.0.1       exment.localhost
+127.0.0.1       exment.localapp
 ~~~
 
 - Restart Apache in the XAMPP control panel.  

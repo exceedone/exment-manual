@@ -9,7 +9,7 @@ These are the steps required to start Exment.
 - For other inquiries, please feel free to [contact us](https://exment.net/inquiry) for free.
 
 ## Server settings
-Exment requires PHP7.1.3 or higher. Also, MySQL 5.7.8 or more and less than 8.0.0 or MariaDB 10.2.7 or more is required.  
+Exment requires PHP7.2.0 or higher. Also, MySQL 5.7.8 or more and less than 8.0.0 or MariaDB 10.2.7 or more is required.  
 XAMPP is recommended when building an environment with PHP, Apache, and MySQL as a development environment from the beginning.  
 Please refer to [here](/install_xampp) for server settings.  
 ※ If you already have an environment, this setting is not required.
@@ -25,10 +25,10 @@ Exment requires the introduction of composer. Please refer here for the introduc
 ## Laravel installation (project creation)
 - At the command line, execute the following command:  
 ※ The folder of the created project is called "root directory" in this manual.  
-※ Exment is currently only available for version 5.6. Please do not install on any other version.  
+※ Exment is currently only available for version 6.X. Please do not install on any other version.  
 
 ~~~
-composer create-project "laravel/laravel=5.6.*" (Project name)
+composer create-project "laravel/laravel=6.*" (Project name)
 cd (Project name)
 ~~~
 

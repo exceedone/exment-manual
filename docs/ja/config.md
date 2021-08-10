@@ -35,6 +35,13 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/quickstart_more?id=urlに含む「admin」の変更・削除)をご確認ください。
 
 
+#### 公開フォームの「/publicform」URI変更
+
+- 設定キー : EXMENT_PUBLICFORM_ROUTE_PREFIX
+- 既定値 ： publicform
+- 役割 : 公開フォームを表示する際のパス名です。詳細は[こちら](/ja/publicform)の「URLに含む「publicform」の変更」をご確認ください。
+
+
 #### キャッシュを有効にする
 - 設定キー : EXMENT_USE_CACHE
 - 既定値 ： false
@@ -53,6 +60,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : データ保存時に保持する更新履歴の、デフォルト値です。新規にテーブルを作成する際に使用します。
 
 
+#### Composerパス
+- 設定キー : EXMENT_COMPOSER_PATH
+- 既定値 : (なし)
+- 役割 : composerコマンドのパスです。特に指定がない場合、環境変数PATHが通っているものとします。
+
+
 #### MySQLパス
 - 設定キー : EXMENT_MYSQL_BIN_DIR
 - 既定値 : (なし)
@@ -66,16 +79,34 @@ EXMENT_FILTER_SEARCH_FULL=true
 <span class="red">※設定値の変更は、自己責任で行ってください。開発元では、21件以上での動作確認を行っておりません。</span>
 
 
+#### リバースプロキシを許可するIP
+- 設定キー : ADMIN_TRUST_PROXY_IPS
+- 既定値 : なし
+- 役割 : 詳細は[こちら](/ja/additional_reverse_proxy)をご確認ください。
+
+
+#### リバースプロキシの判別ヘッダー
+- 設定キー : ADMIN_TRUST_PROXY_HEADERS
+- 既定値 : なし
+- 役割 : 詳細は[こちら](/ja/additional_reverse_proxy)をご確認ください。
+
+
+#### Exment標準のエラーハンドリングを無効化
+- 設定キー : EXMENT_DISABLE_EXMENT_EXCEPTION_HANDLER
+- 既定値 : false
+- 役割 : trueにすることで、Exmentパッケージで付与しているエラーハンドリングを無効化します。
+
+
 ### ログイン
 #### デフォルトログインプロバイダ表示
 - 設定キー : EXMENT_SHOW_DEFAULT_LOGIN_PROVIDER
 - 既定値 : true
-- 役割 : ExmentのID・パスワードを使用したログインフォームを表示するかどうかを切り替えます。シングルサインオンを使用する場合に設定が有効になります。詳細は[こちら](/ja/quickstart_more?id=シングルサインオン)をご確認ください。
+- 役割 : ExmentのID・パスワードを使用したログインフォームを表示するかどうかを切り替えます。シングルサインオンを使用する場合に設定が有効になります。詳細は[こちら](/ja/login_sso)をご確認ください。
 
 #### SSOログインプロバイダ文字列
 - 設定キー : EXMENT_LOGIN_PROVIDERS
 - 既定値 : (なし)
-- 役割 : SSOで使用するプロバイダ名一覧を、カンマ区切りで設定します。詳細は[こちら](/ja/quickstart_more?id=シングルサインオン)をご確認ください。
+- 役割 : SSOで使用するプロバイダ名一覧を、カンマ区切りで設定します。詳細は[こちら](/ja/login_sso)をご確認ください。
 
 
 #### ログイン失敗回数計測
@@ -248,6 +279,25 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : 5
 - 役割 : カスタムデータの添付ファイルのフォームで、1度にアップロードできる件数です。
 
+#### カスタムデータの詳細画面で、「読み取り専用」フィールドを表示しないようにする
+- 設定キー : EXMENT_DISABLE_SHOW_FIELD_READONLY
+- 既定値 : false
+- 役割 : trueにすることで、カスタムデータの詳細画面で、「読み取り専用」に設定されている項目を非表示にします。
+
+#### カスタムデータの詳細画面で、「表示専用」フィールドを表示しないようにする
+- 設定キー : EXMENT_DISABLE_SHOW_FIELD_VIEWONLY
+- 既定値 : false
+- 役割 : trueにすることで、カスタムデータの詳細画面で、「表示専用」に設定されている項目を非表示にします。
+
+#### カスタム列「複数行テキスト」「エディタ」の最大文字数
+- 設定キー : EXMENT_CHAR_LENGTH_LIMIT_COUNT
+- 既定値 : 63999
+- 役割 : システムとして設定できる、カスタム列「複数行テキスト」「エディタ」の最大文字数
+
+#### 論理削除を利用せず、常に物理削除を行う
+- 設定キー : EXMENT_DELETE_FORCE_CUSTOM_VALUE
+- 既定値 : false
+- 役割 : trueにすることで、カスタムデータの論理削除を使用せず、常に物理削除を実施します。
 
 
 ### 組織設定
@@ -335,8 +385,35 @@ EXMENT_FILTER_SEARCH_FULL=true
 ```
 
 
+### ファイル
+
+#### 添付ファイルを、アップロード者以外が削除できないようにする
+- 設定キー : EXMENT_FILE_DELETE_USERONLY
+- 既定値 : false
+- 役割 : trueにすることで、データ詳細画面でアップロードされているファイルは、アップロード者以外は削除できないようになります。
+
+#### ファイルのドラッグ＆ドロップの無効
+- 設定キー : EXMENT_FILE_DRAG_DROP_DISABLED
+- 既定値 : false
+- 役割 : trueにすることで、カスタム列のファイル・画像列などのドラッグ＆ドロップ表示項目を無効にします。
+
+#### 添付ファイルをクリックした時に、ブラウザ上で表示する拡張子の変更
+- 設定キー : EXMENT_FILE_DOWNLOAD_INLINE_EXTENSIONS
+- 既定値 : なし
+- 役割 : 添付ファイルをクリックした時に、ブラウザ上で表示する拡張子を、ドットなしで、拡張子区切りで記載します。(例：png,jpg,gif)  
+- その他特記事項 : ファイルクリックの挙動について、以前は全ファイルをブラウザ上で表示していましたが、[脆弱性の指摘](/ja/weakness/20200819_2)を受け、添付ファイルはダウンロードする形式にしています。  
+上記のような背景がありますので、<span class="red">この設定は、自己責任でお願いします。</span>
+
+
 
 ### その他
+
+#### 公開フォームで、カスタム列「選択肢(他のテーブルから選択)」「ユーザー」「組織」で、suuid(20桁のランダム文字列)でのみ初期値をセットできるようにする
+
+- 設定キー : EXMENT_PUBLICFORM_URLPARAM_SUUID
+- 既定値 ： false
+- 役割 :詳細は[こちら](/ja/publicform)の「カスタム列「選択肢(他のテーブルから選択)」「ユーザー」「組織」で、suuid(20桁のランダム文字列)でのみ初期値をセットできるようにしたい場合」をご確認ください。
+
 
 #### HTTPレスポンス内の改行コード削除
 - 設定キー : EXMENT_REMOVE_RESPONSE_SPACE
@@ -356,17 +433,6 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueにすることで、データ詳細画面で、フォーム設定で「隠しフィールド」になっているデータを非表示にします。
 
-#### 添付ファイルを、アップロード者以外が削除できないようにする
-- 設定キー : EXMENT_FILE_DELETE_USERONLY
-- 既定値 : false
-- 役割 : trueにすることで、データ詳細画面でアップロードされているファイルは、アップロード者以外は削除できないようになります。
-
-#### ファイルのドラッグ＆ドロップの無効
-- 設定キー : EXMENT_FILE_DRAG_DROP_DISABLED
-- 既定値 : false
-- 役割 : trueにすることで、カスタム列のファイル・画像列などのドラッグ＆ドロップ表示項目を無効にします。
-
-
 
 
 ### デバッグ・開発者向け
@@ -377,8 +443,14 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : trueにすることで、より柔軟で、システムに詳しい方向けの設定を行うことができるようになります。
 
 
+#### デバッグモード(リクエスト値出力)
+- 設定キー : EXMENT_DEBUG_MODE_REQUEST
+- 既定値 ： false
+- 役割 : trueにすることで、ExmentのWebサービスへのリクエスト値をログ出力します。  
+
+
 #### デバッグモード(SQLログ出力)
-- 設定キー : EXMENT_DEBUG_MODE
+- 設定キー : EXMENT_DEBUG_MODE_SQL
 - 既定値 ： false
 - 役割 : trueにすることで、ExmentでSQLを実行時、SQL文をログ出力することができます。※開発用です。
 
@@ -386,4 +458,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### デバッグモード(SQLログ出力 - 関数表示)
 - 設定キー : EXMENT_DEBUG_MODE_SQLFUNCTION
 - 既定値 ： false
-- 役割 : ExmentでSQLを実行時で、「EXMENT_DEBUG_MODE」がtrueのときに、trueにすることで、SQL文と同時に、呼び出し元の関数一覧をログ出力することができます。※開発用です。
+- 役割 : ExmentでSQLを実行時で、「EXMENT_DEBUG_MODE_SQL」がtrueのときに、trueにすることで、SQL文と同時に、呼び出し元の関数一覧をログ出力することができます。※開発用です。
+
+
+#### デバッグモード(スケジューリングログ出力)
+- 設定キー : EXMENT_DEBUG_MODE_SCHEDULE
+- 既定値 ： false
+- 役割 : スケジューリング実施時に、trueにすることで、スケジューリング定義や実行の途中経過を確認することができます。詳細は[こちら](/ja/additional_task_schedule)の「うまく動作しない場合の検証」をご確認ください。※検証用です。
+
