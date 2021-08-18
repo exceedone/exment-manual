@@ -9,7 +9,10 @@
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | plugin | Plugin | プラグインのEloquentインスタンス |
+| pluginOptions | PluginOptionBase | プラグインの各種プロパティを格納するクラスインスタンス（PluginOptionBaseを継承する） |
 | useCustomOption | bool | プラグイン独自の設定を使用するかどうか。初期値はfalse |
+
+※ 従来はプラグインの種類ごとに抽象クラスにプロパティを直接定義していましたが、この方式ではユーザーが独自に定義したプロパティと名前の衝突を起こす可能性があります。そのため、v4.X.X以降はすべてのプロパティをpluginOptions内に定義することにしました。「$this->pluginOptions->プロパティ名」でアクセス可能です。また、既存のプロパティについては互換性を維持するため、今までどおりに利用できます。
 
 ### 関数一覧
 
@@ -31,6 +34,38 @@
 
 
 
+## PluginApiBase
+プラグイン(API)の抽象クラスです。APIプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_api)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+
+##### プロパティ
+なし
+
+### 関数一覧
+
+#### getRouteUri
+独自のAPIのエンドポイントを取得します。
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $endpoint | string | 追加するエンドポイントURL。初期値はnull |
+
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| string | 独自のAPIのエンドポイント |
+
+
+---
+
+
+
+
 ## PluginBatchBase
 プラグイン(バッチ)の抽象クラスです。バッチプラグインを開発する場合、こちらのクラスを継承してください。  
 詳細は[こちら](/ja/plugin_quickstart_batch)をご参照ください。
@@ -44,13 +79,59 @@
 ### 関数一覧
 
 #### execute
-バッチを実行します。実行したい処理は、こちらの関数内に記載してください。
+バッチを実行します。実行したい処理を、こちらの関数内に記載してください。
 
 ##### 引数
 なし
 
 ##### 戻り値
 なし
+
+---
+
+
+
+
+## PluginButtonBase
+プラグイン(ボタン)の抽象クラスです。ボタンプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_button)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+
+##### プロパティ
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_table | CustomTable | カスタムテーブルのインスタンス |
+| custom_value | CustomValue | 詳細画面でボタンが押下された場合に、そのページのカスタムデータのEloquentインスタンス |
+| selected_custom_values | array | 一覧画面でボタンが押下された場合に、選択されたカスタムデータのEloquentインスタンスの配列 |
+
+
+### 関数一覧
+
+#### execute
+バッチを実行します。実行したい処理を、こちらの関数内に記載してください。
+
+##### 引数
+なし
+
+##### 戻り値
+なし
+
+---
+
+#### render
+ボタンを独自に描画します。  
+特殊な見た目にする場合や固有のスクリプトを埋め込む場合は、こちらの関数内に記載してください。
+
+##### 引数
+なし
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| string,Renderable | 独自に描画したボタン |
+
 
 ---
 
@@ -177,6 +258,122 @@
 
 
 
+## PluginEventBase
+プラグイン(イベント)の抽象クラスです。イベントプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_event)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+
+##### プロパティ
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_table | CustomTable | カスタムテーブルのインスタンス |
+| custom_value | CustomValue | カスタムデータのEloquentインスタンス（カスタムデータに関わらないイベントの時はnull） |
+| isCreate | bool | 新規作成フォームかどうか |
+
+##### PluginOptionEvent（PluginOptionBaseを継承）
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| is_modal | bool | イベントが発生したページがモーダルフォームかどうか |
+| event_type | PluginEventType | イベントの種類 |
+| page_type | PluginPageType | イベントが発生したページの種類 |
+
+
+### 関数一覧
+
+#### execute
+バッチを実行します。実行したい処理は、こちらの関数内に記載してください。
+
+##### 引数
+なし
+
+##### 戻り値
+なし
+
+---
+
+
+
+## PluginExportBase
+プラグイン(エクスポート)の抽象クラスです。エクスポートプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_export)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+
+##### プロパティ
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_table | CustomTable | カスタムテーブルのインスタンス |
+
+
+### 関数一覧
+
+#### defaultProvider
+既定のエクスポートプロバイダーを設定する関数です。  
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| default_provider | ProviderBase | エクスポートプロバイダーのインスタンス |
+
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| PluginExportBase | 本クラスのインスタンス |
+
+---
+
+#### viewProvider
+ビュープロバイダーを設定する関数です。  
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| view_provider | ProviderBase | エクスポート用のビュープロバイダーのインスタンス |
+
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| PluginExportBase | 本クラスのインスタンス |
+
+---
+
+
+#### execute
+エクスポート処理として呼び出される関数です。  
+こちらの関数に、エクスポート処理を実装してください。
+
+##### 引数
+なし
+
+##### 戻り値
+なし
+
+---
+
+
+#### getFileName
+エクスポート処理の結果としてダウンロードされるファイルの名前を設定する関数です。  
+
+##### 引数
+なし
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| string | エクスポート結果のダウンロードファイル名 |
+
+
+---
+
+
+
+
+
 
 ## PluginImportBase
 プラグイン(インポート)の抽象クラスです。インポートプラグインを開発する場合、こちらのクラスを継承してください。  
@@ -242,37 +439,6 @@
 
 
 
-## PluginTriggerBase
-プラグイン(トリガー)の抽象クラスです。トリガープラグインを開発する場合、こちらのクラスを継承してください。  
-詳細は[こちら](/ja/plugin_quickstart_trigger)をご参照ください。
-
-- namespace Exceedone\Exment\Services\Plugin
-- trait Exceedone\Exment\Services\Plugin\PluginBase
-
-##### プロパティ
-| 名前 | 種類 | 説明 |
-| ---- | ---- | ---- |
-| custom_table | CustomTable | カスタムテーブルのインスタンス |
-| custom_value | CustomValue | フォーム表示時、プラグイン呼び出す対象の、カスタムデータのEloquentインスタンス |
-| isCreate | bool | フォーム表示時、新規作成フォームかどうか |
-
-
-### 関数一覧
-
-#### execute
-バッチを実行します。実行したい処理は、こちらの関数内に記載してください。
-
-##### 引数
-なし
-
-##### 戻り値
-なし
-
----
-
-
-
-
 ## PluginValidatorBase
 プラグイン(バリデーション)の抽象クラスです。バリデーションプラグインを開発する場合、こちらのクラスを継承してください。  
 詳細は[こちら](/ja/plugin_quickstart_validate)をご参照ください。
@@ -286,6 +452,7 @@
 | custom_table | CustomTable | カスタムテーブルのインスタンス |
 | original_value | CustomValue | カスタムデータの変更前インスタンス |
 | input_value | array | 画面入力値を格納した連想配列（キー：列名、値：入力値） |
+| called_type | ValidateCalledType | 呼び出し元の種類（API／フォーム） |
 | messages | array | エラーメッセージを格納します<br>（キー：列名、値：エラーメッセージ※複数ある場合は配列） |
 
 
@@ -304,5 +471,54 @@
 
 
 ---
+
+
+
+
+
+## PluginViewBase
+プラグイン(ビュー)の抽象クラスです。ビュープラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_view)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+
+##### プロパティ
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| custom_table | CustomTable | カスタムテーブルのインスタンス |
+| custom_view | CustomView | カスタムビューのインスタンス |
+| useBox | bool | 一覧にボタンを表示するか |
+| useBoxButtons | array | どのボタンを表示するか（新規／メニュー／ビュー） |
+
+
+### 関数一覧
+
+#### grid
+一覧表示処理として呼び出される関数です。  
+
+##### 引数
+なし
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| string,Renderable | グリッドに表示する内容 |
+
+---
+
+#### setViewOptionForm
+ビュー独自の設定を定義します。詳細は[こちら](/ja/plugin_quickstart#プラグイン設定画面で独自の設定を行う)をご参照ください。  
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| &$form | \Encore\Admin\Form | laravel-adminのフォームインスタンス |
+
+##### 戻り値
+なし
+
+---
+
 
 
