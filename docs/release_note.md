@@ -1,6 +1,28 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.2 (2021/08/19)
+1. Addition of functions
+    - Added the function to enter the data update value in the dialog in the data update setting.
+    - Add "Creator" to the update value of the user column in the data update settings
+    - Fixed so that multiple columns can be set as update values ​​when multiple columns are enabled in the data update settings.
+
+1. Bug fix
+    - Fixed a bug that an error occurs when accessing API settings
+    - Fixed a bug that role group settings could not be deleted
+    - Fixed a bug that an error occurs when exporting data when there is a relationship and data sorting is set in SQL Server.
+    - Fixed a bug that an error may occur during the sharing dialog in SQL Server.
+    - Fixed a bug that the format is not enabled in the data output for child data in the plug-in "Document".
+    - Fixed a bug that some links were broken when displaying help for items in the dialog.
+    - Fixed a bug that rarely causes an error depending on the data view setting / deletion status when updating to 4.2.1.
+    - Other minor cumulative corrections.
+
+
+## v4.2.1 (2021/07/01)
+1. Bug fix
+    - Bug fix syntax error Relation table.
+
+
 ## v4.2.0 (2021/07/01)
 1. Addition of functions
     - Added various functions of view
