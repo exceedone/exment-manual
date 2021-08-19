@@ -111,6 +111,16 @@ sudo setsebool -P httpd_can_network_connect_db = 1
 ~~~
 
 
+### When updating, an error occurs with "Migrating: 2019_08_19_000000_create_failed_jobs_table"
+The following message may be output during the database change process due to the update.  
+~~~
+Migrating: 2019_08_19_000000_create_failed_jobs_table  
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'failed_jobs' already exists。  
+~~~
+
+If the above phenomenon occurs, delete the "2019_08_19_000000_create_failed_jobs_table" file in the "installation folder\database\migrations", and then execute the update again.
+
+
 ### "Killed" is displayed when executing a command such as "composer require" on the rental server.
 This is a phenomenon that sometimes occurs when memory is overloaded.  
 ※It does not always occur  
