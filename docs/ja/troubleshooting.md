@@ -131,6 +131,16 @@ sudo setsebool -P httpd_can_network_connect_db=1
 ~~~
 
 
+### アップデート時、「Migrating: 2019_08_19_000000_create_failed_jobs_table」でエラーが発生する
+アップデートによるデータベースの変更処理で、以下のようなメッセージが出力されることがあります。  
+~~~
+Migrating: 2019_08_19_000000_create_failed_jobs_table  
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'failed_jobs' already exists。  
+~~~
+
+上記の現象が発生した場合は「インストール先のフォルダ\database\migrations」にある「2019_08_19_000000_create_failed_jobs_table」ファイルを削除してから、もう一度アップデートを実行してください。
+
+
 ### レンタルサーバーで、「composer require」などのコマンドを実行時に、「Killed」と表示される
 これはメモリに負荷がかかる場合に、時々発生する現象です。  
 ※常に発生するわけではありません  
