@@ -159,3 +159,12 @@ article::after{
     height: 30px;
     display: block;
 }
+
+table.Funclist tr{
+    width:100% !important;
+    background-color: white !important;    
+}
+
+table.Funclist th{
+    background-color: rgba(240, 240, 240, 0.966) !important;    
+}
