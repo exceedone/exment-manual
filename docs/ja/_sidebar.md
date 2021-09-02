@@ -89,6 +89,7 @@
   * [関数リファレンス](/ja/func_reference)
   * [カスタム列リファレンス](/ja/column_reference)
   * [プラグインリファレンス](/ja/plugin_reference)
+  * [DBテーブル定義](/ja/table_definition)
   * [設定値一覧](/ja/config)
   * [コマンド一覧](/ja/command)
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
