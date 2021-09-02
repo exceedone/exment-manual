@@ -1106,25 +1106,6 @@
 |---|---|---|---|
 | PRIMARY| system_name| UNIQUE| |
 
-## users
-### テーブル定義
-| 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
-|---|---|---|---|---|---|---|
-| id| | NO| bigint(20) unsigned| PRI| auto_increment| |
-| name| | NO| varchar(255)| | | |
-| email| | NO| varchar(255)| UNI| | |
-| email_verified_at| NULL| YES| timestamp| | | |
-| password| | NO| varchar(255)| | | |
-| remember_token| NULL| YES| varchar(100)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-
-### INDEX情報
-| INDEX名 | INDEX列 | UNIQUE |コメント | 
-|---|---|---|---|
-| PRIMARY| id| UNIQUE| |
-| users_email_unique| email| UNIQUE| |
-
 ## user_settings
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 

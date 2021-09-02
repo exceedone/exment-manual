@@ -1106,25 +1106,6 @@
 |---|---|---|---|
 | PRIMARY| system_name| UNIQUE| |
 
-## users
-### Table definition
-| Column name | Default | NULL | Type | Key | Other | Comment 
-|---|---|---|---|---|---|---|
-| id| | NO| bigint(20) unsigned| PRI| auto_increment| |
-| name| | NO| varchar(255)| | | |
-| email| | NO| varchar(255)| UNI| | |
-| email_verified_at| NULL| YES| timestamp| | | |
-| password| | NO| varchar(255)| | | |
-| remember_token| NULL| YES| varchar(100)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-
-### INDEX infomation
-| INDEX name | INDEX column | UNIQUE |Comment | 
-|---|---|---|---|
-| PRIMARY| id| UNIQUE| |
-| users_email_unique| email| UNIQUE| |
-
 ## user_settings
 ### Table definition
 | Column name | Default | NULL | Type | Key | Other | Comment 
