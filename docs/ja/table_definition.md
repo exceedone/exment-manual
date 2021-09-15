@@ -1,22 +1,23 @@
 # DBテーブル定義
 
 ## admin_menu
+サイドバーに表示するメニューを管理するテーブルです。  
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| parent_id| 0| NO| int(11)| | | |
-| order| 0| NO| int(11)| | | |
-| title| | NO| varchar(50)| | | |
-| icon| | NO| varchar(50)| | | |
-| uri| NULL| YES| varchar(2000)| | | |
-| options| NULL| YES| longtext| | | |
-| permission| NULL| YES| varchar(255)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| menu_type| | NO| varchar(255)| | | |
-| menu_name| NULL| YES| varchar(255)| | | |
-| menu_target| NULL| YES| varchar(255)| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| parent_id| 0| NO| int(11)| | | 親階層のID|
+| order| 0| NO| int(11)| | | 並び順|
+| title| | NO| varchar(50)| | | メニュー表示名|
+| icon| | NO| varchar(50)| | | アイコン|
+| uri| NULL| YES| varchar(2000)| | | URI|
+| options| NULL| YES| longtext| | | 各種オプション|
+| permission| NULL| YES| varchar(255)| | | (未使用)|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| menu_type| | NO| varchar(255)| | | メニュー種類|
+| menu_name| NULL| YES| varchar(255)| | | メニュー名|
+| menu_target| NULL| YES| varchar(255)| | | 対象|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -24,17 +25,18 @@
 | PRIMARY| id| UNIQUE| |
 
 ## admin_operation_log
+操作ログを保存するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| user_id| | NO| int(11)| MUL| | |
-| path| | NO| varchar(255)| | | |
-| method| | NO| varchar(10)| | | |
-| ip| | NO| varchar(255)| | | |
-| input| | NO| text| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| user_id| | NO| int(11)| MUL| | ユーザーID|
+| path| | NO| varchar(255)| | | アクセスしたパス|
+| method| | NO| varchar(10)| | | 実行メソッド|
+| ip| | NO| varchar(255)| | | IPアドレス|
+| input| | NO| text| | | 入力情報・クエリ|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -43,20 +45,23 @@
 | PRIMARY| id| UNIQUE| |
 
 ## conditions
+各種条件を保存するPolymorphicテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| morph_type| | NO| varchar(255)| MUL| | |
-| morph_id| | NO| int(10) unsigned| | | |
-| condition_type| | NO| int(11)| | | |
-| condition_key| | NO| int(11)| | | |
-| target_column_id| NULL| YES| int(11)| | | |
-| condition_value| NULL| YES| varchar(1024)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| morph_type| | NO| varchar(255)| MUL| | Polymorphicキー(種類)|
+| morph_id| | NO| int(10) unsigned| | | Polymorphicキー(ID)|
+| condition_type| | NO| int(11)| | | 条件項目の種類(*)|
+| condition_key| | NO| int(11)| | | 検索条件の種類キー|
+| target_column_id| NULL| YES| int(11)| | | 条件項目のID|
+| condition_value| NULL| YES| varchar(1024)| | | 条件値|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+
+*) 0：カスタム列、1：システム列、2：親ID、3：ワークフロー、4：その他条件
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -65,23 +70,24 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_columns
+カスタム列を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_table_id| | NO| int(10) unsigned| MUL| | |
-| column_name| | NO| varchar(255)| MUL| | |
-| column_view_name| | NO| varchar(255)| | | |
-| column_type| | NO| varchar(255)| MUL| | |
-| description| NULL| YES| varchar(1000)| | | |
-| system_flg| 0| NO| tinyint(1)| | | |
-| order| 0| NO| int(11)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_table_id| | NO| int(10) unsigned| MUL| | カスタムテーブルのID|
+| column_name| | NO| varchar(255)| MUL| | 列名(英数字)|
+| column_view_name| | NO| varchar(255)| | | 列表示名|
+| column_type| | NO| varchar(255)| MUL| | 列種類|
+| description| NULL| YES| varchar(1000)| | | 説明|
+| system_flg| 0| NO| tinyint(1)| | | システム管理フラグ|
+| order| 0| NO| int(11)| | | 並び順|
+| options| NULL| YES| longtext| | | 各種オプション|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -93,19 +99,22 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_column_multisettings
+カスタムテーブルに関連する複数の設定（見出し表示列設定、複合ユニークキー設定、2つの列を比較、データ自動共有設定etc）を管理しています。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_table_id| | NO| int(10) unsigned| | | |
-| multisetting_type| 1| NO| int(11)| | | |
-| options| NULL| YES| longtext| | | |
-| priority| 0| NO| int(10) unsigned| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_table_id| | NO| int(10) unsigned| | | カスタムテーブルのID|
+| multisetting_type| 1| NO| int(11)| | | 設定の種類(*)|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| priority| 0| NO| int(10) unsigned| | | 並び順・優先度|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+
+*) 1：複合ユニークキー設定、2：見出し表示列設定、3：2つの列を比較、4：データ自動共有設定
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -114,18 +123,19 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_copies
+データコピー設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| from_custom_table_id| | NO| int(10) unsigned| MUL| | |
-| to_custom_table_id| | NO| int(10) unsigned| MUL| | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| from_custom_table_id| | NO| int(10) unsigned| MUL| | コピー元テーブルのID|
+| to_custom_table_id| | NO| int(10) unsigned| MUL| | コピー先テーブルのID|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -136,22 +146,23 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_copy_columns
+データコピー設定の子テーブル。対象となるカスタム列を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| custom_copy_id| | NO| int(10) unsigned| MUL| | |
-| from_column_type| NULL| YES| int(11)| | | |
-| from_column_table_id| NULL| YES| int(10) unsigned| | | |
-| from_column_target_id| NULL| YES| int(11)| | | |
-| to_column_type| 0| NO| int(11)| | | |
-| to_column_table_id| | NO| int(10) unsigned| | | |
-| to_column_target_id| | NO| int(11)| | | |
-| copy_column_type| 0| NO| int(11)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| custom_copy_id| | NO| int(10) unsigned| MUL| | データコピー設定のID|
+| from_column_type| NULL| YES| int(11)| | | コピー元カスタム列の種類|
+| from_column_table_id| NULL| YES| int(10) unsigned| | | コピー元カスタム列のテーブルID|
+| from_column_target_id| NULL| YES| int(11)| | | コピー元カスタム列のID|
+| to_column_type| 0| NO| int(11)| | | コピー先カスタム列の種類|
+| to_column_table_id| | NO| int(10) unsigned| | | コピー先カスタム列のテーブルID|
+| to_column_target_id| | NO| int(11)| | | コピー先カスタム列のID|
+| copy_column_type| 0| NO| int(11)| | | 0：コピー列設定、1：入力ダイアログ設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -160,19 +171,20 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_forms
+カスタムフォームを管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_table_id| | NO| int(10) unsigned| MUL| | |
-| form_view_name| | NO| varchar(256)| | | |
-| default_flg| 0| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_table_id| | NO| int(10) unsigned| MUL| | カスタムテーブルのID|
+| form_view_name| | NO| varchar(256)| | | フォーム表示名|
+| default_flg| 0| NO| tinyint(1)| | | 1：既定のフォーム|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -182,20 +194,23 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_form_blocks
+カスタムフォームの子テーブル。フォームブロックを管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| custom_form_id| | NO| int(10) unsigned| MUL| | |
-| form_block_view_name| NULL| YES| varchar(255)| | | |
-| form_block_type| | NO| int(11)| | | |
-| form_block_target_table_id| NULL| YES| int(10) unsigned| MUL| | |
-| available| 0| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| custom_form_id| | NO| int(10) unsigned| MUL| | カスタムフォームのID|
+| form_block_view_name| NULL| YES| varchar(255)| | | フォームブロック名|
+| form_block_type| | NO| int(11)| | | フォームブロックの種類(*)|
+| form_block_target_table_id| NULL| YES| int(10) unsigned| MUL| | 対象カスタムテーブルのID|
+| available| 0| NO| tinyint(1)| | | 1：使用する|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+
+*) 0：デフォルト、1：子テーブル(1対多)、2：子テーブル(多対多)
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -205,23 +220,26 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_form_columns
+フォームブロックの子テーブル。ブロック内のフォーム項目を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| NULL| YES| varchar(20)| MUL| | |
-| custom_form_block_id| | NO| int(10) unsigned| MUL| | |
-| form_column_type| | NO| int(11)| | | |
-| form_column_target_id| NULL| YES| int(11)| | | |
-| row_no| 1| NO| int(11)| | | |
-| column_no| 1| NO| int(11)| | | |
-| width| NULL| YES| int(11)| | | |
-| options| NULL| YES| longtext| | | |
-| order| 0| NO| int(11)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| NULL| YES| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_form_block_id| | NO| int(10) unsigned| MUL| | フォームブロックのID|
+| form_column_type| | NO| int(11)| | | フォーム項目の種類(*)|
+| form_column_target_id| NULL| YES| int(11)| | | フォーム項目のID|
+| row_no| 1| NO| int(11)| | | 配置位置(行No)|
+| column_no| 1| NO| int(11)| | | 配置位置(列No)|
+| width| NULL| YES| int(11)| | | 列幅|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| order| 0| NO| int(11)| | | 表示順|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+
+*) 0：カスタム列、1：システム列、99：その他項目
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -231,17 +249,18 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_form_priorities
+カスタムフォームの表示優先度を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| custom_form_id| | NO| int(10) unsigned| | | |
-| order| 0| NO| int(10) unsigned| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| custom_form_id| | NO| int(10) unsigned| | | カスタムフォームのID|
+| order| 0| NO| int(10) unsigned| | | 優先度判定順|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -249,19 +268,20 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_operations
+データ更新設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_table_id| | NO| int(10) unsigned| | | |
-| operation_type| NULL| YES| varchar(255)| | | |
-| operation_name| | NO| varchar(40)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_table_id| | NO| int(10) unsigned| | | カスタムテーブルのID|
+| operation_type| NULL| YES| varchar(255)| | | 更新のタイミング|
+| operation_name| | NO| varchar(40)| | | 処理の名前|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -270,20 +290,21 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_operation_columns
+データ更新設定の子テーブル。対象列と更新内容を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| custom_operation_id| | NO| int(10) unsigned| MUL| | |
-| view_column_type| 0| NO| int(11)| | | |
-| view_column_target_id| | NO| int(11)| | | |
-| update_value_text| | NO| varchar(1024)| | | |
-| operation_column_type| 0| NO| int(11)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| custom_operation_id| | NO| int(10) unsigned| MUL| | データ更新設定のID|
+| view_column_type| 0| NO| int(11)| | | 0：カスタム列<br>1：システム列|
+| view_column_target_id| | NO| int(11)| | | 対象列のID|
+| update_value_text| | NO| varchar(1024)| | | 更新値|
+| operation_column_type| 0| NO| int(11)| | | 0：更新列設定、1：入力ダイアログ設定|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -292,18 +313,19 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_relations
+カスタムテーブル間のリレーション設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| parent_custom_table_id| | NO| int(10) unsigned| MUL| | |
-| child_custom_table_id| | NO| int(10) unsigned| MUL| | |
-| relation_type| 0| NO| int(11)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| parent_custom_table_id| | NO| int(10) unsigned| MUL| | 親テーブルのID|
+| child_custom_table_id| | NO| int(10) unsigned| MUL| | 子テーブルのID|
+| relation_type| 0| NO| int(11)| | | 1：1対多<br>2：多対多|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -316,7 +338,7 @@
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
 | parent_id| | NO| int(10) unsigned| MUL| | |
 | child_id| | NO| int(10) unsigned| MUL| | |
 
@@ -328,22 +350,23 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_tables
+カスタムテーブルを管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| table_name| | NO| varchar(256)| | | |
-| table_view_name| | NO| varchar(256)| | | |
-| description| NULL| YES| varchar(1000)| | | |
-| system_flg| 0| NO| tinyint(1)| | | |
-| showlist_flg| 1| NO| tinyint(1)| | | |
-| order| 0| NO| int(11)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| table_name| | NO| varchar(256)| | | テーブル名(英数字)|
+| table_view_name| | NO| varchar(256)| | | テーブル表示名|
+| description| NULL| YES| varchar(1000)| | | 説明|
+| system_flg| 0| NO| tinyint(1)| | | 1：システムテーブル|
+| showlist_flg| 1| NO| tinyint(1)| | | 1：一覧表示する|
+| order| 0| NO| int(11)| | | 表示順|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -351,45 +374,21 @@
 | custom_tables_suuid_index| suuid| | |
 | PRIMARY| id| UNIQUE| |
 
-## custom_values
-### テーブル定義
-| 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
-|---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| parent_type| NULL| YES| varchar(255)| MUL| | |
-| parent_id| NULL| YES| bigint(20) unsigned| | | |
-| value| NULL| YES| longtext| | | |
-| laravel_admin_escape| NULL| YES| varchar(255)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| deleted_at| NULL| YES| timestamp| MUL| | |
-| deleted_user_id| NULL| YES| int(10) unsigned| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
-
-### INDEX情報
-| INDEX名 | INDEX列 | UNIQUE |コメント | 
-|---|---|---|---|
-| custom_values_deleted_at_index| deleted_at| | |
-| custom_values_parent_type_parent_id_index| parent_type,parent_id| | |
-| custom_values_suuid_index| suuid| | |
-| PRIMARY| id| UNIQUE| |
-
 ## custom_value_authoritables
+データ毎の権限設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| parent_type| NULL| YES| varchar(255)| MUL| | |
-| parent_id| NULL| YES| bigint(20) unsigned| | | |
-| authoritable_type| | NO| varchar(255)| MUL| | |
-| authoritable_user_org_type| | NO| varchar(255)| MUL| | |
-| authoritable_target_id| NULL| YES| int(11)| MUL| | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| parent_type| NULL| YES| varchar(255)| MUL| | 対象テーブルの英数字名|
+| parent_id| NULL| YES| bigint(20) unsigned| | | 対象データのID|
+| authoritable_type| | NO| varchar(255)| MUL| | 権限の種類|
+| authoritable_user_org_type| | NO| varchar(255)| MUL| | 権限付与対象(ユーザーor組織)|
+| authoritable_target_id| NULL| YES| int(11)| MUL| | 権限付与対象のID|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -401,22 +400,25 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_views
+カスタムビューを管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_table_id| | NO| int(10) unsigned| MUL| | |
-| view_type| 0| NO| int(11)| | | |
-| view_kind_type| 0| NO| int(11)| | | |
-| view_view_name| | NO| varchar(40)| | | |
-| default_flg| 0| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| custom_options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_table_id| | NO| int(10) unsigned| MUL| | カスタムテーブルのID|
+| view_type| 0| NO| int(11)| | | 0：システムビュー<br>1：ユーザービュー|
+| view_kind_type| 0| NO| int(11)| | | ビューの種類(*)|
+| view_view_name| | NO| varchar(40)| | | ビュー表示名|
+| default_flg| 0| NO| tinyint(1)| | | 1：既定のビュー|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| custom_options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+
+*) 0：通常ビュー、1：集計ビュー、2：カレンダービュー、3：条件ビュー、4：プラグイン、9：全件ビュー
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -426,22 +428,23 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_view_columns
+カスタムビューの子テーブル。表示列を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_view_id| | NO| int(10) unsigned| MUL| | |
-| view_column_type| 0| NO| int(11)| | | |
-| view_column_table_id| | NO| int(10) unsigned| | | |
-| view_column_target_id| NULL| YES| int(11)| | | |
-| order| 0| NO| int(10) unsigned| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
-| view_column_name| NULL| YES| varchar(40)| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_view_id| | NO| int(10) unsigned| MUL| | カスタムビューのID|
+| view_column_type| 0| NO| int(11)| | | 0：カスタム列<br>1：システム列|
+| view_column_table_id| | NO| int(10) unsigned| | | 列のテーブルID|
+| view_column_target_id| NULL| YES| int(11)| | | 列のID|
+| order| 0| NO| int(10) unsigned| | | 表示順|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+| view_column_name| NULL| YES| varchar(40)| | | 別名表示|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -451,24 +454,25 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_view_filters
+カスタムビューの子テーブル。データ表示条件を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| NULL| YES| varchar(20)| MUL| | |
-| custom_view_id| | NO| int(10) unsigned| MUL| | |
-| view_column_type| 0| NO| int(11)| | | |
-| view_column_table_id| | NO| int(10) unsigned| | | |
-| view_column_target_id| NULL| YES| int(11)| | | |
-| view_filter_condition| | NO| int(11)| | | |
-| view_filter_condition_value_text| NULL| YES| varchar(1024)| | | |
-| view_filter_condition_value_table_id| NULL| YES| int(10) unsigned| | | |
-| view_filter_condition_value_id| NULL| YES| int(10) unsigned| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| NULL| YES| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_view_id| | NO| int(10) unsigned| MUL| | カスタムビューのID|
+| view_column_type| 0| NO| int(11)| | | 0：カスタム列<br>1：システム列|
+| view_column_table_id| | NO| int(10) unsigned| | | 列のテーブルID|
+| view_column_target_id| NULL| YES| int(11)| | | 列のID|
+| view_filter_condition| | NO| int(11)| | | 検索条件の種類|
+| view_filter_condition_value_text| NULL| YES| varchar(1024)| | | 条件値|
+| view_filter_condition_value_table_id| NULL| YES| int(10) unsigned| | | 条件値のテーブルID|
+| view_filter_condition_value_id| NULL| YES| int(10) unsigned| | | 条件値の列ID|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -478,21 +482,22 @@
 | PRIMARY| id| UNIQUE| |
 
 ## custom_view_grid_filters
+カスタムビューの子テーブル。ビューの「フィルタ」項目指定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_view_id| | NO| int(10) unsigned| MUL| | |
-| view_column_type| 0| NO| int(11)| | | |
-| view_column_table_id| | NO| int(10) unsigned| | | |
-| view_column_target_id| NULL| YES| int(11)| | | |
-| order| 0| NO| int(10) unsigned| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_view_id| | NO| int(10) unsigned| MUL| | カスタムビューのID|
+| view_column_type| 0| NO| int(11)| | | 0：カスタム列<br>1：システム列|
+| view_column_table_id| | NO| int(10) unsigned| | | 列のテーブルID|
+| view_column_target_id| NULL| YES| int(11)| | | 列のID|
+| order| 0| NO| int(10) unsigned| | | 表示順|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -505,19 +510,19 @@
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| NULL| YES| varchar(20)| MUL| | |
-| custom_view_id| | NO| int(10) unsigned| MUL| | |
-| view_column_type| 0| NO| int(11)| | | |
-| view_column_table_id| | NO| int(10) unsigned| | | |
-| view_column_target_id| NULL| YES| int(11)| | | |
-| sort| 1| NO| int(11)| | | |
-| priority| 0| NO| int(10) unsigned| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| NULL| YES| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_view_id| | NO| int(10) unsigned| MUL| | カスタムビューのID|
+| view_column_type| 0| NO| int(11)| | | 0：カスタム列<br>1：システム列|
+| view_column_table_id| | NO| int(10) unsigned| | | 列のテーブルID|
+| view_column_target_id| NULL| YES| int(11)| | | 列のID|
+| sort| 1| NO| int(11)| | | 1：昇順<br>-1：降順|
+| priority| 0| NO| int(10) unsigned| | | 優先順位|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -530,19 +535,21 @@
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| custom_view_id| | NO| int(10) unsigned| MUL| | |
-| view_column_type| 0| NO| int(11)| | | |
-| view_column_table_id| | NO| int(10) unsigned| | | |
-| view_column_target_id| NULL| YES| int(11)| | | |
-| view_summary_condition| 0| NO| int(10) unsigned| | | |
-| view_column_name| NULL| YES| varchar(40)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| custom_view_id| | NO| int(10) unsigned| MUL| | カスタムビューのID|
+| view_column_type| 0| NO| int(11)| | | 0：カスタム列<br>1：システム列|
+| view_column_table_id| | NO| int(10) unsigned| | | 列のテーブルID|
+| view_column_target_id| NULL| YES| int(11)| | | 列のID|
+| view_summary_condition| 0| NO| int(10) unsigned| | | 集計タイプ(*)|
+| view_column_name| NULL| YES| varchar(40)| | | 別名表示|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+
+*)1：合計、3：件数、4：最小値、5：最大値
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -552,20 +559,21 @@
 | PRIMARY| id| UNIQUE| |
 
 ## dashboards
+ダッシュボードを管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| dashboard_type| 0| NO| int(11)| | | |
-| dashboard_name| | NO| varchar(256)| MUL| | |
-| dashboard_view_name| | NO| varchar(40)| | | |
-| default_flg| 0| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| dashboard_type| 0| NO| int(11)| | | 0：システムダッシュボード、1：ユーザーダッシュボード|
+| dashboard_name| | NO| varchar(256)| MUL| | ダッシュボード名(英数字)|
+| dashboard_view_name| | NO| varchar(40)| | | ダッシュボード表示名|
+| default_flg| 0| NO| tinyint(1)| | | 1：既定のダッシュボード|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -575,21 +583,22 @@
 | PRIMARY| id| UNIQUE| |
 
 ## dashboard_boxes
+ダッシュボードの子テーブル。ダッシュボード内の表示アイテムを管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| dashboard_id| | NO| int(10) unsigned| MUL| | |
-| row_no| | NO| int(11)| MUL| | |
-| column_no| | NO| int(11)| MUL| | |
-| dashboard_box_view_name| | NO| varchar(40)| | | |
-| dashboard_box_type| | NO| varchar(255)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| dashboard_id| | NO| int(10) unsigned| MUL| | ダッシュボードのID|
+| row_no| | NO| int(11)| MUL| | 行No|
+| column_no| | NO| int(11)| MUL| | 列No|
+| dashboard_box_view_name| | NO| varchar(40)| | | アイテム表示名|
+| dashboard_box_type| | NO| varchar(255)| | | アイテム種類|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -604,16 +613,16 @@
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
 | parent_type| NULL| YES| varchar(255)| MUL| | |
 | parent_id| NULL| YES| bigint(20) unsigned| | | |
 | authoritable_type| | NO| varchar(255)| MUL| | |
 | authoritable_user_org_type| | NO| varchar(255)| MUL| | |
 | authoritable_target_id| NULL| YES| int(11)| MUL| | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -628,14 +637,14 @@
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
 | login_user_id| NULL| YES| int(10) unsigned| | | |
 | verify_type| | NO| varchar(255)| | | |
 | email| | NO| varchar(255)| | | |
 | verify_code| | NO| varchar(255)| | | |
 | valid_period_datetime| | NO| datetime| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -659,23 +668,24 @@
 | PRIMARY| id| UNIQUE| |
 
 ## files
+アップロードされたファイルを管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| uuid| | NO| char(36)| PRI| | |
-| file_type| NULL| YES| int(11)| MUL| | |
-| local_dirname| | NO| varchar(255)| MUL| | |
-| local_filename| | NO| varchar(255)| MUL| | |
-| filename| | NO| varchar(255)| MUL| | |
-| parent_type| NULL| YES| varchar(255)| MUL| | |
-| parent_id| NULL| YES| bigint(20) unsigned| | | |
-| custom_column_id| NULL| YES| int(11)| | | |
-| custom_form_column_id| NULL| YES| int(11)| MUL| | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| uuid| | NO| char(36)| PRI| | 一意なランダム文字列|
+| file_type| NULL| YES| int(11)| MUL| | ファイルの種類|
+| local_dirname| | NO| varchar(255)| MUL| | 保管ファイルのディレクトリ名|
+| local_filename| | NO| varchar(255)| MUL| | 保管ファイルの名前|
+| filename| | NO| varchar(255)| MUL| | 元のファイル名|
+| parent_type| NULL| YES| varchar(255)| MUL| | 親データのテーブル名(英数字)|
+| parent_id| NULL| YES| bigint(20) unsigned| | | 親データのID|
+| custom_column_id| NULL| YES| int(11)| | | カスタム列のID|
+| custom_form_column_id| NULL| YES| int(11)| MUL| | カスタムフォーム列のID|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -689,18 +699,19 @@
 | PRIMARY| uuid| UNIQUE| |
 
 ## login_settings
+SSO認証や2段階認証などの拡張ログイン設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| login_view_name| | NO| varchar(255)| | | |
-| login_type| | NO| varchar(255)| | | |
-| active_flg| 0| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| login_view_name| | NO| varchar(255)| | | ログイン設定表示名|
+| login_type| | NO| varchar(255)| | | ログイン種類|
+| active_flg| 0| NO| tinyint(1)| | | 1：有効|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -708,23 +719,24 @@
 | PRIMARY| id| UNIQUE| |
 
 ## login_users
+ユーザーのログイン情報を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| base_user_id| | NO| int(10) unsigned| MUL| | |
-| login_type| 'pure'| NO| varchar(255)| MUL| | |
-| login_provider| NULL| YES| varchar(32)| | | |
-| password_reset_flg| 0| NO| tinyint(1)| | | |
-| password| | NO| varchar(1000)| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| base_user_id| | NO| int(10) unsigned| MUL| | ユーザーID|
+| login_type| 'pure'| NO| varchar(255)| MUL| | ログインの種類(通常、OAuth、SAML等)|
+| login_provider| NULL| YES| varchar(32)| | | ログインプロバイダの種類|
+| password_reset_flg| 0| NO| tinyint(1)| | | 1：パスワードをリセットする|
+| password| | NO| varchar(1000)| | | パスワード|
 | remember_token| NULL| YES| varchar(100)| | | |
-| avatar| NULL| YES| varchar(512)| | | |
+| avatar| NULL| YES| varchar(512)| | | アバター画像のURI|
 | auth2fa_key| NULL| YES| text| | | |
 | auth2fa_available| 0| NO| tinyint(1)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -734,11 +746,13 @@
 | PRIMARY| id| UNIQUE| |
 
 ## migrations
+データベースのマイグレーション状況を管理するテーブルです。  
+<span class="red bold">※削除、内容変更等は絶対に行わないでください。</span>
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| migration| | NO| varchar(255)| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| migration| | NO| varchar(255)| | | マイグレーションファイル名|
 | batch| | NO| int(11)| | | |
 
 ### INDEX情報
@@ -747,27 +761,28 @@
 | PRIMARY| id| UNIQUE| |
 
 ## notifies
+通知設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| target_id| NULL| YES| int(10) unsigned| MUL| | |
-| notify_name| NULL| YES| varchar(256)| | | |
-| notify_view_name| | NO| varchar(256)| | | |
-| active_flg| 1| NO| tinyint(1)| | | |
-| custom_table_id| | NO| int(10) unsigned| | | |
-| workflow_id| NULL| YES| int(10) unsigned| | | |
-| custom_view_id| NULL| YES| int(10) unsigned| | | |
-| notify_trigger| | NO| int(11)| | | |
-| trigger_settings| NULL| YES| longtext| | | |
-| notify_actions| NULL| YES| varchar(50)| | | |
-| action_settings| NULL| YES| longtext| | | |
-| mail_template_id| NULL| YES| int(11)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| target_id| NULL| YES| int(10) unsigned| MUL| | 通知対象のID(カスタムテーブル、ワークフロー)|
+| notify_name| NULL| YES| varchar(256)| | | 通知名(英数字)|
+| notify_view_name| | NO| varchar(256)| | | 通知表示名|
+| active_flg| 1| NO| tinyint(1)| | | 1：有効|
+| custom_table_id| | NO| int(10) unsigned| | | (廃止予定)|
+| workflow_id| NULL| YES| int(10) unsigned| | | (廃止予定)|
+| custom_view_id| NULL| YES| int(10) unsigned| | | 条件ビューのID|
+| notify_trigger| | NO| int(11)| | | 実施トリガー|
+| trigger_settings| NULL| YES| longtext| | | 実施トリガー設定|
+| notify_actions| NULL| YES| varchar(50)| | | (廃止予定)|
+| action_settings| NULL| YES| longtext| | | 通知アクション設定|
+| mail_template_id| NULL| YES| int(11)| | | 通知テンプレートID|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -777,22 +792,23 @@
 | PRIMARY| id| UNIQUE| |
 
 ## notify_navbars
+ナビゲーションバーや通知一覧に表示する通知データを保管するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| notify_id| | NO| int(10) unsigned| MUL| | |
-| parent_type| NULL| YES| varchar(255)| MUL| | |
-| parent_id| NULL| YES| bigint(20) unsigned| | | |
-| target_user_id| | NO| int(10) unsigned| MUL| | |
-| trigger_user_id| NULL| YES| int(10) unsigned| | | |
-| notify_subject| NULL| YES| varchar(200)| | | |
-| notify_body| NULL| YES| varchar(2000)| | | |
-| read_flg| 0| NO| tinyint(1)| MUL| | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| notify_id| | NO| int(10) unsigned| MUL| | 通知設定のID|
+| parent_type| NULL| YES| varchar(255)| MUL| | 対象データのテーブル名(英数字)|
+| parent_id| NULL| YES| bigint(20) unsigned| | | 対象データのID|
+| target_user_id| | NO| int(10) unsigned| MUL| | 通知対象ユーザーID|
+| trigger_user_id| NULL| YES| int(10) unsigned| | | 通知のトリガーとなる操作を行ったユーザーID|
+| notify_subject| NULL| YES| varchar(200)| | | 通知件名|
+| notify_body| NULL| YES| varchar(2000)| | | 通知本文|
+| read_flg| 0| NO| tinyint(1)| MUL| | 1：既読|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -813,8 +829,8 @@
 | name| NULL| YES| varchar(255)| | | |
 | scopes| NULL| YES| text| | | |
 | revoked| | NO| tinyint(1)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
 | expires_at| NULL| YES| datetime| | | |
 
 ### INDEX情報
@@ -866,8 +882,8 @@
 | password_client| | NO| tinyint(1)| | | |
 | api_key_client| 0| NO| tinyint(1)| | | |
 | revoked| | NO| tinyint(1)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -879,10 +895,10 @@
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
 | client_id| | NO| char(36)| MUL| | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -906,16 +922,17 @@
 | PRIMARY| id| UNIQUE| |
 
 ## password_histories
+パスワード変更履歴を保管するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| login_user_id| | NO| int(10) unsigned| MUL| | |
-| password| | NO| varchar(1000)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| login_user_id| | NO| int(10) unsigned| MUL| | 対象のユーザーID|
+| password| | NO| varchar(1000)| | | パスワード|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -924,52 +941,39 @@
 | PRIMARY| id| UNIQUE| |
 
 ## password_resets
+パスワードリセット実行時の一時データを管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| email| | NO| varchar(255)| MUL| | |
-| token| | NO| varchar(255)| | | |
-| created_at| NULL| YES| timestamp| | | |
+| email| | NO| varchar(255)| MUL| | Eメールアドレス|
+| token| | NO| varchar(255)| | | 一時的なアクセストークン|
+| created_at| NULL| YES| timestamp| | | 作成日時|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
 |---|---|---|---|
 | password_resets_email_index| email| | |
 
-## pivot__6230cca21266dd6c9aa7_b8147e1abf78aed6074e
-### テーブル定義
-| 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
-|---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| parent_id| | NO| int(10) unsigned| MUL| | |
-| child_id| | NO| int(10) unsigned| MUL| | |
-
-### INDEX情報
-| INDEX名 | INDEX列 | UNIQUE |コメント | 
-|---|---|---|---|
-| custom_relation_values_child_id_index| child_id| | |
-| custom_relation_values_parent_id_index| parent_id| | |
-| PRIMARY| id| UNIQUE| |
-
 ## plugins
+プラグインを管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| uuid| | NO| varchar(255)| UNI| | |
-| plugin_name| | NO| varchar(256)| MUL| | |
-| plugin_view_name| | NO| varchar(256)| | | |
-| author| NULL| YES| varchar(256)| | | |
-| plugin_types| NULL| YES| varchar(255)| | | |
-| version| NULL| YES| varchar(128)| | | |
-| description| NULL| YES| varchar(1000)| | | |
-| active_flg| 1| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| custom_options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| uuid| | NO| varchar(255)| UNI| | 一意なランダム文字列|
+| plugin_name| | NO| varchar(256)| MUL| | プラグイン名(英数字)|
+| plugin_view_name| | NO| varchar(256)| | | プラグイン表示名|
+| author| NULL| YES| varchar(256)| | | 作者|
+| plugin_types| NULL| YES| varchar(255)| | | プラグインの種類|
+| version| NULL| YES| varchar(128)| | | バージョン|
+| description| NULL| YES| varchar(1000)| | | 説明|
+| active_flg| 1| NO| tinyint(1)| | | 1：有効|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| custom_options| NULL| YES| longtext| | | カスタムオプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -982,17 +986,17 @@
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| uuid| | NO| char(36)| UNI| | |
-| custom_form_id| | NO| int(10) unsigned| MUL| | |
-| public_form_view_name| | NO| varchar(256)| | | |
-| active_flg| 0| NO| tinyint(1)| | | |
-| proxy_user_id| | NO| int(10) unsigned| MUL| | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| uuid| | NO| char(36)| UNI| | 一意なランダム文字列|
+| custom_form_id| | NO| int(10) unsigned| MUL| | カスタムフォームのID|
+| public_form_view_name| | NO| varchar(256)| | | 公開フォーム表示名|
+| active_flg| 0| NO| tinyint(1)| | | 1：有効|
+| proxy_user_id| | NO| int(10) unsigned| MUL| | 実行ユーザーのID|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1003,22 +1007,23 @@
 | public_forms_uuid_unique| uuid| UNIQUE| |
 
 ## revisions
+更新履歴を保管するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| revisionable_type| | NO| varchar(255)| | | |
-| revisionable_id| | NO| int(11)| MUL| | |
-| revision_no| 0| NO| int(10) unsigned| | | |
-| key| | NO| varchar(255)| MUL| | |
-| old_value| NULL| YES| text| | | |
-| new_value| NULL| YES| text| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| deleted_at| NULL| YES| timestamp| | | |
-| create_user_id| NULL| YES| int(11)| | | |
-| delete_user_id| NULL| YES| int(11)| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| revisionable_type| | NO| varchar(255)| | | 対象テーブル名(英数字)|
+| revisionable_id| | NO| int(11)| MUL| | 対象データID|
+| revision_no| 0| NO| int(10) unsigned| | | リビジョンNo|
+| key| | NO| varchar(255)| MUL| | 対象項目キー|
+| old_value| NULL| YES| text| | | 変更前の値|
+| new_value| NULL| YES| text| | | 変更後の値|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| deleted_at| NULL| YES| timestamp| | | 削除日時|
+| create_user_id| NULL| YES| int(11)| | | 作成ユーザーID|
+| delete_user_id| NULL| YES| int(11)| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1029,17 +1034,18 @@
 | revisions_suuid_index| suuid| | |
 
 ## role_groups
+役割グループを管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| role_group_name| | NO| varchar(256)| UNI| | |
-| role_group_view_name| | NO| varchar(256)| | | |
-| description| NULL| YES| varchar(1000)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| role_group_name| | NO| varchar(256)| UNI| | 役割グループ名(英数字)|
+| role_group_view_name| | NO| varchar(256)| | | 役割グループ表示名|
+| description| NULL| YES| varchar(1000)| | | 説明|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1048,18 +1054,21 @@
 | role_groups_role_group_name_unique| role_group_name| UNIQUE| |
 
 ## role_group_permissions
+役割グループの子テーブル。権限設定を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| role_group_id| | NO| int(10) unsigned| MUL| | |
-| role_group_permission_type| | NO| varchar(255)| MUL| | |
-| role_group_target_id| NULL| YES| int(11)| MUL| | |
-| permissions| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| role_group_id| | NO| int(10) unsigned| MUL| | 役割グループID|
+| role_group_permission_type| | NO| varchar(255)| MUL| | 権限の種類(*)|
+| role_group_target_id| NULL| YES| int(11)| MUL| | 権限対象項目のID|
+| permissions| NULL| YES| longtext| | | 許可されている操作|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
+
+*) 0：システム、1：テーブル、3：プラグイン
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1070,17 +1079,19 @@
 | role_group_permissions_role_group_target_id_index| role_group_target_id| | |
 
 ## role_group_user_organizations
+役割グループの子テーブル。役割グループに所属するユーザー、組織を管理します。
+
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| role_group_id| | NO| int(10) unsigned| MUL| | |
-| role_group_user_org_type| | NO| varchar(255)| MUL| | |
-| role_group_target_id| NULL| YES| int(11)| MUL| | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| role_group_id| | NO| int(10) unsigned| MUL| | 役割グループID|
+| role_group_user_org_type| | NO| varchar(255)| MUL| | ユーザー・組織区分|
+| role_group_target_id| NULL| YES| int(11)| MUL| | 対象ユーザーまたは組織のID|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1091,15 +1102,16 @@
 | role_group_user_organizations_role_group_user_org_type_index| role_group_user_org_type| | |
 
 ## systems
+システム設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| system_name| | NO| varchar(255)| PRI| | |
-| system_value| NULL| YES| text| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| system_name| | NO| varchar(255)| PRI| | システム設定名(英数字)|
+| system_value| NULL| YES| text| | | 設定値|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1107,16 +1119,17 @@
 | PRIMARY| system_name| UNIQUE| |
 
 ## user_settings
+ログインユーザー毎の設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| base_user_id| | NO| int(10) unsigned| MUL| | |
-| settings| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| base_user_id| | NO| int(10) unsigned| MUL| | ユーザーID|
+| settings| NULL| YES| longtext| | | 各種設定値|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1124,44 +1137,22 @@
 | PRIMARY| id| UNIQUE| |
 | user_settings_base_user_id_index| base_user_id| | |
 
-## view_workflow_start（VIEW）
-### テーブル定義
-| 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
-|---|---|---|---|---|---|---|
-| workflow_id| 0| NO| int(10) unsigned| | | |
-| workflow_table_id| NULL| YES| int(10) unsigned| | | |
-| workflow_action_id| 0| NO| int(10) unsigned| | | |
-| authority_related_id| | NO| varchar(255)| | | |
-| authority_related_type| | NO| varchar(255)| | | |
-
-## view_workflow_value_unions（VIEW）
-### テーブル定義
-| 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
-|---|---|---|---|---|---|---|
-| workflow_value_id| 0| NO| int(10) unsigned| | | |
-| workflow_id| 0| NO| int(10) unsigned| | | |
-| workflow_table_id| NULL| YES| int(10) unsigned| | | |
-| custom_value_id| 0| NO| bigint(20) unsigned| | | |
-| custom_value_type| ''| NO| varchar(255)| | | |
-| workflow_action_id| 0| NO| int(10) unsigned| | | |
-| authority_related_id| ''| NO| varchar(255)| | | |
-| authority_related_type| ''| NO| varchar(255)| | | |
-
 ## workflows
+ワークフロー設定を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| workflow_type| 0| NO| int(11)| | | |
-| workflow_view_name| | NO| varchar(30)| | | |
-| start_status_name| | NO| varchar(30)| | | |
-| setting_completed_flg| 0| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| workflow_type| 0| NO| int(11)| | | ワークフロー種類(0：汎用、1：テーブル専用)|
+| workflow_view_name| | NO| varchar(30)| | | ワークフロー表示名|
+| start_status_name| | NO| varchar(30)| | | 開始ステータス名|
+| setting_completed_flg| 0| NO| tinyint(1)| | | 1：設定完了済|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1170,20 +1161,21 @@
 | workflows_suuid_index| suuid| | |
 
 ## workflow_actions
+ワークフロー設定の子テーブル。アクション設定を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| workflow_id| | NO| int(10) unsigned| MUL| | |
-| status_from| | NO| varchar(255)| | | |
-| action_name| | NO| varchar(30)| | | |
-| ignore_work| 0| NO| tinyint(1)| MUL| | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| deleted_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| workflow_id| | NO| int(10) unsigned| MUL| | ワークフローID|
+| status_from| | NO| varchar(255)| | | 実行前ステータス(start又はID)|
+| action_name| | NO| varchar(30)| | | アクション名|
+| ignore_work| 0| NO| tinyint(1)| MUL| | 1：特殊なアクション|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| deleted_at| NULL| YES| timestamp| | | 削除日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1193,12 +1185,13 @@
 | workflow_actions_workflow_id_index| workflow_id| | |
 
 ## workflow_authorities
+ワークフローのアクション設定の子テーブル。アクション実行可能なユーザーを管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| related_id| | NO| varchar(255)| MUL| | |
-| related_type| | NO| varchar(255)| | | |
-| workflow_action_id| | NO| int(10) unsigned| MUL| | |
+| related_id| | NO| varchar(255)| MUL| | 対象のID|
+| related_type| | NO| varchar(255)| | | 対象の種類(ユーザー、組織、カスタム列、システム)|
+| workflow_action_id| | NO| int(10) unsigned| MUL| | アクション設定のID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1207,18 +1200,19 @@
 | workflow_authorities_workflow_action_id_index| workflow_action_id| | |
 
 ## workflow_condition_headers
+ワークフローのアクション設定の子テーブル。アクション分岐設定を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| workflow_action_id| | NO| int(10) unsigned| MUL| | |
-| status_to| | NO| varchar(255)| | | |
-| enabled_flg| 0| NO| tinyint(1)| | | |
-| options| NULL| YES| longtext| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| workflow_action_id| | NO| int(10) unsigned| MUL| | アクション設定のID|
+| status_to| | NO| varchar(255)| | | 実行後のステータスID|
+| enabled_flg| 0| NO| tinyint(1)| | | 1：有効|
+| options| NULL| YES| longtext| | | 各種オプション設定|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1227,20 +1221,21 @@
 | workflow_condition_headers_workflow_action_id_index| workflow_action_id| | |
 
 ## workflow_statuses
+ワークフロー設定の子テーブル。ステータス設定を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| workflow_id| | NO| int(10) unsigned| MUL| | |
-| status_type| 0| NO| int(10) unsigned| MUL| | |
-| order| | NO| int(10) unsigned| MUL| | |
-| status_name| | NO| varchar(30)| | | |
-| datalock_flg| 0| NO| tinyint(1)| | | |
-| completed_flg| 0| NO| tinyint(1)| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| workflow_id| | NO| int(10) unsigned| MUL| | ワークフローID|
+| status_type| 0| NO| int(10) unsigned| MUL| | (廃止予定)|
+| order| | NO| int(10) unsigned| MUL| | 並び順|
+| status_name| | NO| varchar(30)| | | ステータス名|
+| datalock_flg| 0| NO| tinyint(1)| | | 1：データの編集不可|
+| completed_flg| 0| NO| tinyint(1)| | | 1：完了ステータス|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1251,19 +1246,20 @@
 | workflow_statuses_workflow_id_index| workflow_id| | |
 
 ## workflow_tables
+ワークフロー設定の子テーブル。利用設定を管理します。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| workflow_id| | NO| int(10) unsigned| MUL| | |
-| custom_table_id| NULL| YES| int(10) unsigned| MUL| | |
-| active_flg| 0| NO| tinyint(1)| | | |
-| active_start_date| NULL| YES| date| | | |
-| active_end_date| NULL| YES| date| | | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| workflow_id| | NO| int(10) unsigned| MUL| | ワークフローID|
+| custom_table_id| NULL| YES| int(10) unsigned| MUL| | 対象となるカスタムテーブルのID|
+| active_flg| 0| NO| tinyint(1)| | | 1：使用する|
+| active_start_date| NULL| YES| date| | | 使用開始日|
+| active_end_date| NULL| YES| date| | | 使用終了日|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1273,24 +1269,25 @@
 | workflow_tables_workflow_id_index| workflow_id| | |
 
 ## workflow_values
+個々のデータに対するワークフローの実行履歴を管理するテーブルです。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| suuid| | NO| varchar(20)| MUL| | |
-| workflow_id| | NO| int(10) unsigned| MUL| | |
-| morph_type| | NO| varchar(255)| MUL| | |
-| morph_id| | NO| bigint(20) unsigned| | | |
-| workflow_action_id| NULL| YES| int(10) unsigned| MUL| | |
-| workflow_status_from_id| NULL| YES| int(10) unsigned| MUL| | |
-| workflow_status_to_id| NULL| YES| int(10) unsigned| MUL| | |
-| comment| NULL| YES| varchar(1000)| | | |
-| action_executed_flg| 0| NO| tinyint(1)| MUL| | |
-| latest_flg| 0| NO| tinyint(1)| MUL| | |
-| created_at| NULL| YES| timestamp| | | |
-| updated_at| NULL| YES| timestamp| | | |
-| created_user_id| NULL| YES| int(10) unsigned| | | |
-| updated_user_id| NULL| YES| int(10) unsigned| | | |
+| id| | NO| int(10) unsigned| PRI| auto_increment| 主キー|
+| suuid| | NO| varchar(20)| MUL| | 20桁のランダム文字列|
+| workflow_id| | NO| int(10) unsigned| MUL| | ワークフローID|
+| morph_type| | NO| varchar(255)| MUL| | Polymorphicキー(種類)|
+| morph_id| | NO| bigint(20) unsigned| | | Polymorphicキー(ID)|
+| workflow_action_id| NULL| YES| int(10) unsigned| MUL| | アクション設定のID|
+| workflow_status_from_id| NULL| YES| int(10) unsigned| MUL| | 実行前のステータスID|
+| workflow_status_to_id| NULL| YES| int(10) unsigned| MUL| | 実行後のステータスID|
+| comment| NULL| YES| varchar(1000)| | | コメント|
+| action_executed_flg| 0| NO| tinyint(1)| MUL| | 1：ワークフロー実行中|
+| latest_flg| 0| NO| tinyint(1)| MUL| | 1：最新データ|
+| created_at| NULL| YES| timestamp| | | 作成日時|
+| updated_at| NULL| YES| timestamp| | | 更新日時|
+| created_user_id| NULL| YES| int(10) unsigned| | | 作成ユーザーID|
+| updated_user_id| NULL| YES| int(10) unsigned| | | 更新ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1306,12 +1303,13 @@
 | workflow_values_workflow_status_to_id_index| workflow_status_to_id| | |
 
 ## workflow_value_authorities
+ワークフロー実行時に指定された次の作業ユーザーを保管しています。
 ### テーブル定義
 | 列名 | デフォルト | NULL | 型 | キー | その他 | コメント 
 |---|---|---|---|---|---|---|
-| related_id| | NO| varchar(255)| MUL| | |
-| related_type| | NO| varchar(255)| | | |
-| workflow_value_id| | NO| int(10) unsigned| MUL| | |
+| related_id| | NO| varchar(255)| MUL| | 対象のID|
+| related_type| | NO| varchar(255)| | | 対象の種類(ユーザー、組織、カスタム列、システム)|
+| workflow_value_id| | NO| int(10) unsigned| MUL| | ワークフロー実行履歴のID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
