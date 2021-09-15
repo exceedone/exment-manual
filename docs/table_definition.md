@@ -936,21 +936,6 @@
 |---|---|---|---|
 | password_resets_email_index| email| | |
 
-## pivot__6230cca21266dd6c9aa7_b8147e1abf78aed6074e
-### Table definition
-| Column name | Default | NULL | Type | Key | Other | Comment 
-|---|---|---|---|---|---|---|
-| id| | NO| int(10) unsigned| PRI| auto_increment| |
-| parent_id| | NO| int(10) unsigned| MUL| | |
-| child_id| | NO| int(10) unsigned| MUL| | |
-
-### INDEX infomation
-| INDEX name | INDEX column | UNIQUE |Comment | 
-|---|---|---|---|
-| custom_relation_values_child_id_index| child_id| | |
-| custom_relation_values_parent_id_index| parent_id| | |
-| PRIMARY| id| UNIQUE| |
-
 ## plugins
 ### Table definition
 | Column name | Default | NULL | Type | Key | Other | Comment 
@@ -1123,29 +1108,6 @@
 |---|---|---|---|
 | PRIMARY| id| UNIQUE| |
 | user_settings_base_user_id_index| base_user_id| | |
-
-## view_workflow_start（VIEW）
-### Table definition
-| Column name | Default | NULL | Type | Key | Other | Comment 
-|---|---|---|---|---|---|---|
-| workflow_id| 0| NO| int(10) unsigned| | | |
-| workflow_table_id| NULL| YES| int(10) unsigned| | | |
-| workflow_action_id| 0| NO| int(10) unsigned| | | |
-| authority_related_id| | NO| varchar(255)| | | |
-| authority_related_type| | NO| varchar(255)| | | |
-
-## view_workflow_value_unions（VIEW）
-### Table definition
-| Column name | Default | NULL | Type | Key | Other | Comment 
-|---|---|---|---|---|---|---|
-| workflow_value_id| 0| NO| int(10) unsigned| | | |
-| workflow_id| 0| NO| int(10) unsigned| | | |
-| workflow_table_id| NULL| YES| int(10) unsigned| | | |
-| custom_value_id| 0| NO| bigint(20) unsigned| | | |
-| custom_value_type| ''| NO| varchar(255)| | | |
-| workflow_action_id| 0| NO| int(10) unsigned| | | |
-| authority_related_id| ''| NO| varchar(255)| | | |
-| authority_related_type| ''| NO| varchar(255)| | | |
 
 ## workflows
 ### Table definition
