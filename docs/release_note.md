@@ -1,6 +1,22 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.3 (2021/10/28)
+1. Addition of functions
+    - Custom column types of custom columns For "Choice (select from other tables)", "User", and "Organization", you can set multiple initial values ​​by setting "Initial value setting" and comma-separated IDs. Fix
+    - Added the function to set the displayed contents when the user icon on the upper right of the page is clicked. You can register from the system setting details screen
+    - Added the function to set the number of items displayed on the custom data list screen from .env
+    - Added variable "isDelete" to judge whether it is deleted by plug-in (event)
+1. Bug fix
+    - Fixed a bug that other tables can be managed when the custom table permission "Table management" is added with the role table permission.
+    - Fixed a bug that the label of the button on the list screen registered in the data update settings is displayed as "Process name".
+    - Fixed a bug that the display disappears when the display is changed to the next month in the calendar view.
+    - Fixed a bug that access token cannot be obtained by function LoginService::getAccessToken()
+    - Fixed a bug where the sender display name of the email template was not added to the form during installation. If you already have it installed, please add it manually from the email template form.
+1. Others
+    - For some plug-in types, if there is an error in the plug-in description, the system error will be described and corrected so that it will not be a system error.
+    - Other minor corrections
+
 ## v4.2.2 (2021/08/19)
 1. Addition of functions
     - Added the function to enter the data update value in the dialog in the data update setting.
