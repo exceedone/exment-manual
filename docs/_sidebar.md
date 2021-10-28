@@ -88,6 +88,7 @@
   * [Function reference](/func_reference.md)
   * [Column reference](/column_reference)
   * [Plugin reference](/plugin_reference.md)
+  * [Database table definition](/table_definition)
   * [List of set values](/config.md)
   * [Command](/command)
   * [Patch_weakness](/patch_weakness)

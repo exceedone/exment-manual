@@ -80,7 +80,7 @@ class Plugin extends PluginImportBase{
             if (!isset($product_version_code)) break;
             // 製品バージョンコードで、製品バージョンテーブルを読み込みます
             $product_version = getModelName('product_version')
-                ::where('value->product_version_code、, $product_version_code)->first();
+                ::where('value->product_version_code', $product_version_code)->first();
             // 製品バージョンテーブルが取得できなかった場合は次の行にスキップします
             if (!isset($product_version)) continue;
             // 明細行と製品バージョンテーブルから契約明細データを編集します
