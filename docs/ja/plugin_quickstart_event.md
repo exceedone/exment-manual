@@ -82,4 +82,13 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 
 
 ### サンプルプラグイン
-準備中...
+[外部データベース連携](https://exment.net/downloads/sample/plugin/PluginSyncCity.zip)  
+- カスタムデータの保存を行った際に、外部データベースとの連携を行うサンプルです。  
+- Exmentの都市テーブルで追加・更新・削除を行うと、外部データベースのcityテーブルに反映されます。  
+- 事前準備として、以下の処理を実行してください。
+    1. Exmentの管理者設定→テンプレートから、[テンプレート](https://exment.net/downloads/sample/template/event.zip)をインポートします。  
+    - 外部データベースを作成します。本プラグインではMySQLのサンプルデータベース「world」を利用しています。[公式サイト](https://dev.mysql.com/doc/index-other.html)からzipをダウンロードした上で、お使いのMySQL（またはMariaDB）環境で解凍したSQLを実行してください。
+![MySQLダウンロード画面](img/plugin/plugin_event1.png)  
+    - Exmentの管理者設定→プラグインから、[プラグイン](https://exment.net/downloads/sample/plugin/PluginSyncCity.zip)をアップロードします。  
+    - プラグインの設定画面を開き、2.で設定した外部データベースの接続情報を入力→保存してください。  
+![プラグイン設定画面](img/plugin/plugin_event2.png)  
