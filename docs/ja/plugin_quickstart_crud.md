@@ -280,7 +280,7 @@ class Plugin extends PluginCrudBase
 ### zipに圧縮
 上記2ファイルを最小構成として、zipに圧縮します。  
 zipファイル名は、「(plugin_name).zip」にしてください。  
-- YouTubeSearch.zip
+- MySQLWorld.zip
     - config.json
     - Plugin.php
 
