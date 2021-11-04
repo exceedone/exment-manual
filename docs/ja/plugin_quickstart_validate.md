@@ -90,4 +90,6 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 
 
 ### サンプルプラグイン
-準備中...
+[お知らせ表示順チェック](https://exment.net/downloads/sample/plugin/PluginValidatorTest.zip)  
+- お知らせテーブルの表示順が100を超える場合はエラーにするサンプルです。  
+
