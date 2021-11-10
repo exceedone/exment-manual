@@ -145,7 +145,7 @@ class Plugin extends PluginCrudBase
      *
      * @return mixed
      */
-    public function putEdit(Request $request, $primaryValue, array $posts, array $options = []) : mixed
+    public function putEdit($primaryValue, array $posts, array $options = []) : mixed
     {
         // 独自のデータベースに保存する。
         $posts = array_only($posts, array_keys($this->getFieldDefinitions()));
