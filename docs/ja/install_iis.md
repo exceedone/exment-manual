@@ -103,6 +103,11 @@ PHP をダウンロードし、インストールします
         ```
         に変更 (行頭の ; を取ってコメントを外します)  
         ※指定したフォルダはファイルアップロード時の一時的な保管場所になります。
+    5. ファイルの末尾に、以下の記述を追加します。
+        ```
+        extension=php_fileinfo.dll
+        ```
+
 13. コマンドプロンプトで以下のコマンドを実行し、PHP が動作することを確認します  
     ```
     php -v
@@ -111,7 +116,7 @@ PHP をダウンロードし、インストールします
 
     Visual C++ 14.0 ランタイムが見つからないというエラーになる場合は、[最新のサポートされる Visual C++ のダウンロード
 ](https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads) からVisual Studio 2015、2017 および 2019 用の Visual C++ 再頒布可能パッケージ (vc_redist.x64.exe) をダウンロード・インストールしてください  
-    ![vc_redist](img/iis/vcredist_01.png)
+    ![vc_redist](img/iis/VCredist_01.png)
 
 ### MySQL のインストール
 Exment で利用する MySQL をインストールして初期構成します  
@@ -139,7 +144,7 @@ Exment で利用する MySQL をインストールして初期構成します
 
     Visual C++ 12.0 ランタイムが見つからないというエラーになる場合は、[最新のサポートされる Visual C++ のダウンロード
 ](https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads) を参照して、\[Update for Visual C++ 2013 Redistributable Package\](https://support.microsoft.com/ja-jp/help/4032938/update-for-visual-c-2013-redistributable-package) から日本語版 (Japanese) の Visual Studio 2013 用 Microsoft Visual C++ 再頒布可能パッケージ (vc_redist.x64.exe) をダウンロード・インストールしてください  
-    ![vc_redist](img/iis/vcredist_02.png)
+    ![vc_redist](img/iis/VCredist_02.png)
 10. 以下のコマンドを実行して MySQL の起動を確認します。"mysqld: ready for connections." が表示されれば正しく起動できています
     ```
     mysqld --console
