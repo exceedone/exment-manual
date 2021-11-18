@@ -977,3 +977,167 @@ Microsoft Teamsに通知を送信します。
 ---
 
 
+## File / ファイル管理クラス
+Exmentにアップロードされた各種ファイル（ファイル列や画像列のファイル、添付ファイル、アバター画像etc...）を管理するクラスです。
+
+- namespace Exceedone\Exment\Model
+- extends Exceedone\Exment\Model\ModelBase
+
+### プロパティ
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| uuid | string | ファイルを管理する一意な文字列です。元のファイル名は重複する可能性があるため、Exmentではすべてのファイルにuuidを付与しています。 |
+| file_type | integer | ファイルの種類（1：カスタム列、2：添付ファイル、3：アバター、4：システム、5：フォーム画像、6：公開フォーム） |
+| local_dirname | string | ファイルが保存されているディレクトリの名前 |
+| local_filename | string | 保存されているファイル名（通常はuuid＋拡張子） |
+| filename | string | アップロードした時点の本来のファイル名 |
+| parent_type | string | ファイルが紐づいているCustomTableの名前 |
+| parent_id | string | ファイルが紐づいているCustomValueのID |
+| custom_column_id | integer | ファイルが紐づいているCustomColumnのID |
+| custom_form_column_id | integer | ファイルが紐づいているCustomFormColumnのID |
+| path | string | 保存されているファイルのパス。フルパスではなくアップロードストレージからの相対パスです。 |
+| extension | string | ファイルの拡張子 |
+
+
+
+### 関数一覧
+
+#### (static)getUrl
+ファイルにアクセスするためのURLを返却します。
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $path | string | ファイルの相対パス |
+| $options | array | 取得方法を指定する連想配列です。 <br />asApi : APIのURLを取得したい場合true。初期値はfalse  |
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| string | ファイルのURL |
+
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Model\File;
+
+// テストテーブルのid1のデータを取得
+$value = CustomTable::getEloquent('test')->getValueModel(1);
+// ファイル列の値を取得（ファイル列や画像列には相対パスが格納されている）
+$file_path = $value->getValue('file');
+// URLを取得
+$url = File::getUrl($file_path);
+~~~
+
+---
+
+#### (static)storeAs
+ファイルコンテンツをストレージに保存し、ファイル管理テーブルにデータを追加します。
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $file_type | integer | ファイルの種類（詳細はプロパティ参照） |
+| $content | mixed | ファイルコンテンツ。UploadedFileやString（ファイルに書き込む文字列）等を指定できます。 |
+| $dirname | string | ファイルを保存するディレクトリの名前 |
+| $filename | string | 元のファイル名 |
+| $options | array | 保存時のオプションを指定する連想配列です。  |
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| File | ファイル管理テーブルに追加したデータのインスタンス |
+
+##### 使用例
+※saveCustomValue、saveDocumentModelを参照。
+
+---
+
+#### saveCustomValue
+ファイル管理テーブルのデータにCustomValueの情報を付加します。
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $custom_value_id | integer | CustomValueのID |
+| $custom_column | mixed | ファイル種類がカスタム列の場合にCustomColumnのインスタンス／対象データのID／列名(英数字) |
+| $custom_table | mixed | CustomTableのインスタンス |
+| $replace | bool | 指定された列に紐づいているファイルをすべて洗い替える場合はtrue。初期値はfalse |
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| File | ファイル管理テーブルのインスタンス |
+
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Model\CustomColumn;
+use Exceedone\Exment\Model\File;
+use Exceedone\Exment\Enums\FileType;
+
+// テストテーブルを取得
+$custom_table = CustomTable::getEloquent('test');
+// テストテーブルのid=1のデータを取得
+$custom_value = $custom_table->getValueModel(1);
+// テストテーブルのfile列を取得
+$file_column = CustomColumn::getEloquent('file', $custom_table);
+// 文字列「hogehoge」を「hoge.txt」という名前でストレージに保存。ファイル管理テーブルにデータを追加して、テストテーブルのid=1のデータのfile列と紐づける
+$file = File::storeAs(FileType::CUSTOM_VALUE_COLUMN, 'hogehoge', $custom_table->table_name, 'hoge.txt')
+    ->saveCustomValue(1, $file_column, $custom_table);
+
+// テストテーブルのid=1のデータのfile列を更新する
+$custom_value->setValue('file', $file->path);
+$custom_value->save();
+~~~
+
+---
+
+
+#### saveDocumentModel
+ファイル管理テーブルのデータからドキュメント情報を作成します。
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $custom_value | CustomValue | ドキュメントを紐づけるCustomValueインスタンス |
+| $document_name | string | ドキュメントのファイル名 |
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| File | ドキュメントテーブルに追加したデータのインスタンス |
+
+##### 使用例
+
+~~~ php
+use Exceedone\Exment\Model\CustomTable;
+use Exceedone\Exment\Model\File;
+use Exceedone\Exment\Enums\FileType;
+
+// テストテーブルを取得
+$custom_table = CustomTable::getEloquent('test');
+// テストテーブルのid=1のデータを取得
+$custom_value = $custom_table->getValueModel(1);
+
+// 文字列「hogehoge」を「hoge.txt」という名前でストレージに保存。ファイル管理テーブルにデータを追加する
+$file = File::storeAs(FileType::CUSTOM_VALUE_DOCUMENT, 'hogehoge', $custom_table->table_name, 'hoge.txt');
+// ファイル管理テーブルのデータをテストテーブルのid=1のデータと紐づける
+$file = $file->saveCustomValue(1, null, $custom_table);
+// ドキュメント情報を作成する（テストテーブルのid=1のデータと紐づけ）
+$document = $file->saveDocumentModel($custom_value, 'hoge.txt');
+~~~
+
+---
+
+
+
+### 補足：ファイルの取り扱いについて
+Exmentのカスタムデータでファイル列の情報を見ると、簡単な相対パスが設定されているだけです。  
+実際のファイルはストレージに格納されています。そして、このストレージ上のファイルにアクセスするための情報やファイルの種類、どのカスタムデータに紐づけられているのか？を管理しているのがファイル管理テーブル(files)です。  
+ファイル列や画像列にアップロードされたファイルの他、添付ファイル、アバター画像、システムのアイコンやロゴ等、様々なファイルを横断的に管理しています。（なお、添付ファイルは別途ドキュメントテーブルという独自のテーブルも利用しています）  
+そのため、プラグインでファイル列にデータを設定したり、添付ファイルをつけたりする場合に、通常のフィールドよりも若干複雑な記述が必要になります。  
+詳しくは上記「使用例」やサンプルプラグインをご覧ください。
