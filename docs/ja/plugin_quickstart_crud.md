@@ -57,7 +57,11 @@ use GuzzleHttp\Client;
 
 class Plugin extends PluginCrudBase
 {
+    // (13)
+    protected $useCustomOption = true;
+
     /**
+     * (2) 列定義を取得
      * Get fields definitions
      *
      * @return array
@@ -74,6 +78,7 @@ class Plugin extends PluginCrudBase
     }
 
     /**
+     * (3) データ一覧を取得
      * Get data list
      *
      * @return array
@@ -84,6 +89,7 @@ class Plugin extends PluginCrudBase
     }
 
     /**
+     * (3) データ詳細(1件のデータ)を取得
      * read single data
      *
      * @return array
@@ -94,6 +100,7 @@ class Plugin extends PluginCrudBase
     }
 
     /**
+     * (4) 新規作成ならびに編集時のフォームを設定
      * set form info
      *
      * @return Form
@@ -117,6 +124,7 @@ class Plugin extends PluginCrudBase
     }
     
     /**
+     * (5) 新規作成実施
      * post create value
      *
      * @return mixed
@@ -132,11 +140,12 @@ class Plugin extends PluginCrudBase
     }
 
     /**
+     * (6) 編集の実施
      * edit posted value
      *
      * @return mixed
      */
-    public function putEdit(Request $request, $primaryValue, array $posts, array $options = []) : mixed
+    public function putEdit($primaryValue, array $posts, array $options = []) : mixed
     {
         // 独自のデータベースに保存する。
         $posts = array_only($posts, array_keys($this->getFieldDefinitions()));
@@ -145,5 +154,133 @@ class Plugin extends PluginCrudBase
 
         // 主キーを戻す・・・が良いのかな。
     }
+
+    /**
+     * (7) データの削除
+     * delete value
+     *
+     * @return mixed
+     */
+    public function delete($primaryValue, array $posts, array $options = [])
+    {
+        $value = \DB::table('city')->delete($primaryValue);
+    }
+
+
+    /**
+     * (8) (任意：)新規作成を実行可能とするかどうか
+     * Whether create data. If false, disable create button.
+     * Default: true
+     *
+     * @return bool
+     */
+    public function enableCreate(array $options = []) : bool
+    {
+        return true;
+    }
+
+    /**
+     * (9) (任意：)編集を実行可能とするかどうか(全件)
+     * Whether edit all data. If false, disable edit button and link.
+     * Default: true
+     *
+     * @return bool
+     */
+    public function enableEdit(array $options = []) : bool
+    {
+        return true;
+    }
+
+    /**
+     * (10) (任意：)編集を実行可能とするかどうか(指定のデータ)
+     * Whether edit target data. If false, disable edit button and link.
+     * Default: true
+     *
+     * @return bool
+     */
+    public function enableEditData($primaryValue, array $options = []) : bool
+    {
+        return true;
+    }
+
+    /**
+     * (11) (任意：)削除を実行可能とするかどうか(全件)
+     * Whether delete all data. If false, disable delete button and link.
+     * Default: true
+     *
+     * @return bool
+     */
+    public function enableDelete(array $options = []) : bool
+    {
+        return true;
+    }
+
+    /**
+     * (12) (任意：)削除を実行可能とするかどうか(指定のデータ)
+     * Whether delete target data. If false, disable delete button and link.
+     * Default: true
+     *
+     * @return bool
+     */
+    public function enableDeleteData($primaryValue, array $options = []) : bool
+    {
+        return true;
+    }
+    
+    /**
+     * (14) (任意：)プラグインの編集画面で設定するオプション。
+     *
+     * @param [type] $form
+     * @return void
+     */
+    public function setCustomOptionForm(&$form)
+    {
+    }
 }
 ~~~
+
+- (1) namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)  
+また、クラス名は「Plugin」とし、PluginCrudBaseを継承してください。
+
+- (2) 関数getFieldDefinitionsは、列定義を連想配列で取得する関数です。  
+必ず"primary" => trueとなるキーを1つ追加してください。(現在、複合キーには対応していません)  
+また、"label"は、一覧画面などの項目名に使用します。  
+
+- (3) 関数getListは、データの一覧を取得する関数です。  
+取得したデータを、配列で返却してください。  
+また、データ一覧内は連想配列とし、この連想配列のキー値は、getFieldDefinitionsで設定しているキー値と同値としてください。
+
+- (4) 関数setFormは、新規作成時ならびに編集時のフォームを設定します。  
+
+- (5) 関数postCreateは、画面で新規作成を実行時に呼び出される関数です。データの新規作成を実施してください。  
+
+- (6) 関数putEditは、画面で編集を実行時に呼び出される関数です。データの編集を実施してください。  
+
+- (7) 関数deleteは、画面で削除を実行時に呼び出される関数です。データの削除を実施してください。  
+
+- (8) (任意)関数enableCreateは、データの作成を許可するかどうかです。許可しない場合はfalseを返却してください。デフォルトはtrueです。
+
+- (9) (任意)関数enableEditは、すべてのデータの編集を許可するかどうかです。許可しない場合はfalseを返却してください。デフォルトはtrueです。  
+※enableEditDataと両方がtrueの場合のみ、編集が許可されます。
+
+- (10) (任意)関数enableEditDataは、指定のデータの編集を許可するかどうかです。許可しない場合はfalseを返却してください。デフォルトはtrueです。  
+※enableEditと両方がtrueの場合のみ、編集が許可されます。
+
+- (11) (任意)関数enableDeleteは、すべてのデータの削除を許可するかどうかです。許可しない場合はfalseを返却してください。デフォルトはtrueです。  
+※enableDeleteDataと両方がtrueの場合のみ、削除が許可されます。
+
+- (12) (任意)関数enableDeleteDataは、指定のデータの削除を許可するかどうかです。許可しない場合はfalseを返却してください。デフォルトはtrueです。  
+※enableDeleteと両方がtrueの場合のみ、削除が許可されます。
+
+- (13)(14) (任意)関数setCustomOptionFormは、プラグインの設定画面で表示される項目です。  
+ユーザーに画面で独自で設定したい項目がある場合、画面から設定できるようになります。  
+※カスタム設定を使用するには、「protected $useCustomOption = true;」を追加してください。  
+※設定した値を取得するには、関数「$this->plugin->getCustomOption('パラメータ名')」を使用してください。
+
+### zipに圧縮
+上記2ファイルを最小構成として、zipに圧縮します。  
+zipファイル名は、「(plugin_name).zip」にしてください。  
+- MySQLWorld.zip
+    - config.json
+    - Plugin.php
+
