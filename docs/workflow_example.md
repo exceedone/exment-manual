@@ -43,10 +43,10 @@ Data cannot be edited: "YES"
 - **Action setting 1st line**  
 Action name:  
 Status before “Application” execution: “Not implemented”  
-action setting> Status after execution: “Applying”  
+Action setting> Status after execution: “Applying”  
 Executable user: “Created user”  
-option setting> Condition to go to next status: “1” Run more than one person  
-option setting> Comment: "Arbitrary"  
+Option setting> Condition to go to next status: “1” Run more than one person  
+Option setting> Comment: "Arbitrary"  
 
 - **Action setting 2nd line**  
 Action name: "Approval"  
@@ -55,7 +55,7 @@ Action setting> Status after execution: "Complete"
 Executable user: "Management group" * Create organization "Management group" in advance  
 Option setting> Condition for proceeding to the next status:  
 Option setting for "Run two or more people" > Comment: "Optional"  
-option setting> Special action: Unchecked  
+Option setting> Special action: Unchecked  
 
 - **Action setting 3rd line**  
 Action name: "Reject"  
@@ -104,34 +104,34 @@ Data cannot be edited: "YES"
 
 ![Workflow screen](img/workflow/workflow_example2_2.png)  
 
-- **Action setting 1st line**  
-Action name:  
-Status before “application” execution: “Not applied”  
-action setting> Status after execution: Refer to the following image  
-
 ![Workflow screen](img/workflow/workflow_example2_3.png)  
 
+
+- **Action setting 1st line**  
+Action name: "Application"  
+Status before “application” execution: “Not applied”  
+Action setting> Status after execution: Refer to the following image  
 Executable user: "Create user"  
-option setting> Conditions for proceeding to the next status: "One or more users"  
-option setting> Comment: "Any"  
+Option setting> Conditions for proceeding to the next status: "One or more users"  
+Option setting> Comment: "Any"  
 
 - **Action setting 2nd line**  
 Action name: "Approval"  
 status before execution: "Applying for manager"  
-action setting> Status after execution: "Complete"  
+Action setting> Status after execution: "Complete"  
 Executable user: "Manager" * Create organization "Manager" in advance  
-option Settings> Conditions for proceeding to the next status: "One or more people"  
-option setting> Comment: "Optional"  
-option setting> Special action: Unchecked  
+Option setting> Conditions for proceeding to the next status: "One or more people"  
+Option setting> Comment: "Optional"  
+Option setting> Special action: Unchecked  
 
 - **Action setting 3rd line**  
 Action name: "Approve"  
 Status before execution: "Applying for section manager"  
 Action setting> Status after execution: "Complete"  
 Executable user: "section manager" * Create organization "section manager" in advance  
-Option Settings> Conditions for proceeding to the next status: "One or more people"  
-option setting> Comment: "Optional"  
-option setting> Special action: Unchecked  
+Option setting> Conditions for proceeding to the next status: "One or more people"  
+Option setting> Comment: "Optional"  
+Option setting> Special action: Unchecked  
 
 - **Action setting 4th line**  
 Action name: "Reject"  
@@ -150,3 +150,53 @@ Executable user: "Manager" * Create organization "Manager" in advance
 Option setting> Conditions for proceeding to the next status:  
 Option setting for "Run one or more people" > Comment:  
 Option setting for "Required" > Special action: Checked  
+
+
+
+
+<h2 id="example3"><a href="#/workflow_example?id=example3" data-id="example3" class="anchor"><span>Lock Data</span></a></h2>
+
+This is an introduction of setting method when you want to lock (cannot edit / delete) specific data.  
+
+![Workflow page](img/workflow/workflow3.png)  
+- Created user locks or unlocks data.
+- Locked data cannot be modified until it is unlocked.
+
+
+### Step1. Status setting
+
+![Workflow page](img/workflow/workflow_status3.png)  
+
+- **Workflow display name** : Any name
+
+- **Workflow type** : "General"
+
+- **Start Status Name** : "Not Submitted"
+
+- **Status 1st line**  
+Status name: “Locked”  
+Data cannot be edited: “YES”
+
+
+### Step2.Action setting
+
+![Workflow page](img/workflow/workflow_action5.png)  
+
+- **Action setting 1st line**  
+Action name: "Lock"  
+Status before “Application” execution: “Not Submitted”  
+Action setting> Status after execution: “Locked”  
+Executable user: “Created user”  
+Option setting> Condition to go to next status: “1” Run more than one person  
+Option setting> Comment: "Arbitrary"  
+
+
+- **Action setting 2nd line**  
+Action name: "Unlock"  
+Status before execution: "Locked"  
+Action setting> Status after execution: "Not Submitted"  
+Executable user: “Created user”  
+Option setting> Condition to go to next status: “1” Run more than one person  
+Option setting> Comment: "Arbitrary"  
+Option setting> Special action: Checked  
+
