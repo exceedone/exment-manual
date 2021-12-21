@@ -1,6 +1,23 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.5 (2021/12/21)
+1. Addition of functions
+    - Added a function that allows you to set the display position to left-justified, center-justified, or right-justified when displayed on the list screen. Add from custom column settings
+    - Added multiple selections of "Include search value" to "Current status" of workflow in the data display condition of custom view.
+    - Added the function to add a fixed attachment to the notification template when the notification is executed.
+    - Added the function to display the unread list of system notifications on the dashboard. Please add from the dashboard type "System"
+    - Added work performer to workflow notification
+1. Bug fix
+    - Fixed a bug that HTML class of button of data copy setting is not reflected
+    - Fixed a bug that "Restore Revision" may not work properly
+    - Fixed a bug that no hit is found when searching Japanese in a column that allows multiple selection in MuSQL.
+1. Others
+    - Fixed so that the relationship type cannot be changed after saving once in the relationship settings.
+    - Some bug fixes related to SQL Server
+    - Other minor corrections
+
+
 ## v4.2.4 (2021/11/30)
 1. Bug fix
     - Fixed a bug that the notification type "Time has passed" may not work properly.
