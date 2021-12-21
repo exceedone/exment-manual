@@ -279,7 +279,7 @@
 | ---- | ---- | ---- |
 | is_modal | bool | イベントが発生したページがモーダルフォームかどうか |
 | event_type | PluginEventType | イベントの種類 |
-| page_type | PluginPageType | イベントが発生したページの種類 |
+| page_type | PluginPageType | イベントが発生したページの種類<br>（list：一覧画面、create：新規作成画面、edit：編集画面、show：詳細画面） |
 
 
 ### 関数一覧
