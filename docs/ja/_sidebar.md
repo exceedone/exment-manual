@@ -72,6 +72,7 @@
     * [ページ](/ja/plugin_quickstart_page)
     * [ダッシュボード](/ja/plugin_quickstart_dashboard)
     * [ビュー](/ja/plugin_quickstart_view)
+    * [CRUDページ](/ja/plugin_quickstart_crud)
     * [バッチ](/ja/plugin_quickstart_batch)
     * [API](/ja/plugin_quickstart_api)
     * [バリデーション](/ja/plugin_quickstart_validate)
