@@ -120,4 +120,15 @@ php artisan exment:batch --uuid=b5c0a5d2-2716-4161-98d0-b490c1ebc521
 
 
 ### Sample plugin
-[Physical deletion plug-in for data](https://exment.net/downloads/sample/plugin/HarddeleteBatch.zip)
+[Physical deletion plug-in for data](https://exment.net/downloads/sample/plugin/HarddeleteBatch.zip)  
+- A batch that physically deletes logically deleted data.  
+  
+[External database linkage](https://exment.net/downloads/sample/plugin/PluginSyncBatch.zip)  
+- It is a batch that fetches the information stored in the external database into the table of Exment at once.  
+- As a preliminary preparation, perform the following processing.
+    1. Import [Template](https://exment.net/downloads/sample/template/city_template.zip) from Exment menu "Administrator Settings" → "Templates".  
+    - Create an external database. This plug-in uses the MySQL sample database "world".Download the zip from [the Official website](https://dev.mysql.com/doc/index-other.html) and execute the unzipped SQL in your MySQL (or MariaDB) console.
+![MySQL download page](img/plugin/plugin_event1.png)  
+    - Upload [Plugins](https://exment.net/downloads/sample/plugin/PluginSyncBatch.zip) from Exment menu "Administrator Settings" → "Plugins".  
+    - Open the plugin setting page, fill the connection information of the external database (set in 2.) and save.  
+![Plugin setting page](img/plugin/plugin_event2.png)  

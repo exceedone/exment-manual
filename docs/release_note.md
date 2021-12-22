@@ -1,6 +1,32 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.5 (2021/12/21)
+1. Addition of functions
+    - Added a function that allows you to set the display position to left-justified, center-justified, or right-justified when displayed on the list screen. Add from custom column settings
+    - Added multiple selections of "Include search value" to "Current status" of workflow in the data display condition of custom view.
+    - Added the function to add a fixed attachment to the notification template when the notification is executed.
+    - Added the function to display the unread list of system notifications on the dashboard. Please add from the dashboard type "System"
+    - Added work performer to workflow notification
+1. Bug fix
+    - Fixed a bug that HTML class of button of data copy setting is not reflected
+    - Fixed a bug that "Restore Revision" may not work properly
+    - Fixed a bug that no hit is found when searching Japanese in a column that allows multiple selection in MuSQL.
+1. Others
+    - Fixed so that the relationship type cannot be changed after saving once in the relationship settings.
+    - Some bug fixes related to SQL Server
+    - Other minor corrections
+
+
+## v4.2.4 (2021/11/30)
+1. Bug fix
+    - Fixed a bug that the notification type "Time has passed" may not work properly.
+    - Fixed a bug that the 1: n form may not work properly with the "Search" button on the data entry screen.
+    - Fixed a bug that child data may not work properly when exporting n: n data when exporting data.
+    - Fixed a bug that may not work properly due to validation target when deleting a row on the workflow action setting screen.
+    - Fixed a bug that role authority may not work properly when configuring an organization with a very large number of child organizations.
+    - Fixed the problem that the previous check remains when the action is taken again after checking the list and taking the action on the data list screen where the authority of the role group is "View assigned data".
+
 ## v4.2.3 (2021/10/28)
 1. Addition of functions
     - Custom column types of custom columns For "Choice (select from other tables)", "User", and "Organization", you can set multiple initial values ​​by setting "Initial value setting" and comma-separated IDs. Fix

@@ -79,4 +79,5 @@ The zip file name should be "(plugin_name) .zip".
     - Plugin.php
 
 ### Sample plugin
-in preparation...
+[Information order validate](https://exment.net/downloads/sample/plugin/PluginValidatorTest.zip)  
+- This is a sample that validate if the display order of the information table exceeds 100.  
