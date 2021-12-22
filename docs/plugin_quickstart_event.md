@@ -7,6 +7,7 @@ It is executed when a specific operation is performed on the screen of Exment, a
 
 | Name | Type | Description |
 | ---- | ---- | ---- |
+| loading | At the start of loading | At the beginning of the page load process, the process starts. |
 | saving | Immediately before saving | Immediately before saving the data, the process starts. |
 | saved | After saving | After saving the data, the process starts. |
 | workflow_action_executing | Immediately before workflow execution | Immediately before workflow execution, the process starts. |

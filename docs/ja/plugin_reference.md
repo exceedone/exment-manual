@@ -1,6 +1,5 @@
 # プラグインリファレンス
 各プラグイン独自の関数やプロパティ一覧になります。  
-※現在、鋭意修正中です。
 ※カスタムテーブルやカスタム列、カスタムデータのリファレンスは、[こちら](/ja/func_reference)をご参照ください。
 
 
@@ -42,6 +41,7 @@
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Controllers\ApiTrait
 
 ##### プロパティ
 なし
@@ -76,7 +76,11 @@
 - trait Exceedone\Exment\Services\Plugin\PluginBase
 
 ##### プロパティ
-なし
+
+##### PluginOptionBatch（PluginOptionBaseを継承）
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| command_options | array | バッチに渡されたコマンドライン引数 |
 
 ### 関数一覧
 
@@ -100,6 +104,8 @@
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Services\Plugin\PluginButtonTrait
+- trait Exceedone\Exment\Services\Plugin\PluginPageTrait
 
 ##### プロパティ
 | 名前 | 種類 | 説明 |
@@ -112,7 +118,7 @@
 ### 関数一覧
 
 #### execute
-バッチを実行します。実行したい処理を、こちらの関数内に記載してください。
+ボタン押下時の処理を実行します。実行したい処理を、こちらの関数内に記載してください。
 
 ##### 引数
 なし
@@ -145,6 +151,7 @@
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Services\Plugin\PluginPageTrait
 
 ##### プロパティ
 | 名前 | 種類 | 説明 |
@@ -229,6 +236,7 @@
 | ---- | ---- | ---- |
 | custom_table | CustomTable | カスタムテーブルのインスタンス |
 | custom_value | CustomValue | カスタムデータのインスタンス |
+| document_value | CustomValue | 出力したドキュメントデータのインスタンス（executed関数内のみ参照可能） |
 
 
 ### 関数一覧
@@ -266,26 +274,28 @@
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Services\Plugin\PluginEventTrait
 
 ##### プロパティ
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | custom_table | CustomTable | カスタムテーブルのインスタンス |
 | custom_value | CustomValue | カスタムデータのEloquentインスタンス（カスタムデータに関わらないイベントの時はnull） |
-| isCreate | bool | 新規作成フォームかどうか |
+| isCreate | bool | 新規作成データかどうか |
+| isDelete | bool | 削除済データかどうか |
 
 ##### PluginOptionEvent（PluginOptionBaseを継承）
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | is_modal | bool | イベントが発生したページがモーダルフォームかどうか |
-| event_type | PluginEventType | イベントの種類 |
+| event_type | PluginEventType | イベントの種類<br>（loading：ロード時、saving：削除前、saved：削除後、workflow_action_executing：ワークフロー実行直前、workflow_action_executed：ワークフロー実行直後、notify_executing：通知実行直前、notify_executed：通知実行後） |
 | page_type | PluginPageType | イベントが発生したページの種類<br>（list：一覧画面、create：新規作成画面、edit：編集画面、show：詳細画面） |
 
 
 ### 関数一覧
 
 #### execute
-バッチを実行します。実行したい処理は、こちらの関数内に記載してください。
+イベント発生時に実行したい処理を、こちらの関数内に記載してください。
 
 ##### 引数
 なし
@@ -414,11 +424,12 @@
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Services\Plugin\PluginPageTrait
 
 ##### プロパティ
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| showHeader | bool | ページ左上のヘッダー部分に、ヘッダー部分を表示するかどうか。true:表示 / false:非表示。初期値はtrue |
+| showHeader | bool | ページ上部のヘッダー部分に、アイコンとタイトルを表示するかどうか。true:表示 / false:非表示。初期値はtrue |
 
 ### 関数一覧
 
@@ -440,6 +451,53 @@
 
 
 
+## PluginPublicBase
+プラグイン(スクリプト、スタイル)の抽象クラスです。スクリプトプラグインやスタイルプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[プラグイン(スクリプト)](/ja/plugin_quickstart_script)または[プラグイン(スタイル)](/ja/plugin_quickstart_style)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+
+##### プロパティ
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| plugin | Plugin | プラグインのEloquentインスタンス |
+
+### 関数一覧
+
+#### css
+CSSファイルのパスを取得する関数です。  
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| skipPath | bool | cssファイルをpublicフォルダ直下に格納している場合はtrueにします。（初期値はfalse） |
+
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| array | CSSファイルのパスの配列 |
+
+---
+
+#### js
+jsファイルのパスを取得する関数です。  
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| skipPath | bool | jsファイルをpublicフォルダ直下に格納している場合はtrueにします。（初期値はfalse） |
+
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| array | jsファイルのパスの配列 |
+
+
+---
+
+
 
 ## PluginValidatorBase
 プラグイン(バリデーション)の抽象クラスです。バリデーションプラグインを開発する場合、こちらのクラスを継承してください。  
@@ -454,7 +512,7 @@
 | custom_table | CustomTable | カスタムテーブルのインスタンス |
 | original_value | CustomValue | カスタムデータの変更前インスタンス |
 | input_value | array | 画面入力値を格納した連想配列（キー：列名、値：入力値） |
-| called_type | ValidateCalledType | 呼び出し元の種類（API／フォーム） |
+| called_type | ValidateCalledType | 呼び出し元の種類<br>（form：フォーム、import：インポート、api：API） |
 | messages | array | エラーメッセージを格納します<br>（キー：列名、値：エラーメッセージ※複数ある場合は配列） |
 
 
@@ -484,6 +542,7 @@
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Services\Plugin\PluginPageTrait
 
 ##### プロパティ
 | 名前 | 種類 | 説明 |
@@ -491,7 +550,7 @@
 | custom_table | CustomTable | カスタムテーブルのインスタンス |
 | custom_view | CustomView | カスタムビューのインスタンス |
 | useBox | bool | 一覧にボタンを表示するか |
-| useBoxButtons | array | どのボタンを表示するか（新規／メニュー／ビュー） |
+| useBoxButtons | array | どのボタンを表示するか<br>（newButton：新規、menuButton：メニュー、viewButton：ビュー） |
 
 
 ### 関数一覧

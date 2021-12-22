@@ -237,19 +237,19 @@ class Plugin extends PluginViewBase
 - (4) 関数"public function setViewOptionForm(&$form)"は、ビューの設定画面で表示される項目です。  
 この設定は、ビュー個別に設定を行うことできるため、同じビューでも、例えば「ビューAでは、全データを表示する」「ビューBでは、有効フラグがYESのデータのみ表示する」といった設定を行うことが出来ます。  
   
-プラグイン独自の設定と、Exment標準機能で用意している、「フィルター条件」「並べ替え設定」の2種類があります。  
-※設定した値を取得するには、関数「$this->custom_view->getCustomOption('パラメータ名')」を使用してください。  
-※また、Exmentの標準機能のビューで使用している列設定を使用する場合、以下のように記述してください。
+    プラグイン独自の設定と、Exment標準機能で用意している、「フィルター条件」「並べ替え設定」の2種類があります。  
+    ※設定した値を取得するには、関数「$this->custom_view->getCustomOption('パラメータ名')」を使用してください。  
+    ※また、Exmentの標準機能のビューで使用している列設定を使用する場合、以下のように記述してください。
 
-- (4) 関数"public function setCustomOptionForm(&$form)"は、プラグインの設定画面で表示される項目です。    
+- (5) 関数"public function setCustomOptionForm(&$form)"は、プラグインの設定画面で表示される項目です。    
 すべてのビューで、共通で使用される設定になります。  
 
-※カスタム設定を使用するには、「protected $useCustomOption = true;」を追加してください。  
-※設定した値を取得するには、関数「$this->plugin->getCustomOption('パラメータ名')」を使用してください。
+    ※カスタム設定を使用するには、「protected $useCustomOption = true;」を追加してください。  
+    ※設定した値を取得するには、関数「$this->plugin->getCustomOption('パラメータ名')」を使用してください。
 
-- (5) ビューを使用する場合、関数"$this->pluginView"を使用してください。  
+- (6) ビューを使用する場合、関数"$this->pluginView"を使用してください。  
 
-- (6) プラグインのエンドポイントを取得したい場合、関数「$this->getRouteUri('エンドポイント名')」を使用してください。  
+- (7) プラグインのエンドポイントを取得したい場合、関数「$this->getRouteUri('エンドポイント名')」を使用してください。  
 ※URLフルパスを取得したい場合、admin_url($this->getRouteUri('エンドポイント名'))を使用してください。
 
 
