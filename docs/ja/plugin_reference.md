@@ -583,3 +583,113 @@ jsファイルのパスを取得する関数です。
 
 
 
+
+
+
+## PluginCrudBase
+プラグイン(CRUDページ)の抽象クラスです。CRUDページプラグインを開発する場合、こちらのクラスを継承してください。  
+詳細は[こちら](/ja/plugin_quickstart_crud)をご参照ください。
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Services\Plugin\PluginPageTrait
+
+##### プロパティ
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| title | string | プラグインの各ページに表示するタイトル |
+| description  | string | プラグインの各ページに表示する説明文 |
+| icon | string | プラグインの各ページに表示するアイコン |
+
+
+### 関数一覧(開発者による実装が必要)
+
+#### getFieldDefinitions
+列定義を連想配列で返却する関数です。各ページで表示する項目の定義を記載してください。
+
+##### 引数
+なし
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| array | 各ページの項目の定義を連想配列で返却 |
+
+##### 戻り値-連想配列の定義
+| 種類 | 説明 |
+| ---- | ---- |
+| key | データ取得やHTMLの各要素のnameなどに設定する、項目名。英数字で入力してください |
+| label | 一覧画面などの項目名に使用する文言 |
+| grid | 一覧画面で表示する項目に設定。表示順に整数を記入してください |
+| show | 詳細画面で表示する項目に設定。表示順に整数を記入してください |
+| create | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
+| edit | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
+
+
+##### 実装例
+
+``` php
+/**
+     * Get fields definitions
+     *
+     * @return array|Collection
+     */
+    public function getFieldDefinitions()
+    {
+        return [
+            ['key' => 'ID', 'label' => 'ID', 'primary' => true, 'grid' => 1, 'show' => 1, 'edit' => 1],
+            ['key' => 'Name', 'label' => '都市名', 'grid' => 2,'show' => 2, 'create' => 1, 'edit' => 2],
+            ['key' => 'CountryCode', 'label' => '国コード', 'grid' => 3, 'show' => 3, 'create' => 2,'edit' => 3],
+            ['key' => 'Population', 'label' => '人工', 'show' => 5, 'create' => 4,'edit' => 5],
+        ];
+    }
+```
+
+#### getPaginate
+データの一覧をページネーション形式で取得する関数です。  
+取得したデータを、LengthAwarePaginator形式で返却してください。  
+また、一覧の各要素は連想配列とし、この連想配列のキー値は、getFieldDefinitionsで設定しているキー値と同値としてください。  
+※画面で検索を行った場合、引数$optionsに値が設定されます
+
+##### 引数
+なし
+
+##### 戻り値
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $options | array | 一覧画面で呼び出しを行った際のオプション値を設定 |
+
+##### 戻り値-連想配列の定義
+| 種類 | 説明 |
+| ---- | ---- |
+| key | データ取得やHTMLの各要素のnameなどに設定する、項目名。英数字で入力してください |
+| label | 一覧画面などの項目名に使用する文言 |
+| grid | 一覧画面で表示する項目に設定。表示順に整数を記入してください |
+| show | 詳細画面で表示する項目に設定。表示順に整数を記入してください |
+| create | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
+| edit | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
+
+
+##### 実装例
+
+``` php
+/**
+     * Get fields definitions
+     *
+     * @return array|Collection
+     */
+    public function getFieldDefinitions()
+    {
+        return [
+            ['key' => 'ID', 'label' => 'ID', 'primary' => true, 'grid' => 1, 'show' => 1, 'edit' => 1],
+            ['key' => 'Name', 'label' => '都市名', 'grid' => 2,'show' => 2, 'create' => 1, 'edit' => 2],
+            ['key' => 'CountryCode', 'label' => '国コード', 'grid' => 3, 'show' => 3, 'create' => 2,'edit' => 3],
+            ['key' => 'Population', 'label' => '人工', 'show' => 5, 'create' => 4,'edit' => 5],
+        ];
+    }
+```
+
+
+
+
+
