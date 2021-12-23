@@ -71,6 +71,7 @@
     * [Page](/plugin_quickstart_page.md)
     * [Dashboard](/plugin_quickstart_dashboard.md)
     * [View](/plugin_quickstart_view)
+    * [CRUD](/plugin_quickstart_crud)
     * [Batch](/plugin_quickstart_batch.md)
     * [API](/plugin_quickstart_api)
     * [Validation](/plugin_quickstart_validate.md) 
