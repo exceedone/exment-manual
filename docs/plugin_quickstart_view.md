@@ -2,6 +2,8 @@
 You can create and add new designs and unique features to Exment's custom data list screen.  
 Please use it when you want to use a completely different function from the standard View, List / Aggregation / Calendar View.   
 
+![View plugin example](img/plugin/plugin_view1.png)
+
 
 ## Introduction
 The Exment Plugin page was developed using the PHP framework [Laravel](http://laravel.com/) and [laravel-admin](https://laravel-admin.org/docs/). increase...  

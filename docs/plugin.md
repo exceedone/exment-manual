@@ -5,36 +5,133 @@ Exment has a function called "plugin".
 If the functions that Exment has as standard are insufficient for your business, you can add functions as an extension by uploading a program from the screen.  
 There are currently the following types of plugins:  
 
-- [trigger](#trigger)
+- [button](#button)
+- [event](#event)
 - [page](#page)
 - [dashboard](#dashboard)
-- [document output](#document-output)
+- [view](#view)
 - [batch](#batch)
-- [import](#import)
+- [API](#API)
+- [validation](#validation)
 - [script](#script)
 - [style](#style)
-- [validation](#validation)
+- [import](#import)
+- [export](#export)
+- [document output](#document-output)
+- [Docurain(PDF output)](#docurain)
+- [trigger *not recommended](#trigger)
 
-#### trigger
-This is executed when a specific operation is performed on the screen of Exment, and processing such as updating the value can be performed.  
-Alternatively, you can add a button to the list screen or form screen and process it when clicked.  
-Specific operations include the following:  
-- mmediately before saving: Processing starts immediately before saving data.  
-- After saving: The process starts after the data is saved.  
-- Menu button on the list screen: Adds a button at the top of the data list screen to generate an event when clicked.  
-- Form menu button (when creating new): Add a button at the top when creating new data, and raise an event when clicked.  
-- Form Menu Button (Updating): Adds a button at the top of the data update and raises an event when clicked.  
-※ Please refer to [here](/plugin_quickstart_trigger) for mounting method.
+#### button
+You can add a button to the Exment list screen or form screen and process it when you click it.
+* Please refer to [here](/plugin_quickstart_button) for the implementation method.
+  
+The types of buttons are as follows.
+##### Menu button on the list screen
+Add a button at the top of the data list screen to trigger an event when clicked.
+
+##### Menu button on the data details screen
+Add a button at the top of the data details screen to trigger an event when clicked.
+
+##### Menu button on the new data creation screen
+Add a button at the top of the new data creation screen to raise an event when clicked.
+
+##### Menu button on the data update screen
+Add a button at the top of the data update screen to trigger an event when clicked.
+
+![Button plugin example](img/plugin/plugin_button1.png)
+
+#### event
+It is executed when a specific operation is performed on the Exment screen, and processing such as updating the value can be performed.
+* Please refer to [here](/plugin_quickstart_event) for the implementation method.
+  
+The specific operations include the following.
+
+- ##### At the start of loading
+At the beginning of the page load process, the process starts. (Not prior to all processing)
+
+- ##### Immediately before saving
+The process starts just before the data is saved.
+
+- ##### After saving
+After saving the data, the process will start.
+
+- ##### Immediately before workflow execution
+The process starts just before the workflow is executed.
+
+- ##### After executing the workflow
+After executing the workflow, the process will start.
+
+- ##### Immediately before executing the notification
+The process starts just before the notification is executed.
+
+- ##### After executing the notification
+After executing the notification, the process will start.
 
 #### page
 You can create a new screen in Exment.  
 Use this if you want to use a page that is completely different from the existing features.  
 ※ Please refer to [here](/plugin_quickstart_page) for mounting method.
 
+![Page plugin example](img/plugin/plugin_page2.png)   
+
 #### dashboard
 You can create a new screen on the Exment dashboard.  
 Use this if you want to use your own page as a dashboard item.  
 ※ Please refer to [here](/plugin_quickstart_dashboard) for mounting method.
+
+![Dashboard plugin example](img/plugin/plugin_dashboard1.png)   
+
+#### View
+You can create and add new designs and unique features to Exment's custom data list screen.
+Please use it when you want to use a completely different function from the standard view, list, summary, and calendar view.
+* Please refer to [here](/plugin_quickstart_view) for the implementation method.
+
+![View plugin example](img/plugin/plugin_view1.png)
+
+#### batch
+This can be used when you want to execute periodic processing automatically.  
+It can also be used when you want to perform certain operations at once, such as updating the status in bulk.  
+※ Please refer to [here](/plugin_quickstart_batch) for mounting method.
+
+#### API
+You can create a new API in Exment.
+Please use it when you want to add a function that does not exist in [API Reference] (https://exment.net/reference/webapi.html).
+* Please refer to [here](/plugin_quickstart_api) for the implementation method.
+
+#### script
+You can execute your own script (javascript).  
+Currently supported are the data list screen, the data detail screen, the new data creation screen, and the update screen.  
+※ Please refer to [here](/plugin_quickstart_script) for mounting method.
+
+![script plugin example](img/plugin/plugin_script1.png)   
+
+#### style
+You can set your own style (style sheet / css) and change the design.  
+※ Please refer to [here](/plugin_quickstart_style) for mounting method.
+
+![style plugin example](img/plugin/plugin_style1.png)   
+
+#### validation
+This can be used when you want to implement your own custom table validation.  
+Please use it to implement complicated checks and related checks between items.  
+※ Please refer to [here](/plugin_quickstart_validate) for mounting method.
+
+![validation plugin example](img/plugin/plugin_validate1.png)   
+
+#### import
+You can use this if you want to implement your own custom table import process.
+Use it when importing files in the original format or implementing special conversion processing.  
+※ Please refer to [here](/plugin_quickstart_import) for mounting method.
+
+![import plugin example](img/plugin/plugin_import2.png)   
+
+#### Export
+It can be used if you want to implement your own custom data list export.
+Please use it when exporting a file in the original format or when implementing a special conversion process.
+The output format can be Excel or other formats.
+* Please refer to [here](/plugin_quickstart_export) for the implementation method.
+
+![Export plugin example](img/plugin/plugin_export1.png)
 
 #### document output
 You can create your own document materials such as quotes and reports.  
@@ -42,29 +139,19 @@ The template that is the basis of the document is in Excel format, and the outpu
 ※ At present, the output in PDF format has technical issues and we are studying the corresponding policy.  
 ※ Please refer to [here](/plugin_quickstart_document) for mounting method.
 
-#### batch
-This can be used when you want to execute periodic processing automatically.  
-It can also be used when you want to perform certain operations at once, such as updating the status in bulk.  
-※ Please refer to [here](/plugin_quickstart_batch) for mounting method.
+![document output sample](img/plugin/plugin_document1.png)   
 
-#### import
-You can use this if you want to implement your own custom table import process.
-Use it when importing files in the original format or implementing special conversion processing.  
-※ Please refer to [here](/plugin_quickstart_import) for mounting method.
+<h4 id="docurain"><a href="#/ja/plugin?id=docurain" data-id="Docurain(PDF output)" class="anchor"><span>Docurain(PDF output)</span></a></h4>
 
-#### script
-You can execute your own script (javascript).  
-Currently supported are the data list screen, the data detail screen, the new data creation screen, and the update screen.  
-※ Please refer to [here](/plugin_quickstart_script) for mounting method.
+PDF output is performed using the cloud form engine ** Docurain **, which can develop forms only with Excel and json.
+The template that is the basis of the document is in Excel format and is output in PDF format.
+* Please refer to [here](/plugin_quickstart_docurain) for the implementation method.
 
-#### style
-You can set your own style (style sheet / css) and change the design.  
-※ Please refer to [here](/plugin_quickstart_style) for mounting method.
+![Docurain](img/docurain/docurain_setting11.png)
 
-#### validation
-This can be used when you want to implement your own custom table validation.  
-Please use it to implement complicated checks and related checks between items.  
-※ Please refer to [here](/plugin_quickstart_validate) for mounting method.
+#### trigger
+* Deprecated from v3.2.0.  
+In the future, please implement by "button" or "event".
 
 ## Management method
 ### Page display

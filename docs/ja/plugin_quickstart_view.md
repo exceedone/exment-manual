@@ -2,6 +2,7 @@
 Exmentのカスタムデータ一覧画面に、新しいデザインや独自の機能を作成し、追加することができます。  
 標準で用意されたビューである、一覧・集計・カレンダービューと、全く異なる機能を使用したい場合にご利用ください。  
 
+![ビュー実装例](img/plugin/plugin_view1.png)   
 
 ## はじめに
 Exmentのプラグインページは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに[laravel-admin](https://laravel-admin.org/docs/) を使用して開発します。  
