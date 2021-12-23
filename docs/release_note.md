@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.6 (2021/12/23)
+1. Bug fix
+    - Fixed a bug that does not hit when searching Japanese in a column that does not allow multiple selection when the custom column is "choice" in MySQL.
+1. Others
+    - Minor fixes for plugins
+
 ## v4.2.5 (2021/12/21)
 1. Addition of functions
     - Added a function that allows you to set the display position to left-justified, center-justified, or right-justified when displayed on the list screen. Add from custom column settings
