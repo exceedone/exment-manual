@@ -33,3 +33,17 @@
 
 ![ワークフロー画面](img/workflow/workflow_data4.png)  
 
+## (上級者向け)ワークフローのデータのリセット
+
+進行中のワークフローのデータをリセットすることができます。なんらかの理由で、ワークフローが進行不可能になった場合に実行してください。  
+コマンド実行が必要です。プロジェクトのルートディレクトリで、以下のコマンドを実行してください。
+
+~~~
+php artisan exment:workflow-clear (テーブル名) (ID)
+
+# 実行例 テーブル名"estimate"、 ID"6"のデータのワークフロー進行をリセットする場合
+php artisan exment:workflow-clear estimate 6
+
+# 実行例 テーブル名"syusseki"、 ID"600"のデータのワークフロー進行をリセットする場合
+php artisan exment:workflow-clear syusseki 600
+~~~
