@@ -2,6 +2,8 @@
 You can implement your own import process for custom tables.  
 We recommend using this plug-in when importing files output by the existing system into Exment.
 
+![import plugin example](img/plugin/plugin_import2.png)   
+
 
 ## How to make
 The creation procedure is described as an example of the "Import quotation (Excel) into contract table and contract item table" plug-in.  

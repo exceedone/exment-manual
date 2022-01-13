@@ -2,6 +2,8 @@
 You can perform your own validation when saving a custom table.  
 Character type check and digit number check can be implemented by setting custom column, but if you want to implement more complicated check or related check between items, we recommend using this plugin.  
 
+![validation plugin example](img/plugin/plugin_validate1.png)   
+
 ## How to make
 
 ### Create config.json

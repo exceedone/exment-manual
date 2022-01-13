@@ -2,6 +2,8 @@
 見積書や帳票など、独自のドキュメント資料を作成することができます。  
 ドキュメントの元となるテンプレートはExcel形式で、出力もExcel形式で出力されます。  
 
+![ドキュメント出力例](img/plugin/plugin_document1.png)   
+
 > PDF形式での出力は、[こちら](/ja/plugin_quickstart_docurain)をご参照ください。  
 
 ## 作成方法
