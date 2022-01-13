@@ -297,4 +297,4 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 | WordPress | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。 | - |  |
 | WordPresses | REST APIを使用し、複数のWordpressサイトの投稿を一覧表示・詳細表示します。複数のエンドポイントに対応し、画面からボタンで対象サイトを切り替えます。 | - |  |
 | WordPressPost | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。また、事前設定したアクセスキーを使用し、投稿の追加・編集・削除も実施します。 | ID・パスワード |  |
-| OtherExment | 別サーバーのExmentとRest API連携し、データを取得・登録などを実施します。 | OAuth |  |
+| OtherExment | 別サーバーのExmentとRest API連携し、データを取得を実施します。 | OAuth |  |
