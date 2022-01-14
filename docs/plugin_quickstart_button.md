@@ -3,6 +3,8 @@ You can add a button to the Exment list screen or form screen and process it whe
 
 > This feature was added in v3.2.0.
 
+![Button plugin example](img/plugin/plugin_button1.png)
+
 ## Button type
 
 - ##### Normal button

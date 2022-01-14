@@ -3,6 +3,8 @@ You can create your own document materials such as quotes and reports.
 The template that is the basis of the document is in Excel format, and the output is also output in Excel format.  
 ※ At present, the output in PDF format has technical issues and we are studying the corresponding policy.
 
+![document output sample](img/plugin/plugin_document1.png)   
+
 ## How to make
 
 ### Create config.json

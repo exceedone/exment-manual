@@ -1,6 +1,16 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.7 (2022/01/13)
+1. Addition of functions
+    - Added avatar acquisition function to API.
+    - Added "table name (alphanumerical)" and "table display name" to parameter variable
+    - Addition of a function to send the following files by e-mail when the notification is executed
+        - Custom columns "File" "Image"
+        - Files uploaded to "Document List"
+1. Bug fix
+    - Fixed a bug that the time cannot be specified and the data is deleted when the date and time are specified in the API "Custom data search (column specification)".
+
 ## v4.2.6 (2021/12/23)
 1. Bug fix
     - Fixed a bug that does not hit when searching Japanese in a column that does not allow multiple selection when the custom column is "choice" in MySQL.

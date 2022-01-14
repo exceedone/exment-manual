@@ -39,6 +39,7 @@ Exmentの一覧画面もしくはフォーム画面にボタンを追加し、�
 ##### データ更新画面のメニューボタン
 データの更新画面の上部にボタンを追加し、クリック時にイベントを発生させます。
 
+![ボタン実装例](img/plugin/plugin_button1.png)   
 
 
 #### イベント
@@ -74,18 +75,21 @@ Exmentに新しい画面を作成することができます。
 既存の機能とは全く異なるページを使用する場合にご利用ください。  
 ※実装方法は[こちら](/ja/plugin_quickstart_page)をご参照ください。  
 
+![ページ実装例](img/plugin/plugin_page2.png)   
 
 #### ダッシュボード
 Exmentのダッシュボードに新しい画面を作成することができます。  
 ダッシュボードのアイテムとして、独自のページを使用したい場合にご利用ください。 
 ※実装方法は[こちら](/ja/plugin_quickstart_dashboard)をご参照ください。
 
+![ダッシュボード実装例](img/plugin/plugin_dashboard1.png)   
 
 #### ビュー
 Exmentのカスタムデータ一覧画面に、新しいデザインや独自の機能を作成し、追加することができます。  
 標準で用意されたビューである、一覧・集計・カレンダービューと、全く異なる機能を使用したい場合にご利用ください。  
 ※実装方法は[こちら](/ja/plugin_quickstart_view)をご参照ください。  
 
+![ビュー実装例](img/plugin/plugin_view1.png)   
 
 #### バッチ
 定期的な処理を、自動的に実行させたい場合に使用できます。  
@@ -104,10 +108,13 @@ Exmentに新しいAPIを作成することができます。
 現在対応しているのは、データ一覧画面表示時、データ詳細画面表示時、データ新規作成画面表示時・更新画面表示時です。  
 ※実装方法は[こちら](/ja/plugin_quickstart_script)をご参照ください。
 
+![スクリプト実装例](img/plugin/plugin_script1.png)   
 
 #### スタイル
 独自のスタイル(スタイルシート・css)を設定し、デザインを変更することができます。  
 ※実装方法は[こちら](/ja/plugin_quickstart_style)をご参照ください。
+
+![スタイル実装例](img/plugin/plugin_style1.png)   
 
 
 #### バリデーション
@@ -115,17 +122,22 @@ Exmentに新しいAPIを作成することができます。
 複雑なチェックや項目間の関連チェックを実装する場合にご利用ください。  
 ※実装方法は[こちら](/ja/plugin_quickstart_validate)をご参照ください。
 
+![バリデーション実装例](img/plugin/plugin_validate1.png)   
+
 #### インポート
 カスタムデータのインポート処理を独自に実装したい場合に使用できます。  
 オリジナルフォーマットのファイルを取り込む場合や特殊な変換処理を実装する場合にご利用ください。  
 ※実装方法は[こちら](/ja/plugin_quickstart_import)をご参照ください。
 
+![インポート実装例](img/plugin/plugin_import2.png)   
 
 #### エクスポート
 カスタムデータ一覧のエクスポートを独自に実装したい場合に使用できます。  
 オリジナルフォーマットのファイルをエクスポートする場合や、特殊な変換処理を実装する場合にご利用ください。  
 出力形式は、Excelの他、それ以外のフォーマットでの出力も可能です。  
 ※実装方法は[こちら](/ja/plugin_quickstart_export)をご参照ください。
+
+![エクスポート実装例](img/plugin/plugin_export1.png)   
 
 
 #### ドキュメント出力
@@ -134,6 +146,8 @@ Exmentに新しいAPIを作成することができます。
 ※実装方法は[こちら](/ja/plugin_quickstart_document)をご参照ください。
 ※PDF形式での出力は、[Docurainプラグイン](/ja/plugin_quickstart_docurain)をご検討ください。  
 
+![ドキュメント出力例](img/plugin/plugin_document1.png)   
+
 
 <h4 id="docurain"><a href="#/ja/plugin?id=docurain" data-id="Docurain(PDF出力)" class="anchor"><span>Docurain(PDF出力)</span></a></h4>
 
@@ -141,6 +155,7 @@ Excelとjsonだけで帳票開発ができるクラウド帳票エンジン **Do
 ドキュメントの元となるテンプレートはExcel形式で、PDF形式で出力されます。  
 ※実装方法は[こちら](/ja/plugin_quickstart_docurain)をご参照ください。
 
+![Docurain](img/docurain/docurain_setting11.png)
 
 #### トリガー
 ※v3.2.0より、非推奨になりました。  

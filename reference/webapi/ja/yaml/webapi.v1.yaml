@@ -134,7 +134,7 @@ paths:
         + me
 
         #### 対応バージョン
-        v4.3.0
+        v4.2.7
       security:
         - OAuth2認証: []
       operationId: get-avatar
