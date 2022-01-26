@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.3.0 (2022/01/26)
+1. Addition of functions
+    - Added "Get from Execution User" to the user who can execute the action of the workflow. You can dynamically set the execution destination, such as "execute action for user A's superior X" and "execute action for user B's superior Y".
+    - Supports workflow deletion
+    - Added "View / Edit Personal Information" option to custom column settings in "Users" table. Login users will be able to view and edit their information
+1. Others
+    - Correcting the layout deviation of the "Search" button for each data
+    - Minor modifications to the workflow
+
 ## v4.2.8 (2022/01/21)
 1. Addition of functions
     - Added "specified user" and "specified organization" to the notification destination. Also, modified so that a specific custom column can be specified as the notification destination of the workflow.
