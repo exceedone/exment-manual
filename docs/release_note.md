@@ -1,6 +1,17 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.2.8 (2022/01/21)
+1. Addition of functions
+    - Added "specified user" and "specified organization" to the notification destination. Also, modified so that a specific custom column can be specified as the notification destination of the workflow.
+1. Bug fix
+    - Fixed a bug that data list using a view other than all views may not be acquired in the custom data list acquisition (view use) API.
+    - Fixed a bug that does not hit when the corresponding value is searched for Japanese in a column that allows multiple selection when the database is MySQL (not MariaDB).
+    - Fixed a bug that the plugin (view) does not appear in the role group permission list.
+    - Fixed the problem that the form is duplicated when the table / column automatically installed by the system is exported as a template and imported again in another environment (it will be solved only when newly installed after this version).
+1. Others
+    - Fixed so that the endpoint can be changed when the data save destination is S3
+
 ## v4.2.7 (2022/01/13)
 1. Addition of functions
     - Added avatar acquisition function to API.
