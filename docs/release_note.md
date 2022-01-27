@@ -1,6 +1,13 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.3.1 (2022/01/27)
+1. Addition of functions
+    - Added "Post-execution status" and "Implemented action" to the notification condition in the workflow notification.
+1. Bug fix
+    - Fixed a bug that an error occurs when the workflow type is "general purpose" in the workflow notification.
+    - Fixed some display bugs of workflow action conditions
+
 ## v4.3.0 (2022/01/26)
 1. Addition of functions
     - Added "Get from Execution User" to the user who can execute the action of the workflow. You can dynamically set the execution destination, such as "execute action for user A's superior X" and "execute action for user B's superior Y".
