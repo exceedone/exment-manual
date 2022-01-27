@@ -225,6 +225,9 @@ composer require league/flysystem-aws-s3-v3 ~1.0
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
+
+            // 以下、PrivateLink使用などによりエンドポイントを変更する場合のみ記入
+            'endpoint' => env('AWS_ENDPOINT'),
         ],
     ],
 ~~~
@@ -235,6 +238,8 @@ composer require league/flysystem-aws-s3-v3 ~1.0
 AWS_ACCESS_KEY_ID=(AWS S3のアクセスキー)
 AWS_SECRET_ACCESS_KEY=(AWS S3のシークレットアクセスキー)
 AWS_DEFAULT_REGION=(AWS S3のリージョン)
+#以下、PrivateLink使用などによりエンドポイントを変更する場合のみ記入
+AWS_ENDPOINT=(AWS S3のエンドポイント)
 ~~~
 
 - Amazon S3を使用したいファイルの種類ごとに、以下の設定を追記します。
