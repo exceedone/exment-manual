@@ -204,9 +204,7 @@ SFTP_ROOT_PLUGIN=/var/foo/exment/sftp/plugin
 
 
 #### Amazon S3
-- AWS S3のバケット作成、IAM作成を行います。  
-※参考：[超簡単！LaravelでS3を利用する手順](https://qiita.com/tiwu_official/items/ecb115a92ebfebf6a92f)  
-上記URLの「S3用のIAMを作成」「Bucketの作成」を実施してください  
+- 事前に[AWS S3のバケット作成、IAM作成](#S3用のIAMを作成)を行います。  
 ※複数のファイルの種類を対応させる場合、ファイルの種類ごとにバケットを分けて作成してください
 
 - 以下のコマンドを実行します。
@@ -500,6 +498,60 @@ DROPBOX_ACCESS_TOKEN_PLUGIN=VVVVVV
 ```
 
 これで、実装完了です。
+
+
+## 参考：AWS S3の作成方法
+Amazon Simple Storage Service (Amazon S3) の作成方法について、簡単に解説します。  
+※事前にAWSアカウントを作成してログインを行う必要があります。
+
+#### S3用のIAMを作成
+- コンソール画面の右上から、自分のアカウントをクリックしてサブメニューを開きます。「セキュリティ認証情報」を選択してください。
+![S3作成ガイド](img/quickstart/saveplace_s3_1.png)  
+
+- 左側のサイドメニューから「ユーザー」を選択します。
+![S3作成ガイド](img/quickstart/saveplace_s3_2.png)  
+
+- 「ユーザーを追加」ボタンをクリックします。
+![S3作成ガイド](img/quickstart/saveplace_s3_3.png)  
+
+- 「ユーザー名」に任意の名前を入力します。
+「AWS認証情報タイプを選択」で「アクセスキー-プログラムによるアクセス」をチェックして「次のステップ：アクセス権限」ボタンをクリックしてください。
+![S3作成ガイド](img/quickstart/saveplace_s3_4.png)  
+
+- 「アクセス許可の設定」で「既存のポリシーを直接アタッチ」をクリックします。
+![S3作成ガイド](img/quickstart/saveplace_s3_5.png)  
+
+- 「ポリシーのフィルタ」に"S3"と入力して、検索を行います。表示された一覧の中から「AmazonS3FullAccess」にチェックを入れて、「次のステップ：タグ」ボタンをクリックしてください。
+![S3作成ガイド](img/quickstart/saveplace_s3_6.png)  
+
+- 「次のステップ：確認」ボタンをクリックします。
+![S3作成ガイド](img/quickstart/saveplace_s3_7.png)  
+
+- 確認画面が表示されるので、選択内容を確認してから「ユーザーの作成」ボタンをクリックします。
+![S3作成ガイド](img/quickstart/saveplace_s3_8.png)  
+
+- ユーザーの作成に成功すると、「アクセスキーID」と「シークレットアクセスキー」が表示されます。
+あとで使用するので、必ずメモしておいてください。
+![S3作成ガイド](img/quickstart/saveplace_s3_9.png)  
+
+#### バケットの作成
+
+- ユーザーを作成した後はバケットの作成を行います。  
+コンソール画面左上のサービスをクリックして、「ストレージ」→「S3」を選択してください。
+![S3作成ガイド](img/quickstart/saveplace_s3_10.png)  
+
+- 「バケットを作成」ボタンをクリックします。
+![S3作成ガイド](img/quickstart/saveplace_s3_11.png)  
+
+- 「バケット名」に任意の名前を入力します。「AWSリージョン」は「アジアパシフィック（東京）」を選択します。  
+※その他のオプションは必要に応じて設定してください。
+![S3作成ガイド](img/quickstart/saveplace_s3_12.png)  
+
+- 「バケットを作成」ボタンをクリックします。
+![S3作成ガイド](img/quickstart/saveplace_s3_13.png)  
+
+- 作成したバケットが一覧に追加されていることを確認します。
+![S3作成ガイド](img/quickstart/saveplace_s3_14.png)  
 
 
 [←追加設定一覧へ戻る](/ja/quickstart_more)
