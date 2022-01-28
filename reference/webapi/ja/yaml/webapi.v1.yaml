@@ -1617,7 +1617,7 @@ paths:
         name: id
         in: path
         required: true
-        description: カスタムデータのID。複数件を削除する場合、カンマ区切りで指定
+        description: カスタムデータのID
         schema:
           type: string
     get:
@@ -1865,6 +1865,7 @@ paths:
       security:
         - OAuth2認証: []
       operationId: put-value
+      parameters: []
     delete:
       summary: カスタムデータ情報削除
       tags:
@@ -1876,7 +1877,7 @@ paths:
         #### 処理概要
         * カスタムデータ情報を論理削除する
         * ログインユーザーに権限のないデータだった場合、403エラーが発生する
-        * 複数件を同時に削除する場合、同時に削除できる件数は100件まで
+        * URLパラメータ{id}は複数件指定可能。その場合、カンマ区切りで指定。複数件を同時に削除する場合、同時に削除できる件数は100件まで
         * パラメータ"force=1"を追加することで、物理削除を実行する。すでに論理削除しているデータに対しても実施可能
 
         #### Exment権限(Permission)
@@ -1958,6 +1959,9 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
+
 
 
 

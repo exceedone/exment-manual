@@ -144,12 +144,12 @@ paths:
             type: integer
           in: query
           name: default
-          description: In case of 1, if the user's avatar does not exist, the default image will be returned.
+          description: 'In case of 1, if the user''s avatar does not exist, the default image will be returned.'
         - schema:
             type: string
           in: query
           name: base64
-          description: If 1, the response is returned as json converted to base64 format. Other than that, it is returned as a binary file.
+          description: 'If 1, the response is returned as json converted to base64 format. Other than that, it is returned as a binary file.'
   /api/table:
     get:
       summary: Custom table list
@@ -1613,7 +1613,7 @@ paths:
         name: id
         in: path
         required: true
-        description: 'The ID of the custom data. When deleting multiple items, specify them separated by commas.'
+        description: The ID of the custom data
         schema:
           type: string
     get:
@@ -1874,7 +1874,7 @@ paths:
         #### Outline of processing
         * Logically delete custom data information
         * If the logged-in user has unauthorized data, a 403 error will occur
-        * When deleting multiple items at the same time, up to 100 items can be deleted at the same time.
+        * We can select URL param {id}. When deleting multiple items, specify them separated by commas. When deleting multiple items at the same time, up to 100 items can be deleted at the same time.
         * Perform physical deletion by adding the parameter "force=1". Can be implemented for data that has already been logically deleted
 
         #### Exment Permission
@@ -1956,6 +1956,8 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
 
 
 
