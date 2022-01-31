@@ -1,6 +1,49 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.3.1 (2022/01/27)
+1. Addition of functions
+    - Added "Post-execution status" and "Implemented action" to the notification condition in the workflow notification.
+1. Bug fix
+    - Fixed a bug that an error occurs when the workflow type is "general purpose" in the workflow notification.
+    - Fixed some display bugs of workflow action conditions
+
+## v4.3.0 (2022/01/26)
+1. Addition of functions
+    - Added "Get from Execution User" to the user who can execute the action of the workflow. You can dynamically set the execution destination, such as "execute action for user A's superior X" and "execute action for user B's superior Y".
+    - Supports workflow deletion
+    - Added "View / Edit Personal Information" option to custom column settings in "Users" table. Login users will be able to view and edit their information
+1. Others
+    - Correcting the layout deviation of the "Search" button for each data
+    - Minor modifications to the workflow
+
+## v4.2.8 (2022/01/21)
+1. Addition of functions
+    - Added "specified user" and "specified organization" to the notification destination. Also, modified so that a specific custom column can be specified as the notification destination of the workflow.
+1. Bug fix
+    - Fixed a bug that data list using a view other than all views may not be acquired in the custom data list acquisition (view use) API.
+    - Fixed a bug that does not hit when the corresponding value is searched for Japanese in a column that allows multiple selection when the database is MySQL (not MariaDB).
+    - Fixed a bug that the plugin (view) does not appear in the role group permission list.
+    - Fixed the problem that the form is duplicated when the table / column automatically installed by the system is exported as a template and imported again in another environment (it will be solved only when newly installed after this version).
+1. Others
+    - Fixed so that the endpoint can be changed when the data save destination is S3
+
+## v4.2.7 (2022/01/13)
+1. Addition of functions
+    - Added avatar acquisition function to API.
+    - Added "table name (alphanumerical)" and "table display name" to parameter variable
+    - Addition of a function to send the following files by e-mail when the notification is executed
+        - Custom columns "File" "Image"
+        - Files uploaded to "Document List"
+1. Bug fix
+    - Fixed a bug that the time cannot be specified and the data is deleted when the date and time are specified in the API "Custom data search (column specification)".
+
+## v4.2.6 (2021/12/23)
+1. Bug fix
+    - Fixed a bug that does not hit when searching Japanese in a column that does not allow multiple selection when the custom column is "choice" in MySQL.
+1. Others
+    - Minor fixes for plugins
+
 ## v4.2.5 (2021/12/21)
 1. Addition of functions
     - Added a function that allows you to set the display position to left-justified, center-justified, or right-justified when displayed on the list screen. Add from custom column settings
