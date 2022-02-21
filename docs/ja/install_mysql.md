@@ -63,7 +63,8 @@ LinuxでのMySQLのインストール手順です。
 
 - MySQL5.7をインストールし起動します。
 ~~~
-rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
+rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 yum -y install mysql-community-server
 systemctl enable mysqld.service
 systemctl start mysqld.service
