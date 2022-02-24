@@ -23,6 +23,14 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 
 ## Linuxによるインストール手順
 
+### MySQL(任意)
+任意の設定内容になります。MySQLサーバーを別に構築すると想定し、MySQLをインストールする場合の手順です。  
+※AWS RDSサービスを使用する場合など、外部サービスを使用する場合は、MySQLサーバー側の手順は不要です。  
+※[こちら](/ja/install_mysql)に移動しました。
+
+### Redis(任意)
+※[こちら](/ja/additional_session_cache_driver)に移動しました。
+
 ### Webサーバー
 - yumのアップデート、ならびに必要ライブラリのインストールを行います。  
 
@@ -145,7 +153,16 @@ vi /etc/httpd/conf/httpd.conf
 service httpd restart
 ~~~
 
+- (推奨)ログインユーザーを、apacheグループに追加します。この設定を行うことで、ログインユーザーが、自由にexmentフォルダ内のファイルを編集することができます。SSH再接続後、グループは反映されます。  
+※以下、ログインユーザーが「ec2-user」の場合
+
+~~~
+usermod -aG apache ec2-user
+~~~
+
 - Exmentをサーバーに配置します。最新のExmentファイルをダウンロードし、展開します。  
+※こちらはかんたんインストールの手順です。手動インストールの場合、[こちら](/ja/quickstart_manual)を参考に配置してください。
+
 ~~~
 cd /var/www
 wget https://exment.net/downloads/ja/exment.zip
@@ -154,37 +171,24 @@ rm exment.zip -f
 cd exment
 ~~~
 
-- 所有者・パーミッション設定を行います。
+- ファイルの許可設定を行います。以下のコマンドを実行します。
 
 ~~~
-chown apache:apache -R /var/www/exment
-chown apache:apache -R /var/www/exment/.env
-chmod 775 -R /var/www/exment/storage
-chmod 775 -R /var/www/exment/bootstrap/cache
+# 最低限の権限を追加する
+chmod 0755 /var/www/exment
+chown -R apache:apache /var/www/exment
+
+# 以下のコマンドを実行し、フォルダの権限を付与する。1もしくは2を実施する
+# 1. かんたんインストールの場合
+php artisan exment:setup-dir --easy=1
+# 2. 手動インストールの場合
+php artisan exment:setup-dir
 ~~~
 
-- [かんたんインストール](/ja/quickstart)によってインストールを実行する場合は、追加で所有者・パーミッション設定を行います。  
-※インストール時のみ必要です。より厳密に権限設定する場合は、かんたんインストール実行後に、フォルダの書き込み権限を削除してください。
+- 手元のPCのブラウザで、作成したWebサーバーのIPアドレスを入力し、Exmentの初期インストールを完了させます。
+
+- ※かんたんインストールでインストールした場合で、初期インストールが完了しましたら、以下のコマンドを実行し、インストール時のみ必要な権限を元に戻します。
 
 ~~~
-chmod 775 -R /var/www/exment/app
-chmod 775 -R /var/www/exment/config
-chmod 775 -R /var/www/exment/public
+php artisan exment:setup-dir --easy_clear=1
 ~~~
-
-- (推奨)ログインユーザーを、apacheグループに追加します。この設定を行うことで、ログインユーザーが、自由にexmentフォルダ内のファイルを編集することができます。SSH再接続後、グループは反映されます。  
-※以下、ログインユーザーが「ec2-user」の場合
-
-~~~
-usermod -aG apache ec2-user
-~~~
-
-
-
-### MySQL(任意)
-任意の設定内容になります。MySQLサーバーを別に構築すると想定し、MySQLをインストールする場合の手順です。  
-※AWS RDSサービスを使用する場合など、外部サービスを使用する場合は、MySQLサーバー側の手順は不要です。  
-※[こちら](/ja/install_mysql)に移動しました。
-
-### Redis(任意)
-※[こちら](/ja/additional_session_cache_driver)に移動しました。
