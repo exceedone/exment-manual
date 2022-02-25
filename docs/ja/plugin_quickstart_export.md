@@ -228,7 +228,13 @@ class Plugin extends PluginExportExcel
     - Plugin.php
     - template.xlsx(テンプレートファイルを含める場合)
 
+### その他の制約
+- PhpSpreadSheetの最新版(2022/02/25現在)である1.22.0では、以下の内容には対応していません。テンプレートには含めないようにお願いします。  
+    - 挿入する図形
+    - グラフ
+    - 「テーブルとして書式設定」を行う表
 
+- 出力されたファイルに画像が含まれない場合、[こちら](/ja/troubleshooting)の「Excelをテンプレートとしたドキュメント出力で、画像の出力に失敗する」をご確認ください。
 
 ## サンプルプラグイン
 - [CSV出力のエクスポート](https://exment.net/downloads/sample/plugin/ExportTestCsv.zip)
