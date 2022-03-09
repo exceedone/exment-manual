@@ -1,6 +1,18 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.3.2 (2022/02/25)
+1. Addition of functions
+    - Addition of command to set owner / permission of files / folders required to execute Exment mainly in Linux environment
+1. Bug fix
+    - Fixed a bug that duplication could not be performed normally in the notification of the custom table.
+    - Fixed a bug that the edit screen of custom view does not work properly when installing Exment with English Ver. In addition, correction of various deficiencies in the English version
+1. Others
+    - Fixed permission settings when creating a folder
+    - Extended range of php-cs-fixer
+    - Fixed syntax errors in TypeScript
+    - Updated test.md description when running test
+
 ## v4.3.1 (2022/01/27)
 1. Addition of functions
     - Added "Post-execution status" and "Implemented action" to the notification condition in the workflow notification.

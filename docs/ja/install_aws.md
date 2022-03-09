@@ -147,7 +147,8 @@ Nameを編集することができます。(例 : exment-rt)
 
 
 ### MySQL
-> このマニュアルでは、Amazon RDSを使用したMySQLの作成設定を記載していますが、インスタンスを個別に作成し、MySQLをインストールし、各Webサーバーからアクセスする方法でも構築できます。
+> このマニュアルでは、Amazon RDSを使用したMySQLの作成設定を記載していますが、インスタンスを個別に作成し、MySQLをインストールし、各Webサーバーからアクセスする方法でも構築できます。  
+MySQLをサーバーにインストールする方法は、[こちら](/ja/install_mysql)をご確認ください。
 
 - エンジン : MySQL
 - バージョン : 5.7.26
@@ -161,7 +162,8 @@ Nameを編集することができます。(例 : exment-rt)
 
 
 ### Redis
-> このマニュアルでは、ElastiCacheを使用したRedisの作成設定を記載していますが、インスタンスを個別に作成し、Redisをインストールし、各Webサーバーからアクセスする方法でも構築できます。
+> このマニュアルでは、ElastiCacheを使用したRedisの作成設定を記載していますが、インスタンスを個別に作成し、Redisをインストールし、各Webサーバーからアクセスする方法でも構築できます。  
+※Redisをサーバーにインストールする方法は、[こちら](/ja/additional_session_cache_driver)に移動しました。
 
 - クラスターエンジン : Redis
 - 名前 : 任意 (例 : exment-redis)
@@ -282,7 +284,16 @@ sudo vi /etc/httpd/conf/httpd.conf
 sudo systemctl restart httpd
 ~~~
 
+- ファイルの許可設定を行います。以下のコマンドを実行します。
+
+~~~
+# ec2-userユーザーを、apacheグループに追加する
+sudo usermod -a -G apache ec2-user
+~~~
+
 - Exmentをサーバーに配置します。最新のExmentファイルをダウンロードし、展開します。  
+※こちらはかんたんインストールの手順です。手動インストールの場合、[こちら](/ja/quickstart_manual)を参考に配置してください。
+
 ~~~
 cd /var/www
 sudo wget https://exment.net/downloads/ja/exment.zip
@@ -294,20 +305,15 @@ cd exment
 - ファイルの許可設定を行います。以下のコマンドを実行します。
 
 ~~~
-sudo usermod -a -G apache ec2-user
-sudo chmod 2775 /var/www/exment && find /var/www/exment -type d -exec sudo chmod 2775 {} \;
-find /var/www -type f -exec sudo chmod 0664 {} \;
+# 最低限の権限を追加する
+sudo chmod 0755 /var/www/exment
 sudo chown -R ec2-user:apache /var/www/exment
-sudo chown ec2-user:apache -R /var/www/exment/.env
-~~~
 
-- [かんたんインストール](/ja/quickstart)によってインストールを実行する場合は、追加で所有者・パーミッション設定を行います。  
-※インストール時のみ必要です。より厳密に権限設定する場合は、かんたんインストール実行後に、フォルダの書き込み権限を削除してください。
-
-~~~
-sudo chmod 775 -R /var/www/exment/app
-sudo chmod 775 -R /var/www/exment/config
-sudo chmod 775 -R /var/www/exment/public
+# 以下のコマンドを実行し、フォルダの権限を付与する。1もしくは2を実施する
+# 1. かんたんインストールの場合
+sudo php artisan exment:setup-dir --easy=1
+# 2. 手動インストールの場合
+sudo php artisan exment:setup-dir
 ~~~
 
 - MySQL接続し、データベースを作成します。
@@ -356,6 +362,12 @@ ADMIN_HTTPS=true
 ~~~
 
 - 手元のPCのブラウザで、作成したWebサーバーのIPアドレスを入力し、Exmentの初期インストールを完了させます。
+
+- ※かんたんインストールでインストールした場合で、初期インストールが完了しましたら、以下のコマンドを実行し、インストール時のみ必要な権限を元に戻します。
+
+~~~
+php artisan exment:setup-dir --easy_clear=1
+~~~
 
 #### Webサーバー 設定変更時
 - Exmentアップデート後や、PHPファイルを更新した場合、設定値を変更した場合は、以下のコマンドを実行してください。

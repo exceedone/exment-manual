@@ -30,6 +30,14 @@ php artisan exment:publish
 php artisan exment:publish
 ```
 
+### サーバー設定時の初期ファイル・フォルダ設定
+主にLinux環境で、Exment実行に必要なファイル・フォルダの、所有者・パーミッション設定を行います。  
+詳細は[こちら](/ja/server#初期フォルダ自動生成)をご確認ください。  
+
+```
+php artisan exment:setup-dir {--user=} {--group=} {--easy=0} {--easy_clear=0}
+```
+
 
 
 ## データインポート・エクスポート・データ削除
