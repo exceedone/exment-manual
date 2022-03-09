@@ -32,10 +32,7 @@ php artisan exment:publish
 
 ### サーバー設定時の初期ファイル・フォルダ設定
 主にLinux環境で、Exment実行に必要なファイル・フォルダの、所有者・パーミッション設定を行います。  
-- --user=(ユーザー名)
-- --group=(グループ名)
-- --easy=(かんたんインストールにてExmentインストールを行う場合は1)
-- --easy_clear=(かんたんインストール実行後に、フォルダ権限を適切なものに戻したい場合は1)
+詳細は[こちら](/ja/server#初期フォルダ自動生成)をご確認ください。  
 
 ```
 php artisan exment:setup-dir {--user=} {--group=} {--easy=0} {--easy_clear=0}
