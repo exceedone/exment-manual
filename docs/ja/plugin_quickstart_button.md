@@ -263,3 +263,85 @@ class Plugin extends PluginButtonBase
 
 ### サンプルプラグイン
 [「次へ」「前へ」ボタンを表示(独自ボタン)](https://exment.net/downloads/sample/plugin/PluginCustomButton.zip)  
+
+
+
+
+
+## 作成方法(ファイルダウンロード)
+
+> この機能はv4.3.3より対応しております。
+
+プラグインで、ファイルをダウンロードするサンプルです。  
+
+ここでは、匿名ユーザー画像をダウンロードするサンプルです。
+
+
+### config.json作成
+通常の作成方法と同様です。
+
+``` json
+{
+    "plugin_name": "TestPluginDownload",
+    "uuid": "e9b18218-2cc6-acea-e5cf-36b88ced5a62",
+    "plugin_view_name": "Plugin file download test",
+    "description": "プラグインによって、ファイルをダウンロードするテストです。",
+    "author": "Kajitori",
+    "version": "1.0.0",
+    "plugin_type": "button",
+    "event_triggers": "form_menubutton_show",
+    "target_tables": "information"
+}
+```
+
+### PHPファイル作成
+- 以下のようなPHPファイルを作成します。名前は「Plugin.php」としてください。
+
+~~~ php
+///// Plugin.php
+<?php
+namespace App\Plugins\TestPluginDownload;
+
+use Exceedone\Exment\Services\Plugin\PluginButtonBase;
+use \Storage;
+
+class Plugin extends PluginButtonBase
+{
+    /**
+     * Plugin Button
+     */
+    public function execute()
+    {
+        ///// サンプルプラグインの都合で必要な処理。本来は必要なものではないです
+        // user.pngがstorage/app/adminにない場合はコピー
+        $base_path = base_path('public/vendor/exment/images/user.png');
+        $storage_path = storage_path('app/admin/user.png');
+        if(!\File::exists($storage_path)){
+            \File::copy($base_path, $storage_path);
+        }
+
+        
+        ///// ファイルに関する結果のダウンロード
+        // base64文字列、Content-Type、ファイル名を配列で返却する
+        $fileName = 'user.png';
+        return [
+            'fileBase64' => base64_encode(Storage::disk('admin')->get($fileName)),
+            'fileContentType' => Storage::disk('admin')->mimeType($fileName),
+            'fileName' => $fileName,
+            
+            // 任意：「ダウンロードが完了しました」メッセージを表示する
+            'swaltext' => 'ダウンロードが完了しました',
+        ];
+    }
+}
+~~~
+
+- namespace名、Pluginクラスの継承、命名といった基本的なルールは、通常のボタン作成時と同様です。
+
+- execute関数の戻り値で、以下の値を配列で返却します。
+    - fileBase64 : ファイルのbase64文字列
+    - fileContentType : ファイルのContent-Type
+    - fileName : ダウンロードした際のファイル名
+
+### zipに圧縮
+通常のボタンと同様に、zip化し、アップロードします。
