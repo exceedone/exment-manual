@@ -274,7 +274,7 @@ class Plugin extends PluginButtonBase
 
 プラグインで、ファイルをダウンロードするサンプルです。  
 
-ここでは、匿名ユーザー画像をダウンロードするサンプルです。
+ここでは、ユーザーがアバターを使用してなかった場合に表示される、ユーザー画像をダウンロードするサンプルです。
 
 
 ### config.json作成
@@ -303,7 +303,6 @@ class Plugin extends PluginButtonBase
 namespace App\Plugins\TestPluginDownload;
 
 use Exceedone\Exment\Services\Plugin\PluginButtonBase;
-use \Storage;
 
 class Plugin extends PluginButtonBase
 {
@@ -312,21 +311,12 @@ class Plugin extends PluginButtonBase
      */
     public function execute()
     {
-        ///// サンプルプラグインの都合で必要な処理。本来は必要なものではないです
-        // user.pngがstorage/app/adminにない場合はコピー
-        $base_path = base_path('public/vendor/exment/images/user.png');
-        $storage_path = storage_path('app/admin/user.png');
-        if(!\File::exists($storage_path)){
-            \File::copy($base_path, $storage_path);
-        }
-
-        
-        ///// ファイルに関する結果のダウンロード
         // base64文字列、Content-Type、ファイル名を配列で返却する
+        $base_path = base_path('public/vendor/exment/images/user.png');
         $fileName = 'user.png';
         return [
-            'fileBase64' => base64_encode(Storage::disk('admin')->get($fileName)),
-            'fileContentType' => Storage::disk('admin')->mimeType($fileName),
+            'fileBase64' => base64_encode(\File::get($base_path)),
+            'fileContentType' => \File::mimeType($base_path),
             'fileName' => $fileName,
             
             // 任意：「ダウンロードが完了しました」メッセージを表示する
