@@ -1,6 +1,16 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.3.3 (2022/03/11)
+1. Addition of functions
+    - Plugin supports file download
+1. Bug fix
+    - Fixed a bug that notifications are not deleted when deleting public forms
+    - Fixed a bug that when deleting an email template, if the email template had already been notified, it could not be deleted due to a related data error.
+1. Others
+    - Fixed SQL Server automated tests
+    - Logic correction of maximum and minimum values ​​of integers and decimals
+
 ## v4.3.2 (2022/02/25)
 1. Addition of functions
     - Addition of command to set owner / permission of files / folders required to execute Exment mainly in Linux environment
