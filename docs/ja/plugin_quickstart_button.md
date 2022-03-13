@@ -333,3 +333,8 @@ class Plugin extends PluginButtonBase
 
 ### zipに圧縮
 通常のボタンと同様に、zip化し、アップロードします。
+
+
+### サンプルプラグイン
+[匿名ユーザー画像ダウンロード](https://github.com/exment-git/plugin-sample/tree/main/button/TestPluginDownload)  
+
