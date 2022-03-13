@@ -49,10 +49,10 @@ rpm -ivh ~/epel-release-7-12.noarch.rpm
 yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ~~~
 
-- PHP7.2など、必要ライブラリをインストールします。
+- PHP7.4など、必要ライブラリをインストールします。
 
 ~~~
-yum -y install --enablerepo=remi-php72 httpd openssl mod_ssl mysql php72 php72-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip
+yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip
 ~~~
 
 - Apache起動設定を行います。
@@ -83,10 +83,10 @@ setenforce 0
 service httpd restart
 ~~~
 
-- php7.2へのパスを通します。コマンドで、php7.2を実行できるようになります。
+- php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
 
 ~~~
-ln -s /usr/bin/php72 /usr/bin/php
+ln -s /usr/bin/php74 /usr/bin/php
 ~~~
 
 - phpinfoで、ここまでの作業が正常に実行できているかどうかの確認を行います。以下のコマンドを実行します。  
@@ -110,7 +110,7 @@ mv composer.phar /usr/local/bin/composer
 - php.iniに、必要な拡張機能の記述を追加します。
 
 ~~~
-vi /etc/opt/remi/php72/php.ini
+vi /etc/opt/remi/php74/php.ini
 
 #以下の内容を、ファイルの末尾に追加
 extension=mbstring.so

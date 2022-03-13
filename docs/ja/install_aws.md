@@ -226,7 +226,7 @@ ssh -i ~/exment_key.pem ec2-user@(WebサーバーAのプライベートIPアド�
 
 ~~~
 sudo yum -y update
-sudo amazon-linux-extras install -y php7.2
+sudo amazon-linux-extras install -y php7.4
 sudo yum install -y httpd mysql
 sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
 ~~~
@@ -247,10 +247,10 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ~~~
 
-- php7.2へのパスを通します。コマンドで、php7.2を実行できるようになります。
+- php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
 
 ~~~
-sudo ln -s /usr/bin/php72 /usr/bin/php
+sudo ln -s /usr/bin/php74 /usr/bin/php
 ~~~
 
 - composerをインストールします。

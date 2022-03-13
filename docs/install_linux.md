@@ -39,10 +39,10 @@ rpm -ivh ~/epel-release-7-11.noarch.rpm
 yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ~~~
 
-- Install required libraries such as PHP7.2.  
+- Install required libraries such as PHP7.4.  
 
 ~~~
-yum -y install --enablerepo=remi-php72 httpd openssl mod_ssl mysql php72 php72-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip
+yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip
 ~~~
 
 - Configure Apache launch settings.  
@@ -72,10 +72,10 @@ setenforce 0
 service httpd restart
 ~~~
 
-- Through the path to php7.2. With the command, you can run php7.2.  
+- Through the path to php7.4. With the command, you can run php7.4.  
 
 ~~~
-ln -s /usr/bin/php72 /usr/bin/php
+ln -s /usr/bin/php74 /usr/bin/php
 ~~~
 
 - In phpinfo, check whether the work up to this point has been performed successfully. Create a new path "/var/www/html/info.php" and add the following description.  
@@ -111,7 +111,7 @@ mv composer.phar /usr/local/bin/composer
 - Add the required extension description to php.ini.  
 
 ~~~
-vi /etc/opt/remi/php72/php.ini
+vi /etc/opt/remi/php74/php.ini
 
 #Add the following to the end of the file
 extension=mbstring.so

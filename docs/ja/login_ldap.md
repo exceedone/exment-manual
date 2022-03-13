@@ -40,7 +40,7 @@ composer require adldap2/adldap2-laravel
 ※事前に、[Linuxによる環境構築](/ja/install_linux)などで実施している、epelの更新・rpmインストールを行ってください。
 
 ```
-sudo yum install --enablerepo=remi-php72 php-ldap
+sudo yum install --enablerepo=remi-php74 php-ldap
 ```
 
 - php.iniファイルを開きます。  

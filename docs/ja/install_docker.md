@@ -33,8 +33,8 @@ SSHやデータベース作成、Dockerコマンドなど、一般的なIT系の
 ### コンテナ起動
 
 - 使用するフォルダを選択します。buildフォルダ内の以下のフォルダから、構築したい環境により、使用するフォルダを選択します。
-    - **php72_mysql** : PHP7.2, MySQLもしくはMariaDB
-    - **php72_sqldrv** : PHP7.2, SQL Server
+    - **php74_mysql** : PHP7.2, MySQLもしくはMariaDB
+    - **php74_sqldrv** : PHP7.2, SQL Server
     - **php73_mysql** : PHP7.3, MySQLもしくはMariaDB
     - **php73_sqldrv** : PHP7.3, SQL Server
     - **php74_mysql** : PHP7.4, MySQLもしくはMariaDB

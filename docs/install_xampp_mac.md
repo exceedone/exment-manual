@@ -15,7 +15,6 @@ In addition, this manual introduces the case of Mac.
 
 - From XAMPP for OS X, select the item with "PHP7.1" or higher and download it.  
 ※ Please download from the three PHPs from the top.  
-> Recommended is "PHP7.2". In the case of "PHP7.3", there is a problem in the related library, so it is necessary to separately deal with it.
 
 ![XAMPP installation screen](img/xampp_mac/xampp_mac1.png)
 

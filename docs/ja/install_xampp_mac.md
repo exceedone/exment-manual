@@ -12,7 +12,6 @@ PHPやApache、MySQLのある環境構築を、開発環境としてはじめか
 [XAMPPダウンロード](https://www.apachefriends.org/jp/download.html)  
 
 - OS X向けXAMPPとある項目の中から、「PHP7.1」以上「**PHP7.4未満**」となっているものを選択し、ダウンロードを行ってください。※上から3つのPHPの中から、ダウンロードを行ってください。
-> 推奨は「PHP7.2」です。「PHP7.3」の場合、関連ライブラリに不具合があるため、別途対応が必要になります。  
 
 
 ![XAMPPインストール画面](img/xampp_mac/xampp_mac1.png)
