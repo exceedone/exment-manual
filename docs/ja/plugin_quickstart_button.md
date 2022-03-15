@@ -1,8 +1,6 @@
 # プラグイン(ボタン)
 Exmentの一覧画面もしくはフォーム画面にボタンを追加し、クリック時に処理を行うことができます。  
 
-> この機能は、v3.2.0より追加されました。
-
 ![ボタン実装例](img/plugin/plugin_button1.png)   
 
 ## ボタンの種類
@@ -263,3 +261,80 @@ class Plugin extends PluginButtonBase
 
 ### サンプルプラグイン
 [「次へ」「前へ」ボタンを表示(独自ボタン)](https://exment.net/downloads/sample/plugin/PluginCustomButton.zip)  
+
+
+
+
+
+## 作成方法(ファイルダウンロード)
+
+> この機能はv4.3.3より対応しております。
+
+プラグインで、ファイルをダウンロードするサンプルです。  
+
+ここでは、ユーザーがアバターを使用してなかった場合に表示される、ユーザー画像をダウンロードするサンプルです。
+
+
+### config.json作成
+通常の作成方法と同様です。
+
+``` json
+{
+    "plugin_name": "TestPluginDownload",
+    "uuid": "e9b18218-2cc6-acea-e5cf-36b88ced5a62",
+    "plugin_view_name": "Plugin file download test",
+    "description": "プラグインによって、ファイルをダウンロードするテストです。",
+    "author": "Kajitori",
+    "version": "1.0.0",
+    "plugin_type": "button",
+    "event_triggers": "form_menubutton_show",
+    "target_tables": "information"
+}
+```
+
+### PHPファイル作成
+- 以下のようなPHPファイルを作成します。名前は「Plugin.php」としてください。
+
+~~~ php
+///// Plugin.php
+<?php
+namespace App\Plugins\TestPluginDownload;
+
+use Exceedone\Exment\Services\Plugin\PluginButtonBase;
+
+class Plugin extends PluginButtonBase
+{
+    /**
+     * Plugin Button
+     */
+    public function execute()
+    {
+        // base64文字列、Content-Type、ファイル名を配列で返却する
+        $base_path = base_path('public/vendor/exment/images/user.png');
+        $fileName = 'user.png';
+        return [
+            'fileBase64' => base64_encode(\File::get($base_path)),
+            'fileContentType' => \File::mimeType($base_path),
+            'fileName' => $fileName,
+            
+            // 任意：「ダウンロードが完了しました」メッセージを表示する
+            'swaltext' => 'ダウンロードが完了しました',
+        ];
+    }
+}
+~~~
+
+- namespace名、Pluginクラスの継承、命名といった基本的なルールは、通常のボタン作成時と同様です。
+
+- execute関数の戻り値で、以下の値を配列で返却します。
+    - fileBase64 : ファイルのbase64文字列
+    - fileContentType : ファイルのContent-Type
+    - fileName : ダウンロードした際のファイル名
+
+### zipに圧縮
+通常のボタンと同様に、zip化し、アップロードします。
+
+
+### サンプルプラグイン
+[匿名ユーザー画像ダウンロード](https://github.com/exment-git/plugin-sample/tree/main/button/TestPluginDownload)  
+
