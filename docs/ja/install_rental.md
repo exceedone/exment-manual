@@ -4,7 +4,7 @@
 
 ## レンタルサーバーで構築を行う際の注意点
 - Exmentは、以下の環境が必要になります。
-    1. PHP 7.2.0以上
+    1. PHP 7.3.0以上
     1. MySQL 5.7.8以上、8.0.0未満  
     または MariaDB 10.2.7以上  
   <span class="red">特にMySQLのバージョンが、レンタルサーバーによっては条件を満たしていない場合があります。  
@@ -54,17 +54,17 @@ find /opt/php-*/bin -type f -name 'php'
 ## /opt/php-7.1.2/bin/php
 ## /opt/php-7.1.3/bin/php
 ## /opt/php-7.1.4/bin/php
-## /opt/php-7.2.1/bin/php
-## /opt/php-7.2.14/bin/php
-## /opt/php-7.2.6/bin/php ←今回の例ではこちら
-## /opt/php-7.2/bin/php
+## /opt/php-7.4.1/bin/php
+## /opt/php-7.4.14/bin/php
+## /opt/php-7.4.6/bin/php ←今回の例ではこちら
+## /opt/php-7.4/bin/php
 ~~~
 
 - フォルダを作成し、PHPへのシンボリックリンクを作成します。  
 
 ~~~
 mkdir $HOME/bin
-ln -s /opt/php-7.2.6/bin/php $HOME/bin/php
+ln -s /opt/php-7.4.6/bin/php $HOME/bin/php
 ~~~
 
 - bashrcファイルを修正し、上記PHPバージョンへのパスを通します。  

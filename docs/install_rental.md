@@ -4,7 +4,7 @@ This page describes the procedure for building an Exment on the rental server.
 
 ## Points to note when building on a rental server
 - Exment requires the following environment.
-    1. PHP 7.2.0 or higher  
+    1. PHP 7.3.0 or higher  
     1. MySQL 5.7.8 or higher, less than 8.0.0  
 or MariaDB 10.2.7 or higher  
   <span class="red">Especially the MySQL version may not meet the requirements depending on the rental server.  
@@ -55,17 +55,17 @@ find /opt/php-*/bin -type f -name 'php'
 ## /opt/php-7.1.2/bin/php
 ## /opt/php-7.1.3/bin/php
 ## /opt/php-7.1.4/bin/php
-## /opt/php-7.2.1/bin/php
-## /opt/php-7.2.14/bin/php
-## /opt/php-7.2.6/bin/php ←Here in this example
-## /opt/php-7.2/bin/php
+## /opt/php-7.4.1/bin/php
+## /opt/php-7.4.14/bin/php
+## /opt/php-7.4.6/bin/php ←Here in this example
+## /opt/php-7.4/bin/php
 ~~~
 
 - Create a folder and create a symbolic link to PHP.  
 
 ~~~
 mkdir $HOME/bin
-ln -s /opt/php-7.2.6/bin/php $HOME/bin/php
+ln -s /opt/php-7.4.6/bin/php $HOME/bin/php
 ~~~
 
 - Modify the bashrc file to pass the path to the PHP version above.  

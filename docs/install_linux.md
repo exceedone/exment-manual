@@ -6,7 +6,7 @@ This is a completely new installation procedure, including installation of the w
 In this page, we are building with the following contents.  
 - CentOS 7.6.1810 64bit
 - Apache 2.4.6
-- PHP 7.2.21
+- PHP 7.4.28
 - MySQL 5.7.25
 
 ## important point
