@@ -6,6 +6,7 @@ Create、Read、Update、Deleteのことです。
 これにListも追加し、CRUD + Listに特化したプラグイン開発を可能にします。  
 Exmentのカスタムデータの一覧・詳細・新規作成・更新・削除とほとんど同じ画面構成で、必要最低限な開発のみで実装可能にします。  
 これにより、外部データ（例：他のデータベースエンジン、WordPress、SharePointリスト、他社Webデータベース、会計システムなど）を、Exmentにデータを取り込むことなく、Exmentの画面で管理可能にします。  
+また、[プラグイン(ページ)](/ja/plugin_quickstart_page)の開発と比較しても、データ取得・追加といった内部処理のみ開発すれば済み、基本的にUI部分の開発は不要なため、開発工数が大幅に削減されます。
 
 ## 主なできること
 - 外部データ（例：他のデータベースエンジン、WordPress、SharePointリスト、他社Webデータベース、会計システムなど）を、Exmentにデータを取り込むことなく、Exmentの画面で管理可能にする
@@ -76,7 +77,7 @@ https://www.famkruithof.net/uuid/uuidgen
 
 ### Pluginファイル作成
 以下のようなPHPファイルを作成します。ファイル名は「Plugin.php」としてください。  
-**※下記の例は、最小限のものになります。プラグイン(CRUD)では、下記以外にも多数の機能や関数を用意しています。詳細はプラグインリファレンスをご確認ください。**  
+**※下記の例は、最小限のものになります。プラグイン(CRUD)では、下記以外にも多数の機能や関数を用意しています。詳細は[プラグインリファレンス](/ja/plugin_reference_crud)をご確認ください。**  
 
 ~~~ php
 <?php
@@ -293,10 +294,10 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 ## サンプルプラグイン
 以下のサンプルを用意しています。
 
-| 名前 | 概要 | 認証 | リンク |
+| 名前 | 概要 | 認証 | サンプルリンク |
 | ---- | ---- | ---- | ---- |
-| MySQLWorld | Exmentとは異なるデータベースと接続し、データの取得・追加・編集・削除を実施します。 | - |  |
-| WordPress | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。 | - |  |
-| WordPresses | REST APIを使用し、複数のWordpressサイトの投稿を一覧表示・詳細表示します。複数のエンドポイントに対応し、画面からボタンで対象サイトを切り替えます。 | - |  |
-| WordPressPost | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。また、事前設定したアクセスキーを使用し、投稿の追加・編集・削除も実施します。 | ID・パスワード |  |
-| OtherExment | 別サーバーのExmentとRest API連携し、データを取得を実施します。 | OAuth |  |
+| MySQLWorld | Exmentとは異なるデータベースと接続し、データの取得・追加・編集・削除を実施します。 | - | [他のMySQL連携](https://github.com/exment-git/plugin-sample/tree/main/crud/mysqlworld) |
+| WordPress | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。 | - | [WordPress連携](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpress) |
+| WordPresses | REST APIを使用し、複数のWordpressサイトの投稿を一覧表示・詳細表示します。複数のエンドポイントに対応し、画面からボタンで対象サイトを切り替えます。 | - | [複数サイトのWordPress連携](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpresses) |
+| WordPressPost | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。また、事前設定したアクセスキーを使用し、投稿の追加・編集・削除も実施します。 | ID・パスワード | [WordPress投稿](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpress_post) |
+| OtherExment | 別サーバーのExmentとRest API連携し、データを取得を実施します。 | OAuth | [他のExmentとREST API連携](https://github.com/exment-git/plugin-sample/tree/main/crud/other_exment) |
