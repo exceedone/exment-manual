@@ -86,6 +86,7 @@ service httpd restart
 - php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
 
 ~~~
+TODO: PHP7.4対応  これ必要？  
 ln -s /usr/bin/php74 /usr/bin/php
 ~~~
 
@@ -112,6 +113,7 @@ mv composer.phar /usr/local/bin/composer
 ~~~
 vi /etc/opt/remi/php74/php.ini
 
+TODO: PHP7.4対応  これ必要？  
 #以下の内容を、ファイルの末尾に追加
 extension=mbstring.so
 extension=dom.so
@@ -192,3 +194,11 @@ php artisan exment:setup-dir
 ~~~
 php artisan exment:setup-dir --easy_clear=1
 ~~~
+
+
+## PHPバージョンアップ時の対応
+PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
+※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
+※下記の手順例は、PHP7.2からPHP7.4へアップデートするための手順です。  
+  
+TODO: PHP7.4対応  ここにアップデート手順を記載する
