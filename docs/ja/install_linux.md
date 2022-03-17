@@ -64,6 +64,7 @@ service httpd start
 ~~~
 
 - ファイアウォール設定を行います。
+
 ~~~
 systemctl start firewalld
 systemctl enable firewalld
@@ -86,7 +87,6 @@ service httpd restart
 - php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
 
 ~~~
-TODO: PHP7.4対応  これ必要？  
 ln -s /usr/bin/php74 /usr/bin/php
 ~~~
 
@@ -113,7 +113,6 @@ mv composer.phar /usr/local/bin/composer
 ~~~
 vi /etc/opt/remi/php74/php.ini
 
-TODO: PHP7.4対応  これ必要？  
 #以下の内容を、ファイルの末尾に追加
 extension=mbstring.so
 extension=dom.so
@@ -200,5 +199,52 @@ php artisan exment:setup-dir --easy_clear=1
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
 ※下記の手順例は、PHP7.2からPHP7.4へアップデートするための手順です。  
-  
-TODO: PHP7.4対応  ここにアップデート手順を記載する
+※epelとremiリポジトリを用いて、PHPのインストールを行っている前提です。  
+※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
+
+- 最初にバックアップを行います。以下のコマンドはphp.ini、及びインストール済のパッケージや拡張モジュールのメモを取るだけの最低限のバックアップ例です。ご自身の環境に応じて追加、省略してください。  
+
+~~~
+# バックアップフォルダを作成
+mkdir php-backup &&cd php-backup
+# インストール済のパッケージ情報を出力する
+yum list installed |grep php > php72-installed.txt
+# 拡張モジュールの情報を出力する
+php -m > php72-modules.txt
+# php.iniファイルをコピー（場所が下記と違う時は事前に「php -i | grep php.ini」で確認） 
+cp /etc/php.ini php72.ini
+~~~
+
+
+- PHP関連パッケージを削除します。  
+
+~~~
+yum remove php-*
+yum remove php72*
+~~~
+
+- epel-releaseのアップデートを確認します。  
+
+~~~
+yum update epel-release
+~~~
+
+- remiのリポジトリを確認します。  
+
+~~~
+ll /etc/yum.repos.d/ | grep remi-
+# 結果の一覧に「remi-php74.repo」が見つからなかった場合だけ、以下のインストールを行ってください。
+# yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+~~~
+
+- PHP7.4本体のインストールを行います。  
+
+~~~
+yum install --enablerepo=remi,remi-php74 php
+~~~
+
+- PHPのバージョンが7.4になっていることを確認します。  
+
+~~~
+php -v
+~~~

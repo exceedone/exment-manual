@@ -247,12 +247,6 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ~~~
 
-- php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
-
-~~~
-sudo ln -s /usr/bin/php74 /usr/bin/php
-~~~
-
 - composerをインストールします。
 ~~~
 cd ~
@@ -314,14 +308,6 @@ sudo chown -R ec2-user:apache /var/www/exment
 sudo php artisan exment:setup-dir --easy=1
 # 2. 手動インストールの場合
 sudo php artisan exment:setup-dir
-~~~
-
-- MySQL接続し、データベースを作成します。
-
-~~~
-mysql -u (MySQLのユーザー名) -p(パスワード名) -h (ホスト名)
-// MySQLコマンドとして実行
-create database exment;
 ~~~
 
 - Redis接続と、AWS S3接続を行うために、以下のコマンドを実行します。
@@ -423,5 +409,40 @@ Amazon Elastic Load Balancingによって、リバースプロキシ設定が行
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
 ※下記の手順例は、PHP7.2からPHP7.4へアップデートするための手順です。  
-  
-TODO: PHP7.4対応  ここにアップデート手順を記載する
+※Amazon Linux 2のExtras Library(amazon-linux-extras)を用いて、PHPのインストールを行っている前提です。  
+※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
+
+- amazon-linux-extras パッケージがインストールされていることを確認します。  
+
+~~~
+which amazon-linux-extras
+# インストールされていない場合は下記のコマンドでインストールしてください。
+# sudo yum install -y amazon-linux-extras
+~~~
+
+- PHPのバージョンとExtras Libraryのトピックを確認します。  
+※PHPのバージョンが7.2.Xであること。PHP7.2のトピックがenabledであること、PHP7.4のトピックが存在することを確認してください。  
+
+~~~
+php -v
+amazon-linux-extras | grep php
+~~~
+
+- PHP7.2のトピックを無効にします。  
+
+~~~
+sudo amazon-linux-extras disable php7.2
+~~~
+
+- PHP7.4のトピックをインストールします。  
+
+~~~
+sudo amazon-linux-extras install php7.4
+~~~
+
+- PHPのバージョンが7.4.Xになっていること、PHP7.2のトピックがdisabled、PHP7.4のトピックがenabledになっていることを確認します。  
+
+~~~
+php -v
+amazon-linux-extras | grep php
+~~~
