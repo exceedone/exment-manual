@@ -52,7 +52,7 @@ yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 - PHP7.4など、必要ライブラリをインストールします。
 
 ~~~
-yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip
+yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
 ~~~
 
 - Apache起動設定を行います。
@@ -176,7 +176,7 @@ cd exment
 
 ~~~
 # 最低限の権限を追加する
-chmod 0755 /var/www/exment
+chmod 0775 /var/www/exment
 chown -R apache:apache /var/www/exment
 
 # 以下のコマンドを実行し、フォルダの権限を付与する。1もしくは2を実施する

@@ -300,7 +300,7 @@ cd exment
 
 ~~~
 # 最低限の権限を追加する
-sudo chmod 0755 /var/www/exment
+sudo chmod 0775 /var/www/exment
 sudo chown -R ec2-user:apache /var/www/exment
 
 # 以下のコマンドを実行し、フォルダの権限を付与する。1もしくは2を実施する
