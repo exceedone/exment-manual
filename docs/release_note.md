@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.3.4 (2022/03/18)
+1. Addition of functions
+    - Added a function that allows you to select how to display "ID", "Creator", etc. in custom data from "Top of page", "Bottom of page", and "Hide". You can select from the system settings (details)
+1. Bug fix
+    - Fixed a bug that some folders have insufficient permissions in the command to set the owner and permissions of the files and folders required to execute Exment.
+
 ## v4.3.3 (2022/03/11)
 1. Addition of functions
     - Plugin supports file download
