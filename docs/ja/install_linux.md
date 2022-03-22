@@ -44,15 +44,15 @@ yum install -y wget firewalld unzip git
 ※バージョンアップなどにより、以下のバージョンが存在しない場合があります。その場合、[こちら](https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/)のリンクから、**「epel-release-7-XX.noarch.rpm」**に該当するrpmを指定してください。
 
 ~~~
-wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm ~/
-rpm -ivh ~/epel-release-7-12.noarch.rpm 
+wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm ~/
+rpm -ivh ~/epel-release-7-14.noarch.rpm 
 yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ~~~
 
 - PHP7.4など、必要ライブラリをインストールします。
 
 ~~~
-yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
 ~~~
 
 - Apache起動設定を行います。
@@ -179,7 +179,8 @@ cd exment
 chmod 0775 /var/www/exment
 chown -R apache:apache /var/www/exment
 
-# 以下のコマンドを実行し、フォルダの権限を付与する。1もしくは2を実施する
+# 以下のコマンドを実行し、フォルダのユーザー・グループ権限を付与する。1もしくは2を実施する  
+# ※権限が不足している場合などは、sudoを付与するなど、強い権限で実行をお願いします
 # 1. かんたんインストールの場合
 php artisan exment:setup-dir --easy=1
 # 2. 手動インストールの場合
@@ -206,13 +207,14 @@ PHPのバージョンを変更する場合、以下の手順でバージョン�
 
 ~~~
 # バックアップフォルダを作成
-mkdir php-backup &&cd php-backup
+cd ~
+mkdir php-backup && cd php-backup
 # インストール済のパッケージ情報を出力する
 yum list installed |grep php > php72-installed.txt
 # 拡張モジュールの情報を出力する
 php -m > php72-modules.txt
 # php.iniファイルをコピー（場所が下記と違う時は事前に「php -i | grep php.ini」で確認） 
-cp /etc/php.ini php72.ini
+cp /etc/opt/remi/php72/php.ini php72.ini
 ~~~
 
 
@@ -220,7 +222,8 @@ cp /etc/php.ini php72.ini
 
 ~~~
 yum remove php-*
-yum remove php72*
+yum remove php72-php*
+yum remove php72-runtime
 ~~~
 
 - epel-releaseのアップデートを確認します。  
@@ -240,7 +243,16 @@ ll /etc/yum.repos.d/ | grep remi-
 - PHP7.4本体のインストールを行います。  
 
 ~~~
-yum install --enablerepo=remi,remi-php74 php
+yum install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+~~~
+
+- php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
+
+~~~
+# シンボリックリンクを削除
+unlink /usr/bin/php
+# シンボリックリンクを再作成
+ln -s /usr/bin/php74 /usr/bin/php
 ~~~
 
 - PHPのバージョンが7.4になっていることを確認します。  

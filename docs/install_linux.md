@@ -22,6 +22,15 @@ It does not describe general IT-related knowledge such as SSH, database creation
 
 ## Linux installation procedure
 
+### MySQL
+The setting is optional. This is the procedure for installing MySQL.  
+This section describes the procedure on the Web server side and the procedure on the MySQL server side.  
+※ When using an external service such as when using the AWS RDS service, the procedure on the MySQL server side is not required.  
+※Moved [here](/install_mysql).
+
+### Redis
+※Moved [here](/additional_session_cache_driver).
+
 ### Web server
 - Update yum and install required libraries.  
 
@@ -32,17 +41,18 @@ yum install -y wget firewalld unzip
 
 
 - Update epel and install rpm.  
+*The following versions may not exist due to version upgrades. In that case, please specify the rpm corresponding to "epel-release-7-XX.noarch.rpm" from this link.  
 
 ~~~
-wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm ~/
-rpm -ivh ~/epel-release-7-11.noarch.rpm 
+wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm ~/
+rpm -ivh ~/epel-release-7-14.noarch.rpm 
 yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ~~~
 
 - Install required libraries such as PHP7.4.  
 
 ~~~
-yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip
+yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
 ~~~
 
 - Configure Apache launch settings.  
@@ -160,100 +170,25 @@ rm exment.zip -f
 cd exment
 ~~~
 
-- Set the owner and permissions.  
+- Set the file permission. Execute the following command.
 
 ~~~
-chown apache:apache -R /var/www/exment
-chmod 755 -R /var/www/exment/storage
-chmod 755 -R /var/www/exment/bootstrap/cache
+# Add minimum permissions.
+chmod 0775 /var/www/exment
+chown -R apache:apache /var/www/exment
+
+# Execute the following command to grant user group privileges for the folder. Carry 1 or 2  
+# * If you do not have enough privileges, please execute with strong privileges such as granting sudo.
+# 1. If use Easy Intall
+php artisan exment:setup-dir --easy=1
+# 2. If use Manual Intall
+php artisan exment:setup-dir
 ~~~
 
-### MySQL
-The setting is optional. This is the procedure for installing MySQL.  
-This section describes the procedure on the Web server side and the procedure on the MySQL server side.  
-※ When using an external service such as when using the AWS RDS service, the procedure on the MySQL server side is not required.  
+- In the browser of your PC, enter the IP address of the created web server to complete the initial installation of Exment.
 
-#### MySQL server side
-- Install and launch MySQL 5.7.
-~~~
-rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
-yum -y install mysql-community-server
-systemctl enable mysqld.service
-systemctl start mysqld.service
-~~~
-
-- Confirm the initial password of MySQL.
+- *If you installed by simple installation and the initial installation is completed, execute the following command to restore the required privileges only at the time of installation.
 
 ~~~
-cat /var/log/mysqld.log | grep password
-
-#Confirm the password as the following log is output
-2016-09-01T13:09:03.337119Z 1 [Note] A temporary password is generated for root@localhost: uhsd!XXXXXX
+php artisan exment:setup-dir --easy_clear=1
 ~~~
-
-- (Optional) Disable password policy.
-
-~~~
-vi /etc/my.cnf
-
-#Added the following validate-password
-[mysqld]
-validate-password=OFF
-~~~
-
-
-- Restart mysql.
-~~~
-systemctl restart mysqld.service
-~~~
-
-- Make the initial settings for mysql. Execute the following command.
-
-~~~
-mysql_secure_installation
-
-Enter password for user root: (Enter the password you copied earlier)
-
-New password: (enter new password)
-Re-enter new password:  (enter new password)
-
-Change the password for root? : y
-
-Remove anonymous users? : y #Remove anonymous user account
-Disallow root login remotely? : y # remove root account accessible from other than localhost
-Remove test database and access to it? : y # remove test database
-Reload privilege tables now? : y #privilege Reload table
-~~~
-
-- Log in to MySQL.
-
-~~~
-mysql -u root -p(password)
-~~~
-
-- Create a database for Exment and a user.  
-※Here, the database name is "exment_database" and the user is "exment_user".  
-The connection source IP address is "192.168.137.%".  
-
-~~~
-CREATE DATABASE exment_database;  
-CREATE USER 'exment_user'@'192.168.137.%' IDENTIFIED BY '(password for exment_user)';  
-GRANT ALL ON exment_database.* TO exment_user identified by '(password for exment_user)';  
-FLUSH PRIVILEGES;  
-~~~
-
-- Create a database for Exment and a user.  
-※The database name is "exment_database" and the user is "exment_user".  
-The connection source IP address is "192.168.137.%".  
-
-~~~
-firewall-cmd --permanent --new-zone=from_webserver
-firewall-cmd --reload
-firewall-cmd --permanent --zone=from_webserver --add-source="192.168.137.0/24"
-firewall-cmd --permanent --zone=from_webserver --add-port=3306/tcp
-firewall-cmd --zone=from_webserver --add-service=mysql
-firewall-cmd --reload
-~~~
-
-### Redis
-※Moved [here](/additional_session_cache_driver).
