@@ -64,6 +64,13 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 
 - 入力を行ったら、起動したダイアログをすべて「OK」をクリックし、完了させます。  
 
+##### XAMPP配下のMysqlを実行する場合
+- XAMPP配下のMysqlを実行する場合には、[Exmentインストール](#Exmentインストール)の手順の際に、実行ファイルがあるフォルダまでのパスを、Exmentのルートディレクトリにある.env 内に追加してください。  
+~~~
+#例  
+EXMENT_MYSQL_BIN_DIR="C:/xampp/mysql/bin"
+~~~
+
 #### データベースを作成
 - XAMPPコントロールパネルを起動後、「MySQL」行の「Admin」をクリックします。  
 ![MySQL環境変数](img/xampp/phpmyadmin0.png)
@@ -133,7 +140,6 @@ Exmentのインストールは、通常"C:\xampp\local"フォルダ内で行い�
     - ユーザー名：root
     - パスワード：(空欄)
 
-   
 ## PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
