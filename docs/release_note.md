@@ -1,6 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.3.5 (2022/04/05)
+1. Bug fix
+    - Fixed a bug that site favicon (ico) cannot be registered after installation.
+    - Fixed a bug that is reflected in all records when an item in the child table is selected from the search button.
+    - Fixed a bug that items that should be displayed in the related narrowing options are not displayed on the form setting screen.
+    - Fixed a bug that an error may occur when setting the target view when the trigger for executing notification condition setting is "Create new data / Update / Share / Comment" in the notification settings.
+    - Fixed a bug that "Match any condition" has the same result as "Match all conditions" when combining view conditions in some custom columns.
+
 ## v4.3.4 (2022/03/18)
 1. Addition of functions
     - Added a function that allows you to select how to display "ID", "Creator", etc. in custom data from "Top of page", "Bottom of page", and "Hide". You can select from the system settings (details)
