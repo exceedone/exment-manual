@@ -9,7 +9,7 @@ These are the steps required to start Exment.
 - For other inquiries, please feel free to [contact us](https://exment.net/inquiry) for free.
 
 ## Server settings
-Exment requires PHP7.2.0 or higher. Also, MySQL 5.7.8 or more and less than 8.0.0 or MariaDB 10.2.7 or more is required.  
+Exment requires PHP7.3.0 or higher. Also, MySQL 5.7.8 or more and less than 8.0.0 or MariaDB 10.2.7 or more is required.  
 XAMPP is recommended when building an environment with PHP, Apache, and MySQL as a development environment from the beginning.  
 Please refer to [here](/install_xampp) for server settings.  
 ※ If you already have an environment, this setting is not required.

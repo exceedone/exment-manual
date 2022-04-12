@@ -64,6 +64,13 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 
 - 入力を行ったら、起動したダイアログをすべて「OK」をクリックし、完了させます。  
 
+##### XAMPP配下のMysqlを実行する場合
+- XAMPP配下のMysqlを実行する場合には、[Exmentインストール](#Exmentインストール)の手順の際に、実行ファイルがあるフォルダまでのパスを、Exmentのルートディレクトリにある.env 内に追加してください。  
+~~~
+#例  
+EXMENT_MYSQL_BIN_DIR="C:/xampp/mysql/bin"
+~~~
+
 #### データベースを作成
 - XAMPPコントロールパネルを起動後、「MySQL」行の「Admin」をクリックします。  
 ![MySQL環境変数](img/xampp/phpmyadmin0.png)
@@ -114,7 +121,7 @@ C:\Program Files\MySQL\MySQL Server 5.7\bin
 127.0.0.1       exment.localapp
 ~~~
 
-- XAMPPコントロールパネルで、Apacheを再起動します。XAMPPコントロールパネルで、「Apache」行の「Stop」ボタンをクリック語、再度「Start」をクリックしてください。  
+- XAMPPコントロールパネルで、Apacheを再起動します。XAMPPコントロールパネルで、「Apache」行の「Stop」ボタンをクリック後、再度「Start」をクリックしてください。  
 ![XAMPPインストール画面](img/xampp/xampp7.png)
 
 - これにより、今後は以下のURLで、Exmentにアクセス出来るようになります。  
@@ -133,3 +140,40 @@ Exmentのインストールは、通常"C:\xampp\local"フォルダ内で行い�
     - ユーザー名：root
     - パスワード：(空欄)
 
+## PHPバージョンアップ時の対応
+PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
+※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
+※下記の例は、PHP7.2からPHP7.4へアップデートするための手順です。また、XAMPP全てをアップデートせずに、PHPだけを置き換える方法です。  
+※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
+
+- 作業の前準備としてapacheやMySQLを停止し、XAMPPコントロールパネルを終了します。  
+
+- 現在使用しているXAMPP配下のPHPフォルダ（デフォルトはC:\xampp\php）をバックアップします。フォルダの名前を変更する、別の場所にコピーする等お好きな方法を選択してください。  
+
+- 新しいXAMPPをZIP形式でダウンロードします。  
+
+   1. [XAMPPダウンロード](https://www.apachefriends.org/jp/download.html) にアクセスします
+   2. OSや使用したいPHPのバージョンに合わせてファイルをダウンロードします。  
+      > その際、installer.exeではなくzipファイルを選択してください。（解凍できる環境があれば7zファイルでも構いません）
+      ![XAMPPダウンロード画面](img/xampp/xampp8.png)
+
+   3. ZIP ファイルを解凍して、展開されたフォルダ直下にあるPHPフォルダをXAMPP配下にコピーします。  
+
+- 必要に応じてphp.iniファイルを修正します。  
+※元のiniファイルを変更している場合は、新しいiniファイルにも同じ変更が必要です。バックアップしたphp.iniファイルと新しいphp.iniファイルを比較して、各種設定値などを追加してください。  
+
+- XAMPPコントロールパネルを起動します。  
+
+- Shellボタンを押して、コマンド画面を立ち上げ、PHPのバージョンが新しくなったことを確認してください。  
+
+~~~
+php -v
+~~~
+
+- 「Apache」と「MySQL」行の、「Start」をクリックします。  
+
+   > 「Apache」の「Start」時にエラーが発生することがあります。  
+   その際は、同じ行の右側にある「Logs」→「Apache(error.log)」を開いてください。  
+   ログの最新行に「PHP Warning: 'vcruntime140.dll'...」と出力されていたら、「Visual C++ 再頒布可能パッケージ」をインストールする必要があります。  
+   [Microsoftのダウンロードサイト](https://visualstudio.microsoft.com/ja/downloads/) にアクセスして、一番下までスクロール→「その他の Tools、Frameworks、そして Redistributables」を開きます。	  
+   「Microsoft Visual C++ Redistributable for Visual Studio 2022」のダウンロードボタンをクリックしてインストーラーを入手→ 実行してください。  

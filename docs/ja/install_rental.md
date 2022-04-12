@@ -4,7 +4,7 @@
 
 ## レンタルサーバーで構築を行う際の注意点
 - Exmentは、以下の環境が必要になります。
-    1. PHP 7.2.0以上
+    1. PHP 7.3.0以上
     1. MySQL 5.7.8以上、8.0.0未満  
     または MariaDB 10.2.7以上  
   <span class="red">特にMySQLのバージョンが、レンタルサーバーによっては条件を満たしていない場合があります。  
@@ -54,17 +54,17 @@ find /opt/php-*/bin -type f -name 'php'
 ## /opt/php-7.1.2/bin/php
 ## /opt/php-7.1.3/bin/php
 ## /opt/php-7.1.4/bin/php
-## /opt/php-7.2.1/bin/php
-## /opt/php-7.2.14/bin/php
-## /opt/php-7.2.6/bin/php ←今回の例ではこちら
-## /opt/php-7.2/bin/php
+## /opt/php-7.4.1/bin/php
+## /opt/php-7.4.14/bin/php
+## /opt/php-7.4.6/bin/php ←今回の例ではこちら
+## /opt/php-7.4/bin/php
 ~~~
 
 - フォルダを作成し、PHPへのシンボリックリンクを作成します。  
 
 ~~~
 mkdir $HOME/bin
-ln -s /opt/php-7.2.6/bin/php $HOME/bin/php
+ln -s /opt/php-7.4.6/bin/php $HOME/bin/php
 ~~~
 
 - bashrcファイルを修正し、上記PHPバージョンへのパスを通します。  
@@ -125,6 +125,59 @@ ln -s $HOME/(ドメイン名)/laravel/exment/public $HOME/(ドメイン名)/publ
 [インストール手順](/ja/quickstart)に従い、設定を完了してください。  
 ※Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。  
 
+
+#### PHPバージョンアップ時の対応
+PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
+※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
+※下記の手順例は、PHP7.2からPHP7.4へアップデートするための手順です。  
+※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
+
+- Xserverの管理画面から、「PHP Ver.切替」をクリックします。  
+その後、対象のドメインを選択します。  
+
+- 「PHPバージョン切替」で、新しいバージョンに切り替えて「変更」をクリックします。  
+![Xserver設定](img/install/install_xserver6.png)  
+
+- XserverにSSH接続します。  
+
+- 以下のコマンドで、現在のPHPバージョンを確認します。  
+(この段階では古いバージョンが表示されます。)  
+
+~~~ 
+php --version
+~~~
+
+- PHPへのシンボリックリンクを解除します。  
+
+~~~
+unlink $HOME/bin/php
+~~~
+
+- 「PHPバージョン切替」で選択したバージョンのパスを確認します。  
+
+~~~ bash
+find /opt/php-*/bin -type f -name 'php'
+
+## /opt/php-7.3/bin/php
+## /opt/php-7.4.13/bin/php
+## /opt/php-7.4.19/bin/php
+## /opt/php-7.4.2/bin/php
+## /opt/php-7.4.23/bin/php
+## /opt/php-7.4.25/bin/php ←今回の例ではこちら
+## /opt/php-7.4.3/bin/php
+~~~
+
+- 上記で確認したパスにシンボリックリンクを設定します。  
+
+~~~
+ln -s /opt/php-7.4.25/bin/php $HOME/bin/php
+~~~
+
+- PHPバージョンを確認します。新しいバージョンになっていれば成功です。  
+
+~~~ 
+php --version
+~~~
 
 ### さくらインターネットの場合
 ※スタンダードプランで動作確認を行っています。  
@@ -202,3 +255,24 @@ ln -s $HOME/laravel/exment/public $HOME/www/exment
 [インストール手順](/ja/quickstart)に従い、設定を完了してください。  
 ※Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。  
 
+
+
+#### PHPバージョンアップ時の対応
+PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
+※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
+※下記の手順例は、PHP7.4へアップデートするための手順です。  
+※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
+
+- さくらインターネットの管理画面から、「スクリプト設定」→「言語のバージョン設定」をクリックします。  
+![さくらインターネット設定](img/install/install_sakura1.png)  
+
+- 「PHPのバージョン」で、新しいバージョンに切り替えて「保存」をクリックします。  
+![さくらインターネット設定](img/install/install_sakura2.png)  
+
+- さくらインターネットにSSH接続します。  
+
+- PHPバージョンを確認します。新しいバージョンになっていれば成功です。  
+
+~~~ 
+php --version
+~~~

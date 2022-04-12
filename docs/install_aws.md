@@ -221,7 +221,7 @@ ssh -i ~/exment_key.pem ec2-user@(Private IP address of Web server A)
 
 ~~~
 sudo yum -y update
-sudo amazon-linux-extras install -y php7.2
+sudo amazon-linux-extras install -y php7.4
 sudo yum install -y httpd mysql
 sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
 ~~~
@@ -242,10 +242,10 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ~~~
 
-- Through the path to php7.2. With the command, you can run php7.2.
+- Through the path to php7.4. With the command, you can run php7.4.
 
 ~~~
-sudo ln -s /usr/bin/php72 /usr/bin/php
+sudo ln -s /usr/bin/php74 /usr/bin/php
 ~~~
 
 - Install composer.
