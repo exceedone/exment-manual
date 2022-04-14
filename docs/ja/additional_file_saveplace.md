@@ -369,7 +369,7 @@ Exmentでは、[Laravelのファイルシステム](https://readouble.com/larave
 LaravelでDropboxを管理するために必要なパッケージを追加します。
 
 ```
-composer require spatie/flysystem-dropbox
+composer require spatie/flysystem-dropbox=^1.2.0
 ```
 
 #### ファイルの作成・追記
