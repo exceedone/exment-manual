@@ -192,3 +192,68 @@ php artisan exment:setup-dir
 ~~~
 php artisan exment:setup-dir --easy_clear=1
 ~~~
+
+## Correspondence at the time of PHP version upgrade
+If you want to change the PHP version, please follow the steps below to upgrade.  
+*You will not be able to access Exment during the version upgrade process.  
+*The following procedure example is the procedure for updating from PHP7.2 to PHP7.4.  
+*It is assumed that PHP is installed using epel and remi repository.  
+*The version upgrade method may differ depending on the environment, installation time, version and installation method.  
+
+- Make a backup first. The following command is a minimal backup example that just takes notes of php.ini and installed packages and extensions. Add or omit according to your own environment.  
+
+~~~
+# Create a backup folder
+cd ~
+mkdir php-backup && cd php-backup
+# Output installed package information
+yum list installed |grep php > php72-installed.txt
+# Output expansion module information
+php -m > php72-modules.txt
+# Copy the php.ini file (If the location is different from the following, check in advance with "php -i | grep php.ini") 
+cp /etc/opt/remi/php72/php.ini php72.ini
+~~~
+
+
+- Remove PHP related packages.  
+
+~~~
+yum remove php-*
+yum remove php72-php*
+yum remove php72-runtime
+~~~
+
+- Check for epel-release updates.  
+
+~~~
+yum update epel-release
+~~~
+
+- Check the remi repository.  
+
+~~~
+ll /etc/yum.repos.d/ | grep remi-
+# Only install the following if "remi-php74.repo" is not found in the list of results.
+# yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+~~~
+
+- Install PHP7.4 itself.  
+
+~~~
+yum install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+~~~
+
+- Pass the path to php7.4. The command will allow you to run php7.4.
+
+~~~
+# Remove symbolic links
+unlink /usr/bin/php
+# Recreate symbolic links
+ln -s /usr/bin/php74 /usr/bin/php
+~~~
+
+- Make sure your PHP version is 7.4.  
+
+~~~
+php -v
+~~~

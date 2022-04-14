@@ -198,3 +198,23 @@ ln -s $HOME/laravel/exment/public $HOME/www/exment
 
 - You are now ready to access Exment. Follow the [installation procedure](/quickstart) to complete the settings.  
 ※If you want to access Exment, add "/ admin" to the end of the URL.  
+
+## Correspondence at the time of PHP version upgrade
+If you want to change the PHP version, please follow the steps below to upgrade.  
+*You will not be able to access Exment during the version upgrade process.  
+*The following procedure example is a procedure for updating to PHP 7.4.  
+*The version upgrade method may differ depending on the environment, installation time, version and installation method.  
+
+- From the Sakura Internet management screen, click "Script settings" → "Language version settings".  
+![Sakura Internet settings](img/install/install_sakura1.png)  
+
+- Under PHP version, switch to the new version and click Save.  
+![Sakura Internet settings](img/install/install_sakura2.png)  
+
+- SSH to Sakura Internet.  
+
+- Check the PHP version. If it is a new version, it is successful.  
+
+~~~ 
+php --version
+~~~

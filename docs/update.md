@@ -1,13 +1,12 @@
 # Update
 This is the procedure when the version of Exment has been updated and an update is required.  
+Please check [here](/release_note)for the update history.  
 
-- <span class = "red bold"> As of 09/11/2020, we have confirmed the phenomenon that composer error occurs when updating Exment. </span>  
-[This page](/troubleshooting?Id=A-composer-error-occurs-during-manual-installation-or-update) describes how to deal with it.  
-If an error occurs in the update, follow the procedure to deal with it. Please go.
+- Updating from v3.X.X or lower to v4.0.X requires a manual update. Please check the contents of [here](/update/v4_0) once and then update.
+
+- <span class="red bold">Updating from v4.3.X or lower to v4.4.X or higher requires a manual update. Please check the contents of [here](/update/v4_4) once and then update.</span>
 
 - If you get an error during the update, please refer to [Troubleshooting](/troubleshooting).
-
-> We have released support for automatic updates. Please check [here](/update_auto) for details.
 
 ## (First time only) Download update batch
 
