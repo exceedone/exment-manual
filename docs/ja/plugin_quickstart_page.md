@@ -20,7 +20,7 @@ Exmentのプラグインページは、PHPのフレームワーク[Laravel](http
   
 ※事前に、[こちら](https://exment.net/downloads/sample/template/YouTube.zip)のテンプレートをインポートしてください。
 
-- サンプルプラグイン[こちら](https://exment.net/downloads/sample/plugin/YouTubeSearch.zip)  
+- サンプルプラグイン[こちら](https://github.com/exment-git/plugin-sample/tree/main/page/YouTubeSearch)  
 
 
 ### config.json作成
@@ -263,5 +263,5 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 ~~~
 
 ### サンプルプラグイン
-[YouTube検索](https://exment.net/downloads/sample/plugin/YouTubeSearch.zip)  
+[YouTube検索](https://github.com/exment-git/plugin-sample/tree/main/page/YouTubeSearch)  
 ※事前に、[こちら](https://exment.net/downloads/sample/template/YouTube.zip)のテンプレートをインポートしてください。

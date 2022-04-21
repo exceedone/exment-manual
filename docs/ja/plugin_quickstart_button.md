@@ -260,7 +260,7 @@ class Plugin extends PluginButtonBase
 
 
 ### サンプルプラグイン
-[「次へ」「前へ」ボタンを表示(独自ボタン)](https://exment.net/downloads/sample/plugin/PluginCustomButton.zip)  
+[「次へ」「前へ」ボタンを表示(独自ボタン)](https://github.com/exment-git/plugin-sample/tree/main/button/PluginCustomButton)  
 
 
 

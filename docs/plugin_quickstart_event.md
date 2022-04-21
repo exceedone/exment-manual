@@ -82,13 +82,13 @@ The zip file name should be "(plugin_name) .zip".
 
 
 ### Sample plugin
-[External database linkage](https://exment.net/downloads/sample/plugin/PluginSyncCity.zip)  
+[External database linkage](https://github.com/exment-git/plugin-sample/tree/main/event/PluginSyncCity)  
 - This is a sample that links with an external database when custom data is saved.  
 - If you add / update / delete in the city table of Exment, it will be reflected in the city table of the external database.  
 - As a preliminary preparation, perform the following processing.
     1. Import [Template](https://exment.net/downloads/sample/template/city_template.zip) from Exment menu "Administrator Settings" → "Templates".  
     - Create an external database. This plug-in uses the MySQL sample database "world".Download the zip from [the Official website](https://dev.mysql.com/doc/index-other.html) and execute the unzipped SQL in your MySQL (or MariaDB) console.
 ![MySQL download page](img/plugin/plugin_event1.png)  
-    - Upload [Plugins](https://exment.net/downloads/sample/plugin/PluginSyncCity.zip) from Exment menu "Administrator Settings" → "Plugins".  
+    - Upload [Plugins](https://github.com/exment-git/plugin-sample/tree/main/event/PluginSyncCity) from Exment menu "Administrator Settings" → "Plugins".  
     - Open the plugin setting page, fill the connection information of the external database (set in 2.) and save.  
 ![Plugin setting page](img/plugin/plugin_event2.png)  

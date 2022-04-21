@@ -14,7 +14,7 @@ Kajitori Co., Ltd., the development and operation company of Exment, is a distri
 
 
 ## Execution method
-- Download [this plugin](https://exment.net/downloads/product/plugin/Docurain/Docurain.zip).
+- Download [this plugin](https://github.com/exment-git/plugin-sample/tree/main/docurain/Docurain).
 
 - Upload as an Exment plugin.
 Please refer to [here](/plugin?Id=plugin-upload) for the procedure.

@@ -11,7 +11,7 @@ When developing APIs, we recommend that you have a knowledge of Laravel.
 ### sample
 Here, as a sample, we will create an API that "gets custom column information from the name of the custom column".
 
-- Click [here](https://exment.net/downloads/sample/plugin/PluginDemoAPI.zip) for sample plugins.  
+- Click [here](https://github.com/exment-git/plugin-sample/tree/main/api/PluginDemoAPI) for sample plugins.  
 
 
 ### Create config.json
@@ -209,4 +209,4 @@ public function tablecolumn($table, $column)
 
 
 ### Sample plugin
-[API sample](https://exment.net/downloads/sample/plugin/PluginDemoAPI.zip)  
+[API sample](https://github.com/exment-git/plugin-sample/tree/main/api/PluginDemoAPI)  

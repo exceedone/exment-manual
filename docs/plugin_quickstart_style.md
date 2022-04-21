@@ -62,4 +62,4 @@ If you want to execute the script only on a specific table, set the refinement b
 ※ Example: "User" screen: "custom_value_user", "Organization" screen: "custom_value_organization"
 
 ### Sample plugin
-[Sample design](https://exment.net/downloads/sample/plugin/SetStyle.zip)
+[Sample design](https://github.com/exment-git/plugin-sample/tree/main/style/SetStyle)

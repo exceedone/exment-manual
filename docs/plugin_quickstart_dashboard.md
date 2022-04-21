@@ -18,7 +18,7 @@ Here, the following page is created as a sample.
 
 ※  Please import [this](https://exment.net/downloads/sample/template/dakoku.zip) template in advance.  
 
-- Sample plug-in [here](https://exment.net/downloads/sample/plugin/Dakoku.zip).  
+- Sample plug-in [here](https://github.com/exment-git/plugin-sample/tree/main/dashboard/Dakoku).  
 
 
 ### Create config.json
@@ -314,5 +314,5 @@ If you upload a plug-in of type "Dashboard", "Plug-in" will be displayed as a ch
 
 
 ### Sample plugin
-[Time stamp management](https://exment.net/downloads/sample/plugin/Dakoku.zip)  
+[Time stamp management](https://github.com/exment-git/plugin-sample/tree/main/dashboard/Dakoku)  
 ※ Please import [this template](https://exment.net/downloads/sample/template/dakoku.zip).

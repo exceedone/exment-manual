@@ -63,4 +63,4 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 
 
 ### サンプルプラグイン
-[サンプルデザイン](https://exment.net/downloads/sample/plugin/SetStyle.zip)
+[サンプルデザイン](https://github.com/exment-git/plugin-sample/tree/main/style/SetStyle)

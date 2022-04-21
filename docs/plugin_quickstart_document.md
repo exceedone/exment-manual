@@ -150,5 +150,5 @@ By clicking the button, a list will be displayed in "Attachments".
 ![Document output_attached file](img/plugin/plugin_document_list.png) 
 
 ### Sample plugin
-[User information output](https://exment.net/downloads/sample/plugin/document_demo_user.zip)  
+[User information output](https://github.com/exment-git/plugin-sample/tree/main/document/document_demo_user)  
 ※ The "User information output" button is displayed on the user information screen.

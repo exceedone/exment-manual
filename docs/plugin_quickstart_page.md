@@ -20,7 +20,7 @@ Here, the following page is created as a sample.
   
 ※ Please import [this](https://exment.net/downloads/sample/template/YouTube.zip) template in advance.  
 
-- Sample plug-in [here](https://exment.net/downloads/sample/plugin/YouTubeSearch.zip).
+- Sample plug-in [here](https://github.com/exment-git/plugin-sample/tree/main/page/YouTubeSearch).
 
 
 ### Create config.json
@@ -263,5 +263,5 @@ You can specify uri like "{id}".
 ~~~
 
 ### Sample plugin
-[YouTube search](https://exment.net/downloads/sample/plugin/YouTubeSearch.zip)  
+[YouTube search](https://github.com/exment-git/plugin-sample/tree/main/page/YouTubeSearch)  
 ※ Please import [this](https://exment.net/downloads/sample/template/YouTube.zip) template beforehand.

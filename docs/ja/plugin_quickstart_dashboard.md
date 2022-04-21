@@ -18,7 +18,7 @@ Exmentのプラグインページは、PHPのフレームワーク[Laravel](http
 
 ※事前に、[こちら](https://exment.net/downloads/sample/template/dakoku.zip)のテンプレートをインポートしてください。
 
-- サンプルプラグイン[こちら](https://exment.net/downloads/sample/plugin/Dakoku.zip)  
+- サンプルプラグイン[こちら](https://github.com/exment-git/plugin-sample/tree/main/dashboard/Dakoku)  
 
 
 ### config.json作成
@@ -314,5 +314,5 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 
 
 ### サンプルプラグイン
-[打刻管理](https://exment.net/downloads/sample/plugin/Dakoku.zip)  
+[打刻管理](https://github.com/exment-git/plugin-sample/tree/main/dashboard/Dakoku)  
 ※[こちらのテンプレート](https://exment.net/downloads/sample/template/dakoku.zip)をインポートしてください。
