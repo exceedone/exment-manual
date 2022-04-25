@@ -123,7 +123,7 @@ Therefore, we strongly recommend that you avoid these issues. Please set accordi
 - This will allow you to access Exment from the URL below.  
 http://exment.localapp/admin
 
-### Exmentインストール
+### Install Exment
 Install Exment according to the Exment [installation procedure](/quickstart).
 Exment installation is usually performed in the "C: \ xampp \ local" folder.
 Here, it is assumed that the installation was performed in the "C: \ xampp \ local \ exment" folder.
@@ -135,3 +135,42 @@ Here, it is assumed that the installation was performed in the "C: \ xampp \ loc
     - Database: (Database name created above)
     - User name: root
     - Password: (blank)
+
+
+## Correspondence at the time of PHP version upgrade
+If you want to change the PHP version, please follow the steps below to upgrade.  
+*You will not be able to access Exment during the version upgrade process.  
+*The example below is the procedure for updating from PHP7.2 to PHP7.4. Also, it is a way to replace only PHP without updating all of XAMPP.  
+*The version upgrade method may differ depending on the environment, installation time, version and installation method.  
+
+- As a preparation for work, stop apache and MySQL and exit the XAMPP control panel.  
+
+- Back up the PHP folder under XAMPP that you are currently using (default is C:\xampp\php). Choose your preferred method, such as renaming the folder or copying it to another location.  
+
+- Download the new XAMPP in ZIP format.  
+
+   1. Go to [XAMPP Download](https://www.apachefriends.org/jp/download.html)
+   2. Download the file according to the OS and the version of PHP you want to use.  
+      > In doing so, select the zip file instead of installer.exe. (If you have an environment that can be decompressed, you can use a 7z file)  
+      ![XAMPP Download Page](img/xampp/xampp8.png)
+
+   3. Unzip the ZIP file and copy the PHP folder directly under the extracted folder under XAMPP.  
+
+- Modify the php.ini file as needed.  
+*If you have changed the original ini file, you need to make the same change to the new ini file. Compare the backed up php.ini file with the new php.ini file and add various settings etc.  
+
+- Launch the XAMPP Control Panel.  
+
+- Press the Shell button to bring up the command screen and check that the PHP version is new.  
+
+~~~
+php -v
+~~~
+
+- Click Start in the Apache and MySQL rows.  
+
+   > An error may occur at "Start" of "Apache".  
+   In that case, open "Logs"-> "Apache (error.log)" on the right side of the same line.  
+   If the latest line of the log says "PHP Warning:'vcruntime140.dll' ...", you need to install the "Visual C ++ Redistributable Package".  
+   Go to the [Microsoft Download Site](https://visualstudio.microsoft.com/en/downloads/) and scroll to the bottom → open "Other Tools, Frameworks, and Redistributables".  
+   Click the download button of "Microsoft Visual C ++ Redistributable for Visual Studio 2022" to get the installer → execute it.  

@@ -382,3 +382,45 @@ Instance size: Optional (Example: t2.micro)
 - Target group instance: Select two types of created web server and add to "Registered"  
 
 After completing the settings, you can access the web server via the DNS of the load balancer.
+
+## Correspondence at the time of PHP version upgrade
+If you want to change the PHP version, please follow the steps below to upgrade.  
+*You will not be able to access Exment during the version upgrade process.  
+*The example below is the procedure for updating from PHP7.2 to PHP7.4.  
+*It is assumed that PHP is installed using the Extras Library (amazon-linux-extras) of Amazon Linux 2.  
+*The version upgrade method may differ depending on the environment, installation time, version and installation method.  
+
+- Make sure you have the amazon-linux-extras package installed.  
+
+~~~
+which amazon-linux-extras
+# If it is not installed, install it with the following command.
+# sudo yum install -y amazon-linux-extras
+~~~
+
+- Check the PHP version and the Extras Library topic.  
+*PHP version is 7.2.X. Make sure the PHP 7.2 topic is enabled and the PHP 7.4 topic exists.  
+
+~~~
+php -v
+amazon-linux-extras | grep php
+~~~
+
+- Disable the PHP 7.2 topic.  
+
+~~~
+sudo amazon-linux-extras disable php7.2
+~~~
+
+- Install the PHP 7.4 topic.  
+
+~~~
+sudo amazon-linux-extras install php7.4
+~~~
+
+- Make sure the PHP version is 7.4.X, the PHP 7.2 topic is disabled, and the PHP 7.4 topic is enabled.  
+
+~~~
+php -v
+amazon-linux-extras | grep php
+~~~
