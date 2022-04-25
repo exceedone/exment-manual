@@ -11,7 +11,7 @@ APIの開発を行う場合には、特にLaravelの知識がある方が開発�
 ### サンプル
 ここではサンプルとして、「カスタム列の名前から、カスタム列情報を取得する」APIを作成します。
 
-- サンプルプラグインは[こちら](https://exment.net/downloads/sample/plugin/PluginDemoAPI.zip)  
+- サンプルプラグインは[こちら](https://github.com/exment-git/plugin-sample/tree/main/api/PluginDemoAPI)  
 
 
 ### config.json作成
@@ -203,4 +203,4 @@ public function tablecolumn($table, $column)
 ~~~
 
 ### サンプルプラグイン
-[APIサンプル](https://exment.net/downloads/sample/plugin/PluginDemoAPI.zip)  
+[APIサンプル](https://github.com/exment-git/plugin-sample/tree/main/api/PluginDemoAPI)  

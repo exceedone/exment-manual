@@ -135,4 +135,4 @@ When you select the registered plug-in and press the send button, the import pro
 
 
 ### Sample plugin
-[Contract Data Import Plugin](https://exment.net/downloads/sample/plugin/PluginImportContract.zip)
+[Contract Data Import Plugin](https://github.com/exment-git/plugin-sample/tree/main/import/PluginImportContract)

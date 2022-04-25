@@ -190,10 +190,10 @@ function setEvent(ev){
 
 
 ## サンプルプラグイン
-- [住所セットスクリプト](https://exment.net/downloads/sample/plugin/SetAddress.zip)  
+- [住所セットスクリプト](https://github.com/exment-git/plugin-sample/tree/main/script/SetAddress)  
 
-- [全角英数字→半角英数字変換スクリプト](https://exment.net/downloads/sample/plugin/ReplaceZenHan.zip)  
+- [全角英数字→半角英数字変換スクリプト](https://github.com/exment-git/plugin-sample/tree/main/script/ReplaceZenHan)  
 全角英数字を、半角英数字に変換するスクリプトです。  
 
-- [半角カナ→全角カナ変換スクリプト](https://exment.net/downloads/sample/plugin/ReplaceKanaHanZen.zip)  
+- [半角カナ→全角カナ変換スクリプト](https://github.com/exment-git/plugin-sample/tree/main/script/ReplaceKanaHanZen)  
 半角カナを、全角カナに変換するスクリプトです。  

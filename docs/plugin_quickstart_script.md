@@ -91,10 +91,10 @@ If you want to execute the script only on a specific table, set the refinement b
 ※ Example: "User" screen: "custom_value_user", "Organization" screen: "custom_value_organization"
 
 ### Sample plugin
-- [Address set script](https://exment.net/downloads/sample/plugin/SetAddress.zip)  
+- [Address set script](https://github.com/exment-git/plugin-sample/tree/main/script/SetAddress)  
 
-- [Full-width alphanumeric → half-width alphanumeric conversion script This script converts](https://exment.net/downloads/sample/plugin/ReplaceZenHan.zip)  
+- [Full-width alphanumeric → half-width alphanumeric conversion script This script converts](https://github.com/exment-git/plugin-sample/tree/main/script/ReplaceZenHan)  
 full-width alphanumeric characters to half-width alphanumeric characters.
 
-- [Half-width kana to full-width kana conversion script This script converts](https://exment.net/downloads/sample/plugin/ReplaceKanaHanZen.zip)  
+- [Half-width kana to full-width kana conversion script This script converts](https://github.com/exment-git/plugin-sample/tree/main/script/ReplaceKanaHanZen)  
 half-width kana to full-width kana.

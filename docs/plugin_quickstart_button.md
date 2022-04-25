@@ -263,4 +263,4 @@ Zip it up and upload it just like a regular button.
 
 
 ### Sample plugin
-[Display "Next" and "Previous" buttons (unique button)] (https://exment.net/downloads/sample/plugin/PluginCustomButton.zip)
+[Display "Next" and "Previous" buttons (unique button)] (https://github.com/exment-git/plugin-sample/tree/main/button/PluginCustomButton)

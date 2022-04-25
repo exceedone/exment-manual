@@ -232,5 +232,5 @@ Compress the file into a zip with the minimum configuration.
 
 
 ## Sample plugin
-- [Export CSV output](https://exment.net/downloads/sample/plugin/ExportTestCsv.zip)
-- [Export Excel Output](https://exment.net/downloads/sample/plugin/ExportTestExcel.zip)
+- [Export CSV output](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestCsv)
+- [Export Excel Output](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestExcel)

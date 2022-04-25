@@ -237,5 +237,5 @@ class Plugin extends PluginExportExcel
 - 出力されたファイルに画像が含まれない場合、[こちら](/ja/troubleshooting)の「Excelをテンプレートとしたドキュメント出力で、画像の出力に失敗する」をご確認ください。
 
 ## サンプルプラグイン
-- [CSV出力のエクスポート](https://exment.net/downloads/sample/plugin/ExportTestCsv.zip)
-- [Excel出力のエクスポート](https://exment.net/downloads/sample/plugin/ExportTestExcel.zip)
+- [CSV出力のエクスポート](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestCsv)
+- [Excel出力のエクスポート](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestExcel)
