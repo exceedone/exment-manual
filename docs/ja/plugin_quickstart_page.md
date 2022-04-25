@@ -16,7 +16,7 @@ Exmentのプラグインページは、PHPのフレームワーク[Laravel](http
 
 ![スクリプト](img/plugin/plugin_page2.png)   
 
-※実行には、YouTubeのアクセスキーが必要です。[こちら](https://www.plusdesign.co.jp/blog/?p=7752)を参考に、キーを取得してください。  
+※実行には、YouTubeのアクセスキーが必要です。[こちら](https://qiita.com/shinkai_/items/10a400c25de270cb02e4)を参考に、キーを取得してください。  
   
 ※事前に、[こちら](https://exment.net/downloads/sample/template/YouTube.zip)のテンプレートをインポートしてください。
 
