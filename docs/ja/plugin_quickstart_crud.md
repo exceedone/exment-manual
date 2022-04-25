@@ -299,6 +299,7 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 | 名前 | 概要 | 認証 | サンプルリンク |
 | ---- | ---- | ---- | ---- |
 | MySQLWorld | Exmentとは異なるデータベースと接続し、データの取得・追加・編集・削除を実施します。 | - | [他のMySQL連携](https://github.com/exment-git/plugin-sample/tree/main/crud/mysqlworld) |
+| ShowLevels3Data | 独自のSQLを用いて、3階層の項目を同時に一覧・参照できるようにするサンプルです。 | - | [独自のSQLでExmentデータ表示](https://github.com/exment-git/plugin-sample/tree/main/crud/show_levels3_data) |
 | WordPress | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。 | - | [WordPress連携](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpress) |
 | WordPresses | REST APIを使用し、複数のWordpressサイトの投稿を一覧表示・詳細表示します。複数のエンドポイントに対応し、画面からボタンで対象サイトを切り替えます。 | - | [複数サイトのWordPress連携](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpresses) |
 | WordPressPost | REST APIを使用し、指定のWordpressサイトの投稿を一覧表示・詳細表示します。また、事前設定したアクセスキーを使用し、投稿の追加・編集・削除も実施します。 | ID・パスワード | [WordPress投稿](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpress_post) |
