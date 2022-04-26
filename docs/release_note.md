@@ -3,13 +3,13 @@
 
 ## v4.4.0 (2022/04/25)
 
-- <span class="red bold">Updating from v4.3.X or lower to v4.4.0 or higher requires a manual update. Please check the contents of [here] (/update/v4_4) once and then update.</span>
+- <span class="red bold">Updating from v4.3.X or lower to v4.4.0 or higher requires a manual update. Please check the contents of [here](/update/v4_4) once and then update.</span>
 
 1. General
     - Changed the framework used from Laravel6 to Laravel8
     - Changed the minimum version of PHP from PHP 7.2 to 7.3
 1. Addition of functions
-    - Added CRUD page to plugin type. Click here for details (/ ja / plugin_quickstart_crud)
+    - Added CRUD page to plugin type.
     - Added the function to select the position of the column name of the view by left justification, center, right justification on the view setting screen.
 1. Bug fix
     - Fixed a bug that an error occurs when getting the parent data when N: N relation is performed in the parameter setting.
