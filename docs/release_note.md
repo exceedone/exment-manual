@@ -1,6 +1,22 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.4.0 (2022/04/25)
+
+- <span class="red bold">Updating from v4.3.X or lower to v4.4.0 or higher requires a manual update. Please check the contents of [here] (/update/v4_4) once and then update.</span>
+
+1. General
+    - Changed the framework used from Laravel6 to Laravel8
+    - Changed the minimum version of PHP from PHP 7.2 to 7.3
+1. Addition of functions
+    - Added CRUD page to plugin type. Click here for details (/ ja / plugin_quickstart_crud)
+    - Added the function to select the position of the column name of the view by left justification, center, right justification on the view setting screen.
+1. Bug fix
+    - Fixed a bug that an error occurs when getting the parent data when N: N relation is performed in the parameter setting.
+    - Fixed a bug that multiple N-side relations can be registered at the same time for one table with 1: n relations.
+    - Fixed a bug that may not be output when trying to output multiple images when outputting images with a plug-in (document)
+    - Fixed a bug that the site name (abbreviation) may not be used
+
 ## v4.3.5 (2022/04/05)
 1. Bug fix
     - Fixed a bug that site favicon (ico) cannot be registered after installation.
