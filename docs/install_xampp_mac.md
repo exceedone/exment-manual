@@ -13,7 +13,7 @@ In addition, this manual introduces the case of Mac.
 - Access the following site and download XAMPP.  
 [XAMPP Download](https://www.apachefriends.org/jp/download.html)  
 
-- From XAMPP for OS X, select the item with "PHP7.1" or higher and download it.  
+- From XAMPP for OS X, select the item with from "PHP7.3" to "PHP7.4" and download it.  
 ※ Please download from the three PHPs from the top.  
 
 ![XAMPP installation screen](img/xampp_mac/xampp_mac1.png)
@@ -33,15 +33,6 @@ In addition, this manual introduces the case of Mac.
 
 - Click the Start button of MySQL or Apache, and set Status to Runnig.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac6.png)
-
-
-#### [When PHP7.3 is installed]
-in the php.ini file
-~~~
-pcre.jit=0
-~~~
-Please add.  
-![XAMPP installation screen](img/xampp_mac/xampp_mac7.png)
 
 
 #### 【important point】
