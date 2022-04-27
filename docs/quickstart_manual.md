@@ -25,10 +25,10 @@ Exment requires the introduction of composer. Please refer here for the introduc
 ## Laravel installation (project creation)
 - At the command line, execute the following command:  
 ※ The folder of the created project is called "root directory" in this manual.  
-※ Exment is currently only available for version 6.X. Please do not install on any other version.  
+※ Exment is currently only available for version 8.X. Please do not install on any other version.  
 
 ~~~
-composer create-project "laravel/laravel=6.*" (Project name)
+composer create-project "laravel/laravel=8.*" (Project name)
 cd (Project name)
 ~~~
 

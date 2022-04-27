@@ -11,7 +11,7 @@ In this manual, Windows is introduced.
 
 ### XAMPP installation procedure
 - Access the following site and download XAMPP.  
-From the following page, select the one with "PHP7.1" or higher and download it.  
+From the following page, select the one with "PHP7.3" or higher and download it.  
 [XAMPP Download](https://www.apachefriends.org/jp/download.html)  
 
 - After that, proceed with the installation of XAMPP.  
