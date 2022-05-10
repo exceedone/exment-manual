@@ -1,6 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+
+## v4.4.1 (2022/05/10)
+1. Addition of functions
+    - Added the function to change the display wording of the placeholder of the file column and the drag and drop item.
+1. Bug fix
+    - Fixed a bug that emails may not be sent normally when updating from less than v4.4.0 to v4.4.0 or higher.
+
+
 ## v4.4.0 (2022/04/25)
 
 - <span class="red bold">Updating from v4.3.X or lower to v4.4.0 or higher requires a manual update. Please check the contents of [here](/update/v4_4) once and then update.</span>
