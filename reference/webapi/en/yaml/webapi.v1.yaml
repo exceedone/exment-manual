@@ -1067,11 +1067,11 @@ paths:
 
         ```
         {
-           'value': {
-                'title': 'test',
-                'file': {
-                    'name' : 'hello.txt',
-                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+           "value": {
+                "title": "test",
+                "file": {
+                    "name" : "hello.txt",
+                    "base64" : "aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE=""
                 }
             }
         }
@@ -1083,11 +1083,11 @@ paths:
 
         ```
         {
-           'parent_type': 'contract',
-           'parent_id': 2
-           'value': {
-                'num': 10,
-                'price': 10000
+           "parent_type": "contract",
+           "parent_id": 2
+           "value": {
+                "num": 10,
+                "price": 10000
             }
         }
         ```
@@ -1102,18 +1102,18 @@ paths:
         * Patturn 1:
         ```
         {
-           'value': [
+           "value": [
               {
-                'parent_type': 'contract',
-                'parent_id': 2
-                'num': 10,
-                'price': 10000
+                "parent_type": "contract",
+                "parent_id": 2
+                "num": 10,
+                "price": 10000
               },
               {
-                'parent_type': 'contract',
-                'parent_id': 5
-                'num': 3,
-                'price': 8000
+                "parent_type": "contract",
+                "parent_id": 5
+                "num": 3,
+                "price": 8000
               }
             ]
         }
@@ -1122,21 +1122,21 @@ paths:
         * Patturn 2:
         ```
         {
-           'data': [
+           "data": [
              {
-                'parent_type': 'contract',
-                'parent_id': 2
-                'value':{
-                  'num': 10,
-                  'price': 10000
+                "parent_type": "contract",
+                "parent_id": 2
+                "value":{
+                  "num": 10,
+                  "price": 10000
                 }
              },
              {
-                'parent_type': 'contract',
-                'parent_id': 5
-                'value':{
-                  'num': 3,
-                  'price': 8000
+                "parent_type": "contract",
+                "parent_id": 5
+                "value":{
+                  "num": 3,
+                  "price": 8000
                 }
               }
             ]
@@ -1245,7 +1245,15 @@ paths:
                   type: integer
                   default: 0
                   description: Whether to include label in the result. Include in case of 1 (*The speed will be slightly slower)
-            examples: {}
+            examples:
+              Example:
+                value:
+                  value:
+                    body: This is test.
+                    order: '1'
+                    title: Test
+                    priority: 3
+                    view_flg: 1
         description: ''
       security:
         - OAuth2: []
@@ -1752,11 +1760,11 @@ paths:
 
         ```
         {
-           'value': {
-                'title': 'test',
-                'file': {
-                    'name' : 'hello.txt',
-                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+           "value": {
+                "title": "test",
+                "file": {
+                    "name" : "hello.txt",
+                    "base64" : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
                 }
             }
         }
@@ -1770,8 +1778,8 @@ paths:
         ```
         {
             value: {
-                'contract_code': 'C00001',
-                'customer': '1'
+                "contract_code": "C00001",
+                "customer": '1'
             }
         }
         ```
@@ -1780,11 +1788,11 @@ paths:
         ```
         {
             value: {
-                'contract_code': 'C00001',
-                'customer': 'Company ABC'
+                "contract_code": "C00001",
+                "customer": "Company ABC"
             },
             findKeys: {
-                'customer': 'customer_name'
+                "customer": "customer_name"
             }
         }
         ```
@@ -1796,10 +1804,10 @@ paths:
 
         ```
         {
-           'parent_type': 'contract',
-           'parent_id': 2
-           'value': {
-                'price': 10000
+           "parent_type": "contract",
+           "parent_id": 2
+           "value": {
+                "price": 10000
             }
         }
         ```
@@ -1810,10 +1818,10 @@ paths:
 
         ```
         {
-           'value': {
-                'price': 10000
+           "value": {
+                "price": 10000
             },
-            'updated_at': '2020/04/03 12:00:00'
+            "updated_at": "2020/04/03 12:00:00"
         }
         ```
       requestBody:
@@ -1859,7 +1867,16 @@ paths:
                   type: integer
                   default: 0
                   description: Whether to include label in the result. Include in case of 1 (* The speed will be slightly slower)
-            examples: {}
+            examples:
+              Example:
+                value:
+                  value:
+                    body: This is test.
+                    order: '1'
+                    title: Test
+                    priority: 3
+                    view_flg: 1
+        description: ''
       security:
         - OAuth2: []
       operationId: put-value
@@ -1956,6 +1973,13 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
+
+
+
+
+
 
 
 

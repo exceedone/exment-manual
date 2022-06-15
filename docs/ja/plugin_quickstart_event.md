@@ -29,8 +29,7 @@ Exmentの画面上で特定の操作を行った場合に実行され、値の�
     "author": "(Your Name)",
     "version": "1.0.0",
     "plugin_type": "event",
-    "event_triggers": "loaded",
-
+    "event_triggers": "loaded"
 }
 ~~~
 

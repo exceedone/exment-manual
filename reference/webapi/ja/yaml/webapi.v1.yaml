@@ -1069,11 +1069,11 @@ paths:
 
         ```
         {
-           'value': {
-                'title': 'test',
-                'file': {
-                    'name' : 'hello.txt',
-                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+           "value": {
+                "title": "test",
+                "file": {
+                    "name" : "hello.txt",
+                    "base64" : "aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE=""
                 }
             }
         }
@@ -1085,11 +1085,11 @@ paths:
 
         ```
         {
-           'parent_type': 'contract',
-           'parent_id': 2
-           'value': {
-                'num': 10,
-                'price': 10000
+           "parent_type": "contract",
+           "parent_id": 2
+           "value": {
+                "num": 10,
+                "price": 10000
             }
         }
         ```
@@ -1104,18 +1104,18 @@ paths:
         ■パターン１：
         ```
         {
-           'value': [
+           "value": [
               {
-                'parent_type': 'contract',
-                'parent_id': 2
-                'num': 10,
-                'price': 10000
+                "parent_type": "contract",
+                "parent_id": 2
+                "num": 10,
+                "price": 10000
               },
               {
-                'parent_type': 'contract',
-                'parent_id': 5
-                'num': 3,
-                'price': 8000
+                "parent_type": "contract",
+                "parent_id": 5
+                "num": 3,
+                "price": 8000
               }
             ]
         }
@@ -1124,21 +1124,21 @@ paths:
         ■パターン２：
         ```
         {
-           'data': [
+           "data": [
              {
-                'parent_type': 'contract',
-                'parent_id': 2
-                'value':{
-                  'num': 10,
-                  'price': 10000
+                "parent_type": "contract",
+                "parent_id": 2
+                "value":{
+                  "num": 10,
+                  "price": 10000
                 }
              },
              {
-                'parent_type': 'contract',
-                'parent_id': 5
-                'value':{
-                  'num': 3,
-                  'price': 8000
+                "parent_type": "contract",
+                "parent_id": 5
+                "value":{
+                  "num": 3,
+                  "price": 8000
                 }
               }
             ]
@@ -1164,7 +1164,7 @@ paths:
         {
             value: {
                 'contract_code': 'C00001',
-                'customer': '株式会社ABC'
+                'customer': 'CompABC'
             },
             findKeys: {
                 'customer': 'customer_name'
@@ -1247,7 +1247,15 @@ paths:
                   type: integer
                   default: 0
                   description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
-            examples: {}
+            examples:
+              Example:
+                value:
+                  value:
+                    body: テストです。
+                    order: '1'
+                    title: テスト
+                    priority: 3
+                    view_flg: 1
         description: ''
       security:
         - OAuth2認証: []
@@ -1754,11 +1762,11 @@ paths:
 
         ```
         {
-           'value': {
-                'title': 'test',
-                'file': {
-                    'name' : 'hello.txt',
-                    'base64' : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
+           "value": {
+                "title": "test",
+                "file": {
+                    "name" : "hello.txt",
+                    "base64" : 'aGVsbG8gV29ybGQhIExldCdzIGVuam95IEV4bWVudCE='
                 }
             }
         }
@@ -1772,8 +1780,8 @@ paths:
         ```
         {
             value: {
-                'contract_code': 'C00001',
-                'customer': '1'
+                "contract_code": "C00001",
+                "customer": '1'
             }
         }
         ```
@@ -1782,11 +1790,11 @@ paths:
         ```
         {
             value: {
-                'contract_code': 'C00001',
-                'customer': '株式会社ABC'
+                "contract_code": "C00001",
+                "customer": "株式会社ABC"
             },
             findKeys: {
-                'customer': 'customer_name'
+                "customer": "customer_name"
             }
         }
         ```
@@ -1798,10 +1806,10 @@ paths:
 
         ```
         {
-           'parent_type': 'contract',
-           'parent_id': 2
-           'value': {
-                'price': 10000
+           "parent_type": "contract",
+           "parent_id": 2
+           "value": {
+                "price": 10000
             }
         }
         ```
@@ -1861,7 +1869,15 @@ paths:
                   type: integer
                   default: 0
                   description: 結果にlabelを含めるかどうか。1の場合含める(※速度が若干遅くなります)
-            examples: {}
+            examples:
+              Example:
+                value:
+                  value:
+                    body: テストです。
+                    order: '1'
+                    title: テスト
+                    priority: 3
+                    view_flg: 1
       security:
         - OAuth2認証: []
       operationId: put-value
@@ -1959,6 +1975,12 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
+
+
+
+
 
 
 

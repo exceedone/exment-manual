@@ -29,7 +29,7 @@ https://www.famkruithof.net/uuid/uuidgen
 - (Optional) Enter cdns if you want to load related libraries on CDN. Enter the full path of http or https in the array.  
 
 ### css file creation
-- Create the following css file. The name is one-byte alphanumeric characters and you can give it any name. In this sample, it is "style.js".  
+- Create the following css file. The name is one-byte alphanumeric characters and you can give it any name. In this sample, it is "style.css".  
 
 ~~~ css
 <!-- style.css -->

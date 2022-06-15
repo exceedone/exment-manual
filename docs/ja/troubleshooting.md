@@ -106,7 +106,10 @@ composer self-update
 すでにインストールされているcomposerを、一度削除します。
 
 ```
+# Linux・Macの場合
 which composer
+# Windowsの場合
+where composer
 #結果例 : /usr/bin/composer
 ###以下のコマンドを実施
 rm /usr/bin/composer
