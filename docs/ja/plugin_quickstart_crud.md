@@ -1,5 +1,6 @@
 ## プラグイン(CRUDページ)
 Exmentに、独自のCRUDページを追加します。  
+**※プラグイン(CRUD)では、多数の機能や関数を用意しています。詳細は[プラグインリファレンス](/ja/plugin_reference_crud)をご確認ください。**  
 
 ## CRUDとは
 Create、Read、Update、Deleteのことです。  

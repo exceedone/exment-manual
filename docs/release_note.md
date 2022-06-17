@@ -1,6 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v4.4.2 (2022/06/17)
+1. Addition of functions
+    - Clarified validation development method in plugin (CRUD page)
+1. Bug fix
+    - Fixed a bug that "Key column at the time of import" and "Key column at the time of export" do not work properly when creating a new custom columns "User" and "Organization".
+    - Fixed the problem that if there is a file column that allows multiple selection, even though the file is specified at the time of editing, "Please select a file" is displayed and the file cannot be saved.
+    - Fixed a bug that options (other tables) cannot be selected when the form heading display method is other than horizontal display.
+    
 
 ## v4.4.1 (2022/05/10)
 1. Addition of functions

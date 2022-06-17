@@ -279,6 +279,7 @@ CRUDページの認証種類文字列を返却します。
     }
 ```
 
+
 ---
 
 
@@ -770,6 +771,161 @@ CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、
 ```
 
 ![callbackGridTool](img/plugin/plugin_crud3.png)  
+
+---
+
+
+
+
+#### setForm
+CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、データの入力フォームを独自に作成する場合に作成します。  
+※記法は、基本的に[laravel-adminのフォーム](https://laravel-admin.org/docs/en/model-form-fields)の追加する方式です。入力方法については、該当のページをご確認ください。  
+※本関数を定義しない場合は、getFieldDefinitions関数で、"edit"項目が定義されている列を、1行テキスト形式で表示されます。
+
+
+##### 引数
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $form | \Encore\Admin\Widgets\Form | 入力フォーム |
+| $isCreate | bool | 新規作成の場合true |
+| $options | array | 現在未使用。予約引数。 |
+
+
+##### 戻り値
+なし
+
+
+##### 例
+``` php
+    /**
+     * set form info
+     *
+     * @return Form|null
+     */
+    public function setForm(Form $form, bool $isCreate, array $options = []) : ?Form
+    {
+        if(!$isCreate){
+            $form->display('ID');    
+        }
+        $form->text('Name');
+
+        // 国一覧取得
+        $countries = \DB::connection('world')->table('country') ->pluck('Name', 'Code');
+        $form->select('CountryCode')->options($countries);
+        
+        $form->number('Population');
+
+        return $form;
+    }
+```
+
+---
+
+
+
+#### validate
+CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、データの保存前にバリデーションを定義する場合の関数です。
+
+##### 引数
+
+| 名前 | 種類 | 説明 |
+| ---- | ---- | ---- |
+| $form | \Encore\Admin\Widgets\Form | 入力フォーム |
+| $values | array | ユーザーの入力値 |
+| $isCreate | bool | 新規作成の場合true |
+| $id | string | キー値 |
+
+
+##### 戻り値
+| 種類 | 説明 |
+| ---- | ---- |
+| 以下のいずれか<br/>array<br/>\Illuminate\Support\MessageBag<br/>\Exceedone\Exment\Validator\ExmentCustomValidator | バリデーション結果 |
+
+
+##### 例
+``` php
+    // ※例1。setForm関数で、フォームにバリデーションを追加する方法。
+    // ※便宜上validate関数内に例を記載していますが、この例の場合は、validate関数は定義しないでください。
+    /**
+     * set form info
+     *
+     * @return Form|null
+     */
+    public function setForm(Form $form, bool $isCreate, array $options = []) : ?Form
+    {
+        if(!$isCreate){
+            $form->display('ID');    
+        }
+        $form->text('Name')
+            ->rules(['max:10']); // 追加
+
+        // 国一覧取得
+        $countries = \DB::connection('world')->table('country')->pluck('Name', 'Code');
+        $form->select('CountryCode')->options($countries);
+        
+        $form->number('Population')
+            ->rules([new \Exceedone\Exment\Validator\NumberMinRule(10)]);  // 追加
+
+        return $form;
+    }
+
+
+    // ※例2。Laravelのバリデーションを使用する方法。
+    /**
+     * Validate form
+     *
+     * @param WidgetForm $form
+     * @return array|MessageBag|ExmentCustomValidator
+     */
+    public function validate(WidgetForm $form, array $values, bool $isCreate, $id)
+    {
+        $validator = \Validator::make($values, 
+        // 各フィールドのルールを定義
+        [
+            'Name' => 'max:10',
+            'Population' => new \Exceedone\Exment\Validator\NumberMinRule(10),
+        ], 
+        // (任意)各ルールのメッセージを変更する場合
+        [
+            'max' => ':attributeの長さは10文字以内です。',
+            'min' => ':attributeは10以上の値を入力してください',
+        ], 
+        // (任意)各フィールドの名前を変更する場合
+        [
+            'Name' => '名前',
+            'Population' => '人口(推測)',
+        ]);
+        return $validator;
+    }
+    
+
+    // ※例3。個別にバリデーションする方法。
+    // エラーがある場合、キーをフィールド名、値をエラーメッセージとなる配列を返却する。
+    /**
+     * Validate form
+     *
+     * @param WidgetForm $form
+     * @return array|MessageBag|ExmentCustomValidator
+     */
+    public function validate(WidgetForm $form, array $values, bool $isCreate, $id)
+    {
+        $errors = [];
+
+        // 10文字以内か判定
+        $Name = array_get($values, 'Name');
+        if(!is_nullorempty($Name) && mb_strlen($Name) > 10){
+            $errors['Name'] = '名前の長さは10文字以内です。';
+        }
+        
+        // 10以上か判定
+        $Population = array_get($values, 'Population');
+        if(!is_nullorempty($Population) && intval($Population) < 10){
+            $errors['Population'] = '人口(推測)は10以上の値を入力してください';
+        }
+        
+        return $errors;
+    }
+```
 
 ---
 
