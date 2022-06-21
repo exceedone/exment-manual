@@ -314,7 +314,7 @@ sudo php artisan exment:setup-dir
 
 ~~~
 cd /var/www/exment
-composer require league/flysystem-aws-s3-v3 ~1.0
+composer require league/flysystem-aws-s3-v3 ~3.0
 composer require predis/predis
 ~~~
 

@@ -96,6 +96,13 @@ configの記載は最低限にし、.envに設定値を記載する方法です�
 ファイルの種類ごとに設定値は使い回せるので、比較的かんたんに設定を行うことができます。
 
 #### FTP
+
+- 以下のコマンドを実行します。
+
+~~~
+composer require league/flysystem-ftp ~3.0
+~~~
+
 - "config/filesystems.php"を開き、"disks.ftp"の設定値を確認します。  
 存在していなかった場合、以下の設定を追加します。
 
@@ -149,7 +156,8 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require league/flysystem-sftp ~1.0
+composer require phpseclib/phpseclib ^2.0
+composer require league/flysystem-sftp ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.sftp"の設定値を確認します。  
@@ -165,9 +173,9 @@ composer require league/flysystem-sftp ~1.0
             'username' => env('SFTP_USERNAME'),
             'password' => env('SFTP_PASSWORD'),
 
-            // SSH keyベースの認証の設定
-            'privateKey' => env('SFTP_PRIVATE_KEY'),
-            'password' => env('SFTP_PASSWORD'),
+            // SSH keyベースの認証の設定(必要な場合のみ記入)
+            // 'privateKey' => env('SFTP_PRIVATE_KEY'),
+            // 'password' => env('SFTP_PASSWORD'),
 
             // FTP設定のオプション
             'port' => env('SFTP_PORT', 22),
@@ -210,7 +218,7 @@ SFTP_ROOT_PLUGIN=/var/foo/exment/sftp/plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require league/flysystem-aws-s3-v3 ~1.0
+composer require league/flysystem-aws-s3-v3 ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.s3"の設定値を確認します。  
@@ -268,7 +276,7 @@ AWS_BUCKET_PLUGIN=exment_plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require league/flysystem-azure-blob-storage ~0.1.6
+composer require league/flysystem-azure-blob-storage ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.azure"の設定値を確認します。  
