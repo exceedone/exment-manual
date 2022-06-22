@@ -485,7 +485,8 @@ Dropboxの場合、同一のアプリで、ルートフォルダを分ける機�
 
     
 - ##### .envファイル
-ルートフォルダの".env"に、以下を追記します。
+ルートフォルダの".env"に、以下を追記します。  
+※アクセストークンの取得方法は、下記の「参考：Dropboxのアクセストークン取得方法」をご確認ください。
 
 ```
 # 以下、必要なもののみ追記
@@ -494,7 +495,7 @@ EXMENT_DRIVER_BACKUP=dropbox
 EXMENT_DRIVER_TEMPLATE=dropbox
 EXMENT_DRIVER_PLUGIN=dropbox
 
-# 以下、必要なもののみ追記
+# 以下、必要なもののみ追記。アクセストークンを記載する
 DROPBOX_ACCESS_TOKEN_EXMENT=XXXXXX
 DROPBOX_ACCESS_TOKEN_BACKUP=YYYYYY
 DROPBOX_ACCESS_TOKEN_TEMPLATE=ZZZZZZ
@@ -560,3 +561,28 @@ Amazon Simple Storage Service (Amazon S3) の作成方法について、簡単�
 
 
 [←追加設定一覧へ戻る](/ja/quickstart_more)
+
+
+## 参考：Dropboxのアクセストークン取得方法
+- Dropboxの[App Console](https://www.dropbox.com/developers/app)にアクセスします。
+
+- 「Create App」をクリックします。
+![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_1.png)  
+
+- 「2. Choose the type of access you need」を「App folder」にして、「3. Name your app」を任意の名称を入力し、「Create app」をクリックします。
+![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_2.png)  
+
+- アプリが新規作成されます。その後、Permissions権限を変更します。Permissionsタブをクリックします。
+![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_5.png)  
+
+- 以下の内容にチェックを追加します。設定が完了したら、Submitをクリックしてください。
+    - files.metadata.write
+    - files.content.write
+    - files.content.read
+![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_6.png)  
+
+- Settingsタブの「OAuth 2」の「Generated access token」メニューにて、「Generate」ボタンをクリックします。
+![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_3.png)  
+
+- アクセストークンが新規作成されます。この値を設定ファイルに記入してください。
+![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_4.png)  
