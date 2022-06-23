@@ -371,7 +371,8 @@ Exmentでは、[Laravelのファイルシステム](https://readouble.com/larave
 そのため、Laravelのファイルシステムが用意されているサービスのみ、Exmentのファイル管理に対応します。(もしくは、ご自身でドライバを準備する必要があります。)
 
 ### 開発方法
-ここでは例として、ファイルのアップロード先をDropboxにする方法について、記載します。
+ここでは例として、ファイルのアップロード先をDropboxにする方法について、記載します。  
+※Dropbox側の設定については[参考：Dropboxのアクセストークン取得方法](#参考：Dropboxのアクセストークン取得方法)をご覧ください。  
 
 #### 必要なパッケージの取得
 LaravelでDropboxを管理するために必要なパッケージを追加します。
@@ -418,8 +419,7 @@ class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterf
      */
     public static function getAdapter($app, $config, $driverKey)
     {
-        $mergeFrom = array_get($config, 'mergeFrom');
-        $mergeConfig = static::mergeFileConfig('filesystems.disks.dropbox', "filesystems.disks.$mergeFrom", $mergeFrom);
+        $mergeConfig = static::getConfig($config);
 
         $client = new \Spatie\Dropbox\Client(array_get($mergeConfig, 'token'));
 
@@ -439,6 +439,19 @@ class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterf
             'token' => config('filesystems.disks.dropbox.access_token_' . $mergeFrom),
         ];
     }
+
+    /**
+     * (7) 設定情報の取得
+     *
+     * @param array $config
+     * @return array
+     */
+    public static function getConfig($config) : array
+    {
+        $mergeFrom = array_get($config, 'mergeFrom');
+        $mergeConfig = static::mergeFileConfig('filesystems.disks.dropbox', "filesystems.disks.$mergeFrom", $mergeFrom);
+        return $mergeConfig;
+    }
 }
 
 ```
@@ -456,7 +469,10 @@ Dropboxでは、\Spatie\FlysystemDropbox\DropboxAdapterが上記クラスを継�
 
 (5)アダプタのインスタンス化の際に呼び出されるメソッドです。基本的に、各自のファイルサービスのインスタンス化方法に従い、実装を行ってください。    
 
-(6)設定値のマージを行うための、キー値と設定値の一覧を設定します。  
+(6)設定情報にマージするキー値と設定値のペアを連想配列で設定します。  
+
+(7)マージ済の設定情報を返します。  
+
 ※Exmentでは、前述の「ファイルの種類(添付ファイル、バックアップ、プラグイン、テンプレート)」ごとに、ルートフォルダを分ける必要があります。  
 Dropboxの場合、同一のアプリで、ルートフォルダを分ける機能はありません。  
 そのため、ファイルの種類ごとに、個別のDropBoxアプリを作成する必要があります。  
@@ -572,7 +588,7 @@ Amazon Simple Storage Service (Amazon S3) の作成方法について、簡単�
 
 
 ## 参考：Dropboxのアクセストークン取得方法
-- Dropboxの[App Console](https://www.dropbox.com/developers/app)にアクセスします。
+- Dropboxの[App Console](https://www.dropbox.com/developers/apps)にアクセスします。
 
 - 「Create App」をクリックします。
 ![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_1.png)  
