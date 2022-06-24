@@ -442,6 +442,7 @@ class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterf
 
     /**
      * (7) 設定情報の取得
+     * *Exment5.0.0より必要な項目*
      *
      * @param array $config
      * @return array
@@ -449,7 +450,7 @@ class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterf
     public static function getConfig($config) : array
     {
         $mergeFrom = array_get($config, 'mergeFrom');
-        $mergeConfig = static::mergeFileConfig('filesystems.disks.dropbox', "filesystems.disks.$mergeFrom", $mergeFrom);
+        $mergeConfig = static::mergeFileConfig('filesystems.disks.dropbox', "filesystems.disks.$mergeFrom", $mergeFrom); // "dropbox"の部分のみ、ご記載のアダプタ名に変更してください
         return $mergeConfig;
     }
 }
@@ -471,7 +472,8 @@ Dropboxでは、\Spatie\FlysystemDropbox\DropboxAdapterが上記クラスを継�
 
 (6)設定情報にマージするキー値と設定値のペアを連想配列で設定します。  
 
-(7)マージ済の設定情報を返します。  
+(7)マージ済の設定情報を返します。基本的に、"dropbox"の部分のみ、ご記載のアダプタ名に変更し、そのままコピペを行ってください。
+  ※Exment5.0.0より必要となった項目です。
 
 ※Exmentでは、前述の「ファイルの種類(添付ファイル、バックアップ、プラグイン、テンプレート)」ごとに、ルートフォルダを分ける必要があります。  
 Dropboxの場合、同一のアプリで、ルートフォルダを分ける機能はありません。  
