@@ -25,8 +25,11 @@ Webサーバーの構築手順です。以下のいずれかの手順で、Web�
 - [IISに構築](/ja/install_iis)  
 →ExmentをIISに構築する場合の手順
 
-- [AWSに構築](/ja/install_aws)  
-→ExmentをAWSに構築する場合の手順
+- [AWSに構築-シングル構成](/ja/install_aws_single)  
+→シングル構成でExmentをAWSに構築する場合の手順
+
+- [AWSに構築-冗長化](/ja/install_aws)  
+→冗長化でExmentをAWSに構築する場合の手順
 
 - [Dockerで構築](/ja/install_docker)  
 →ExmentをDockerで構築する場合の手順
