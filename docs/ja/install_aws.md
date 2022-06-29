@@ -1,7 +1,8 @@
-# (上級者向け、ベータ版)AWSによる環境構築
+# (上級者向け、ベータ版)AWSによる環境構築-冗長構成
 本ページでは、Amazon Linux2でExmentを構築する手順を記載します。  
 Webサーバーのインストールをはじめとして、完全に新規にインストールを行う手順となります。  
-また、本手順では**Webサーバーを冗長化した構成としております。**
+また、本手順では**Webサーバーを冗長化した構成としております。**  
+※シンプルな1台構成の環境構築方法は、[こちら](/ja/install_aws_single)をご確認ください。
 
 ## 環境
 本ページでは、以下の構成で構築を行っております。
@@ -406,43 +407,4 @@ Amazon Elastic Load Balancingによって、リバースプロキシ設定が行
 
 
 ## PHPバージョンアップ時の対応
-PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
-※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の例は、PHP7.2からPHP7.4へアップデートするための手順です。  
-※Amazon Linux 2のExtras Library(amazon-linux-extras)を用いて、PHPのインストールを行っている前提です。  
-※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
-
-- amazon-linux-extras パッケージがインストールされていることを確認します。  
-
-~~~
-which amazon-linux-extras
-# インストールされていない場合は下記のコマンドでインストールしてください。
-# sudo yum install -y amazon-linux-extras
-~~~
-
-- PHPのバージョンとExtras Libraryのトピックを確認します。  
-※PHPのバージョンが7.2.Xであること。PHP7.2のトピックがenabledであること、PHP7.4のトピックが存在することを確認してください。  
-
-~~~
-php -v
-amazon-linux-extras | grep php
-~~~
-
-- PHP7.2のトピックを無効にします。  
-
-~~~
-sudo amazon-linux-extras disable php7.2
-~~~
-
-- PHP7.4のトピックをインストールします。  
-
-~~~
-sudo amazon-linux-extras install php7.4
-~~~
-
-- PHPのバージョンが7.4.Xになっていること、PHP7.2のトピックがdisabled、PHP7.4のトピックがenabledになっていることを確認します。  
-
-~~~
-php -v
-amazon-linux-extras | grep php
-~~~
+[こちら](/ja/install_aws_single#PHPバージョンアップ時の対応)に移動しました。
