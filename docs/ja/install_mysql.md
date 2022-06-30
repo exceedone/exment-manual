@@ -65,10 +65,18 @@ LinuxでのMySQLのインストール手順です。
 ~~~
 rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
-yum -y install mysql-community-server
+dnf -y install mysql-community-server
 systemctl enable mysqld.service
 systemctl start mysqld.service
 ~~~
+
+※インストール時に「Error: Unable to find a match: mysql-community-server」のメッセージが出た場合はmysql のモジュールストリームを無効化する必要があります。以下のコマンドを実行してから、処理を続けてください。
+
+~~~
+sudo dnf -y module disable mysql
+sudo dnf search mysql-community-server
+~~~
+
 
 - MySQLの初期パスワードを確認します。
 
