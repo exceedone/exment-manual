@@ -4,7 +4,7 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 
 ## 環境
 本ページでは、以下の内容で構築を行っております。  
-- CentOS 7.6.1810 64bit (**現在、8系で下記の手順でエラーが出ることを確認しております。**下記の手順でインストールする場合、7系でインストールしてください。)
+- Red Hat Enterprise Linux release 8.6
 - Apache 2.4.6
 - PHP 7.4.28
 - MySQL 5.7.25
@@ -32,11 +32,11 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 ※[こちら](/ja/additional_session_cache_driver)に移動しました。
 
 ### Webサーバー
-- yumのアップデート、ならびに必要ライブラリのインストールを行います。  
+- dnfのアップデート、ならびに必要ライブラリのインストールを行います。  
 
 ~~~
-yum -y update
-yum install -y wget firewalld unzip git
+dnf -y update
+dnf install -y wget firewalld unzip git
 ~~~
 
 
@@ -44,15 +44,16 @@ yum install -y wget firewalld unzip git
 ※バージョンアップなどにより、以下のバージョンが存在しない場合があります。その場合、[こちら](https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/)のリンクから、**「epel-release-7-XX.noarch.rpm」**に該当するrpmを指定してください。
 
 ~~~
-wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm ~/
-rpm -ivh ~/epel-release-7-14.noarch.rpm 
-yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ~/
+rpm -ivh ~/epel-release-latest-8.noarch.rpm
+dnf -y install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm
+dnf module enable php:remi-8.1 -y
 ~~~
 
 - PHP7.4など、必要ライブラリをインストールします。
 
 ~~~
-yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+dnf -y install httpd mod_ssl php81 php81-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium php-opcache
 ~~~
 
 - Apache起動設定を行います。
@@ -63,7 +64,8 @@ systemctl start httpd.service
 service httpd start
 ~~~
 
-- ファイアウォール設定を行います。
+- ファイアウォール設定を行います。  
+※ご希望のセキュリティ設定に合わせ、設定内容を変更してください。
 
 ~~~
 systemctl start firewalld
@@ -84,10 +86,10 @@ setenforce 0
 service httpd restart
 ~~~
 
-- php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
+- php8.1へのパスを通します。コマンドで、php8.1を実行できるようになります。
 
 ~~~
-ln -s /usr/bin/php74 /usr/bin/php
+ln -s /usr/bin/php81 /usr/bin/php
 ~~~
 
 - phpinfoで、ここまでの作業が正常に実行できているかどうかの確認を行います。以下のコマンドを実行します。  
@@ -108,24 +110,17 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ~~~
 
-- php.iniに、必要な拡張機能の記述を追加します。
+- php.iniに、必要な拡張機能の記述を追加します。  
+※このタイミングで、必要に応じて、[Exment推奨のPHP設定値変更](https://exment.net/docs/#/ja/additional_php_ini)を行ってください。  
 
 ~~~
-vi /etc/opt/remi/php74/php.ini
+vi /etc/opt/remi/php81/php.ini
 
 #以下の内容を、ファイルの末尾に追加
-extension=mbstring.so
-extension=dom.so
-extension=xml.so
 extension=gd.so
-extension=simplexml.so
-extension=xmlreader.so
-extension=xmlwriter.so
 extension=zip.so
 extension=mysqlnd.so
 extension=mysqli.so
-extension=pdo.so
-extension=pdo_mysql.so
 extension_dir=/usr/lib64/php/modules/
 
 #以下の記述が含まれていれば、値を変更、もしくは追加
@@ -210,7 +205,7 @@ PHPのバージョンを変更する場合、以下の手順でバージョン�
 cd ~
 mkdir php-backup && cd php-backup
 # インストール済のパッケージ情報を出力する
-yum list installed |grep php > php72-installed.txt
+dnf list installed |grep php > php72-installed.txt
 # 拡張モジュールの情報を出力する
 php -m > php72-modules.txt
 # php.iniファイルをコピー（場所が下記と違う時は事前に「php -i | grep php.ini」で確認） 
@@ -221,29 +216,29 @@ cp /etc/opt/remi/php72/php.ini php72.ini
 - PHP関連パッケージを削除します。  
 
 ~~~
-yum remove php-*
-yum remove php72-php*
-yum remove php72-runtime
+dnf remove php-*
+dnf remove php72-php*
+dnf remove php72-runtime
 ~~~
 
 - epel-releaseのアップデートを確認します。  
 
 ~~~
-yum update epel-release
+dnf update epel-release
 ~~~
 
 - remiのリポジトリを確認します。  
 
 ~~~
-ll /etc/yum.repos.d/ | grep remi-
+ll /etc/dnf.repos.d/ | grep remi-
 # 結果の一覧に「remi-php74.repo」が見つからなかった場合だけ、以下のインストールを行ってください。
-# yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+# dnf -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ~~~
 
 - PHP7.4本体のインストールを行います。  
 
 ~~~
-yum install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+dnf install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
 ~~~
 
 - php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
