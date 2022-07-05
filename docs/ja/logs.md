@@ -68,6 +68,12 @@ HTTPリクエストのクエリ文字列、もしくはPOST値です。
     - access_token
     - refresh_token
 
+### 操作ログの古いデータ削除
+古くなった操作ログを削除するには、プラグイン(バッチ)を使用します。  
+一定の日付(既定だと14日)より古くなった操作ログを物理削除します。  
+以下のリンクより、プラグイン(バッチ)を導入してください。  
+[プラグイン-操作ログ 古いログ削除](https://github.com/exment-git/plugin-sample/tree/main/batch/OperationLogDelete)
+
 
 
 
