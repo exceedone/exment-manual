@@ -35,12 +35,29 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 
 ### Webサーバー
 
-- 以下のコマンドを実行し、パッケージ更新、必要ソフトウェアのインストールなどを行います。
+- 事前準備としてパッケージ更新を行います。
 
 ~~~
 sudo yum -y update
-sudo amazon-linux-extras install -y php7.4
-sudo yum install -y httpd mysql
+~~~
+
+- インストール可能なPHPのバージョンを確認します。  
+※PHP8.0以外のバージョンが有効(enabled)になっている場合は無効化しておきましょう。  
+
+~~~
+sudo amazon-linux-extras | grep php
+~~~
+
+- 「php8.0」を確認できたら、インストールを行います。
+
+~~~
+sudo amazon-linux-extras install -y php8.0
+~~~
+
+- その他、必要ライブラリのインストールを行います。
+
+~~~
+sudo yum install -y httpd mysql git
 sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
 ~~~
 
@@ -61,6 +78,7 @@ sudo swapon /swapfile
 ~~~
 
 - composerをインストールします。
+
 ~~~
 cd ~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -87,6 +105,7 @@ sudo vi /etc/httpd/conf/httpd.conf
 ~~~
 
 - apacheを再起動します。
+
 ~~~
 sudo systemctl restart httpd
 ~~~
