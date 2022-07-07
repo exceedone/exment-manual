@@ -7,17 +7,17 @@ Exmentでは、エンドポイントを変えることによって、Exmentサ�
 ・お知らせデータの詳細表示  
 ・お知らせデータの新規作成  
 
-![利用者向けサイト構築画面](img/site_construction_for_users/site_construction1.png)
+![利用者向けサイト構築画面](img/public_site/public_site1.png)
 
 ## アクセス確認
 利用者向けサイトは、Exment構築後であってもアクセス出来ます。  
 URL末尾に「/admin」を付与することで管理者サイト(Exment)に、「/」で利用者向けサイトにアクセスします。  
 
 ■エンドポイント「/」
-![利用者向けサイト構築画面](img/site_construction_for_users/site_construction2.png)
+![利用者向けサイト構築画面](img/public_site/public_site2.png)
 
 ■エンドポイント「/admin」
-![利用者向けサイト構築画面](img/site_construction_for_users/site_construction3.png)
+![利用者向けサイト構築画面](img/public_site/public_site3.png)
 
 ## ページ作成
 利用者向けサイトは、基本的に一般的なLaravelによるシステム開発と同じ構成・手順で開発していきます。  
@@ -27,7 +27,7 @@ Laravelのルートフォルダ構成です。この内、主に以下のフォ�
 ・resources/views：ビューを作成。blade記法に倣って作成する  
 ・public：css、js、画像など
 
-![利用者向けサイト構築画面](img/site_construction_for_users/site_construction4.png)
+![利用者向けサイト構築画面](img/public_site/public_site4.png)
 
 #### routes：ルーティング
 routes/web.phpにて、以下のように今回作成する一覧ページのルーティングを記載します。  
@@ -129,7 +129,7 @@ index.blade.phpを作成し、以下のように記載します。
 ここまでの開発が正常に完了していれば、以下のようにExmentの「お知らせ」テーブルのデータ一覧が表示されます。  
 ※「新規作成する」「詳細」のリンクは現時点ではまだリンク切れとなります。
 
-![利用者向けサイト構築画面](img/site_construction_for_users/site_construction5.png)
+![利用者向けサイト構築画面](img/public_site/public_site5.png)
 
 #### データ詳細画面作成
 データ詳細画面を作成していきます。以下のような追記をしていきます。
@@ -196,7 +196,7 @@ resources/views/show.blade.php（新規作成）
 #### 結果表示
 開発が正常に完了していれば、以下のようにExmentの「お知らせ」テーブルの、指定のIDのデータ詳細が表示されます。
 
-![利用者向けサイト構築画面](img/site_construction_for_users/site_construction6.png)
+![利用者向けサイト構築画面](img/public_site/public_site6.png)
 
 #### データ新規作成画面
 データ新規作成画面を作成していきます。以下のような追記をしていきます。
@@ -271,5 +271,5 @@ resources/views/create.blade.php（新規作成）
 #### 結界表示
 開発が正常に完了していれば、以下のようにExmentの「お知らせ」テーブルにデータを追加するページが表示されます。
 
-![利用者向けサイト構築画面](img/site_construction_for_users/site_construction7.png)
+![利用者向けサイト構築画面](img/public_site/public_site7.png)
 
