@@ -60,6 +60,7 @@ Exmentで、MySQLを使用するための手順です。
 ## MySQL設定(Linux)
 LinuxでのMySQLのインストール手順です。  
 ※必要に応じて、コマンドの頭にsudoを付与してください。
+※インストール先がCentOS8、RHEL8等の場合はyumではなくdnfコマンドをご利用ください。
 
 - MySQL5.7をインストールし起動します。
 
