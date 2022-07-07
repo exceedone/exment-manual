@@ -304,6 +304,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueにすることで、カスタムデータの論理削除を使用せず、常に物理削除を実施します。
 
+#### カレンダービューの表示時、IDと各項目のデータも取得する
+- 設定キー : EXMENT_CALENDAR_DATA_GET_VALUE
+- 既定値 : false
+- 役割 : trueにすることで、カスタムビューの表示時、IDと各項目のデータも取得するようにします。  
+※[プラグイン(スクリプト)](/ja/plugin_quickstart_script)で、カスタムビューの表示を書き換える際に、各データの値を使用したい場合はtrueにしてください。
+
 
 ### 組織設定
 

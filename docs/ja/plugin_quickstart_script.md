@@ -7,6 +7,7 @@ Exmentの画面上で、独自のスクリプト(javascript)を実行するこ�
 - **データ詳細表示時** ： データ詳細画面の読み込み完了時に、トリガーが起動します。  
 - **データ新規作成・編集表示時** ： データ新規作成・編集画面の読み込み完了時に、トリガーが起動します。  
 - **ダッシュボード読込時** ： ダッシュボードBOXを読み込み完了時に、トリガーが起動します。  
+- **カレンダービュー アイテム読込時** ： カレンダービューにおいて、各アイテムの読み込み時にトリガーが起動します。背景色や文字色を変更できます。  
 
 ## 作成方法
 ここではサンプルとして、「基本情報」データの編集画面で、「郵便番号1」「郵便番号2」を入力時に、郵便番号7桁から自動的に「都道府県」「住所」「住所(ビル以降)」をセットするスクリプトを作成します。  
@@ -71,6 +72,7 @@ $(function () {
     - **exment:show_loaded** ・・・ データ詳細画面の読み込み完了時に、イベントが実行されます。  
     - **exment:form_loaded** ・・・ データ新規作成・編集画面の読み込み完了時に、イベントが実行されます。
     - **exment:dashbaord_loaded** ・・・ TOP画面のダッシュボードBOXの読み込み完了時に、イベントが実行されます。 ※各々のダッシュボードBOXの読み込みが完了した時点で、ダッシュボードの数だけ実行されます。  
+    - **exment:calendar_bind** ・・・ カレンダービューにおいて、各アイテムの読み込み時にトリガーが起動します。背景色や文字色を変更できます。  
 - 作成したスクリプトは、「public」フォルダ内に配置してください。  
 配置するスクリプトは、拡張子が「js」であれば、複数配置できます。関連ライブラリが必要な場合は、すべてフォルダ内に配置してください。  
 このサンプルでは、[ajaxzip3](https://github.com/ajaxzip3/ajaxzip3.github.io)をカスタマイズしたjsファイルも、配置しています。
@@ -187,6 +189,67 @@ function setEvent(ev){
 | plugin_view_name | 表示対象のプラグイン表示名 |
 
 
+
+### カレンダービュー
+
+- **各データの値をスクリプトで使用したい場合、あらかじめ[設定値変更](/ja/config)で、以下の設定を行ってください。**
+
+```
+EXMENT_CALENDAR_DATA_GET_VALUE=true
+```
+
+
+- 以下のように記載してください。
+
+~~~ js
+// script.js
+$(function () {
+    $(window).off('exment:calendar_bind', scriptCalendarBind).on('exment:calendar_bind', scriptCalendarBind);
+
+    function scriptCalendarBind(e, event){
+        // 「お知らせ」テーブルでないと終了
+        // 前半：テーブルビューのチェック、後半：ダッシュボードのチェック
+        if(!$('.custom_value_information').length && !$('[data-target_table_name="information"]').length){
+            return;
+        }
+
+        // 「重要度」が高い(4)以上の場合は強制的に赤背景に変更
+        if(event.value && event.value.priority >= 4){
+            event.color = 'red';
+            event.textColor = 'white';
+        }
+        return event;
+    }
+});
+
+~~~
+
+- このイベントは、カレンダービューを表示前にトリガーが起動します。  
+
+- 第2引数のeventには、以下の値が入ります。
+
+| キー値 | 型 | 説明 |
+| ---- | ---- | ---- |
+| allDayBetween | true/false | 全日かどうか |
+| start | string | 開始日時 |
+| end | string | 終了日時 |
+| title | string | 表示名 |
+| color | string | 背景色 |
+| textColor | string | 文字色 |
+| url | string | クリック時の遷移先 |
+| id | int | 該当データID(設定値変更でIDを取得するようにした場合のみ取得可能) |
+| value | array | 該当データの登録値(設定値変更でIDを取得するようにした場合のみ取得可能) |
+
+- 何かしらの条件で値を書き換えたい場合、eventの値を書き換え、eventをreturnしてください。
+
+### 注意点
+- アップロードしたjsファイルは、**画面の初回読み込み時に、すべて読み込まれます。**  
+また、アップロードしたスクリプトは、順不同（基本的に名前順）で呼び出されます（ただしjquery、bootstrapのjsよりは後）。  
+読み込み順序に依存しない書き方で、実装をお願いいたします。  
+
+- 各テーブルのデータでは、「custom_value_(テーブル名)」という名前のクラスが定義されています。  
+特定のテーブルでのみスクリプトを実行したい場合、上記のクラス名で絞り込みを設定してください。  
+※例：「ユーザー」画面の場合："custom_value_user"、「組織」画面の場合："custom_value_organization"
 
 
 ## サンプルプラグイン
