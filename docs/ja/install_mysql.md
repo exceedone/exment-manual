@@ -62,6 +62,7 @@ LinuxでのMySQLのインストール手順です。
 ※必要に応じて、コマンドの頭にsudoを付与してください。
 
 - MySQL5.7をインストールし起動します。
+
 ~~~
 rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
@@ -99,6 +100,7 @@ validate-password=OFF
 
 
 - mysqlを再起動します。
+
 ~~~
 systemctl restart mysqld.service
 ~~~
@@ -113,7 +115,7 @@ Enter password for user root: (先ほどコピーしたパスワードを入力)
 New password: (新しいパスワードを入力)
 Re-enter new password: (新しいパスワードを入力)
 
-Change the password for root? : y
+Change the password for root? : n
 
 Remove anonymous users? : y #匿名ユーザーアカウントを削除
 Disallow root login remotely? : y # ローカルホスト以外からアクセス可能な root アカウントを削除

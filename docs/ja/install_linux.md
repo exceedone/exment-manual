@@ -35,24 +35,41 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 - yumのアップデート、ならびに必要ライブラリのインストールを行います。  
 
 ~~~
-yum -y update
-yum install -y wget firewalld unzip git
+sudo yum -y update
+sudo yum install -y wget firewalld unzip git
 ~~~
 
 
-- epelを更新し、rpmをインストールします。  
-※バージョンアップなどにより、以下のバージョンが存在しない場合があります。その場合、[こちら](https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/)のリンクから、**「epel-release-7-XX.noarch.rpm」**に該当するrpmを指定してください。
+- Remiレポジトリの構成パッケージ、及びそれを使用するために必要なEPELをインストールします。
 
 ~~~
-wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm ~/
-rpm -ivh ~/epel-release-7-14.noarch.rpm 
-yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+sudo yum install -y epel-release
+sudo yum install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ~~~
 
-- PHP7.4など、必要ライブラリをインストールします。
+- yum-config-managerコマンドの使用に必要なyum-utilsパッケージをインストールします。
 
 ~~~
-yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+sudo yum install -y yum-utils
+~~~
+
+- PHP8.1のパッケージのみを有効にします。
+
+~~~
+sudo yum-config-manager --disable 'remi-php*'
+sudo yum-config-manager --enable remi-php81
+~~~
+
+- 使用可能なレポジトリを一覧表示します。「remi-php81」が表示されていることを確認してください。
+
+~~~
+sudo yum repolist
+~~~
+
+- PHP8.1と拡張機能のインストールを行います。  
+
+~~~
+sudo yum -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,opcache,redis,memcache} 
 ~~~
 
 - Apache起動設定を行います。
@@ -84,13 +101,7 @@ setenforce 0
 service httpd restart
 ~~~
 
-- php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
-
-~~~
-ln -s /usr/bin/php74 /usr/bin/php
-~~~
-
-- phpinfoで、ここまでの作業が正常に実行できているかどうかの確認を行います。以下のコマンドを実行します。  
+- PHPのバージョンを確認します。以下のコマンドを実行してください。  
 
 ~~~
 php --version
@@ -99,37 +110,14 @@ php --version
 ~~~
 
 
-- composerをインストールします。
+- composerをインストールします。  
+
 ~~~
 cd ~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
-~~~
-
-- php.iniに、必要な拡張機能の記述を追加します。
-
-~~~
-vi /etc/opt/remi/php74/php.ini
-
-#以下の内容を、ファイルの末尾に追加
-extension=mbstring.so
-extension=dom.so
-extension=xml.so
-extension=gd.so
-extension=simplexml.so
-extension=xmlreader.so
-extension=xmlwriter.so
-extension=zip.so
-extension=mysqlnd.so
-extension=mysqli.so
-extension=pdo.so
-extension=pdo_mysql.so
-extension_dir=/usr/lib64/php/modules/
-
-#以下の記述が含まれていれば、値を変更、もしくは追加
-safe_mode=Off
 ~~~
 
 - httpd.confを修正します。
@@ -150,6 +138,7 @@ vi /etc/httpd/conf/httpd.conf
 ~~~
 
 - apacheを再起動します。
+
 ~~~
 service httpd restart
 ~~~
@@ -199,7 +188,7 @@ php artisan exment:setup-dir --easy_clear=1
 ## PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の手順例は、PHP7.2からPHP7.4へアップデートするための手順です。  
+※下記の手順例は、PHP7.4からPHP8.1へアップデートするための手順です。  
 ※epelとremiリポジトリを用いて、PHPのインストールを行っている前提です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
@@ -210,11 +199,11 @@ PHPのバージョンを変更する場合、以下の手順でバージョン�
 cd ~
 mkdir php-backup && cd php-backup
 # インストール済のパッケージ情報を出力する
-yum list installed |grep php > php72-installed.txt
+yum list installed |grep php > php74-installed.txt
 # 拡張モジュールの情報を出力する
-php -m > php72-modules.txt
+php -m > php74-modules.txt
 # php.iniファイルをコピー（場所が下記と違う時は事前に「php -i | grep php.ini」で確認） 
-cp /etc/opt/remi/php72/php.ini php72.ini
+cp /etc/opt/remi/php74/php.ini php74.ini
 ~~~
 
 
@@ -222,40 +211,39 @@ cp /etc/opt/remi/php72/php.ini php72.ini
 
 ~~~
 yum remove php-*
-yum remove php72-php*
-yum remove php72-runtime
+yum remove php74-php*
+yum remove php74-runtime
 ~~~
 
-- epel-releaseのアップデートを確認します。  
+- epelとremiのリポジトリ、及びyumユーティリティをインストールします。  
+※すでにインストール済の場合は「Nothing to do」と表示されますが、問題ありません。   
 
 ~~~
-yum update epel-release
+sudo yum install epel-release
+sudo yum install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum -y install yum-utils
 ~~~
 
-- remiのリポジトリを確認します。  
+- PHP8.1のパッケージのみを有効にします。  
 
 ~~~
-ll /etc/yum.repos.d/ | grep remi-
-# 結果の一覧に「remi-php74.repo」が見つからなかった場合だけ、以下のインストールを行ってください。
-# yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+sudo yum-config-manager --disable 'remi-php*'
+sudo yum-config-manager --enable remi-php81
 ~~~
 
-- PHP7.4本体のインストールを行います。  
+- 使用可能なリポジトリを確認します。「remi-php81」が表示されればOKです。  
 
 ~~~
-yum install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+sudo yum repolist
 ~~~
 
-- php7.4へのパスを通します。コマンドで、php7.4を実行できるようになります。
+- PHP8.1と拡張機能のインストールを行います。  
 
 ~~~
-# シンボリックリンクを削除
-unlink /usr/bin/php
-# シンボリックリンクを再作成
-ln -s /usr/bin/php74 /usr/bin/php
+sudo yum -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,opcache,redis,memcache} 
 ~~~
 
-- PHPのバージョンが7.4になっていることを確認します。  
+- PHPのバージョンが8.1になっていることを確認します。  
 
 ~~~
 php -v
