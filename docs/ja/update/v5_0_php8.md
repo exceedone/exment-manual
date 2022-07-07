@@ -18,7 +18,7 @@ v5.0.0未満では、PHP7.Xを使用しておりましたが、PHP7.4のセキ�
 
 - [レンタルサーバー構築](/ja/install_rental)  
 
-- [Linuxに構築](/ja/install_linux)  
+- [Linuxに構築（CentOS7）](/ja/install_linux_old)  
 
 - [IISに構築](/ja/install_iis)  
 

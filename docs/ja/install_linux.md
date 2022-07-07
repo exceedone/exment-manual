@@ -5,9 +5,9 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 ## 環境
 本ページでは、以下の内容で構築を行っております。  
 - Red Hat Enterprise Linux release 8.6
-- Apache 2.4.6
-- PHP 7.4.28
-- MySQL 5.7.25
+- Apache 2.4.37
+- PHP 8.1.8
+- MySQL 5.7.38
 
 ## 注意点
 
@@ -32,10 +32,10 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 ※[こちら](/ja/additional_session_cache_driver)に移動しました。
 
 ### Webサーバー
-- dnfのアップデート、ならびに必要ライブラリのインストールを行います。  
+- 事前準備として現在のパッケージのアップグレード、ならびに必要ライブラリのインストールを行います。  
 
 ~~~
-dnf -y update
+dnf -y upgrade
 dnf install -y wget firewalld unzip git
 ~~~
 
@@ -43,16 +43,34 @@ dnf install -y wget firewalld unzip git
 - Remiレポジトリの構成パッケージ、及びそれを使用するために必要なEPELをインストールします。
 
 ~~~
-wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ~/
-rpm -ivh ~/epel-release-latest-8.noarch.rpm
-dnf -y install http://rpms.famillecollet.com/enterprise/remi-release-8.rpm
-dnf module enable php:remi-8.1 -y
+sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm  
+sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 ~~~
 
-- yum-config-managerコマンドの使用に必要なyum-utilsパッケージをインストールします。
+- phpパッケージのアクティブなリポジトリを切り替えます。
 
 ~~~
-dnf -y install httpd mod_ssl php81 php81-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium php-opcache
+sudo dnf module reset php
+sudo dnf module enable php:remi-8.1 -y
+~~~
+
+- 現在使用中＆使用可能なPHPパッケージのリストを確認します。  
+remi-8.1に[e]がついていればＯＫです。
+
+~~~
+sudo dnf module list php
+~~~
+
+- phpと関連ライブラリをインストールします。
+
+~~~
+sudo dnf install php php-cli php-common php-mbstring php-mysqli php-dom php-gd php-zip php-sodium
+~~~
+
+- PHPのバージョンが8.1になっていることを確認します。  
+
+~~~
+php -v
 ~~~
 
 - Apache起動設定を行います。
@@ -85,21 +103,6 @@ setenforce 0
 service httpd restart
 ~~~
 
-- php8.1へのパスを通します。コマンドで、php8.1を実行できるようになります。
-
-~~~
-ln -s /usr/bin/php81 /usr/bin/php
-~~~
-
-- phpinfoで、ここまでの作業が正常に実行できているかどうかの確認を行います。以下のコマンドを実行します。  
-
-~~~
-php --version
-
-# PHPのバージョンが表示されれば成功
-~~~
-
-
 - composerをインストールします。  
 
 ~~~
@@ -108,23 +111,6 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
-~~~
-
-- php.iniに、必要な拡張機能の記述を追加します。  
-※このタイミングで、必要に応じて、[Exment推奨のPHP設定値変更](https://exment.net/docs/#/ja/additional_php_ini)を行ってください。  
-
-~~~
-vi /etc/opt/remi/php81/php.ini
-
-#以下の内容を、ファイルの末尾に追加
-extension=gd.so
-extension=zip.so
-extension=mysqlnd.so
-extension=mysqli.so
-extension_dir=/usr/lib64/php/modules/
-
-#以下の記述が含まれていれば、値を変更、もしくは追加
-safe_mode=Off
 ~~~
 
 - httpd.confを修正します。
@@ -191,67 +177,3 @@ php artisan exment:setup-dir
 php artisan exment:setup-dir --easy_clear=1
 ~~~
 
-
-## PHPバージョンアップ時の対応
-PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
-※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の手順例は、PHP7.4からPHP8.1へアップデートするための手順です。  
-※epelとremiリポジトリを用いて、PHPのインストールを行っている前提です。  
-※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
-
-- 最初にバックアップを行います。以下のコマンドはphp.ini、及びインストール済のパッケージや拡張モジュールのメモを取るだけの最低限のバックアップ例です。ご自身の環境に応じて追加、省略してください。  
-
-~~~
-# バックアップフォルダを作成
-cd ~
-mkdir php-backup && cd php-backup
-# インストール済のパッケージ情報を出力する
-dnf list installed |grep php > php74-installed.txt
-# 拡張モジュールの情報を出力する
-php -m > php74-modules.txt
-# php.iniファイルをコピー（場所が下記と違う時は事前に「php -i | grep php.ini」で確認） 
-cp /etc/opt/remi/php74/php.ini php74.ini
-~~~
-
-
-- PHP関連パッケージを削除します。  
-
-~~~
-dnf remove php-*
-dnf remove php74-php*
-dnf remove php74-runtime
-~~~
-
-- epelとremiのリポジトリ、及びyumユーティリティをインストールします。  
-※すでにインストール済の場合は「Nothing to do」と表示されますが、問題ありません。   
-
-~~~
-sudo dnf install epel-release
-sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
-sudo dnf -y install yum-utils
-~~~
-
-- PHP8.1のパッケージのみを有効にします。  
-
-~~~
-sudo yum-config-manager --disable 'remi-php*'
-sudo yum-config-manager --enable remi-php81
-~~~
-
-- 使用可能なリポジトリを確認します。「remi-php81」が表示されればOKです。  
-
-~~~
-sudo yum repolist
-~~~
-
-- PHP8.1と拡張機能のインストールを行います。  
-
-~~~
-sudo yum -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,opcache,redis,memcache} 
-~~~
-
-- PHPのバージョンが8.1になっていることを確認します。  
-
-~~~
-php -v
-~~~
