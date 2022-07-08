@@ -43,28 +43,28 @@ dnf install -y wget firewalld unzip git
 - Remiレポジトリの構成パッケージ、及びそれを使用するために必要なEPELをインストールします。
 
 ~~~
-sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm  
-sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm  
+dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 ~~~
 
 - phpパッケージのアクティブなリポジトリを切り替えます。
 
 ~~~
-sudo dnf module reset php
-sudo dnf module enable php:remi-8.1 -y
+dnf module reset php -y
+dnf module enable php:remi-8.1 -y
 ~~~
 
 - 現在使用中＆使用可能なPHPパッケージのリストを確認します。  
 remi-8.1に[e]がついていればＯＫです。
 
 ~~~
-sudo dnf module list php
+dnf module list php
 ~~~
 
 - phpと関連ライブラリをインストールします。
 
 ~~~
-sudo dnf install php php-cli php-common php-mbstring php-mysqli php-dom php-gd php-zip php-sodium
+dnf install php php-cli php-common php-mbstring php-mysqli php-dom php-gd php-zip php-sodium -y
 ~~~
 
 - PHPのバージョンが8.1になっていることを確認します。  

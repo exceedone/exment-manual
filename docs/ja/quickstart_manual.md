@@ -22,6 +22,7 @@ Exmentを開始するために必要となる手順です。
 ~~~
 composer create-project "laravel/laravel=9.*" (プロジェクト名)
 cd (プロジェクト名)
+composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
 composer require psr/simple-cache=^2.0.0
 composer require exceedone/exment
 
