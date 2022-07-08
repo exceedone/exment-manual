@@ -57,7 +57,7 @@ sudo amazon-linux-extras install -y php8.0
 - その他、必要ライブラリのインストールを行います。
 
 ~~~
-sudo yum install -y httpd mysql git
+sudo yum install -y httpd git
 sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
 ~~~
 
@@ -85,6 +85,13 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 sudo mv composer.phar /usr/local/bin/composer
+~~~
+
+- php.iniに、必要な記述・編集を行います。  
+特に、[PHP設定値変更]（/ja/additional_php_ini）で、メモリ使用量の変更・タイムアウト時間変更などを行う場合は、こちらの設定を変更してください。
+
+~~~
+sudo vi /etc/php.ini
 ~~~
 
 - httpd.confを修正します。
@@ -115,6 +122,23 @@ sudo systemctl restart httpd
 ~~~
 # ec2-userユーザーを、apacheグループに追加する
 sudo usermod -a -G apache ec2-user
+~~~
+
+- **(MySQLを同サーバーにインストールしない場合のみ)**  
+MySQLを同サーバーにインストールしない場合でも、mysqlコマンドを実行できるように、mysqlクライアントをインストールする必要があります。  
+※MySQLを同サーバーにインストールする場合は、この手順を飛ばしてください。
+
+~~~
+sudo rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# こちらを実施時して、mysql-community-clientが存在するかを確認します
+sudo yum search mysql-community-client
+# 上記コマンドで「Error: Unable to find a match: mysql-community-client」のような存在しない旨のメッセージが出た場合は、先に下記のコマンドを実施してください
+sudo yum -y module disable mysql
+
+# mysql-community-clientインストール
+sudo yum -y install mysql-community-client
 ~~~
 
 - Exmentをサーバーに配置します。最新のExmentファイルをダウンロードし、展開します。  
@@ -197,7 +221,7 @@ sudo amazon-linux-extras install -y php8.0
 - PHPの拡張機能をインストールします。  
 
 ~~~
-sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
+sudo yum -y install php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
 ~~~
 
 - PHPのバージョンが8.Xになっていること、PHP7.4のトピックがdisabled、PHP8.0のトピックがenabledになっていることを確認します。  
@@ -205,4 +229,11 @@ sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-g
 ~~~
 php -v
 amazon-linux-extras | grep php
+~~~
+
+- 以下のコマンドを実行してください。
+
+~~~
+sudo systemctl restart php-fpm
+sudo systemctl restart httpd
 ~~~

@@ -6,7 +6,7 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 本ページでは、以下の内容で構築を行っております。  
 - Red Hat Enterprise Linux release 8.6
 - Apache 2.4.37
-- PHP 8.1.8
+- PHP 8.0.21
 - MySQL 5.7.38
 
 ## 注意点
@@ -51,11 +51,11 @@ dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
 ~~~
 dnf module reset php -y
-dnf module enable php:remi-8.1 -y
+dnf module enable php:remi-8.0 -y
 ~~~
 
 - 現在使用中＆使用可能なPHPパッケージのリストを確認します。  
-remi-8.1に[e]がついていればＯＫです。
+remi-8.0に[e]がついていればＯＫです。
 
 ~~~
 dnf module list php
@@ -67,7 +67,7 @@ dnf module list php
 dnf install php php-cli php-common php-mbstring php-mysqli php-dom php-gd php-zip php-sodium -y
 ~~~
 
-- PHPのバージョンが8.1になっていることを確認します。  
+- PHPのバージョンが8.0になっていることを確認します。  
 
 ~~~
 php -v
@@ -113,6 +113,13 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ~~~
 
+- php.iniに、必要な記述・編集を行います。  
+特に、[PHP設定値変更]（/ja/additional_php_ini）で、メモリ使用量の変更・タイムアウト時間変更などを行う場合は、こちらの設定を変更してください。
+
+~~~
+vi /etc/php.ini
+~~~
+
 - httpd.confを修正します。
 
 ~~~
@@ -142,6 +149,24 @@ service httpd restart
 ~~~
 usermod -aG apache ec2-user
 ~~~
+
+- **(MySQLを同サーバーにインストールしない場合のみ)**  
+MySQLを同サーバーにインストールしない場合でも、mysqlコマンドを実行できるように、mysqlクライアントをインストールする必要があります。  
+※MySQLを同サーバーにインストールする場合は、この手順を飛ばしてください。
+
+~~~
+rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# こちらを実施時して、mysql-community-clientが存在するかを確認します
+dnf search mysql-community-client
+# 上記コマンドで「Error: Unable to find a match: mysql-community-client」のような存在しない旨のメッセージが出た場合は、先に下記のコマンドを実施してください
+dnf -y module disable mysql
+
+# mysql-community-clientインストール
+dnf -y install mysql-community-client
+~~~
+
 
 - Exmentをサーバーに配置します。最新のExmentファイルをダウンロードし、展開します。  
 ※こちらはかんたんインストールの手順です。手動インストールの場合、[こちら](/ja/quickstart_manual)を参考に配置してください。
