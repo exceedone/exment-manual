@@ -1,5 +1,7 @@
 # Dockerによる環境構築
 本ページでは、DockerでExmentを構築する手順を記載します。  
+※本ページのより詳細な情報は、[GitHub](https://github.com/exment-git/docker-exment)をご確認ください。
+
 
 ## Special thanks!
 Dockerイメージは、[yamada28go氏によるdockerリポジトリ](https://github.com/yamada28go/docker-exment)をベースに、構築しております。誠にありがとうございます！
@@ -7,7 +9,7 @@ Dockerイメージは、[yamada28go氏によるdockerリポジトリ](https://gi
 ## 環境
 本ページでは、以下の内容で構築を行っております。  
 - nginx 最新版
-- PHP 7.3.XX
+- PHP 8.0.XX
 - Debian
 - MySQL 5.7.XX
 
@@ -33,10 +35,12 @@ SSHやデータベース作成、Dockerコマンドなど、一般的なIT系の
 ### コンテナ起動
 
 - 使用するフォルダを選択します。buildフォルダ内の以下のフォルダから、構築したい環境により、使用するフォルダを選択します。
-    - **php73_mysql** : PHP7.3, MySQLもしくはMariaDB
-    - **php73_sqldrv** : PHP7.3, SQL Server
-    - **php74_mysql** : PHP7.4, MySQLもしくはMariaDB
-    - **php74_sqldrv** : PHP7.4, SQL Server
+    - **php80_mysql** : PHP8.0, MySQL
+    - **php80_mariadb** : PHP8.0, MariaDB
+    - **php80_sqldrv** : PHP8.0, SQL Server
+    - **php81_mysql** : PHP8.1, MySQL
+    - **php81_mariadb** : PHP8.1, MariaDB
+    - **php81_sqldrv** : PHP8.1, SQL Server
 
 - コンソールで、上記のフォルダを、カレントディレクトリとして遷移します。  
 
@@ -101,4 +105,4 @@ docker exec -it 123412341234 /bin/bash
 
 ## その他
 現在、このDockerイメージは検証中、ならびに機能追加中です。  
-機能要望は、[こちら](https://github.com/exment-git/docker-exment/issues)よりお願いします。
+GitHubは、[こちら](https://github.com/exment-git/docker-exment)よりお願いします。

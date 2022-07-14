@@ -6,7 +6,7 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 本ページでは、以下の内容で構築を行っております。  
 - CentOS 7.9.2009 64bit (**現在、8系で下記の手順でエラーが出ることを確認しております。**下記の手順でインストールする場合、7系でインストールしてください。)
 - Apache 2.4.6
-- PHP 8.1.7
+- PHP 8.0.21
 - MySQL 5.7.38
 
 ## 注意点
@@ -35,44 +35,44 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 - yumのアップデート、ならびに必要ライブラリのインストールを行います。  
 
 ~~~
-sudo yum -y update
-sudo yum install -y wget firewalld unzip git
+yum -y update
+yum install -y wget firewalld unzip git
 ~~~
 
 - epelを更新し、Remiレポジトリの構成パッケージをインストールします。  
 rpm」**に該当するrpmを指定してください。
 
 ~~~
-sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ~~~
 
 - yum-utilsパッケージをインストールします。
 
 ~~~
-sudo yum install -y yum-utils
+yum install -y yum-utils
 ~~~
 
-- PHP8.1のパッケージのみを有効にします。
+- PHP8.0のパッケージのみを有効にします。
 
 ~~~
-sudo yum-config-manager --disable 'remi-php*'
-sudo yum-config-manager --enable remi-php81
+yum-config-manager --disable 'remi-php*'
+yum-config-manager --enable remi-php80
 ~~~
 
-- 使用可能なレポジトリを確認します。「remi-php81」が表示されればOKです。
+- 使用可能なレポジトリを確認します。「remi-php80」が表示されればOKです。
 
 ~~~
-sudo yum repolist
+yum repolist
 ~~~
 
-- PHP8.1と拡張機能のインストールを行います。  
+- PHP8.0と拡張機能のインストールを行います。  
 
 ~~~
-sudo yum -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,opcache,redis,memcache} 
+yum -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,opcache,redis,memcache} 
 ~~~
 
-- PHPのバージョンが8.1になっていることを確認します。  
+- PHPのバージョンが8.0になっていることを確認します。  
 
 ~~~
 php -v
@@ -86,7 +86,8 @@ systemctl start httpd.service
 service httpd start
 ~~~
 
-- ファイアウォール設定を行います。
+- ファイアウォール設定を行います。  
+※ご希望のセキュリティ設定に合わせ、設定内容を変更してください。
 
 ~~~
 systemctl start firewalld
@@ -117,6 +118,13 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ~~~
 
+- php.iniに、必要な記述・編集を行います。  
+特に、[PHP設定値変更]（/ja/additional_php_ini）で、メモリ使用量の変更・タイムアウト時間変更などを行う場合は、こちらの設定を変更してください。
+
+~~~
+vi /etc/php.ini
+~~~
+
 - httpd.confを修正します。
 
 ~~~
@@ -145,6 +153,23 @@ service httpd restart
 
 ~~~
 usermod -aG apache ec2-user
+~~~
+
+- **(MySQLを同サーバーにインストールしない場合のみ)**  
+MySQLを同サーバーにインストールしない場合でも、mysqlコマンドを実行できるように、mysqlクライアントをインストールする必要があります。  
+※MySQLを同サーバーにインストールする場合は、この手順を飛ばしてください。
+
+~~~
+rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# こちらを実施時して、mysql-community-clientが存在するかを確認します
+yum search mysql-community-client
+# 上記コマンドで「Error: Unable to find a match: mysql-community-client」のような存在しない旨のメッセージが出た場合は、先に下記のコマンドを実施してください
+yum -y module disable mysql
+
+# mysql-community-clientインストール
+yum -y install mysql-community-client
 ~~~
 
 - Exmentをサーバーに配置します。最新のExmentファイルをダウンロードし、展開します。  
@@ -185,7 +210,7 @@ php artisan exment:setup-dir --easy_clear=1
 ## PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の手順例は、PHP7.4からPHP8.1へアップデートするための手順です。  
+※下記の手順例は、PHP7.4からPHP8.0へアップデートするための手順です。  
 ※epelとremiリポジトリを用いて、PHPのインストールを行っている前提です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
@@ -207,40 +232,40 @@ cp /etc/opt/remi/php74/php.ini php74.ini
 - PHP関連パッケージを削除します。  
 
 ~~~
-yum remove php-*
-yum remove php74-php*
-yum remove php74-runtime
+yum remove php-* -y
+yum remove php74-php* -y
+yum remove php74-runtime -y
 ~~~
 
 - epelとremiのリポジトリ、及びyumユーティリティをインストールします。  
 ※すでにインストール済の場合は「Nothing to do」と表示されますが、問題ありません。   
 
 ~~~
-sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
-sudo yum -y install yum-utils
+yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+yum -y install yum-utils
 ~~~
 
-- PHP8.1のパッケージのみを有効にします。  
+- PHP8.0のパッケージのみを有効にします。  
 
 ~~~
-sudo yum-config-manager --disable 'remi-php*'
-sudo yum-config-manager --enable remi-php81
+yum-config-manager --disable 'remi-php*'
+yum-config-manager --enable remi-php80
 ~~~
 
-- 使用可能なリポジトリを確認します。「remi-php81」が表示されればOKです。  
+- 使用可能なリポジトリを確認します。「remi-php80」が表示されればOKです。  
 
 ~~~
-sudo yum repolist
+yum repolist
 ~~~
 
-- PHP8.1と拡張機能のインストールを行います。  
+- PHP8.0と拡張機能のインストールを行います。  
 
 ~~~
-sudo yum -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,opcache,redis,memcache} 
+yum -y install php php-{cli,fpm,mysqlnd,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,opcache,redis,memcache} 
 ~~~
 
-- PHPのバージョンが8.1になっていることを確認します。  
+- PHPのバージョンが8.0になっていることを確認します。  
 
 ~~~
 php -v

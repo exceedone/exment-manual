@@ -78,7 +78,7 @@ Please check the link below for the construction method.
 
 ## Operating environment
 ### server
-- PHP 8.1.0 or higher (Since Exment 5.0.0, the PHP version has changed to 8.1.0 or higher)
+- PHP 8.0-8.1 (Since Exment 5.0.0, the PHP version has changed to 8.0-8.1)
 - Laravel 9.X (Laravel version changed to 9.X from Exment 5.0.0)
 - Database: One of the following
     - MySQL 5.7.8 or higher, less than 8.0.0

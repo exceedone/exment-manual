@@ -53,8 +53,8 @@ upload_max_filesize=20M
 
 
 ### メモリ量変更
-# 256Mに変更する場合
-memory_limit=256M
+# 512Mに変更する場合
+memory_limit=512M
 # 無制限に変更する場合
 memory_limit=-1
 
@@ -88,8 +88,8 @@ php_value upload_max_filesize 20M
 
 
 ### メモリ量変更
-# 256Mに変更する場合
-php_value memory_limit 256M
+# 512Mに変更する場合
+php_value memory_limit 512M
 # 無制限に変更する場合
 php_value memory_limit -1
 
