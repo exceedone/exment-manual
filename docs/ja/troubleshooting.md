@@ -224,6 +224,7 @@ EXMENT_MYSQL_BIN_DIR=("mysql"実行ファイルがあるフォルダまでのパ
 #例
 EXMENT_MYSQL_BIN_DIR=/usr/bin
 ```
+※「EXMENT_MYSQL_BIN_DIR="C:\MySQL\bin"」のようにパスをダブルコーテーションで囲った場合、一部の環境で正しく認識されないことがあります。「EXMENT_MYSQL_BIN_DIR=C:\MySQL\bin」のようにそのまま記載することをお勧めします。
 
 #### php.iniで"safe_mode=Off"を追加する
 mysqlコマンド・mysqldumpコマンドをサーバーから実行する都合上、safe_modeをOffにする必要があります。  
