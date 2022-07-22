@@ -122,10 +122,6 @@ Exmentのデータベースエンジンには、以下のいずれかが必要�
     - SQL Server 13.0.0以上
 
 ### 動作確認ブラウザ
-
-> Internet Explorerは、技術的負債が大きい点に加え、[マイクロソフトが使用を止めるよう求めている](https://japanese.engadget.com/2019/02/08/internet-explorer-ie/)という現状から、Exmentでは対応しておりません。  
-使用しているjavascriptも、IEは対応していないものを採用しております。ご了承をお願いいたします。
-
 - Google Chrome
 - Microsoft Edge
 
