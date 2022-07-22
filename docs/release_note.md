@@ -1,7 +1,7 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v5.0.0 (2022/07/XX)
+## v5.0.0 (2022/07/22)
 
 - <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check [here](/update/v5_0_php8) once and update it.</span>
 
