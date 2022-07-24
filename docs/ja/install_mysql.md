@@ -60,15 +60,26 @@ Exmentで、MySQLを使用するための手順です。
 ## MySQL設定(Linux)
 LinuxでのMySQLのインストール手順です。  
 ※必要に応じて、コマンドの頭にsudoを付与してください。
+※インストール先がCentOS8、RHEL8等の場合はyumではなくdnfコマンドをご利用ください。
 
 - MySQL5.7をインストールし起動します。
+
 ~~~
 rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# こちらを実施時して、mysql-community-serverが存在するかを確認します
+yum search mysql-community-server
+
+# 上記コマンドで「Error: Unable to find a match: mysql-community-server」のような存在しない旨のメッセージが出た場合は、先に下記のコマンドを実施してください
+yum -y module disable mysql
+
+# mysql-community-serverをインストールし起動する
 yum -y install mysql-community-server
 systemctl enable mysqld.service
 systemctl start mysqld.service
 ~~~
+
 
 - MySQLの初期パスワードを確認します。
 
@@ -91,6 +102,7 @@ validate-password=OFF
 
 
 - mysqlを再起動します。
+
 ~~~
 systemctl restart mysqld.service
 ~~~
@@ -105,7 +117,7 @@ Enter password for user root: (先ほどコピーしたパスワードを入力)
 New password: (新しいパスワードを入力)
 Re-enter new password: (新しいパスワードを入力)
 
-Change the password for root? : y
+Change the password for root? : n
 
 Remove anonymous users? : y #匿名ユーザーアカウントを削除
 Disallow root login remotely? : y # ローカルホスト以外からアクセス可能な root アカウントを削除

@@ -28,8 +28,10 @@ Exment requires the introduction of composer. Please refer here for the introduc
 ※ Exment is currently only available for version 8.X. Please do not install on any other version.  
 
 ~~~
-composer create-project "laravel/laravel=8.*" (Project name)
+composer create-project "laravel/laravel=9.*" (Project name)
 cd (Project name)
+composer require psr/simple-cache=^2.0.0
+composer require exceedone/exment
 ~~~
 
 ## Create database
@@ -78,13 +80,6 @@ ADMIN_HTTPS=true
 
 ~~~
 
-## Command execution
-- Execute the following command.  
-
-~~~
-composer require exceedone/exment
-php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
-~~~
 
 ## (Recommended) Add error page
 
@@ -113,6 +108,7 @@ php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 - Execute the following command.
 
 ~~~
+php artisan vendor:publish --provider="Exceedone\Exment\ExmentServiceProvider"
 php artisan passport:keys
 php artisan exment:install
 ~~~

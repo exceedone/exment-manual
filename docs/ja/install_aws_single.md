@@ -35,12 +35,29 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 
 ### Webサーバー
 
-- 以下のコマンドを実行し、パッケージ更新、必要ソフトウェアのインストールなどを行います。
+- 事前準備としてパッケージ更新を行います。
 
 ~~~
 sudo yum -y update
-sudo amazon-linux-extras install -y php7.4
-sudo yum install -y httpd mysql
+~~~
+
+- インストール可能なPHPのバージョンを確認します。  
+※PHP8.0以外のバージョンが有効(enabled)になっている場合は無効化しておきましょう。  
+
+~~~
+sudo amazon-linux-extras | grep php
+~~~
+
+- 「php8.0」を確認できたら、インストールを行います。
+
+~~~
+sudo amazon-linux-extras install -y php8.0
+~~~
+
+- その他、必要ライブラリのインストールを行います。
+
+~~~
+sudo yum install -y httpd git
 sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
 ~~~
 
@@ -61,12 +78,20 @@ sudo swapon /swapfile
 ~~~
 
 - composerをインストールします。
+
 ~~~
 cd ~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 sudo mv composer.phar /usr/local/bin/composer
+~~~
+
+- php.iniに、必要な記述・編集を行います。  
+特に、[PHP設定値変更]（/ja/additional_php_ini）で、メモリ使用量の変更・タイムアウト時間変更などを行う場合は、こちらの設定を変更してください。
+
+~~~
+sudo vi /etc/php.ini
 ~~~
 
 - httpd.confを修正します。
@@ -87,6 +112,7 @@ sudo vi /etc/httpd/conf/httpd.conf
 ~~~
 
 - apacheを再起動します。
+
 ~~~
 sudo systemctl restart httpd
 ~~~
@@ -96,6 +122,23 @@ sudo systemctl restart httpd
 ~~~
 # ec2-userユーザーを、apacheグループに追加する
 sudo usermod -a -G apache ec2-user
+~~~
+
+- **(MySQLを同サーバーにインストールしない場合のみ)**  
+MySQLを同サーバーにインストールしない場合でも、mysqlコマンドを実行できるように、mysqlクライアントをインストールする必要があります。  
+※MySQLを同サーバーにインストールする場合は、この手順を飛ばしてください。
+
+~~~
+sudo rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# こちらを実施時して、mysql-community-clientが存在するかを確認します
+sudo yum search mysql-community-client
+# 上記コマンドで「Error: Unable to find a match: mysql-community-client」のような存在しない旨のメッセージが出た場合は、先に下記のコマンドを実施してください
+sudo yum -y module disable mysql
+
+# mysql-community-clientインストール
+sudo yum -y install mysql-community-client
 ~~~
 
 - Exmentをサーバーに配置します。最新のExmentファイルをダウンロードし、展開します。  
@@ -136,7 +179,7 @@ sudo systemctl restart php-fpm
 ## PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の例は、PHP7.2からPHP7.4へアップデートするための手順です。  
+※下記の例は、PHP7.4からPHP8.0へアップデートするための手順です。  
 ※Amazon Linux 2のExtras Library(amazon-linux-extras)を用いて、PHPのインストールを行っている前提です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
@@ -149,28 +192,48 @@ which amazon-linux-extras
 ~~~
 
 - PHPのバージョンとExtras Libraryのトピックを確認します。  
-※PHPのバージョンが7.2.Xであること。PHP7.2のトピックがenabledであること、PHP7.4のトピックが存在することを確認してください。  
+※PHPのバージョンが7.4.Xであること。PHP7.4のトピックがenabledであること、PHP8.0のトピックが存在することを確認してください。  
 
 ~~~
 php -v
 amazon-linux-extras | grep php
 ~~~
 
-- PHP7.2のトピックを無効にします。  
+- PHP7.4のトピックを無効にします。  
 
 ~~~
-sudo amazon-linux-extras disable php7.2
+sudo amazon-linux-extras disable php7.4
 ~~~
 
-- PHP7.4のトピックをインストールします。  
+- PHPフォルダを空にします。  
 
 ~~~
-sudo amazon-linux-extras install php7.4
+sudo yum -y remove php\*
 ~~~
 
-- PHPのバージョンが7.4.Xになっていること、PHP7.2のトピックがdisabled、PHP7.4のトピックがenabledになっていることを確認します。  
+- PHP8.0のトピックを有効化後にインストールします。  
+
+~~~
+sudo amazon-linux-extras enable php8.0
+sudo amazon-linux-extras install -y php8.0
+~~~
+
+- PHPの拡張機能をインストールします。  
+
+~~~
+sudo yum -y install php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
+~~~
+
+- PHPのバージョンが8.Xになっていること、PHP7.4のトピックがdisabled、PHP8.0のトピックがenabledになっていることを確認します。  
 
 ~~~
 php -v
 amazon-linux-extras | grep php
+~~~
+
+- 以下のコマンドを実行してください。
+
+~~~
+sudo systemctl restart php-fpm
+sudo systemctl restart httpd
 ~~~

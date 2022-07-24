@@ -78,17 +78,14 @@ Please check the link below for the construction method.
 
 ## Operating environment
 ### server
-- PHP 7.3.0 or higher (Since Exment 4.4.X, the PHP version has changed from 7.2.0 or higher to 7.3.0 or higher)
-- Laravel 8.X (Laravel version changed from 6.X to 8.X from Exment 4.4.X)
+- PHP 8.0-8.1 (Since Exment 5.0.0, the PHP version has changed to 8.0-8.1)
+- Laravel 9.X (Laravel version changed to 9.X from Exment 5.0.0)
 - Database: One of the following
     - MySQL 5.7.8 or higher, less than 8.0.0
     - MariaDB 10.2.7 and above
     - SQL Server 13.0.0 or higher
 
 ### Operation check browser
-> Internet Explorer is not supported by Exment due to the high technical debt and the current situation that [Microsoft is requesting to stop using it](https://japanese.engadget.com/2019/02/08/internet-explorer-ie/).  
-The javascript used is also one that IE does not support. We ask you to acknowledge it.
-
 - Google Chrome
 - Microsoft Edge
 

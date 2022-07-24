@@ -1,6 +1,21 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.0 (2022/07/22)
+
+- <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check [here](/update/v5_0_php8) once and update it.</span>
+
+1. General
+    - Changed the framework used from Laravel8 to Laravel9
+    - Changed the minimum version of PHP from PHP 7.3 to 8.0 or higher (recommended: PHP 8.0)
+1. Addition of functions
+    - Supports a script that rewrites the display contents of the calendar with a plug-in (script)
+
+1. Bug fix
+    - Fixed a bug that emails are not sent when multiple email addresses are registered in the notification settings.
+    - Fixed a bug that may not work properly when sharing or deleting data in notifications.
+
+
 ## v4.4.2 (2022/06/17)
 1. Addition of functions
     - Clarified validation development method in plugin (CRUD page)

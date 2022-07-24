@@ -17,11 +17,13 @@ Exmentを開始するために必要となる手順です。
 ### Laravelインストール(プロジェクト作成)
 - コマンドラインで、以下のコマンドを実行します。  
 ※作成したプロジェクトのフォルダを、このマニュアルでは「ルートディレクトリ」と呼びます。  
-※Exmentは現在、バージョン8.Xのみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。
+※Exmentは現在、バージョン9.Xのみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。
 
 ~~~
-composer create-project "laravel/laravel=8.*" (プロジェクト名)
+composer create-project "laravel/laravel=9.*" (プロジェクト名)
 cd (プロジェクト名)
+composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
+composer require psr/simple-cache=^2.0.0
 composer require exceedone/exment
 
 # Exmentのバージョンを指定したい場合、代わりに以下を実行。例：v3.2.6

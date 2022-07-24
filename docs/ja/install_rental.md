@@ -129,7 +129,7 @@ ln -s $HOME/(ドメイン名)/laravel/exment/public $HOME/(ドメイン名)/publ
 #### PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の手順例は、PHP7.2からPHP7.4へアップデートするための手順です。  
+※下記の手順例は、PHP7.4からPHP8.0へアップデートするための手順です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
 - Xserverの管理画面から、「PHP Ver.切替」をクリックします。  
@@ -158,19 +158,19 @@ unlink $HOME/bin/php
 ~~~ bash
 find /opt/php-*/bin -type f -name 'php'
 
-## /opt/php-7.3/bin/php
-## /opt/php-7.4.13/bin/php
-## /opt/php-7.4.19/bin/php
-## /opt/php-7.4.2/bin/php
-## /opt/php-7.4.23/bin/php
-## /opt/php-7.4.25/bin/php ←今回の例ではこちら
-## /opt/php-7.4.3/bin/php
+## /opt/php-7.4.4/bin/php
+## /opt/php-7.4/bin/php
+## /opt/php-8.0.0/bin/php
+## /opt/php-8.0.1/bin/php
+## /opt/php-8.0.10/bin/php
+## /opt/php-8.0.12/bin/php
+## /opt/php-8.0.16/bin/php  ←今回の例ではこちら
 ~~~
 
 - 上記で確認したパスにシンボリックリンクを設定します。  
 
 ~~~
-ln -s /opt/php-7.4.25/bin/php $HOME/bin/php
+ln -s /opt/php-8.0.16/bin/php $HOME/bin/php
 ~~~
 
 - PHPバージョンを確認します。新しいバージョンになっていれば成功です。  
@@ -260,7 +260,7 @@ ln -s $HOME/laravel/exment/public $HOME/www/exment
 #### PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の手順例は、PHP7.4へアップデートするための手順です。  
+※下記の手順例は、PHP8.0へアップデートするための手順です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
 - さくらインターネットの管理画面から、「スクリプト設定」→「言語のバージョン設定」をクリックします。  

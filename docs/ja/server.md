@@ -20,7 +20,8 @@ Webサーバーの構築手順です。以下のいずれかの手順で、Web�
 →Exmentを公開し、手軽に他のメンバーやスマートフォンからもアクセスを行いたい場合
 
 - [Linuxに構築](/ja/install_linux)  
-→ExmentをLinux(CentOS)にインストールする場合の手順
+→ExmentをLinux(RedHat8)にインストールする場合の手順  
+ ※CentOS7で構築していた方は[こちら](/ja/install_linux_old)
 
 - [IISに構築](/ja/install_iis)  
 →ExmentをIISに構築する場合の手順
@@ -113,18 +114,14 @@ Exmentのデータベースエンジンには、以下のいずれかが必要�
 
 ## 動作環境
 ### サーバー
-- PHP 7.3.0以上(Exment4.4.0より、PHPバージョンが7.2.0以上から7.3.0以上に変更になりました)
-- Laravel8.X(Exment4.4.0より、Laravelバージョンが6.Xから8.Xに変更になりました)
+- PHP 8.0～8.1(Exment5.0.0より、PHPバージョン8.0～8.1に変更になりました)
+- Laravel9.X(Exment5.0.0より、Laravelバージョンが9.Xに変更になりました)
 - データベース：以下のいずれか
     - MySQL 5.7.8以上、8.0.0未満
     - MariaDB 10.2.7以上
     - SQL Server 13.0.0以上
 
 ### 動作確認ブラウザ
-
-> Internet Explorerは、技術的負債が大きい点に加え、[マイクロソフトが使用を止めるよう求めている](https://japanese.engadget.com/2019/02/08/internet-explorer-ie/)という現状から、Exmentでは対応しておりません。  
-使用しているjavascriptも、IEは対応していないものを採用しております。ご了承をお願いいたします。
-
 - Google Chrome
 - Microsoft Edge
 

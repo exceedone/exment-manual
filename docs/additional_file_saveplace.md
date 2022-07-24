@@ -149,7 +149,7 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 - Execute the following command.
 
 ~~~
-composer require league/flysystem-sftp ~1.0
+composer require league/flysystem-sftp ~3.0
 ~~~
 
 - Open "config/filesystems.php" and check the setting value of "disks.sftp".  
@@ -212,7 +212,7 @@ Please execute "Create IAM for S3" and "Create Bucket" of the above URL
 - Execute the following command.
 
 ~~~
-composer require league/flysystem-aws-s3-v3 ~1.0
+composer require league/flysystem-aws-s3-v3 ~3.0
 ~~~
 
 - Open "config/filesystems.php" and check the setting value of "disks.s3".  
@@ -265,7 +265,7 @@ AWS_BUCKET_PLUGIN=exment_plugin
 - Execute the following command.
 
 ~~~
-composer require league/flysystem-azure-blob-storage ~0.1.6
+composer require league/flysystem-azure-blob-storage ~3.0
 ~~~
 
 - Open "config/filesystems.php" and check the setting value of "disks.azure".  

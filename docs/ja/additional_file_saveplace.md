@@ -96,6 +96,13 @@ configの記載は最低限にし、.envに設定値を記載する方法です�
 ファイルの種類ごとに設定値は使い回せるので、比較的かんたんに設定を行うことができます。
 
 #### FTP
+
+- 以下のコマンドを実行します。
+
+~~~
+composer require league/flysystem-ftp ~3.0
+~~~
+
 - "config/filesystems.php"を開き、"disks.ftp"の設定値を確認します。  
 存在していなかった場合、以下の設定を追加します。
 
@@ -149,7 +156,8 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require league/flysystem-sftp ~1.0
+composer require phpseclib/phpseclib ^2.0
+composer require league/flysystem-sftp ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.sftp"の設定値を確認します。  
@@ -165,9 +173,9 @@ composer require league/flysystem-sftp ~1.0
             'username' => env('SFTP_USERNAME'),
             'password' => env('SFTP_PASSWORD'),
 
-            // SSH keyベースの認証の設定
-            'privateKey' => env('SFTP_PRIVATE_KEY'),
-            'password' => env('SFTP_PASSWORD'),
+            // SSH keyベースの認証の設定(必要な場合のみ記入)
+            // 'privateKey' => env('SFTP_PRIVATE_KEY'),
+            // 'password' => env('SFTP_PASSWORD'),
 
             // FTP設定のオプション
             'port' => env('SFTP_PORT', 22),
@@ -210,7 +218,7 @@ SFTP_ROOT_PLUGIN=/var/foo/exment/sftp/plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require league/flysystem-aws-s3-v3 ~1.0
+composer require league/flysystem-aws-s3-v3 ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.s3"の設定値を確認します。  
@@ -268,7 +276,7 @@ AWS_BUCKET_PLUGIN=exment_plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require league/flysystem-azure-blob-storage ~0.1.6
+composer require league/flysystem-azure-blob-storage ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.azure"の設定値を確認します。  
@@ -363,13 +371,14 @@ Exmentでは、[Laravelのファイルシステム](https://readouble.com/larave
 そのため、Laravelのファイルシステムが用意されているサービスのみ、Exmentのファイル管理に対応します。(もしくは、ご自身でドライバを準備する必要があります。)
 
 ### 開発方法
-ここでは例として、ファイルのアップロード先をDropboxにする方法について、記載します。
+ここでは例として、ファイルのアップロード先をDropboxにする方法について、記載します。  
+※Dropbox側の設定については[参考：Dropboxのアクセストークン取得方法](#参考：Dropboxのアクセストークン取得方法)をご覧ください。  
 
 #### 必要なパッケージの取得
 LaravelでDropboxを管理するために必要なパッケージを追加します。
 
 ```
-composer require spatie/flysystem-dropbox=^1.2.0
+composer require spatie/flysystem-dropbox=^2.0.5
 ```
 
 #### ファイルの作成・追記
@@ -410,8 +419,7 @@ class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterf
      */
     public static function getAdapter($app, $config, $driverKey)
     {
-        $mergeFrom = array_get($config, 'mergeFrom');
-        $mergeConfig = static::mergeFileConfig('filesystems.disks.dropbox', "filesystems.disks.$mergeFrom", $mergeFrom);
+        $mergeConfig = static::getConfig($config);
 
         $client = new \Spatie\Dropbox\Client(array_get($mergeConfig, 'token'));
 
@@ -431,6 +439,20 @@ class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterf
             'token' => config('filesystems.disks.dropbox.access_token_' . $mergeFrom),
         ];
     }
+
+    /**
+     * (7) 設定情報の取得
+     * *Exment5.0.0より必要な項目*
+     *
+     * @param array $config
+     * @return array
+     */
+    public static function getConfig($config) : array
+    {
+        $mergeFrom = array_get($config, 'mergeFrom');
+        $mergeConfig = static::mergeFileConfig('filesystems.disks.dropbox', "filesystems.disks.$mergeFrom", $mergeFrom); // "dropbox"の部分のみ、ご記載のアダプタ名に変更してください
+        return $mergeConfig;
+    }
 }
 
 ```
@@ -448,7 +470,11 @@ Dropboxでは、\Spatie\FlysystemDropbox\DropboxAdapterが上記クラスを継�
 
 (5)アダプタのインスタンス化の際に呼び出されるメソッドです。基本的に、各自のファイルサービスのインスタンス化方法に従い、実装を行ってください。    
 
-(6)設定値のマージを行うための、キー値と設定値の一覧を設定します。  
+(6)設定情報にマージするキー値と設定値のペアを連想配列で設定します。  
+
+(7)マージ済の設定情報を返します。基本的に、"dropbox"の部分のみ、ご記載のアダプタ名に変更し、そのままコピペを行ってください。
+  ※Exment5.0.0より必要となった項目です。
+
 ※Exmentでは、前述の「ファイルの種類(添付ファイル、バックアップ、プラグイン、テンプレート)」ごとに、ルートフォルダを分ける必要があります。  
 Dropboxの場合、同一のアプリで、ルートフォルダを分ける機能はありません。  
 そのため、ファイルの種類ごとに、個別のDropBoxアプリを作成する必要があります。  
@@ -564,7 +590,7 @@ Amazon Simple Storage Service (Amazon S3) の作成方法について、簡単�
 
 
 ## 参考：Dropboxのアクセストークン取得方法
-- Dropboxの[App Console](https://www.dropbox.com/developers/app)にアクセスします。
+- Dropboxの[App Console](https://www.dropbox.com/developers/apps)にアクセスします。
 
 - 「Create App」をクリックします。
 ![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_1.png)  
