@@ -1,6 +1,26 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.2 (2022/08/01)
+
+- <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check [here](/update/v5_0_php8) once and update it.</span>
+
+1. Other
+    - Source formatting of php-cs-fixer (*due to the revision of php-cs-fixer, which was accompanied by a major revision due to the rule change. We performed the version separately)
+
+## v5.0.1 (2022/08/01)
+
+- <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check [here](/update/v5_0_php8) once and update it.</span>
+
+1. Functional fix
+    - Addition of processing to set values ​​in Excel by original processing in addition to general parameters in plug-ins (documents)
+    - Addition of processing that can collectively obtain relational child data by adding the parameter children=1 when retrieving data with the API.
+
+1. Bug fixes
+    - Fixed a bug that files cannot be selected/edited on the plug-in edit screen
+    - Fixed a bug that the date at the time of new creation was cleared when updating data if "Register execution date" was set to "YES" in custom column type "Date"
+    - Other minor fixes
+
 ## v5.0.0 (2022/07/22)
 
 - <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check [here](/update/v5_0_php8) once and update it.</span>
