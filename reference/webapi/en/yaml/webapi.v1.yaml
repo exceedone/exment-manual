@@ -906,7 +906,7 @@ paths:
                     prev_page_url: null
                     to: 3
                     total: 3
-      description: |-
+      description: |
         #### Outline of processing
         * Get a list of custom data registered in a specific custom table
         * Only data for which the logged-in user is authorized will be listed
@@ -930,6 +930,74 @@ paths:
         - v1.1.0 Append
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
+        - v5.0.1 children parameter added
+
+        #### To get the child data of a relation  
+        When the children parameter is 1, the child data of that data is also acquired at the same time.  
+        Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained  
+        "children" is added "data" object, and the data list of the corresponding child table is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the child table is "child_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "a1b2f1fc0e564e3e2ece",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:42",
+          "updated_at": "2022-07-29 09:35:42",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "children": {
+            "child_table": [
+              {
+                "id": 1,
+                "suuid": "c7751f097aa5e0a6091c",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1",
+                  "user": "1",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 11,
+                "suuid": "17e2f47ebf89e6b09c0a",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-31",
+                  "text": "test_2",
+                  "user": "2",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "2",
+                "updated_user_id": "2"
+              }
+            ]
+          }
+        }
+        ```
       parameters:
         - schema:
             type: integer
@@ -966,6 +1034,11 @@ paths:
           in: query
           name: valuetype
           description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+        - schema:
+            type: integer
+          in: query
+          name: children
+          description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
       security:
         - OAuth2: []
       operationId: get-values
@@ -1349,7 +1422,7 @@ paths:
                     prev_page_url: null
                     to: 1
                     total: 1
-      description: |-
+      description: |
         #### Outline of processing
         * Search for custom data registered in a specific custom table
         * Only data for which the logged-in user is authorized will be listed
@@ -1375,6 +1448,75 @@ paths:
         - v2.1.6 Appended
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
+        - v5.0.1 children parameter added
+
+
+        #### To get the child data of a relation  
+        When the children parameter is 1, the child data of that data is also acquired at the same time.  
+        Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained  
+        "children" is added "data" object, and the data list of the corresponding child table is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the child table is "child_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "a1b2f1fc0e564e3e2ece",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:42",
+          "updated_at": "2022-07-29 09:35:42",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "children": {
+            "child_table": [
+              {
+                "id": 1,
+                "suuid": "c7751f097aa5e0a6091c",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1",
+                  "user": "1",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 11,
+                "suuid": "17e2f47ebf89e6b09c0a",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-31",
+                  "text": "test_2",
+                  "user": "2",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "2",
+                "updated_user_id": "2"
+              }
+            ]
+          }
+        }
+        ```
       parameters:
         - schema:
             type: string
@@ -1407,6 +1549,11 @@ paths:
           in: query
           name: valuetype
           description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+        - schema:
+            type: integer
+          in: query
+          name: children
+          description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
       security:
         - OAuth2: []
       operationId: get-values-query
@@ -1502,7 +1649,7 @@ paths:
                     prev_page_url: null
                     to: 1
                     total: 1
-      description: |-
+      description: |
         #### Outline of processing
         * Search for custom data registered in a specific custom table
         * Only data for which the logged-in user is authorized will be listed
@@ -1528,6 +1675,7 @@ paths:
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
         - v3.3.2 Added 'like' to the search conditions. Supports OR search, adds order by parameter
+        - v5.0.1 children parameter added
 
         #### How to specify search conditions
         * Search by specifying each column name in the parameter 'q'. When specifying multiple columns, separate them with commas.
@@ -1562,6 +1710,74 @@ paths:
         ```
         // Please encode URL
         /api/data/information/query-column?q=view_flg eq 1,title eq Test&or=1
+        ```
+
+
+        #### To get the child data of a relation  
+        When the children parameter is 1, the child data of that data is also acquired at the same time.  
+        Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained  
+        "children" is added "data" object, and the data list of the corresponding child table is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the child table is "child_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "a1b2f1fc0e564e3e2ece",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:42",
+          "updated_at": "2022-07-29 09:35:42",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "children": {
+            "child_table": [
+              {
+                "id": 1,
+                "suuid": "c7751f097aa5e0a6091c",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1",
+                  "user": "1",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 11,
+                "suuid": "17e2f47ebf89e6b09c0a",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-31",
+                  "text": "test_2",
+                  "user": "2",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "2",
+                "updated_user_id": "2"
+              }
+            ]
+          }
+        }
         ```
       parameters:
         - schema:
@@ -1605,6 +1821,11 @@ paths:
           in: query
           name: orderby
           description: 'When sorting data, the column name of the sort. If there are multiple, separate them with commas. In reverse order, add a half-width space like "id desc"'
+        - schema:
+            type: integer
+          in: query
+          name: children
+          description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
       security:
         - OAuth2: []
       operationId: get-values-query-column
@@ -1681,6 +1902,75 @@ paths:
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
         - v4.0.7 Supports hard deletion of data
+        - v5.0.1 children parameter added
+
+
+        #### To get the child data of a relation  
+        When the children parameter is 1, the child data of that data is also acquired at the same time.  
+        Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained  
+        "children" is added directly under the array, and the data list of the corresponding child table is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the child table is "child_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "a1b2f1fc0e564e3e2ece",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:42",
+          "updated_at": "2022-07-29 09:35:42",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "children": {
+            "child_table": [
+              {
+                "id": 1,
+                "suuid": "c7751f097aa5e0a6091c",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1",
+                  "user": "1",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 11,
+                "suuid": "17e2f47ebf89e6b09c0a",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-31",
+                  "text": "test_2",
+                  "user": "2",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "2",
+                "updated_user_id": "2"
+              }
+            ]
+          }
+        }
+        ```
       requestBody: {}
       security:
         - OAuth2: []
@@ -1697,6 +1987,11 @@ paths:
           in: query
           name: valuetype
           description: 'The type of value to return. In case of "text", the wording to be displayed on the screen is returned.'
+        - schema:
+            type: integer
+          in: query
+          name: children
+          description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
     put:
       summary: Update custom data
       tags:
@@ -1973,6 +2268,34 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

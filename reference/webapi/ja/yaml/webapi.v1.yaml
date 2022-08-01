@@ -907,7 +907,7 @@ paths:
                     prev_page_url: null
                     to: 3
                     total: 3
-      description: |-
+      description: |
         #### 処理概要
         * 特定のカスタムテーブルに登録している、カスタムデータの一覧を取得する
         * ログインユーザーに権限のあるデータのみ、一覧の対象となる
@@ -932,6 +932,80 @@ paths:
         - v1.1.0 新規作成
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
+        - v5.0.1 childrenパラメータ追加
+
+
+        #### リレーションの子データを取得する場合
+        childrenパラメータが1のとき、そのデータの子データも同時に取得する。  
+        ※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可  
+        "data"配列に"children"が追加され、その中に、該当の子テーブルのデータ一覧が追加される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛)　ここでは、子テーブルは"child_table"としている。  
+
+        ```
+        {
+          "current_page": 1,
+          "data": [
+            {
+              "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
+              "parent_type": null,
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1",
+              "children": {
+                "child_table": [
+                  {
+                    "id": 1,
+                    "suuid": "c7751f097aa5e0a6091c",
+                    "parent_type": "parent_table",
+                    "parent_id": "1",
+                    "value": {
+                      "date": "2022-07-30",
+                      "text": "test_1",
+                      "user": "1",
+                      "email": "foovartest1@test.com.test"
+                    },
+                    "created_at": "2022-07-29 09:35:44",
+                    "updated_at": "2022-07-29 09:35:44",
+                    "deleted_at": null,
+                    "deleted_user_id": null,
+                    "created_user_id": "1",
+                    "updated_user_id": "1"
+                  },
+                  {
+                    "id": 11,
+                    "suuid": "17e2f47ebf89e6b09c0a",
+                    "parent_type": "parent_table",
+                    "parent_id": "1",
+                    "value": {
+                      "date": "2022-07-31",
+                      "text": "test_2",
+                      "user": "2",
+                      "email": "foovartest1@test.com.test"
+                    },
+                    "created_at": "2022-07-29 09:35:44",
+                    "updated_at": "2022-07-29 09:35:44",
+                    "deleted_at": null,
+                    "deleted_user_id": null,
+                    "created_user_id": "2",
+                    "updated_user_id": "2"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+        ```
       parameters:
         - schema:
             type: integer
@@ -968,6 +1042,11 @@ paths:
           in: query
           name: valuetype
           description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
+        - schema:
+            type: integer
+          in: query
+          name: children
+          description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
       security:
         - OAuth2認証: []
       operationId: get-values
@@ -1378,6 +1457,80 @@ paths:
         - v2.1.6 追加
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
+        - v5.0.1 childrenパラメータ追加
+
+
+        #### リレーションの子データを取得する場合
+        childrenパラメータが1のとき、そのデータの子データも同時に取得する。  
+        ※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可  
+        "data"配列に"children"が追加され、その中に、該当の子テーブルのデータ一覧が追加される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛)　ここでは、子テーブルは"child_table"としている。  
+
+        ```
+        {
+          "current_page": 1,
+          "data": [
+            {
+              "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
+              "parent_type": null,
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1",
+              "children": {
+                "child_table": [
+                  {
+                    "id": 1,
+                    "suuid": "c7751f097aa5e0a6091c",
+                    "parent_type": "parent_table",
+                    "parent_id": "1",
+                    "value": {
+                      "date": "2022-07-30",
+                      "text": "test_1",
+                      "user": "1",
+                      "email": "foovartest1@test.com.test"
+                    },
+                    "created_at": "2022-07-29 09:35:44",
+                    "updated_at": "2022-07-29 09:35:44",
+                    "deleted_at": null,
+                    "deleted_user_id": null,
+                    "created_user_id": "1",
+                    "updated_user_id": "1"
+                  },
+                  {
+                    "id": 11,
+                    "suuid": "17e2f47ebf89e6b09c0a",
+                    "parent_type": "parent_table",
+                    "parent_id": "1",
+                    "value": {
+                      "date": "2022-07-31",
+                      "text": "test_2",
+                      "user": "2",
+                      "email": "foovartest1@test.com.test"
+                    },
+                    "created_at": "2022-07-29 09:35:44",
+                    "updated_at": "2022-07-29 09:35:44",
+                    "deleted_at": null,
+                    "deleted_user_id": null,
+                    "created_user_id": "2",
+                    "updated_user_id": "2"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+        ```
       parameters:
         - schema:
             type: string
@@ -1410,6 +1563,11 @@ paths:
           in: query
           name: valuetype
           description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
+        - schema:
+            type: integer
+          in: query
+          description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
+          name: children
       security:
         - OAuth2認証: []
       operationId: get-values-query
@@ -1505,7 +1663,7 @@ paths:
                     prev_page_url: null
                     to: 1
                     total: 1
-      description: |-
+      description: |
         #### 処理概要
         * 特定のカスタムテーブルに登録している、カスタムデータを検索する
         * ログインユーザーに権限のあるデータのみ、一覧の対象となる
@@ -1532,6 +1690,7 @@ paths:
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
         - v3.3.2 検索条件に"like"追加。OR検索に対応、orderbyパラメータの追加
+        - v5.0.1 childrenパラメータ追加
 
         #### 検索条件の指定方法
         * パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。
@@ -1566,6 +1725,78 @@ paths:
         ```
         // URLエンコードは行うこと
         /api/data/information/query-column?q=view_flg eq 1,title eq テスト&or=1
+        ```
+
+        #### リレーションの子データを取得する場合
+        childrenパラメータが1のとき、そのデータの子データも同時に取得する。  
+        ※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可  
+        "data"配列に"children"が追加され、その中に、該当の子テーブルのデータ一覧が追加される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛)　ここでは、子テーブルは"child_table"としている。  
+
+        ```
+        {
+          "current_page": 1,
+          "data": [
+            {
+              "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
+              "parent_type": null,
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1",
+              "children": {
+                "child_table": [
+                  {
+                    "id": 1,
+                    "suuid": "c7751f097aa5e0a6091c",
+                    "parent_type": "parent_table",
+                    "parent_id": "1",
+                    "value": {
+                      "date": "2022-07-30",
+                      "text": "test_1",
+                      "user": "1",
+                      "email": "foovartest1@test.com.test"
+                    },
+                    "created_at": "2022-07-29 09:35:44",
+                    "updated_at": "2022-07-29 09:35:44",
+                    "deleted_at": null,
+                    "deleted_user_id": null,
+                    "created_user_id": "1",
+                    "updated_user_id": "1"
+                  },
+                  {
+                    "id": 11,
+                    "suuid": "17e2f47ebf89e6b09c0a",
+                    "parent_type": "parent_table",
+                    "parent_id": "1",
+                    "value": {
+                      "date": "2022-07-31",
+                      "text": "test_2",
+                      "user": "2",
+                      "email": "foovartest1@test.com.test"
+                    },
+                    "created_at": "2022-07-29 09:35:44",
+                    "updated_at": "2022-07-29 09:35:44",
+                    "deleted_at": null,
+                    "deleted_user_id": null,
+                    "created_user_id": "2",
+                    "updated_user_id": "2"
+                  }
+                ]
+              }
+            }
+          ]
+        }
         ```
       parameters:
         - schema:
@@ -1609,6 +1840,11 @@ paths:
           in: query
           name: orderby
           description: データの並べ替えを行う場合、並べ替えの列名。複数ある場合はカンマ区切り。逆順は、「id desc」のように半角スペースを追加する
+        - schema:
+            type: integer
+          in: query
+          name: children
+          description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
       security:
         - OAuth2認証: []
       operationId: get-values-query-column
@@ -1659,7 +1895,7 @@ paths:
                     created_user_id: null
                     updated_user_id: null
                     label: テスト
-      description: |-
+      description: |
         #### 処理概要
         * 特定のカスタムテーブルに登録している、カスタムデータ情報を取得する
         * ログインユーザーに権限のないデータだった場合、403エラーが発生する
@@ -1684,6 +1920,75 @@ paths:
         - v1.1.0 追加
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
+        - v5.0.1 childrenパラメータ追加
+
+
+        #### リレーションの子データを取得する場合
+        childrenパラメータが1のとき、そのデータの子データも同時に取得する。  
+        ※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可  
+        配列の直下に"children"が追加され、その中に、該当の子テーブルのデータ一覧が追加される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛)　ここでは、子テーブルは"child_table"としている。  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "a1b2f1fc0e564e3e2ece",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:42",
+          "updated_at": "2022-07-29 09:35:42",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "children": {
+            "child_table": [
+              {
+                "id": 1,
+                "suuid": "c7751f097aa5e0a6091c",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1",
+                  "user": "1",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 11,
+                "suuid": "17e2f47ebf89e6b09c0a",
+                "parent_type": "parent_table",
+                "parent_id": "1",
+                "value": {
+                  "date": "2022-07-31",
+                  "text": "test_2",
+                  "user": "2",
+                  "email": "foovartest1@test.com.test"
+                },
+                "created_at": "2022-07-29 09:35:44",
+                "updated_at": "2022-07-29 09:35:44",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "2",
+                "updated_user_id": "2"
+              }
+            ]
+          }
+        }
+        ```
       requestBody: {}
       security:
         - OAuth2認証: []
@@ -1700,6 +2005,11 @@ paths:
           in: query
           name: valuetype
           description: 返却する値の種類。"text"の場合、画面に表示する文言を返却する
+        - schema:
+            type: integer
+          in: query
+          name: children
+          description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
     put:
       summary: カスタムデータ情報更新
       tags:
@@ -1975,6 +2285,34 @@ paths:
                     to: 2
                     total: 2
       description: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
