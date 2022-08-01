@@ -93,40 +93,111 @@ Excelセルに、特定の形式の変数を入力することで、ドキュメ
 - 出力されたファイルに画像が含まれない場合、[こちら](/ja/troubleshooting)の「Excelをテンプレートとしたドキュメント出力で、画像の出力に失敗する」をご確認ください。
 
 ### PHPファイル作成(任意)
-- 以下のようなPHPファイルを作成します。名前は「Plugin.php」としてください。  
+- 通常のドキュメント出力はパラメータ変数を設定したdocument.xlsxを用意するだけで十分です。  
+特殊なデータ加工を行いたい場合、Exment以外のデータを出力したい場合は別途PHPファイルを作成してください。名前は「Plugin.php」です。  
+**※特殊な処理が必要ない場合、このPlugin.phpファイルは不要です。**
 
 ~~~ php
 <?php
 namespace App\Plugins\PluginDemoDocument; // (PluginDemoDocument:プラグイン名)
 
+use Exceedone\Exment\Model\Define;
+use Exceedone\Exment\Model\System;
 use Exceedone\Exment\Services\Plugin\PluginDocumentBase;
+
 class Plugin extends PluginDocumentBase
 {
-    protected function executing(){
-        // ドキュメント作成前に実行する関数
-        // 例：
-        \Log::debug('見積出力実施前');
-        
+    /**
+     * ドキュメントの変数置き換え実行前に呼び出される関数
+     *
+     * @param SpreadSheet $spreadsheet
+     * @return void
+     */
+    protected function called($spreadsheet)
+    {
+        // ドキュメントの変数置き換え実行前に独自処理を実行したい場合はこちら
     }
 
-    protected function executed(){
-        // ドキュメント作成後に実行する関数
-        // 例：
-        \Log::debug('見積出力実施後');
+    /**
+     * ドキュメントの変数置き換え実行後に呼び出される関数
+     *
+     * @param SpreadSheet $spreadsheet
+     * @return void
+     */
+    protected function saving($spreadsheet)
+    {
+        // １枚目のシートを選択
+        $sheet = $spreadsheet->getSheet(0);
+        // B1セルにサイト名を設定
+        $sheet->setCellValue('B1', System::site_name());
+
+        // Exmentの新着情報を取得する
+        $items = $this->getItems();
+
+        foreach ($items as $idx => $item) {
+            // 4行目～出力
+            $row = $idx + 4;
+            // 日付をA?セルに出力
+            $date = \Carbon\Carbon::parse(array_get($item, 'date'))->format(config('admin.date_format'));
+            $sheet->setCellValue("A$row", $date);
+            // リンクをB?セルに出力
+            $link = array_get($item, 'link');
+            $sheet->setCellValue("B$row", $link);
+            // タイトルをC?セルに出力
+            $title = array_get($item, 'title.rendered');
+            $sheet->setCellValue("C$row", $title);
+        }
     }
 
-    
+    /**
+     * Exmentの新着情報をAPIから取得する
+     *
+     * @return array exment news items array
+     */
+    protected function getItems()
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', Define::EXMENT_NEWS_API_URL, [
+            'http_errors' => false,
+            'query' => $this->getQuery(),
+            'timeout' => 3, // Response timeout
+            'connect_timeout' => 3, // Connection timeout
+        ]);
+
+        $contents = $response->getBody()->getContents();
+        if ($response->getStatusCode() != 200) {
+            return [];
+        }
+        return json_decode_ex($contents, true);
+    }
+
+    /**
+     * APIに渡すクエリ条件
+     *
+     * @return array query string array
+     */
+    protected function getQuery()
+    {
+        $request = request();
+
+        // get querystring
+        $query = [
+            'categories' => 6,
+            'per_page' => System::datalist_pager_count() ?? 5,
+            'page' => $request->get('page') ?? 1,
+        ];
+
+        return $query;
+    }
+
     /**
     * (v3.4.3対応)画面にボタンを表示するかどうかの判定。デフォルトはtrue
     * 
     * @return bool true: 描写する false 描写しない
     */
     public function enableRender(){
-        // 例1：選択しているデータのidが2の場合ボタンを表示する
-        //return $this->custom_value->id % 2 === 0;
-
-        // カスタム列の値「status」が「active」の場合にボタンを表示する
-        return $this->custom_value->getValue('status')  === 'active';
+        // カスタム列の値「view_flg」が「1」の場合にボタンを表示する
+        return $this->custom_value->getValue('view_flg')  == 1;
     }
 }
 
@@ -134,10 +205,9 @@ class Plugin extends PluginDocumentBase
 
 - namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
-- ドキュメント出力実行前、ならびにドキュメント出力実行後に、これらの関数は実行されます。  
-出力前になにかの処理を実行したい場合に、このPlugin.phpファイルを作成し、処理を追加してください。  
-(例：見積日時を追加する、請求書番号を追加する)  
-**※ドキュメント出力実行前・実行後に、呼び出したい処理が特にない場合、このPlugin.phpファイルは必要ありません。**
+- パラメータ変数置換前に独自の処理を行う場合は「called」メソッドを実装してください。パラメータ変数置換後に処理を行う場合は「saving」メソッドです。  
+これらの関数に渡される引数のスプレッドシートにアクセスすることで、セルに値を設定することが可能です。  
+※スプレッドシートの詳しい利用方法については、[こちら](https://phpspreadsheet.readthedocs.io/en/latest/)をご参照ください。  
 
 - Pluginクラスは、クラスPluginDocumentBaseを継承しています。  
 PluginDocumentBaseは、呼び出し元のカスタムテーブル$custom_table、テーブル値$custom_valueなどのプロパティを所有しており、  
