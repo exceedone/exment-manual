@@ -41,7 +41,11 @@ Exmentを開始するために必要となる手順です。画面で設定を�
 </script>
 
 - 以下のURLより、zipファイルをダウンロードします。  
-<a id="link" href="https://exment.net/downloads/ja/exment.zip" target="_blank">[Exment zipファイル]</a>          
+<a id="link" href="https://exment.net/downloads/ja/exment.zip" target="_blank">[Exment zipファイル]</a>            
+  
+- なんらかの理由でPHP7.4を使用する場合、こちらよりダウンロードしてください。なお、サポートや問い合わせ、Github issueなどの対象外とさせていただきます。また、予告なく削除する場合があります。  
+<a href="https://exment.net/downloads/ja/exment_v4_4_2.zip" target="_blank">[Exment zipファイル(PHP7.4最終版)]</a>
+
 
 - zipファイルを、PHP実行可能なパスに展開します。  
 例1(XAMPP Windows)： C:\xampp\local\exment  
