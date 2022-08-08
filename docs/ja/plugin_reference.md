@@ -290,7 +290,7 @@
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | is_modal | bool | イベントが発生したページがモーダルフォームかどうか |
-| event_type | PluginEventType | イベントの種類<br>（loading：ロード時、saving：削除前、saved：削除後、workflow_action_executing：ワークフロー実行直前、workflow_action_executed：ワークフロー実行直後、notify_executing：通知実行直前、notify_executed：通知実行後） |
+| event_type | PluginEventType | イベントの種類<br>（loading：ロード時、saving：保存前、saved：保存後、workflow_action_executing：ワークフロー実行直前、workflow_action_executed：ワークフロー実行直後、notify_executing：通知実行直前、notify_executed：通知実行後） |
 | page_type | PluginPageType | イベントが発生したページの種類<br>（list：一覧画面、create：新規作成画面、edit：編集画面、show：詳細画面） |
 
 
