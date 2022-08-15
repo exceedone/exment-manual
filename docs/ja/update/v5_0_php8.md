@@ -56,6 +56,7 @@ v5.0.0未満では、PHP7.Xを使用しておりましたが、PHP7.4のセキ�
 - 修正後
         "laravel/browser-kit-testing": "~6.3",
         "laravel/tinker": "^2.7",
+        "lcobucci/jwt": "^4.0",
         "league/flysystem-aws-s3-v3": "~3.0",
         "league/flysystem-azure-blob-storage": "~3.0",
         "league/flysystem-sftp": "~3.0",
