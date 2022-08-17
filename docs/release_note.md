@@ -1,6 +1,23 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.3 (2022/08/17)
+- <span class="red bold">We are working on fixing this vulnerability. Please be sure to update.</span>Please check [here](/weakness/20220817)
+
+- <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check [here](/update/v5_0_php8) once and update it.</span>
+
+1. Vulnerability response
+    - Supports cross-site scripting and SQL injection that occur on specific screens. [Click here](/weakness/20220817) for details
+
+1. Functional fix
+    - Fixed so that even users who do not have login settings can reset with the password reset command.
+    - In password (batch), fixed the return value of Plugin's execute function as the return value of the command.
+
+1. Bug fix
+    - Fixed a bug that the tooltip may protrude when displaying the month in the calendar view.
+    - Fixed a bug that caused an error when displaying the details screen of parent data when many-to-many relation was performed and options (other tables) were set between the tables.
+
+
 ## v5.0.2 (2022/08/01)
 
 - <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check [here](/update/v5_0_php8) once and update it.</span>
@@ -35,6 +52,12 @@
     - Fixed a bug that emails are not sent when multiple email addresses are registered in the notification settings.
     - Fixed a bug that may not work properly when sharing or deleting data in notifications.
 
+
+## v4.4.3 (2022/08/17)
+- <span class="red bold">We are working on fixing this vulnerability. Please be sure to update.</span>
+
+1. Vulnerability response
+    - Supports cross-site scripting and SQL injection that occur on specific screens. [Click here](/weakness/20220817) for details
 
 ## v4.4.2 (2022/06/17)
 1. Addition of functions
