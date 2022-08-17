@@ -19,8 +19,10 @@ This is a list of bugs that need to be dealt with manually and a list of their a
 ## Vulnerability list
 This is a list of vulnerabilities that have occurred in the past.
 
-Information release date | Applicable version | Details |
-| ---- | ---- | ---- |  
-| [2020/08/19](/weakness/20200819) | ~ v3.5.4 | Cross-site scripting and script execution policy for screen input |  
-| [2020/08/19](/weakness/20200819_2) | ~ v3.5.4 | Script execution when the attached file is clicked |  
-| [2020/03/25](/weakness/20200325) | ~ v3.1.6 | Cross-site scripting on the list screen |  
+| Information release date | Applicable version | Details |
+| ---- | ---- | ---- | 
+| [2020/08/19](/weakness/20200819) | ~ v3.5.4 | Cross-site scripting and script execution policy for screen input |
+| [2020/08/19](/weakness/20200819_2) | ~ v3.5.4 | Script execution when the attached file is clicked |
+| [2020/03/25](/weakness/20200325) | ~ v3.1.6 | Cross-site scripting on the list screen |
+| [2021/04/13](/weakness/20210413) | facade/ignition < 1.16.15 | Response to Laravel's Arbitrary Code Execution Vulnerability |
+| [2022/08/17](/weakness/20220817) | ～v5.0.2 | Cross-site scripting and SQL injection |

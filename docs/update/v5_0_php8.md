@@ -42,6 +42,7 @@ Please check [here](/backup) for the backup method.
 - After
         "laravel/browser-kit-testing": "~6.3",
         "laravel/tinker": "^2.7",
+        "lcobucci/jwt": "^4.0",
         "league/flysystem-aws-s3-v3": "~3.0",
         "league/flysystem-azure-blob-storage": "~3.0",
         "league/flysystem-sftp": "~3.0",
