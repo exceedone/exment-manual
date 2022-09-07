@@ -54,6 +54,7 @@ v5.0.0未満では、PHP7.Xを使用しておりましたが、PHP7.4のセキ�
 ## Exmentのマニュアルで記載していた関連ライブラリのバージョンを、一部変更する必要があります。
 ## 以下の記載があれば、変更を行ってください。ない場合は、修正は不要です。
 - 修正後
+        "exceedone/laravel-admin": "^3.0",
         "laravel/browser-kit-testing": "~6.3",
         "laravel/tinker": "^2.7",
         "lcobucci/jwt": "^4.0",
