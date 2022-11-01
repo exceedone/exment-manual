@@ -299,6 +299,17 @@ The decryption password will be sent separately.
     - 1 : Login user and lowest organization
     - 2 : Login user and all affiliated organizations
 
+### Order setting
+
+#### Sorting order of affiliated organization settings on the user edit page
+- Setting key : EXMENT_SORT_ORG_BY_DEFAULT_VIEW
+- Default value : false
+- Role : By setting it to true, the sorting order of the departments will match the sorting order of the default view (of the department) in the belonging department setting of the user edit page. If false, it will be in id order.
+
+#### Sort order of role group settings
+- Setting key : EXMENT_SORT_ROLE_GROUP_BY_ORDER
+- Default value : false
+- Role : By setting it to true, the order of role group settings on the user edit page and organization edit page and the order of the role group list page will match the display order (of role groups). If false, it will be in id order.
 
 ### Import / Export
 
