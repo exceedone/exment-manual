@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.4 (2022/11/20)
+
+1. Functional fix
+     - Modified to be able to change the display order by adding Order to organization and role group
+     - Fixed the height of the plug-in editing screen (source code display) to fit the screen.
+
 ## v5.0.3 (2022/08/17)
 - <span class="red bold">We are working on fixing this vulnerability. Please be sure to update.</span>Please check [here](/weakness/20220817)
 
