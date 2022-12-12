@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.4 (2022/12/07)
+
+1. Functional fix
+     - Fixed Organizations and Role Groups to reflect default view sort order.
+     - Fixed the height of the plug-in editing screen (source code display) to fit the screen.
+
 ## v5.0.3 (2022/08/17)
 - <span class="red bold">We are working on fixing this vulnerability. Please be sure to update.</span>Please check [here](/weakness/20220817)
 
