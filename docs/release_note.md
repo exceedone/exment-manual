@@ -1,10 +1,9 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v5.0.5 (2023/01/20)
+## v5.0.5 (2023/02/08)
 
 1. Bug fixes
-     - Fixed a bug that caused an error when saving the edit form for the second child table with file columns.
      - Fixed a bug that the top of the callout of the item displayed in the calendar view was not visible (only in month view).
      - Fixed a bug that an error occurred when opening a search modal.
      - Fixed a bug in which batch import of logged-in user information could only import up to 14 items.
