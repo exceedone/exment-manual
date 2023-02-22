@@ -1,11 +1,20 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.6 (2023/02/21)
+
+1. Addition of functions
+    - Added openLDAP for LDAP authentication. (openLDAP 2.4.44)
+
+1. Functional fixes
+    - Modal form display fixes
+
+1. Bug fixes
+    - Fix for the top of the callout of items displayed in the calendar view being cut off (month view only)
+
 ## v5.0.5 (2023/02/08)
 
 1. Bug fixes
-     - Fixed a bug that the top of the callout of the item displayed in the calendar view was not visible (only in month view).
-     - Fixed a bug that an error occurred when opening a search modal.
      - Fixed a bug in which batch import of logged-in user information could only import up to 14 items.
      - Fixed a bug that an error may occur in the input dialog.
 
