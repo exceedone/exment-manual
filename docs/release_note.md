@@ -1,6 +1,11 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.7 (2023/03/08)
+
+1. Functional fixes
+    - Fixed support for upgrading to Font Awesome 6.2.1
+
 ## v5.0.6 (2023/02/21)
 
 1. Addition of functions
