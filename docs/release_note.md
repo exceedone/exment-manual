@@ -1,10 +1,16 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v5.0.7 (2023/03/08)
+## v5.0.7 (2023/07/14)
 
 1. Functional fixes
-    - Fixed support for upgrading to Font Awesome 6.2.1
+    - Fixed horizontal scrollbar in table permission settings
+    - Fixed truncation when calculating
+
+1. Bug fixes
+    - Fixed a bug that sorting by the sort icon of the view does not work
+    - Fixed a bug that can not be changed to NO when the column type of the table is displayed in check box format by specifying YES / NO
+    - Fixed a bug that automatic numbering is not done when creating a new record with the authority to edit assigned data
 
 ## v5.0.6 (2023/02/21)
 
