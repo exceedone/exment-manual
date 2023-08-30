@@ -24,6 +24,7 @@ composer create-project "laravel/laravel=9.*" (プロジェクト名)
 cd (プロジェクト名)
 composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
 composer require psr/simple-cache=^2.0.0
+composer require psr/http-message="1.*"
 composer require exceedone/exment
 
 # Exmentのバージョンを指定したい場合、代わりに以下を実行。例：v3.2.6
@@ -68,29 +69,6 @@ APP_LOCALE=ja
 # https通信の場合に追加
 ADMIN_HTTPS=true
 
-~~~
-
-
-### （推奨）エラーページ追加
-
-- "app/Exceptions/Handler.php"を開き、 "render"関数に以下を追加します。  
-※エラーの内容によっては、ここで制御したエラーページが表示されず、Laravelのエラーが表示されることがあります。
-
-~~~ php
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Exception $exception)
-    {
-        // 追加
-        return \Exment::error($request, $exception, function($request, $exception){
-            return parent::render($request, $exception);
-        });
-    }
 ~~~
 
 

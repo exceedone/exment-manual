@@ -1,6 +1,18 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.8 (2023/08/30)
+
+1. Functional fix
+     - Modified to treat unentered items as 0 in calculation formulas
+     - Fixed the number of abbreviated display characters when displaying multiple lines of text when displaying a data list
+     - Fixed workflow 404 error when adding ConditionModal
+
+1. Bug fixes
+     - Fixed a bug that files uploaded to child tables were not displayed correctly
+     - Fixed a bug that the plug-in button was not displayed in the calendar view
+     - Fixed a bug when upgrading Exment with LDAP authentication
+
 ## v5.0.7 (2023/07/14)
 
 1. Functional fixes
