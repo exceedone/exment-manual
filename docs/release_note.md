@@ -1,6 +1,13 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.9 (2023/09/29)
+
+1. Bug fixes
+     - Re-fixed the bug when upgrading Exment with LDAP authentication
+     - Fixed a bug where details were not displayed when dates were summarized in the summary view
+     - Fixed a bug caused by the correction to treat unentered items in the calculation formula as 0.
+
 ## v5.0.8 (2023/08/30)
 
 1. Functional fix
