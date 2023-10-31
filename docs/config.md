@@ -233,6 +233,16 @@ The decryption password will be sent separately.
 - Default value : false
 - Role : If true, when you click a row on the list page, you will be taken to the data edit page. (The default is the data details page.)
 
+#### Setting options for the number of items displayed on the custom data list page
+- Setting key : EXMENT_GRID_PER_PAGES
+- Default value : nothing
+- Role : Please enter the setting value for the number of display options on the custom data list page. If multiple, please separate them with commas. example:100,200,500,1000
+
+#### Display custom data copy link
+- Setting key : EXMENT_GRIDROW_SHOW_COPY_BUTTON
+- Default value : false
+- Role : By setting it to true, the copy link will be displayed in the operation field of the list page.
+
 
 
 ### Custom Data

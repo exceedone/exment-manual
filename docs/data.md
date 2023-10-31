@@ -49,4 +49,16 @@ For details on the display screen, refer to the following page.
 
 ## Deleting data
 If you want to delete the data, click the "Delete" link in the corresponding row.  
-![カスタム列画面](img/data/data_delete1.png)
+![List of data](img/data/data_delete1.png)
+
+## Copy data
+- If you want to copy data, click the "Copy" link in the relevant row.  
+ * In order to display copy links, you need to change the settings. refer to the following page. [here](/config?id=display-custom-data-copy-link)  
+![List of data](img/data/data_copy1.png)
+
+- The editing screen will be displayed with the selected data contents initialized.  
+ * Only items that exist on the form are copied.  
+ * Auto number, files, images, etc. are not eligible.  
+![Data form](img/data/data_copy2.png)
+
+- Please modify the contents as necessary and then save.  
