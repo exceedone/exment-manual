@@ -93,6 +93,25 @@ It can be used to send notifications to users via email or in-system alerts.
 | ${user:user_code} | User code of the user to whom the email is sent |
 | ${user:email} | E-mail address of the user to whom the e-mail is sent |
 
+#### Notification(Attachment file)
+By setting the parameters in the "Custom Attachment" column of the notification template using the following rules, the attachment registered in that custom column will be sent to the user when an email notification is executed.  
+*Currently valid only for email notifications.  
+
+| item | Description |
+| ---- | ---- |
+| ${file:(column name)} | Attachments registered in the custom column types "File" and "Image" |
+| ${documents} | Attachment file registered for the data details screen (location corresponding to the image below) |
+
+#### Login user
+Can only be used when logged in. It cannot be used when notifying in batches, etc.
+
+| item | Description |
+| ---- | ---- |
+| ${login_user:user_name} | Login user's user name |
+| ${login_user:user_code} | Login user's user code |
+| ${login_user:email} | Login user's E-mail address |
+| ${login_user:(column name)} | The value of the specified column for the login user is set |
+
 #### Password Reset
 It can be used only when sending a password reset email.
 

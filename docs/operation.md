@@ -102,6 +102,9 @@ Set the icon to be displayed on the button on the screen.
 Please set the HTML class to be added to the button on the screen.  
 ※Displayed only when "Update timing" is "When the button on the data details screen is pressed".
 
+- ##### Active flag
+If you want to temporarily disable the data update settings or temporarily save the settings that are being created, please set the "Active flag" to NO.  
+
 
 ### Update column setting
 
