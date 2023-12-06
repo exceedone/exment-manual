@@ -16,7 +16,7 @@ Exmentでは、2段階認証に対応しています。
 ## ログイン設定管理方法
 
 - システム管理者が、以下のURLを入力します。  
-http(s)://(ExmentのURL)/admin/log_setting  
+http(s)://(ExmentのURL)/admin/login_setting  
 ※上記で記載の「システム設定変更」を行うことで、アクセスが出来るようになります。
 
 - もしくは、メニューに「ログイン設定」を追加します。  

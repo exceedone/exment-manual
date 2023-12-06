@@ -1,6 +1,50 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.10 (2023/10/30)
+
+1. Bug fixes
+     - Fixed a bug that caused an error during import when multiple selections were allowed in custom columns.
+     - Fixed a bug where option items were not linked to data
+
+1.Function correction
+     - Additional fixes regarding child table display bugs in custom forms
+    
+1. Added functions
+     - Added data replication function
+     - Added valid flag to data update settings
+     - Added ${login_user:custom column of user table} to the parameter variables that can be used in notification templates, etc.
+     
+## v5.0.9 (2023/09/29)
+
+1. Bug fixes
+     - Re-fixed the bug when upgrading Exment with LDAP authentication
+     - Fixed a bug where details were not displayed when dates were summarized in the summary view
+     - Fixed a bug caused by the correction to treat unentered items in the calculation formula as 0.
+
+## v5.0.8 (2023/08/30)
+
+1. Functional fix
+     - Modified to treat unentered items as 0 in calculation formulas
+     - Fixed the number of abbreviated display characters when displaying multiple lines of text when displaying a data list
+     - Fixed workflow 404 error when adding ConditionModal
+
+1. Bug fixes
+     - Fixed a bug that files uploaded to child tables were not displayed correctly
+     - Fixed a bug that the plug-in button was not displayed in the calendar view
+     - Fixed a bug when upgrading Exment with LDAP authentication
+
+## v5.0.7 (2023/07/14)
+
+1. Functional fixes
+    - Fixed horizontal scrollbar in table permission settings
+    - Fixed truncation when calculating
+
+1. Bug fixes
+    - Fixed a bug that sorting by the sort icon of the view does not work
+    - Fixed a bug that can not be changed to NO when the column type of the table is displayed in check box format by specifying YES / NO
+    - Fixed a bug that automatic numbering is not done when creating a new record with the authority to edit assigned data
+
 ## v5.0.6 (2023/02/21)
 
 1. Addition of functions
