@@ -5,17 +5,16 @@
 
 1. Bug fixes
      - Fixed a bug that caused an error during import when multiple selections were allowed in custom columns.
-     - Additional corrections regarding the execution timing of calculation formulas.
-     - Fixed a bug where option items were not linked to data.
+     - Fixed a bug where option items were not linked to data
 
-1. Functional fixes
-     - Additional fix for child table display problem of custom form.
-     - Added data replication function.
-
+1.Function correction
+     - Additional fixes regarding child table display bugs in custom forms
+    
 1. Added functions
-     - Added valid flag to data update settings.
+     - Added data replication function
+     - Added valid flag to data update settings
      - Added ${login_user:custom column of user table} to the parameter variables that can be used in notification templates, etc.
-
+     
 ## v5.0.9 (2023/09/29)
 
 1. Bug fixes
