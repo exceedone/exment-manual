@@ -7,7 +7,7 @@
      - Fixed a bug where the system dashboard was forced to become the user dashboard when saving on the dashboard settings change screen.
      - Fixed a bug where the child table sheet was output as empty when executing "Export (current page)" on a parent table that has a child table.
 
-2. Functional fixes
+1. Functional fixes
      - Fixed so that custom tables can be copied.
      - Corrected the "default redirect destination after saving data" for each custom table.
      
