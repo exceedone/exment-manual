@@ -1,6 +1,16 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v5.0.11 (2023/12/14)
+
+1. Bug fixes
+     - Fixed a bug where the system dashboard was forced to become the user dashboard when saving on the dashboard settings change screen.
+     - Fixed a bug where the child table sheet was output as empty when executing "Export (current page)" on a parent table that has a child table.
+
+2. Functional fixes
+     - Fixed so that custom tables can be copied.
+     - Corrected the "default redirect destination after saving data" for each custom table.
+     
 ## v5.0.10 (2023/10/30)
 
 1. Bug fixes
