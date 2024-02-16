@@ -4,9 +4,9 @@
 
 ## レンタルサーバーで構築を行う際の注意点
 - Exmentは、以下の環境が必要になります。
-    1. PHP 7.3.0以上
-    1. MySQL 5.7.8以上、8.0.0未満  
-    または MariaDB 10.2.7以上  
+    1. PHP 8.2以上
+    1. MySQL 8.0以上  
+    または MariaDB 10.4以上  
   <span class="red">特にMySQLのバージョンが、レンタルサーバーによっては条件を満たしていない場合があります。  
   お使いのレンタルサーバーが条件を満たしているか、事前に確認をお願いします。</span>
 
@@ -32,7 +32,6 @@ SSHやデータベース作成、Linuxコマンドなど、一般的なIT系の�
 
 - PHPのバージョンを変更します。  
 Xserverの場合、管理画面から設定するPHPのバージョンと、SSH接続を行ってコマンド実行した場合のPHPが、バージョンが異なる場合があります。  
-![Xserver設定](img/install/install_xserver1.png)  
 そこで、コマンド時のXserverのバージョンを設定します。
 
 - Xserverの管理画面から、「PHP Ver.切替」をクリックします。  
@@ -51,20 +50,14 @@ Xserverの場合、管理画面から設定するPHPのバージョンと、SSH�
 ~~~ bash
 find /opt/php-*/bin -type f -name 'php'
 
-## /opt/php-7.1.2/bin/php
-## /opt/php-7.1.3/bin/php
-## /opt/php-7.1.4/bin/php
-## /opt/php-7.4.1/bin/php
-## /opt/php-7.4.14/bin/php
-## /opt/php-7.4.6/bin/php ←今回の例ではこちら
-## /opt/php-7.4/bin/php
+## /opt/php-8.2.9/bin/php ←今回の例ではこちら
 ~~~
 
 - フォルダを作成し、PHPへのシンボリックリンクを作成します。  
 
 ~~~
 mkdir $HOME/bin
-ln -s /opt/php-7.4.6/bin/php $HOME/bin/php
+ln -s /opt/php-8.2.9/bin/php $HOME/bin/php
 ~~~
 
 - bashrcファイルを修正し、上記PHPバージョンへのパスを通します。  
@@ -86,8 +79,6 @@ source ~/.bashrc
 php --version
 ~~~
 
-![Xserver設定](img/install/install_xserver5.png)  
-
 - composerをインストールします。
 
 ~~~ bash
@@ -97,7 +88,7 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=$HOME/bin/
 mv $HOME/bin/composer.phar $HOME/bin/composer
 ## 確認
 composer --version
-# Composer version 1.8.5 2019-04-09 17:46:47
+# Composer version 2.6.5 2023-10-06 10:11:52
 ~~~
 
 - Exmentのインストールを行います。ここで、<span class="red bold big">決して「$HOME/(ドメイン名)/public_html」フォルダ直下にはインストールを行わないでください。データベースの設定値や、メールのパスワードなどが記載された設置ファイルなどが外部公開され、致命的な情報流出に繋がります。</span>  
@@ -129,7 +120,7 @@ ln -s $HOME/(ドメイン名)/laravel/exment/public $HOME/(ドメイン名)/publ
 #### PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の手順例は、PHP7.4からPHP8.0へアップデートするための手順です。  
+※下記の手順例は、PHP7.4からPHP8.2へアップデートするための手順です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
 - Xserverの管理画面から、「PHP Ver.切替」をクリックします。  
@@ -158,19 +149,13 @@ unlink $HOME/bin/php
 ~~~ bash
 find /opt/php-*/bin -type f -name 'php'
 
-## /opt/php-7.4.4/bin/php
-## /opt/php-7.4/bin/php
-## /opt/php-8.0.0/bin/php
-## /opt/php-8.0.1/bin/php
-## /opt/php-8.0.10/bin/php
-## /opt/php-8.0.12/bin/php
-## /opt/php-8.0.16/bin/php  ←今回の例ではこちら
+## /opt/php-8.2.9/bin/php  ←今回の例ではこちら
 ~~~
 
 - 上記で確認したパスにシンボリックリンクを設定します。  
 
 ~~~
-ln -s /opt/php-8.0.16/bin/php $HOME/bin/php
+ln -s /opt/php-8.2.9/bin/php $HOME/bin/php
 ~~~
 
 - PHPバージョンを確認します。新しいバージョンになっていれば成功です。  
@@ -229,7 +214,7 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=usr/local/bin/
 mv usr/local/bin/composer.phar usr/local/bin/composer
 ## 確認
 nice -n 20 composer --version
-# composer version 1.8.5 2019-04-09 17:46:47
+# Composer version 2.6.5 2023-10-06 10:11:52
 ~~~
 
 - Exmentのインストールを行います。ここで、<span class="red bold big">決して「$HOME/www/」フォルダ直下にはインストールを行わないでください。データベースの設定値や、メールのパスワードなどが記載された設置ファイルなどが外部公開され、致命的な情報流出に繋がります。</span>  
@@ -260,7 +245,6 @@ ln -s $HOME/laravel/exment/public $HOME/www/exment
 #### PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の手順例は、PHP8.0へアップデートするための手順です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
 - さくらインターネットの管理画面から、「スクリプト設定」→「言語のバージョン設定」をクリックします。  
@@ -273,6 +257,6 @@ PHPのバージョンを変更する場合、以下の手順でバージョン�
 
 - PHPバージョンを確認します。新しいバージョンになっていれば成功です。  
 
-~~~ 
+~~~ bash
 php --version
 ~~~

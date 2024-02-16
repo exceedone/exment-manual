@@ -9,9 +9,9 @@ Dockerイメージは、[yamada28go氏によるdockerリポジトリ](https://gi
 ## 環境
 本ページでは、以下の内容で構築を行っております。  
 - nginx 最新版
-- PHP 8.0.XX
+- PHP 8.2.XX
 - Debian
-- MySQL 5.7.XX
+- MySQL 8.0.XX
 
 ## 注意点
 

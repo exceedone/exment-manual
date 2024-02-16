@@ -6,8 +6,8 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 本ページでは、以下の内容で構築を行っております。  
 - Windows Server 2019 Standard 日本語版
 - IIS 10
-- PHP 8.0.21
-- MySQL 5.7.29
+- PHP 8.2.X
+- MySQL 8.0.35
 
 検証用途で Windows 10 を利用される場合については適宜注記しています。
 
@@ -43,7 +43,7 @@ Windows Server の管理やデータベース作成、コマンドなど、一�
 ### PHP の準備
 PHP をダウンロードし、インストールします
 1. https://windows.php.net/download/ にアクセスします
-2. \[PHP 8.0\] の \[VC15 x64 Non Thread Safe\] の ZIP ファイルをダウンロードします  
+2. \[PHP 8.2\] の \[VC15 x64 Non Thread Safe\] の ZIP ファイルをダウンロードします  
    > Windows 10 環境で 32 ビット版 Windows を利用している場合は、\[VC15 x86 Non Thread Safe \] の ZIP ファイルをダウンロードしてください
 3. ダウンロードした ZIP ファイルを右クリックしてプロパティを表示し、\[全般\] タブの\[セキュリティ\] にある「ブロックの解除」にチェックを入れて \[OK\] をクリックします  
    ![ブロックの解除](img/iis/iis_s04.png)
@@ -115,27 +115,27 @@ PHP をダウンロードし、インストールします
 
 ### MySQL のインストール
 Exment で利用する MySQL をインストールして初期構成します  
-ここでは MySQL 5.7.29 をインストールしています
+ここでは MySQL 8.0.35 をインストールしています
 
 1. [MySQL Community Downloads](https://dev.mysql.com/downloads/mysql/) のページにアクセスします
-2. \[Looking for previous GA versions? \] をクリックします  
+2. \[General Availability (GA) Releases\] をクリックします  
    ![MySQL Community Downloads](img/iis/iis_mysql01.png)
-3. \[Select Version\] で "5.7.29" を選択し、\[Select Operating System\] で "Microsoft Windows" を選択し、\[Select OS Version\] で "Windows (x86, 64bit)" を選択します
+3. \[Select Version\] で "8.0.35" を選択し、\[Select Operating System\] で "Microsoft Windows" を選択し、\[Select OS Version\] で "Windows (x86, 64bit)" を選択します
    ![ダウンロードの選択](img/iis/iis_mysql02.png)  
    > Windows 10 環境で 32 ビット版 Windows を利用している場合は、\[Select OS Version\] で "Windows (x86, 32bit)" を選択してください
-4. \[Other Downloads\] の "ZIP Archive" の欄の \[Download\] ボタンをクリックし、mysql-5.7.29-winx64.zip ファイルをダウンロードします
+4. \[Other Downloads\] の "ZIP Archive" の欄の \[Download\] ボタンをクリックし、mysql-8.0.35-winx64.zip ファイルをダウンロードします
    ![ダウンロード](img/iis/iis_mysql03.png)
 5. \[Login Now or Sign Up for a free account.\] が表示されたら、一番下の \[No thanks, just start my download.\] をクリックします。ダウンロードが開始されます
 6. ダウンロードした ZIP ファイルを右クリックしてプロパティを表示し、\[全般\] タブの\[セキュリティ\] にある「ブロックの解除」にチェックを入れて \[OK\] をクリックします  
    ![ブロックの解除](img/iis/iis_mysql04.png)
 7. ZIP ファイルの内容を適当なフォルダー（例 C:\MySQL）に展開します
-8. 管理者コマンドプロンプトを起動し、ZIP ファイルを展開したフォルダー内の mysql-5.7.29-winx64\bin フォルダーに移動します
-   ![カレントの移動](\img\iis\iis_mysql05.png)
+8. 管理者コマンドプロンプトを起動し、ZIP ファイルを展開したフォルダー内の mysql-8.0.35-winx64\bin フォルダーに移動します
+   ![カレントの移動](img/iis/iis_mysql05.png)
 9.  以下のコマンドを実行して MySQL の初期化を行います
     ```
     mysqld --initialize
     ```
-    ![MySQL の初期化](\img\iis\iis_mysql06.png)
+    ![MySQL の初期化](img/iis/iis_mysql06.png)
 
     Visual C++ 12.0 ランタイムが見つからないというエラーになる場合は、[最新のサポートされる Visual C++ のダウンロード
 ](https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads) を参照して、\[Update for Visual C++ 2013 Redistributable Package\](https://support.microsoft.com/ja-jp/help/4032938/update-for-visual-c-2013-redistributable-package) から日本語版 (Japanese) の Visual Studio 2013 用 Microsoft Visual C++ 再頒布可能パッケージ (vc_redist.x64.exe) をダウンロード・インストールしてください  
@@ -144,24 +144,24 @@ Exment で利用する MySQL をインストールして初期構成します
     ```
     mysqld --console
     ```
-    ![MySQL の起動](\img\iis\iis_mysql07.png)
+    ![MySQL の起動](img/iis/iis_mysql07.png)
 11. Ctrl + C を押して MySQL をいったん停止します
 12. MySQL を Windows のサービスとしてインストールします。サービスとしてインストールすることで、Windows の起動時に自動的に MySQL が実行されます
     ```
     mysqld --install
     ```
-    ![サービスのインストール](\img\iis\iis_mysql08.png)
+    ![サービスのインストール](img/iis/iis_mysql08.png)
 13. すぐに MySQL を起動するため、以下のコマンドを実行します
     ```
     net start mysql
     ```
-    ![サービスの開始](\img\iis\iis_mysql09.png)
+    ![サービスの開始](img/iis/iis_mysql09.png)
 14. MySQL を利用するための管理者 (root) パスワードの初期値を確認します  
-    MySQL を展開したフォルダーが C:\MySQL の場合、C:\MySQL\mysql-5.7.29-winx64\data に拡張子が .err のファイルがありますので、これをメモ帳などのテキスト エディタで開きます  
+    MySQL を展開したフォルダーが C:\MySQL の場合、C:\MySQL\mysql-8.0.35-winx64\data に拡張子が .err のファイルがありますので、これをメモ帳などのテキスト エディタで開きます  
     > 下図の場合は ExmentServer2.err というファイル名です  
-    ![err ファイル](\img\iis\iis_mysql10.png)
+    ![err ファイル](img/iis/iis_mysql10.png)
 15. ファイルの先頭近くに "\[Note\] A temporary password is generated for root@localhost:" と書かれた行があります (下図の赤下線)。この後に書かれている文字列 (下図では 1fyr*IXeC2%w) が初期パスワードです。このパスワードを控えておいてください
-    ![初期パスワード](\img\iis\iis_mysql11.png)
+    ![初期パスワード](img/iis/iis_mysql11.png)
 16. 管理者コマンドプロンプトに戻り、以下のコマンドを実行して MySQL の初期設定を行います
     ```
     mysql_secure_installation
@@ -180,7 +180,7 @@ Exment で利用する MySQL をインストールして初期構成します
     mysql -u root -p
     ```
 18. "Enter password:" とパスワードを尋ねられるので、先ほど設定したパスワードを入力して Enter を押します
-    ![MySQL login](\img\iis\iis_mysql12.png)
+    ![MySQL login](img/iis/iis_mysql12.png)
 19. "MySQL>" プロンプトが表示されたら、以下のコマンドを順に実行します
     > ここでは Exment で利用する MySQL ユーザーを "exment_user"、そのパスワードを "M!p3~S$W7fLm" としています  
       実際のユーザー名・パスワードはご自身で決めてください (パスワードは強力で推測されにくいものを使用してください)  
@@ -261,7 +261,7 @@ Exment で必要となる PHP ライブラリー管理ツール (Composer) を�
    例ではエイリアス (Exment にアクセスするための URL のパス) を "exment" としています  
    物理パスには Exment の ZIP ファイルを展開したフォルダーのパス (例 C:\exment) を設定します
    - エイリアス： exment  
-   - 物理パス：C:Exment\public  
+   - 物理パス：C:\Exment\public  
    ![仮想ディレクトリの追加](img/iis/iis_s12.png)
 6. "index.php" を既定のファイルに追加します  
    \[Default Web Site\] を選択し、\[既定のドキュメント\]をダブルクリックで開きます  
@@ -406,7 +406,7 @@ Exment で必要となる PHP ライブラリー管理ツール (Composer) を�
 ## PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
-※下記の例は、PHP7.4からPHP8.0へアップデートするための手順です。  
+※下記の例は、PHP7.4からPHP8.2へアップデートするための手順です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
 - 作業の前準備としてIISを停止します。  
@@ -416,7 +416,7 @@ PHPのバージョンを変更する場合、以下の手順でバージョン�
 - 新しいPHPをダウンロードします。  
 
    1. https://windows.php.net/download/ にアクセスします
-   2. \[PHP 8.0\] の \[VC15 x64 Non Thread Safe\] の ZIP ファイルをダウンロードします  
+   2. \[PHP 8.2\] の \[VC15 x64 Non Thread Safe\] の ZIP ファイルをダウンロードします  
       > Windows 10 環境で 32 ビット版 Windows を利用している場合は、\[VC15 x86 Non Thread Safe \] の ZIP ファイルをダウンロードしてください
    3. ZIP ファイルの内容を前のPHPと同じパスに展開します。  
    ※ 環境変数でPATHが通っていることが前提です。  
@@ -438,7 +438,7 @@ PHPのバージョンを変更する場合、以下の手順でバージョン�
 
 - IISを起動します。  
 
-- コマンドプロンプト等でPHPのバージョンが8.0.Xになっていることを確認します。  
+- コマンドプロンプト等でPHPのバージョンが8.2.Xになっていることを確認します。  
 
 ~~~
 php -v

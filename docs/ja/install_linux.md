@@ -6,8 +6,8 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 本ページでは、以下の内容で構築を行っております。  
 - Red Hat Enterprise Linux release 8.6
 - Apache 2.4.37
-- PHP 8.0.21
-- MySQL 5.7.38
+- PHP 8.2.x
+- MySQL 8
 
 ## 注意点
 
@@ -51,11 +51,11 @@ dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
 ~~~
 dnf module reset php -y
-dnf module enable php:remi-8.0 -y
+dnf module enable php:remi-8.2 -y
 ~~~
 
 - 現在使用中＆使用可能なPHPパッケージのリストを確認します。  
-remi-8.0に[e]がついていればＯＫです。
+remi-8.2に[e]がついていればＯＫです。
 
 ~~~
 dnf module list php
@@ -67,7 +67,7 @@ dnf module list php
 dnf install php php-cli php-common php-mbstring php-mysqli php-dom php-gd php-zip php-sodium -y
 ~~~
 
-- PHPのバージョンが8.0になっていることを確認します。  
+- PHPのバージョンが8.2になっていることを確認します。  
 
 ~~~
 php -v
@@ -155,7 +155,7 @@ MySQLを同サーバーにインストールしない場合でも、mysqlコマ�
 ※MySQLを同サーバーにインストールする場合は、この手順を飛ばしてください。
 
 ~~~
-rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
 # こちらを実施時して、mysql-community-clientが存在するかを確認します

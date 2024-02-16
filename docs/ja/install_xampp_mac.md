@@ -11,8 +11,7 @@ PHPやApache、MySQLのある環境構築を、開発環境としてはじめか
 - 以下のサイトにアクセスし、XAMPPをダウンロードします。  
 [XAMPPダウンロード](https://www.apachefriends.org/jp/download.html)  
 
-- OS X向けXAMPPとある項目の中から、「PHP7.3」以上「PHP8.0未満」となっているものを選択し、ダウンロードを行ってください。  
-※推奨はPHP7.4です。 
+- OS X向けXAMPPとある項目の中から、「PHP8.2」となっているものを選択し、ダウンロードを行ってください。  
 
 ![XAMPPインストール画面](img/xampp_mac/xampp_mac1.png)
 
