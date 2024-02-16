@@ -15,17 +15,17 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 - セキュリティグループ
 - Amazon S3
 - Amazon RDS
-    - MySQL 5.7.25
+    - MySQL 8.0.x
 - Amazon ElastiCache
     - Redis 5.0.5
 - Amazon Linux2-A
     - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
     - Apache 2.4.41
-    - PHP 7.2.24
+    - PHP 8.2.x
 - Amazon Linux2-B
     - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
     - Apache 2.4.41
-    - PHP 7.2.24
+    - PHP 8.2.x
 - Amazon Linux2-踏み台
     - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
 - Amazon Elastic Load Balancing
@@ -152,7 +152,7 @@ Nameを編集することができます。(例 : exment-rt)
 MySQLをサーバーにインストールする方法は、[こちら](/ja/install_mysql)をご確認ください。
 
 - エンジン : MySQL
-- バージョン : 5.7.26
+- バージョン : 8.0.x
 - インスタンス識別子 : 任意 (例 : exment-db)
 - DB インスタンスクラス : 任意 (例 : db.t2.micro)
 - ユーザー名、パスワード : 各自に設定
@@ -227,9 +227,9 @@ ssh -i ~/exment_key.pem ec2-user@(WebサーバーAのプライベートIPアド�
 
 ~~~
 sudo yum -y update
-sudo amazon-linux-extras install -y php7.4
+sudo amazon-linux-extras install -y php8.2
 sudo yum install -y httpd mysql
-sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64
+sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64 php-sodium.x86_64 php-dom.x86_64
 ~~~
 
 - 以下のコマンドを実行し、Apacheを起動、自動起動設定します。

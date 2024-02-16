@@ -1,6 +1,25 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.0.0 (2024/02/15)
+
+- <span class="red bold">Updating from v5.0.X or lower to v6.0.0 or higher requires a manual update. Please check the contents of [here](/update/v6_0_php8) before updating. </span>
+
+1. General
+     - Changed the framework used from Laravel9 to Laravel10
+     - Changed the minimum PHP version from PHP8.0 to 8.2 or higher (recommended: PHP8.2)
+     - Change the minimum version of MySQL from MySQL5.7 to 8.0 or higher (recommended: MySQL8.0)
+
+## v5.0.11 (2023/12/14)
+
+1. Bug fixes
+     - Fixed a bug where the system dashboard was forced to become the user dashboard when saving on the dashboard settings change screen.
+     - Fixed a bug where the child table sheet was output as empty when executing "Export (current page)" on a parent table that has a child table.
+
+1. Functional fixes
+     - Fixed so that custom tables can be copied.
+     - Corrected the "default redirect destination after saving data" for each custom table.
+     
 ## v5.0.10 (2023/10/30)
 
 1. Bug fixes
