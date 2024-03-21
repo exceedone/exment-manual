@@ -1,95 +1,101 @@
-# Environment construction with XAMPP
-XAMPP is recommended when building an environment with PHP, Apache, and MySQL as a development environment from the beginning.  
-In this manual, Windows is introduced.  
+# Environment construction using XAMPP
+If you are building an environment with PHP, Apache, or MySQL as a development environment from the beginning, we recommend XAMPP.   
+Please note that this manual is based on Windows.
 
-- For other inquiries, please feel free to [contact us](https://exment.net/inquiry) for free.  
+## Important point
+- **Please use XAMPP installation only for development and verification purposes. We recommend that you do not use it as a production environment**
 
-## important point
-- **Please use XAMPP installation only for development and verification. We recommend that you do not use it as a production environment.** 
+## Installation instructions
 
-## Installation procedure
+### XAMPP installation instructions
+- Access the site below and download XAMPP.   
+[XAMPP download](https://www.apachefriends.org/jp/download.html)
 
-### XAMPP installation procedure
-- Access the following site and download XAMPP.  
-From the following page, select the one with "PHP7.3" or higher and download it.  
-[XAMPP Download](https://www.apachefriends.org/jp/download.html)  
+- From the page below, select the one that requires PHP 8.2 or higher and download it.   
+![XAMPP installation screen](img/xampp/xampp_win.png)
 
-- After that, proceed with the installation of XAMPP.  
+- Then proceed with the installation of XAMPP.  
 ![XAMPP installation screen](img/xampp/xampp1.png)
 
-- On the way, the screen for selecting the XAMPP component will be displayed. Select Apache and MySQL.  
-Also add a check to "phpMyAdmin".  
-※ Otherwise, please check arbitrarily and then click "Next".  
+- On the way, you will be asked to select the XAMPP components, so select Apache and MySQL.   
+Also add a check to phpMyAdmin.   
+※Other than that, please check as you like  
+Then click Next.   
 ![XAMPP installation screen](img/xampp/xampp2.png)
 
-- Follow the instructions on the screen to complete the installation.  
+- Follow the on-screen instructions to complete the installation.
 
-- When installation is complete, launch the XAMPP control panel.  
+- Once the installation is complete, launch the XAMPP control panel.   
 ![XAMPP installation screen](img/xampp/xampp3.png)
 
-- Click "Start" in the top "Apache" and "MySQL" rows.  
+- Click Start on the top Apache and MySQL row.  
 ![XAMPP installation screen](img/xampp/xampp4.png)
 
-- When the firewall settings are displayed, click "Allow".  
+- If firewall settings appear, click Allow.  
 ![XAMPP installation screen](img/xampp/xampp5.png)
 
 - This will start Apache.  
 ![XAMPP installation screen](img/xampp/xampp6.png)
 
-#### 【important point】
-- When the OS is restarted, it is necessary to start the XAMPP control panel again and restart Apache.  
+#### 【Important point】
+- If you restart the OS, you will need to start the XAMPP control panel again and restart Apache.
 
 
-### Add environment variable
-If you run mysql from the command prompt, you need to pass the path to "environment variables".  
+### Add environment variables
+When running mysql from the command prompt, you need to pass the path to the environment variables.   
 
-- From Explorer, right-click "PC" and click "Properties".  
+- From Explorer, right-click This PC and click Properties.  
 ![MySQL environment variables](img/xampp/mysql_command1.png)
 
-- Click "Advanced system settings".
+- Click Advanced system settings.  
 ![MySQL environment variables](img/xampp/mysql_command2.png)
 
-- Click Environment Variables.
+- Click on Environment Variables.  
 ![MySQL environment variables](img/xampp/mysql_command3.png)
 
-- Click "Path" of "User environment variable", and click "Edit".
+- Click Path under User Environment Variables and click Edit.   
 ![MySQL environment variables](img/xampp/mysql_command4.png)
 
-- Click New and add the following line:
+- Click New and add the following line.   
 
 ~~~
-C:\Program Files\MySQL\MySQL Server 5.7\bin  
+C:\xampp\mysql\bin  
 ~~~
 
 ![MySQL environment variables](img/xampp/mysql_command5.png)
 
-- After inputting, click “OK” to complete all the dialogs that have been started.
+- Once you have made your entries, click OK on any dialogs that launch to complete them.   
+
+##### When running Mysql under XAMPP
+- When running Mysql under XAMPP, add the path to the folder where the executable file is located in .env in the root directory of Exment during the [Exment installation](#Exment-installation) step. please.   
+~~~
+#example  
+EXMENT_MYSQL_BIN_DIR="C:/xampp/mysql/bin"
+~~~
 
 #### Create database
-- After starting the XAMPP control panel, click "Admin" in the "MySQL" row.
+- After starting the XAMPP control panel, click Admin in the MySQL line.   
 ![MySQL environment variables](img/xampp/phpmyadmin0.png)
 
-- Click "New" on the left menu.
+- Click New on the left menu.   
 ![MySQL environment variables](img/xampp/phpmyadmin1.png)
 
-- In the "Create database" line, enter any database name in alphanumeric characters and click "Create".
-
-![MySQL environment variables](img/xampp/phpmyadmin2.png)
-Completes the database creation.
+- In the line where you want to create a database, enter any alphanumeric database name and click Create.   
+![MySQL environment variables](img/xampp/phpmyadmin2.png)  
+This completes database creation.  
 
 
 ### Subdomain settings
-Under normal settings, you can use Exment by placing the Exment project file in the "C: \ xampp \ htdocs" folder.  
-However, there is a big problem, for example, when accessing the URL of [http: //localhost/exment/.env](http://localhost/exment/.env), the configuration file including the database information is displayed on the screen.  
-Therefore, we strongly recommend that you avoid these issues. Please set according to the following procedure.  
+With normal settings, you can use Exment by placing the Exment project file in the "C:\xampp\htdocs" folder.
+However, for example, by accessing the URL [http://localhost/exment/.env](http://localhost/exment/.env), a configuration file including database information will be displayed on the screen. , there is a big problem.   
+Therefore, we strongly recommend settings to prevent these problems from occurring. Please follow the steps below to make the settings.   
 
-- Create a folder "local" in the folder "C: \ xampp".
+- Create a folder local in the folder C:\xampp.  
 ![Subdomain settings](img/xampp/subdomain1.png)
 
-- Open "C: \ xampp \ apache \ conf \ extra \ httpd-vhosts.conf".
+- Open "C:\xampp\apache\conf\extra\httpd-vhosts.conf".
 
-- Add the following description at the end of the line.  
-**※"/ Public" is required at the end of DocumentRoot**  
+- Add the following to the end of the line. **※DocumentRoot must have /public at the end**  
 
 ~~~
 <VirtualHost *:80>
@@ -109,68 +115,75 @@ Therefore, we strongly recommend that you avoid these issues. Please set accordi
 </Directory>
 ~~~
 
-- Open "C: \ WINDOWS \ system32 \ drivers \ etc \ hosts" and edit.  
-※  Since this file cannot be edited directly, copy it to the desktop etc., edit it, and overwrite it in the original location.  
+- Open "C:\WINDOWS\system32\drivers\etc\hosts" and edit it.   
+※This file cannot be edited directly, so copy it to your desktop, edit it, and then overwrite it in the original location.   
 
 ~~~
 127.0.0.1       localhost
-127.0.0.1       exment.localapp
+127.0.0.1      exment.localapp
 ~~~
 
-- Restart Apache in the XAMPP control panel. In the XAMPP control panel, click the "Stop" button in the "Apache" line and click "Start" again.  
+- In the XAMPP control panel, restart Apache. In the XAMPP control panel, click the Stop button in the Apache line, then click Start again.   
 ![XAMPP installation screen](img/xampp/xampp7.png)
 
-- This will allow you to access Exment from the URL below.  
+- As a result, you will be able to access Exment using the URL below.   
 http://exment.localapp/admin
 
-### Install Exment
-Install Exment according to the Exment [installation procedure](/quickstart).
-Exment installation is usually performed in the "C: \ xampp \ local" folder.
-Here, it is assumed that the installation was performed in the "C: \ xampp \ local \ exment" folder.
+### Exment installation
+Install Exment by following the Exment [Installation Instructions](/ja/quickstart).   
+Exment installation is normally done in the "C:\xampp\local" folder.   
+Here, it is assumed that the installation was performed in the "C:\xampp\local\exment" folder.   
 
-- In the future installation of Exment, there is a screen to fill in the database settings, please enter as follows.  
+- When installing Exment in the future, there will be a screen where you can enter database settings, so please enter them as shown below.   
     - Database type: MariaDB
     - Host name: 127.0.0.1
     - Port: 3306
-    - Database: (Database name created above)
-    - User name: root
+    - Database: (database name created above)
+    - Username: root
     - Password: (blank)
 
+## Correspondence when upgrading PHP version
+If you want to change the PHP version, please update it by following the steps below.   
+※Exment will not be accessible while the version is being upgraded.   
+※The example below is the procedure for updating from PHP7.4 to PHP8.2. This is also a way to replace only PHP without updating all of XAMPP.   
+※The version upgrade method may differ depending on the environment, installation time, version, and installation method.   
 
-## Correspondence at the time of PHP version upgrade
-If you want to change the PHP version, please follow the steps below to upgrade.  
-*You will not be able to access Exment during the version upgrade process.  
-*The example below is the procedure for updating from PHP7.2 to PHP7.4. Also, it is a way to replace only PHP without updating all of XAMPP.  
-*The version upgrade method may differ depending on the environment, installation time, version and installation method.  
+- In preparation for work, stop apache and MySQL and exit the XAMPP control panel.   
 
-- As a preparation for work, stop apache and MySQL and exit the XAMPP control panel.  
+- Back up the PHP folder (default is C:\xampp\php) and Apache folder (default is C:\xampp\apache) under the currently used XAMPP. Choose your preferred method, such as renaming the folder or copying it to another location.
 
-- Back up the PHP folder under XAMPP that you are currently using (default is C:\xampp\php). Choose your preferred method, such as renaming the folder or copying it to another location.  
+- Download new XAMPP in ZIP format.   
 
-- Download the new XAMPP in ZIP format.  
+   1. Access [XAMPP download](https://www.apachefriends.org/jp/download.html)
+   2. Download the file according to the OS and PHP version you want to use.   
+      > At that time, please select the zip file instead of installer.exe. (You can use 7z files as long as you have an environment where you can unzip them.)
+      ![XAMPP download screen](img/xampp/xampp8.png)
 
-   1. Go to [XAMPP Download](https://www.apachefriends.org/jp/download.html)
-   2. Download the file according to the OS and the version of PHP you want to use.  
-      > In doing so, select the zip file instead of installer.exe. (If you have an environment that can be decompressed, you can use a 7z file)  
-      ![XAMPP Download Page](img/xampp/xampp8.png)
+   3. Unzip the ZIP file and copy the PHP folder and Apache folder directly under the extracted folder to the XAMPP folder.   
 
-   3. Unzip the ZIP file and copy the PHP folder directly under the extracted folder under XAMPP.  
+- Modify the php.ini file if necessary.   
+※ If you have modified the original ini file, the new ini file must also have the same changes. Compare the backed up php.ini file with the new php.ini file and add various settings.   
 
-- Modify the php.ini file as needed.  
-*If you have changed the original ini file, you need to make the same change to the new ini file. Compare the backed up php.ini file with the new php.ini file and add various settings etc.  
+- Launch the XAMPP control panel.   
 
-- Launch the XAMPP Control Panel.  
+- Press the Apache config button and select Apache (httpd-xampp.conf) from the pulldown.
+   ![XAMPP selection screen](img/xampp/xampp9.png)
 
-- Press the Shell button to bring up the command screen and check that the PHP version is new.  
+- Edit httpd-xampp.conf.
+   1. First, replace all "php7_module" with "php_module".
+   2. Replace all remaining "php7" with "php8".  
+   ![httpd-xampp.conf edit screen](img/xampp/xampp10.png)
+
+- Press the Shell button to launch the command screen and check that the PHP version is new.   
 
 ~~~
 php -v
 ~~~
 
-- Click Start in the Apache and MySQL rows.  
+- Click Start in the Apache and MySQL row.   
 
-   > An error may occur at "Start" of "Apache".  
-   In that case, open "Logs"-> "Apache (error.log)" on the right side of the same line.  
-   If the latest line of the log says "PHP Warning:'vcruntime140.dll' ...", you need to install the "Visual C ++ Redistributable Package".  
-   Go to the [Microsoft Download Site](https://visualstudio.microsoft.com/en/downloads/) and scroll to the bottom → open "Other Tools, Frameworks, and Redistributables".  
-   Click the download button of "Microsoft Visual C ++ Redistributable for Visual Studio 2022" to get the installer → execute it.  
+   > An error may occur when starting Apache.   
+   In that case, open Logs → Apache (error.log) on ​​the right side of the same line.   
+   If the latest line in the log shows PHP Warning: 'vcruntime140.dll'..., you need to install the Visual C++ Redistributable Package.   
+   Access [Microsoft's download site](https://visualstudio.microsoft.com/en/downloads/) and scroll to the bottom → open Other Tools, Frameworks, and Redistributables.   
+   Click the download button for Microsoft Visual C++ Redistributable for Visual Studio 2022 to get the installer → Run it.   

@@ -1,6 +1,11 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.0.1 (2024/03/21)
+
+1. Bug fixes
+     - Fixed a bug that caused a restore error if the export of AWS RDS GTID was not turned off.
+
 ## v6.0.0 (2024/02/15)
 
 - <span class="red bold">Updating from v5.0.X or lower to v6.0.0 or higher requires a manual update. Please check the contents of [here](/update/v6_0_php8) before updating. </span>
