@@ -32,37 +32,42 @@ SSHやデータベース作成、Dockerコマンドなど、一般的なIT系の
 [docker-exment](https://github.com/exment-git/docker-exment)
 
 
-### コンテナ起動
 
-- 使用するフォルダを選択します。buildフォルダ内の以下のフォルダから、構築したい環境により、使用するフォルダを選択します。
-    - **php80_mysql** : PHP8.0, MySQL
-    - **php80_mariadb** : PHP8.0, MariaDB
-    - **php80_sqldrv** : PHP8.0, SQL Server
-    - **php81_mysql** : PHP8.1, MySQL
-    - **php81_mariadb** : PHP8.1, MariaDB
-    - **php81_sqldrv** : PHP8.1, SQL Server
+### MySQL環境の構築
 
-- コンソールで、上記のフォルダを、カレントディレクトリとして遷移します。  
+````bash
+$ make mysql-init
+````
 
-- Webサーバーのポート番号を変更したい場合(既定値は80)、「.env」ファイルを開き、以下の値を編集します。  
+### MySQL環境のセットアップ
 
-```
-EXMENT_DOCKER_HTTP_PORTS=10080
-```
+````bash
+$ make mysql-up
+````
 
-- データベースサーバーのポート番号を変更したい場合(既定値は3306)、「.env」ファイルを開き、以下の値を編集します。  
+### MariaDB 環境の構築
 
-```
-EXMENT_DOCKER_MYSQL_PORT=13306
-```
+````bash
+$ make maridb-init
+````
 
-- コンソールで、以下のコマンドを実施し、環境を起動します。
+### MariaDB 環境のセットアップ
 
-```
-docker-compose -f docker-compose.yml -f docker-compose.mysql.yml up
-```
+````bash
+$ make maridb-init
+````
 
-これで、サーバー構築は完了です。
+### SQL Server環境の構築
+
+````bash
+$ make sqlsrv-init
+````
+
+### SQL Server環境のセットアップ
+
+````bash
+$ make sqlsrv-up
+````
 
 ### Exment初期設定
 - 以下のサイトにアクセスし、Exmentの初期設定を行ってください。(※Webサーバーのポートを変更した場合、そのポートでアクセスを行ってください)  

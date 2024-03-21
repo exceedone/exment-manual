@@ -9,6 +9,21 @@ MySQLも現段階で最新バージョンとなるMySQL8.0へと変更するこ�
 これまでのMySQLバージョンは最高でも5.7でしたが、今後はMySQL8.0となります。それに伴い、すべてのユーザーが、MySQL8.0にアップデートが必要となります。  
 アップデート手順は、[こちら](/ja/install_mysql)をご確認ください。
 
+## MariaDBバージョンアップ方法 MariaDB 10.4
+MariaDB10.4未満を利用している場合は、MariaDB10.4へアップデートする必要があります。
+### XAMPP環境のアップデート作業
+- 作業の前準備としてMariaDBを停止し、XAMPPコントロールパネルを終了します。  
+- mysqlフォルダーの名前を変更します。（例：デフォルト名前の「C:\xampp\mysql」⇒「C:\xampp\mysql-old」に変更します）
+- 新しいMariaDBをZIP形式でダウンロードします。 
+
+   1. [MariaDBダウンロード](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.4.33&os=windows&cpu=x86_64&pkg=zip) にアクセスします
+   2. OSや使用したいMariaDBのバージョンに合わせてファイルをダウンロードします。  
+      > その際、MSIではなくzipファイルを選択してください。
+   3. ZIPファイルを解凍して、解凍後のフォルダー名を「mysql」に変更して、XAMPPフォルダーへ移動します。
+- 「mysql-old\data」を「mysql」フォルダーへ移動します。
+- 「mysql-old\data\php.ini」を「mysql\bin」フォルダーへ移動します。
+- 「Apache」と「MySQL」行の、「Start」をクリックします。 
+
 ## PHPバージョンアップ方法 PHP8.2
 
 これまでのPHPバージョンは最高でも8.0でしたが、今後はPHP8.2以上となります。それに伴い、すべてのユーザーが、PHP8.2以上にアップデートが必要となります。  
@@ -23,7 +38,9 @@ MySQLも現段階で最新バージョンとなるMySQL8.0へと変更するこ�
 
 - [Linuxに構築](/ja/install_linux)  
 
-- [AWSに構築](/ja/install_aws_single)  
+- [AWSに構築(Amazon Linux2)](/ja/install_aws_single)
+
+- [AWSに構築(Ubuntu Server)](/ja/install_aws_ubuntu_single)
 
 - [AWSに構築-冗長化 ](/ja/install_aws)  
 
@@ -112,6 +129,11 @@ MySQLも現段階で最新バージョンとなるMySQL8.0へと変更するこ�
 ```
 # Laravelフレームワーク、Exment、関連ライブラリのアップデート実施
 composer update
+```
+
+※Xserver側のphpにsodium拡張機能が実装されてない場合は、以下のコマンドを実行します。
+```
+composer update --ignore-platform-req=ext-sodium
 ```
 
 ### TrustProxies.php修正

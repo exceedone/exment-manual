@@ -1,61 +1,79 @@
-# Linux environment construction
-This page describes the procedure for building Exment on Linux.  
-This is a completely new installation procedure, including installation of the web server.  
+# Environment construction using Linux
+This page describes the steps to build Exment on Linux.   
+This is a completely new installation procedure, including the installation of the web server.
 
-## environment
-In this page, we are building with the following contents.  
-- CentOS 7.6.1810 64bit
-- Apache 2.4.6
-- PHP 7.4.28
-- MySQL 5.7.25
+## Environment
+This page is constructed with the following contents.   
+- Red Hat Enterprise Linux release 8.6
+- Apache 2.4.37
+- PHP 8.2.x
+- MySQL 8
 
-## important point
+## Important point
 
-- Depending on your environment and version, you may not be able to set up properly with this procedure. Please note.  
+- Depending on your environment and version, you may not be able to set up correctly using this procedure. note that.
 
-- In this procedure, only the procedure for operating Exment on Linux is described.  
-It does not describe general IT-related knowledge such as SSH, database creation, and Linux commands. Please note.  
+- This procedure only describes the steps to run Exment on Linux.   
+General IT knowledge such as SSH, database creation, Linux commands, etc. is not included. note that.   
 
-- **In this procedure, it is assumed that you are running with an administrator account. If executed by a user other than the administrator account, add "sudo" to the beginning.**
+- **This procedure assumes that you are running with an administrator account. If executed by a user who is not an administrator account, add "sudo" to the beginning**
 
-- For other inquiries, please feel free to [contact us for free](https://exment.net/inquiry).  
+- If an error occurs during installation, please refer to [Troubleshooting](/en/troubleshooting).
 
-## Linux installation procedure
 
-### MySQL
-The setting is optional. This is the procedure for installing MySQL.  
-This section describes the procedure on the Web server side and the procedure on the MySQL server side.  
-※ When using an external service such as when using the AWS RDS service, the procedure on the MySQL server side is not required.  
-※Moved [here](/install_mysql).
+## Installation instructions using Linux
 
-### Redis
-※Moved [here](/additional_session_cache_driver).
+### MySQL (optional)
+The settings can be set as desired. These are the steps to install MySQL assuming you are building a separate MySQL server.   
+※No MySQL server-side steps are required when using external services, such as when using the AWS RDS service.   
+※Moved to [here](/install_mysql).
+
+### Redis (optional)
+※Moved to [here](/additional_session_cache_driver).
 
 ### Web server
-- Update yum and install required libraries.  
+- As a preliminary preparation, upgrade the current packages and install the required libraries.   
 
 ~~~
-yum -y update
-yum install -y wget firewalld unzip
+dnf -y upgrade
+dnf install -y wget firewalld unzip git
 ~~~
 
 
-- Update epel and install rpm.  
-*The following versions may not exist due to version upgrades. In that case, please specify the rpm corresponding to "epel-release-7-XX.noarch.rpm" from this link.  
+- Install the Remi repository configuration package and the EPEL required to use it.
 
 ~~~
-wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm ~/
-rpm -ivh ~/epel-release-7-14.noarch.rpm 
-yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm  
+dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 ~~~
 
-- Install required libraries such as PHP7.4.  
+- Switch active repository for php packages.
 
 ~~~
-yum -y install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php  php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
+dnf module reset php -y
+dnf module enable php:remi-8.2 -y
 ~~~
 
-- Configure Apache launch settings.  
+- Check the list of PHP packages currently in use & available.   
+It is OK if remi-8.2 has [e].
+
+~~~
+dnf module list php
+~~~
+
+- Install php and related libraries.
+
+~~~
+dnf install php php-cli php-common php-mbstring php-mysqli php-dom php-gd php-zip php-sodium -y
+~~~
+
+- Make sure your PHP version is 8.2.   
+
+~~~
+php -v
+~~~
+
+- Configure Apache startup settings.
 
 ~~~
 systemctl enable httpd.service
@@ -63,7 +81,9 @@ systemctl start httpd.service
 service httpd start
 ~~~
 
-- Configure the firewall settings.  
+- Configure firewall settings.   
+※Please change the settings according to your desired security settings.
+
 ~~~
 systemctl start firewalld
 systemctl enable firewalld
@@ -72,74 +92,35 @@ firewall-cmd --add-service=https --zone=public --permanent
 systemctl reload firewalld
 ~~~
 
-- Disable SELinux.  
+- Disable SELinux if necessary.   
+※Please change the settings according to your desired security settings.
 
 ~~~
 vi /etc/selinux/config
-# Corrected to SELINUX = disabled
+# Correct SELINUX=disabled
 
 setenforce 0
 service httpd restart
 ~~~
 
-- Through the path to php7.4. With the command, you can run php7.4.  
+- Install composer.   
 
 ~~~
-ln -s /usr/bin/php74 /usr/bin/php
-~~~
-
-- In phpinfo, check whether the work up to this point has been performed successfully. Create a new path "/var/www/html/info.php" and add the following description.  
-
-~~~
-vi /var/www/html/info.php
-
-# Add the following description
-<?php
-phpinfo();
-~~~
-
-
-- Execute the following command. If access is successful, the result will be returned.  
-~~~
-curl http://localhost/info.php
-~~~
-
-- Delete info.php for testing.  
-~~~
-rm /var/www/html/info.php -f
-~~~
-
-- Install composer.  
-~~~
-cd ~
+cd~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ~~~
 
-- Add the required extension description to php.ini.  
+- Make the necessary descriptions and edits in php.ini.   
+In particular, if you want to change memory usage, timeout time, etc. in [PHP Setting Value Change](/additional_php_ini), please change this setting.
 
 ~~~
-vi /etc/opt/remi/php74/php.ini
-
-#Add the following to the end of the file
-extension=mbstring.so
-extension=dom.so
-extension=xml.so
-extension=gd.so
-extension=simplexml.so
-extension=xmlreader.so
-extension=xmlwriter.so
-extension=zip.so
-extension=mysqlnd.so
-extension=mysqli.so
-extension=pdo.so
-extension=pdo_mysql.so
-extension_dir=/usr/lib64/php/modules/
+vi /etc/php.ini
 ~~~
 
-- Modify httpd.conf.  
+- Fix httpd.conf.
 
 ~~~
 vi /etc/httpd/conf/httpd.conf
@@ -157,103 +138,67 @@ vi /etc/httpd/conf/httpd.conf
 ~~~
 
 - Restart apache.
+
 ~~~
 service httpd restart
 ~~~
 
-- Place Exment on the server. Download the latest Exment file and extract it.  
+- (Recommended) Add the logged-in user to the apache group. By configuring this setting, logged-in users can freely edit files in the exment folder. After SSH reconnection, the group will be reflected.   
+※ Below, if the login user is ec2-user
+
+~~~
+usermod -aG apache ec2-user
+~~~
+
+- **(Only if MySQL is not installed on the same server)**  
+Even if you do not install MySQL on the same server, you must install a mysql client so that you can run mysql commands.   
+※If you want to install MySQL on the same server, skip this step.
+
+~~~
+rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+# Execute this to check if mysql-community-client exists
+dnf search mysql-community-client
+# If you get a message like Error: Unable to find a match: mysql-community-client with the above command, please execute the command below first.
+dnf -y module disable mysql
+
+# install mysql-community-client
+dnf -y install mysql-community-client
+~~~
+
+
+- Place the Exment on the server. Download the latest Exment file and extract it.   
+※This is an easy installation procedure. For manual installation, please refer to [here](/quickstart_manual) for location.
+
 ~~~
 cd /var/www
-wget https://exment.net/downloads/ja/exment.zip
+wget https://exment.net/downloads/en/exment.zip
 unzip exment.zip
 rm exment.zip -f
 cd exment
 ~~~
 
-- Set the file permission. Execute the following command.
+- Set file permissions. Run the following command:
 
 ~~~
-# Add minimum permissions.
+# add minimum privileges
 chmod 0775 /var/www/exment
 chown -R apache:apache /var/www/exment
 
-# Execute the following command to grant user group privileges for the folder. Carry 1 or 2  
-# * If you do not have enough privileges, please execute with strong privileges such as granting sudo.
-# 1. If use Easy Intall
+# Execute the following command to grant user/group permissions for the folder. Perform 1 or 2   
+# ※ If you do not have enough privileges, please execute with strong privileges such as by adding sudo.
+# 1. For easy installation
 php artisan exment:setup-dir --easy=1
-# 2. If use Manual Intall
+# 2. For manual installation
 php artisan exment:setup-dir
 ~~~
 
-- In the browser of your PC, enter the IP address of the created web server to complete the initial installation of Exment.
+- Enter the IP address of the web server you created in your PC's browser to complete the initial installation of Exment.
 
-- *If you installed by simple installation and the initial installation is completed, execute the following command to restore the required privileges only at the time of installation.
+- ※If you installed using the easy installation, once the initial installation is complete, run the following command to restore the permissions required only during installation.
 
 ~~~
 php artisan exment:setup-dir --easy_clear=1
 ~~~
 
-## Correspondence at the time of PHP version upgrade
-If you want to change the PHP version, please follow the steps below to upgrade.  
-*You will not be able to access Exment during the version upgrade process.  
-*The following procedure example is the procedure for updating from PHP7.2 to PHP7.4.  
-*It is assumed that PHP is installed using epel and remi repository.  
-*The version upgrade method may differ depending on the environment, installation time, version and installation method.  
-
-- Make a backup first. The following command is a minimal backup example that just takes notes of php.ini and installed packages and extensions. Add or omit according to your own environment.  
-
-~~~
-# Create a backup folder
-cd ~
-mkdir php-backup && cd php-backup
-# Output installed package information
-yum list installed |grep php > php72-installed.txt
-# Output expansion module information
-php -m > php72-modules.txt
-# Copy the php.ini file (If the location is different from the following, check in advance with "php -i | grep php.ini") 
-cp /etc/opt/remi/php72/php.ini php72.ini
-~~~
-
-
-- Remove PHP related packages.  
-
-~~~
-yum remove php-*
-yum remove php72-php*
-yum remove php72-runtime
-~~~
-
-- Check for epel-release updates.  
-
-~~~
-yum update epel-release
-~~~
-
-- Check the remi repository.  
-
-~~~
-ll /etc/yum.repos.d/ | grep remi-
-# Only install the following if "remi-php74.repo" is not found in the list of results.
-# yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-~~~
-
-- Install PHP7.4 itself.  
-
-~~~
-yum install --enablerepo=remi-php74 httpd openssl mod_ssl mysql php74 php74-php php-mbstring php-mysqli php-dom php-gd.x86_64 php-zip php-sodium
-~~~
-
-- Pass the path to php7.4. The command will allow you to run php7.4.
-
-~~~
-# Remove symbolic links
-unlink /usr/bin/php
-# Recreate symbolic links
-ln -s /usr/bin/php74 /usr/bin/php
-~~~
-
-- Make sure your PHP version is 7.4.  
-
-~~~
-php -v
-~~~
