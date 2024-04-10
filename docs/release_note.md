@@ -1,10 +1,32 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.0.2 (2024/04/10)
+1. General
+     - Compatible with Maria DB 10.11 Details [here](/ja/update/v6_0_2)
+     - Compatible with PHP Stan Level.4
+
+1. Added functions
+     - Added deletion related event function in plugin (event)
+
+1. Function correction
+     - Support to maintain view when searching for free words
+     - Supported data display conditions such as views so that items included in the conditions are not displayed.
+
+1. Bug fixes
+     - Fixed a bug where users with "all table management privileges" could not register or edit custom forms.
+     - Fixed a bug where the "Organization hierarchy settings (role group)" in the system settings might not be followed when determining the "login user's role group"
+     - Fixed a bug where an error occurred on the server side when attempting to register new data using Excel import for the n-side table in a 1:n relationship, but nothing was displayed on the UI side.
+     - Fixed a bug where an exception would occur if a date item was selected in the group column of the summary view and there was null data in the target date item when column type: Day of the week was specified.
+     - Fixed a bug where "Field type read-only" was not set when "Display as radio button/check box format" was selected.
+     - Fixed a bug that caused an error when running exment:inittest on SQL Server.
+
+
 ## v6.0.1 (2024/03/21)
 
 1. Bug fixes
      - Fixed a bug that caused a restore error if the export of AWS RDS GTID was not turned off.
+
 
 ## v6.0.0 (2024/02/15)
 
@@ -14,6 +36,7 @@
      - Changed the framework used from Laravel9 to Laravel10
      - Changed the minimum PHP version from PHP8.0 to 8.2 or higher (recommended: PHP8.2)
      - Change the minimum version of MySQL from MySQL5.7 to 8.0 or higher (recommended: MySQL8.0)
+
 
 ## v5.0.11 (2023/12/14)
 

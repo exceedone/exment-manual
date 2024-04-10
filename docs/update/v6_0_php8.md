@@ -12,7 +12,7 @@ For the update procedure, please check [here](/install_mysql).
 ## MariaDB version upgrade method MariaDB 10.4
 If you are using MariaDB 10.4 or lower, you need to update to MariaDB 10.4.
 ### Update work for XAMPP environment
-- Before proceeding, stop MariaDB and close the XAMPP control panel.   
+- In preparation for work, stop Apache and MySQL (MariaDB) and exit the XAMPP control panel.
 - Rename mysql folder. (Example: Change the default name C:\xampp\mysql to C:\xampp\mysql-old)
 - Download the new MariaDB in ZIP format.
 
@@ -20,9 +20,9 @@ If you are using MariaDB 10.4 or lower, you need to update to MariaDB 10.4.
    2. Download the file according to the OS and MariaDB version you want to use.   
       > Please select the zip file instead of the MSI.
    3. Unzip the ZIP file, change the unzipped folder name to mysql, and move to the XAMPP folder.
-- Move mysql-old\data to the mysql folder.
-- Move mysql-old\data\php.ini to the mysql\bin folder.
-- Click Start in the Apache and MySQL row.
+- Copy mysql-old\data to the mysql folder.
+- Copy mysql-old\bin\my.ini to the mysql\bin folder.
+- Start the XAMPP control panel and start "Apache" and "MySQL (MariaDB).".
 
 ## How to update PHP version PHP8.2
 

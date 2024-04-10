@@ -162,6 +162,13 @@ Depending on the environment, it may be faster.
 - Role : Maximum number of records to be acquired per table when searching related data.
 
 
+#### Maintain view when searching for free words
+- Setting key : EXMENT_SEARCH_KEEP_DEFAULT_VIEW
+- Default value : false
+- Role : If true, the currently selected view will be maintained when searching for free words in a table.
+(If false, a free word search will be performed in all view.)
+
+
 ### Email / Notification settings
 #### Show / hide notification bar at the top right of the page
 - Setting key : EXMENT_NOTIFY_NAVBAR
