@@ -3,7 +3,7 @@
 
 ## v6.0.2 (2024/04/10)
 1. General
-     - Compatible with Maria DB 10.11 Details [here](/ja/update/v6_0_2)
+     - Compatible with Maria DB 10.11 Details [here](/update/v6_0_2)
      - Compatible with PHP Stan Level.4
 
 1. Added functions
