@@ -10,6 +10,7 @@ It is executed when a specific operation is performed on the screen of Exment, a
 | loading | At the start of loading | At the beginning of the page load process, the process starts. |
 | saving | Immediately before saving | Immediately before saving the data, the process starts. |
 | saved | After saving | After saving the data, the process starts. |
+| deleted | After deleted | After deleting the data, the process starts. |
 | workflow_action_executing | Immediately before workflow execution | Immediately before workflow execution, the process starts. |
 | workflow_action_executed | After workflow execution | After workflow execution, the process starts. |
 | notify_executing | Immediately before notification execution | Immediately before notification execution, the process starts. |
