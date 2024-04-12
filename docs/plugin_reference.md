@@ -510,6 +510,25 @@ None
 | ---- | ---- |
 | boolean | Validation result (true: normal, false: error) |
 
+#### validateDestroy
+Perform validation before delete custom value. Describe the processing you want to execute in this function.
+
+##### argument
+| Name | Type | Description |
+| ---- | ---- | ---- |
+| $custom_value | CustomValue | Instance of custom data  |
+
+##### Return value
+| Type | Description |
+| ---- | ---- |
+| array | Validation result and message (true: normal, false: error) |
+
+~~~ php
+        [
+            'status'  => false,
+            'message' =>  'Data with high importance cannot be deleted.',
+        ]
+~~~
 
 ---  
 

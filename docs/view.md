@@ -102,7 +102,7 @@ Add a condition when you want to narrow down the displayed content, such as disp
 - Target column:  
 A column used for the narrowing condition.
 
-- Search condition:  
+- Condition:  
 Select the content of the condition.  
 For details, please refer to [Search conditions](/view.md?id=About-search-conditions).
 
@@ -114,6 +114,15 @@ Delete the display condition of the view.
 
 - "New" button:  
 Adds a new view display condition.
+
+- Condition Join:  
+If you select "Match All Condition", data that matches all conditions will be displayed.  
+If you select "Match Any Condition", data that matches any of the conditions will be displayed.
+
+- Condition Reverse:  
+If you check "Reverse condition", data that does not match the conditions will be displayed.  
+If you do not check "Reverse condition", data that matches the conditions will be displayed.  
+※ Only the summary view is not eligible for the display condition reversal function.
 
 #### About search conditions
 Depending on the type of content selected in the "Target Column" ("Date", "User", etc.), the options will change.  
