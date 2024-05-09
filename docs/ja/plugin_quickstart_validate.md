@@ -77,6 +77,18 @@ class Plugin extends PluginValidatorBase
 
     public function validateDestroy($custom_value)
     {
+        // (v6.0.2より追加)falseを返した場合、データ削除せずに、'message'に設定したエラーメッセージを画面に表示します。
+        if ($custom_value->getValue('priority') > 3) {
+            return [
+                'status'  => false,
+                'message' =>  '重要度が高いデータは削除できません。',
+            ];
+        } else {
+            // trueを返した場合、データ削除します。
+            return [
+                'status'  => true
+            ];
+        }
     }
 }
 ~~~
@@ -84,6 +96,8 @@ class Plugin extends PluginValidatorBase
 - namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 - プラグイン管理画面で設定した「対象テーブル」を保存する直前に、プラグインが呼び出され、Plugin.php内のvalidate関数を実行します。validate関数でtrueを返した場合、処理はそのまま続行します。falseを返した場合、処理を中断して、プロパティ$messagesに設定したエラーメッセージを画面に表示します。  
+
+- 「対象テーブル」を削除する直前に、プラグインが呼び出され、Plugin.php内のvalidateDestroy関数を実行します。validate関数でtrueを返した場合、データを削除します。falseを返した場合、処理を中断して、'message'に設定したエラーメッセージを画面に表示します。
 
 - Pluginクラスは、クラスPluginValidatorBaseを継承しています。  
 PluginValidatorBaseは、呼び出し元のカスタムテーブル$custom_table、変更前のカスタムデータ値$original_value、画面の入力値$input_valueなどのプロパティを所有しており、validate関数内ではそれらのプロパティを参照することができます。  

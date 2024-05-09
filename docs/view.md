@@ -72,6 +72,10 @@ When creating multiple views, when a user opens the data list, the view that is 
 ※ "Default" can be set to "YES" for only one view in one custom table.  
 If "Default" is set to "YES" for two or more views, it will be changed to "NO" except for the view that was last set to "YES".  
 
+#### Order
+Displayed when the setting value of "EXMENT_SORT_CUSTOM_VIEW_OPTIONS" in the .env file is not 0.    
+Set the order of views displayed on the custom view menu button.
+
 #### Display column selection
 The settings for the columns displayed in the view.  
 A list of the set columns is displayed on the data list screen, etc.  
@@ -121,7 +125,6 @@ If you select "Match Any Condition", data that matches any of the conditions wil
 
 - Condition Reverse:  
 If you check "Reverse condition", data that does not match the conditions will be displayed.  
-If you do not check "Reverse condition", data that matches the conditions will be displayed.  
 ※ Only the summary view is not eligible for the display condition reversal function.
 
 #### About search conditions

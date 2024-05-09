@@ -1,6 +1,7 @@
 # Data details
 Click the target data in [Data List](/data_grid.md) to display the data details.  
-In the data list, only the contents specified in [Display column selection](/view?Id=Display-Column-Selection) in the view settings are displayed, but in the data details, [Data form](/data_form) are displayed.
+In the data list, only the contents specified in [Display column selection](/view?Id=Display-Column-Selection) in the view settings are displayed.  
+In the data details, matching form items are displayed according to the priority set in the [form priority](/form?Id=form-priority-settings) settings.
 
 The following four types of information are displayed on the data details screen.  
 

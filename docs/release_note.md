@@ -1,6 +1,17 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.0.3 (2024/05/09)
+1. Function fixes
+    - Adjusting the display order of the view list when switching views.
+
+1. Bug fixes
+    - Fix the bug where trying to update columns other than the image column (multiple selections OK) for data with an image column via the API (put-value) results in a 500 error.
+    - Fix the malfunction in image deletion via the API.
+    - Fix the bug where the condition value does not clear even if the condition item is changed when opening view settings etc. where the condition value is already set.
+    - Fix the bug where data linkage does not work in the text editor column.
+
+
 ## v6.0.2 (2024/04/10)
 1. General
      - Compatible with Maria DB 10.11 Details [here](/update/v6_0_2)
@@ -834,7 +845,7 @@
 ## v3.5.0 (2020/07/28)
 1. Addition of functions
     - Added data update settings. A specific trigger such as "click a button" or "create new data" updates the data saved in Exment in a batch. Click [here](/operation) for details.
-    - You can now select the screen type in the form priority settings. You can make settings such as "form that is displayed only when creating a new form" and "form that is displayed only on the data details screen". Form priority setting is [here](/form # form display condition setting)
+    - You can now select the screen type in the form priority settings. You can make settings such as "form that is displayed only when creating a new form" and "form that is displayed only on the data details screen". Form priority setting is [here](/form#form-priority-settings)
     - Added the editing function of the plug-in. You can edit, upload new, and delete plug-in files from the screen.
     - Fixed so that the user view / user dashboard can be enabled / disabled from the system settings.
     - Drag and drop is supported for file / image columns. * To disable it, click [here](/config#disable-drag-and-drop-of-file).

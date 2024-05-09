@@ -328,6 +328,14 @@ The decryption password will be sent separately.
 - Default value : false
 - Role : By setting it to true, the order of role group settings on the user edit page and organization edit page and the order of the role group list page will match the display order (of role groups). If false, it will be in id order.
 
+#### Custom view sort order
+- Setting key : EXMENT_SORT_CUSTOM_VIEW_OPTIONS
+- Default value : 0
+- Role : Set the order of views displayed on the custom view menu button. Please choose from the following.  
+0: 1st key: System view/user view, 2nd key: View type, 3rd key: id   
+1: 1st key: System view/user view, 2nd key: View type, 3rd key: order   
+2: 1st key: system view/user view, 2nd key: order
+
 ### Import / Export
 
 #### Disable Import
