@@ -12,17 +12,17 @@ The Exment log file is located in the following path based on the Exment root pr
 ### composer require or update batch ends prematurely
 When installing on Linux, when executing the composer require command or update batch, the following message may be displayed.
 
-`` ```
+```
 # pattern 1
 Killed
 
-#Pattern 2
+# Pattern 2
 mmap () failed: [12] Cannot allocate memory
 PHP Fatal error: Out of memory (allocated XXXXX) (tried to allocate XXXXX bytes) in phar: ///usr/local/bin/composer/src/Composer/Console/Application.php on line 82
 
-#Pattern 3
+# Pattern 3
 Fatal error: Allowed memory size of XXXXXXXX bytes exhausted
-`` ```
+```
 
 This is an error due to insufficient memory.  
 
@@ -43,11 +43,10 @@ swapon / swapfile
 Please carry out the following contents.  
 
 --Modify memory_limit in the php.ini file.  
-
-`` ```
+```
 memory_limit = 000M # Make the size larger than it is now
 memory_limit = -1 # or this specification. You may use unlimited memory, so set it at your own risk
-`` ```
+```
 
 --Set composer environment variables (add to batch in case of update issues)
 COMPOSER_MEMORY_LIMIT = -1 composer update
@@ -57,12 +56,12 @@ COMPOSER_MEMORY_LIMIT = -1 composer update
 
 The following errors may occur during manual installation or updating.
 
-`` ```
+```
 Installation failed, reverting ./composer.json to its original content.
 
   [RuntimeException]
   Could not load package XXX / XXX in http://repo.packagist.org: [UnexpectedValueException] Could not parse version constraint ~ 4. *: Invalid version string "~ 4. *"
-`` ```
+```
 
 In this case, you may be able to solve it by increasing the version of composer. Please update the composer version to the latest version with the following command.  
 ** * The update method seems to differ depending on the environment. Please verify your composer update with one of the following: ** **
@@ -70,27 +69,27 @@ In this case, you may be able to solve it by increasing the version of composer.
 
 #### (1) Execute the following command
 
-`` ```
+```
 composer selfupdate
-`` ```
+```
 
 #### (2) Execute the following command
 
-`` ```
+```
 composer self-update
-`` ```
+```
 
 #### (3) If neither of the above can be updated, follow the steps below.
 
 - ##### composer deleted
 Delete the composer that is already installed.
 
-`` ```
+```
 which composer
 #Result example: / usr / bin / composer
 ### Execute the following command
 rm / usr / bin / composer
-`` ```
+```
 
 - ##### composer reinstall
 Follow the steps below to reinstall composer.
@@ -99,6 +98,47 @@ Follow the steps below to reinstall composer.
     -[Linux version commentary site] (https://weblabo.oscasierra.net/php-composer-centos-install/)
     -[Mac version commentary site] (https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
 
+
+
+### "require ext-gd" and "require ext-sodium" errors occur when running update batches or composer require commands
+When executing an update batch or executing the composer require command, the following message may appear.
+```
+  Problem 1
+    - phpoffice/phpspreadsheet[1.23.0, ..., 1.29.0] require ext-gd * -> it is missing from your system. Install or enable PHP's gd extension.
+```
+```
+  Problem 1
+    - lcobucci/jwt[5.0.0, ..., 5.3.0] require ext-sodium * -> it is missing from your system. Install or enable PHP's sodium extension.
+```
+In this case, please enable the php extension.
+#### For Linux
+~~~
+# Ubuntu server
+sudo apt-get install php8.2-gd
+
+# Centos server
+sudo yum install gd gd-devel php-gd
+~~~
+
+#### For Mac/Windows
+
+##### (1) Get php.ini file path
+
+~~~
+# Run the following command: The path to the php.ini file is displayed in the "Loaded Configuration File" line.
+
+php --ini
+~~~
+
+##### (2) Modify php.ini file
+
+~~~
+# Uncomment the below
+extension=gd
+
+# Uncomment the below
+extension=sodium
+~~~
 
 
 ### After the initial installation, when accessing the management screen, a "SQLSTATE [HY000] [202] Permission denied" error occurs.
@@ -181,11 +221,11 @@ In that case, please modify it so that the command can be executed with the full
 - Add the following description.
 
 
-`` ```
+```
 EXMENT_MYSQL_BIN_DIR = (path to the folder where the "mysql" executable is located)
 #Example
 EXMENT_MYSQL_BIN_DIR = / usr / bin
-`` ```
+```
 
 
 #### Add "safe_mode = Off" in php.ini
@@ -195,6 +235,6 @@ Please carry out the following contents.
 - Open the php .ini file.
 - Add the following contents.
 
-`` ```
+```
 safe_mode = Off
-`` ```
+```

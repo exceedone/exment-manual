@@ -63,6 +63,18 @@ class Plugin extends PluginValidatorBase
 
     public function validateDestroy($custom_value)
     {
+        // (Added from v6.0.2) If false is returned, the error message set in 'message' will be displayed on the screen without deleting the data.
+        if ($custom_value->getValue('priority') > 3) {
+            return [
+                'status'  => false,
+                'message' =>  '重要度が高いデータは削除できません。',
+            ];
+        } else {
+            // If it returns true, data will be deleted.
+            return [
+                'status'  => true
+            ];
+        }
     }
 }
 ~~~
@@ -72,6 +84,10 @@ class Plugin extends PluginValidatorBase
 php is executed.  
 If you return true in the validate function, the process will continue.  
 If false is returned, the process is interrupted and the error message set in the property $ messages is displayed on the screen.  
+
+- Just before deleting the "target table", the plugin is called and executes the validateDestroy function in Plugin.php.  
+If the validateDestroy function returns true, the data will be deleted.  
+If false is returned, processing will be interrupted and the error message set in 'message' will be displayed on the screen.  
 
 - The Plugin class inherits from the class PluginValidatorBase.  
 PluginValidatorBase has properties such as the custom table $ custom_table, the custom data value before the change $ original_value, and the screen input value $ input_value, which can be referenced in the validate function.  

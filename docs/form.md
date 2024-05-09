@@ -31,7 +31,7 @@ Enter the name of the form to be saved.
 
 - ##### Default form
 If you want to register this form as the default form, please set it to YES.  
-If [form display condition](#form-display-condition-settings) is set, that will be prioritized.
+If [form priority](#form-priority-settings) is set, that will be prioritized.
 
 - ##### Detailed screen display method
 Select whether to match the item display method on the [data detail page](/data_details) with the row / column layout set on this screen, or to display in a simple vertical single column display.
@@ -250,15 +250,15 @@ When updating from less than v3.3.1 to v3.3.1 or higher, in order to maintain co
 Click [here](/patch/relation_filter) for details on the specifications at the time of update.</span>
 
 
-## Form display condition settings
+## Form priority settings
 By setting the conditions and priority, you can switch the form screen used for data creation and data detail page.  
 
 ### Create New
-Create from the [New] button to the right of the form display condition settings.
-![Form display condition](img/form/form_display_conditions.png)
+Create from the [New] button to the right of the form priority settings.
+![Form priority](img/form/form_display_conditions.png)
 
 ### Setting Page
-![Form display condition](img/form/form_priority.png)
+![Form priority](img/form/form_priority.png)
 
 ##### Target Form  
 Select the form you want to display when the conditions are match.
