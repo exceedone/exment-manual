@@ -100,7 +100,7 @@ Follow the steps below to reinstall composer.
 
 
 
-### "require ext-gd" and "require ext-sodium" errors occur when running update batches or composer require commands
+### "require ext-gd" , "require ext-sodium" , "require ext-zip" errors occur when running update batches or composer require commands
 When executing an update batch or executing the composer require command, the following message may appear.
 ```
   Problem 1
@@ -110,14 +110,20 @@ When executing an update batch or executing the composer require command, the fo
   Problem 1
     - lcobucci/jwt[5.0.0, ..., 5.3.0] require ext-sodium * -> it is missing from your system. Install or enable PHP's sodium extension.
 ```
+```
+  Problem 1
+    - exceedone/exment[v5.0.0, ..., v5.0.11] require phpoffice/phpspreadsheet ^1.23.0 -> satisfiable by phpoffice/phpspreadsheet[1.23.0, ..., 1.29.0].
+    - phpoffice/phpspreadsheet[1.23.0, ..., 1.29.0] require ext-zip * -> it is missing from your system. Install or enable PHP's zip extension.
+    - Root composer.json requires exceedone/exment ^5.0 -> satisfiable by exceedone/exment[v5.0.0, ..., v5.0.11].
+```
 In this case, please enable the php extension.
 #### For Linux
 ~~~
 # Ubuntu server
-sudo apt-get install php8.2-gd
+sudo apt-get install php8.2-gd php8.2-zip
 
 # Centos server
-sudo yum install gd gd-devel php-gd
+sudo yum install gd gd-devel php-gd php-pecl-zip.x86_64
 ~~~
 
 #### For Mac/Windows
@@ -138,6 +144,9 @@ extension=gd
 
 # Uncomment the below
 extension=sodium
+
+# Uncomment the below
+extension=zip
 ~~~
 
 
