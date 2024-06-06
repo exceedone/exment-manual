@@ -1,6 +1,13 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.0.4 (2024/06/05)
+1. Bug fixes
+    - Fixed a bug where the password could not be changed after upgrading (laravel-admin)
+    - Fixed a bug where "deleted data" was included in the calculation of the total of the summary view
+    - Fixed a bug where the display order input field for the display column was displayed above the up and down buttons for selecting the display column when the display order was displayed on the view editing screen
+
+
 ## v6.0.3 (2024/05/09)
 1. Function fixes
     - Adjusting the display order of the view list when switching views.
