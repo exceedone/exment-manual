@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.1.0 (2024/07/02)
+
+1. Added features
+    - Added 2D barcode function
+
+
 ## v6.0.4 (2024/06/05)
 1. Bug fixes
     - Fixed a bug where the password could not be changed after upgrading (laravel-admin)
