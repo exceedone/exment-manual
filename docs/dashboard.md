@@ -85,20 +85,38 @@ Select the target to be displayed from the created tables in [Custom table setti
 Select the target to be displayed from [View](/view.md) in the selected target table.  
 
 ## system
-The system can be displayed on the dashboard.  
-※ Currently, "Guidelines" can be displayed.
+You can display system-related information on the dashboard.  
+※ Currently, you can display "Guidelines," "List of latest Exment information," "Editor," "HTML," "Notifications list," and "2D barcode."
 
-### System display example
-![Dashboard screen](img/dashboard/dashboard_system1.png)
-
-### System setting items
+### System settings
 ![Dashboard screen](img/dashboard/dashboard_system2.png)
 
 #### Item display name
-Enter the name of the item to be displayed on the screen.  
+Enter the name of the item to be displayed on the screen. 
 
-#### Display item
-By selecting "Guidelines", guidance information on the system can be displayed as in the display example.
+#### Display Items
+Select the items you want to view.
+
+- ##### Guidelines
+It can display information about the system.  
+![Dashboard screen](img/dashboard/dashboard_system1.png)
+
+- ##### Exment Latest News List
+The latest information is obtained and displayed from the Exment official website.
+![Dashboard screen](img/dashboard/dashboard_system3.png)
+
+- ##### Editor
+Enter the text freely and display it on the screen.
+![Dashboard screen](img/dashboard/dashboard_system4.png)
+
+- ##### HTML
+Enter the content in HTML format and display it on the screen. *Scripts will also be executed.
+![Dashboard screen](img/dashboard/dashboard_system5.png)
+
+- ##### 2D barcode
+Displays a 2D barcode read button.  
+You can change the display name of the "2D barcode" on the "Reading 2D Barcode" button by changing "EXMENT_TEXT_QR_BUTTON_JA/EN" in the .env file.
+![ダッシュボード画面](img/dashboard/dashboard_system6.png)
 
 ## chart
 Data managed by Exment's summary view can be converted into any format among 3 types of

@@ -26,6 +26,7 @@
   * [Custom form](/form.md)
   * [Custom views](/view.md)
   * [Operation](/operation)
+  * [2D Barcode settings](/2d_barcode.md)
 
 * 【5. Data management】
   * [Data](/data.md)
