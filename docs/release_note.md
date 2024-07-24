@@ -1,6 +1,13 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.1.1 (2024/07/24)
+
+1. Bug fixes
+    - Fixed a bug where LDAP was not compatible with PHP8.2
+    - Fixed a bug related to the aggregate view
+
+
 ## v6.1.0 (2024/07/02)
 
 1. Added features
