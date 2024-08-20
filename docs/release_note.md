@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.1.2 (2024/08/20)
+
+1. Function fixes
+    - Modifications to improve performance (Workflow, View related)
+
+
 ## v6.1.1 (2024/07/24)
 
 1. Bug fixes
