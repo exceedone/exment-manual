@@ -1,6 +1,36 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.1.5 (2024/10/09)
+- <span class="red bold">We are addressing the vulnerability in this case. Please be sure to update. </span>
+
+- <span class="red bold">To update from v5.0.X or lower to v6.0.0 or higher, you must update manually. Please check the contents of [here](/update/v6_0_php8) before updating. </span>
+
+1. Vulnerability response
+    - Addresses a cross-site scripting vulnerability. For details, please see [here](/weakness/20241009)
+    - Addresses a vulnerability that allows unauthorized changes to custom table settings. For details, please see [here](/weakness/20241009_2)
+
+
+## v6.1.4 (2024/10/02)
+
+1. Feature fixes
+    - laravel-admin PHPStan Level 5 & 6 compatible (laravel-admin)
+    - Added a setting value that prevents the use of user views in specific tables even if "Use user views" in the system detailed settings is set to YES
+
+1. Bug fixes
+    - Fixed a bug that caused an error when installing the composer LDAP module
+    - Fixed a bug that caused an error when selecting "Show details of aggregated data" in the aggregate view
+
+
+## v6.1.3 (2024/09/12)
+
+1. Bug fixes
+    - Fixed a bug where forms could not be edited in tables migrated from v5.0.8 to v6.0.4 (laravel-admin)
+    - Fixed a bug where the recipient user was not displayed on the notification settings editing screen
+    - Fixed a bug where the width of the input field for the column type "Choice" increased with each row when the child table of a form was set to "Table format"
+    - Fixed a bug where the Japanese name of the plugin's implementation trigger was "Workflows"
+
+
 ## v6.1.2 (2024/08/20)
 
 1. Function fixes
@@ -73,6 +103,14 @@
      - Changed the framework used from Laravel9 to Laravel10
      - Changed the minimum PHP version from PHP8.0 to 8.2 or higher (recommended: PHP8.2)
      - Change the minimum version of MySQL from MySQL5.7 to 8.0 or higher (recommended: MySQL8.0)
+
+
+## v5.0.12 (2024/10/09)
+- <span class="red bold">We are addressing the vulnerability in this case. Please be sure to update. </span>
+
+1. Vulnerability response
+     - Addresses a cross-site scripting vulnerability. For details, please see [here](/weakness/20241009)
+     - Addresses a vulnerability that allows unauthorized changes to custom table settings. For details, please see [here](/weakness/20241009_2)
 
 
 ## v5.0.11 (2023/12/14)
