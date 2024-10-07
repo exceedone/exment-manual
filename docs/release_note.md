@@ -1,6 +1,26 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.1.4 (2024/10/02)
+
+1. Feature fixes
+    - laravel-admin PHPStan Level 5 & 6 compatible (laravel-admin)
+    - Added a setting value that prevents the use of user views in specific tables even if "Use user views" in the system detailed settings is set to YES
+
+1. Bug fixes
+    - Fixed a bug that caused an error when installing the composer LDAP module
+    - Fixed a bug that caused an error when selecting "Show details of aggregated data" in the aggregate view
+
+
+## v6.1.3 (2024/09/12)
+
+1. Bug fixes
+    - Fixed a bug where forms could not be edited in tables migrated from v5.0.8 to v6.0.4 (laravel-admin)
+    - Fixed a bug where the recipient user was not displayed on the notification settings editing screen
+    - Fixed a bug where the width of the input field for the column type "Choice" increased with each row when the child table of a form was set to "Table format"
+    - Fixed a bug where the Japanese name of the plugin's implementation trigger was "Workflows"
+
+
 ## v6.1.2 (2024/08/20)
 
 1. Function fixes
