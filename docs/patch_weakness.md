@@ -26,5 +26,5 @@ This is a list of vulnerabilities that have occurred in the past.
 | [2020/03/25](/weakness/20200325) | ~ v3.1.6 | Cross-site scripting on the list screen |
 | [2021/04/13](/weakness/20210413) | facade/ignition < 1.16.15 | Response to Laravel's Arbitrary Code Execution Vulnerability |
 | [2022/08/17](/weakness/20220817) | ～v5.0.2 | Cross-site scripting and SQL injection |
-| [2024/10/09](/ja/weakness/20241009) | ~v6.1.4 | Cross-site scripting
-| [2024/10/09](/ja/weakness/20241009_2) | ~v6.1.4 | Unauthorized custom table setting change
+| [2024/10/10](/ja/weakness/20241010) | ~v6.1.4 | Cross-site scripting
+| [2024/10/10](/ja/weakness/20241010_2) | ~v6.1.4 | Unauthorized custom table setting change
