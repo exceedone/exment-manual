@@ -1,14 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v6.1.5 (2024/10/09)
+## v6.1.5 (2024/10/10)
 - <span class="red bold">We are addressing the vulnerability in this case. Please be sure to update. </span>
 
 - <span class="red bold">To update from v5.0.X or lower to v6.0.0 or higher, you must update manually. Please check the contents of [here](/update/v6_0_php8) before updating. </span>
 
 1. Vulnerability response
-    - Addresses a cross-site scripting vulnerability. For details, please see [here](/weakness/20241009)
-    - Addresses a vulnerability that allows unauthorized changes to custom table settings. For details, please see [here](/weakness/20241009_2)
+    - Addresses a cross-site scripting vulnerability. For details, please see [here](/weakness/20241010)
+    - Addresses a vulnerability that allows unauthorized changes to custom table settings. For details, please see [here](/weakness/20241010_2)
 
 
 ## v6.1.4 (2024/10/02)
@@ -105,12 +105,12 @@
      - Change the minimum version of MySQL from MySQL5.7 to 8.0 or higher (recommended: MySQL8.0)
 
 
-## v5.0.12 (2024/10/09)
+## v5.0.12 (2024/10/10)
 - <span class="red bold">We are addressing the vulnerability in this case. Please be sure to update. </span>
 
 1. Vulnerability response
-     - Addresses a cross-site scripting vulnerability. For details, please see [here](/weakness/20241009)
-     - Addresses a vulnerability that allows unauthorized changes to custom table settings. For details, please see [here](/weakness/20241009_2)
+     - Addresses a cross-site scripting vulnerability. For details, please see [here](/weakness/20241010)
+     - Addresses a vulnerability that allows unauthorized changes to custom table settings. For details, please see [here](/weakness/20241010_2)
 
 
 ## v5.0.11 (2023/12/14)
