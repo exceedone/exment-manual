@@ -3,7 +3,7 @@
 
 ## v6.1.7 (2024/11/12)
 1. Bug fixes
-    - Fixed a bug where "deleted data" was included in the calculation of the total in the summary view.
+    - Fixed so that columns from other tables cannot be selected in the aggregate view if the columns from other tables referencing the target table are not search indexes.
     - Fixed a bug where it was not possible to upload to a file column from the public form.
     - Fixed a bug where "does not exist" was displayed when there were multiple values.
     - Fixed the input type of the attribute specification of the input element in the login-related form to text.
