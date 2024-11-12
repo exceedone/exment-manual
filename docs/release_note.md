@@ -1,6 +1,21 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.1.7 (2024/11/12)
+1. Bug fixes
+    - Fixed a bug where "deleted data" was included in the calculation of the total in the summary view.
+    - Fixed a bug where it was not possible to upload to a file column from the public form.
+    - Fixed a bug where "does not exist" was displayed when there were multiple values.
+    - Fixed the input type of the attribute specification of the input element in the login-related form to text.
+    - Fixed a bug where a 505 error occurred when trying to reset a password.
+    - Fixed a bug where the destination organization was not saved in the notification action settings.
+
+
+## v6.1.6 (2024/10/11)
+1. Bug fixes
+    - Fixed a bug that prevented files from being uploaded to the file column after updating to v6.1.5
+
+
 ## v6.1.5 (2024/10/10)
 - <span class="red bold">We are addressing the vulnerability in this case. Please be sure to update. </span>
 
@@ -103,6 +118,11 @@
      - Changed the framework used from Laravel9 to Laravel10
      - Changed the minimum PHP version from PHP8.0 to 8.2 or higher (recommended: PHP8.2)
      - Change the minimum version of MySQL from MySQL5.7 to 8.0 or higher (recommended: MySQL8.0)
+
+
+## v5.0.13 (2024/10/11)
+1. Bug fixes
+    - Fixed a bug that prevented files from being uploaded to the file column after updating to v5.0.12
 
 
 ## v5.0.12 (2024/10/10)
