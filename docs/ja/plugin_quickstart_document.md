@@ -243,3 +243,7 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 ### サンプルプラグイン
 [ユーザー情報出力](https://github.com/exment-git/plugin-sample/tree/main/document/document_demo_user)  
 ※ユーザー情報画面で、「ユーザー情報出力」ボタンが表示されます。  
+
+### 製品プラグイン
+[請求書のPDF出力](https://github.com/exment-git/plugin-product/tree/main/document/PluginInvoiceDocument)  
+※テンプレートで請求書をEXCEL形式で出力します。合わてEXCELファイルをPDFへ変換します。

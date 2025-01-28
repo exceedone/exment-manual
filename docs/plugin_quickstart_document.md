@@ -152,3 +152,6 @@ By clicking the button, a list will be displayed in "Attachments".
 ### Sample plugin
 [User information output](https://github.com/exment-git/plugin-sample/tree/main/document/document_demo_user)  
 ※ The "User information output" button is displayed on the user information screen.
+### Product plugin
+[Invoice PDF output](https://github.com/exment-git/plugin-product/tree/main/document/PluginInvoiceDocument)  
+※ Output the invoice in EXCEL format using the template. Also convert the EXCEL file to PDF.

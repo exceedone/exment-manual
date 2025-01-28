@@ -98,7 +98,47 @@ Follow the steps below to reinstall composer.
     -[Linux version commentary site] (https://weblabo.oscasierra.net/php-composer-centos-install/)
     -[Mac version commentary site] (https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
 
+### "LogicException Invalid key supplied" error when running composer update command  
+When executing the composer update command, the following error may occur.
 
+```
+   LogicException	
+	
+  Invalid key supplied	
+	
+  at vendor/league/oauth2-server/src/CryptKey.php:67	
+     63▕             if (!$this->isValidKey($this->keyContents, $this->passPhrase ?? '')) {	
+     64▕                 throw new LogicException('Unable to read key from file ' . $keyPath);	
+     65▕             }	
+     66▕         } else {	
+  ➜  67▕             throw new LogicException('Invalid key supplied');	
+     68▕         }	
+     69▕	
+     70▕         if ($keyPermissionsCheck === true) {	
+     71▕             // Verify the permissions of the key	
+	
+      +17 vendor frames	
+	
+  18  [internal]:0	
+      Illuminate\Foundation\Application::Illuminate\Foundation\{closure}()	
+      +5 vendor frames	
+	
+  24  artisan:35	
+      Illuminate\Foundation\Console\Kernel::handle()	
+```
+
+#### In this case, please disable the use of the API and then create a Laravel key with the following command.
+
+```
+# Disable API use.
+UPDATE `systems` SET `system_value` = '0' WHERE `systems`.`system_name` = 'api_available';
+
+# Creating a Laravel key
+php artisan passport:keys	
+
+# Enable API use.
+UPDATE `systems` SET `system_value` = '1' WHERE `systems`.`system_name` = 'api_available';
+```
 
 ### "require ext-gd" , "require ext-sodium" , "require ext-zip" errors occur when running update batches or composer require commands
 When executing an update batch or executing the composer require command, the following message may appear.

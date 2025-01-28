@@ -68,9 +68,14 @@ Please refer to the image above for each layout example.
 
 ※If you reload the WEB page after saving the settings, the settings will be reflected and displayed.
 
-#### Use API
-- By setting "YES", you can use the API.
-- The initial value is "NO".
+#### Use API 
+- You can use the API by setting it to "YES".  
+Note: Before setting this to YES, you will need to create a Laravel key with the command below.
+
+````bash
+$ php artisan passport:keys
+````
+- The default value is "NO". 
 
 #### Communicate outside the server
 - If the setting is YES, you can execute processing that performs external server communication (data reception only), such as notification of the latest version of Exment.

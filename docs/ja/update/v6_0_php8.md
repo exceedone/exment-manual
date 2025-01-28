@@ -210,11 +210,70 @@ class Handler extends ExceptionHandler
 }
 ```
 
+### マイグレーション作成
+
+- password_reset_tokensテーブルの削除  
+MySQLを開いて、以下のコマンドを実行します。
+
+``` sql 
+DROP TABLE IF EXISTS password_reset_tokens;
+```
+
+- マイグレーションの作成  
+プロジェクトのルートディレクトリで以下のコマンドを実行してマイグレーションファイルを作成します。
+
+```
+php artisan make:migration create_password_reset_tokens_table
+```
+
+- マイグレーションファイルの編集  
+生成されたマイグレーションファイルを開き、以下のように編集します。  
+通常、ファイルはdatabase/migrationsディレクトリ内にあります。
+
+``` php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('password_reset_tokens');
+    }
+};
+
+``` 
+- マイグレーションの実行  
+マイグレーションファイルを保存したら、プロジェクトのルートディレクトリでマイグレーションを実行します。
+
+```
+php artisan migrate
+```
+
 ### コマンド実行2
 
 - 以下のコマンドを実行します。
 
-```
+``` bash
 # Exmentアップデート内容反映
 php artisan exment:update
 
@@ -244,3 +303,36 @@ composer require league/flysystem-ftp ~3.0
 #### 独自のファイルドライバを使用していた場合
 Dropboxなど、独自のファイルドライバを使用していた場合、修正が必要になります。  
 [こちら](/ja/additional_file_saveplace)の「(上級者・開発者向け)独自のドライバ追加」に記載の内容に従い、独自のファイルドライバを再度作成してください。  
+
+## 他のエラー
+### 「Illuminate\Database\QueryException」エラー
+
+- 「Table password_reset_tokens' already exists」／「Table 'failed_jobs' already exists」／「Table 'personal_access_tokens' already exists」エラーが発生する場合があります。
+
+```
+  Illuminate\Database\QueryException
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'password_reset_tokens' already exists 
+```
+```
+  Illuminate\Database\QueryException
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'failed_jobs' already exists 
+```
+```
+  Illuminate\Database\QueryException
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'personal_access_tokens' already exists 
+```
+- この場合、以下のコマンドを実行してください。
+
+``` bash
+sudo -u apache sed -i '14,18s/^/\/\//' database/migrations/2014_10_12_100000_create_password_reset_tokens_table.php
+sudo -u apache sed -i '14,22s/^/\/\//' database/migrations/2019_08_19_000000_create_failed_jobs_table.php
+sudo -u apache sed -i '14,23s/^/\/\//' database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php
+sudo -u apache php artisan migrate
+sudo -u apache sed -i '14,18s/^\/\///' database/migrations/2014_10_12_100000_create_password_reset_tokens_table.php
+sudo -u apache sed -i '14,22s/^\/\///' database/migrations/2019_08_19_000000_create_failed_jobs_table.php
+sudo -u apache sed -i '14,23s/^\/\///' database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php
+```
+

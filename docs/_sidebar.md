@@ -27,6 +27,7 @@
   * [Custom views](/view.md)
   * [Operation](/operation)
   * [2D Barcode settings](/2d_barcode.md)
+  * [JAN Barcode Settings](/jancode.md)
 
 * 【5. Data management】
   * [Data](/data.md)
