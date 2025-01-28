@@ -86,7 +86,7 @@ Select the target to be displayed from [View](/view.md) in the selected target t
 
 ## system
 You can display system-related information on the dashboard.  
-※ Currently, you can display "Guidelines," "List of latest Exment information," "Editor," "HTML," "Notifications list," and "2D barcode."
+※ Currently, you can display "Guidelines," "List of latest Exment information," "Editor," "HTML," "Notifications list," and "2D/JAN barcode"
 
 ### System settings
 ![Dashboard screen](img/dashboard/dashboard_system2.png)
@@ -113,10 +113,11 @@ Enter the text freely and display it on the screen.
 Enter the content in HTML format and display it on the screen. *Scripts will also be executed.
 ![Dashboard screen](img/dashboard/dashboard_system5.png)
 
-- ##### 2D barcode
-Displays a 2D barcode read button.  
-You can change the display name of the "2D barcode" on the "Reading 2D Barcode" button by changing "EXMENT_TEXT_QR_BUTTON_JA/EN" in the .env file.
-![ダッシュボード画面](img/dashboard/dashboard_system6.png)
+##### 2D/JAN Barcode  
+Displays the button for 2D/JAN barcode scanning.  
+The display name of the "2D/JAN Barcode Scan" button can be customized in the `.env` file by modifying the `EXMENT_TEXT_SCAN_BUTTON_JA/EN` variable.  
+
+![Dashboard Screen](img/dashboard/dashboard_system6.png)
 
 ## chart
 Data managed by Exment's summary view can be converted into any format among 3 types of

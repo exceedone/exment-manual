@@ -1,6 +1,24 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.0 (2024/12/24)
+1. Added features
+    - Added JAN barcode function
+    - Invoice PDF email sending plugin (standard plugin) For details, click [here](https://github.com/exment-git/plugin-product/tree/main/document/PluginInvoiceDocument)
+1. Bug fixes
+    - Fixed bug where adding free word search in CRUD plugin did not result in search
+    - Fixed bug regarding the position of "custom_value_(table name)" class on the details screen
+
+
+## v6.1.8 (2024/12/04)
+1. Bug fixes
+    - Fixed a bug where an SQL error occurs in the summary view targeting workflow status.
+    - Fixed a bug where files uploaded to the dashboard editor are not displayed the next day.
+    - Fixed a bug where an error occurs when paging through multiple child tables on the parent table details screen. (laravel-admin)
+1. Other
+    - Added a warning comment in API settings when a Composer error occurs. For details, please see [here](/system_setting?id=api%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b)
+
+
 ## v6.1.7 (2024/11/12)
 1. Bug fixes
     - Fixed so that columns from other tables cannot be selected in the aggregate view if the columns from other tables referencing the target table are not search indexes.

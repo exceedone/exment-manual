@@ -28,6 +28,7 @@
   * [カスタムビュー](/ja/view)
   * [データ更新設定](/ja/operation)
   * [二次元バーコード設定](/ja/2d_barcode)
+  * [JANバーコード設定](/ja/jancode)
 
 * 【5. データ管理】
   * [データ](/ja/data)

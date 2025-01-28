@@ -1,6 +1,9 @@
 # 2D Barcode settings
 Configure the 2D barcode settings for the table.
 
+## Overview of the 2D Barcode Functionality
+For an overview of the 2D barcode functionality, please refer to the [official website post](https://exment.net/release_v6-1-0/).
+
 ## Page display
 - In the custom table list, check the table you want to configure and click "Table details settings" in the upper right corner.  
 ![2D barcode page](img/2d_barcode/barcode1.png)

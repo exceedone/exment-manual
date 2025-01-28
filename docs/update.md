@@ -111,12 +111,20 @@ Perform a data backup. For more information [backup](/backup) Please confirm.
 - Then click on the backup file at the time of execution and download it.
 
 ### Get latest source, reflect, update database
-- At the command line, execute the following command:  
-※ The latest version may not be detected immediately after release. In this case, execute the following command again after about 10 to 20 minutes have passed.  
 
-~~~
-cd (Project root directory)
-composer require exceedone/laravel-admin
-composer require exceedone/exment
-php artisan exment:update
+- Currently, XServer does not support the default installation of the PHP Sodium extension.  
+  ※If installation is absolutely necessary, you will need to contact XServer’s support team.  
+
+- If you want to update Composer on XServer, you need to use a different command than the usual update command.  
+  Normally: `composer update` <span style="color: red;">✖</span>  
+  Actually: `composer update --ignore-platform-reqs`  
+  → This command ignores the Sodium check and directly executes the Composer update.  
+
+- In the command line, execute the following command.  
+  ※Immediately after the release, the latest version might not be detected. In that case, wait for about 10-20 minutes and then run the command again.  
+
+~~~  
+cd (Project’s root directory)  
+composer update --ignore-platform-reqs`  
+php artisan exment:update  
 ~~~

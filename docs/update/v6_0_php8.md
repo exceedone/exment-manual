@@ -209,7 +209,64 @@ class Handler extends ExceptionHandler
     }
 }
 ```
+### Migration Creation
 
+- Delete password_reset_tokens table  
+Open MySQL and execute the following command:
+
+``` sql 
+DROP TABLE IF EXISTS password_reset_tokens;
+```
+
+- Create Migration  
+Execute the following command in the project's root directory to create the migration file:
+
+```
+php artisan make:migration create_password_reset_tokens_table
+```
+
+- Edit Migration File  
+Open the generated migration file and edit it as follows.  
+The file is typically located in the database/migrations directory.
+
+``` php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('password_reset_tokens');
+    }
+};
+
+``` 
+- Run Migration  
+After saving the migration file, run the migration in the project's root directory:
+
+```
+php artisan migrate
+```
 ### Command execution 2
 
 - Run the following command.
@@ -244,3 +301,35 @@ composer require league/flysystem-ftp ~3.0
 #### If you were using your own file driver
 If you are using a proprietary file driver, such as Dropbox, you will need to modify it.   
 [Click here](/additional_file_saveplace) [For advanced users/developers] Please create your own file driver again according to the contents described in Adding your own driver.   
+
+## Other Errors
+### "Illuminate\Database\QueryException" Error
+
+- You may encounter errors such as "Table 'password_reset_tokens' already exists" / "Table 'failed_jobs' already exists" / "Table 'personal_access_tokens' already exists".
+
+```
+  Illuminate\Database\QueryException
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'password_reset_tokens' already exists 
+```
+```
+  Illuminate\Database\QueryException
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'failed_jobs' already exists 
+```
+```
+  Illuminate\Database\QueryException
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'personal_access_tokens' already exists 
+```
+- In this case, execute the following commands:
+
+``` bash
+sudo -u apache sed -i '14,18s/^/\/\//' database/migrations/2014_10_12_100000_create_password_reset_tokens_table.php
+sudo -u apache sed -i '14,22s/^/\/\//' database/migrations/2019_08_19_000000_create_failed_jobs_table.php
+sudo -u apache sed -i '14,23s/^/\/\//' database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php
+sudo -u apache php artisan migrate
+sudo -u apache sed -i '14,18s/^\/\///' database/migrations/2014_10_12_100000_create_password_reset_tokens_table.php
+sudo -u apache sed -i '14,22s/^\/\///' database/migrations/2019_08_19_000000_create_failed_jobs_table.php
+sudo -u apache sed -i '14,23s/^\/\///' database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php
+```

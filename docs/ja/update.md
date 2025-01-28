@@ -116,11 +116,20 @@ ExmentUpdateWindows.bat
 
 
 ### 最新ソース取得、反映、データベース更新
+
+- 現在、XServerではPHPのSodium拡張をデフォルトでインストールすることはサポートされていません。  
+※もし本当にインストールが必要な場合は、XServerのサポートチームに連絡する必要があります。  
+
+- XServerでComposerをアップデートしたい場合、通常のアップデートコマンドとは異なるコマンドを使用する必要があります。  
+通常: `composer update` <span style="color: red;">✖</span>  
+実際: `composer update --ignore-platform-reqs`  
+→ このコマンドはSodiumのチェックを無視し、Composerのアップデートを直接実行します。  
+
 - コマンドラインで、以下のコマンドを実行します。  
 ※リリース直後だと、最新バージョンが検知されない場合があります。その場合、10～20分ほど経過後、再度下記コマンドを実行してください。  
 
 ~~~
 cd (プロジェクトのルートディレクトリ)
-composer update
+composer update --ignore-platform-reqs` 
 php artisan exment:update
 ~~~
