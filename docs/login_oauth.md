@@ -102,8 +102,6 @@ Please set the string provided by your provider.
 ### Scope
 Basically, there is no explicit purpose for this when logging in, but we recommend setting it if you will be obtaining an access token with [obtain access token](#Obtaining-an-access-token).
 
-<<<<<<< HEAD
-=======
 ### Option Setting
 Set options according to the provider type selected.
 (If you select a provider type with no options set, it will not be displayed.)
@@ -112,8 +110,7 @@ Set options according to the provider type selected.
 ![Option Settings](img/login/login_setting10.png) 
 
 ##### Single Sign-out
-When you log out of Exment, you are also logged out of the provider you logged in with SSO.
->>>>>>> 83faa8e3d8c917001979b6d068ffde6e93e068d8
+When you log out of Exment, you are also logged out of the provider you logged in with SSO.<span class="red">*Okta is not supported.</span>
 
 <!---
   OAuth, write the same thing in Saml

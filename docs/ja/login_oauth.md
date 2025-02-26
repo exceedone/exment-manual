@@ -109,7 +109,7 @@ composer require exment-oauth/microsoft-graph
 ![オプション設定](img/login/login_setting10.png) 
 
 ##### シングル・サインアウト
-Exmentログアウト時に、SSOでログインしたプロバイダーからもログアウトします。
+Exmentログアウト時に、SSOでログインしたプロバイダーからもログアウトします。<span class="red">※現在、Oktaには対応しておりません。</span>
 
 <!---
   OAuth、Samlで同じものを記載
