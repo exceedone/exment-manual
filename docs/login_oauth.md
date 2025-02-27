@@ -58,7 +58,7 @@ http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback
 - Run the following command in the Exment root directory:
 
 ~~~
-composer require exment-oauth/microsoft-graph
+composer require exceedone/microsoft-graph
 ~~~
 
 - Carry out [Screen Settings](#On-screen-settings).
@@ -137,7 +137,8 @@ If YES, user information such as username will be updated when re-login.
 - Once you save your data at least once, the Activate button and the Test Login button will be displayed.
 
 - If the enable flag is set to YES, a button for SSO authentication will be displayed on the login screen.   
-※Normally, the default login form for entering the user ID and password will also be displayed. You can hide it as shown in the image in [SSO Settings](/system_setting?id=sso-settings).
+※Normally, the default login form for entering the user ID and password will also be displayed. You can hide it as shown in the image in [SSO Settings](/system_setting?id=sso-settings).  
+
 ![SSO login screen](img/quickstart/sso1.png)
 
 
@@ -262,6 +263,22 @@ class MicrosoftGraphProvider extends Provider implements ProviderAvatar
         }
         return null;
     }
+
+    /**
+     * Get the logout URL for the OAuth provider.
+     *
+     * @param string|null $redirectUri The URI to redirect to after logout.
+     * @return string The logout URL.
+     */
+    public function getLogoutUrl(?string $redirectUri = null)
+    {
+        $logoutUrl = sprintf('https://login.microsoftonline.com/%s/oauth2/logout', $this->getConfig('tenant', 'common'));
+
+        return $redirectUri === null ?
+            $logoutUrl :
+            $logoutUrl.'?'.http_build_query(['post_logout_redirect_uri' => $redirectUri], '', '&', $this->encodingType);
+    }
+
 }
 
 ~~~
@@ -301,14 +318,35 @@ Also, the class name written in @handle is often listed in the manual of the pro
 ~~~php
 
 // Example: Microsoft Graph
+<?php
 
-protected $listen = [
-    // ... other listeners
-    \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-        // ... other providers
-        \SocialiteProviders\Graph\GraphExtendSocialite::class.'@handle',
-    ],
-];
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Event;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+
+class EventServiceProvider extends ServiceProvider
+{
+    /**
+     * The event listener mappings for the application.
+     *
+     * @var array
+     */
+    protected $listen = [
+        // If you have developed your own avatar retrieval
+        'App\Events\Event' => [
+            'App\Listeners\EventListener',
+        ],
+        
+        // Additional
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            '\App\Socialite\GraphExtendSocialite@handle', // If you have developed your own avatar retrieval
+            // 'SocialiteProviders\\Graph\\GraphExtendSocialite@handle', // For normal retrieval, comment this out and use it
+        ],
+    ];
+
+    // ...
+}
 ~~~
 ~~~php
 
