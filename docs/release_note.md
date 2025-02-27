@@ -1,6 +1,28 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.2 (2025/02/27)
+1. Functionality fixes
+    - Added a setting item to allow you to specify Single Sign-Out in the login settings
+    - Modified to redirect to the Exment login screen when logging out after SSO login if Single Sign-Out is specified
+      *Okta is not included
+
+
+## v6.2.1 (2025/02/12)
+1. Feature fixes
+    - Fixed to allow import/export of role group settings
+    - Fixed to allow updating to blank or unselected in data update settings
+    - Fixed to allow "edit screen transition when row is clicked" for each custom table
+1. Bug fixes
+    - Fixed bug of error during free word search (laravel-admin)
+    - Fixed bug of error under certain conditions when changing the number of rows per page (laravel-admin)
+    - Fixed bug of export error (when table display name contains certain characters)
+    - Fixed bug of error when importing images or files with multiple selections
+1. Others
+    - JAN barcode support, JS version updated from v0.21.2 to v0.21.3, some text typos fixed
+    - Updated the calendar's JS version and made corrections to match the update
+
+
 ## v6.2.0 (2024/12/24)
 1. Added features
     - Added JAN barcode function
