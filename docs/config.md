@@ -376,6 +376,13 @@ The decryption password will be sent separately.
 - Default value : false
 - Role : By setting to true, BOM will be added when exporting CSV data. (The characters are not garbled even if opened in Excel.)
 
+#### Enable import / export for role group
+- Setting key : ROLE_GROUP_IMPORT_EXPORT
+- Default value : false
+- Role : By setting to true, button for importing and exporting data are displayed on the role group settings page.
+
+\* This is an extension for those who have sufficient knowledge of Exment's permission management. Please be sure to work carefully, such as taking a backup in advance.
+
 
 ### Dashboard
 

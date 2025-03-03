@@ -13,6 +13,7 @@
     - Fixed to allow import/export of role group settings
     - Fixed to allow updating to blank or unselected in data update settings
     - Fixed to allow "edit screen transition when row is clicked" for each custom table
+    - Fixed to allow specifying display order when showing child tables in custom forms
 1. Bug fixes
     - Fixed bug of error during free word search (laravel-admin)
     - Fixed bug of error under certain conditions when changing the number of rows per page (laravel-admin)

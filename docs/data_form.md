@@ -43,3 +43,17 @@ Add one child table data.
   
 - "Delete button":  
 Delete the data of the selected child table.  
+
+
+### Data Submit Redirect
+![Data Submit Redirect](img/data/data_submit_redirect1.png)  
+Checkboxes appears to the left of the save button.  
+By checking this checkbox, you can change the page that will be displayed after saving the data.  
+
+- List : Transition to the list page of that data. *Note: Even if no checks are performed, you will still transition to the list page.
+- View : Transition to the Detail page of that data. 
+- Continue creating : Transition to the Create page of that data. 
+- Continue editing : Transition to the Edit page of that data. 
+
+\* After saving with the "Continue creating" or "Continue editing" checkbox selected, when the form is displayed again, the "Continue creating" or "Continue editing" checkbox will be checked by default.  
+\* Starting from v3.9.1, you can now specify default values for checks. For more details, please refer to [this](/system_setting#data-submit-redirect) page.

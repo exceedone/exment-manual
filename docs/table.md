@@ -356,6 +356,22 @@ By making this setting, the button will be hidden from the screen.
 
 ![Change / Non-executable setting from screen](img/table/ignore1.png)
 
+### System values display position
+
+Set the position to display system values on the data edit screen and data details screen.  
+You can select "Adjust to system settings", "Display at the top", "Display at the bottom", "Hide".("Adjust to system settings" is default.)  
+\* The display position of the entire system can be changed in the system settings.  
+
+![System values display position](img/table/system_display1.png)  
+
+### Screen transition when row is clicked
+
+Set the destination for when a row is clicked on the data list page.  
+You can select "Match Default", "Data Edit", "Data Detail", "No transaction". ("Match Default" is default.)  
+\* The system-wide default is "Data Detail" but this can be changed through the settings in the .env file.  
+
+![Screen transition when row is clicked](img/table/row_click1.png)  
+
 ### Heading format settings
 > This setting appears only if you have enabled [expert mode](/quickstart_more#expert-mode).
 
