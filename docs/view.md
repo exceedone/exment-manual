@@ -87,9 +87,13 @@ The column to be displayed in the view.
 - Display as:  
 Displayed in the view with the set name.
 
-- Display order:  
-The order of items displayed in the view.  
-The values ​​are displayed in ascending order from the left.  
+
+- [↓] Button  
+Moves the item displayed in the view to the right.
+
+- [↑] Button  
+Moves the item displayed in the view to the left.
+
 
 - "Delete" button:  
 Deletes the view display.
@@ -97,7 +101,7 @@ Deletes the view display.
 - "New" button:  
 Adds a new display column.
 
-#### Display condition selection
+#### Data display conditions
 Set the conditions to be displayed in the view.  
 Add a condition when you want to narrow down the displayed content, such as displaying only items within the period or displaying only the contents of a specific status.  
 ※ In addition to this setting, filter the data so that only the data of the authority owned by the login user is displayed. Unauthorized data will not be displayed regardless of this setting.  
@@ -142,6 +146,48 @@ Example: When the current date is 1/15 and the search value is registered as "8"
 ##### When the target column type is "User"
 - The registered data that matches the logged-in user is displayed in the view if it matches the logged-in user.  
 - The registered data that does not match the logged-in user is displayed in the view when it does not match the logged-in user.
+
+#### Data Sorting
+Set the sorting (display order) of the data to be displayed in the view.  
+![Data Sorting](img/view/view_sort_order.png)
+
+##### Target Column  
+The column used for data sorting.
+
+##### Sorting  
+Specify the sorting to be executed.
+
+##### [↓] Button  
+Moves the item down in priority for display order.
+
+##### [↑] Button  
+Moves the item up in priority for display order.
+
+##### [Delete] Button  
+Deletes the data sorting from the view.
+
+##### [New] Button  
+Adds a new data sorting.
+
+#### Specifying "Filter" Items in the View
+
+Specify the columns to be displayed as options in the "Filter" displayed at the top of the view.  
+![Specifying "Filter" Items in the View](img/view/view_filter2.png)
+
+##### Target Column  
+The column to be displayed in the "Filter."
+
+##### [↓] Button  
+Moves the filter item up in the display.
+
+##### [↑] Button  
+Moves the filter item down in the display.
+
+##### [Delete] Button  
+Deletes the filter item display from the view.
+
+##### [New] Button  
+Adds a new column for display in the "Filter" of the view.
 
 ## Add new summary view
 - On the “Custom View Settings” screen, click “New” in “New” at the top right of the page.  

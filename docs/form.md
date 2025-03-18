@@ -49,9 +49,17 @@ As an exception, if you have set a 1:n relation, you can also enter data on the 
 
 ![Custom form page](img/form/form_block0.png)
 
+#### Form block items
+\* The following are all configuration items for child tables.
+
+- ##### Make the form in table form   
+Display the input fields of the child table in table format.  
+
 - ##### Form block name  
 The name to be displayed in each block of the form.  
-\* Currently, it is displayed only for child tables.
+
+- ##### Form Block Display Order   
+When there are multiple child tables, you can specify the display order.  
 
 #### Form items
 Setting of items to be displayed on the input form.  

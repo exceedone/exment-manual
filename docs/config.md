@@ -336,13 +336,6 @@ The decryption password will be sent separately.
 - Default value : false
 - Role : By setting it to true, the order of role group settings on the user edit page and organization edit page and the order of the role group list page will match the display order (of role groups). If false, it will be in id order.
 
-#### Custom view sort order
-- Setting key : EXMENT_SORT_CUSTOM_VIEW_OPTIONS
-- Default value : 0
-- Role : Set the order of views displayed on the custom view menu button. Please choose from the following.  
-0: 1st key: System view/user view, 2nd key: View type, 3rd key: id   
-1: 1st key: System view/user view, 2nd key: View type, 3rd key: order   
-2: 1st key: system view/user view, 2nd key: order
 
 ### Import / Export
 
@@ -432,6 +425,11 @@ To change it, open the "config/extension.php" file and make the following change
 - Role : The extension to be displayed on the browser when the attached file is clicked is described without dots and separated by the extension. (Example: png, jpg, gif)  
 - Other special notes : Regarding the behavior of file click, all files were displayed on the browser before, but due to the [indication of the vulnerability](/weakness/20200819_2), the attached file is in the download format.
 Due to the above background, <span class="red">please make this setting at your own risk.</span>
+
+#### Allow deletion even when "Cannot modify from screen: Delete" is selected in the table extension settings
+- Setting Key: EXMENT_ALLOW_DELETE_ATTACHMENT
+- Default Value: false
+- Role: By setting this to true, it allows attachments to be deleted even if "Cannot modify from screen: Delete" is selected in the table extension settings. If set to false, attachments cannot be deleted.
 
 
 

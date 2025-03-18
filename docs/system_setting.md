@@ -114,9 +114,16 @@ Select one of "5", "10", and "20".
 #### Hide filter in data list
 - Checked items are hidden by the filter on the data list screen.
 
-#### Maximum upload size
-- The maximum file size that can be uploaded to Exment.
-- To change the upper limit of file size, refer to [Change upper limit of file upload size](/quickstart_more.md?id=Change-upper-limit-of-file-upload-size).
+#### System values display position
+- Set the position to display system values on the data edit screen and data details screen.  
+- You can select "Display at the top", "Display at the bottom", "Hide". "Display at the top" is default.  
+
+#### Data Submit Redirect
+- On the Data Registration page, you can set a default check in the checkbox that selects the redirect destination after saving data.  
+
+#### Header User Information
+- You can set the content to be displayed in the user information in the header. If left blank, it will be hidden.
+- You can select from custom columns and created date in the user table..
 
 ## Organization settings
 Set whether to include the organization in the range of each setting.
