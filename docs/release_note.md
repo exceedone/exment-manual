@@ -1,6 +1,16 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.3 (2025/03/18)
+1. Functionality fixes
+    - Fixed so that the "update user name" and "create user name" fields can be displayed and searched when searching through filters
+1. Bug fixes
+    - Fixed a bug where the "initial value" setting in the custom form settings did not work
+    - Fixed a bug where notifications linked to a custom table were not deleted when the table was deleted
+    - When a table containing a calendar view was output to a template, the "end date" was output as an ID
+    - Bug where the CustomTable function "validatorUnnecessaryColumn" did not function correctly only when called from the CustomValue function "setValueStrictly"
+    
+
 ## v6.2.2 (2025/02/27)
 1. Functionality fixes
     - Added a setting item to allow you to specify Single Sign-Out in the login settings
