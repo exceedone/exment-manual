@@ -19,9 +19,9 @@ Webサーバーの構築手順です。以下のいずれかの手順で、Web�
 - [レンタルサーバー構築](/ja/install_rental)  
 →Exmentを公開し、手軽に他のメンバーやスマートフォンからもアクセスを行いたい場合
 
-- [Linuxに構築](/ja/install_linux)  
-→ExmentをLinux(RedHat8)にインストールする場合の手順  
- ※CentOS7で構築していた方は[こちら](/ja/install_linux_old)
+- [Linuxに構築](/ja/install_centos_stream)  
+→ExmentをLinux(CentOS Stream)にインストールする場合の手順  
+ ※CentOS8で構築していた方は[こちら](/ja/install_linux)
 
 - [IISに構築](/ja/install_iis)  
 →ExmentをIISに構築する場合の手順

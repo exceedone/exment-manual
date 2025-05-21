@@ -1,10 +1,10 @@
 # Dockerによる環境構築
 本ページでは、DockerでExmentを構築する手順を記載します。  
-※本ページのより詳細な情報は、[GitHub](https://github.com/exment-git/docker-exment)をご確認ください。
+※本ページのより詳細な情報は、[GitHub](https://github.com/exceedone/docker-exment)をご確認ください。
 
 
 ## Special thanks!
-Dockerイメージは、[yamada28go氏によるdockerリポジトリ](https://github.com/yamada28go/docker-exment)をベースに、構築しております。誠にありがとうございます！
+Dockerイメージは、[oreno4649氏によるdockerリポジトリ](https://github.com/oreno4649/docker-exment)をベースに、構築しております。誠にありがとうございます！
 
 ## 環境
 本ページでは、以下の内容で構築を行っております。  
@@ -24,12 +24,12 @@ SSHやデータベース作成、Dockerコマンドなど、一般的なIT系の
 
 > ※ここでは、もっともスタンダードな、「Webサーバー」「MySQL」の構成を行う場合の手順になります。  
 それ以外にも、「冗長化構成・ロードバランサーを追加する」「httpsを追加する」など、細かい指定も可能です。  
-詳細は[docker-exment](https://github.com/exment-git/docker-exment)のReadmeをご確認ください。
+詳細は[docker-exment](https://github.com/exceedone/docker-exment)のReadmeをご確認ください。
 
 
 ### 定義ファイル取得
 - 以下のページより、必要フォルダをダウンロードし、zipを解凍します。  
-[docker-exment](https://github.com/exment-git/docker-exment)
+[docker-exment](https://github.com/exceedone/docker-exment)
 
 
 
@@ -110,4 +110,4 @@ docker exec -it 123412341234 /bin/bash
 
 ## その他
 現在、このDockerイメージは検証中、ならびに機能追加中です。  
-GitHubは、[こちら](https://github.com/exment-git/docker-exment)よりお願いします。
+GitHubは、[こちら](https://github.com/exceedone/docker-exment)よりお願いします。

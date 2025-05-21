@@ -1,6 +1,17 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.4 (2025/05/21)
+1. Functionality fixes
+    - Fixed so that the API limit parameter can be referenced from the env file
+    - Added creation date and time to the operation log filter
+    - Modified so that the calendar object (Fullcalendar) can be customized with a script plugin
+    - PHPStan Level 6 support
+    - Added support for excluding SQL Server from unit tests
+1. Bug fixes
+    - Fixed bugs related to the summary view
+
+
 ## v6.2.3 (2025/03/18)
 1. Functionality fixes
     - Fixed so that the "update user name" and "create user name" fields can be displayed and searched when searching through filters

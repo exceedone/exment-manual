@@ -19,8 +19,9 @@ This is the procedure for building a web server. Follow one of the steps below t
 - [Rental server construction](/install_rental)  
 → If you want to publish the Exment and easily access it from other members or smartphones
 
-- [Build on Linux](/install_linux)  
-→ Procedure for installing Extension on Linux (CentOS)
+- [Build on Linux](/install_centos_stream)  
+→ Procedure for installing Extension on Linux (CentOS Stream)
+ ※For those who built it on CentOS 8, please refer to [here](/install_linux)
 
 - [Build on IIS](/install_iis)  
 → Procedure when building Exment on IIS
