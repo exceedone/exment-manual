@@ -1,10 +1,10 @@
 # Environment construction using Docker
 This page describes the steps to build Exment with Docker.   
-※For more detailed information on this page, please check [GitHub](https://github.com/exment-git/docker-exment).
+※For more detailed information on this page, please check [GitHub](https://github.com/exceedone/docker-exment).
 
 
 ## Special thanks!
-The Docker image is built based on the [docker repository by yamada28go](https://github.com/yamada28go/docker-exment). Thank you very much!
+The Docker image is built based on the [docker repository by oreno4649](https://github.com/oreno4649/docker-exment). Thank you very much!
 
 ## Environment
 This page is constructed with the following contents.   
@@ -24,12 +24,12 @@ General IT knowledge such as SSH, database creation, Docker commands, etc. is no
 
 > ※Here are the steps for configuring the most standard web server, MySQL.   
 Other than that, detailed specifications such as adding https to add a redundant configuration and load balancer are also possible.   
-For details, please check the Readme of [docker-exment](https://github.com/exment-git/docker-exment).
+For details, please check the Readme of [docker-exment](https://github.com/exceedone/docker-exment).
 
 
 ### Get definition file
 - Download the required folder from the page below and unzip the zip file.   
-[docker-exment](https://github.com/exment-git/docker-exment)
+[docker-exment](https://github.com/exceedone/docker-exment)
 
 
 ### Building a MySQL environment
@@ -109,4 +109,4 @@ docker exec -it 123412341234 /bin/bash
 
 ## others
 This Docker image is currently being verified and features are being added.   
-Please use GitHub [here](https://github.com/exment-git/docker-exment).
+Please use GitHub [here](https://github.com/exceedone/docker-exment).

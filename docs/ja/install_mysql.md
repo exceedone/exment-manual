@@ -127,6 +127,21 @@ sudo yum remove mysql mysql-server mysql-client mysql-common mysql-devel mysql-c
 - MySQL8.0をインストールし起動します。
 
 ~~~
+# CENTOS STREAMの場合
+
+rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+dnf clean packages
+dnf update -y
+
+# mysql-community-serverをインストールし起動する
+dnf install mysql-community-server -y
+systemctl start mysqld
+systemctl enable mysqld
+~~~
+
+~~~
+# CENTOS8の場合
 sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
@@ -160,6 +175,21 @@ sudo systemctl start mysqld
 - MySQL8.0をインストールし起動します。
 
 ~~~
+# CENTOSSTREAMの場合
+
+rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+dnf clean packages
+dnf update -y
+
+# mysql-community-serverをインストールし起動する
+dnf install mysql-community-server -y
+systemctl start mysqld
+systemctl enable mysqld
+~~~
+
+~~~
+# CENTOS 8の場合
 sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
@@ -179,10 +209,10 @@ sudo systemctl start mysqld
 - MySQLの初期パスワードを確認します。
 
 ~~~
-cat /var/log/mysqld.log | grep password
+cat /var/log/mysqld.log | grep -i 'temporary password'
 
 #以下のようなログが出力されるので、パスワードを確認する
-2016-09-01T13:09:03.337119Z 1 [Note] A temporary password is generated for root@localhost: uhsd!XXXXXX
+2025-03-25T04:35:28.567119Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: et5k>Y.b0eJ.
 ~~~
 
 - (任意)パスワードポリシーを無効化します。
@@ -190,9 +220,9 @@ cat /var/log/mysqld.log | grep password
 ~~~
 vi /etc/my.cnf
 
-#以下のvalidate-passwordを追加
+#以下のvalidate_passwordを追加
 [mysqld]
-validate-password=OFF
+validate_password=OFF
 ~~~
 
 

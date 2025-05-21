@@ -124,22 +124,39 @@ sudo rpm -e --nodeps mysql57-community-release
 sudo yum remove mysql mysql-server mysql-client mysql-common mysql-devel mysql-community-client-plugins -y
 ~~~
 
-- Install and start MySQL8.0.
+- Install and start MySQL 8.0.
 
-~~~
+```bash
+# For CENTOS STREAM
+
+rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+dnf clean packages
+dnf update -y
+
+# Install and start mysql-community-server
+dnf install mysql-community-server -y
+systemctl start mysqld
+systemctl enable mysqld
+```
+
+```bash
+# For CENTOS 8
+
 sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
-# Execute this to check if mysql-community-server exists
+# Check if mysql-community-server exists
 sudo yum search mysql-community-server
 
-# If you get a message like Error: Unable to find a match: mysql-community-server that does not exist with the above command, please execute the command below first.
+# If you get a message like "Error: Unable to find a match: mysql-community-server", run the following command first:
 sudo yum -y module disable mysql
 
-# install and start mysql-community-server
+# Install and start mysql-community-server
 sudo yum -y install mysql-community-server
 sudo systemctl enable mysqld.service
-~~~
+sudo systemctl start mysqld
+```
 - Fix my.cnf.
 
 ~~~
@@ -159,21 +176,37 @@ sudo systemctl start mysqld
 ### If MySQL5.7 does not exist (new installation of MySQL8.0)
 - Install and start MySQL8.0.
 
-~~~
+```bash
+# For CENTOSSTREAM
+
+rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+dnf clean packages
+dnf update -y
+
+# Install and start mysql-community-server
+dnf install mysql-community-server -y
+systemctl start mysqld
+systemctl enable mysqld
+```
+
+```bash
+# For CENTOS 8
+
 sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
-# Execute this to check if mysql-community-server exists
+# Check if mysql-community-server exists
 sudo yum search mysql-community-server
 
-# If you get a message like Error: Unable to find a match: mysql-community-server that does not exist with the above command, please execute the command below first.
+# If you get a message like "Error: Unable to find a match: mysql-community-server", run the following command first:
 sudo yum -y module disable mysql
 
-# install and start mysql-community-server
+# Install and start mysql-community-server
 sudo yum -y install mysql-community-server
 sudo systemctl enable mysqld.service
 sudo systemctl start mysqld
-~~~
+```
 
 
 - Check the initial password for MySQL.
@@ -190,9 +223,9 @@ cat /var/log/mysqld.log | grep password
 ~~~
 vi /etc/my.cnf
 
-#Add the following validate-password
+#Add the following validate_password
 [mysqld]
-validate-password=OFF
+validate_password=OFF
 ~~~
 
 
