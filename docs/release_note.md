@@ -5,8 +5,8 @@
 1. Functionality fixes
     - Added comment search to filters
     - Added parent_id to the key column of composite unique keys
+    - Added option to inherit viewing permissions to child table
 1. Bug fixes
-    - Fixed bug where viewing permissions were not inherited to child tables
     - Fixed bug where forms could not be deleted
 
 
