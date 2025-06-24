@@ -125,6 +125,19 @@ sudo yum remove mysql mysql-server mysql-client mysql-common mysql-devel mysql-c
 ~~~
 
 - MySQL8.0をインストールし起動します。
+<div style="margin-left: 2em;">※OSのバージョンによってはrpmが異なります。</div>
+<div style="margin-left: 2em;">例えば、AlmaLinux9.5の場合は、</div><br>
+
+~~~
+[root@localhost ~]# uname -a
+Linux localhost.localdomain 5.14.0-503.11.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC Tue Nov 12 09:26:13 EST 2024 x86_64 x86_64 x86_64 GNU/Linux
+~~~
+<div style="margin-left: 2em;">だと、</div><br>
+
+~~~
+sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+~~~
+<div style="margin-left: 2em;">となります。</div><br>
 
 ~~~
 # CENTOS STREAMの場合
@@ -155,6 +168,7 @@ sudo yum -y module disable mysql
 sudo yum -y install mysql-community-server
 sudo systemctl enable mysqld.service
 ~~~
+
 - my.cnfを修正します。
 
 ~~~
@@ -173,6 +187,19 @@ sudo systemctl start mysqld
 
 ### MySQL5.7が存在しない場合（MySQL8.0の新規インストール）
 - MySQL8.0をインストールし起動します。
+<div style="margin-left: 2em;">※OSのバージョンによってはrpmが異なります。</div>
+<div style="margin-left: 2em;">例えば、AlmaLinux9.5の場合は、</div><br>
+
+~~~
+[root@localhost ~]# uname -a
+Linux localhost.localdomain 5.14.0-503.11.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC Tue Nov 12 09:26:13 EST 2024 x86_64 x86_64 x86_64 GNU/Linux
+~~~
+<div style="margin-left: 2em;">だと、</div><br>
+
+~~~
+sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+~~~
+<div style="margin-left: 2em;">となります。</div><br>
 
 ~~~
 # CENTOSSTREAMの場合
@@ -187,6 +214,7 @@ dnf install mysql-community-server -y
 systemctl start mysqld
 systemctl enable mysqld
 ~~~
+
 
 ~~~
 # CENTOS 8の場合
@@ -204,6 +232,7 @@ sudo yum -y install mysql-community-server
 sudo systemctl enable mysqld.service
 sudo systemctl start mysqld
 ~~~
+
 
 
 - MySQLの初期パスワードを確認します。
@@ -278,7 +307,7 @@ sudo systemctl restart mysqld
 ~~~
 CREATE DATABASE exment_database;
 CREATE USER 'exment_user'@'192.168.137.%' IDENTIFIED BY '(exment_user用のパスワード)';
-GRANT ALL ON exment_database.* TO exment_user identified by '(exment_user用のパスワード)';
+GRANT ALL ON exment_database.* TO 'exment_user'@'192.168.137.%';
 FLUSH PRIVILEGES;
 ~~~
 
