@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.5 (2025/06/19)
+1. Functionality fixes
+    - Added comment search to filters
+    - Added parent_id to the key column of composite unique keys
+1. Bug fixes
+    - Fixed bug where viewing permissions were not inherited to child tables
+    - Fixed bug where forms could not be deleted
+
+
 ## v6.2.4 (2025/05/21)
 1. Functionality fixes
     - Fixed so that the API limit parameter can be referenced from the env file
