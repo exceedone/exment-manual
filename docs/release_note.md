@@ -1,6 +1,25 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.7 (2025/10/08)
+1. Feature Fixes
+    - Added logging to Laravel.log for performance analysis, please see [here](/system_setting?id=%e6%93%8d%e4%bd%9c%e3%83%ad%e3%82%b0%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b)
+    - Added filter functionality to the summary view.
+1. Bug Fixes
+    - Fixed a workflow bug.
+      Event sequence:
+      1. Displaying the details screen with the Run Workflow button
+      2. Proceeding with a Workflow in a separate screen
+      3. Pressing a Workflow button that has already been executed on an unupdated screen (1)
+      ⇒ Execution proceeds without any special checks.
+
+
+## v6.2.6 (2025/07/24)
+1. Functionality fixes
+     - Fixed to enable SSO authentication (Authenticator) with Microsoft Entra SAML
+    - Fixed to enable duplicating views and forms when duplicating custom tables
+
+
 ## v6.2.5 (2025/06/19)
 1. Functionality fixes
     - Added comment search to filters
