@@ -90,6 +90,19 @@ $ php artisan passport:keys
 - If the setting is YES, it is possible to grant the authority specified by the organization in [Use authority management](#Use-authority-management).
 - The initial value is "YES".
 
+#### Enable Operation Log
+- If set to "Yes", the activity log feature will be enabled, and all user operations will be recorded.
+- The initial value is "NO".
+
+![Enable Operation Log](img/logs/enable_operation_log.png)  
+- Please download the ZIP file and install the template:
+[Template zip file] (https://exment.net/template/system_logs.zip)
+- Run the update command:
+~~~
+   php artisan exment:update
+~~~
+![System Logs](img/logs/system_log.png)  
+
 #### System Administrator
 - You can set the user who will be the system monitor.
 - The user who made the initial settings when installing Exment is registered as the initial value.
