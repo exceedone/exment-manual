@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.8 (2026/01/22)
+1. Functionality fixes
+    - Fixed a bug where if you only have view permissions for the parent table in a parent-child table, you can now edit the child table even if you have edit permissions.
+    - Added a parent data retrieval option to the Custom Data Retrieval API.
+1. Bug fixes
+    - Fixed a bug where the order was incorrect when sorting by grouping or date data in the summary view.
+    - Fixed a bug where an error occurred when the action set in the notification settings was email.
+    - Fixed a bug where the screen position should return to the record position when returning from the record display screen to the data list screen.
+
 ## v6.2.7 (2025/10/08)
 1. Feature Fixes
     - Added logging to Laravel.log for performance analysis, please see [here](/system_setting?id=%e6%93%8d%e4%bd%9c%e3%83%ad%e3%82%b0%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b)
