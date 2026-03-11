@@ -231,6 +231,9 @@ Example: In the case of the settings shown in the image below, using the "Next s
 
 ※ If you want to perform duplicate judgment on only one type of column and prevent duplicate registration, set the unique column to YES in the [custom column setting](/column.md).
 
+※ In the case of a 1:N relationship (see [Relation settings in Exment](/relation.md)), when configuring a composite unique key for a child table, the parent table can also be selected as part of the unique key.  
+This allows duplicate checks to be performed within the same parent record.
+
 ### Compare two columns
 Compares the two columns when creating and updating data. You can save only if the column values ​​match the set conditions.  
 If they do not match, an error message is displayed.  
