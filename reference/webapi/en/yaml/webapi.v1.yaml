@@ -931,6 +931,7 @@ paths:
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
         - v5.0.1 children parameter added
+        - v6.2.8 parent parameter added
 
         #### To get the child data of a relation  
         When the children parameter is 1, the child data of that data is also acquired at the same time.  
@@ -998,6 +999,53 @@ paths:
           }
         }
         ```
+
+        #### To get the parent data of a relation  
+        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
+        Available only for child tables where a 1:N custom relation has been set.  
+        "parent" is added to each data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
+              "parent_type": null,
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
+            }
+          }
+        }
+        ```
       parameters:
         - schema:
             type: integer
@@ -1039,6 +1087,11 @@ paths:
           in: query
           name: children
           description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
       security:
         - OAuth2: []
       operationId: get-values
@@ -1449,6 +1502,7 @@ paths:
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
         - v5.0.1 children parameter added
+        - v6.2.8 parent parameter added
 
 
         #### To get the child data of a relation  
@@ -1517,6 +1571,53 @@ paths:
           }
         }
         ```
+
+        #### To get the parent data of a relation  
+        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
+        Available only for child tables where a 1:N custom relation has been set.  
+        "parent" is added to each data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
+              "parent_type": null,
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
+            }
+          }
+        }
+        ```
       parameters:
         - schema:
             type: string
@@ -1554,6 +1655,11 @@ paths:
           in: query
           name: children
           description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
       security:
         - OAuth2: []
       operationId: get-values-query
@@ -1676,6 +1782,7 @@ paths:
         - v3.1.7 valuetype parameter added
         - v3.3.2 Added 'like' to the search conditions. Supports OR search, adds order by parameter
         - v5.0.1 children parameter added
+        - v6.2.8 parent parameter added
 
         #### How to specify search conditions
         * Search by specifying each column name in the parameter 'q'. When specifying multiple columns, separate them with commas.
@@ -1779,6 +1886,53 @@ paths:
           }
         }
         ```
+
+        #### To get the parent data of a relation  
+        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
+        Available only for child tables where a 1:N custom relation has been set.  
+        "parent" is added to each data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
+              "parent_type": null,
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
+            }
+          }
+        }
+        ```
       parameters:
         - schema:
             type: string
@@ -1826,6 +1980,11 @@ paths:
           in: query
           name: children
           description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
       security:
         - OAuth2: []
       operationId: get-values-query-column
@@ -1903,6 +2062,7 @@ paths:
         - v3.1.7 valuetype parameter added
         - v4.0.7 Supports hard deletion of data
         - v5.0.1 children parameter added
+        - v6.2.8 parent parameter added
 
 
         #### To get the child data of a relation  
@@ -1971,6 +2131,53 @@ paths:
           }
         }
         ```
+
+        #### To get the parent data of a relation  
+        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
+        Available only for child tables where a 1:N custom relation has been set.  
+        "parent" is added to the data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
+              "parent_type": null,
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
+            }
+          }
+        }
+        ```
       requestBody: {}
       security:
         - OAuth2: []
@@ -1992,6 +2199,11 @@ paths:
           in: query
           name: children
           description: 'When it is 1, the child data of that data is also acquired at the same time. * Available only when custom relations are set. Custom column "Choice (select from list of values ​​in other tables)" cannot be obtained'
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
     put:
       summary: Update custom data
       tags:
