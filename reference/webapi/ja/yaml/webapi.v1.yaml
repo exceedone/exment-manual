@@ -933,6 +933,7 @@ paths:
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
         - v5.0.1 childrenパラメータ追加
+        - v6.2.8 parentパラメータ追加
 
 
         #### リレーションの子データを取得する場合
@@ -1006,6 +1007,27 @@ paths:
           ]
         }
         ```
+        #### リレーションの親データを取得する場合  
+        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
+        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
+        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛)　ここでは、親テーブルは"parent_table"としている。  
+
+        ```
+        {
+          "id": 1,
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {"date": "2022-07-30", "text": "test_1"},
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "parent_type": null,
+              "value": {"text": "test_1"}
+            }
+          }
+        }
+        ```
       parameters:
         - schema:
             type: integer
@@ -1047,6 +1069,11 @@ paths:
           in: query
           name: children
           description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
       security:
         - OAuth2認証: []
       operationId: get-values
@@ -1458,6 +1485,7 @@ paths:
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
         - v5.0.1 childrenパラメータ追加
+        - v6.2.8 parentパラメータ追加
 
 
         #### リレーションの子データを取得する場合
@@ -1531,6 +1559,27 @@ paths:
           ]
         }
         ```
+        #### リレーションの親データを取得する場合  
+        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
+        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
+        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は以下の通り。(一部割愛)  親テーブルは"parent_table"とする。  
+
+        ```
+        {
+          "id": 1,
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {"date": "2022-07-30", "text": "test_1"},
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "parent_type": null,
+              "value": {"text": "test_1"}
+            }
+          }
+        }
+        ```
       parameters:
         - schema:
             type: string
@@ -1568,6 +1617,11 @@ paths:
           in: query
           description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
           name: children
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
       security:
         - OAuth2認証: []
       operationId: get-values-query
@@ -1691,6 +1745,7 @@ paths:
         - v3.1.7 valuetypeパラメータ追加
         - v3.3.2 検索条件に"like"追加。OR検索に対応、orderbyパラメータの追加
         - v5.0.1 childrenパラメータ追加
+        - v6.2.8 parentパラメータ追加
 
         #### 検索条件の指定方法
         * パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。
@@ -1798,6 +1853,27 @@ paths:
           ]
         }
         ```
+        #### リレーションの親データを取得する場合  
+        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
+        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
+        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は以下の通り。(一部割愛)  親テーブルは"parent_table"とする。  
+
+        ```
+        {
+          "id": 1,
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {"date": "2022-07-30", "text": "test_1"},
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "parent_type": null,
+              "value": {"text": "test_1"}
+            }
+          }
+        }
+        ```
       parameters:
         - schema:
             type: string
@@ -1845,6 +1921,11 @@ paths:
           in: query
           name: children
           description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
       security:
         - OAuth2認証: []
       operationId: get-values-query-column
@@ -1921,6 +2002,7 @@ paths:
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
         - v5.0.1 childrenパラメータ追加
+        - v6.2.8 parentパラメータ追加
 
 
         #### リレーションの子データを取得する場合
@@ -1989,6 +2071,27 @@ paths:
           }
         }
         ```
+        #### リレーションの親データを取得する場合  
+        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
+        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
+        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は以下の通り。(一部割愛)  親テーブルは"parent_table"とする。  
+
+        ```
+        {
+          "id": 1,
+          "parent_type": "parent_table",
+          "parent_id": "1",
+          "value": {"date": "2022-07-30", "text": "test_1"},
+          "parent": {
+            "parent_table": {
+              "id": 1,
+              "parent_type": null,
+              "value": {"text": "test_1"}
+            }
+          }
+        }
+        ```
       requestBody: {}
       security:
         - OAuth2認証: []
@@ -2010,6 +2113,11 @@ paths:
           in: query
           name: children
           description: 1のとき、そのデータの子データも同時に取得する。※カスタムリレーション設定が行われている場合のみ利用可。カスタム列の「選択肢 (他のテーブルの値一覧から選択)」は取得不可
+        - schema:
+            type: integer
+          in: query
+          name: parent
+          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
     put:
       summary: カスタムデータ情報更新
       tags:
