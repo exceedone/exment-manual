@@ -933,7 +933,7 @@ paths:
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
         - v5.0.1 childrenパラメータ追加
-        - v6.2.8 parentパラメータ追加
+        - v6.2.8 parentsパラメータ追加
 
 
         #### リレーションの子データを取得する場合
@@ -1008,23 +1008,108 @@ paths:
         }
         ```
         #### リレーションの親データを取得する場合  
-        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
-        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
-        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
-        その時の戻り値の例は、以下のようになる。(一部割愛)　ここでは、親テーブルは"parent_table"としている。  
+        parentsパラメータが1のとき、そのデータの親データ(1:N、N:N)も同時に取得する。  
+        ※1:NまたはN:Nのカスタムリレーション設定が行われている場合に利用可。  
+        各データオブジェクトに"parents"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛) ここでは、親テーブルは"parent_table"としている。
 
+        1:Nリレーションの場合  
+        親レコードは1件のみ返されます。
         ```
         {
           "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
           "parent_type": "parent_table",
           "parent_id": "1",
-          "value": {"date": "2022-07-30", "text": "test_1"},
-          "parent": {
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
             "parent_table": {
               "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
               "parent_type": null,
-              "value": {"text": "test_1"}
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        N:Nリレーションの場合  
+        複数の親レコードが返される場合があります。
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -1072,9 +1157,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
-      security:
+          name: parents
+          description: 1のとき、そのデータの親データも同時に取得されます。※1:NおよびN:Nのカスタムリレーションに対応しています
         - OAuth2認証: []
       operationId: get-values
     post:
@@ -1485,7 +1569,7 @@ paths:
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
         - v5.0.1 childrenパラメータ追加
-        - v6.2.8 parentパラメータ追加
+        - v6.2.8 parentsパラメータ追加
 
 
         #### リレーションの子データを取得する場合
@@ -1560,23 +1644,108 @@ paths:
         }
         ```
         #### リレーションの親データを取得する場合  
-        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
-        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
-        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
-        その時の戻り値の例は以下の通り。(一部割愛)  親テーブルは"parent_table"とする。  
+        parentsパラメータが1のとき、そのデータの親データ(1:N、N:N)も同時に取得する。  
+        ※1:NまたはN:Nのカスタムリレーション設定が行われている場合に利用可。  
+        各データオブジェクトに"parents"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛) ここでは、親テーブルは"parent_table"としている。
 
+        1:Nリレーションの場合  
+        親レコードは1件のみ返されます。
         ```
         {
           "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
           "parent_type": "parent_table",
           "parent_id": "1",
-          "value": {"date": "2022-07-30", "text": "test_1"},
-          "parent": {
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
             "parent_table": {
               "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
               "parent_type": null,
-              "value": {"text": "test_1"}
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        N:Nリレーションの場合  
+        複数の親レコードが返される場合があります。
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -1620,8 +1789,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
+          name: parents
+          description: 1のとき、そのデータの親データも同時に取得されます。※1:NおよびN:Nのカスタムリレーションに対応しています
       security:
         - OAuth2認証: []
       operationId: get-values-query
@@ -1745,7 +1914,7 @@ paths:
         - v3.1.7 valuetypeパラメータ追加
         - v3.3.2 検索条件に"like"追加。OR検索に対応、orderbyパラメータの追加
         - v5.0.1 childrenパラメータ追加
-        - v6.2.8 parentパラメータ追加
+        - v6.2.8 parentsパラメータ追加
 
         #### 検索条件の指定方法
         * パラメータ「q」に、それぞれの列名を指定して検索する。複数の列を指定する場合は、カンマ区切りを行う。
@@ -1854,23 +2023,108 @@ paths:
         }
         ```
         #### リレーションの親データを取得する場合  
-        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
-        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
-        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
-        その時の戻り値の例は以下の通り。(一部割愛)  親テーブルは"parent_table"とする。  
+        parentsパラメータが1のとき、そのデータの親データ(1:N、N:N)も同時に取得する。  
+        ※1:NまたはN:Nのカスタムリレーション設定が行われている場合に利用可。  
+        各データオブジェクトに"parents"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛) ここでは、親テーブルは"parent_table"としている。
 
+        1:Nリレーションの場合  
+        親レコードは1件のみ返されます。
         ```
         {
           "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
           "parent_type": "parent_table",
           "parent_id": "1",
-          "value": {"date": "2022-07-30", "text": "test_1"},
-          "parent": {
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
             "parent_table": {
               "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
               "parent_type": null,
-              "value": {"text": "test_1"}
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        N:Nリレーションの場合  
+        複数の親レコードが返される場合があります。
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -1924,8 +2178,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
+          name: parents
+          description: 1のとき、そのデータの親データも同時に取得されます。※1:NおよびN:Nのカスタムリレーションに対応しています
       security:
         - OAuth2認証: []
       operationId: get-values-query-column
@@ -2002,7 +2256,7 @@ paths:
         - v3.1.2 labelパラメータ追加。1のとき、結果にlabelを追加します。
         - v3.1.7 valuetypeパラメータ追加
         - v5.0.1 childrenパラメータ追加
-        - v6.2.8 parentパラメータ追加
+        - v6.2.8 parentsパラメータ追加
 
 
         #### リレーションの子データを取得する場合
@@ -2072,23 +2326,108 @@ paths:
         }
         ```
         #### リレーションの親データを取得する場合  
-        parentパラメータが1のとき、そのデータの親データ(1:N)も同時に取得する。  
-        ※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可。  
-        各データオブジェクトに"parent"が追加され、その中に親テーブルのデータが格納される。  
-        その時の戻り値の例は以下の通り。(一部割愛)  親テーブルは"parent_table"とする。  
+        parentsパラメータが1のとき、そのデータの親データ(1:N、N:N)も同時に取得する。  
+        ※1:NまたはN:Nのカスタムリレーション設定が行われている場合に利用可。  
+        各データオブジェクトに"parents"が追加され、その中に親テーブルのデータが格納される。  
+        その時の戻り値の例は、以下のようになる。(一部割愛) ここでは、親テーブルは"parent_table"としている。
 
+        1:Nリレーションの場合  
+        親レコードは1件のみ返されます。
         ```
         {
           "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
           "parent_type": "parent_table",
           "parent_id": "1",
-          "value": {"date": "2022-07-30", "text": "test_1"},
-          "parent": {
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
             "parent_table": {
               "id": 1,
+              "suuid": "a1b2f1fc0e564e3e2ece",
               "parent_type": null,
-              "value": {"text": "test_1"}
+              "parent_id": null,
+              "value": {
+                "date": "2022-07-30",
+                "text": "test_1",
+                "user": "1",
+                "email": "foovartest1@test.com.test"
+              },
+              "created_at": "2022-07-29 09:35:42",
+              "updated_at": "2022-07-29 09:35:42",
+              "deleted_at": null,
+              "deleted_user_id": null,
+              "created_user_id": "1",
+              "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        N:Nリレーションの場合  
+        複数の親レコードが返される場合があります。
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -2116,8 +2455,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 1のとき、そのデータの親データ(1:N)も同時に取得する。※1:Nのカスタムリレーション設定が行われている子テーブルの場合のみ利用可
+          name: parents
+          description: 1のとき、そのデータの親データも同時に取得されます。※1:NおよびN:Nのカスタムリレーションに対応しています
     put:
       summary: カスタムデータ情報更新
       tags:

@@ -931,7 +931,7 @@ paths:
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
         - v5.0.1 children parameter added
-        - v6.2.8 parent parameter added
+        - v6.2.8 parents parameter added
 
         #### To get the child data of a relation  
         When the children parameter is 1, the child data of that data is also acquired at the same time.  
@@ -1001,11 +1001,13 @@ paths:
         ```
 
         #### To get the parent data of a relation  
-        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
-        Available only for child tables where a 1:N custom relation has been set.  
-        "parent" is added to each data object, and the parent table data is added in it.  
-        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+        When the parents parameter is 1, the parent data (1:N, N:N) of that data is also acquired at the same time.  
+        Available for tables where a 1:N or N:N custom relation has been set.  
+        "parents" is added to each data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".
 
+        Case: 1:N relationship  
+        A single parent record is returned.
         ```
         {
           "id": 1,
@@ -1024,7 +1026,7 @@ paths:
           "deleted_user_id": null,
           "created_user_id": "1",
           "updated_user_id": "1",
-          "parent": {
+          "parents": {
             "parent_table": {
               "id": 1,
               "suuid": "a1b2f1fc0e564e3e2ece",
@@ -1043,6 +1045,64 @@ paths:
               "created_user_id": "1",
               "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        Case: N:N relationship  
+        Multiple parent records may be returned.
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -1090,8 +1150,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
+          name: parents
+          description: When set to 1, the parent data of the record is also retrieved. * Available for 1:N and N:N custom relationships.
       security:
         - OAuth2: []
       operationId: get-values
@@ -1502,7 +1562,7 @@ paths:
         - v3.1.2 Added label parameter. When 1, label is added to the result.
         - v3.1.7 valuetype parameter added
         - v5.0.1 children parameter added
-        - v6.2.8 parent parameter added
+        - v6.2.8 parents parameter added
 
 
         #### To get the child data of a relation  
@@ -1573,11 +1633,13 @@ paths:
         ```
 
         #### To get the parent data of a relation  
-        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
-        Available only for child tables where a 1:N custom relation has been set.  
-        "parent" is added to each data object, and the parent table data is added in it.  
-        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+        When the parents parameter is 1, the parent data (1:N, N:N) of that data is also acquired at the same time.  
+        Available for tables where a 1:N or N:N custom relation has been set.  
+        "parents" is added to each data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".
 
+        Case: 1:N relationship  
+        A single parent record is returned.
         ```
         {
           "id": 1,
@@ -1596,7 +1658,7 @@ paths:
           "deleted_user_id": null,
           "created_user_id": "1",
           "updated_user_id": "1",
-          "parent": {
+          "parents": {
             "parent_table": {
               "id": 1,
               "suuid": "a1b2f1fc0e564e3e2ece",
@@ -1615,6 +1677,64 @@ paths:
               "created_user_id": "1",
               "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        Case: N:N relationship  
+        Multiple parent records may be returned.
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -1658,8 +1778,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
+          name: parents
+          description: When set to 1, the parent data of the record is also retrieved. * Available for 1:N and N:N custom relationships.
       security:
         - OAuth2: []
       operationId: get-values-query
@@ -1782,7 +1902,7 @@ paths:
         - v3.1.7 valuetype parameter added
         - v3.3.2 Added 'like' to the search conditions. Supports OR search, adds order by parameter
         - v5.0.1 children parameter added
-        - v6.2.8 parent parameter added
+        - v6.2.8 parents parameter added
 
         #### How to specify search conditions
         * Search by specifying each column name in the parameter 'q'. When specifying multiple columns, separate them with commas.
@@ -1888,11 +2008,13 @@ paths:
         ```
 
         #### To get the parent data of a relation  
-        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
-        Available only for child tables where a 1:N custom relation has been set.  
-        "parent" is added to each data object, and the parent table data is added in it.  
-        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+        When the parents parameter is 1, the parent data (1:N, N:N) of that data is also acquired at the same time.  
+        Available for tables where a 1:N or N:N custom relation has been set.  
+        "parents" is added to each data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".
 
+        Case: 1:N relationship  
+        A single parent record is returned.
         ```
         {
           "id": 1,
@@ -1911,7 +2033,7 @@ paths:
           "deleted_user_id": null,
           "created_user_id": "1",
           "updated_user_id": "1",
-          "parent": {
+          "parents": {
             "parent_table": {
               "id": 1,
               "suuid": "a1b2f1fc0e564e3e2ece",
@@ -1930,6 +2052,64 @@ paths:
               "created_user_id": "1",
               "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        Case: N:N relationship  
+        Multiple parent records may be returned.
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -1983,8 +2163,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
+          name: parents
+          description: When set to 1, the parent data of the record is also retrieved. * Available for 1:N and N:N custom relationships.
       security:
         - OAuth2: []
       operationId: get-values-query-column
@@ -2062,7 +2242,7 @@ paths:
         - v3.1.7 valuetype parameter added
         - v4.0.7 Supports hard deletion of data
         - v5.0.1 children parameter added
-        - v6.2.8 parent parameter added
+        - v6.2.8 parents parameter added
 
 
         #### To get the child data of a relation  
@@ -2133,11 +2313,13 @@ paths:
         ```
 
         #### To get the parent data of a relation  
-        When the parent parameter is 1, the parent data (1:N) of that data is also acquired at the same time.  
-        Available only for child tables where a 1:N custom relation has been set.  
-        "parent" is added to the data object, and the parent table data is added in it.  
-        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".  
+        When the parents parameter is 1, the parent data (1:N, N:N) of that data is also acquired at the same time.  
+        Available for tables where a 1:N or N:N custom relation has been set.  
+        "parents" is added to the data object, and the parent table data is added in it.  
+        An example of the return value at that time is as follows. (Partially omitted) Here, the parent table is "parent_table".
 
+        Case: 1:N relationship  
+        A single parent record is returned.
         ```
         {
           "id": 1,
@@ -2156,7 +2338,7 @@ paths:
           "deleted_user_id": null,
           "created_user_id": "1",
           "updated_user_id": "1",
-          "parent": {
+          "parents": {
             "parent_table": {
               "id": 1,
               "suuid": "a1b2f1fc0e564e3e2ece",
@@ -2175,6 +2357,64 @@ paths:
               "created_user_id": "1",
               "updated_user_id": "1"
             }
+          }
+        }
+        ```
+        Case: N:N relationship  
+        Multiple parent records may be returned.
+        ```
+        {
+          "id": 1,
+          "suuid": "c7751f097aa5e0a6091c",
+          "parent_type": null,
+          "parent_id": null,
+          "value": {
+            "date": "2022-07-30",
+            "text": "test_1",
+            "user": "1",
+            "email": "foovartest1@test.com.test"
+          },
+          "created_at": "2022-07-29 09:35:44",
+          "updated_at": "2022-07-29 09:35:44",
+          "deleted_at": null,
+          "deleted_user_id": null,
+          "created_user_id": "1",
+          "updated_user_id": "1",
+          "parents": {
+            "parent_table": [
+              {
+                "id": 1,
+                "suuid": "a1b2f1fc0e564e3e2ece",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-07-30",
+                  "text": "test_1"
+                },
+                "created_at": "2022-07-29 09:35:42",
+                "updated_at": "2022-07-29 09:35:42",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              },
+              {
+                "id": 2,
+                "suuid": "b3c4d5ef1a2b3c4d5e6f",
+                "parent_type": null,
+                "parent_id": null,
+                "value": {
+                  "date": "2022-08-01",
+                  "text": "test_2"
+                },
+                "created_at": "2022-07-29 09:35:43",
+                "updated_at": "2022-07-29 09:35:43",
+                "deleted_at": null,
+                "deleted_user_id": null,
+                "created_user_id": "1",
+                "updated_user_id": "1"
+              }
+            ]
           }
         }
         ```
@@ -2202,8 +2442,8 @@ paths:
         - schema:
             type: integer
           in: query
-          name: parent
-          description: 'When it is 1, the parent data (1:N) of that data is also acquired at the same time. * Available only for child tables where a 1:N custom relation has been set.'
+          name: parents
+          description: When set to 1, the parent data of the record is also retrieved. * Available for 1:N and N:N custom relationships.
     put:
       summary: Update custom data
       tags:
