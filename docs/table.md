@@ -135,6 +135,28 @@ Example: The "consumption tax" table does not need to be displayed on the list s
 
 ![Custom table screen](img/table/table_detail16.png)
 
+#### Viewable with permissions of parent data
+
+> For an overview of table permissions, please see the [Overview of Roles / Permissions in Exment](/permission) page first.
+
+- If set to YES, the data can be viewed based on the the parent data(1:N) permissions. However, you must have viewing or similar permissions for this table itself. Default is NO.  
+
+※ This option only appears for the child table of 1:N relationship.  
+
+※ Even if you have edit permission for the parent data, you cannot edit the child data. You can only view the child data.  
+
+![Custom table screen](img/table/table_detail19.png)
+
+#### Need Edit permission for parend data
+
+> For an overview of table permissions, please see the [Overview of Roles / Permissions in Exment](/permission) page first.
+
+- If set to YES, you need edit permissions for the parent data(1:N) to edit the data in this table. Default is YES.  
+
+※ This option only appears for the child table of 1:N relationship.  
+
+![Custom table screen](img/table/table_detail20.png)
+
 #### Add to menu
 - If set to YES, add the table to the [menu](/menu.md) when saving the table. Default is NO.  
 
@@ -208,6 +230,9 @@ Example: In the case of the settings shown in the image below, using the "Next s
 ![Custom table screen](img/table/table_extended_setting2.png)
 
 ※ If you want to perform duplicate judgment on only one type of column and prevent duplicate registration, set the unique column to YES in the [custom column setting](/column.md).
+
+※ In the case of a 1:N relationship (see [Relation settings in Exment](/relation.md)), when configuring a composite unique key for a child table, the parent table can also be selected as part of the unique key.  
+This allows duplicate checks to be performed within the same parent record.
 
 ### Compare two columns
 Compares the two columns when creating and updating data. You can save only if the column values ​​match the set conditions.  
