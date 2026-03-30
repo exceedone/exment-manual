@@ -9,7 +9,7 @@ This page is constructed with the following contents.
 - Amazon Linux 2
 - Apache 2.4.53
 - PHP 8.2.x
-- MySQL 8.0.x
+- MySQL 8.4.x
 
 
 ## Important point
@@ -129,8 +129,8 @@ Even if you do not install MySQL on the same server, you must install a mysql cl
 ※If you want to install MySQL on the same server, skip this step.
 
 ~~~
-sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
-sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el7-2.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 # Execute this to check if mysql-community-client exists
 sudo yum search mysql-community-client

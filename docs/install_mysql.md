@@ -1,114 +1,144 @@
 # MySQL installation procedure
-These are the steps for using MySQL with Exment.   
-※Various steps may differ depending on the OS, version, installation time, etc.   
+These are the steps for using MySQL with Exment.  
+※Various steps may differ depending on the OS, version, installation time, etc.
 
 
 ## MySQL settings (Windows)
 
-- **(Only if MySQL5.7 is present)**  
-[Database backup](https://dev.mysql.com/doc/refman/8.0/en/mysqldump-sql-format.html).
+### Upgrade to MySQL 8.4 (Windows)
 
-- **(Only if MySQL5.7 is present)**  
-Type Command Prompt into the search bar to the right of the Start button.   
-Right-click Command Prompt, which appears at the top of the most matching search results.   
-Right-click and select Run as administrator from the menu that appears.
-![MySQL installation screen](img/xampp/mysql_cmd1.png)   
-Stop MySQL.   
+This section is for users who already have MySQL (for example 5.7 / 8.0) and want to upgrade to MySQL 8.4.
+
+- Recommendation: Back up your databases before upgrading.
+	- Example: [Database backup](https://dev.mysql.com/doc/refman/8.0/en/mysqldump-sql-format.html)
+
+- (If MySQL is running) open Command Prompt as Administrator and stop the service.
+![MySQL installation screen](img/xampp/mysql_cmd1.png)
 
 ~~~
 net stop mysql57
+net stop mysql80
 ~~~
 
-- Access the site below and download MySQL.   
-[MySQL Download](https://downloads.mysql.com/archives/installer/)  
+- Download MySQL Community Server (Windows) from the following page.
+	- Note: MySQL Installer is available only for the MySQL 8.0 series. For MySQL 8.1 and later (including 8.4), download MySQL Server as an MSI or ZIP package.
+	- [MySQL Community Server Downloads](https://downloads.mysql.com/archives/community/)
+	- In Select Version, choose 8.4.X, then choose Windows (x86, 64-bit).
+![Select MySQL 8.4 version](img/xampp/mysql18.png)
 
-- Select the latest version with Product Version 8.0.X.   
-![MySQL installation screen](img/xampp/mysql1.png)
+- Download one of the following packages:
+	- MSI Installer
+![Select download package](img/xampp/mysql19.png)
 
-- In the row that does not include web in the file name, click Download on the row with the largest file size to download.   
-![MySQL installation screen](img/xampp/mysql2.png)
+- Run the MSI file and follow the wizard.
+	- On the Welcome screen, click Next to start.
 
-- Run the downloaded file and proceed with the installation.   
+		![Welcome](img/xampp/mysql30.png)
+	- Accept the License Agreement and click Next.
 
-- For Choosing a Setup type, select Custom.   
-![MySQL installation screen](img/xampp/mysql3.png)  
+		![License Agreement](img/xampp/mysql20.png)
+	- For setup type, select **Complete** to install all features.
 
-- Under Select Products and Features, click MySQL Servers > MySQL Server > MySQL Server 8.0 and you'll see MySQL Server X64 and X86.   
-Click on one line according to the version of the OS you are using, and then click → in the middle.     
-![MySQL installation screen](img/xampp/mysql4.png)  
+		![Choosing a Setup Type](img/xampp/mysql21.png)
+	- Click Install to start installing.
 
-- (Optional) If you want to install MySQL Workbench, click Applications > MySQL Workbench > MySQL Workbench 8.0 and MySQL Workbench will be displayed.   
-Click on this line and click → in the middle.     
-※MySQL Workbench is an application that makes it easier to access MySQL data from a GUI.   
-![MySQL installation screen](img/xampp/mysql5.png)  
+		![Ready to Install](img/xampp/mysql22.png)
+	- Wait for installation to complete, then click Finish.
 
+		![Installation Progress](img/xampp/mysql23.png)
 
-- Click Yes or Install until completed.   
-![MySQL installation screen](img/xampp/mysql9.png)  
+- After the MSI installation finishes, the configuration tool (MySQL Configurator) starts automatically.
+	- On **Welcome to the MySQL Server Configurator**, click **Next**.
 
-- On the Installation page, click Execute to begin the installation.   
-![MySQL installation screen](img/xampp/mysql10.png)  
+		![Welcome Configurator](img/xampp/mysql31.png)
 
--Click Next.   
-![MySQL installation screen](img/xampp/mysql11.png)  
+- **Data Directory**: keep the default and click **Next**.
 
-- For Type and Networking, use the default settings.   
-![MySQL installation screen](img/xampp/mysql13.png)  
+	![Data Directory](img/xampp/mysql32.png)
 
-- Enter the root user password.   
-Be sure to remember this, as you will need it when using MySQL with Exment etc. in the future.   
-![MySQL installation screen](img/xampp/mysql14.png)  
+- **Type and Networking**:
+	- **Config Type**: select `Development Computer`.
+	- **Connectivity**: check `TCP/IP` (default port is `3306`).
+	- Click **Next**.
 
-- After that, follow the wizard and press Next several times to proceed with the installation.
-![MySQL installation screen](img/xampp/mysql15.png)  
-![MySQL installation screen](img/xampp/mysql16.png)  
+		![Type and Networking](img/xampp/mysql33.png)
 
-- Installation is complete.   
-![MySQL installation screen](img/xampp/mysql17.png)  
+- **Accounts and Roles**: set the `root` password and click **Next**.
 
-- Fix my.ini. (C:\ProgramData\MySQL\MySQL Server 8.0\my.ini)
+	![Accounts and Roles](img/xampp/mysql34.png)
+
+- **Windows Service**: set a service name (example `MySQL84`) and click **Next**.
+
+	![Windows Service](img/xampp/mysql35.png)
+
+- **Server File Permissions**: keep the default and click **Next**.
+
+	![Server File Permissions](img/xampp/mysql36.png)
+
+- **Sample Databases**: skip, click **Next**.
+
+	![Sample Databases](img/xampp/mysql37.png)
+
+- **Apply Configuration**: click **Execute**, then **Next** and **Finish**.
+
+	![Apply Configuration](img/xampp/mysql38.png)
+
+- Edit `my.ini` (MySQL 8.4) and enable local infile.
+	- Path: `C:\ProgramData\MySQL\MySQL Server 8.4\my.ini`
+	- Add the following under `[mysqld]` (or to the end of the file):
 
 ~~~
-# Add the following to the end
-
 local-infile=1
 ~~~
 
-- Start a command prompt with administrator privileges and stop MySQL.   
+- Restart MySQL (service name depends on your setup).
 
 ~~~
-net stop mysql80
-~~~  
+net stop MySQL84
+net start MySQL84
+~~~
 
-- Start MySQL.
+- Verify the version.
 
 ~~~
-net start mysql80
+mysql --version
 ~~~
+
+~~~
+mysql -u root -p -e "SELECT VERSION();"
+~~~
+
 
 ### Add environment variables
 
 - From Explorer, right-click This PC and click Properties.
-![MySQL environment variables](img/xampp/mysql_command1.png)
+
+	![MySQL environment variables](img/xampp/mysql_command1.png)
 
 - Click Advanced system settings.
-![MySQL environment variables](img/xampp/mysql_command2.png)
 
-- Click on Environment Variables.   
-![MySQL environment variables](img/xampp/mysql_command3.png)
+	![MySQL environment variables](img/xampp/mysql_command2.png)
+- Click on Environment Variables.
 
-- Click Path under User Environment Variables and click Edit.   
-![MySQL environment variables](img/xampp/mysql_command4.png)
+	![MySQL environment variables](img/xampp/mysql_command3.png)
 
+- Click Path under User Environment Variables and click Edit.
 
-- If the C:\Program Files\MySQL\MySQL Server 5.7\bin variable exists, remove it.
-![MySQL environment variables](img/xampp/mysql_command_env1.png)
+	![MySQL environment variables](img/xampp/mysql_command4.png)
 
-- Click New and add the following line.   
-C:\Program Files\MySQL\MySQL Server 8.2\bin   
-![MySQL environment variables](img/xampp/mysql_command_env2.png)
+- Remove old MySQL `bin` paths if they exist (example: `C:\Program Files\MySQL\MySQL Server 5.7\bin`).
 
-- Once you have made your entries, click OK on any dialogs that launch to complete them.   
+	![MySQL environment variables](img/xampp/mysql_command_env1.png)
+
+- Click New and add the following line.
+
+~~~
+C:\Program Files\MySQL\MySQL Server 8.4\bin
+~~~
+
+![MySQL environment variables](img/xampp/mysql_command_env4.png)
+
+- Click OK to close all dialogs.
 
 
 ## MySQL settings (Linux)
@@ -116,7 +146,7 @@ This is the installation procedure for MySQL on Linux.
 ※ Add sudo to the beginning of the command if necessary.   
 ※If the installation destination is CentOS8, RHEL8, etc., please use the dnf command instead of yum.
 
-### If MySQL5.7 exists (update from MySQL5.7 to MySQL8.0)
+### If MySQL5.7 exists (update from MySQL5.7 to MySQL8.4)
 - Delete the MySQL5.7 package.
 ~~~
 sudo killall mysqld; sudo killall mysqld_safe;
@@ -124,7 +154,7 @@ sudo rpm -e --nodeps mysql57-community-release
 sudo yum remove mysql mysql-server mysql-client mysql-common mysql-devel mysql-community-client-plugins -y
 ~~~
 
-- Install and start MySQL 8.0.
+- Install and start MySQL 8.4.
 <div style="margin-left: 2em;">Note: The rpm package depends on your OS version.</div>
 <div style="margin-left: 2em;">For example, in the case of AlmaLinux 9.5:</div><br>
 
@@ -136,7 +166,7 @@ Linux localhost.localdomain 5.14.0-503.11.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC 
 <div style="margin-left: 2em;">In this case,</div><br>
 
 ~~~
-sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+sudo rpm -ivh https://repo.mysql.com/mysql84-community-release-el9-2.noarch.rpm
 ~~~
 
 <div style="margin-left: 2em;">would be the appropriate command.</div><br>
@@ -145,7 +175,7 @@ sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.r
 ```bash
 # For CENTOS STREAM
 
-rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm -ivh https://repo.mysql.com/mysql84-community-release-el9-2.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 dnf clean packages
 dnf update -y
@@ -160,8 +190,8 @@ systemctl enable mysqld
 ```bash
 # For CENTOS 8
 
-sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
-sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo rpm -ivh https://repo.mysql.com/mysql84-community-release-el8-2.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 # Check if mysql-community-server exists
 sudo yum search mysql-community-server
@@ -191,8 +221,8 @@ local-infile=1
 sudo systemctl start mysqld
 ~~~
 
-### If MySQL5.7 does not exist (new installation of MySQL8.0)
-- Install and start MySQL8.0.
+### If MySQL5.7 does not exist (new installation of MySQL8.4)
+- Install and start MySQL8.4.
 
 <div style="margin-left: 2em;">Note: The rpm package depends on your OS version.</div>
 <div style="margin-left: 2em;">For example, in the case of AlmaLinux 9.5:</div><br>
@@ -205,7 +235,7 @@ Linux localhost.localdomain 5.14.0-503.11.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC 
 <div style="margin-left: 2em;">In this case,</div><br>
 
 ~~~
-sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+sudo rpm -ivh https://repo.mysql.com/mysql84-community-release-el9-2.noarch.rpm
 ~~~
 
 <div style="margin-left: 2em;">would be the appropriate command.</div><br>
@@ -213,7 +243,7 @@ sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.r
 ```bash
 # For CENTOSSTREAM
 
-rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm -ivh https://repo.mysql.com/mysql84-community-release-el9-2.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 dnf clean packages
 dnf update -y
@@ -227,8 +257,8 @@ systemctl enable mysqld
 ```bash
 # For CENTOS 8
 
-sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
-sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo rpm -ivh https://repo.mysql.com/mysql84-community-release-el8-2.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 # Check if mysql-community-server exists
 sudo yum search mysql-community-server

@@ -5,68 +5,85 @@ Exmentで、MySQLを使用するための手順です。
 
 ## MySQL設定(Windows)
 
-- **(MySQL5.7が存在する場合のみ)**  
-[データベースバックアップ](https://dev.mysql.com/doc/refman/8.0/ja/mysqldump-sql-format.html)します。
 
-- **(MySQL5.7が存在する場合のみ)**  
+- 推奨：アップグレード前に[データベースバックアップ](https://dev.mysql.com/doc/refman/8.4/ja/mysqldump-sql-format.html)を取得してください。
+
+- (MySQLが起動している場合) 管理者としてコマンドプロンプトを起動し、MySQLを停止します。  
 スタートボタン右側にある「検索バー」へ「コマンドプロンプト」と入力します。  
 表示される「最も一致される検索結果」の上段に表示される 「コマンドプロンプト」を右クリックします。  
 右クリックで表示されたメニューの中から「管理者として実行」を選択します。
 ![MySQLインストール画面](img/xampp/mysql_cmd1.png)   
-MySQLを停止します。  
 
 ~~~
 net stop mysql57
+net stop mysql80
 ~~~
 
 - 以下のサイトにアクセスし、MySQLをダウンロードします。  
-[MySQLダウンロード](https://downloads.mysql.com/archives/installer/)  
+※MySQL InstallerはMySQL 8.0系のみ提供されています。MySQL 8.1以降(8.4含む)は、MySQL ServerをMSIまたはZIPでダウンロードしてください。  
+[MySQL Community Server Downloads](https://downloads.mysql.com/archives/community/)  
 
-- Product Versionが「8.0.X」となっている、最新版のものを選択します。  
-![MySQLインストール画面](img/xampp/mysql1.png)
+- Select Versionで「8.4.X」を選択し、OSはWindows (x86, 64-bit)を選択します。  
+![MySQLインストール画面](img/xampp/mysql18.png)
 
-- ファイル名に「web」が"入っていない"方の行で、容量が大きい行の「Download」をクリックし、ダウンロードします。  
-![MySQLインストール画面](img/xampp/mysql2.png)
+- 以下のいずれかをダウンロードします。
+	- MSI Installer
+![MySQLインストール画面](img/xampp/mysql19.png)
 
-- ダウンロードしたファイルを実行し、インストールを進めます。  
+- ダウンロードしたMSIファイルを実行し、ウィザードに従ってインストールします。
+	- Welcome画面で「Next」をクリックします。
 
-- 「Choosing a Setup type」では、「Custom」を選択します。  
-![MySQLインストール画面](img/xampp/mysql3.png)  
+		![MySQLインストール画面](img/xampp/mysql30.png)
+	- License Agreementに同意し、「Next」をクリックします。
 
-- 「Select Products and Features」では、「MySQL Servers > MySQL Server > MySQL Server 8.0」をクリックすると、MySQL Server X64とX86が表示されます。  
-ご利用のOSのバージョンに合わせ、1行クリックし、真ん中の「→」をクリックしてください。    
-![MySQLインストール画面](img/xampp/mysql4.png)  
+		![MySQLインストール画面](img/xampp/mysql20.png)
+	- Setup Typeは「Complete」を選択します。
 
-- (任意)MySQLのワークベンチを導入したい場合、「Applications > MySQL Workbench > MySQL Workbench 8.0」をクリックすると、「MySQL Workbench」が表示されます。  
-この行をクリックし、真ん中の「→」をクリックしてください。    
-※MySQL Workbenchは、MySQLのデータをGUIからアクセスしやすくするためのアプリケーションです。  
-![MySQLインストール画面](img/xampp/mysql5.png)  
+		![MySQLインストール画面](img/xampp/mysql21.png)
+	- 「Install」をクリックします。
 
+		![MySQLインストール画面](img/xampp/mysql22.png)
+	- インストールが完了したら「Finish」をクリックします。
 
-- 完了するまで「Yes」や「Install」をクリックします。  
-![MySQLインストール画面](img/xampp/mysql9.png)  
+		![MySQLインストール画面](img/xampp/mysql23.png)
 
-- 「Installation」ページで、「Execute」をクリックして、インストールを開始します。  
-![MySQLインストール画面](img/xampp/mysql10.png)  
+- MSIのインストール完了後、MySQL Server Configuratorが自動的に起動します。
+	- 「Welcome to the MySQL Server Configurator」で「Next」をクリックします。
 
-- 「Next」をクリックします。  
-![MySQLインストール画面](img/xampp/mysql11.png)  
+		![MySQLインストール画面](img/xampp/mysql31.png)
 
-- 「Type and Networking」では、既定の設定とします。  
-![MySQLインストール画面](img/xampp/mysql13.png)  
+- Data Directoryは既定のまま「Next」をクリックします。
 
-- rootユーザーのパスワードを入力します。  
-今後ExmentなどでMySQLを使用する場合に必要ですので、必ず覚えておいてください。  
-![MySQLインストール画面](img/xampp/mysql14.png)  
+	![MySQLインストール画面](img/xampp/mysql32.png)
 
-- その後はウィザードに従い、「Next」を何回か押下して、インストールを進めていきます。
-![MySQLインストール画面](img/xampp/mysql15.png)  
-![MySQLインストール画面](img/xampp/mysql16.png)  
+- Type and Networking:
+	- Config Type: Development Computer
+	- Connectivity: TCP/IP (既定のポートは3306)
+	- 「Next」をクリックします。
 
-- インストールが完了しました。  
-![MySQLインストール画面](img/xampp/mysql17.png)  
+		![MySQLインストール画面](img/xampp/mysql33.png)
 
-- my.iniを修正します。(C:\ProgramData\MySQL\MySQL Server 8.0\my.ini)
+- Accounts and Roles: rootユーザーのパスワードを設定して「Next」をクリックします。
+
+	![MySQLインストール画面](img/xampp/mysql34.png)
+
+- Windows Service: サービス名(例: MySQL84)を設定して「Next」をクリックします。
+
+	![MySQLインストール画面](img/xampp/mysql35.png)
+
+- Server File Permissionsは既定のまま「Next」をクリックします。
+
+	![MySQLインストール画面](img/xampp/mysql36.png)
+
+- Sample Databasesはスキップして「Next」をクリックします。
+
+	![MySQLインストール画面](img/xampp/mysql37.png)
+
+- Apply Configurationで「Execute」をクリックし、完了後に「Next」「Finish」をクリックします。
+
+	![MySQLインストール画面](img/xampp/mysql38.png)
+
+- my.iniを修正します。(C:\ProgramData\MySQL\MySQL Server 8.4\my.ini)
 
 ~~~
 # 以下の記述を、末尾に追加
@@ -74,16 +91,11 @@ net stop mysql57
 local-infile=1
 ~~~
 
-- 管理者権限のコマンドプロンプトを起動して、MySQLを停止します。  
+- MySQLを再起動します。(サービス名は環境により異なります)
 
 ~~~
-net stop mysql80
-~~~  
-
-- MySQLを起動します。 
-
-~~~
-net start mysql80
+net stop MySQL84
+net start MySQL84
 ~~~
 
 ### 環境変数追加 
@@ -105,8 +117,8 @@ net start mysql80
 ![MySQL環境変数](img/xampp/mysql_command_env1.png)
 
 - 「新規」をクリックし、以下の行を追加します。  
- 「C:\Program Files\MySQL\MySQL Server 8.2\bin」   
-![MySQL環境変数](img/xampp/mysql_command_env2.png)
+ 「C:\Program Files\MySQL\MySQL Server 8.4\bin」   
+![MySQL環境変数](img/xampp/mysql_command_env4.png)
 
 - 入力を行ったら、起動したダイアログをすべて「OK」をクリックし、完了させます。  
 
@@ -116,7 +128,7 @@ LinuxでのMySQLのインストール手順です。
 ※必要に応じて、コマンドの頭にsudoを付与してください。  
 ※インストール先がCentOS8、RHEL8等の場合はyumではなくdnfコマンドをご利用ください。
 
-### MySQL5.7が存在する場合（MySQL5.7→MySQL8.0へアップデート）
+### MySQL5.7が存在する場合（MySQL5.7→MySQL8.4へアップデート）
 - MySQL5.7のパッケージを削除します。
 ~~~
 sudo killall mysqld; sudo killall mysqld_safe;
@@ -124,7 +136,7 @@ sudo rpm -e --nodeps mysql57-community-release
 sudo yum remove mysql mysql-server mysql-client mysql-common mysql-devel mysql-community-client-plugins -y
 ~~~
 
-- MySQL8.0をインストールし起動します。
+- MySQL8.4をインストールし起動します。
 <div style="margin-left: 2em;">※OSのバージョンによってはrpmが異なります。</div>
 <div style="margin-left: 2em;">例えば、AlmaLinux9.5の場合は、</div><br>
 
@@ -135,14 +147,14 @@ Linux localhost.localdomain 5.14.0-503.11.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC 
 <div style="margin-left: 2em;">だと、</div><br>
 
 ~~~
-sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+sudo rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el9-2.noarch.rpm
 ~~~
 <div style="margin-left: 2em;">となります。</div><br>
 
 ~~~
 # CENTOS STREAMの場合
 
-rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el9-2.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 dnf clean packages
 dnf update -y
@@ -155,8 +167,8 @@ systemctl enable mysqld
 
 ~~~
 # CENTOS8の場合
-sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
-sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el8-2.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 # こちらを実施時して、mysql-community-serverが存在するかを確認します
 sudo yum search mysql-community-server
@@ -185,8 +197,8 @@ local-infile=1
 sudo systemctl start mysqld
 ~~~
 
-### MySQL5.7が存在しない場合（MySQL8.0の新規インストール）
-- MySQL8.0をインストールし起動します。
+### MySQL5.7が存在しない場合（MySQL8.4の新規インストール）
+- MySQL8.4をインストールし起動します。
 <div style="margin-left: 2em;">※OSのバージョンによってはrpmが異なります。</div>
 <div style="margin-left: 2em;">例えば、AlmaLinux9.5の場合は、</div><br>
 
@@ -197,14 +209,14 @@ Linux localhost.localdomain 5.14.0-503.11.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC 
 <div style="margin-left: 2em;">だと、</div><br>
 
 ~~~
-sudo rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+sudo rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el9-2.noarch.rpm
 ~~~
 <div style="margin-left: 2em;">となります。</div><br>
 
 ~~~
 # CENTOSSTREAMの場合
 
-rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el9-2.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 dnf clean packages
 dnf update -y
@@ -218,8 +230,8 @@ systemctl enable mysqld
 
 ~~~
 # CENTOS 8の場合
-sudo rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
-sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el8-2.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 # こちらを実施時して、mysql-community-serverが存在するかを確認します
 sudo yum search mysql-community-server

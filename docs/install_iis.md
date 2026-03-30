@@ -7,7 +7,7 @@ This page is constructed with the following contents.
 - Windows Server 2019 Standard Japanese version
 - IIS 10
 - PHP 8.2.X
-- MySQL 8.0.35
+- MySQL 8.4.X
 
 Appropriate notes are provided if Windows 10 is used for verification purposes.
 
@@ -111,21 +111,21 @@ Download and install PHP
 
 ### Installing MySQL
 Install and initial configuration of MySQL used by Exment  
-Here we are installing MySQL 8.0.35
+Here we are installing MySQL 8.4.X
 
 1. Visit the [MySQL Community Downloads](https://dev.mysql.com/downloads/mysql/) page
 2. Click \[General Availability (GA) Releases\]   
    ![MySQL Community Downloads](img/iis/iis_mysql01.png)
-3. Select "8.0.35" for \[Select Version\], select "Microsoft Windows" for \[Select Operating System\], and select "Windows (x86, 64bit)" for \[Select OS Version\].  
+3. Select "8.4.X" for \[Select Version\], select "Microsoft Windows" for \[Select Operating System\], and select "Windows (x86, 64bit)" for \[Select OS Version\].  
    ![Download selection](img/iis/iis_mysql02.png)  
    > If you are using a 32-bit version of Windows in a Windows 10 environment, please select "Windows (x86, 32bit)" in \[Select OS Version\]
-4. Click the \[Download\] button in the "ZIP Archive" column of \[Other Downloads\] and download the mysql-8.0.35-winx64.zip file.  
+4. Click the \[Download\] button in the "ZIP Archive" column of \[Other Downloads\] and download the mysql-8.4.xx-winx64.zip file.  
    ![Download](img/iis/iis_mysql03.png)
 5. When you see \[Login Now or Sign Up for a free account.\], click \[No thanks, just start my download.\] at the bottom. Download will begin
 6. Right-click the downloaded ZIP file to display properties, check   Unblock   under \[Security\] on the \[General\] tab, and click \[OK\]. Click   
    ![Unblock](img/iis/iis_mysql04.png)
 7. Extract the contents of the ZIP file to a suitable folder (e.g. C:\MySQL)
-8. Launch an administrator command prompt and navigate to the mysql-8.0.35-winx64\bin folder inside the folder where you extracted the ZIP file  
+8. Launch an administrator command prompt and navigate to the mysql-8.4.xx-winx64\bin folder inside the folder where you extracted the ZIP file  
    ![Move current](img/iis/iis_mysql05.png)
 9. Execute the following command to initialize MySQL
     ```
@@ -152,7 +152,7 @@ Here we are installing MySQL 8.0.35
     ```
     ![Starting the service](img/iis/iis_mysql09.png)
 14. Check the initial value of the administrator (root) password for using MySQL  
-    If the folder where you expanded MySQL is C:\MySQL, there will be a file with the extension .err in C:\MySQL\mysql-8.0.35-winx64\data, so open it with a text editor such as Notepad.   
+    If the folder where you expanded MySQL is C:\MySQL, there will be a file with the extension .err in C:\MySQL\mysql-8.4.xx-winx64\data, so open it with a text editor such as Notepad.   
     > In the case below, the file name is ExmentServer2.err  
     ![err file](img/iis/iis_mysql10.png)
 15. Near the top of the file there is a line that says "\[Note\] A temporary password is generated for root@localhost:" (underlined in red in the image below). The character string written after this (1fyr*IXeC2%w in the figure below) is the initial password. Please note this password

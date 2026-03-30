@@ -155,7 +155,7 @@ If MySQL is not installed on the same server, you will need to install the MySQL
 *Skip this step if MySQL is installed on the same server.*
 
 ```bash
-rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el9-2.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 dnf clean packages
 dnf update -y
