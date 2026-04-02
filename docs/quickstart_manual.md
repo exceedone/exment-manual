@@ -78,6 +78,10 @@ MAIL_ENCRYPTION=null # Enter "ssl" when using ssl
 # add for https communication
 ADMIN_HTTPS=true
 
+# Security: bcrypt rounds for password hashing.
+# Must be set to 12 or higher as recommended by OWASP.
+# https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+BCRYPT_ROUNDS=12
 ~~~
 
 

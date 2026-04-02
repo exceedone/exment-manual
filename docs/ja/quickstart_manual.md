@@ -69,7 +69,11 @@ APP_LOCALE=ja
 
 # https通信の場合に追加
 ADMIN_HTTPS=true
+#セキュリティ：パスワードハッシュ化におけるbcryptのラウンド数
+#OWASPの推奨により、12以上に設定する必要があります。
+#https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 
+BCRYPT_ROUNDS=12
 ~~~
 
 
