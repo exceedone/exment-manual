@@ -155,8 +155,8 @@ Even if you do not install MySQL on the same server, you must install a mysql cl
 ※If you want to install MySQL on the same server, skip this step.
 
 ~~~
-rpm -ivh http://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
-rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el7-2.noarch.rpm
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 # Execute this to check if mysql-community-client exists
 dnf search mysql-community-client

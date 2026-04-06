@@ -15,7 +15,7 @@ This page is constructed with the following configuration.
 - security group
 - Amazon S3
 - Amazon RDS
-    - MySQL 8.0.x
+    - MySQL 8.4.x
 - Amazon ElastiCache
     - Redis 5.0.5
 - Amazon Linux2-A
@@ -152,7 +152,7 @@ Please create IAM for S3 at the above URL and create a bucket
 For information on how to install MySQL on a server, please check [here](/install_mysql).
 
 - Engine: MySQL
-- Version: 8.0.x
+- Version: 8.4.x
 - Instance identifier: any (example: exment-db)
 - DB instance class: any (e.g. db.t2.micro)
 - Username and password: set individually

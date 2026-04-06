@@ -11,7 +11,7 @@ Dockerイメージは、[oreno4649氏によるdockerリポジトリ](https://git
 - nginx 最新版
 - PHP 8.2.XX
 - Debian
-- MySQL 8.0.XX
+- MySQL 8.4.XX
 
 ## 注意点
 

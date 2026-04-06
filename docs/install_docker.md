@@ -11,7 +11,7 @@ This page is constructed with the following contents.
 - nginx latest version
 - PHP 8.2.XX
 - Debian
-- MySQL 8.0.XX
+- MySQL 8.4.XX
 
 ## Important point
 

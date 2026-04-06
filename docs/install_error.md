@@ -11,7 +11,7 @@ When the command "php artisan exment: install" is executed, the following error 
 ~~~
 
 Occurs when the MySQL version is less than 5.7.7.  
-Update the MySQL version to 5.7.8 or higher and less than 8.0.0.  
+Update the MySQL version to 5.7.8 or higher (recommended: MySQL 8.4).  
 
 ## SQLSTATE [HY000] [202] Permission denied" error occurs when accessing the management screen after initial installation
 To access MySQL from Apache, SELinux settings may be required.  
