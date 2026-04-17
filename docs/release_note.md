@@ -1,6 +1,14 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.9 (2026/04/17)
+1. Functionality Fixes
+    - MySQL 8.4 Support
+1. Bug Fixes
+    - Fixed a bug where selecting "Vertical Arrangement" for "Header Display Method" would display the header in the input field of the child table on the editing screen
+    - Fixed a bug where the value would be replaced with the "Initial Value" when the field type in the form settings was "Display Only"
+
+
 ## v6.2.8 (2026/01/22)
 1. Functionality fixes
     - Fixed a bug where if you only have view permissions for the parent table in a parent-child table, you can now edit the child table even if you have edit permissions.
@@ -9,6 +17,7 @@
     - Fixed a bug where the order was incorrect when sorting by grouping or date data in the summary view.
     - Fixed a bug where an error occurred when the action set in the notification settings was email.
     - Fixed a bug where the screen position should return to the record position when returning from the record display screen to the data list screen.
+
 
 ## v6.2.7 (2025/10/08)
 1. Feature Fixes
