@@ -20,12 +20,13 @@ Exmentを開始するために必要となる手順です。
 ※Exmentは現在、バージョン9.Xのみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。
 
 ~~~
-composer create-project "laravel/laravel=9.*" (プロジェクト名)
+composer create-project "laravel/laravel=10.*" (プロジェクト名)
 cd (プロジェクト名)
 composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
 composer require psr/simple-cache=^2.0.0
 composer require psr/http-message="1.*"
-composer require exceedone/exment
+composer require nesbot/carbon=~2.71.0
+composer require exceedone/exment -W
 
 # Exmentのバージョンを指定したい場合、代わりに以下を実行。例：v3.2.6
 composer require exceedone/exment=3.2.6

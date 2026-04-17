@@ -122,6 +122,47 @@ rm /usr/bin/composer
     - [Linux版 解説サイト](https://weblabo.oscasierra.net/php-composer-centos-install/)
     - [Mac版 解説サイト](https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
 
+### composer updateコマンドの実行時、"LogicException Invalid key supplied "エラーが発生する  
+composer updateコマンドの実行時、以下のようなエラーが発生する場合があります。
+
+```
+   LogicException	
+	
+  Invalid key supplied	
+	
+  at vendor/league/oauth2-server/src/CryptKey.php:67	
+     63▕             if (!$this->isValidKey($this->keyContents, $this->passPhrase ?? '')) {	
+     64▕                 throw new LogicException('Unable to read key from file ' . $keyPath);	
+     65▕             }	
+     66▕         } else {	
+  ➜  67▕             throw new LogicException('Invalid key supplied');	
+     68▕         }	
+     69▕	
+     70▕         if ($keyPermissionsCheck === true) {	
+     71▕             // Verify the permissions of the key	
+	
+      +17 vendor frames	
+	
+  18  [internal]:0	
+      Illuminate\Foundation\Application::Illuminate\Foundation\{closure}()	
+      +5 vendor frames	
+	
+  24  artisan:35	
+      Illuminate\Foundation\Console\Kernel::handle()	
+```
+
+#### この場合、以下のコマンドで、API利用を無効してから、Laravelのキーを作成してください。
+
+```
+# API利用を無効化する。
+UPDATE `systems` SET `system_value` = '0' WHERE `systems`.`system_name` = 'api_available';
+
+# Laravelのキーを作成する
+php artisan passport:keys	
+
+# API利用を有効化する。
+UPDATE `systems` SET `system_value` = '1' WHERE `systems`.`system_name` = 'api_available';
+```
 
 ### アップデートバッチの実行やcomposer requireコマンドの実行時、"require ext-gd "、"require ext-sodium "、"require ext-zip "エラーが発生する
 アップデートバッチの実行やcomposer requireコマンドの実行時に、以下の表示になることがあります。
