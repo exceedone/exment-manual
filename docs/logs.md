@@ -71,7 +71,56 @@ The date and time when the operation was performed.
 - Currently, it does not support exporting operation logs. note that.
 
 
+### Operation Log Automatic Deletion
+At the bottom of the Operation Log screen, you can configure settings for automatic deletion of operation logs.
+![Operation Log Automatic Deletion Settings](img/logs/auth_logs3.png)  
 
+#### Enable Automatic
+- Enable or disable automatic deletion of operation logs.
+- If enabled, logs older than the configured retention period will be deleted automatically.
+- If disabled, logs will not be deleted automatically.
+- The default value is "Yes".
+
+#### Log Retention Period (Days)
+- Specify the number of days to retain operation logs.
+- Logs older than the specified number of days will be deleted automatically.
+- Please enter a value of 1 or greater.
+- This setting is displayed only when Enable Automatic is enabled.
+- The default value is "180".
+
+#### Execution Day of Week
+- Specify the day(s) of the week on which automatic deletion will run.
+- If no value is selected, automatic deletion will run regardless of the day of the week.
+- The placeholder value is "All".
+
+#### Execution Month
+- Specify the month(s) in which automatic deletion will run.
+- If no value is selected, automatic deletion will run regardless of the month.
+- The placeholder value is "All".
+
+#### Execution Day
+- Specify the day(s) of the month on which automatic deletion will run.
+- If no value is selected, automatic deletion will run regardless of the day of the month.
+- If both Execution Day of Week and Execution Day are specified, automatic deletion will run only when both conditions are satisfied.
+- The placeholder value is "All".
+
+
+#### Execution Hour
+- Specify the hour(s) at which automatic deletion will run.
+- If no value is selected, automatic deletion will run regardless of the hour.
+- The placeholder value is "All".
+
+#### Execution Minute
+- Specify the minute(s) at which automatic deletion will run.
+- If no value is selected, automatic deletion will run regardless of the minute.
+- The placeholder value is "All".
+
+
+#### To disable automatic deletion
+1. Set Enable Automatic to "No".
+2. Click Save.
+
+After saving, automatic deletion will be disabled.
 
 ## Log file output  
 Outputs a log file on the server mainly when an error occurs.  
