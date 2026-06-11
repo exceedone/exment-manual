@@ -1,6 +1,11 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.10 (2026/06/11)
+1. Added Feature
+    - Automatic log deletion. Details [here](/logs)
+
+
 ## v6.2.9 (2026/04/17)
 1. Functionality Fixes
     - MySQL 8.4 Support
