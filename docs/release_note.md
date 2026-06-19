@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.11 (2026/06/19)
+1. Bug Fixes
+    - Fixed a bug in version display after the release of v6.2.10
+    - Fixed a bug where barcode-related settings were copied when copying tables
+    - Fixed a bug where column and form settings were not correctly reflected when exporting a template and importing it to another environment
+    - Fixed a bug where an Exception occurred when loading a template with thumbnails
+    - Modified templates to allow exporting and importing all settings
+    - Fixed a bug where the dialog box would not close when deleting a user template on the initial setup screen after installation
+
 ## v6.2.10 (2026/06/11)
 1. Added Feature
     - Automatic log deletion. Details [here](/logs)
