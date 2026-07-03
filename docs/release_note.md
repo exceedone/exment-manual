@@ -1,6 +1,11 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.12 (2026/07/03)
+1. Bug fixes
+    - Fixed a workflow issue identified after the v6.2.10 release.
+
+
 ## v6.2.11 (2026/06/19)
 1. Bug Fixes
     - Fixed a bug in version display after the release of v6.2.10
