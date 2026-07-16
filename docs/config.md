@@ -141,7 +141,7 @@ Depending on the environment, it may be faster.
 #### With or without filter when transitioning from the search page to the list page
 - Setting key : EXMENT_SEARCH_LIST_LINK_FILTER
 - Default value : true
-- Role : When set to true, when moving from the data search page to the data list page, the list can be displayed while maintaining the entered search conditions as a filter.
+- Role : When set to true, the search conditions entered are applied as filters only when the list page is opened from the "List" button displayed in the search results of the data search screen.
 
 
 #### When searching from the search bar, the file name of the "attached file" of the custom data is searched
@@ -165,7 +165,7 @@ Depending on the environment, it may be faster.
 #### Maintain view when searching for free words
 - Setting key : EXMENT_SEARCH_KEEP_DEFAULT_VIEW
 - Default value : false
-- Role : If true, the currently selected view will be maintained when searching for free words in a table.
+- Role : If true, the currently selected view is preserved during table-level freeword search.
 (If false, a free word search will be performed in all view.)
 
 
