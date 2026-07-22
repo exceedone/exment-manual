@@ -141,7 +141,7 @@ Depending on the environment, it may be faster.
 #### With or without filter when transitioning from the search page to the list page
 - Setting key : EXMENT_SEARCH_LIST_LINK_FILTER
 - Default value : true
-- Role : When set to true, the search conditions entered are applied as filters only when the list page is opened from the "List" button displayed in the search results of the data search screen.
+- Role : When set to true, the search conditions entered on the All Data Search screen or Related Data Search screen are retained as filters when navigating to the Data List screen.
 
 
 #### When searching from the search bar, the file name of the "attached file" of the custom data is searched
