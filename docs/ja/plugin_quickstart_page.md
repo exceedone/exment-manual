@@ -6,6 +6,9 @@ Exmentに新しい画面を作成することができます。
 Exmentのプラグインページは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに[laravel-admin](https://laravel-admin.org/docs/) を使用して開発します。  
 ページの開発を行う場合には、特にLaravelの知識がある方が開発することをおすすめします。
 
+※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。  
+v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。  
+
 ## 作成方法
 
 ### サンプル
@@ -86,7 +89,7 @@ https://www.famkruithof.net/uuid/uuidgen
 // (1)
 namespace App\Plugins\YouTubeSearch;
 
-use Encore\Admin\Widgets\Box;
+use ExmentAdminCore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Services\Plugin\PluginPageBase;
 use GuzzleHttp\Client;

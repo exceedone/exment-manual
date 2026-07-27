@@ -1,6 +1,8 @@
 # Plug-in reference
 It is a list of functions and properties unique to each plug-in.  
-※ Custom tables or columns, reference of custom data, [click here](/func_reference) please refer to.
+※ Custom tables or columns, reference of custom data, [click here](/func_reference) please refer to.  
+※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/v7_0_0).
 
 ## PluginBase / Plugin common class
 
@@ -23,7 +25,7 @@ For more information [here](/plugin_quickstart#Make-your-own-settings-on-the-plu
 ##### argument
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| &$form | \Encore\Admin\Form | laravel-admin form instance |
+| &$form | \ExmentAdminCore\Admin\Form | laravel-admin form instance |
 
 ##### Return value
 None
@@ -573,7 +575,7 @@ Defines view-specific settings. For details, please refer to [here](/plugin_quic
 ##### 引数
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| &$form | \Encore\Admin\Form | form instance of laravel-admin |
+| &$form | \ExmentAdminCore\Admin\Form | form instance of laravel-admin |
 
 ##### 戻り値
 None

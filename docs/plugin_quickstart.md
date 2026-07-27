@@ -3,6 +3,9 @@
 This section describes how to create an Exment plug-in.  
 For more information on plug-in functions and management methods, see [Plugins](/plugin.md).
 
+※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/v7_0_0).
+
 ## Creation method link
 - [trigger](/plugin_quickstart_trigger.md)
 - [page](/plugin_quickstart_page.md)
@@ -34,7 +37,7 @@ Example: Set the access key required to execute the YouTube Data API from the sc
 // (1)
 namespace App\Plugins\YouTubeSearch;
 
-use Encore\Admin\Widgets\Box;
+use ExmentAdminCore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Services\Plugin\PluginPageBase;
 use GuzzleHttp\Client;
