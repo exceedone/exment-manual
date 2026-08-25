@@ -148,6 +148,7 @@ Depending on the environment, it may be faster.
 - Setting key : EXMENT_SEARCH_DOCUMENT
 - Default value : false
 - Role : By setting to true, the file name of "Attachment" of custom data can be searched when searching from the search bar.
+<span class="red">*If it is true, the full-text search engine (Meilisearch) is not used on the search screen. For details, please check [here](/additional_meilisearch).</span>
 
 
 #### Maximum number of keyword searches
@@ -167,6 +168,117 @@ Depending on the environment, it may be faster.
 - Default value : false
 - Role : If true, the currently selected view will be maintained when searching for free words in a table.
 (If false, a free word search will be performed in all view.)
+
+
+
+#### About the settings of the full-text search engine (Meilisearch)
+The following setting values beginning with "MEILISEARCH_" are the settings for using the full-text search engine "Meilisearch". For details, please check [here](/additional_meilisearch).
+<span class="red">*These setting values can also be set from the menu "Admin Settings > System Settings (Advanced settings)". When you save from the screen, the settings on the screen take priority over the ".env".</span>
+
+
+#### Connection destination of the Meilisearch server
+- Setting key : MEILISEARCH_HOST
+- Default value : http://127.0.0.1:7700
+- Role : This is the connection destination of the Meilisearch server.
+
+
+#### Master key of Meilisearch
+- Setting key : MEILISEARCH_KEY
+- Default value : (none)
+- Role : This is the master key for connecting to Meilisearch. Write the key generated when installing Meilisearch.
+
+
+#### Use Meilisearch when searching
+- Setting key : MEILISEARCH_GLOBAL_SEARCH
+- Default value : false
+- Role : If true, free word search is performed using Meilisearch instead of the database.
+
+
+#### Reflect updates in Meilisearch in real time
+- Setting key : MEILISEARCH_REALTIME_SYNC
+- Default value : false
+- Role : If true, the contents are reflected in the Meilisearch index when custom data is created, updated or deleted.
+*When using this setting, the setting of the queue and the execution of the queue worker are required.
+
+
+#### Automatic repair of the Meilisearch index
+- Setting key : MEILISEARCH_REPAIR_ENABLED
+- Default value : false
+- Role : If true, the difference between the database and the Meilisearch index is automatically repaired once a day.
+*When using this setting, the setting of the task schedule is required.
+
+
+#### Execution time of the automatic repair of the Meilisearch index
+- Setting key : MEILISEARCH_REPAIR_AT
+- Default value : 03:00
+- Role : This is the time to execute the automatic repair of the index. Write it in the "HH:MM" format.
+
+
+#### Index name of Meilisearch
+- Setting key : MEILISEARCH_INDEX
+- Default value : exment_global
+- Role : This is the name of the index created in Meilisearch.
+
+
+#### Unit of the index creation of Meilisearch
+- Setting key : MEILISEARCH_BATCH_SIZE
+- Default value : 1000
+- Role : This is the number of documents sent in one request when creating the index.
+
+
+#### Connection timeout of Meilisearch
+- Setting key : MEILISEARCH_CONNECT_TIMEOUT
+- Default value : 1.0
+- Role : This is the timeout (seconds) when connecting to the Meilisearch server.
+
+
+#### Timeout of Meilisearch
+- Setting key : MEILISEARCH_TIMEOUT
+- Default value : 5.0
+- Role : This is the timeout (seconds) of a request to the Meilisearch server.
+
+
+#### Matching strategy of the Meilisearch search
+- Setting key : MEILISEARCH_MATCHING_STRATEGY
+- Default value : all
+- Role : This is the matching condition when searching with multiple words. In the case of "all", data containing all the words is searched. In the case of "last", when the number of matches is small, the conditions are excluded in order from the last word.
+
+
+#### Number of records fetched for the permission filter of Meilisearch
+- Setting key : MEILISEARCH_PERMISSION_SCAN_CAP
+- Default value : 1000
+- Role : This is the upper limit of the number of records fetched in advance, in order to narrow down the search results by the permission of the user.
+
+
+#### Maximum number of facet values of Meilisearch
+- Setting key : MEILISEARCH_MAX_FACET_VALUES
+- Default value : 1000
+- Role : This is the upper limit of the number of values fetched per item in the narrowing down (facet) of the search results.
+
+
+#### Filter behavior of Meilisearch
+- Setting key : MEILISEARCH_FILTER_MODE
+- Default value : override
+- Role : This is the behavior of the filter on the search result page.
+
+
+#### Sync queue name of Meilisearch
+- Setting key : MEILISEARCH_SYNC_QUEUE
+- Default value : default
+- Role : This is the name of the queue that executes the sync process for each custom data record.
+
+
+#### Reindex queue name of Meilisearch
+- Setting key : MEILISEARCH_REINDEX_QUEUE
+- Default value : meili-reindex
+- Role : This is the name of the queue that executes the process of recreating the index for each table.
+
+
+#### Target language of the Meilisearch search
+- Setting key : MEILISEARCH_LOCALES
+- Default value : jpn
+- Role : This is the language setting used when Meilisearch splits a sentence into words (tokenization). Write the language codes of ISO-639-3 separated by commas. (Example: "jpn", "jpn,eng") When it is left empty, this setting is deleted from the index and Meilisearch determines the language automatically.
+*In order to use this setting, Meilisearch v1.10 or later is required. When you have changed it, please execute "php artisan exment:meili-settings".
 
 
 ### Email / Notification settings

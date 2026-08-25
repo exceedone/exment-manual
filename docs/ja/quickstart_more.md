@@ -41,5 +41,8 @@ API実施時に、429 Too Many Requestsが発生する場合の対処法です�
 - [リバースプロキシ設定](/ja/additional_reverse_proxy)  
 リバースプロキシで環境構築時の追加設定です。
 
+- [全文検索エンジン(Meilisearch)の利用](/ja/additional_meilisearch)  
+大量のデータを保持している環境で、全文検索エンジン「Meilisearch」を利用し、高速に検索を行うための設定方法です。
+
 - [エキスパートモード](/ja/additional_expert)  
 より柔軟な設定項目を表示するための手順です。

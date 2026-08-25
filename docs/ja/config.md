@@ -150,6 +150,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : EXMENT_SEARCH_DOCUMENT
 - 既定値 : false
 - 役割 : trueにすることで、検索バーから検索時、カスタムデータの「添付ファイル」のファイル名を検索対象にすることができます。
+<span class="red">※trueの場合、検索画面では全文検索エンジン(Meilisearch)が使用されません。詳細は[こちら](/ja/additional_meilisearch)をご確認ください。</span>
 
 
 #### キーワード検索最大件数
@@ -169,6 +170,117 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueの場合、リーワード検索時にテーブル単位のフリーワード検索時にその時選択しているビューが維持されます。
 （falseの場合、全件ビューでフリーワード検索します。）
+
+
+
+#### 全文検索エンジン(Meilisearch)の設定について
+以下の「MEILISEARCH_」で始まる設定値は、全文検索エンジン「Meilisearch」を使用する場合の設定です。詳細は[こちら](/ja/additional_meilisearch)をご確認ください。
+<span class="red">※これらの設定値は、メニュー「管理者設定 > システム設定(詳細設定)」からも設定することができます。画面から保存を行った場合、画面の設定が「.env」よりも優先されます。</span>
+
+
+#### Meilisearchサーバーの接続先
+- 設定キー : MEILISEARCH_HOST
+- 既定値 : http://127.0.0.1:7700
+- 役割 : Meilisearchサーバーの接続先です。
+
+
+#### Meilisearchのマスターキー
+- 設定キー : MEILISEARCH_KEY
+- 既定値 : (なし)
+- 役割 : Meilisearchへ接続するためのマスターキーです。Meilisearchのインストール時に生成したキーを記入します。
+
+
+#### 検索時にMeilisearchを使用する
+- 設定キー : MEILISEARCH_GLOBAL_SEARCH
+- 既定値 : false
+- 役割 : trueの場合、フリーワード検索時に、データベースではなくMeilisearchを使用して検索を行います。
+
+
+#### 更新内容をリアルタイムでMeilisearchへ反映する
+- 設定キー : MEILISEARCH_REALTIME_SYNC
+- 既定値 : false
+- 役割 : trueの場合、カスタムデータの新規作成・更新・削除時に、その内容をMeilisearchのインデックスへ反映します。
+※この設定を使用する場合、キューの設定と、キューワーカの実行が必要です。
+
+
+#### Meilisearchのインデックス自動修復
+- 設定キー : MEILISEARCH_REPAIR_ENABLED
+- 既定値 : false
+- 役割 : trueの場合、データベースとMeilisearchのインデックスの差異を、1日1回自動的に修復します。
+※この設定を使用する場合、タスクスケジュールの設定が必要です。
+
+
+#### Meilisearchのインデックス自動修復 実行時刻
+- 設定キー : MEILISEARCH_REPAIR_AT
+- 既定値 : 03:00
+- 役割 : インデックスの自動修復を実行する時刻です。「HH:MM」の形式で記入します。
+
+
+#### Meilisearchのインデックス名
+- 設定キー : MEILISEARCH_INDEX
+- 既定値 : exment_global
+- 役割 : Meilisearchに作成する、インデックスの名前です。
+
+
+#### Meilisearchのインデックス作成単位
+- 設定キー : MEILISEARCH_BATCH_SIZE
+- 既定値 : 1000
+- 役割 : インデックスの作成時に、1回のリクエストで送信するドキュメントの件数です。
+
+
+#### Meilisearchの接続タイムアウト時間
+- 設定キー : MEILISEARCH_CONNECT_TIMEOUT
+- 既定値 : 1.0
+- 役割 : Meilisearchサーバーへの接続時の、タイムアウト時間(秒)です。
+
+
+#### Meilisearchのタイムアウト時間
+- 設定キー : MEILISEARCH_TIMEOUT
+- 既定値 : 5.0
+- 役割 : Meilisearchサーバーへのリクエストの、タイムアウト時間(秒)です。
+
+
+#### Meilisearchの検索一致条件
+- 設定キー : MEILISEARCH_MATCHING_STRATEGY
+- 既定値 : all
+- 役割 : 複数の単語で検索した場合の、一致条件です。allの場合、すべての単語を含むデータを検索します。lastの場合、一致する件数が少ない場合に、末尾の単語から順に条件を除外して検索します。
+
+
+#### Meilisearchの権限フィルタ取得件数
+- 設定キー : MEILISEARCH_PERMISSION_SCAN_CAP
+- 既定値 : 1000
+- 役割 : 検索結果に対してユーザーの権限による絞り込みを行うため、あらかじめ多めに取得する件数の上限です。
+
+
+#### Meilisearchのファセット最大値
+- 設定キー : MEILISEARCH_MAX_FACET_VALUES
+- 既定値 : 1000
+- 役割 : 検索結果の絞り込み(ファセット)で、1つの項目あたりに取得する値の上限です。
+
+
+#### Meilisearchのフィルタ動作
+- 設定キー : MEILISEARCH_FILTER_MODE
+- 既定値 : override
+- 役割 : 検索結果画面のフィルタの動作です。
+
+
+#### Meilisearchの同期キュー名
+- 設定キー : MEILISEARCH_SYNC_QUEUE
+- 既定値 : default
+- 役割 : カスタムデータ1件単位の同期処理を実行する、キューの名前です。
+
+
+#### Meilisearchの再作成キュー名
+- 設定キー : MEILISEARCH_REINDEX_QUEUE
+- 既定値 : meili-reindex
+- 役割 : テーブル単位でインデックスを作成しなおす処理を実行する、キューの名前です。
+
+
+#### Meilisearchの検索対象言語
+- 設定キー : MEILISEARCH_LOCALES
+- 既定値 : jpn
+- 役割 : Meilisearchが文章を単語に分割する(分かち書き)際に使用する、言語の設定です。ISO-639-3の言語コードを、カンマ区切りで記入します。(例:「jpn」「jpn,eng」)空にした場合、この設定はインデックスから削除され、Meilisearchが自動的に言語を判定します。
+※この設定を使用するには、Meilisearch v1.10以降が必要です。変更した場合、「php artisan exment:meili-settings」を実行してください。
 
 
 ### メール・通知設定

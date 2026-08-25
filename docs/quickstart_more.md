@@ -42,5 +42,8 @@ Some processes such as notifications can be delayed (queued).
 - [Reverse proxy settings](/additional_reverse_proxy)  
 This is an additional setting when building an environment with a reverse proxy.
 
+- [Using the full-text search engine (Meilisearch)](/additional_meilisearch)  
+This is the setting method for using the full-text search engine "Meilisearch" and searching at high speed in an environment that holds a large amount of data.
+
 - [Expert mode](/additional_expert)  
 This is a procedure for displaying more flexible setting items.
