@@ -39,7 +39,7 @@
 プロジェクトのルートフォルダで、以下のコマンドを実行してください。  
 
 ```
-composer require arcanedev/no-captcha=^10.1
+composer require google/recaptcha=^1.3.1
 ```
 
 ### 2. システム設定画面
