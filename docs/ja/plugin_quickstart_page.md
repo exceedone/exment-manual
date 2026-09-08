@@ -6,6 +6,9 @@ Exmentに新しい画面を作成することができます。
 Exmentのプラグインページは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに[laravel-admin](https://laravel-admin.org/docs/) を使用して開発します。  
 ページの開発を行う場合には、特にLaravelの知識がある方が開発することをおすすめします。
 
+※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。  
+v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。
+
 ## 作成方法
 
 ### サンプル
@@ -86,7 +89,7 @@ https://www.famkruithof.net/uuid/uuidgen
 // (1)
 namespace App\Plugins\YouTubeSearch;
 
-use Encore\Admin\Widgets\Box;
+use ExmentAdminCore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Services\Plugin\PluginPageBase;
 use GuzzleHttp\Client;
@@ -263,5 +266,8 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 ~~~
 
 ### サンプルプラグイン
+※以下のサンプルプラグインは、Exment v7.0.0以降に対応しており、名前空間「ExmentAdminCore\Admin」を使用しています。  
+v6.x以前をご利用の場合は、「Plugin.php」内の「ExmentAdminCore\Admin」を「Encore\Admin」に置き換えてご利用ください。
+
 [YouTube検索](https://github.com/exment-git/plugin-sample/tree/main/page/YouTubeSearch)  
 ※事前に、[こちら](https://exment.net/downloads/sample/template/YouTube.zip)のテンプレートをインポートしてください。

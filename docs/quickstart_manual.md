@@ -137,7 +137,7 @@ However, I keep a record of the settings in the past version. (Will be removed i
             'admin' => [
                 // Exment Edit------s
                 // 'driver' => 'eloquent',
-                //'model'  => Encore\Admin\Auth\Database\Administrator::class,
+                //'model'  => ExmentAdminCore\Admin\Auth\Database\Administrator::class,
                 'driver' => 'exment-auth',
                 // Exment Edit------e
             ],
