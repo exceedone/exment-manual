@@ -1,6 +1,10 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.13 (2026/09/11)
+1. Added Feature
+    - Improved workflow list (displays workflows requiring action)
+
 ## v6.2.12 (2026/07/03)
 1. Bug fixes
     - Fixed a workflow issue identified after the v6.2.10 release.
