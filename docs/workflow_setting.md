@@ -1,6 +1,8 @@
 # Workflow settings
 Set the workflow to be used in Exment.
 
+Statuses and actions can also be created and edited directly on the flow chart. See [Flow designer](/workflow_design.md) for details.
+
 ## What is a workflow?
 Workflow refers to "the flow of a series of business interactions".  
 In many operations performed in an organization, there is a flow of “who starts how, makes decisions, processes, and completes”.  
@@ -82,7 +84,7 @@ The settings vary depending on the workflow type.
   
 ※ If the workflow type is "General":  
 Set the status after executing this action. Choose a different action than "Pre-execution status".
-![Workflow screen](img/workflow/workflow_action1.png)
+![Workflow screen](img/workflow/workflow_action1.png ':size=700')
   
 ※ If the workflow type is "Table only":  
 Set the conditions for executing the action and the status after execution.  

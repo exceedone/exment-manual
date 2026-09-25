@@ -6,6 +6,8 @@
 ## Functions list
 ![Data screen](img/data/data_grid1.png)  
 
+The data list also lets you switch the columns on screen, pin columns, group rows and edit cells in place. See [Data list tools](/data_grid_tools.md) for details.
+
 - Reload:  
 Reload the list.
 
@@ -53,7 +55,7 @@ Filtered items are displayed by clicking the "Filter" button.
 A button for the view of the currently displayed custom table.  
 For the button name, the name of the currently displayed view is displayed.  
 Click the button to display the view menu.  
-![Data screen](img/data/data_grid_view1.png)  
+![Data screen](img/data/data_grid_view1.png ':size=284')  
 
 - System view:  
 A list of views registered in the system is displayed.  

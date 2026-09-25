@@ -18,6 +18,12 @@ On the dashboard, you can view charts.
 ![Custom view screen](img/view/view_sample3.png)
 Registered data can be displayed in calendar format.
 
+### Kanban view
+![Custom view screen](img/view_kanban/kanban_board.png)
+Registered data is shown as cards, in one column per state.  
+Dragging a card to another column changes the value of that item.  
+See [Kanban view](/view_kanban.md) for details.
+
 ### All view
 It is basically the same as the normal view, but has the following features.  
 - Created automatically by the system.
@@ -86,6 +92,10 @@ The column to be displayed in the view.
 
 - Display as:  
 Displayed in the view with the set name.
+
+- Cell appearance preset:  
+How this column is painted in this view. It wins over the custom column setting.  
+See [Cell style presets](/cell_style_preset.md) for details.
 
 
 - [↓] Button  
@@ -362,7 +372,7 @@ Adds a new view display condition.
 #### Headings in calendar view
 As in the image example, the heading can be displayed in the target date of the data in the calendar view.  
 
-![Custom view screen](img/view/view_calender_heading.png)
+![Custom view screen](img/view/view_calender_heading.png ':size=270')
 - The displayed heading is the part set as [Use in label](/column.md?id=Use-in-label) in custom column settings.
 
 - Also, if the column corresponding to "Date and time" in the custom column type is set as the start date for display column selection, the time of the registered data will be displayed at the head of the heading.

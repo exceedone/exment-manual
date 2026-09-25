@@ -25,6 +25,8 @@
   * [Relation settings](/relation.md)
   * [Custom form](/form.md)
   * [Custom views](/view.md)
+  * [Kanban view](/view_kanban.md)
+  * [Cell style presets](/cell_style_preset.md)
   * [Operation](/operation)
   * [2D Barcode settings](/2d_barcode.md)
   * [JAN Barcode Settings](/jancode.md)
@@ -32,6 +34,7 @@
 * 【5. Data management】
   * [Data](/data.md)
   * [List of data](/data_grid.md)
+  * [Data list tools](/data_grid_tools.md)
   * [Data details](/data_details.md)  
   * [Data registration](/data_form.md)
   * [Deleted data](/deleted_data)
@@ -49,6 +52,7 @@
  
 * 【7. Workflow】
   * [Workflow settings](/workflow_setting.md)
+  * [Flow designer](/workflow_design.md)
   * [Workflow setting example](/workflow_example.md)
   * [Workflow implementation](/workflow_execution.md)
  
