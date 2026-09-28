@@ -37,11 +37,23 @@ Since the contents of attachments are not included in the index, when this setti
 - For details on Meilisearch, please refer to the [Meilisearch official documentation](https://www.meilisearch.com/docs).
 
 
-## Setup steps (Linux)
+## Flow of the settings
+Perform the settings in the following order.
+
+1. Install the Meilisearch server
+1. Exment settings
+1. Register the queue worker
+1. Set the scheduler
+
+<span class="red">※Please register the queue worker after creating the tables for the queue in "Exment settings".</span> If you start the queue worker while the tables do not exist, an error occurs.
+
+
+## 1. Install the Meilisearch server
+
+### For Linux
 These are the steps for an environment using Ubuntu and systemd.  
 *Please change the paths and user names according to your environment.
 
-### 1. Install the Meilisearch server
 - Execute the following command and place the Meilisearch binary file.  
 Since Meilisearch works with a single file, it is not necessary to install other libraries.
 
@@ -134,7 +146,156 @@ sudo systemctl enable --now meilisearch
 curl -s http://127.0.0.1:7700/health
 ```
 
-### 2. Register the queue worker
+### For Windows
+These are the steps for an environment using NSSM (Non-Sucking Service Manager) and Task Scheduler.  
+Open PowerShell with "Run as administrator" and execute the following commands.  
+*Please change the paths according to your environment.
+
+- Execute the following command to create the folder and download the Meilisearch binary file.
+
+```
+New-Item -ItemType Directory -Force C:\meilisearch
+Invoke-WebRequest -Uri "https://github.com/meilisearch/meilisearch/releases/download/v1.10.3/meilisearch-windows-amd64.exe" `
+  -OutFile C:\meilisearch\meilisearch.exe
+```
+
+- Execute the following command and confirm that the version is displayed.
+
+```
+C:\meilisearch\meilisearch.exe --version
+```
+
+- Execute the following command to generate a master key of 32 characters.  
+**Please be sure to keep this key, because you will write it in the ".env" of Exment later.**
+
+```
+$key = -join (1..32 | ForEach-Object { '0123456789abcdef'[(Get-Random -Maximum 16)] })
+$key
+```
+
+> With the method using "Get-Random -Count 32", the generated character string becomes 16 characters.  
+This is because there are only 16 kinds of hexadecimal characters, and "Get-Random -Count" does not get the same value more than once.  
+In order to generate a key of 32 characters, please use the command above.
+
+- Download NSSM from the [NSSM official site](https://nssm.cc/download), and place "nssm.exe" in the "C:\nssm\" folder.  
+*You can also install it with the "winget install nssm" command.
+
+- Execute the following command to register Meilisearch as a Windows service.
+
+```
+C:\nssm\nssm.exe install Meilisearch C:\meilisearch\meilisearch.exe
+C:\nssm\nssm.exe set Meilisearch AppParameters "--db-path C:\meilisearch\data.ms --http-addr 127.0.0.1:7700 --env production --master-key $key --no-analytics"
+C:\nssm\nssm.exe set Meilisearch AppDirectory C:\meilisearch
+C:\nssm\nssm.exe set Meilisearch AppExit Default Restart
+C:\nssm\nssm.exe set Meilisearch Start SERVICE_AUTO_START
+C:\nssm\nssm.exe start Meilisearch
+```
+
+> "$key" is the master key generated in the previous step.  
+If you have reopened PowerShell, the contents of the variable have been lost, so please write the generated key string directly.
+
+- Execute the following command and confirm that "status : available" is displayed.
+
+```
+Invoke-RestMethod http://127.0.0.1:7700/health
+```
+
+- Execute the following command to exclude the index save folder from the scan target of Windows Defender.  
+*If it is included in the scan target, creating and updating the index may become slow.
+
+```
+Add-MpPreference -ExclusionPath "C:\meilisearch\data.ms"
+```
+
+
+## 2. Exment settings
+Once the Meilisearch server is ready, configure the Exment side.  
+The following steps are common to Linux and Windows.
+
+### Install the library
+- Execute the following command in the Exment folder.
+
+```
+composer require meilisearch/meilisearch-php
+```
+
+### .env settings
+- Open the ".env" file from the Exment folder and write the following settings.
+
+```
+#Queue driver. If it remains the default value "sync", the process on the screen will be blocked
+QUEUE_CONNECTION=database
+
+#Connection destination of the Meilisearch server
+MEILISEARCH_HOST=http://127.0.0.1:7700
+
+#Master key of Meilisearch. Write the key generated at installation
+MEILISEARCH_KEY=(the generated master key)
+
+#Use Meilisearch when searching (setting on the search side)
+MEILISEARCH_GLOBAL_SEARCH=true
+
+#Reflect updates of custom data in the index in real time (setting on the update side)
+MEILISEARCH_REALTIME_SYNC=true
+
+#Automatically repair the difference between the database and the index periodically
+MEILISEARCH_REPAIR_ENABLED=true
+
+#Time to execute the automatic repair. Write it in the "HH:MM" format
+MEILISEARCH_REPAIR_AT=03:00
+
+#Target language of the search (tokenization). The default value is "jpn", so it is not necessary to write it when handling only Japanese
+MEILISEARCH_LOCALES=jpn
+```
+
+> Since "MEILISEARCH_GLOBAL_SEARCH" is a setting on the search side, you can also change it to true after the creation of the index is completed.  
+Since "MEILISEARCH_REALTIME_SYNC" is a setting on the update side, the queue worker needs to be running when you set it to true.  
+When you set "MEILISEARCH_REPAIR_ENABLED" to true, the setting of the scheduler is required.
+
+- For settings other than the above, please check "Search" in [List of setting values](/config). Write them only when you change them from the default values.
+
+> The configuration file of Meilisearch is loaded inside the Exment package. Therefore, it is not necessary to execute "php artisan vendor:publish".
+
+### Execute the commands
+- Execute the following commands to create the tables for holding the information of the queue, and the tables used by Meilisearch.
+
+```
+php artisan queue:table
+php artisan queue:failed-table
+php artisan migrate
+```
+
+> If you have already performed the setting of the queue and created the tables for the queue, it is not necessary to execute "php artisan queue:table" and "php artisan queue:failed-table".
+
+- Execute the following command to delete the cache of the setting contents.  
+*If you are using the cache of settings, please execute "php artisan config:cache" again.
+
+```
+php artisan config:clear
+```
+
+- Execute the following command to create the index from the contents of the database.  
+Since the existing index is deleted and recreated, a confirmation message is displayed at execution.  
+*Depending on the number of data, the process may take time.
+
+```
+php artisan exment:meili-index --fresh
+```
+
+> When executing it without displaying the confirmation message, such as in a batch process, please specify "--force" as well.
+>
+> ```
+> php artisan exment:meili-index --fresh --force
+> ```
+
+- Execute the following command to check the connection status with Meilisearch and the number of registered documents.
+
+```
+php artisan exment:meili-health
+```
+
+
+## 3. Register the queue worker
 Register the queue worker as a service in order to reflect updates of custom data in the index.  
 
 The queue worker needs to target the following two queues.
@@ -144,6 +305,7 @@ The queue worker needs to target the following two queues.
 
 *If you have changed the settings of "MEILISEARCH_SYNC_QUEUE" or "MEILISEARCH_REINDEX_QUEUE", please change the contents of "--queue=" as well.
 
+### For Linux
 - Execute the following command.  
 *"/var/www/exment" is the installation folder of Exment, and "/usr/bin/php" is the path of the php command. Please change them according to your environment.
 
@@ -179,81 +341,7 @@ sudo systemctl enable --now exment-meili-worker
 systemctl status exment-meili-worker --no-pager
 ```
 
-### 3. Set the scheduler
-When "MEILISEARCH_REPAIR_ENABLED" is set to true, the automatic index repair is executed at the time set in "MEILISEARCH_REPAIR_AT".  
-In order to execute this process, the setting of the scheduler is required. **If you do not perform the setting, the automatic repair will not be executed.**  
-*If you have already performed the setting of [Task schedule](/additional_task_schedule), this step is not necessary.
-
-- Execute the following command.
-
-```
-sudo crontab -u www-data -l 2>/dev/null | { cat; echo "* * * * * cd /var/www/exment && php artisan schedule:run >> /dev/null 2>&1"; } | sudo crontab -u www-data -
-```
-
-
-## Setup steps (Windows)
-These are the steps for an environment using NSSM (Non-Sucking Service Manager) and Task Scheduler.  
-Open PowerShell with "Run as administrator" and execute the following commands.  
-*Please change the paths according to your environment.
-
-### 1. Install the Meilisearch server
-- Execute the following command to create the folder and download the Meilisearch binary file.
-
-```
-New-Item -ItemType Directory -Force C:\meilisearch
-Invoke-WebRequest -Uri "https://github.com/meilisearch/meilisearch/releases/download/v1.10.3/meilisearch-windows-amd64.exe" `
-  -OutFile C:\meilisearch\meilisearch.exe
-```
-
-- Execute the following command and confirm that the version is displayed.
-
-```
-C:\meilisearch\meilisearch.exe --version
-```
-
-- Execute the following command to generate the master key.  
-**Please be sure to keep this key, because you will write it in the ".env" of Exment later.**
-
-```
-$key = -join (1..32 | ForEach-Object { '0123456789abcdef'[(Get-Random -Maximum 16)] })
-$key
-```
-
-> With the method using "Get-Random -Count 32", the generated character string becomes 16 characters.  
-This is because there are only 16 kinds of hexadecimal characters, and "Get-Random -Count" does not get the same value more than once.  
-In order to generate a key of 32 characters, please use the command above.
-
-- Download NSSM from the [NSSM official site](https://nssm.cc/download), and place "nssm.exe" in the "C:\nssm\" folder.  
-*You can also install it with the "winget install nssm" command.
-
-- Execute the following command to register Meilisearch as a Windows service.
-
-```
-C:\nssm\nssm.exe install Meilisearch C:\meilisearch\meilisearch.exe
-C:\nssm\nssm.exe set Meilisearch AppParameters "--db-path C:\meilisearch\data.ms --http-addr 127.0.0.1:7700 --env production --master-key $key --no-analytics"
-C:\nssm\nssm.exe set Meilisearch AppDirectory C:\meilisearch
-C:\nssm\nssm.exe set Meilisearch AppExit Default Restart
-C:\nssm\nssm.exe set Meilisearch Start SERVICE_AUTO_START
-C:\nssm\nssm.exe start Meilisearch
-```
-
-- Execute the following command and confirm that "status : available" is displayed.
-
-```
-Invoke-RestMethod http://127.0.0.1:7700/health
-```
-
-- Execute the following command to exclude the index save folder from the scan target of Windows Defender.  
-*If it is included in the scan target, creating and updating the index may become slow.
-
-```
-Add-MpPreference -ExclusionPath "C:\meilisearch\data.ms"
-```
-
-### 2. Register the queue worker
-Register the queue worker as a service in order to reflect updates of custom data in the index.  
-For the target queues, please check "2. Register the queue worker" of "Setup steps (Linux)".
-
+### For Windows
 - Execute the following command.  
 *"C:\inetpub\exment" is the installation folder of Exment, and "C:\php\php.exe" is the path of the php command. Please change them according to your environment.
 
@@ -266,93 +354,27 @@ C:\nssm\nssm.exe set ExmentMeiliWorker Start SERVICE_AUTO_START
 C:\nssm\nssm.exe start ExmentMeiliWorker
 ```
 
-### 3. Set the scheduler
-Set the task schedule in order to execute the automatic index repair.  
+
+## 4. Set the scheduler
+When "MEILISEARCH_REPAIR_ENABLED" is set to true, the automatic index repair is executed at the time set in "MEILISEARCH_REPAIR_AT".  
+In order to execute this process, the setting of the scheduler is required. **If you do not perform the setting, the automatic repair will not be executed.**  
 *If you have already performed the setting of [Task schedule](/additional_task_schedule), this step is not necessary.
 
+### For Linux
 - Execute the following command.
 
 ```
-schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM `
-  /tr "C:\php\php.exe C:\inetpub\exment\artisan schedule:run"
+sudo crontab -u www-data -l 2>/dev/null | { cat; echo "* * * * * cd /var/www/exment && php artisan schedule:run >> /dev/null 2>&1"; } | sudo crontab -u www-data -
 ```
 
-
-## Exment settings
-Once the Meilisearch server is ready, configure the Exment side.  
-The following steps are common to Linux and Windows.
-
-### 1. Install the library
-- Execute the following command in the Exment folder.
+### For Windows
+- Execute the following command.
 
 ```
-composer require meilisearch/meilisearch-php
+schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\php\php.exe C:\inetpub\exment\artisan schedule:run"
 ```
 
-### 2. .env settings
-- Open the ".env" file from the Exment folder and write the following settings.
-
-```
-#Connection destination of the Meilisearch server
-MEILISEARCH_HOST=http://127.0.0.1:7700
-
-#Master key of Meilisearch. Write the key generated at installation
-MEILISEARCH_KEY=(the generated master key)
-
-#Use Meilisearch when searching (setting on the search side)
-MEILISEARCH_GLOBAL_SEARCH=true
-
-#Reflect updates of custom data in the index in real time (setting on the update side)
-MEILISEARCH_REALTIME_SYNC=true
-
-#Automatically repair the difference between the database and the index periodically
-MEILISEARCH_REPAIR_ENABLED=true
-
-#Time to execute the automatic repair. Write it in the "HH:MM" format
-MEILISEARCH_REPAIR_AT=03:00
-```
-
-> Since "MEILISEARCH_GLOBAL_SEARCH" is a setting on the search side, you can also change it to true after the creation of the index is completed.  
-Since "MEILISEARCH_REALTIME_SYNC" is a setting on the update side, the queue worker needs to be running when you set it to true.  
-When you set "MEILISEARCH_REPAIR_ENABLED" to true, the setting of the scheduler is required.
-
-- For settings other than the above, please check "Search" in [List of setting values](/config). Write them only when you change them from the default values.
-
-> The configuration file of Meilisearch is loaded inside the Exment package. Therefore, it is not necessary to execute "php artisan vendor:publish".
-
-### 3. Execute the commands
-- Execute the following command to create the tables used by Meilisearch.
-
-```
-php artisan migrate
-```
-
-- Execute the following command to delete the cache of the setting contents.  
-*If you are using the cache of settings, please execute "php artisan config:cache" again.
-
-```
-php artisan config:clear
-```
-
-- Execute the following command to create the index from the contents of the database.  
-Since the existing index is deleted and recreated, a confirmation message is displayed at execution.  
-*Depending on the number of data, the process may take time.
-
-```
-php artisan exment:meili-index --fresh
-```
-
-> When executing it without displaying the confirmation message, such as in a batch process, please specify "--force" as well.
->
-> ```
-> php artisan exment:meili-index --fresh --force
-> ```
-
-- Execute the following command to check the connection status with Meilisearch and the number of registered documents.
-
-```
-php artisan exment:meili-health
-```
+> "/f" is the option to overwrite without displaying a confirmation message, when a task with the same name is already registered.
 
 
 ## Priority of the setting values
@@ -505,6 +527,7 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |"Could not connect to Meilisearch" is displayed|The Meilisearch service is not running, the setting of "MEILISEARCH_HOST" is wrong, or the master key is wrong.|
 |The contents are not reflected even though you changed the ".env"|The value saved in "Admin Settings > System Settings (Advanced settings)" takes priority. Please check the settings on the screen.|
 |"No search-enabled custom table with a freeword column to index." is displayed|"Search target" is not set to YES in the custom table settings, or there is no custom column whose "Free word search target" is YES.|
+|The queue worker does not start|The tables for the queue have not been created. Please execute "php artisan queue:table", "php artisan queue:failed-table" and "php artisan migrate".|
 |The search results do not change even after updating data|"MEILISEARCH_REALTIME_SYNC" is false, or the queue worker has stopped. Please check the status of the service, and the failed jobs with "php artisan exment:meili-health --failed".|
 |There is a difference in the data after an import or a bulk deletion|Please execute "php artisan exment:meili-reconcile".|
 |The search results do not change even after changing the column settings of a table with a large number of data|The process of recreating the index exceeded the time limit of 60 seconds. Please check whether "gave up after 3 attempts" is output to the log, and execute "php artisan exment:meili-index".|

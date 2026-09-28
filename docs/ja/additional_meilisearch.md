@@ -37,11 +37,23 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 - Meilisearchの詳細は、[Meilisearch公式ドキュメント](https://www.meilisearch.com/docs)をご参照ください。
 
 
-## 設定手順(Linux)
+## 設定の流れ
+以下の順に設定を行います。
+
+1. Meilisearchサーバーのインストール
+1. Exmentの設定
+1. キューワーカの登録
+1. スケジューラの設定
+
+<span class="red">※キューワーカの登録は、「Exmentの設定」でキュー用のテーブルを作成した後に行ってください。</span>テーブルが存在しない状態でキューワーカを起動した場合、エラーとなります。
+
+
+## 1. Meilisearchサーバーのインストール
+
+### Linuxの場合
 Ubuntu、ならびにsystemdを使用する環境での手順です。  
 ※お使いの環境にあわせて、パスやユーザー名を変更してください。
 
-### 1. Meilisearchサーバーのインストール
 - 以下のコマンドを実行し、Meilisearchのバイナリファイルを配置します。  
 Meilisearchは1ファイルで動作するため、他のライブラリのインストールは不要です。
 
@@ -134,7 +146,156 @@ sudo systemctl enable --now meilisearch
 curl -s http://127.0.0.1:7700/health
 ```
 
-### 2. キューワーカの登録
+### Windowsの場合
+NSSM(Non-Sucking Service Manager)と、タスクスケジューラを使用する環境での手順です。  
+PowerShellを「管理者として実行」で開き、以下のコマンドを実行してください。  
+※お使いの環境にあわせて、パスを変更してください。
+
+- 以下のコマンドを実行し、フォルダの作成と、Meilisearchのバイナリファイルのダウンロードを行います。
+
+```
+New-Item -ItemType Directory -Force C:\meilisearch
+Invoke-WebRequest -Uri "https://github.com/meilisearch/meilisearch/releases/download/v1.10.3/meilisearch-windows-amd64.exe" `
+  -OutFile C:\meilisearch\meilisearch.exe
+```
+
+- 以下のコマンドを実行し、バージョンが表示されることを確認します。
+
+```
+C:\meilisearch\meilisearch.exe --version
+```
+
+- 以下のコマンドを実行し、32文字のマスターキーを生成します。  
+**このキーは、後ほどExmentの「.env」に記入するため、必ず控えておいてください。**
+
+```
+$key = -join (1..32 | ForEach-Object { '0123456789abcdef'[(Get-Random -Maximum 16)] })
+$key
+```
+
+> 「Get-Random -Count 32」を使用する方法では、生成される文字列が16文字になってしまいます。  
+16進数の文字は16種類しかなく、「Get-Random -Count」は同じ値を重複して取得しないためです。  
+32文字のキーを生成するため、上記のコマンドをご使用ください。
+
+- [NSSM公式サイト](https://nssm.cc/download)より、NSSMをダウンロードし、「C:\nssm\」フォルダに「nssm.exe」を配置します。  
+※「winget install nssm」コマンドでインストールすることもできます。
+
+- 以下のコマンドを実行し、MeilisearchをWindowsサービスとして登録します。
+
+```
+C:\nssm\nssm.exe install Meilisearch C:\meilisearch\meilisearch.exe
+C:\nssm\nssm.exe set Meilisearch AppParameters "--db-path C:\meilisearch\data.ms --http-addr 127.0.0.1:7700 --env production --master-key $key --no-analytics"
+C:\nssm\nssm.exe set Meilisearch AppDirectory C:\meilisearch
+C:\nssm\nssm.exe set Meilisearch AppExit Default Restart
+C:\nssm\nssm.exe set Meilisearch Start SERVICE_AUTO_START
+C:\nssm\nssm.exe start Meilisearch
+```
+
+> 「$key」は、1つ前の手順で生成したマスターキーです。  
+PowerShellを開きなおした場合、変数の内容が失われているため、生成したキーの文字列を直接記入してください。
+
+- 以下のコマンドを実行し、「status : available」が表示されることを確認します。
+
+```
+Invoke-RestMethod http://127.0.0.1:7700/health
+```
+
+- 以下のコマンドを実行し、インデックスの保存先フォルダを、Windows Defenderのスキャン対象から除外します。  
+※スキャン対象に含まれる場合、インデックスの作成・更新が遅くなる場合があります。
+
+```
+Add-MpPreference -ExclusionPath "C:\meilisearch\data.ms"
+```
+
+
+## 2. Exmentの設定
+Meilisearchサーバーの準備ができましたら、Exment側の設定を行います。  
+以下の手順は、Linux・Windowsで共通です。
+
+### ライブラリのインストール
+- Exmentのフォルダで、以下のコマンドを実行します。
+
+```
+composer require meilisearch/meilisearch-php
+```
+
+### .envの設定
+- Exmentのフォルダより、「.env」ファイルを開き、以下の設定を記入します。
+
+```
+#キュードライバー。初期値のsync(同期処理)のままだと、画面の処理がブロックされます
+QUEUE_CONNECTION=database
+
+#Meilisearchサーバーの接続先
+MEILISEARCH_HOST=http://127.0.0.1:7700
+
+#Meilisearchのマスターキー。インストール時に生成したキーを記入します
+MEILISEARCH_KEY=(生成したマスターキー)
+
+#検索時にMeilisearchを使用する(検索側の設定)
+MEILISEARCH_GLOBAL_SEARCH=true
+
+#カスタムデータの更新内容を、リアルタイムでインデックスへ反映する(更新側の設定)
+MEILISEARCH_REALTIME_SYNC=true
+
+#データベースとインデックスの差異を、定期的に自動修復する
+MEILISEARCH_REPAIR_ENABLED=true
+
+#自動修復を実行する時刻。「HH:MM」の形式で記入します
+MEILISEARCH_REPAIR_AT=03:00
+
+#検索対象の言語(分かち書き)。初期値は「jpn」のため、日本語のみを扱う場合は記入不要です
+MEILISEARCH_LOCALES=jpn
+```
+
+> 「MEILISEARCH_GLOBAL_SEARCH」は検索側の設定のため、インデックスの作成が完了した後に、trueへ変更することもできます。  
+「MEILISEARCH_REALTIME_SYNC」は更新側の設定のため、trueにする場合、キューワーカが実行されている必要があります。  
+「MEILISEARCH_REPAIR_ENABLED」をtrueにする場合、スケジューラの設定が必要です。
+
+- 上記以外の設定値については、[設定値一覧](/ja/config)の「検索」をご確認ください。既定値から変更する場合のみ、記入してください。
+
+> Meilisearchの設定ファイルは、Exmentのパッケージ内で読み込まれます。そのため、「php artisan vendor:publish」の実行は不要です。
+
+### コマンドの実行
+- 以下のコマンドを実行し、キューの情報を保持するためのテーブルと、Meilisearchで使用するテーブルを作成します。
+
+```
+php artisan queue:table
+php artisan queue:failed-table
+php artisan migrate
+```
+
+> すでにキューの設定を実施済で、キュー用のテーブルを作成している場合、「php artisan queue:table」「php artisan queue:failed-table」の実行は不要です。
+
+- 以下のコマンドを実行し、設定内容のキャッシュを削除します。  
+※設定のキャッシュを使用している場合、「php artisan config:cache」を再度実行してください。
+
+```
+php artisan config:clear
+```
+
+- 以下のコマンドを実行し、データベースの内容からインデックスを作成します。  
+既存のインデックスを削除して作成しなおすため、実行時に確認メッセージが表示されます。  
+※データ件数によっては、処理に時間がかかる場合があります。
+
+```
+php artisan exment:meili-index --fresh
+```
+
+> バッチ処理などで、確認メッセージを表示せずに実行する場合、「--force」をあわせて指定してください。
+>
+> ```
+> php artisan exment:meili-index --fresh --force
+> ```
+
+- 以下のコマンドを実行し、Meilisearchとの接続状態と、登録されているドキュメント件数を確認します。
+
+```
+php artisan exment:meili-health
+```
+
+
+## 3. キューワーカの登録
 カスタムデータの更新内容をインデックスへ反映するため、キューワーカをサービスとして登録します。  
 
 キューワーカは、以下の2つのキューを対象にする必要があります。
@@ -144,6 +305,7 @@ curl -s http://127.0.0.1:7700/health
 
 ※「MEILISEARCH_SYNC_QUEUE」「MEILISEARCH_REINDEX_QUEUE」の設定を変更した場合、「--queue=」の内容もあわせて変更してください。
 
+### Linuxの場合
 - 以下のコマンドを実行します。  
 ※「/var/www/exment」はExmentのインストール先フォルダ、「/usr/bin/php」はphpコマンドのパスです。お使いの環境にあわせて変更してください。
 
@@ -179,81 +341,7 @@ sudo systemctl enable --now exment-meili-worker
 systemctl status exment-meili-worker --no-pager
 ```
 
-### 3. スケジューラの設定
-「MEILISEARCH_REPAIR_ENABLED」をtrueにした場合、「MEILISEARCH_REPAIR_AT」で設定した時刻に、インデックスの自動修復が実行されます。  
-この処理を実行するためには、スケジューラの設定が必要です。**設定を行わない場合、自動修復は実行されません。**  
-※すでに[タスクスケジュール](/ja/additional_task_schedule)の設定を実施済の場合、この手順は不要です。
-
-- 以下のコマンドを実行します。
-
-```
-sudo crontab -u www-data -l 2>/dev/null | { cat; echo "* * * * * cd /var/www/exment && php artisan schedule:run >> /dev/null 2>&1"; } | sudo crontab -u www-data -
-```
-
-
-## 設定手順(Windows)
-NSSM(Non-Sucking Service Manager)と、タスクスケジューラを使用する環境での手順です。  
-PowerShellを「管理者として実行」で開き、以下のコマンドを実行してください。  
-※お使いの環境にあわせて、パスを変更してください。
-
-### 1. Meilisearchサーバーのインストール
-- 以下のコマンドを実行し、フォルダの作成と、Meilisearchのバイナリファイルのダウンロードを行います。
-
-```
-New-Item -ItemType Directory -Force C:\meilisearch
-Invoke-WebRequest -Uri "https://github.com/meilisearch/meilisearch/releases/download/v1.10.3/meilisearch-windows-amd64.exe" `
-  -OutFile C:\meilisearch\meilisearch.exe
-```
-
-- 以下のコマンドを実行し、バージョンが表示されることを確認します。
-
-```
-C:\meilisearch\meilisearch.exe --version
-```
-
-- 以下のコマンドを実行し、マスターキーを生成します。  
-**このキーは、後ほどExmentの「.env」に記入するため、必ず控えておいてください。**
-
-```
-$key = -join (1..32 | ForEach-Object { '0123456789abcdef'[(Get-Random -Maximum 16)] })
-$key
-```
-
-> 「Get-Random -Count 32」を使用する方法では、生成される文字列が16文字になってしまいます。  
-16進数の文字は16種類しかなく、「Get-Random -Count」は同じ値を重複して取得しないためです。  
-32文字のキーを生成するため、上記のコマンドをご使用ください。
-
-- [NSSM公式サイト](https://nssm.cc/download)より、NSSMをダウンロードし、「C:\nssm\」フォルダに「nssm.exe」を配置します。  
-※「winget install nssm」コマンドでインストールすることもできます。
-
-- 以下のコマンドを実行し、MeilisearchをWindowsサービスとして登録します。
-
-```
-C:\nssm\nssm.exe install Meilisearch C:\meilisearch\meilisearch.exe
-C:\nssm\nssm.exe set Meilisearch AppParameters "--db-path C:\meilisearch\data.ms --http-addr 127.0.0.1:7700 --env production --master-key $key --no-analytics"
-C:\nssm\nssm.exe set Meilisearch AppDirectory C:\meilisearch
-C:\nssm\nssm.exe set Meilisearch AppExit Default Restart
-C:\nssm\nssm.exe set Meilisearch Start SERVICE_AUTO_START
-C:\nssm\nssm.exe start Meilisearch
-```
-
-- 以下のコマンドを実行し、「status : available」が表示されることを確認します。
-
-```
-Invoke-RestMethod http://127.0.0.1:7700/health
-```
-
-- 以下のコマンドを実行し、インデックスの保存先フォルダを、Windows Defenderのスキャン対象から除外します。  
-※スキャン対象に含まれる場合、インデックスの作成・更新が遅くなる場合があります。
-
-```
-Add-MpPreference -ExclusionPath "C:\meilisearch\data.ms"
-```
-
-### 2. キューワーカの登録
-カスタムデータの更新内容をインデックスへ反映するため、キューワーカをサービスとして登録します。  
-対象とするキューについては、「設定手順(Linux)」の「2. キューワーカの登録」をご確認ください。
-
+### Windowsの場合
 - 以下のコマンドを実行します。  
 ※「C:\inetpub\exment」はExmentのインストール先フォルダ、「C:\php\php.exe」はphpコマンドのパスです。お使いの環境にあわせて変更してください。
 
@@ -266,93 +354,27 @@ C:\nssm\nssm.exe set ExmentMeiliWorker Start SERVICE_AUTO_START
 C:\nssm\nssm.exe start ExmentMeiliWorker
 ```
 
-### 3. スケジューラの設定
-インデックスの自動修復を実行するため、タスクスケジュールの設定を行います。  
+
+## 4. スケジューラの設定
+「MEILISEARCH_REPAIR_ENABLED」をtrueにした場合、「MEILISEARCH_REPAIR_AT」で設定した時刻に、インデックスの自動修復が実行されます。  
+この処理を実行するためには、スケジューラの設定が必要です。**設定を行わない場合、自動修復は実行されません。**  
 ※すでに[タスクスケジュール](/ja/additional_task_schedule)の設定を実施済の場合、この手順は不要です。
 
+### Linuxの場合
 - 以下のコマンドを実行します。
 
 ```
-schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM `
-  /tr "C:\php\php.exe C:\inetpub\exment\artisan schedule:run"
+sudo crontab -u www-data -l 2>/dev/null | { cat; echo "* * * * * cd /var/www/exment && php artisan schedule:run >> /dev/null 2>&1"; } | sudo crontab -u www-data -
 ```
 
-
-## Exmentの設定
-Meilisearchサーバーの準備ができましたら、Exment側の設定を行います。  
-以下の手順は、Linux・Windowsで共通です。
-
-### 1. ライブラリのインストール
-- Exmentのフォルダで、以下のコマンドを実行します。
+### Windowsの場合
+- 以下のコマンドを実行します。
 
 ```
-composer require meilisearch/meilisearch-php
+schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\php\php.exe C:\inetpub\exment\artisan schedule:run"
 ```
 
-### 2. .envの設定
-- Exmentのフォルダより、「.env」ファイルを開き、以下の設定を記入します。
-
-```
-#Meilisearchサーバーの接続先
-MEILISEARCH_HOST=http://127.0.0.1:7700
-
-#Meilisearchのマスターキー。インストール時に生成したキーを記入します
-MEILISEARCH_KEY=(生成したマスターキー)
-
-#検索時にMeilisearchを使用する(検索側の設定)
-MEILISEARCH_GLOBAL_SEARCH=true
-
-#カスタムデータの更新内容を、リアルタイムでインデックスへ反映する(更新側の設定)
-MEILISEARCH_REALTIME_SYNC=true
-
-#データベースとインデックスの差異を、定期的に自動修復する
-MEILISEARCH_REPAIR_ENABLED=true
-
-#自動修復を実行する時刻。「HH:MM」の形式で記入します
-MEILISEARCH_REPAIR_AT=03:00
-```
-
-> 「MEILISEARCH_GLOBAL_SEARCH」は検索側の設定のため、インデックスの作成が完了した後に、trueへ変更することもできます。  
-「MEILISEARCH_REALTIME_SYNC」は更新側の設定のため、trueにする場合、キューワーカが実行されている必要があります。  
-「MEILISEARCH_REPAIR_ENABLED」をtrueにする場合、スケジューラの設定が必要です。
-
-- 上記以外の設定値については、[設定値一覧](/ja/config)の「検索」をご確認ください。既定値から変更する場合のみ、記入してください。
-
-> Meilisearchの設定ファイルは、Exmentのパッケージ内で読み込まれます。そのため、「php artisan vendor:publish」の実行は不要です。
-
-### 3. コマンドの実行
-- 以下のコマンドを実行し、Meilisearchで使用するテーブルを作成します。
-
-```
-php artisan migrate
-```
-
-- 以下のコマンドを実行し、設定内容のキャッシュを削除します。  
-※設定のキャッシュを使用している場合、「php artisan config:cache」を再度実行してください。
-
-```
-php artisan config:clear
-```
-
-- 以下のコマンドを実行し、データベースの内容からインデックスを作成します。  
-既存のインデックスを削除して作成しなおすため、実行時に確認メッセージが表示されます。  
-※データ件数によっては、処理に時間がかかる場合があります。
-
-```
-php artisan exment:meili-index --fresh
-```
-
-> バッチ処理などで、確認メッセージを表示せずに実行する場合、「--force」をあわせて指定してください。
->
-> ```
-> php artisan exment:meili-index --fresh --force
-> ```
-
-- 以下のコマンドを実行し、Meilisearchとの接続状態と、登録されているドキュメント件数を確認します。
-
-```
-php artisan exment:meili-health
-```
+> 「/f」は、同じ名前のタスクがすでに登録されている場合に、確認メッセージを表示せずに上書きするオプションです。
 
 
 ## 設定値の優先順位
@@ -505,6 +527,7 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |「Could not connect to Meilisearch」と表示される|Meilisearchのサービスが起動していない、「MEILISEARCH_HOST」の設定が誤っている、もしくはマスターキーが誤っています。|
 |「.env」を修正しても反映されない|「管理者設定 > システム設定(詳細設定)」で保存した値が優先されています。画面上の設定をご確認ください。|
 |「No search-enabled custom table with a freeword column to index.」と表示される|カスタムテーブル設定の「検索対象とする」がYESになっていない、もしくは「フリーワード検索対象」がYESのカスタム列が存在しません。|
+|キューワーカが起動しない|キュー用のテーブルが作成されていません。「php artisan queue:table」「php artisan queue:failed-table」「php artisan migrate」を実行してください。|
 |データを更新しても検索結果が変わらない|「MEILISEARCH_REALTIME_SYNC」がfalseになっているか、キューワーカが停止しています。サービスの状態と、「php artisan exment:meili-health --failed」で失敗したジョブをご確認ください。|
 |インポート・一括削除の後、データに差異がある|「php artisan exment:meili-reconcile」を実行してください。|
 |データ件数の多いテーブルで、列の設定を変更しても検索結果が変わらない|インデックスを作成しなおす処理が、60秒の制限時間を超えています。ログに「gave up after 3 attempts」が出力されていないかを確認し、「php artisan exment:meili-index」を実行してください。|
