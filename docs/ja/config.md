@@ -175,7 +175,8 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 #### 全文検索エンジン(Meilisearch)の設定について
 以下の「MEILISEARCH_」で始まる設定値は、全文検索エンジン「Meilisearch」を使用する場合の設定です。詳細は[こちら](/ja/additional_meilisearch)をご確認ください。
-<span class="red">※これらの設定値は、メニュー「管理者設定 > システム設定(詳細設定)」からも設定することができます。画面から保存を行った場合、画面の設定が「.env」よりも優先されます。</span>
+<span class="red">※このうち、「MEILISEARCH_HOST」「MEILISEARCH_KEY」「MEILISEARCH_INDEX」「MEILISEARCH_GLOBAL_SEARCH」「MEILISEARCH_REALTIME_SYNC」「MEILISEARCH_BATCH_SIZE」「MEILISEARCH_REPAIR_ENABLED」「MEILISEARCH_REPAIR_AT」「MEILISEARCH_FILTER_MODE」は、メニュー「管理者設定 > システム設定(詳細設定)」からも設定することができます。画面から保存を行った場合、画面の設定が「.env」よりも優先されます。</span>
+※上記以外の設定値は、「.env」でのみ設定することができます。
 
 
 #### Meilisearchサーバーの接続先
@@ -261,7 +262,28 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### Meilisearchのフィルタ動作
 - 設定キー : MEILISEARCH_FILTER_MODE
 - 既定値 : override
-- 役割 : 検索結果画面のフィルタの動作です。
+- 役割 : 検索結果画面の絞り込み(ファセット)で、対象とする列の決定方法です。
+overrideの場合、列の種類から自動で対象を決定したうえで、「フィルター設定」画面で追加した列を加え、除外した列を取り除きます。
+manualの場合、「フィルター設定」画面で追加した列のみを対象とします。
+
+
+#### 選択肢(他のテーブルの値一覧から選択)でMeilisearchを使用する
+- 設定キー : MEILISEARCH_SELECT_TABLE
+- 既定値 : false
+- 役割 : trueの場合、カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完(フォーム・API)で、Meilisearchを使用します。「MEILISEARCH_GLOBAL_SEARCH」とは独立した設定です。
+※trueにした場合、候補の検索方法が、保存された値に対する部分一致から、単語単位の前方一致に変わります。
+
+
+#### Meilisearchのインデックス再作成単位
+- 設定キー : MEILISEARCH_REINDEX_CHUNK_SIZE
+- 既定値 : 500
+- 役割 : カスタムテーブル・カスタム列の設定変更にともなうインデックスの再作成で、1回の処理あたりに登録するドキュメントの件数です。
+
+
+#### Meilisearchの保存済検索条件の上限
+- 設定キー : MEILISEARCH_SAVED_SEARCH_LIMIT
+- 既定値 : 50
+- 役割 : 1人のユーザーが保存できる、検索条件の最大件数です。
 
 
 #### Meilisearchの同期キュー名

@@ -173,7 +173,8 @@ Depending on the environment, it may be faster.
 
 #### About the settings of the full-text search engine (Meilisearch)
 The following setting values beginning with "MEILISEARCH_" are the settings for using the full-text search engine "Meilisearch". For details, please check [here](/additional_meilisearch).
-<span class="red">*These setting values can also be set from the menu "Admin Settings > System Settings (Advanced settings)". When you save from the screen, the settings on the screen take priority over the ".env".</span>
+<span class="red">*Among these, "MEILISEARCH_HOST", "MEILISEARCH_KEY", "MEILISEARCH_INDEX", "MEILISEARCH_GLOBAL_SEARCH", "MEILISEARCH_REALTIME_SYNC", "MEILISEARCH_BATCH_SIZE", "MEILISEARCH_REPAIR_ENABLED", "MEILISEARCH_REPAIR_AT" and "MEILISEARCH_FILTER_MODE" can also be set from the menu "Admin Settings > System Settings (Advanced settings)". When you save from the screen, the settings on the screen take priority over the ".env".</span>
+*The setting values other than the above can be set only in the ".env".
 
 
 #### Connection destination of the Meilisearch server
@@ -259,7 +260,28 @@ The following setting values beginning with "MEILISEARCH_" are the settings for 
 #### Filter behavior of Meilisearch
 - Setting key : MEILISEARCH_FILTER_MODE
 - Default value : override
-- Role : This is the behavior of the filter on the search result page.
+- Role : This is how the target columns are decided for the narrowing down (facet) on the search result page.
+In the case of "override", the targets are decided automatically from the column type, then the columns added on the "Filter settings" screen are added and the excluded columns are removed.
+In the case of "manual", only the columns added on the "Filter settings" screen become the target.
+
+
+#### Use Meilisearch for "Select (select from the list of values of another table)"
+- Setting key : MEILISEARCH_SELECT_TABLE
+- Default value : false
+- Role : If true, Meilisearch is used for the input completion (form and API) of the custom column "Select (select from the list of values of another table)". This setting is independent of "MEILISEARCH_GLOBAL_SEARCH".
+*When you set it to true, the search method of the candidates changes from a partial match against the stored value to a prefix match by word.
+
+
+#### Unit of the index recreation of Meilisearch
+- Setting key : MEILISEARCH_REINDEX_CHUNK_SIZE
+- Default value : 500
+- Role : This is the number of documents registered per run, in the index recreation that accompanies a change of the custom table / custom column settings.
+
+
+#### Upper limit of the saved searches of Meilisearch
+- Setting key : MEILISEARCH_SAVED_SEARCH_LIMIT
+- Default value : 50
+- Role : This is the maximum number of search conditions that one user can save.
 
 
 #### Sync queue name of Meilisearch

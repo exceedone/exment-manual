@@ -18,7 +18,7 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 |項目|内容|
 |---|---|
 |Meilisearchサーバー|v1.10以降|
-|PHPライブラリ|「meilisearch/meilisearch-php」のインストールが必要です。**このライブラリは、Exmentの必須ライブラリではありません。** インストールされていない場合、Meilisearch関連のコマンドはエラーとなり、リアルタイム同期も無効になります。|
+|PHPライブラリ|「meilisearch/meilisearch-php」(v1.10以降)のインストールが必要です。**このライブラリは、Exmentの必須ライブラリではありません。** インストールされていない場合、Meilisearch関連のコマンドはエラーとなり、リアルタイム同期も無効になります。<br />また、このライブラリは「guzzlehttp/guzzle」と互換性のあるHTTPクライアントを必要とします。|
 |キュー|「QUEUE_CONNECTION」にdatabase(もしくはredis)を設定し、マイグレーションを実行済である必要があります。<br />リアルタイム同期はキューで実行されるため、初期値のsyncのままだと、画面の処理がブロックされます。詳細は[通知処理の遅延実行](/ja/additional_queue)をご確認ください。|
 |カスタムテーブル|カスタムテーブル設定で「検索対象とする」がYESになっており、かつ「フリーワード検索対象」がYESのカスタム列を持つテーブルのみ、インデックスの作成対象となります。|
 
@@ -31,7 +31,10 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 差異を自動的に修復するために、「インデックスの自動修復」(MEILISEARCH_REPAIR_ENABLED)と、スケジューラの設定をあわせて行ってください。
 - <span class="red">※「EXMENT_SEARCH_DOCUMENT」をtrueにしている場合、検索画面ではMeilisearchが使用されません。</span>  
 添付ファイルの内容はインデックスに含まれないため、この設定を有効にすると、「MEILISEARCH_GLOBAL_SEARCH」がtrueであっても、検索画面の処理(サジェスト・検索結果・サイドバー・並び替え・エクスポート)は、すべてデータベースを使用した検索に戻ります。  
-※カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完については、影響を受けません。
+※この設定は、検索画面に対するものです。カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完については、影響を受けません。
+- カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完(フォーム・API)でMeilisearchを使用する場合、「MEILISEARCH_SELECT_TABLE」をtrueにしてください。  
+この設定は「MEILISEARCH_GLOBAL_SEARCH」とは独立しており、初期値はfalseです。  
+※trueにした場合、入力補完の検索方法が変わります。データベースを使用する場合は保存された値に対する部分一致ですが、Meilisearchを使用する場合は単語単位の前方一致となるため、候補に表示される内容が変わります。
 - マスターキーは、Meilisearchへ接続するための重要な情報です。第三者に共有しないよう、厳重に管理してください。
 - <span class="red">※Meilisearchは、インターネットに公開しないでください。</span>Exmentと同一のサーバー、もしくは内部ネットワークからのみ接続できるように設定してください。
 - Meilisearchの詳細は、[Meilisearch公式ドキュメント](https://www.meilisearch.com/docs)をご参照ください。
@@ -378,12 +381,27 @@ schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\ph
 
 
 ## 設定値の優先順位
-Meilisearchの設定は、「.env」だけでなく、Exmentの画面からも変更することができます。  
+Meilisearchの設定の一部は、「.env」だけでなく、Exmentの画面からも変更することができます。  
 **画面から保存した設定は、「.env」の設定よりも優先されます。**
 
-- メニュー「管理者設定 > システム設定(詳細設定)」より、接続先・マスターキー・各種フラグを設定することができます。  
-- 一度でもこの画面で保存を行った場合、その値がデータベースに保持され、「.env」の内容を上書きします。  
+- メニュー「管理者設定 > システム設定(詳細設定)」より設定することができるのは、以下の項目です。
+
+|項目|「.env」の設定キー|
+|---|---|
+|Meilisearchサーバーの接続先|MEILISEARCH_HOST|
+|Meilisearchのマスターキー|MEILISEARCH_KEY|
+|インデックス名|MEILISEARCH_INDEX|
+|検索時にMeilisearchを使用する|MEILISEARCH_GLOBAL_SEARCH|
+|更新内容をリアルタイムで反映する|MEILISEARCH_REALTIME_SYNC|
+|インデックス作成単位|MEILISEARCH_BATCH_SIZE|
+|インデックスの自動修復|MEILISEARCH_REPAIR_ENABLED|
+|自動修復の実行時刻|MEILISEARCH_REPAIR_AT|
+|フィルタ動作|MEILISEARCH_FILTER_MODE|
+
+- 上記以外の設定値については、「.env」でのみ設定することができます。
+- この画面で値を保存した場合、その値がデータベースに保持され、「.env」の内容を上書きします。  
 そのため、**「.envを変更したのに反映されない」という場合、この画面の設定をご確認ください。**
+- 画面の項目を空にして保存した場合、その項目については、「.env」の設定値が使用されます。
 
 
 ## 日本語の検索精度について
@@ -482,27 +500,6 @@ php artisan exment:meili-settings --show
 ```
 
 
-## 自動での再作成についての制限
-カスタムテーブルやカスタム列の設定を変更した場合、そのテーブルのインデックスを作成しなおす処理が、キューに登録されます。  
-ただし、この処理には以下の制限があります。
-
-- 1件の処理あたり、**60秒**の制限時間があります。(キューの「retry_after」よりも短くする必要があるためです)
-- 処理速度は、おおよそ**1秒あたり300件**です。そのため、**18,000件程度まで**のテーブルであれば、処理が完了します。
-- これを超えるテーブルの場合、処理が中断され、3回まで再実行を行ったうえで、処理を中止します。  
-この場合でも、**インデックスの内容はそのまま残ります。**(処理は上書きで行われ、事前の削除を行わないためです)ただし、変更した設定は反映されていない状態となります。  
-ログには、以下の内容が出力されます。
-
-```
-[Meili] reindex of 'xxx' gave up after 3 attempts: ... run `php artisan exment:meili-index` to refresh them.
-```
-
-- そのため、**データ件数の多いテーブルの設定を変更した場合、「php artisan exment:meili-index」を実行してください。**
-
-- また、「QUEUE_CONNECTION」がsyncの場合、この処理は画面の保存処理の中で実行されます。  
-データ件数が「MEILISEARCH_BATCH_SIZE」を超えるテーブルの場合、画面の処理が停止することを防ぐため、**処理を行わずに中止します。**  
-この場合も、コマンドの実行をうながす内容が、ログに出力されます。
-
-
 ## システムのアップデート時
 キューワーカは長時間起動プロセスであるため、リスタートしない限りコードの変更を反映しません。  
 Exmentのアップデートを実施した場合、以下のコマンドを実行し、キューワーカを再起動してください。
@@ -530,7 +527,7 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |キューワーカが起動しない|キュー用のテーブルが作成されていません。「php artisan queue:table」「php artisan queue:failed-table」「php artisan migrate」を実行してください。|
 |データを更新しても検索結果が変わらない|「MEILISEARCH_REALTIME_SYNC」がfalseになっているか、キューワーカが停止しています。サービスの状態と、「php artisan exment:meili-health --failed」で失敗したジョブをご確認ください。|
 |インポート・一括削除の後、データに差異がある|「php artisan exment:meili-reconcile」を実行してください。|
-|データ件数の多いテーブルで、列の設定を変更しても検索結果が変わらない|インデックスを作成しなおす処理が、60秒の制限時間を超えています。ログに「gave up after 3 attempts」が出力されていないかを確認し、「php artisan exment:meili-index」を実行してください。|
+|列の設定を変更しても検索結果が変わらない|インデックスを作成しなおす処理が、完了していません。ログに「gave up after 3 attempts」が出力されていないかを確認し、「php artisan exment:meili-index」を実行してください。|
 |ログに「reindex ... skipped: the queue connection is 'sync'」と出力される|「QUEUE_CONNECTION」がsyncのため、処理が中止されています。「php artisan exment:meili-index」を実行するか、キューをdatabase・redisに変更し、キューワーカを実行してください。|
 |エクスポート時に「Too many results to export」と表示される|「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超えています。件数を減らさずにエラーとしているため、検索条件を絞り込むか、設定値を大きくしたうえで「php artisan exment:meili-settings」を実行してください。|
 |日本語の検索で、検索結果が表示されない場合がある(漢字とカタカナが連続している場合など)|分かち書きの設定が適用されていません。「php artisan exment:meili-settings --show」で設定内容を確認し、「MEILISEARCH_LOCALES」が空になっていないか、Meilisearchがv1.10以降であるかをご確認ください。|

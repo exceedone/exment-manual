@@ -18,7 +18,7 @@ When using Meilisearch, the following conditions must be satisfied.
 |Item|Contents|
 |---|---|
 |Meilisearch server|v1.10 or later|
-|PHP library|It is necessary to install "meilisearch/meilisearch-php". **This library is not a required library of Exment.** If it is not installed, the commands related to Meilisearch will result in an error, and the realtime sync will also be disabled.|
+|PHP library|It is necessary to install "meilisearch/meilisearch-php" (v1.10 or later). **This library is not a required library of Exment.** If it is not installed, the commands related to Meilisearch will result in an error, and the realtime sync will also be disabled.
 |Queue|It is necessary to set "database" (or redis) to "QUEUE_CONNECTION" and to have executed the migration.<br />Since the realtime sync is executed by the queue, if it remains the default value "sync", the process on the screen will be blocked. For details, please check [Delayed execution of notification processing](/additional_queue).|
 |Custom table|Only tables whose "Search target" is YES in the custom table settings, and which have a custom column whose "Free word search target" is YES, become the target of index creation.|
 
@@ -31,7 +31,10 @@ Therefore, please pay close attention, such as setting the service to start and 
 In order to repair the difference automatically, please also set "Automatic index repair" (MEILISEARCH_REPAIR_ENABLED) and the scheduler.
 - <span class="red">※When "EXMENT_SEARCH_DOCUMENT" is set to true, Meilisearch is not used on the search screen.</span>  
 Since the contents of attachments are not included in the index, when this setting is enabled, all the processes of the search screen (suggestion, search results, sidebar, sorting, export) return to the search using the database, even if "MEILISEARCH_GLOBAL_SEARCH" is true.  
-*The input completion of the custom column "Select (select from the list of values of another table)" is not affected.
+*This setting applies to the search screen. The input completion of the custom column "Select (select from the list of values of another table)" is not affected.
+- When using Meilisearch for the input completion (form and API) of the custom column "Select (select from the list of values of another table)", please set "MEILISEARCH_SELECT_TABLE" to true.  
+This setting is independent of "MEILISEARCH_GLOBAL_SEARCH", and its default value is false.  
+*When you set it to true, the search method of the input completion changes. With the database it is a partial match against the stored value, while with Meilisearch it is a prefix match by word, so the contents displayed as candidates change.
 - The master key is important information for connecting to Meilisearch. Please manage it strictly so that it is not shared with third parties.
 - <span class="red">※Please do not publish Meilisearch to the Internet.</span> Please set it so that it can be connected only from the same server as Exment or from the internal network.
 - For details on Meilisearch, please refer to the [Meilisearch official documentation](https://www.meilisearch.com/docs).
@@ -378,12 +381,27 @@ schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\ph
 
 
 ## Priority of the setting values
-The settings of Meilisearch can be changed not only from the ".env" but also from the screen of Exment.  
+Some of the settings of Meilisearch can be changed not only from the ".env" but also from the screen of Exment.  
 **The settings saved from the screen take priority over the settings of the ".env".**
 
-- From the menu "Admin Settings > System Settings (Advanced settings)", you can set the connection destination, the master key and each flag.  
-- Once you have saved on this screen, that value is held in the database and overwrites the contents of the ".env".  
+- The items that can be set from the menu "Admin Settings > System Settings (Advanced settings)" are as follows.
+
+|Item|Setting key of the ".env"|
+|---|---|
+|Connection destination of the Meilisearch server|MEILISEARCH_HOST|
+|Master key of Meilisearch|MEILISEARCH_KEY|
+|Index name|MEILISEARCH_INDEX|
+|Use Meilisearch when searching|MEILISEARCH_GLOBAL_SEARCH|
+|Reflect updates in real time|MEILISEARCH_REALTIME_SYNC|
+|Unit of the index creation|MEILISEARCH_BATCH_SIZE|
+|Automatic repair of the index|MEILISEARCH_REPAIR_ENABLED|
+|Execution time of the automatic repair|MEILISEARCH_REPAIR_AT|
+|Filter behavior|MEILISEARCH_FILTER_MODE|
+
+- The setting values other than the above can be set only in the ".env".
+- When you save a value on this screen, that value is held in the database and overwrites the contents of the ".env".  
 Therefore, **if the contents are not reflected even though you changed the ".env", please check the settings on this screen.**
+- When you save an item on the screen while it is empty, the setting value of the ".env" is used for that item.
 
 
 ## About the search accuracy
@@ -482,27 +500,6 @@ php artisan exment:meili-settings --show
 ```
 
 
-## Limitations of the automatic recreation
-When you have changed the settings of a custom table or a custom column, the process of recreating the index of that table is registered in the queue.  
-However, this process has the following limitations.
-
-- There is a time limit of **60 seconds** per process. (This is because it needs to be shorter than "retry_after" of the queue.)
-- The processing speed is approximately **300 records per second**. Therefore, the process completes for tables **up to about 18,000 records**.
-- In the case of a table exceeding this, the process is interrupted, and after retrying up to 3 times, the process is given up.  
-Even in this case, **the contents of the index remain as they are.** (This is because the process is performed by overwriting, without deleting in advance.) However, the changed settings are not reflected.  
-The following contents are output to the log.
-
-```
-[Meili] reindex of 'xxx' gave up after 3 attempts: ... run `php artisan exment:meili-index` to refresh them.
-```
-
-- Therefore, **when you have changed the settings of a table with a large number of data, please execute "php artisan exment:meili-index".**
-
-- Also, when "QUEUE_CONNECTION" is sync, this process is executed inside the saving process of the screen.  
-In the case of a table whose number of data exceeds "MEILISEARCH_BATCH_SIZE", in order to prevent the process of the screen from stopping, **the process is given up without being performed.**  
-In this case as well, contents prompting the execution of the command are output to the log.
-
-
 ## When updating the system
 Since the queue worker is a long-lived process, it will not reflect changes in the code unless it is restarted.  
 When you have updated Exment, execute the following command and restart the queue worker.
@@ -530,7 +527,7 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |The queue worker does not start|The tables for the queue have not been created. Please execute "php artisan queue:table", "php artisan queue:failed-table" and "php artisan migrate".|
 |The search results do not change even after updating data|"MEILISEARCH_REALTIME_SYNC" is false, or the queue worker has stopped. Please check the status of the service, and the failed jobs with "php artisan exment:meili-health --failed".|
 |There is a difference in the data after an import or a bulk deletion|Please execute "php artisan exment:meili-reconcile".|
-|The search results do not change even after changing the column settings of a table with a large number of data|The process of recreating the index exceeded the time limit of 60 seconds. Please check whether "gave up after 3 attempts" is output to the log, and execute "php artisan exment:meili-index".|
+|The search results do not change even after changing the column settings|The process of recreating the index has not been completed. Please check whether "gave up after 3 attempts" is output to the log, and execute "php artisan exment:meili-index".|
 |"reindex ... skipped: the queue connection is 'sync'" is output to the log|Since "QUEUE_CONNECTION" is sync, the process was given up. Please execute "php artisan exment:meili-index", or change the queue to database or redis and execute the queue worker.|
 |"Too many results to export" is displayed at export|It exceeds "MEILISEARCH_PERMISSION_SCAN_CAP" (default value 1000). Since it is treated as an error instead of reducing the number of records, please narrow down the search conditions, or increase the setting value and then execute "php artisan exment:meili-settings".|
 |Some results are not displayed in a Japanese search (such as when kanji and katakana are consecutive)|The tokenization setting is not applied. Please check the setting contents with "php artisan exment:meili-settings --show", and check whether "MEILISEARCH_LOCALES" is empty and whether Meilisearch is v1.10 or later.|
