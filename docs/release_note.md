@@ -3,7 +3,7 @@
 
 ## v6.2.14 (2026/09/30)
 1. Bug fixes
-    - Fixed an issue with the "Unprocessed Items List" feature (introduced in v6.2.13)
+    - Fixed an issue with the "Unprocessed Items List" feature (introduced in v6.2.13).　Details [here](https://exment.net/docs/#/workflow_task)
 
 ## v6.2.13 (2026/09/11)
 1. Added Feature
