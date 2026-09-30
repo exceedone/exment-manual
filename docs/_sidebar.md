@@ -51,6 +51,7 @@
   * [Workflow settings](/workflow_setting.md)
   * [Workflow setting example](/workflow_example.md)
   * [Workflow implementation](/workflow_execution.md)
+  * [Pending tasks](/workflow_task.md)
  
 * 【8. Public form】
   * [Public form settings](/publicform)

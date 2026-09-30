@@ -23,3 +23,7 @@ The administrator must configure the [workflow settings](/workflow_example) in a
 ※ At this time, a key mark may be displayed in "Current status" depending on the workflow settings. In that case, the data is locked and cannot be edited or deleted.
 
 ![Workflow screen](img/workflow/workflow_data4.png)
+
+## Checking your pending tasks
+The data on which you need to execute an action can be checked across all tables, from the pending task icon at the top right of the page or on the pending task list.  
+See [Pending tasks](/workflow_task) for details.
