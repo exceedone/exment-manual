@@ -334,6 +334,14 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/workflow_task">
+                    <div class="tile-inner">
+                        <h5>未処理タスク</h5>
+                        <p>自分がアクションを実行する必要があるワークフローのデータを、すべてのテーブルからまとめて確認します。</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>

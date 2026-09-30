@@ -104,7 +104,8 @@ In that case, change this setting value.
 You can select from "required", "optional" and "not used".
 
 - **Option settings> Special actions** : By checking, the "Executable user" set for the action is not included in the current work user. (The current working user is a user who can execute any workflow action in the current status.)  
-An action to return to the previous status, such as "Reject" or "Remand", or an action in which the administrator approves by special exception Please check it.
+An action to return to the previous status, such as "Reject" or "Remand", or an action in which the administrator approves by special exception Please check it.  
+※ A special action is not shown as a task on the [Pending tasks](/workflow_task) list either.
 
 ### Setup completed
 When both status setting and action setting are performed, a "Setting completed" button is displayed at the top right of the page.

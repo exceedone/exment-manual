@@ -197,6 +197,26 @@ The decryption password will be sent separately.
 - Default value : true
 - Role : If true, at the time of notification, if the notification target is the logged-in user himself, the notification will be skipped. If false, the logged-in user will also be notified.
 
+### Workflow
+
+#### Show / hide the pending task icon
+- Setting key : EXMENT_WORKFLOW_TASK_NAVBAR
+- Default value : true
+- Role : If false, the [pending task](/workflow_task) icon in the upper right corner of the header will be hidden.  
+The pending task list can still be opened from the URL "/admin/workflow_task".
+
+#### Update interval of the pending task icon (seconds)
+- Setting key : EXMENT_WORKFLOW_TASK_NAVBAR_INTERVAL
+- Default value : 300
+- Role : How often (in seconds) the count of the pending task icon in the upper right corner of the header is updated. A value below 30 is treated as 30.  
+※ Every update checks the data of all workflows. The shorter the interval, the higher the load on the server.
+
+#### Notify the other members of the same organization
+- Setting key : EXMENT_SAME_ORG_WORKFLOW_NOTIFY
+- Default value : true
+- Role : When a member of an organization executes a workflow action assigned to that organization, the other members of the organization are notified by an in-system alert. If false, they are not notified.  
+See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organization) for details.
+
 ### API
 
 #### API enabled / disabled
