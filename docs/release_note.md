@@ -428,7 +428,7 @@
     - Changed the framework used from Laravel6 to Laravel8
     - Changed the minimum version of PHP from PHP 7.2 to 7.3
 1. Addition of functions
-    - Added CRUD page to plugin type.
+    - Added CRUD page to plugin type. For details, [click here](/plugin_quickstart_crud)
     - Added the function to select the position of the column name of the view by left justification, center, right justification on the view setting screen.
 1. Bug fix
     - Fixed a bug that an error occurs when getting the parent data when N: N relation is performed in the parameter setting.

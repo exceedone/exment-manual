@@ -8,9 +8,17 @@ For more information on plug-in functions and management methods, see [Plugins](
 - [page](/plugin_quickstart_page.md)
 - [document](/plugin_quickstart_document.md)
 - [dashboard](/plugin_quickstart_dashboard.md)
+- [CRUD page](/plugin_quickstart_crud)
 - [batch](/plugin_quickstart_batch.md)
 - [script](/plugin_quickstart_script.md)
 - [style](/plugin_quickstart_style.md)
+
+## Plugin name namespace
+Name the namespace of the plugin according to the following rule.
+- The namespace should be **App\Plugins\\(Pascal case of plugin name)**.
+    - Example: plugin name "testplugin" → App\Plugins\\Testplugin
+    - Example: plugin name "customer_list" → App\Plugins\\CustomerList
+    - Example: plugin name "get-user" → App\Plugins\\GetUser
 
 
 ## Other special settings

@@ -10,6 +10,7 @@ There are currently the following types of plugins:
 - [page](#page)
 - [dashboard](#dashboard)
 - [view](#view)
+- [CRUD page](#crud-page)
 - [batch](#batch)
 - [API](#API)
 - [validation](#validation)
@@ -87,6 +88,13 @@ Please use it when you want to use a completely different function from the stan
 * Please refer to [here](/plugin_quickstart_view) for the implementation method.
 
 ![View plugin example](img/plugin/plugin_view1.png)
+
+#### CRUD page
+Creates a new page with almost the same screen structure as Exment's list, details, create, update, and delete screens.  
+You can manage external data on Exment screens without importing it into Exment, and multiple endpoints are supported.  
+※ Please refer to [here](/plugin_quickstart_crud) for the implementation method.  
+
+![CRUD page plugin example](img/plugin/plugin_crud.png)   
 
 #### batch
 This can be used when you want to execute periodic processing automatically.  

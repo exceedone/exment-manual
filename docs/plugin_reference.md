@@ -1,6 +1,7 @@
 # Plug-in reference
 It is a list of functions and properties unique to each plug-in.  
-※ Custom tables or columns, reference of custom data, [click here](/func_reference) please refer to.
+※ Custom tables or columns, reference of custom data, [click here](/func_reference) please refer to.  
+※ For the reference of plugins (CRUD pages), please refer to [here](/plugin_reference_crud).  
 
 ## PluginBase / Plugin common class
 
@@ -570,13 +571,98 @@ None
 #### setViewOptionForm
 Defines view-specific settings. For details, please refer to [here](/plugin_quickstart?id=make-your-own-settings-on-the-plugin-settings-screen).  
 
-##### 引数
+##### argument
 | Name | Type | Description |
 | ---- | ---- | ---- |
 | &$form | \Encore\Admin\Form | form instance of laravel-admin |
 
-##### 戻り値
+##### Return value
 None
+
+---
+
+
+
+
+
+
+## PluginCrudBase
+An abstract class for plugins (CRUD pages). When developing a CRUD page plugin, inherit this class.  
+For more information [here](/plugin_quickstart_crud), please refer to.  
+※ For the list of functions, please refer to the [Plugin reference (CRUD page)](/plugin_reference_crud).
+
+- namespace Exceedone\Exment\Services\Plugin
+- trait Exceedone\Exment\Services\Plugin\PluginBase
+- trait Exceedone\Exment\Services\Plugin\PluginPageTrait
+
+##### Property
+| Name | Type | Description |
+| ---- | ---- | ---- |
+| title | string | Title displayed on each page of the plugin |
+| description  | string | Description displayed on each page of the plugin |
+| icon | string | Icon displayed on each page of the plugin |
+
+
+### Function list (must be implemented by the developer)
+
+#### getFieldDefinitions
+A function that returns the column definitions as an associative array. Describe the definitions of the items displayed on each page.
+
+##### argument
+None
+
+##### Return value
+| Type | Description |
+| ---- | ---- |
+| array | Returns the definitions of the items on each page as an associative array |
+
+##### Return value - definition of the associative array
+| Key | Description |
+| ---- | ---- |
+| key | Item name, used when retrieving data and as the name of each HTML element. Enter alphanumeric characters |
+| label | Text used as the item name on the list screen and other screens |
+| grid | Set for items displayed on the list screen. Enter an integer for the display order |
+| show | Set for items displayed on the details screen. Enter an integer for the display order |
+| create | Set for items displayed on the create screen. Enter an integer for the display order |
+| edit | Set for items displayed on the edit screen. Enter an integer for the display order |
+
+
+##### Example
+
+``` php
+/**
+     * Get fields definitions
+     *
+     * @return array|Collection
+     */
+    public function getFieldDefinitions()
+    {
+        return [
+            ['key' => 'ID', 'label' => 'ID', 'primary' => true, 'grid' => 1, 'show' => 1, 'edit' => 1],
+            ['key' => 'Name', 'label' => 'City name', 'grid' => 2,'show' => 2, 'create' => 1, 'edit' => 2],
+            ['key' => 'CountryCode', 'label' => 'Country code', 'grid' => 3, 'show' => 3, 'create' => 2,'edit' => 3],
+            ['key' => 'Population', 'label' => 'Population', 'show' => 5, 'create' => 4,'edit' => 5],
+        ];
+    }
+```
+
+---
+
+#### getPaginate
+A function that retrieves the data list in paginated form.  
+Return the retrieved data as a LengthAwarePaginator.  
+Each element of the list should be an associative array, and the keys of that associative array should be the same as the keys set in getFieldDefinitions.  
+※ When a search is performed on the screen, values are set in the argument $options. For details, please refer to the [Plugin reference (CRUD page)](/plugin_reference_crud).
+
+##### argument
+| Name | Type | Description |
+| ---- | ---- | ---- |
+| $options | array | Option values passed when the list screen is called |
+
+##### Return value
+| Type | Description |
+| ---- | ---- |
+| LengthAwarePaginator | Search result model |
 
 ---
 
