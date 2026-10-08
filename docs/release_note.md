@@ -1,6 +1,19 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v6.2.15 (2026/10/09)
+1. Vulnerability fixes
+    - JVN#05318392 (Parent ID): Cross-site scripting vulnerability
+    - JVN#47030116: Improper authentication vulnerability
+    - JVN#98252843: Directory traversal vulnerability
+    - JVN#58391472: Cross-site scripting vulnerability
+    - JVN#17048635: Directory traversal vulnerability
+    - JVN#92835104: Cross-site scripting vulnerability
+    - JVN#32787855: SQL injection vulnerability
+    - JVN#20312919: Improper access restriction vulnerability
+1. Bug fixes
+    - Display issue regarding data display conditions when creating a custom view
+
 ## v6.2.14 (2026/09/30)
 1. Bug fixes
     - Fixed an issue with the "Unprocessed Items List" feature (introduced in v6.2.13).　Details [here](https://exment.net/docs/#/workflow_task)
