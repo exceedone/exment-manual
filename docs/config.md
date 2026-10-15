@@ -213,12 +213,14 @@ The following setting values beginning with "MEILISEARCH_" are the settings for 
 - Setting key : MEILISEARCH_REPAIR_AT
 - Default value : 03:00
 - Role : This is the time to execute the automatic repair of the index. Write it in the "HH:MM" format.
+*When a format other than "HH:MM" is set, the automatic repair is not executed, and a warning is output to the log.
 
 
 #### Index name of Meilisearch
 - Setting key : MEILISEARCH_INDEX
 - Default value : exment_global
-- Role : This is the name of the index created in Meilisearch.
+- Role : This is the name of the index created in Meilisearch.  
+*When you have changed it, please execute "php artisan exment:meili-index" and recreate the index.
 
 
 #### Unit of the index creation of Meilisearch
@@ -255,14 +257,16 @@ The following setting values beginning with "MEILISEARCH_" are the settings for 
 - Setting key : MEILISEARCH_MAX_FACET_VALUES
 - Default value : 1000
 - Role : This is the upper limit of the number of values fetched per item in the narrowing down (facet) of the search results.
+*When a value less than 1000 is set, it is treated as 1000.
 
 
 #### Filter behavior of Meilisearch
 - Setting key : MEILISEARCH_FILTER_MODE
 - Default value : override
 - Role : This is how the target columns are decided for the narrowing down (facet) on the search result page.
-In the case of "override", the targets are decided automatically from the column type, then the columns added on the "Filter settings" screen are added and the excluded columns are removed.
-In the case of "manual", only the columns added on the "Filter settings" screen become the target.
+In the case of "override", the targets are decided automatically from the column type, then the columns added on the "Search Filter Setting" screen are added and the excluded columns are removed. ("Auto + Custom" on the screen)
+In the case of "manual", only the columns added on the "Search Filter Setting" screen become the target. ("Custom only" on the screen)  
+*When you have changed it, it is necessary to recreate the index. Please execute "php artisan exment:meili-index".
 
 
 #### Use Meilisearch for "Select (select from the list of values of another table)"
@@ -292,8 +296,9 @@ In the case of "manual", only the columns added on the "Filter settings" screen 
 
 #### Reindex queue name of Meilisearch
 - Setting key : MEILISEARCH_REINDEX_QUEUE
-- Default value : meili-reindex
-- Role : This is the name of the queue that executes the process of recreating the index for each table.
+- Default value : (the same value as MEILISEARCH_SYNC_QUEUE. "default" in the initial state)
+- Role : This is the name of the queue that executes the process of recreating the index for each table.  
+Since this process is heavy, when you want to execute it separately from the sync process for each custom data record, set a name different from MEILISEARCH_SYNC_QUEUE, such as "meili-reindex". In that case, it is also necessary to add that name to "--queue=" of the queue worker.
 
 
 #### Target language of the Meilisearch search

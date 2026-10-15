@@ -215,12 +215,14 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : MEILISEARCH_REPAIR_AT
 - 既定値 : 03:00
 - 役割 : インデックスの自動修復を実行する時刻です。「HH:MM」の形式で記入します。
+※「HH:MM」以外の形式を設定した場合、自動修復は実行されず、ログに警告が出力されます。
 
 
 #### Meilisearchのインデックス名
 - 設定キー : MEILISEARCH_INDEX
 - 既定値 : exment_global
-- 役割 : Meilisearchに作成する、インデックスの名前です。
+- 役割 : Meilisearchに作成する、インデックスの名前です。  
+※変更した場合、「php artisan exment:meili-index」を実行し、インデックスを作成しなおしてください。
 
 
 #### Meilisearchのインデックス作成単位
@@ -257,14 +259,16 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 設定キー : MEILISEARCH_MAX_FACET_VALUES
 - 既定値 : 1000
 - 役割 : 検索結果の絞り込み(ファセット)で、1つの項目あたりに取得する値の上限です。
+※1000未満の値を設定した場合、1000として扱われます。
 
 
 #### Meilisearchのフィルタ動作
 - 設定キー : MEILISEARCH_FILTER_MODE
 - 既定値 : override
 - 役割 : 検索結果画面の絞り込み(ファセット)で、対象とする列の決定方法です。
-overrideの場合、列の種類から自動で対象を決定したうえで、「フィルター設定」画面で追加した列を加え、除外した列を取り除きます。
-manualの場合、「フィルター設定」画面で追加した列のみを対象とします。
+overrideの場合、列の種類から自動で対象を決定したうえで、「検索フィルター設定」画面で追加した列を加え、除外した列を取り除きます。(画面では「自動 ＋ カスタム」)
+manualの場合、「検索フィルター設定」画面で追加した列のみを対象とします。(画面では「カスタムのみ」)  
+※変更した場合、インデックスの作成しなおしが必要です。「php artisan exment:meili-index」を実行してください。
 
 
 #### 選択肢(他のテーブルの値一覧から選択)でMeilisearchを使用する
@@ -294,8 +298,9 @@ manualの場合、「フィルター設定」画面で追加した列のみを�
 
 #### Meilisearchの再作成キュー名
 - 設定キー : MEILISEARCH_REINDEX_QUEUE
-- 既定値 : meili-reindex
-- 役割 : テーブル単位でインデックスを作成しなおす処理を実行する、キューの名前です。
+- 既定値 : (MEILISEARCH_SYNC_QUEUEと同じ値。初期状態ではdefault)
+- 役割 : テーブル単位でインデックスを作成しなおす処理を実行する、キューの名前です。  
+この処理は重いため、カスタムデータ1件単位の同期処理と分けて実行する場合は、「meili-reindex」など、MEILISEARCH_SYNC_QUEUEとは異なる名前を設定してください。その場合、キューワーカの「--queue=」にも、その名前を追加する必要があります。
 
 
 #### Meilisearchの検索対象言語

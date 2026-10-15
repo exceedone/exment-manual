@@ -7,6 +7,9 @@ Exmentでは、通常はデータベースに対して検索を行っていま�
 - フリーワード検索の高速化
 - 検索結果の絞り込み(フィルタ・ファセット)
 - 検索キーワードのハイライト表示
+- 検索結果の並び替え(関連度順・新しい順・古い順)
+- 検索条件の保存・共有
+- 検索結果のエクスポート(CSV・XLSX)
 - シノニム(同義語)・ストップワードの設定
 
 > Exment標準の検索仕様については、[検索](/ja/search)をご確認ください。
@@ -24,20 +27,11 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 
 
 ## 注意点
-- Meilisearchは、Exmentとは別のサーバープロセスとして、常時実行しておく必要があります。**Meilisearchのプロセスが停止した場合、検索は実行されません。**  
-そのため、サービスの自動起動・自動再起動を設定するなど、細心の注意をはらうよう、お願いします。
-- カスタムデータの更新内容をMeilisearchのインデックスへ反映するために、キューワーカの実行が必要になります。このワーカも継続して実行する必要があり、**ワーカが止まってしまうと、更新内容はインデックスへ反映されません。**
-- Meilisearchのインデックスは、Exmentのデータベースとは別に保持されます。そのため、データベースとインデックスの間で差異が発生する場合があります。  
-差異を自動的に修復するために、「インデックスの自動修復」(MEILISEARCH_REPAIR_ENABLED)と、スケジューラの設定をあわせて行ってください。
-- <span class="red">※「EXMENT_SEARCH_DOCUMENT」をtrueにしている場合、検索画面ではMeilisearchが使用されません。</span>  
-添付ファイルの内容はインデックスに含まれないため、この設定を有効にすると、「MEILISEARCH_GLOBAL_SEARCH」がtrueであっても、検索画面の処理(サジェスト・検索結果・サイドバー・並び替え・エクスポート)は、すべてデータベースを使用した検索に戻ります。  
-※この設定は、検索画面に対するものです。カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完については、影響を受けません。
-- カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完(フォーム・API)でMeilisearchを使用する場合、「MEILISEARCH_SELECT_TABLE」をtrueにしてください。  
-この設定は「MEILISEARCH_GLOBAL_SEARCH」とは独立しており、初期値はfalseです。  
-※trueにした場合、入力補完の検索方法が変わります。データベースを使用する場合は保存された値に対する部分一致ですが、Meilisearchを使用する場合は単語単位の前方一致となるため、候補に表示される内容が変わります。
-- マスターキーは、Meilisearchへ接続するための重要な情報です。第三者に共有しないよう、厳重に管理してください。
-- <span class="red">※Meilisearchは、インターネットに公開しないでください。</span>Exmentと同一のサーバー、もしくは内部ネットワークからのみ接続できるように設定してください。
-- Meilisearchの詳細は、[Meilisearch公式ドキュメント](https://www.meilisearch.com/docs)をご参照ください。
+- Meilisearchとキューワーカは、常時実行しておく必要があります。Meilisearchが停止した場合は検索が実行されず、キューワーカが停止した場合は更新内容がインデックスへ反映されません。手順1と手順3で、どちらも自動的に再起動するサービスとして登録します。
+- Meilisearchのインデックスは、Exmentのデータベースとは別に保持されるため、両者の間で差異が発生する場合があります。手順4で、1日1回の自動修復を設定します。
+- <span class="red">※「EXMENT_SEARCH_DOCUMENT」をtrueにしている場合、検索画面ではMeilisearchが使用されません。</span>添付ファイルの内容はインデックスに含まれないため、「MEILISEARCH_GLOBAL_SEARCH」がtrueであっても、検索画面の処理はデータベースを使用した検索になります。カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完は影響を受けません。
+- <span class="red">※Meilisearchは、インターネットに公開しないでください。</span>Exmentと同一のサーバー、もしくは内部ネットワークからのみ接続できるように設定し、マスターキーは第三者に共有しないよう厳重に管理してください。
+- Meilisearch自体の詳細は、[Meilisearch公式ドキュメント](https://www.meilisearch.com/docs)をご参照ください。
 
 
 ## 設定の流れ
@@ -47,8 +41,6 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 1. Exmentの設定
 1. キューワーカの登録
 1. スケジューラの設定
-
-<span class="red">※キューワーカの登録は、「Exmentの設定」でキュー用のテーブルを作成した後に行ってください。</span>テーブルが存在しない状態でキューワーカを起動した場合、エラーとなります。
 
 
 ## 1. Meilisearchサーバーのインストール
@@ -176,9 +168,7 @@ $key = -join (1..32 | ForEach-Object { '0123456789abcdef'[(Get-Random -Maximum 1
 $key
 ```
 
-> 「Get-Random -Count 32」を使用する方法では、生成される文字列が16文字になってしまいます。  
-16進数の文字は16種類しかなく、「Get-Random -Count」は同じ値を重複して取得しないためです。  
-32文字のキーを生成するため、上記のコマンドをご使用ください。
+> 「Get-Random -Count 32」は同じ値を重複して取得しないため、16種類しかない16進数の文字では、16文字のキーしか生成できません。使用しないでください。
 
 - [NSSM公式サイト](https://nssm.cc/download)より、NSSMをダウンロードし、「C:\nssm\」フォルダに「nssm.exe」を配置します。  
 ※「winget install nssm」コマンドでインストールすることもできます。
@@ -247,13 +237,11 @@ MEILISEARCH_REPAIR_ENABLED=true
 #自動修復を実行する時刻。「HH:MM」の形式で記入します
 MEILISEARCH_REPAIR_AT=03:00
 
-#検索対象の言語(分かち書き)。初期値は「jpn」のため、日本語のみを扱う場合は記入不要です
-MEILISEARCH_LOCALES=jpn
+#テーブル単位でインデックスを作成しなおす処理(処理が重い)を、カスタムデータ1件単位の同期処理とは別のキューで実行します
+MEILISEARCH_REINDEX_QUEUE=meili-reindex
 ```
 
-> 「MEILISEARCH_GLOBAL_SEARCH」は検索側の設定のため、インデックスの作成が完了した後に、trueへ変更することもできます。  
-「MEILISEARCH_REALTIME_SYNC」は更新側の設定のため、trueにする場合、キューワーカが実行されている必要があります。  
-「MEILISEARCH_REPAIR_ENABLED」をtrueにする場合、スケジューラの設定が必要です。
+> 「MEILISEARCH_GLOBAL_SEARCH」は検索側の設定のため、インデックスの作成が完了した後に、trueへ変更することもできます。
 
 - 上記以外の設定値については、[設定値一覧](/ja/config)の「検索」をご確認ください。既定値から変更する場合のみ、記入してください。
 
@@ -278,18 +266,11 @@ php artisan config:clear
 ```
 
 - 以下のコマンドを実行し、データベースの内容からインデックスを作成します。  
-既存のインデックスを削除して作成しなおすため、実行時に確認メッセージが表示されます。  
 ※データ件数によっては、処理に時間がかかる場合があります。
 
 ```
-php artisan exment:meili-index --fresh
+php artisan exment:meili-index
 ```
-
-> バッチ処理などで、確認メッセージを表示せずに実行する場合、「--force」をあわせて指定してください。
->
-> ```
-> php artisan exment:meili-index --fresh --force
-> ```
 
 - 以下のコマンドを実行し、Meilisearchとの接続状態と、登録されているドキュメント件数を確認します。
 
@@ -303,9 +284,10 @@ php artisan exment:meili-health
 
 キューワーカは、以下の2つのキューを対象にする必要があります。
 
-- default : カスタムデータ1件単位の同期、設定の反映などを行う、処理の軽いキューです。
-- meili-reindex : テーブル単位でインデックスを作成しなおす、処理の重いキューです。
+- default : カスタムデータ1件単位の同期、設定の反映などを行う、処理の軽いキューです。(「MEILISEARCH_SYNC_QUEUE」の既定値)
+- meili-reindex : テーブル単位でインデックスを作成しなおす、処理の重いキューです。(「.envの設定」で「MEILISEARCH_REINDEX_QUEUE」に設定した値)
 
+※「MEILISEARCH_REINDEX_QUEUE」を設定しない場合、テーブル単位の処理も「MEILISEARCH_SYNC_QUEUE」と同じキュー(既定値:default)で実行されます。その場合、重い処理が終わるまで、カスタムデータ1件単位の同期が待たされます。  
 ※「MEILISEARCH_SYNC_QUEUE」「MEILISEARCH_REINDEX_QUEUE」の設定を変更した場合、「--queue=」の内容もあわせて変更してください。
 
 ### Linuxの場合
@@ -384,19 +366,19 @@ schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\ph
 Meilisearchの設定の一部は、「.env」だけでなく、Exmentの画面からも変更することができます。  
 **画面から保存した設定は、「.env」の設定よりも優先されます。**
 
-- メニュー「管理者設定 > システム設定(詳細設定)」より設定することができるのは、以下の項目です。
+- メニュー「管理者設定 > システム設定(詳細設定)」の「Meilisearch（全文検索）設定」より設定することができるのは、以下の項目です。
 
 |項目|「.env」の設定キー|
 |---|---|
-|Meilisearchサーバーの接続先|MEILISEARCH_HOST|
-|Meilisearchのマスターキー|MEILISEARCH_KEY|
+|Meilisearch ホスト|MEILISEARCH_HOST|
+|マスター API キー|MEILISEARCH_KEY|
 |インデックス名|MEILISEARCH_INDEX|
-|検索時にMeilisearchを使用する|MEILISEARCH_GLOBAL_SEARCH|
-|更新内容をリアルタイムで反映する|MEILISEARCH_REALTIME_SYNC|
-|インデックス作成単位|MEILISEARCH_BATCH_SIZE|
-|インデックスの自動修復|MEILISEARCH_REPAIR_ENABLED|
-|自動修復の実行時刻|MEILISEARCH_REPAIR_AT|
-|フィルタ動作|MEILISEARCH_FILTER_MODE|
+|Meilisearch でグローバル検索を有効化|MEILISEARCH_GLOBAL_SEARCH|
+|インデックスのリアルタイム同期|MEILISEARCH_REALTIME_SYNC|
+|バッチサイズ（インデックス時）|MEILISEARCH_BATCH_SIZE|
+|インデックス定期修復|MEILISEARCH_REPAIR_ENABLED|
+|修復実行時刻 (HH:MM)|MEILISEARCH_REPAIR_AT|
+|検索フィルターの列選択|MEILISEARCH_FILTER_MODE (「自動 ＋ カスタム」がoverride、「カスタムのみ」がmanual)|
 
 - 上記以外の設定値については、「.env」でのみ設定することができます。
 - この画面で値を保存した場合、その値がデータベースに保持され、「.env」の内容を上書きします。  
@@ -428,9 +410,11 @@ Meilisearchに関連する画面は、以下のとおりです。
 
 |画面|URL|内容|
 |---|---|---|
-|システム設定|/admin/system|「詳細設定」より、接続先やマスターキー、各種フラグを設定します。|
-|フィルター設定|/admin/meili-filter|検索結果画面のサイドバーに表示する、絞り込み条件を設定します。|
-|辞書設定|/admin/meili-dictionary|シノニム(同義語)、ストップワードを設定します。|
+|システム設定|/admin/system|「詳細設定」の「Meilisearch（全文検索）設定」より、接続先やマスターキー、各種フラグを設定します。|
+|検索フィルター設定|/admin/meili-filter|検索結果画面のサイドバーに表示する、絞り込み条件を設定します。|
+|検索辞書設定|/admin/meili-dictionary|シノニム(同義語)、ストップワードを設定します。|
+
+※「検索フィルター設定」「検索辞書設定」のメニューは、「MEILISEARCH_GLOBAL_SEARCH」がtrueの場合のみ、管理者設定のメニューに表示されます。
 
 
 ## 動作確認
@@ -439,17 +423,24 @@ Meilisearchに関連する画面は、以下のとおりです。
 - カスタムデータを新規作成・更新した後、再度検索を行い、更新した内容が検索結果に反映されることを確認します。  
 ※反映されない場合、キューワーカが実行されているかをご確認ください。
 
-- コマンドから検索を実行し、結果と応答時間を確認することもできます。
+- コマンドラインから検索を実行することもできます。画面のようなユーザー権限による絞り込みを行わず、Meilisearchに直接問い合わせて応答時間を表示するため、問題がMeilisearch自体にあるのか、画面側にあるのかを切り分けることができます。
 
 ```
 php artisan exment:meili-search "キーワード" --limit=5 --highlight --facets
 ```
 
-- 特定のテーブルのみを対象に検索する場合、「--table」を指定します。
+※特定のテーブルのみを対象にする場合、「--table=(テーブル名)」を指定します。
 
-```
-php artisan exment:meili-search "キーワード" --table=(テーブル名)
-```
+
+## 検索画面の機能
+「MEILISEARCH_GLOBAL_SEARCH」がtrueの場合、検索結果画面で以下の機能を使用することができます。
+
+- 絞り込み : サイドバーで、テーブル、列の値、日付・数値の範囲などにより、検索結果を絞り込みます。対象とする列は、「検索フィルター設定」画面で変更することができます。
+- 並び替え : 「関連度順」「新しい順」「古い順」で並び替えます。
+- 検索条件の保存 : 「現在の条件を保存」より、絞り込み条件(任意で検索キーワードも)を保存し、次回以降は「保存した検索」から呼び出すことができます。  
+    - 共有範囲は、「自分のみ」「ロールグループ」「組織」「すべてのユーザー」から選択します。「すべてのユーザー」への共有は、システム管理者のみ行うことができます。
+    - 1人のユーザーが保存できる件数は、「MEILISEARCH_SAVED_SEARCH_LIMIT」(既定値50)までです。
+- エクスポート : テーブルごとに、検索結果をCSVもしくはXLSXで出力します。出力対象が「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超える場合はエラーとなるため、検索条件を絞り込んでください。
 
 
 ## インデックスの再作成・修復
@@ -484,14 +475,31 @@ php artisan exment:meili-reconcile --table=(テーブル名)
 ```
 
 ### インデックスの再作成
-- インデックスをすべて作成しなおす場合、以下のコマンドを実行します。
+- インデックスをすべて作成しなおす場合、以下のコマンドを実行します。  
+「--fresh」を指定した場合、すべてのドキュメントを作成しなおすため、実行時に確認メッセージが表示されます。  
+※作成しなおしている間も、既存のインデックスで検索を行うことができます。作成が完了した時点で、新しいインデックスに切り替わります。
 
 ```
 php artisan exment:meili-index --fresh
 ```
 
+> バッチ処理などで、確認メッセージを表示せずに実行する場合、「--force」をあわせて指定してください。  
+> 確認メッセージを表示できない環境(cronなど)で「--force」を指定しなかった場合、コマンドはエラーとなります。
+>
+> ```
+> php artisan exment:meili-index --fresh --force
+> ```
+
+- 作成しなおしている間に更新されたカスタムデータは、新しいインデックスに含まれていません。完了後、以下のコマンドを実行し、差異を修復してください。
+
+```
+php artisan exment:meili-reconcile
+```
+
 ### 設定のみの反映
-- シノニム・ストップワード・検索対象言語などの設定を変更した場合、以下のコマンドを実行することで、インデックスを作成しなおすことなく、設定を反映することができます。  
+- 「検索辞書設定」画面でシノニム・ストップワードを保存した場合、設定はキューを経由して、自動的にインデックスへ反映されます。コマンドの実行は不要です。  
+※キューワーカが停止している場合は反映されません。その場合は、以下のコマンドを実行してください。
+- 「.env」で「MEILISEARCH_LOCALES」「MEILISEARCH_PERMISSION_SCAN_CAP」「MEILISEARCH_MAX_FACET_VALUES」を変更した場合は、以下のコマンドを実行してください。インデックスを作成しなおすことなく、設定を反映することができます。  
 ※「--show」を指定した場合、現在の設定内容を表示します。
 
 ```
@@ -500,9 +508,9 @@ php artisan exment:meili-settings --show
 ```
 
 
-## システムのアップデート時
-キューワーカは長時間起動プロセスであるため、リスタートしない限りコードの変更を反映しません。  
-Exmentのアップデートを実施した場合、以下のコマンドを実行し、キューワーカを再起動してください。
+## システムのアップデート時・設定変更時
+キューワーカは長時間起動プロセスであるため、リスタートしない限り、コードや設定の変更を反映しません。  
+Exmentのアップデートを実施した場合、ならびにMeilisearchの設定(「.env」の「MEILISEARCH_」で始まる設定値、もしくは「システム設定(詳細設定)」の「Meilisearch（全文検索）設定」)を変更した場合、以下のコマンドを実行し、キューワーカを再起動してください。
 
 - Linuxの場合
 
@@ -520,18 +528,14 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 ## うまく動作しない場合
 |症状|考えられる原因|
 |---|---|
-|「meilisearch/meilisearch-php is not installed」と表示される|PHPライブラリがインストールされていません。「composer require meilisearch/meilisearch-php」を実行してください。|
-|「Could not connect to Meilisearch」と表示される|Meilisearchのサービスが起動していない、「MEILISEARCH_HOST」の設定が誤っている、もしくはマスターキーが誤っています。|
 |「.env」を修正しても反映されない|「管理者設定 > システム設定(詳細設定)」で保存した値が優先されています。画面上の設定をご確認ください。|
-|「No search-enabled custom table with a freeword column to index.」と表示される|カスタムテーブル設定の「検索対象とする」がYESになっていない、もしくは「フリーワード検索対象」がYESのカスタム列が存在しません。|
 |キューワーカが起動しない|キュー用のテーブルが作成されていません。「php artisan queue:table」「php artisan queue:failed-table」「php artisan migrate」を実行してください。|
 |データを更新しても検索結果が変わらない|「MEILISEARCH_REALTIME_SYNC」がfalseになっているか、キューワーカが停止しています。サービスの状態と、「php artisan exment:meili-health --failed」で失敗したジョブをご確認ください。|
-|インポート・一括削除の後、データに差異がある|「php artisan exment:meili-reconcile」を実行してください。|
 |列の設定を変更しても検索結果が変わらない|インデックスを作成しなおす処理が、完了していません。ログに「gave up after 3 attempts」が出力されていないかを確認し、「php artisan exment:meili-index」を実行してください。|
 |ログに「reindex ... skipped: the queue connection is 'sync'」と出力される|「QUEUE_CONNECTION」がsyncのため、処理が中止されています。「php artisan exment:meili-index」を実行するか、キューをdatabase・redisに変更し、キューワーカを実行してください。|
-|エクスポート時に「Too many results to export」と表示される|「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超えています。件数を減らさずにエラーとしているため、検索条件を絞り込むか、設定値を大きくしたうえで「php artisan exment:meili-settings」を実行してください。|
+|エクスポート時に「出力対象が多すぎます（上限 N 件）」と表示される|「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超えています。件数を減らさずにエラーとしているため、検索条件を絞り込むか、設定値を大きくしたうえで「php artisan exment:meili-settings」を実行してください。|
 |日本語の検索で、検索結果が表示されない場合がある(漢字とカタカナが連続している場合など)|分かち書きの設定が適用されていません。「php artisan exment:meili-settings --show」で設定内容を確認し、「MEILISEARCH_LOCALES」が空になっていないか、Meilisearchがv1.10以降であるかをご確認ください。|
-|「検索対象とする」をNOに変更したテーブルが、検索結果に表示される|インデックスにドキュメントが残っています。「--table」を指定せずに「php artisan exment:meili-reconcile」を実行してください。|
+|インポート・一括削除の後にデータに差異がある、もしくは「検索対象とする」をNOに変更したテーブルが検索結果に表示される|インデックスのドキュメントが不足している、もしくは残っています。「--table」を指定せずに「php artisan exment:meili-reconcile」を実行してください。|
 |自動修復が実行されない|スケジューラの設定が行われていないか、「MEILISEARCH_REPAIR_ENABLED」がfalseになっています。|
 |Meilisearchのサービスが起動と停止を繰り返す(Linux)|サービスの設定ファイルに「WorkingDirectory=/var/lib/meilisearch」の記載がありません。|
 
