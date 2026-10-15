@@ -12,6 +12,8 @@ You can use the following functions.
 - Export of search results (CSV / XLSX)
 - Setting of synonyms and stop words
 
+![Search result page using Meilisearch](img/meilisearch/meilisearch_search1.png)  
+
 > For the standard search specifications of Exment, please check [Search](/search).
 
 
@@ -366,7 +368,8 @@ schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\ph
 Some of the settings of Meilisearch can be changed not only from the ".env" but also from the screen of Exment.  
 **The settings saved from the screen take priority over the settings of the ".env".**
 
-- The items that can be set from "Meilisearch (full-text search) settings" in the menu "Admin Settings > System Settings (Advanced settings)" are as follows.
+- The items that can be set from "Meilisearch (full-text search) settings" in the menu "Admin Settings > System Settings (Advanced settings)" are as follows.  
+![Meilisearch (full-text search) settings in System settings](img/meilisearch/meilisearch_system1.png)  
 
 |Item|Setting key of the ".env"|
 |---|---|
@@ -416,6 +419,12 @@ The screens related to Meilisearch are as follows.
 
 *"Search Filter Setting" and "Search Dictionary Setting" are not displayed in the menu by default. Access them directly from the URLs above, or add them as system menus in [Menu settings](/menu). These two are offered as choices in the menu settings only when "MEILISEARCH_GLOBAL_SEARCH" is true.
 
+- On the "Search Filter Setting" screen, select a table and a column, and set the filter type (equality or range), add/exclude, alias, and so on.  
+![Search Filter Setting](img/meilisearch/meilisearch_filter1.png)  
+
+- On the "Search Dictionary Setting" screen, register the type (synonym or stop word) and the words.  
+![Search Dictionary Setting](img/meilisearch/meilisearch_dictionary1.png)  
+
 
 ## Operation check
 - Log in to Exment, enter a word in the search bar at the top of the page, and perform a search.
@@ -440,6 +449,9 @@ When "MEILISEARCH_GLOBAL_SEARCH" is true, the following functions can be used on
 - Saving search conditions : From "Save current conditions", save the narrowing-down conditions (and optionally the search keyword), and call them from "Saved searches" from the next time on.  
     - Select the sharing scope from "Only me", "Role group", "Organization" or "All users". Sharing with "All users" can be performed only by the system administrator.
     - The number of conditions that one user can save is up to "MEILISEARCH_SAVED_SEARCH_LIMIT" (default value 50).
+
+    ![Save current conditions](img/meilisearch/meilisearch_saved1.png)  
+
 - Export : Output the search results as CSV or XLSX for each table. If the export target exceeds "MEILISEARCH_PERMISSION_SCAN_CAP" (default value 1000), an error occurs, so please narrow down the search conditions.
 
 

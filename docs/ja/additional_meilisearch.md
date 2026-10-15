@@ -12,6 +12,8 @@ Exmentでは、通常はデータベースに対して検索を行っていま�
 - 検索結果のエクスポート(CSV・XLSX)
 - シノニム(同義語)・ストップワードの設定
 
+![Meilisearchを使用した検索結果画面](img/meilisearch/meilisearch_search1.png)  
+
 > Exment標準の検索仕様については、[検索](/ja/search)をご確認ください。
 
 
@@ -366,7 +368,8 @@ schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\ph
 Meilisearchの設定の一部は、「.env」だけでなく、Exmentの画面からも変更することができます。  
 **画面から保存した設定は、「.env」の設定よりも優先されます。**
 
-- メニュー「管理者設定 > システム設定(詳細設定)」の「Meilisearch（全文検索）設定」より設定することができるのは、以下の項目です。
+- メニュー「管理者設定 > システム設定(詳細設定)」の「Meilisearch（全文検索）設定」より設定することができるのは、以下の項目です。  
+![システム設定のMeilisearch（全文検索）設定](img/meilisearch/meilisearch_system1.png)  
 
 |項目|「.env」の設定キー|
 |---|---|
@@ -416,6 +419,12 @@ Meilisearchに関連する画面は、以下のとおりです。
 
 ※「検索フィルター設定」「検索辞書設定」は、初期状態ではメニューに表示されません。上記のURLから直接アクセスするか、[メニュー設定](/ja/menu)でシステムメニューとして追加してください。この2つは、「MEILISEARCH_GLOBAL_SEARCH」がtrueの場合のみ、メニュー設定の選択肢に表示されます。
 
+- 「検索フィルター設定」では、テーブルと列を選択し、フィルタ種別(一致・範囲)、追加/除外、エイリアスなどを設定します。  
+![検索フィルター設定](img/meilisearch/meilisearch_filter1.png)  
+
+- 「検索辞書設定」では、種別(類義語・ストップワード)と単語を登録します。  
+![検索辞書設定](img/meilisearch/meilisearch_dictionary1.png)  
+
 
 ## 動作確認
 - Exmentにログインし、ページ上部の検索バーより、単語を入力して検索を行います。
@@ -440,6 +449,9 @@ php artisan exment:meili-search "キーワード" --limit=5 --highlight --facets
 - 検索条件の保存 : 「現在の条件を保存」より、絞り込み条件(任意で検索キーワードも)を保存し、次回以降は「保存した検索」から呼び出すことができます。  
     - 共有範囲は、「自分のみ」「ロールグループ」「組織」「すべてのユーザー」から選択します。「すべてのユーザー」への共有は、システム管理者のみ行うことができます。
     - 1人のユーザーが保存できる件数は、「MEILISEARCH_SAVED_SEARCH_LIMIT」(既定値50)までです。
+
+    ![現在の条件を保存](img/meilisearch/meilisearch_saved1.png)  
+
 - エクスポート : テーブルごとに、検索結果をCSVもしくはXLSXで出力します。出力対象が「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超える場合はエラーとなるため、検索条件を絞り込んでください。
 
 
