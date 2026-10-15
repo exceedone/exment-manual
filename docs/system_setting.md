@@ -176,6 +176,16 @@ Please note that SPF record settings are not supported by us. Please note.
 - <span class = "small"> In that case, enter "EXMENT_MAIL_SETTING_ENV_FORCE = true" in the ".env" file. You will continue to use the settings you entered in the ".env" file. </span>
 
 
+## LINE Setting
+In "LINE Setting" of [Detail Setting], set the information of the LINE Official Account used by [LINE integration](/line) (channel access token, channel secret and basic ID).  
+See [here](/line?id=system-settings) for details.
+
+
+## Safety Check Settings
+In "Safety Check Settings" of [Detail Setting], set the automatic sending on earthquakes and other settings of the [safety check](/safety_check).  
+See [here](/safety_check?id=safety-check-settings) for details.
+
+
 ## Password policy
 Set rules related to login passwords.
 

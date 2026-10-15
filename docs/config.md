@@ -217,6 +217,48 @@ The pending task list can still be opened from the URL "/admin/workflow_task".
 - Role : When a member of an organization executes a workflow action assigned to that organization, the other members of the organization are notified by an in-system alert. If false, they are not notified.  
 See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organization) for details.
 
+### LINE integration
+
+#### Channel access token
+- Setting key : LINE_CHANNEL_ACCESS_TOKEN
+- Default value : (none)
+- Role : The LINE channel access token used by [LINE integration](/line). The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Channel secret
+- Setting key : LINE_CHANNEL_SECRET
+- Default value : (none)
+- Role : The LINE channel secret. The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Basic ID of the LINE Official Account
+- Setting key : LINE_OA_BASIC_ID
+- Default value : (none)
+- Role : The basic ID of the LINE Official Account (the ID that starts with "@"). The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Time to prevent duplicate LINE notifications (passage of time) (minutes)
+- Setting key : LINE_DEDUPE_MINUTES
+- Default value : 0
+- Role : For LINE notifications triggered by "The Passage of Time", after a notification about a data is sent to a user, the same notification is not sent to the user again for this number of minutes. 0 disables this function.
+
+#### Validity of the LINE link code (minutes)
+- Setting key : LINE_LINK_CODE_TTL_MINUTES
+- Default value : 10
+- Role : How long the link code used for [linking a LINE account](/line?id=linking-a-line-account) is valid (minutes).
+
+#### Number of wrong LINE link codes
+- Setting key : LINE_LINK_MAX_ATTEMPTS
+- Default value : 5
+- Role : How many wrong link codes can be sent. When this number is exceeded, linking is blocked for a while.
+
+#### Recovery time after wrong LINE link codes (minutes)
+- Setting key : LINE_LINK_ATTEMPT_DECAY_MINUTES
+- Default value : 10
+- Role : How long linking stays blocked (minutes).
+
+#### Timeout of LINE communication (seconds)
+- Setting key : LINE_HTTP_TIMEOUT
+- Default value : 10
+- Role : The timeout (seconds) when communicating with the LINE platform.
+
 ### API
 
 #### API enabled / disabled
