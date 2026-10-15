@@ -325,6 +325,14 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/workflow_task">
+                    <div class="tile-inner">
+                        <h5>Pending tasks</h5>
+                        <p>Check the workflow data waiting for your action, across all tables.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>
