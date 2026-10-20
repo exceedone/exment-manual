@@ -356,6 +356,65 @@ The pending task list can still be opened from the URL "/admin/workflow_task".
 - Role : When a member of an organization executes a workflow action assigned to that organization, the other members of the organization are notified by an in-system alert. If false, they are not notified.  
 See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organization) for details.
 
+### LINE integration
+
+#### Channel access token
+- Setting key : LINE_CHANNEL_ACCESS_TOKEN
+- Default value : (none)
+- Role : The LINE channel access token used by [LINE integration](/line). The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Channel secret
+- Setting key : LINE_CHANNEL_SECRET
+- Default value : (none)
+- Role : The LINE channel secret. The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Basic ID of the LINE Official Account
+- Setting key : LINE_OA_BASIC_ID
+- Default value : (none)
+- Role : The basic ID of the LINE Official Account (the ID that starts with "@"). The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Time to prevent duplicate LINE notifications (passage of time) (minutes)
+- Setting key : LINE_DEDUPE_MINUTES
+- Default value : 0
+- Role : For LINE notifications triggered by "The Passage of Time", after a LINE message about the same record is sent to a user, no message is sent to the user again for this number of minutes. Messages sent by other notification settings and messages that failed also count. 0 disables this function.
+
+#### Validity period of the LINE link code (minutes)
+- Setting key : LINE_LINK_CODE_TTL_MINUTES
+- Default value : 10
+- Role : How long the link code used for [linking a LINE account](/line?id=linking-a-line-account) is valid (minutes).
+
+#### Maximum number of wrong LINE link codes
+- Setting key : LINE_LINK_MAX_ATTEMPTS
+- Default value : 5
+- Role : How many wrong link codes can be sent. When this number is exceeded, linking is blocked for a while.
+
+#### Period for counting wrong LINE link codes (minutes)
+- Setting key : LINE_LINK_ATTEMPT_DECAY_MINUTES
+- Default value : 10
+- Role : The period (minutes) in which wrong link codes are counted. If "LINE_LINK_MAX_ATTEMPTS" wrong codes are sent within this period after the first wrong code, linking is blocked until the period has passed.
+
+#### Timeout of LINE communication (seconds)
+- Setting key : LINE_HTTP_TIMEOUT
+- Default value : 10
+- Role : The timeout (seconds) when communicating with the LINE platform.
+
+#### URL of the LINE Messaging API
+- Setting key : LINE_API_BASE
+- Default value : https://api.line.me
+- Role : The URL of the LINE Messaging API. Normally, do not change it.
+
+### Safety check
+
+#### URL to get earthquake information
+- Setting key : EXMENT_SAFETY_CHECK_FEED_URL
+- Default value : https://api.p2pquake.net/v2/history
+- Role : The URL of the API from which the [safety check](/safety_check) gets earthquake information for automatic sending. Normally, do not change it.
+
+#### Number of earthquake information records to get
+- Setting key : EXMENT_SAFETY_CHECK_FEED_LIMIT
+- Default value : 10
+- Role : The number of the latest earthquake information records to get in each check (every minute). Set a value from 1 to 100.
+
 ### API
 
 #### API enabled / disabled

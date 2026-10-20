@@ -119,6 +119,7 @@ Currently, there are "E-mail" and "In-system alert". Multiple selections are pos
 ![notification](img/notify/notify_navbar1.png)  
 - **Slack** : Send notifications to Slack. Webhook URL is required.
 - **Microsoft Teams** : Sends notifications to Microsoft Teams. Webhook URL is required.
+- **LINE** : Sends notifications from the LINE Official Account to the LINE of the target users. The users need to link their LINE account in advance. See [LINE integration](/line) for details.
 
 #### Webhook URL
 Webhook URL required to notify Slack or Microsoft Teams. Please refer to [here](/notify_webhook) for how to get the URL.  
@@ -128,7 +129,12 @@ Select the notification target.
 The items that can be selected are "Authorized user", "Email" column, "User" column, and "Choice (select from list of values ​​in other tables)".  
 ※ If the notification destination is "Slack" or "Microsoft Teams", this setting will be invalid.  
 ※"Choices (select from a list of values ​​in another table)" is only available when the referenced table has an "Email" column.  
-※When "Execution action" is "Alert in system", the setting of "Email" column and "Choices (select from list of values ​​in other tables)" will be invalid.
+※When "Execution action" is "Alert in system", the setting of "Email" column and "Choices (select from list of values ​​in other tables)" will be invalid.  
+※ When the action is "LINE", the notification target is required. As with "In-system alert", select from the system administrator, authorized users, the create user, a "User" column, specified users, specified organizations, and so on. Notifications are not sent to users who have not linked their LINE account.
+
+#### LINE Flex template
+When the action is "LINE", select the template of the card sent to LINE. If no template is selected, the message is sent as text.  
+For how to create a template, see [LINE integration](/line?id=line-flex-templates).
 
 #### Mail template
 Select a template for the email to be sent. When creating a new template, create a new template on the mail template screen in advance.  

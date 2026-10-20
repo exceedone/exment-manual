@@ -63,6 +63,8 @@
   * [Dashboard](/dashboard.md)
   * [Mail template](/mail.md)
   * [Notification](/notify.md)
+  * [LINE integration](/line.md)
+  * [Safety check](/safety_check.md)
   * [Log](/logs)
 
 * 【10. Function extension】

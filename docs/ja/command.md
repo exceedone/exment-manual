@@ -167,6 +167,16 @@ php artisan exment:notify {id?} {--name=}
 ```
 
 
+### 安否確認(地震情報の確認)
+地震情報を取得し、[安否確認](/ja/safety_check)の自動送信の条件に合致する地震があれば、安否確認を送信します。  
+[タスクスケジュール](/ja/additional_task_schedule)により、毎分実行されます。  
+※システム設定の「地震発生時に自動送信する」がNOの場合は、何も実行しません。
+
+```
+php artisan exment:safetywatch
+```
+
+
 
 ## その他、開発用
 
@@ -192,6 +202,18 @@ php artisan exment:resetpassword --email=(対象ユーザーのメールアド�
 
 ```
 php artisan exment:workflow-clear (テーブル名) (ID)
+```
+
+
+### LINE連携コードの発行
+指定したユーザーの、LINEアカウント連携用の連携コードと、連携用のURL(ディープリンク)を発行します。  
+連携用のURLを、LINE公式アカウントを友だち追加したスマートフォンで開き、表示されたメッセージを送信すると、連携が完了します。  
+※通常は、[LINE連携](/ja/line?id=lineアカウント連携)の画面から、各ユーザーが連携してください。  
+※「ユーザーのID」には、ユーザーのデータのID(数値)を指定します。ユーザーコードではありません。  
+<span class="red">※すでにLINEアカウントを連携しているユーザーに実行すると、現在の連携は解除されます。</span>
+
+```
+php artisan exment:line-linkcode (ユーザーのID)
 ```
 
 

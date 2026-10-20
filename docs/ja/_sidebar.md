@@ -64,6 +64,8 @@
   * [ダッシュボード](/ja/dashboard)
   * [通知テンプレート](/ja/mail)
   * [通知](/ja/notify)
+  * [LINE連携](/ja/line)
+  * [安否確認](/ja/safety_check)
   * [ログ](/ja/logs)
 
 * 【10. 機能拡張】

@@ -157,6 +157,16 @@ php artisan exment:notify {id?} {--name=}
 ```
 
 
+### Safety check (checking earthquake information)
+Gets earthquake information, and sends a [safety check](/safety_check) if there is an earthquake that meets the conditions for automatic sending.  
+It is executed every minute by the [task schedule](/additional_task_schedule).  
+※ Nothing is executed when "Auto-send on Earthquake" in the system settings is NO.
+
+```
+php artisan exment:safetywatch
+```
+
+
 
 
 ## Others for development
@@ -175,6 +185,18 @@ Please check [here](/login_setting#password-reset-command) for details.
 
 ```
 php artisan exment: resetpassword --email = (target user's email address) --password = (changed password)
+```
+
+
+### Issuing a LINE link code
+Issues a link code and a link URL (deep link) for linking the LINE account of the specified user.  
+Open the link URL on a smartphone that has added the LINE Official Account as a friend, and send the message shown to complete the link.  
+※ Normally, each user should link their account on the [LINE Link](/line?id=linking-a-line-account) screen.  
+※ For "user ID", specify the ID (number) of the user data, not the user code.  
+<span class="red">※ If you run this command for a user who has already linked a LINE account, the current link is removed.</span>
+
+```
+php artisan exment:line-linkcode (user ID)
 ```
 
 
