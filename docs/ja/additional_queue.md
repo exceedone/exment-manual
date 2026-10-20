@@ -35,6 +35,13 @@ php artisan queue:failed-table
 php artisan exment:update
 ```
 
+> 「jobs」「failed_jobs」テーブルは、Laravelのプロジェクト作成時に含まれるマイグレーションで作成される場合があります。「database/migrations」フォルダを確認し、次のとおり実行してください。
+> - 「create_jobs_table」を含むファイルがある場合(Laravel 11以降で作成したプロジェクト): 両テーブルは標準のマイグレーションで作成されるため、「queue:table」「queue:failed-table」は実行せず、「php artisan exment:update」のみ実行します。
+> - 「create_failed_jobs_table」を含むファイルのみがある場合: 「queue:table」と「php artisan exment:update」を実行します。
+> - どちらもない場合: 上記3つのコマンドをすべて実行します。
+>
+> 「Migration already exists.」と表示された場合は、そのマイグレーションがすでに存在するため、エラーを無視して次のコマンドへ進んでください。
+
 - 以下のコマンドを実行します。  
 このコマンドを実行した場合、皆さんが停止するか、ターミナルを閉じるまで実行し続けることに注意してください。
 
