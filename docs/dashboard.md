@@ -56,7 +56,7 @@ Up to 4 columns can be displayed per line.
 ![Dashboard screen](img/dashboard/dashboard_grid3.png)  
 
 ## Dashboard filter settings
-In the "Dashboard Filter Bar" section of the dashboard settings, a "filter bar" can be shown at the top of the dashboard to filter all charts at once.  
+In the dashboard settings, a "filter bar" can be shown at the top of the dashboard to filter all charts at once.  
 Instead of creating a view for every condition (region, product, sales rep...), one dashboard lets you switch the condition and see the results.  
 ※See [Filtering with the filter bar](#filtering-with-the-filter-bar) for how to use it.
 
@@ -67,19 +67,19 @@ Select the table the filter choices are taken from.
 When left empty, the filter bar is not shown.
 
 #### Filter items
-Set the items shown on the filter bar, one per row. Add rows with "Add".
+Set the items shown on the filter bar, one per row. Add rows with "New".
 
 | Setting | Description |
 |---|---|
 | Column | The column of the filter source table used for filtering. |
 | Display name | The name shown on the filter bar. The column name is used when empty. |
-| Default value | The value selected when the dashboard opens. Nothing is selected when empty. |
-| Target boxes | The charts this filter applies to. When empty, every chart whose table has a column of the same name is filtered. |
+| Default value | The value selected when the dashboard opens. For an item selected from a list, enter stored values separated by commas; for an item specified as a "from" / "to" range, enter "min~max" (either side may be left empty). Nothing is selected when empty. |
+| Target boxes | The charts this filter applies to. When empty, every chart whose table has a column of the same name is filtered. Only saved charts are listed, so add the charts first and then select them on the settings screen. |
 
 > Only charts whose table has **a column with the same name as the filter item** are filtered.  
 > Other charts show "Not affected by filters".
 
-> For a smooth experience on large tables, enable "Index" in [custom column settings](/column.md) for the columns used as filter items.
+> For a smooth experience on large tables, enable "Search index" in [custom column settings](/column.md?id=search-index) for the columns used as filter items.
 
 > When a dashboard is exported / imported with a [template](/template.md), its filter bar settings (target boxes included) are carried over as they are.
 
@@ -148,7 +148,7 @@ The display name of the "2D/JAN Barcode Scan" button can be customized in the `.
 ![Dashboard Screen](img/dashboard/dashboard_system6.png)
 
 ## chart
-Data managed by Exment's summary view can be displayed on the dashboard as one of 18 chart types, including bar, line and pie charts.  
+Data managed by Exment views (normal views, all-data views, summary views, etc.) can be displayed on the dashboard as one of 18 chart types, including bar, line and pie charts.  
 A displayed chart can be filtered, switched to another chart type and sorted on screen (see [Using the dashboard](#using-the-dashboard)).  
 ※See [Chart settings details](#chart-settings-details) for details.
 
@@ -179,7 +179,7 @@ Select one of the following 18 chart types.
 
 A multi-series chart displays multiple data series for each category on the horizontal axis (for example, monthly sales by product).
 
-To use a multi-series chart, the summary view must be grouped by two columns: the first column defines the horizontal axis, and the second column defines the series.
+To use a multi-series chart, the summary view must be grouped by two or more columns. Among the group columns, the column selected in [Series column](#series-column-multi-series) (the second column by default) defines the series, and the first of the other columns defines the horizontal axis.
 
 <div class="row">
 <div class="col-sm-4">
@@ -276,24 +276,26 @@ To use a multi-series chart, the summary view must be grouped by two columns: th
 
 #### Target table
 Select the target to be displayed from the created tables in [Custom table settings](/table.md).  
-※ Only the tables for which the aggregation view is set are displayed as options.
+※Tables you have permission to view are shown as options.
 
 #### Target view
-Select the target to be displayed from the summary view in the selected target table.  
+Select the target to be displayed from the views (normal views, all-data views, summary views, etc.) in the selected target table.  
+※Calendar views and condition views cannot be selected. For a system dashboard, only system views can be selected.  
+※To use a multi-series chart, select a summary view.  
 
 #### X-axis item
 Select the X axis (horizontal axis) to be displayed as a graph.  
-※The column specified as the group column in the summary view setting can be selected.  
+※See [Chart settings details](#chart-settings-details) for details.  
 
 #### Y-axis items
 Select the Y axis (vertical axis) to be displayed as a graph.  
-※You can select the column specified as the total column in the total view setting.  
+※See [Chart settings details](#chart-settings-details) for details.  
 
 #### Series column (multi-series)
 
 This setting is shown only when a multi-series chart type is selected.
 
-Select the column to use for the series (the second grouping column in the summary view).
+Select the column to use for the series from the group columns of the summary view. If none is selected, the second group column is used as the series.
 
 ![Dashboard screen](img/dashboard/dashboard_chart_series_setting.png)
 
@@ -365,7 +367,7 @@ When selected, the [heading display column setting of the custom table](/table.m
 
 
 #### Y-axis items
-The following 1 kind of choice is shown for the Y axis. Select one of them.
+Only the following choice is shown for the Y axis.
 
 - Among the items shown in ["Display column selection" of the custom view settings](/view.md?id=display-column-selection), the columns of the following types. When selected, the values of the selected column are shown on the Y axis.
     - Integer
@@ -375,7 +377,7 @@ The following 1 kind of choice is shown for the Y axis. Select one of them.
 ### When the target view is a summary view
 
 #### X-axis item
-The following 1 kind of choice is shown for the X axis.
+Only the following choice is shown for the X axis.
 
 - The "Data heading" item.  
 ![Dashboard screen](img/dashboard/setting_x1.png)  
@@ -439,15 +441,19 @@ When [dashboard filter settings](#dashboard-filter-settings) are configured, a f
 
 Selecting a value in the filter bar applies the corresponding condition to every chart targeted by that filter.
 
+※The filter bar is not shown to users who do not have view permission on the filter source table.
+
 ![Dashboard screen](img/dashboard/dashboard_filterbar_item.png)
 
 #### Selecting values
 
 Click a filter item and select a value from the list. You can select multiple values.
 
-The list shows only values that have data matching the other selected filters. For example, after selecting the region "関東", the sales representative filter lists only representatives associated with that region.
+Once a value is selected in another filter, the list shows only values that have data matching it. For example, after selecting the region "Kanto", the sales representative filter lists only representatives associated with that region.
 
 ![Dashboard screen](img/dashboard/dashboard_filterbar2.png)
+
+Date and datetime columns are specified as a "from" / "to" range instead of a list. Number columns also switch to a range when they have too many values to list.
 
 > If a filter contains too many values to display, narrow down the results by selecting a value in another filter first.
 
@@ -467,6 +473,8 @@ These messages help you understand how the selected filters affect the displayed
 
 > The filter conditions are stored in the URL. You can use the browser's Back and Forward buttons to return to previous filter conditions. Sharing the URL allows others to view the dashboard with the same filter conditions.
 
+> The last selected conditions are remembered for each user and restored the next time the dashboard is opened.
+
 ## Filtering by clicking a chart
 
 Clicking a bar, slice, or other chart element selects the corresponding value in the filter bar and filters the other charts accordingly.
@@ -478,12 +486,14 @@ The clicked chart continues to display all values. The selected value is highlig
 | Action | Result |
 |---|---|
 | Click a value | Selects only that value. |
-| Click the selected value again | Clears the selection. |
+| Click the selected value again (when it is the only selected value) | Clears the selection. |
 | Ctrl + click (⌘ + click on Mac) | Adds the value to the selection. If the value is already selected, clicking it again removes only that value from the selection. |
 
 **Notes:**
 
 - This feature is available when the chart's horizontal-axis column is included in the filter bar.
+- Available only for charts of a summary view. Not available when the horizontal-axis column is an item specified as a "from" / "to" range (such as a date column) or a multiple-value column.
+- This feature is not available for Radar chart, Gauge, Treemap, Sunburst and Boxplot.
 - When a value is selected in the filter bar, a chart whose horizontal axis corresponds to that filter item is not filtered by that selection. Instead, the selected value is highlighted.
 
 ## Filtering one chart
@@ -500,6 +510,8 @@ The button indicates the number of active filter fields. Click "Reset" to clear 
 
 If a field contains more than 8 values, a search box appears above the list to help you find the values you need.
 
+Date and datetime columns are specified as a "from" / "to" range instead of a list. Number columns also switch to a range when they have too many values to list.
+
 ![Dashboard screen](img/dashboard/dashboard_chartfilter1.png)
 
 **Notes:**
@@ -515,7 +527,7 @@ The selected chart type is remembered for each user and is used the next time th
 
 Selecting the original chart type clears the chart type switch and restores the original type.
 
-**Note:** Multi-series charts can only be switched to other supported multi-series chart types.
+**Note:** Single-series charts can only be switched to other single-series chart types, and multi-series charts only to other multi-series chart types.
 
 ## Options menu
 
@@ -526,12 +538,15 @@ Click "⋯" in the top-right corner of a chart to open the options menu.
 | Menu | Description |
 |---|---|
 | Sort by | Sorts data by a horizontal-axis item or by value, in ascending or descending order. |
-| Data labels | Displays values on each bar, point, or other supported chart element. |
+| Data labels | Displays values on each bar, point, or other supported chart element. Shown only for Bar, Line, Pie, Horizontal bar, Area chart, Scatter, Grouped bar, Stacked bar, Multi-line and Stacked area. |
 | Export data | Downloads the displayed data as a CSV file. |
 | Reset colors | Restores the original colors. Shown only to users who can change colors, and only when colors have been changed. |
 | Reset | Restores the default sorting and data label settings. |
 
-**Note:** Sorting and data label settings are remembered for each user.
+**Notes:**
+
+- Sorting and data label settings are remembered for each user.
+- "⋯" is not shown on a chart that has no menu items available.
 
 ## Changing chart colors
 
