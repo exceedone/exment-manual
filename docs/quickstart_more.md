@@ -27,7 +27,7 @@ This is the procedure to change the upload size of attached file and PHP memory 
 - [IP filter](/additional_ip_filter)  
 Web page requests and API execution can be restricted by IP address.
 
-- [When 429 error occurs in API](additional_429_too_many)  
+- [When 429 error occurs in API](/additional_429_too_many)  
 This is the solution when 429 Too Many Requests occurs during API implementation.
 
 - [Add label column with data acquisition API](/additional_api_label)  

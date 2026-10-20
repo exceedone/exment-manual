@@ -141,7 +141,7 @@ Depending on the environment, it may be faster.
 #### With or without filter when transitioning from the search page to the list page
 - Setting key : EXMENT_SEARCH_LIST_LINK_FILTER
 - Default value : true
-- Role : When set to true, the search conditions entered on the All Data Search screen or Related Data Search screen are retained as filters when navigating to the Data List screen.
+- Role : When set to true, the search conditions entered on the "Search All Data" screen or "Search Relation Data" screen are retained as filters when navigating to the Data List screen.
 
 
 #### When searching from the search bar, the file name of the "attached file" of the custom data is searched
@@ -220,7 +220,9 @@ The following setting values beginning with "MEILISEARCH_" are the settings for 
 - Setting key : MEILISEARCH_INDEX
 - Default value : exment_global
 - Role : This is the name of the index created in Meilisearch.  
-*When you have changed it, please execute "php artisan exment:meili-index" and recreate the index.
+*When you have changed it, please execute "php artisan exment:meili-index" and recreate the index.  
+*When multiple Exment installations use one Meilisearch server, give each Exment its own index name. An index used by another Exment cannot be used.  
+(The Exment that uses the index is recorded in the index "(index name)__owner" with an identifier generated from "APP_KEY". Therefore, if you change "APP_KEY", it is also treated as another Exment.)
 
 
 #### Unit of the index creation of Meilisearch
@@ -239,6 +241,13 @@ The following setting values beginning with "MEILISEARCH_" are the settings for 
 - Setting key : MEILISEARCH_TIMEOUT
 - Default value : 5.0
 - Role : This is the timeout (seconds) of a request to the Meilisearch server.
+
+
+#### Wait time after a Meilisearch connection failure
+- Setting key : MEILISEARCH_UNREACHABLE_BACKOFF
+- Default value : 10
+- Role : This is the time (seconds) before trying to connect again when the Meilisearch server could not be reached. Within this time, Exment does not try to connect to Meilisearch and treats it as an error immediately (searches switch to the search by the database). This prevents each process from waiting for the connection timeout while Meilisearch is down.  
+*If 0 is set, Exment does not wait and tries to connect every time.
 
 
 #### Matching strategy of the Meilisearch search
@@ -439,12 +448,11 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Setting key : EXMENT_API_MAX_DELETE_COUNT
 - Default value ： 100
 - Role : Maximum number of APIs that can be deleted at the same time by batch deletion.
-Here is the translation to English in Markdown format:
 
 #### API Access Rate Limit
-- Setting Key: EXMENT_API_MAX_RATE_LIMIT
-- Default Value: 60
-- Role: Specifies the number of API accesses per user per minute for each API token.
+- Setting key : EXMENT_API_MAX_RATE_LIMIT
+- Default value ： 60
+- Role : The maximum number of API accesses per minute for each user (for each IP address if not authenticated). If the limit is exceeded, a 429 error (Too Many Requests) is returned. Please check [here](/additional_429_too_many) for details.
 
 #### Get data label
 - Setting key : EXMENT_API_APPEND_LABEL
@@ -523,6 +531,12 @@ Here is the translation to English in Markdown format:
 - Setting key : EXMENT_DELETE_FORCE_CUSTOM_VALUE
 - Default value : false
 - Role : By setting to true, physical deletion is always performed without using logical deletion of custom data.
+
+#### Maximum number of records displayed in the kanban view
+- Setting key : EXMENT_KANBAN_MAX_SIZE_COUNT
+- Default value : 300
+- Role : The default maximum number of records displayed in the [kanban view](/view_kanban). It is the initial value of "Max display count" when creating a new kanban view.  
+※If "Max display count" is set in the view, the view setting takes priority. The more records there are, the slower the display becomes.
 
 
 ### Organization settings
@@ -663,6 +677,38 @@ To change it, open the "config/extension.php" file and make the following change
 - Other special notes : Regarding the behavior of file click, all files were displayed on the browser before, but due to the [indication of the vulnerability](/weakness/20200819_2), the attached file is in the download format.
 Due to the above background, <span class="red">please make this setting at your own risk.</span>
 
+#### Validity period of the temporary URL when downloading a file
+- Setting key : EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES
+- Default value : 15
+- Role : The validity period (minutes) of the temporary URL (signed URL) when the [file save destination](/additional_file_saveplace) is a storage that can issue temporary URLs, such as Amazon S3.  
+For such a storage, downloading a file redirects to the temporary URL of the storage, and the browser downloads the file directly from the storage.  
+※The validity period is checked when the download starts, so a download in progress is not interrupted even if the validity period passes. However, resuming a download interrupted by a network error fails once the validity period has passed.
+
+
+
+### Public form (Google reCAPTCHA)
+
+#### Score threshold of Google reCAPTCHA v3
+- Setting key : EXMENT_RECAPTCHA_V3_SCORE_THRESHOLD
+- Default value : 0.5
+- Role : The score threshold when using Google reCAPTCHA v3 in the [public form](/publicform). reCAPTCHA v3 returns a score from 0.0 (very likely a bot) to 1.0 (very likely a human), and a submission whose score is below this value is rejected. Raise the value if spam still gets through, and lower it if real visitors are blocked.  
+※It is used only when "V3" is selected for Google reCAPTCHA on the system settings screen.  
+※If a value outside the range 0 to 1 is set, 0.5 is used instead.
+
+#### IP addresses that skip Google reCAPTCHA
+- Setting key : None (set with "recaptcha_skip_ips" in "config/exment.php")
+- Default value : [] (none)
+- Role : The list of IP addresses that are not checked by Google reCAPTCHA. Use it, for example, when testing the public form from your office.  
+<span class="red">※Submissions from the IP addresses written here are never checked by reCAPTCHA. It is recommended not to set it in the production environment.</span>  
+※This setting cannot be set in ".env". Open the "config/exment.php" file and write it as follows.  
+※If you set "skip-ips" in "config/no-captcha.php" in Exment v6.x or earlier, write it again in this setting in v7.0.0 or later.
+
+``` php
+    'recaptcha_skip_ips' => [
+        '192.168.0.1',
+    ],
+```
+
 
 
 ### Other
@@ -680,9 +726,9 @@ Due to the above background, <span class="red">please make this setting at your 
 
 > From v3.5.0, it has been changed to change from the system setting page.
 
-#### Prevents anyone other than the uploader from deleting attachments
+#### Hide "Hidden field" on the data detail screen
 - Setting key : EXMENT_HIDE_HIDDENFIELD
-- Default value : false
+- Default value : true
 - Role : By setting to true, the data which is "Hidden field" in the form setting is hidden on the data detail screen.
 
 
