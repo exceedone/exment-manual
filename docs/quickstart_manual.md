@@ -27,16 +27,16 @@ Exment requires the introduction of composer. Please refer here for the introduc
 - At the command line, execute the following command:  
 ※ The folder of the created project is called "root directory" in this manual.  
 ※ Exment is currently only available for Laravel version 12.X. Please do not install on any other version.  
-※ Be sure to install the admin library "exceedone/exment-admin-core" together with Exment (it is written in composer.json).  
+※ The admin library "exceedone/exment-admin-core" is installed automatically as a dependency of Exment. It does not need to be installed separately.  
 
 ~~~
 composer create-project "laravel/laravel=12.*" (Project name)
 cd (Project name)
 composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
-composer require exceedone/exment-admin-core=^1.0.1 exceedone/exment=^7.0 -W
+composer require exceedone/exment=^7.0 -W
 
 # If you want to specify the version of Exment, run the following instead. Example: v7.0.0
-composer require exceedone/exment-admin-core=^1.0.1 exceedone/exment=7.0.0 -W
+composer require exceedone/exment=7.0.0 -W
 ~~~
 
 ## Create database

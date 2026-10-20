@@ -281,7 +281,7 @@ In "Action settings" of the workflow settings, set the actions executed from LIN
 
 ※ No button is shown on the LINE card for an action whose "Comment" is "Required". A comment must be entered, so execute the action on the Exment screen.  
 ※ When the next status has an action whose executable user is "Selected by the user who executed the previous action", the next work users must be selected, so execute the action on the Exment screen.  
-No button is shown on the LINE card for an action whose "Condition to advance to next status" is 1.  
+In this case, no button is shown on the LINE card for an action whose "Condition to advance to next status" is 1.  
 The button is shown for an action that needs two or more users to execute it ("Condition to advance to next status" is 2 or more, or "All user execute"). Executions that do not advance the status (for example, the 1st and 2nd of 3 approvals) can be done from LINE. When the button is pressed for the execution that advances the status (for example, the 3rd approval), the action is not executed, and "This action requires selecting the next work users. Please process it on the web." is replied.
 
 ### Notification settings

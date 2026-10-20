@@ -105,7 +105,7 @@ You can check system requirements and server settings from the screen or command
 ### Confirmation method
 You can check the system requirements, etc. by the following methods.
 
-- Installation page for [easy installation](/quickstart_easy)
+- Installation page for [easy installation](/quickstart)
 - After installation, [system setting page](/system_setting)
 - command. Details below
 

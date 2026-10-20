@@ -70,10 +70,12 @@ HTTPリクエストのクエリ文字列、もしくはPOST値です。
     - system_line_channel_token
     - system_line_channel_secret
 
-※上記の項目は、後述の`config/exment.php`の設定内容にかかわらず、常にマスクされます。
+※上記の項目は、後述の`config/exment.php`の設定内容にかかわらず、常にマスクされます。  
+※「system_line_channel_token」「system_line_channel_secret」は、v7.0.0以降でマスクされます。
 
 
 ### 機密情報のマスキング
+※この設定は、Exment v7.0.0以降で利用できます。v6.xでは、上記の「その他」に記載した項目(LINEの2項目を除く)のみがマスクされます。
 
 操作ログには、ユーザーが入力したリクエスト値や、APIから送信されたリクエスト値、およびURLパスパラメータが記録される場合があります。
 

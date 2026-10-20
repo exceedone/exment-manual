@@ -19,16 +19,16 @@ Exmentを開始するために必要となる手順です。
 - コマンドラインで、以下のコマンドを実行します。  
 ※作成したプロジェクトのフォルダを、このマニュアルでは「ルートディレクトリ」と呼びます。  
 ※Exmentは現在、Laravelのバージョン12.Xのみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。  
-※管理画面ライブラリ「exceedone/exment-admin-core」は、Exmentと同時に必ずインストールしてください(composer.jsonに記載されます)。
+※管理画面ライブラリ「exceedone/exment-admin-core」は、Exmentの依存ライブラリとして自動的にインストールされます。個別にインストールする必要はありません。
 
 ~~~
 composer create-project "laravel/laravel=12.*" (プロジェクト名)
 cd (プロジェクト名)
 composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
-composer require exceedone/exment-admin-core=^1.0.1 exceedone/exment=^7.0 -W
+composer require exceedone/exment=^7.0 -W
 
 # Exmentのバージョンを指定したい場合、代わりに以下を実行。例：v7.0.0
-composer require exceedone/exment-admin-core=^1.0.1 exceedone/exment=7.0.0 -W
+composer require exceedone/exment=7.0.0 -W
 ~~~
 
 

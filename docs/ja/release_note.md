@@ -10,7 +10,7 @@
     - PHPの対応バージョンを、PHP8.2～8.3に変更
     - 管理画面ライブラリを、「exceedone/laravel-admin」から「exceedone/exment-admin-core」に変更
         - <span class="red bold">名前空間が「Encore\Admin」から「ExmentAdminCore\Admin」に変更となります。</span>プラグイン、「config/admin.php」、「app/Admin」、ならびに独自カスタマイズしたソースコードの修正が必要です。詳細は[こちら](/ja/update/v7_0_0)
-        - <span class="red bold">「exceedone/exment-admin-core」は、composer.jsonへの追加が必要です。</span>詳細は[こちら](/ja/update/v7_0_0)
+        - 「exceedone/exment-admin-core」は、Exmentの依存ライブラリとして自動的にインストールされるため、composer.jsonへの追加は不要です。詳細は[こちら](/ja/update/v7_0_0)
 1. 機能追加
     - LINE連携　詳細は[こちら](/ja/line)
     - 安否確認　詳細は[こちら](/ja/safety_check)

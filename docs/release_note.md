@@ -10,7 +10,7 @@
     - Changed the supported PHP versions to PHP8.2 - 8.3
     - Changed the admin panel library from "exceedone/laravel-admin" to "exceedone/exment-admin-core"
         - <span class="red bold">The namespace has been changed from "Encore\Admin" to "ExmentAdminCore\Admin".</span> Plugins, "config/admin.php", "app/Admin" and the source code you customized yourself need to be corrected. For details, please see [here](/update/v7_0_0)
-        - <span class="red bold">"exceedone/exment-admin-core" must be added to composer.json.</span> For details, please see [here](/update/v7_0_0)
+        - "exceedone/exment-admin-core" is installed automatically as a dependency of Exment, so it does not need to be added to composer.json. For details, please see [here](/update/v7_0_0)
 1. Added Features
     - LINE integration. Details [here](/line)
     - Safety check. Details [here](/safety_check)
@@ -972,7 +972,7 @@
     - When logging in to SSO, an error message when there is a problem with user information is displayed on the screen.
     - In SSO login, when logging in as a user who has already been added to Exment, the validation rule when the SSO setting "Update user information" is NO has been relaxed.
 1. Bug fix
-    - Fixed a bug that the file backed up with v3.6.7 did not complete normally when restored to v3.6.7 environment (caused by database view. When restoring to v3.6.7, Please execute [here](/patch/restore_ignore_view)).
+    - Fixed a bug that the file backed up with v3.6.7 did not complete normally when restored to v3.6.7 environment (caused by database view. When restoring to v3.6.7, Please execute [here](/patch/resotre_ignore_view)).
     - Fixed a bug that importing data of a table with multiple n: n relations did not complete normally.
     - Fixed a bug that an error occurs when a user is completely deleted.
     - Other minor corrections.
@@ -1394,7 +1394,7 @@
 - Other minor corrections
 
 ## v3.0.21 (2020/02/16)
-- In the data export, in the case of "Parent data ID", "User", "Organization", and "Choice (select from the value list of other tables)", the function to output the value other than id has been added. Click [here](/ata_import_export#Change-output-value-when-exporting) for details.
+- In the data export, in the case of "Parent data ID", "User", "Organization", and "Choice (select from the value list of other tables)", the function to output the value other than id has been added. Click [here](/data_import_export?id=data-export) for details.
 - Added setting to disable file type csv, xlsx in data import / export. Click [here](/config#import-export) for details.
 - Other minor corrections
 
@@ -1423,7 +1423,7 @@
 ## v3.0.17 (2020/01/24)
 - Fixed a relation bug when "User" and "Organization" were in the form at the same time.
 - Fixed a bug that parent-child form remains when the relation is deleted after registering the form.
-* If the form remains in the relation deleted in the past, delete it with [here](/patch / remove_deleted_relation).
+* If the form remains in the relation deleted in the past, delete it with [here](/patch/remove_deleted_relation).
 - Fixed a bug that an error occurs when linking settings are made in the user column and organization column.
 - Fixed a bug that images could not be acquired normally when SSO login was performed with a Google account. Click [here](/patch/sso_google) for details.
 

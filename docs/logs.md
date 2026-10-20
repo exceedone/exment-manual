@@ -70,11 +70,13 @@ The date and time when the operation was performed.
     - system_line_channel_token
     - system_line_channel_secret
 
-*The items above are always masked, regardless of the settings in `config/exment.php` described below.
+*The items above are always masked, regardless of the settings in `config/exment.php` described below.  
+*"system_line_channel_token" and "system_line_channel_secret" are masked from v7.0.0.
 
 - Currently, it does not support exporting operation logs. note that.
 
 ### Masking Confidential Information
+*This setting is available from Exment v7.0.0. In v6.x, only the items listed in "Other" above (except the two LINE items) are masked.
 
 Operation logs may contain request values and URL path parameters entered by users or sent by APIs.
 
