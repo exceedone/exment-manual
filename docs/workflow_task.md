@@ -174,7 +174,7 @@ You can also show them from the "N removed" link next to the counts.
 When one member of an organization executes an action whose "Executable user" is that organization and the status changes, the other members of the organization are notified by an [in-system alert](/notify).  
 The members can tell that somebody has already handled the task assigned to their organization, and nobody checks the same task twice.
 
-- Subject: A member of your organization processed a workflow
+- Subject: A workflow assigned to your organization has been processed
 - Body: (User who executed the action) changed the status of "(Table name): (Label of the data)" to "(Status after the action)".
 
 The notification is sent under the following conditions.

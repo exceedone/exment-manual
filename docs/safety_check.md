@@ -114,13 +114,14 @@ http(s)://(Exment URL)/admin/safety_check
 ### Sending manually or as a drill
 - Enter the title of the safety check in "Title" of "Send New" (example: Typhoon No. 15 safety check).
 - Select "Manual" or "Drill" in "Trigger Type".
-- Click [Send]. "Safety check sent." is shown, and an "Open" safety check is added to the list.
+- Click [Send]. "Started sending the safety check." is shown, and an "Open" safety check is added to the list.
+- The safety check is sent after the screen is shown. When the sending is finished, "Sent Count" and "Target Count" on the list are updated. Reload the screen to check them.
 
 ![Send New](img/safety_check/safety_check_send.png)
 
 ※ A drill is also sent to all users, and its LINE messages are also counted toward the message limit.  
-※ If "A send is already in progress. Please wait a moment and refresh the page." is shown, the previous safety check is still being sent. Wait a moment and refresh the page. Do not click [Send] repeatedly.  
-※ When there are many users, sending may take time. If you use a queue (set "QUEUE_CONNECTION" in the ".env" file and run a queue worker; see the [Laravel documentation](https://laravel.com/docs/12.x/queues)), the sending is executed in the queue. With a queue, messages that failed are sent again automatically (up to 3 attempts, including the first one). LINE messages are sent again only when LINE is busy (HTTP 429) or returns a server error (HTTP 5xx).
+※ A new safety check cannot be sent until the previous sending executed by the same user is finished (up to 10 minutes). If "A send is already in progress. Please wait a moment and refresh the page." is shown, the previous safety check is still being sent. Wait a moment and refresh the page. Do not click [Send] repeatedly.  
+※ When there are many users, sending may take time. The sending process itself runs without a queue worker. If you use [Delayed execution of notification processing](/additional_queue), LINE messages and emails are delivered in the queue, so a queue worker must be running. With a queue, messages that failed are sent again automatically (up to 3 attempts, including the first one). LINE messages are sent again only when LINE is busy (HTTP 429) or returns a server error (HTTP 5xx).
 
 ### Sending automatically when an earthquake occurs
 When "Auto-send on Earthquake" in "Safety Check Settings" is YES, Exment gets the earthquake information of the Japan Meteorological Agency from the P2P earthquake information API every minute.  
@@ -224,8 +225,8 @@ On the list of the safety check screen, you can execute [Resend] and [Close] for
 
 ### Resend
 Click [Resend], and click [Confirm] in the confirmation dialog.  
-LINE and email are sent again **only to the users who have not answered yet**. Nothing is sent to the users who have already answered.  
-Users added after the first sending also receive it, and "Target Count" is updated.
+"Started resending." is shown, and LINE and email are sent again **only to the users who have not answered yet**. Nothing is sent to the users who have already answered.  
+Users added after the first sending also receive it, and "Target Count" is updated. Resending is also executed after the screen is shown.
 
 ![Resend](img/safety_check/safety_check_resend.png)
 
@@ -246,6 +247,7 @@ The status becomes "Closed", and the safety check can no longer be answered from
 | --- | --- | --- |
 | "The safety check tables are missing or incomplete." is shown on the safety check screen | The update, or the creation of the safety check tables, has not been completed | Run "php artisan migrate". If the message still appears, run "php artisan exment:patchdata line_safety_check". |
 | No safety check is sent automatically when an earthquake occurs | - "Auto-send on Earthquake" is NO<br />- The task schedule is not running<br />- The maximum seismic intensity in the whole country is below "Minimum Seismic Intensity to Auto-send"<br />- The earthquake information is older than "Earthquake History Range (minutes)" | Check the settings and the [task schedule](/additional_task_schedule). Check the logs that contain "safety check" in "storage/logs/laravel.log". |
+| "Sent Count" and "Target Count" on the list are not updated a while after sending | - The sending has not finished yet<br />- An error occurred in the sending process | Wait a moment and reload the screen. If they are still not updated, check the logs that contain "safety check", such as "safety check send failed" and "safety check LINE dispatch failed", in "storage/logs/laravel.log". |
 | The email does not arrive | - The mail sending settings are not correct<br />- The user has no email address | Check that email can be sent with the test mail of the system settings. Check the logs that contain "safety check mail" in "storage/logs/laravel.log". |
 | Opening the email link shows "This link is invalid." | - "APP_KEY" was changed after the email was sent<br />- A part of the link is missing | Send new links with [Resend]. |
 | The email link cannot be opened | The answer link uses a URL that cannot be accessed from outside the company (localhost, an internal IP address, and so on) | Check [Answer link](/safety_check?id=answer-link), and send new links with [Resend]. |

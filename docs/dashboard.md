@@ -37,7 +37,7 @@ The dashboard will only be available to the user who created it.
 ※"System Dashboard" cannot be changed to "User Dashboard" later.  
 
 **"User Dashboard" created by the system administrator** can be changed to "System Dashboard" later.  
-※By setting [Disable User Dashboard](/config.md?id=Disable-User-Dashboard),general users cannot create dashboards.
+※By setting [Disable User Dashboard](/config.md?id=user-dashboard-disabled),general users cannot create dashboards.
 
 
 #### default
@@ -79,7 +79,7 @@ Set the items shown on the filter bar, one per row. Add rows with "New".
 > Only charts whose table has **a column with the same name as the filter item** are filtered.  
 > Other charts show "Not affected by filters".
 
-> For a smooth experience on large tables, enable "Search index" in [custom column settings](/column.md?id=search-index) for the columns used as filter items.
+> For a smooth experience on large tables, enable "Index Enabled" in [custom column settings](/column.md?id=search-index) for the columns used as filter items.
 
 > When a dashboard is exported / imported with a [template](/template.md), its filter bar settings (target boxes included) are carried over as they are.
 
@@ -111,6 +111,7 @@ Select the target to be displayed from the created tables in [Custom table setti
 
 #### Target view
 Select the target to be displayed from [View](/view.md) in the selected target table.  
+※Calendar views, kanban views, Gantt chart views and filter views cannot be selected. For a system dashboard, only system views can be selected.  
 
 ## system
 You can display system-related information on the dashboard.  
@@ -279,8 +280,8 @@ Select the target to be displayed from the created tables in [Custom table setti
 ※Tables you have permission to view are shown as options.
 
 #### Target view
-Select the target to be displayed from the views (normal views, all-data views, summary views, etc.) in the selected target table.  
-※Calendar views and condition views cannot be selected. For a system dashboard, only system views can be selected.  
+Select the target to be displayed from the views (List views, All data views, Summary views, etc.) in the selected target table.  
+※Calendar views, kanban views, Gantt chart views and filter views cannot be selected. For a system dashboard, only system views can be selected.  
 ※To use a multi-series chart, select a summary view.  
 
 #### X-axis item
@@ -527,7 +528,7 @@ The selected chart type is remembered for each user and is used the next time th
 
 Selecting the original chart type clears the chart type switch and restores the original type.
 
-**Note:** Single-series charts can only be switched to other single-series chart types, and multi-series charts only to other multi-series chart types.
+**Note:** Single-series charts can only be switched to other single-series chart types, and multi-series charts only to other multi-series chart types. For example, a bar chart can be switched to a doughnut chart or a scatter chart, but not to a stacked bar chart (multi-series).
 
 ## Options menu
 

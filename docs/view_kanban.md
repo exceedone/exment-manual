@@ -321,7 +321,7 @@ On a workflow board, the confirmation screen of the workflow action opens instea
 - Checkboxes that narrow the board. Each one appears only when it can work:
   - "Overdue only" - "Column for the deadline (SLA timer)" is set
   - "Unassigned only" - "Column for the assignee" is set
-  - "Assigned to me only" - the column behind the "Mine" button holds users, so the board can tell who you are
+  - "Assigned to me only" - the column set in "Column the "Mine" button reads" (the column used by the [My cards] button) holds users, so the board can tell who you are
   - "Blocked only" - "Values treated as blocked" is set
   - "Expedite only" - "Values treated as expedite" is set
 - [Reset] clears the panel

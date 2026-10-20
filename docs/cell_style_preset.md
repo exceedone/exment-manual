@@ -17,7 +17,7 @@ A preset is that work done once. The column, or the view column, stores only *wh
 
 | Screen | What it does | Permission |
 | --- | --- | --- |
-| Cell style presets (the library) | List, create, edit and delete presets | System permission |
+| Cell style presets (the library) | List, create, edit and delete presets | System administrator |
 | Custom column setting &gt; Cell appearance | Pick the default look of that column | Table setting permission |
 | Custom view setting &gt; Select view columns | Pick the look for that view only | Table setting permission |
 | Kanban view setting &gt; Card columns &gt; Style | Pick the look the card draws | Table setting permission |
@@ -35,7 +35,7 @@ To reach it at any time, add it to the [menu](/menu.md).
 
 1. Open "Administrator setting" &gt; "Menu".
 2. Click [New] at the top right.
-3. Choose "System" as the menu type and "Cell style presets" as the menu name.
+3. Choose "System Menu" as the menu type and "Cell style presets" as the menu name.
 4. Choose the parent menu to show it under, and save.
 
 ![Preset list](img/cell_style_preset/preset_grid.png)
@@ -70,8 +70,10 @@ A fresh installation already carries 15 presets.
 
 Who can edit or delete a preset:
 
-- A system administrator can edit and delete every preset, including the ones shipped with Exment.
-- Anyone else can edit and delete only the presets they created themselves. Any other preset is read-only for them: [Delete] is not shown, [Update this preset] cannot be pressed, and the editor says "This preset cannot be edited. To use it with changes, save it as a new preset." Use [Save as new preset] to make a changed copy.
+- Only a system administrator can open the library screen (a user given the system permission through a role group cannot). On the library screen, every preset can be edited and deleted regardless of who created it, including the ones shipped with Exment.
+- On the editor described in "Creating or editing a preset without leaving the form", a system administrator can edit and delete every preset. Anyone else can edit and delete only the presets they created themselves. Any other preset is read-only for them: [Delete] is not shown, [Update this preset] cannot be pressed, and the editor says "This preset cannot be edited. To use it with changes, save it as a new preset." Use [Save as new preset] to make a changed copy.
+
+If "Use Role Management" in the system settings is NO, every user can use the library screen.
 
 ### Creating and editing a preset
 
