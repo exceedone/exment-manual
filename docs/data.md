@@ -21,6 +21,12 @@ Please refer to “Authority Assignment” from the left menu for the authority 
 The new data creation screen is displayed.  
 ![Data screen](img/data/data_new2.png)
   
+Click the [Preview] button at the top right of the new data creation screen to check, in a separate window, how the data being entered will look, without saving it.  
+It is shown as a list of item names and values, block by block of the form.  
+※ The [Preview] button is shown only on the new data creation screen. It is not shown on the edit screen.  
+※ The preview does not save the data. To refresh it after changing the input, click the [Preview] button again on the original screen.  
+※ Child table blocks are not shown in the preview.
+
 Please refer to the following page for details of the new addition screen.  
 [Data form](/data_form.md)
 

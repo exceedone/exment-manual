@@ -24,6 +24,10 @@ Registered data is shown as cards, in one column per state.
 Dragging a card to another column changes the value of that item.  
 See [Kanban view](/view_kanban.md) for details.
 
+### Gantt chart view
+Registered data is shown on a timeline, each record as a bar from its start date to its end (due) date.  
+See [Gantt chart view](/view_gantt.md) for details.
+
 ### All view
 It is basically the same as the normal view, but has the following features.  
 - Created automatically by the system.
@@ -379,6 +383,14 @@ As in the image example, the heading can be displayed in the target date of the 
 
 ## Save
 After filling in the settings, click “Submit”.
+
+## Preview
+On the screen for creating or editing a view, click the [Preview] button at the top right of the page to show the data (the data list, the kanban board or the gantt chart) with the settings as they are being entered, in a separate window.  
+You can check the result before saving the settings.
+
+※ The [Preview] button is shown for the normal view, the all data view, the kanban view and the gantt chart view. It is not shown for the summary view, the calendar view, the condition view and so on.  
+※ The preview does not save the settings. To refresh it after changing the settings, click the [Preview] button again on the original screen.  
+※ Rows of "Display column selection", "Data display conditions" and "Data Sorting" whose target column or condition is not chosen yet are left out of the preview. In that case, the preview shows "N row(s) are left out of this preview: their column or condition is not chosen yet."
 
 ## Edit
 If you want to edit the view, click the "Edit" button in the corresponding row.
