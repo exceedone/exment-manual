@@ -11,9 +11,17 @@ If you are using v6.x or lower, please read them as "Encore\Admin". For details,
 - [page](/plugin_quickstart_page.md)
 - [document](/plugin_quickstart_document.md)
 - [dashboard](/plugin_quickstart_dashboard.md)
+- [CRUD page](/plugin_quickstart_crud)
 - [batch](/plugin_quickstart_batch.md)
 - [script](/plugin_quickstart_script.md)
 - [style](/plugin_quickstart_style.md)
+
+## Plugin name namespace
+Name the namespace of the plugin according to the following rule.
+- The namespace should be **App\Plugins\\(Pascal case of plugin name)**.
+    - Example: plugin name "testplugin" → App\Plugins\\Testplugin
+    - Example: plugin name "customer_list" → App\Plugins\\CustomerList
+    - Example: plugin name "get-user" → App\Plugins\\GetUser
 
 
 ## Other special settings
