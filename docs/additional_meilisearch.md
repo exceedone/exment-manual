@@ -25,14 +25,14 @@ When using Meilisearch, the following conditions must be satisfied.
 |Meilisearch server|v1.10 or later|
 |PHP library|It is necessary to install "meilisearch/meilisearch-php" (v1.10 or later). **This library is not a required library of Exment.** If it is not installed, the commands related to Meilisearch will result in an error, and the realtime sync will also be disabled.<br />Also, this library requires an HTTP client compatible with "guzzlehttp/guzzle".|
 |Queue|It is necessary to set "database" (or redis) to "QUEUE_CONNECTION" and to have executed the migration.<br />Since the realtime sync is executed by the queue, if it remains the default value "sync", the process on the screen will be blocked. For details, please check [Delayed execution of notification processing](/additional_queue).|
-|Custom table|Only tables whose "Search target" is YES in the custom table settings, and which have a custom column whose "Free word search target" is YES, become the target of index creation.|
+|Custom table|Only tables whose "Search Enabled" is YES in the custom table settings, and which have a custom column whose "Freeword Search Target" is YES, become the target of index creation.|
 
 
 ## Notes
 - Meilisearch and the queue worker must keep running at all times. If Meilisearch stops, searches fail; if the queue worker stops, updates are no longer reflected in the index. Steps 1 and 3 register both as services that restart automatically.
 - The index is held separately from the database, so the two can drift apart. Step 4 sets up the daily automatic repair.
-- <span class="red">※When "EXMENT_SEARCH_DOCUMENT" is true, Meilisearch is not used on the search screen</span>, even if "MEILISEARCH_GLOBAL_SEARCH" is true, because attachment contents are not indexed. The input completion of "Select (select from the list of values of another table)" is not affected.
-- <span class="red">※Do not publish Meilisearch to the Internet.</span> Allow connections only from the Exment server or the internal network, and keep the master key secret.
+- <span class="red">*When "EXMENT_SEARCH_DOCUMENT" is true, Meilisearch is not used on the search screen</span>, even if "MEILISEARCH_GLOBAL_SEARCH" is true, because attachment file names are not indexed. The input completion of "Select (select from the list of values of another table)" is not affected.
+- <span class="red">*Do not publish Meilisearch to the Internet.</span> Allow connections only from the Exment server or the internal network, and keep the master key secret.
 - For details on Meilisearch itself, see the [official documentation](https://www.meilisearch.com/docs).
 
 
@@ -258,7 +258,12 @@ php artisan queue:failed-table
 php artisan migrate
 ```
 
-> If you have already performed the setting of the queue and created the tables for the queue, it is not necessary to execute "php artisan queue:table" and "php artisan queue:failed-table".
+> The "jobs" and "failed_jobs" tables may already be created by the migrations included when the Laravel project was created. Check the "database/migrations" folder and proceed as follows.
+> - If there is a file containing "create_jobs_table" (projects created with Laravel 11 or later): both tables are created by the standard migrations, so do not execute "queue:table" and "queue:failed-table", and execute only "php artisan migrate".
+> - If there is only a file containing "create_failed_jobs_table": execute "queue:table" and "php artisan migrate".
+> - If there is neither: execute all three commands above.
+>
+> If "Migration already exists." is displayed, that migration already exists, so ignore the error and proceed to the next command.
 
 - Execute the following command to delete the cache of the setting contents.  
 *If you are using the cache of settings, please execute "php artisan config:cache" again.
@@ -445,7 +450,7 @@ php artisan exment:meili-search "keyword" --limit=5 --highlight --facets
 When "MEILISEARCH_GLOBAL_SEARCH" is true, the following functions can be used on the search result page.
 
 - Narrowing down : In the sidebar, narrow down the search results by table, column values, date and number ranges, and so on. The target columns can be changed on the "Search Filter Setting" screen.
-- Sorting : Sort by "Relevance", "Newest" or "Oldest".
+- Sorting : Sort by "Relevance", "Newest first" or "Oldest first".
 - Saving search conditions : From "Save current conditions", save the narrowing-down conditions (and optionally the search keyword), and call them from "Saved searches" from the next time on.  
     - Select the sharing scope from "Only me", "Role group", "Organization" or "All users". Sharing with "All users" can be performed only by the system administrator.
     - The number of conditions that one user can save is up to "MEILISEARCH_SAVED_SEARCH_LIMIT" (default value 50).
@@ -462,10 +467,10 @@ These are the steps for repairing the index, such as when a difference occurs be
 The "exment:meili-reconcile" command performs the following two processes.
 
 1. For the tables that are the target of the index, it adds the missing documents and deletes the unnecessary documents (data already deleted from the database).
-1. It deletes from the index all the documents of the tables that are no longer the target of the index (those whose "Search target" was changed to NO, those that no longer have a free word search column, those whose table itself was deleted, and so on).  
+1. It deletes from the index all the documents of the tables that are no longer the target of the index (those whose "Search Enabled" was changed to NO, those that no longer have a free word search column, those whose table itself was deleted, and so on).  
 *When executed with "--table" specified, this process is not performed.
 
-<span class="red">※With this command, documents are deleted from the index.</span>  
+<span class="red">*With this command, documents are deleted from the index.</span>  
 When you want to check the contents to be deleted in advance, please execute it with "--dry-run" specified.
 
 - Execute the following command to check the difference between the database and the index. When "--dry-run" is specified, only the check is performed and the repair is not performed.
@@ -541,13 +546,13 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |Symptom|Possible cause|
 |---|---|
 |The contents are not reflected even though you changed the ".env"|The value saved in "Admin Settings > System Settings (Advanced settings)" takes priority. Please check the settings on the screen.|
-|The queue worker does not start|The tables for the queue have not been created. Please execute "php artisan queue:table", "php artisan queue:failed-table" and "php artisan migrate".|
+|The queue worker does not start|The tables for the queue (jobs and failed_jobs) have not been created. Please refer to "Execute the commands" in "2. Exment settings" and create the tables.|
 |The search results do not change even after updating data|"MEILISEARCH_REALTIME_SYNC" is false, or the queue worker has stopped. Please check the status of the service, and the failed jobs with "php artisan exment:meili-health --failed".|
 |The search results do not change even after changing the column settings|The process of recreating the index has not been completed. Please check whether "gave up after 3 attempts" is output to the log, and execute "php artisan exment:meili-index".|
 |"reindex ... skipped: the queue connection is 'sync'" is output to the log|Since "QUEUE_CONNECTION" is sync, the process was given up. Please execute "php artisan exment:meili-index", or change the queue to database or redis and execute the queue worker.|
 |"Too many results to export (limit N)" is displayed at export|It exceeds "MEILISEARCH_PERMISSION_SCAN_CAP" (default value 1000). Since it is treated as an error instead of reducing the number of records, please narrow down the search conditions, or increase the setting value and then execute "php artisan exment:meili-settings".|
 |Some results are not displayed in a Japanese search (such as when kanji and katakana are consecutive)|The tokenization setting is not applied. Please check the setting contents with "php artisan exment:meili-settings --show", and check whether "MEILISEARCH_LOCALES" is empty and whether Meilisearch is v1.10 or later.|
-|There is a difference in the data after an import or a bulk deletion, or a table whose "Search target" was changed to NO is still displayed in the search results|Documents are missing from, or remain in, the index. Please execute "php artisan exment:meili-reconcile" without specifying "--table".|
+|There is a difference in the data after an import or a bulk deletion, or a table whose "Search Enabled" was changed to NO is still displayed in the search results|Documents are missing from, or remain in, the index. Please execute "php artisan exment:meili-reconcile" without specifying "--table".|
 |The automatic repair is not executed|The setting of the scheduler has not been performed, or "MEILISEARCH_REPAIR_ENABLED" is false.|
 |The Meilisearch service repeats starting and stopping (Linux)|"WorkingDirectory=/var/lib/meilisearch" is not described in the service configuration file.|
 

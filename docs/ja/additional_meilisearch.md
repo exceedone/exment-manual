@@ -25,13 +25,13 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 |Meilisearchサーバー|v1.10以降|
 |PHPライブラリ|「meilisearch/meilisearch-php」(v1.10以降)のインストールが必要です。**このライブラリは、Exmentの必須ライブラリではありません。** インストールされていない場合、Meilisearch関連のコマンドはエラーとなり、リアルタイム同期も無効になります。<br />また、このライブラリは「guzzlehttp/guzzle」と互換性のあるHTTPクライアントを必要とします。|
 |キュー|「QUEUE_CONNECTION」にdatabase(もしくはredis)を設定し、マイグレーションを実行済である必要があります。<br />リアルタイム同期はキューで実行されるため、初期値のsyncのままだと、画面の処理がブロックされます。詳細は[通知処理の遅延実行](/ja/additional_queue)をご確認ください。|
-|カスタムテーブル|カスタムテーブル設定で「検索対象とする」がYESになっており、かつ「フリーワード検索対象」がYESのカスタム列を持つテーブルのみ、インデックスの作成対象となります。|
+|カスタムテーブル|カスタムテーブル設定で「検索可能」がYESになっており、かつ「フリーワード検索対象」がYESのカスタム列を持つテーブルのみ、インデックスの作成対象となります。|
 
 
 ## 注意点
 - Meilisearchとキューワーカは、常時実行しておく必要があります。Meilisearchが停止した場合は検索が実行されず、キューワーカが停止した場合は更新内容がインデックスへ反映されません。手順1と手順3で、どちらも自動的に再起動するサービスとして登録します。
 - Meilisearchのインデックスは、Exmentのデータベースとは別に保持されるため、両者の間で差異が発生する場合があります。手順4で、1日1回の自動修復を設定します。
-- <span class="red">※「EXMENT_SEARCH_DOCUMENT」をtrueにしている場合、検索画面ではMeilisearchが使用されません。</span>添付ファイルの内容はインデックスに含まれないため、「MEILISEARCH_GLOBAL_SEARCH」がtrueであっても、検索画面の処理はデータベースを使用した検索になります。カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完は影響を受けません。
+- <span class="red">※「EXMENT_SEARCH_DOCUMENT」をtrueにしている場合、検索画面ではMeilisearchが使用されません。</span>添付ファイルのファイル名はインデックスに含まれないため、「MEILISEARCH_GLOBAL_SEARCH」がtrueであっても、検索画面の処理はデータベースを使用した検索になります。カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完は影響を受けません。
 - <span class="red">※Meilisearchは、インターネットに公開しないでください。</span>Exmentと同一のサーバー、もしくは内部ネットワークからのみ接続できるように設定し、マスターキーは第三者に共有しないよう厳重に管理してください。
 - Meilisearch自体の詳細は、[Meilisearch公式ドキュメント](https://www.meilisearch.com/docs)をご参照ください。
 
@@ -258,7 +258,12 @@ php artisan queue:failed-table
 php artisan migrate
 ```
 
-> すでにキューの設定を実施済で、キュー用のテーブルを作成している場合、「php artisan queue:table」「php artisan queue:failed-table」の実行は不要です。
+> 「jobs」「failed_jobs」テーブルは、Laravelのプロジェクト作成時に含まれるマイグレーションで作成される場合があります。「database/migrations」フォルダを確認し、次のとおり実行してください。
+> - 「create_jobs_table」を含むファイルがある場合(Laravel 11以降で作成したプロジェクト): 両テーブルは標準のマイグレーションで作成されるため、「queue:table」「queue:failed-table」は実行せず、「php artisan migrate」のみ実行します。
+> - 「create_failed_jobs_table」を含むファイルのみがある場合: 「queue:table」と「php artisan migrate」を実行します。
+> - どちらもない場合: 上記3つのコマンドをすべて実行します。
+>
+> 「Migration already exists.」と表示された場合は、そのマイグレーションがすでに存在するため、エラーを無視して次のコマンドへ進んでください。
 
 - 以下のコマンドを実行し、設定内容のキャッシュを削除します。  
 ※設定のキャッシュを使用している場合、「php artisan config:cache」を再度実行してください。
@@ -462,7 +467,7 @@ php artisan exment:meili-search "キーワード" --limit=5 --highlight --facets
 「exment:meili-reconcile」コマンドでは、以下の2つの処理を行います。
 
 1. インデックスの対象となっているテーブルについて、不足しているドキュメントを追加し、不要なドキュメント(データベースから削除済のデータ)を削除します。
-1. インデックスの対象ではなくなったテーブル(「検索対象とする」をNOに変更した、フリーワード検索対象の列がなくなった、テーブル自体を削除した、など)のドキュメントを、インデックスからすべて削除します。  
+1. インデックスの対象ではなくなったテーブル(「検索可能」をNOに変更した、フリーワード検索対象の列がなくなった、テーブル自体を削除した、など)のドキュメントを、インデックスからすべて削除します。  
 ※「--table」を指定して実行した場合、この処理は行われません。
 
 <span class="red">※このコマンドでは、インデックスからドキュメントの削除が行われます。</span>  
@@ -541,13 +546,13 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |症状|考えられる原因|
 |---|---|
 |「.env」を修正しても反映されない|「管理者設定 > システム設定(詳細設定)」で保存した値が優先されています。画面上の設定をご確認ください。|
-|キューワーカが起動しない|キュー用のテーブルが作成されていません。「php artisan queue:table」「php artisan queue:failed-table」「php artisan migrate」を実行してください。|
+|キューワーカが起動しない|キュー用のテーブル(jobs・failed_jobs)が作成されていません。「2. Exmentの設定」の「コマンドの実行」を参照し、テーブルを作成してください。|
 |データを更新しても検索結果が変わらない|「MEILISEARCH_REALTIME_SYNC」がfalseになっているか、キューワーカが停止しています。サービスの状態と、「php artisan exment:meili-health --failed」で失敗したジョブをご確認ください。|
 |列の設定を変更しても検索結果が変わらない|インデックスを作成しなおす処理が、完了していません。ログに「gave up after 3 attempts」が出力されていないかを確認し、「php artisan exment:meili-index」を実行してください。|
 |ログに「reindex ... skipped: the queue connection is 'sync'」と出力される|「QUEUE_CONNECTION」がsyncのため、処理が中止されています。「php artisan exment:meili-index」を実行するか、キューをdatabase・redisに変更し、キューワーカを実行してください。|
 |エクスポート時に「出力対象が多すぎます（上限 N 件）」と表示される|「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超えています。件数を減らさずにエラーとしているため、検索条件を絞り込むか、設定値を大きくしたうえで「php artisan exment:meili-settings」を実行してください。|
 |日本語の検索で、検索結果が表示されない場合がある(漢字とカタカナが連続している場合など)|分かち書きの設定が適用されていません。「php artisan exment:meili-settings --show」で設定内容を確認し、「MEILISEARCH_LOCALES」が空になっていないか、Meilisearchがv1.10以降であるかをご確認ください。|
-|インポート・一括削除の後にデータに差異がある、もしくは「検索対象とする」をNOに変更したテーブルが検索結果に表示される|インデックスのドキュメントが不足している、もしくは残っています。「--table」を指定せずに「php artisan exment:meili-reconcile」を実行してください。|
+|インポート・一括削除の後にデータに差異がある、もしくは「検索可能」をNOに変更したテーブルが検索結果に表示される|インデックスのドキュメントが不足している、もしくは残っています。「--table」を指定せずに「php artisan exment:meili-reconcile」を実行してください。|
 |自動修復が実行されない|スケジューラの設定が行われていないか、「MEILISEARCH_REPAIR_ENABLED」がfalseになっています。|
 |Meilisearchのサービスが起動と停止を繰り返す(Linux)|サービスの設定ファイルに「WorkingDirectory=/var/lib/meilisearch」の記載がありません。|
 

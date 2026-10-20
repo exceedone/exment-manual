@@ -35,6 +35,13 @@ php artisan queue:failed-table
 php artisan exment:update
 ```
 
+> The "jobs" and "failed_jobs" tables may already be created by the migrations included when the Laravel project was created. Check the "database/migrations" folder and proceed as follows.
+> - If there is a file containing "create_jobs_table" (projects created with Laravel 11 or later): both tables are created by the standard migrations, so do not execute "queue:table" and "queue:failed-table", and execute only "php artisan exment:update".
+> - If there is only a file containing "create_failed_jobs_table": execute "queue:table" and "php artisan exment:update".
+> - If there is neither: execute all three commands above.
+>
+> If "Migration already exists." is displayed, that migration already exists, so ignore the error and proceed to the next command.
+
 - Execute the following command.  
 Please note that when you execute this command, it keeps running until you stop it or close the terminal.
 
