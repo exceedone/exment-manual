@@ -7,7 +7,7 @@ Exment plugin pages are developed using the PHP framework [Laravel](http://larav
 When developing a page, it is recommended that people with knowledge of Laravel develop it.
 
 ※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/v7_0_0).
+If you are using v6.x or lower, please read them as "Encore\Admin".
 
 ## How to make
 
@@ -266,5 +266,8 @@ You can specify uri like "{id}".
 ~~~
 
 ### Sample plugin
+※The sample plugins below support Exment v7.0.0 or later, and use the namespace "ExmentAdminCore\Admin".  
+If you are using v6.x or lower, please replace "ExmentAdminCore\Admin" with "Encore\Admin" in "Plugin.php" before using them.
+
 [YouTube search](https://github.com/exment-git/plugin-sample/tree/main/page/YouTubeSearch)  
 ※ Please import [this](https://exment.net/downloads/sample/template/YouTube.zip) template beforehand.

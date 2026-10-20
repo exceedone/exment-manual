@@ -4,7 +4,7 @@ This section describes how to create an Exment plug-in.
 For more information on plug-in functions and management methods, see [Plugins](/plugin.md).
 
 ※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/v7_0_0).
+If you are using v6.x or lower, please read them as "Encore\Admin".
 
 ## Creation method link
 - [trigger](/plugin_quickstart_trigger.md)

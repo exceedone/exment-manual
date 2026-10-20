@@ -70,6 +70,61 @@ The date and time when the operation was performed.
 
 - Currently, it does not support exporting operation logs. note that.
 
+### Masking Confidential Information
+
+Operation logs may contain request values and URL path parameters entered by users or sent by APIs.
+
+To prevent credentials and other confidential information from being stored in plain text, Exment masks configured request fields and URL path values when writing operation logs.
+
+The masking behavior can be customized in the `operation_log` section of the following file.
+
+`config/exment.php`
+
+The following example shows how to configure the masking settings.
+
+```php
+'operation_log' => [
+    'mask_columns' => [
+        'client_secret',
+    ],
+
+    'mask_columns_by_uri' => [
+        'oauth/*' => ['client_id'],
+    ],
+
+    'mask_path_prefixes' => [
+        'auth/reset' => false,
+    ],
+],
+```
+
+#### mask_columns
+
+- Specify request field names that should always be masked, regardless of the request URI.
+- Use this setting for values that should always be treated as confidential, such as API keys or client secrets.
+- If a field name listed here is also used as a normal business column in a user-defined table, that value is also masked.
+
+#### mask_columns_by_uri
+
+- Specify request field names that should be masked only on specific screens or APIs.
+- The array key is a URI pattern relative to the `admin` prefix. The wildcard `*` can be used.
+- Use this setting for common field names such as `id`, `secret`, `client_id`, `api_key`, and `token`, as these names may also be used as normal business data on other screens.
+- Matching field names are masked recursively, including values in nested request structures.
+
+#### mask_path_prefixes
+
+- Specify URI prefixes, relative to the `admin` prefix, when the following path segment contains confidential information.
+- The array value determines how the path segment is masked.
+    - `true`: Keep only the first 8 characters (when the value is long enough) and replace the remainder with `***`. Use this for record IDs when traceability is required.
+    - `false`: Replace the entire value with `***`. Use this for confidential values such as password reset tokens.
+- For example, if `auth/reset` is configured as `false`, the password reset token included in the URL is replaced entirely with `***`.
+
+#### Notes
+
+- Masking is applied when new operation logs are written.
+- If the operation log patch process is executed during an upgrade, existing operation log records are also masked according to the configured rules.
+- When upgrading Exment, review the `operation_log` settings and add any newly introduced mask targets if necessary.
+- Use `mask_columns` only for values that are always confidential. For values that are confidential only on specific screens, use `mask_columns_by_uri` or `mask_path_prefixes` to avoid masking normal business data.
 
 ### Operation Log Automatic Deletion
 At the bottom of the Operation Log screen, you can configure settings for automatic deletion of operation logs.

@@ -39,7 +39,7 @@ Run only if you use Google reCAPTCHA on your public form.
 Execute the following command in the root folder of the project.  
 
 ```
-composer require arcanedev/no-captcha=^10.1
+composer require google/recaptcha=^1.3.1
 ```
 
 ### 2. System setting page

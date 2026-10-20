@@ -296,6 +296,9 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 
 
 ## サンプルプラグイン
+※以下のサンプルプラグインは、Exment v7.0.0以降に対応しており、名前空間「ExmentAdminCore\Admin」を使用しています。  
+v6.x以前をご利用の場合は、「Plugin.php」内の「ExmentAdminCore\Admin」を「Encore\Admin」に置き換えてご利用ください。
+
 以下のサンプルを用意しています。
 
 | 名前 | 概要 | 認証 | サンプルリンク |
