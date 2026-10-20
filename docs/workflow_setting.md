@@ -1,6 +1,8 @@
 # Workflow settings
 Set the workflow to be used in Exment.
 
+Statuses and actions can also be created and edited directly on the flow chart. See [Flow designer](/workflow_design.md) for details.
+
 ## What is a workflow?
 Workflow refers to "the flow of a series of business interactions".  
 In many operations performed in an organization, there is a flow of “who starts how, makes decisions, processes, and completes”.  
@@ -82,7 +84,7 @@ The settings vary depending on the workflow type.
   
 ※ If the workflow type is "General":  
 Set the status after executing this action. Choose a different action than "Pre-execution status".
-![Workflow screen](img/workflow/workflow_action1.png)
+![Workflow screen](img/workflow/workflow_action1.png ':size=700')
   
 ※ If the workflow type is "Table only":  
 Set the conditions for executing the action and the status after execution.  
@@ -109,7 +111,7 @@ An action to return to the previous status, such as "Reject" or "Remand", or an 
 ※ A special action is not shown as a task on the [Pending tasks](/workflow_task) list either.
 
 ### Setup completed
-When both status setting and action setting are performed, a "Setting completed" button is displayed at the top right of the page.
+When both status setting and action setting are performed, a "Setting Complete" button is displayed at the top right of the page.
 
 ![Workflow screen](img/workflow/workflow_beginning1.png)  
 
@@ -119,7 +121,11 @@ Click to complete the workflow settings.
 - Delete workflow
 - Add, delete, and reorder statuses
 
-### Step3.Use settings
+### Step3.Notify setting
+Step 3 and step 4 are displayed only after [Setting Complete] has been done.  
+Set the notifications sent when the workflow is executed. See [Notification / Email sending settings](/notify.md) for the setting items.
+
+### Step4.Usage settings
 Set which workflow to execute in which table.
 ![Workflow screen](img/workflow/workflow_beginning2.png)  
 

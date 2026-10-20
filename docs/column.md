@@ -87,6 +87,9 @@ It is for display only when editing data.
 - Add to default form view: If YES, add columns to the default form view as new ones are created.  
 It can be set only when creating a new column. When updating, please change from [form screen](/form.md) and [view screen](/view.md).
 
+- Cell appearance: How the value of this column is painted in the data list (colour, tag, badge...).  
+It is picked from the preset library - see [Cell style presets](/cell_style_preset.md) for details.
+
 ## Detailed explanation of entry items (by column type)
 - Maximum number of characters (single line text, multiple line text): The maximum number of characters that can be entered in form items.  If it exceeds, an error will occur.  
 

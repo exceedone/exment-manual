@@ -6,8 +6,10 @@
 ## Functions list
 ![Data screen](img/data/data_grid1.png)  
 
-- Reload:  
-Reload the list.
+The data list also lets you switch the columns on screen, pin columns, group rows and edit cells in place. See [Data list tools](/data_grid_tools.md) for details.
+
+- Auto refresh:  
+The last of the five tool icons at the top right. Reloads the list at the interval you choose (off, 30 seconds, 1 minute, 5 minutes). See [Data list tools](/data_grid_tools.md).
 
 - Filter:  
 Filters the contents of the currently displayed data list. See below for details.
@@ -35,7 +37,9 @@ Filters the contents of the currently displayed data list.
 ![Data screen](img/data/data_grid_filter1.png)  
 Filtered items are displayed by clicking the "Filter" button.  
 
-- Items that can be narrowed down are "ID" or columns where "Search index" is ON in custom column settings.  
+- The items that can be narrowed down are decided as follows.  
+  - When the view has its own filter items ("Specifying 'Filter' Items in the View" in [Custom views](/view.md)), exactly those items.  
+  - Otherwise: the system items (ID, created and updated date and so on) except the ones checked in "Hide filter in data list" of [System settings](/system_setting.md); the parent table of a child table; the workflow status when the table has a workflow; the comment when comments are on; and the columns where "Search index" is ON in custom column settings.  
 [Click here for custom column setting manual](/column.md)
 
 - For each item, enter a keyword and click "Search" to narrow down and display the corresponding line.    
@@ -46,14 +50,14 @@ Filtered items are displayed by clicking the "Filter" button.
 
 - In addition to the refinement condition of the displayed view, refinement is performed by the filter function.  
 
-- At present, input of filter condition only supports prefix matching by input.  
+- For text-type columns, whether the keyword matches the start of the value (prefix match) or any part of it (partial match) follows "Data search method" in [System settings](/system_setting.md?id=Data-search-method). The initial value is prefix match.  
 
 
 ### The view
 A button for the view of the currently displayed custom table.  
 For the button name, the name of the currently displayed view is displayed.  
 Click the button to display the view menu.  
-![Data screen](img/data/data_grid_view1.png)  
+![Data screen](img/data/data_grid_view1.png ':size=284')  
 
 - System view:  
 A list of views registered in the system is displayed.  
