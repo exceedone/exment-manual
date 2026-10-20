@@ -101,8 +101,8 @@ Up to three combinations of conditions and status can be set.
 In that case, change this setting value.  
 
 - **Optional settings> Comments** : You can enter a comment when each user performs an action.  
-You can select from "required", "optional" and "not used".  
-※ An action whose comment is "required" has no button on the [LINE](/line?id=executing-workflow-actions-from-line) notification card, and cannot be executed from LINE.
+You can select from "Required", "Nullable" and "Not Use".  
+※ An action whose comment is "Required" has no button on the [LINE](/line?id=executing-workflow-actions-from-line) notification card, and cannot be executed from LINE.
 
 - **Option settings> Special actions** : By checking, the "Executable user" set for the action is not included in the current work user. (The current working user is a user who can execute any workflow action in the current status.)  
 An action to return to the previous status, such as "Reject" or "Remand", or an action in which the administrator approves by special exception Please check it.  
