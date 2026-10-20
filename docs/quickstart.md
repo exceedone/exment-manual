@@ -55,30 +55,6 @@ Be sure to check the [Server Settings](/server) of each procedure for the instal
 - Create a database for Exment in your database environment.
 
 
-## .env change
-
-- Open ".env" and add or change the following contents.  
- **※Note that the value of DB_CONNECTION differs depending on whether your database is MySQL or MariaDB.**  
-
-~~~
-# Change database settings  
-# For MySQL, the following settings (default)  
-DB_CONNECTION = mysql  
-# In case of MariaDB, modify to the following settings  
-DB_CONNECTION = mariadb  
-
-DB_HOST=127.0.0.1 # Your database host, example: 127.0.0.1
-DB_PORT=3306 # Your database port, example: 3306
-DB_DATABASE=your_database_name
-DB_USERNAME=your_database_username
-DB_PASSWORD=your_database_password
-
-# Security: bcrypt rounds for password hashing.
-# Must be set to 12 or higher as recommended by OWASP.
-# https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
-BCRYPT_ROUNDS=12
-~~~
-
 ### Installation of initial data
 - Access the Exment page and configure the settings.  
 Example: http (s): // (your site URL) / admin  
@@ -102,6 +78,9 @@ Database password for Exment
   
 - Click Run Installation.
 ![Installation screen_Settings](img/quickstart/setting_windows3.png)
+
+> **Optional: password hashing cost**  
+> Passwords are hashed with bcrypt, and the cost (rounds) is 12 by default. To change it, add `BCRYPT_ROUNDS` to ".env". See [manual installation](/quickstart_manual) for an example.
 
 ### Setting completed
 After the quick start is complete, continue with [Initial Settings](/first_setting.md).
