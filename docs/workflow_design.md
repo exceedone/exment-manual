@@ -46,7 +46,8 @@ Click [Create with designer] at the top right of the workflow list.
 | --- | --- |
 | Back to list | Returns to the workflow list |
 | 1. Status name / 2. Action name | Go to the table screens (step 1 / step 2) |
-| 3. Notify setting / 4. Usage setting | Available once the setting is completed |
+| Setting Complete | Completes the workflow setting. It sits after "2. Action Name" and is not shown once the setting is completed. See [Workflow settings](/workflow_setting.md) |
+| 3. Notify Setting / 4. Usage settings | Available once the setting is completed |
 | (workflow name) | The workflow being edited |
 | No problem / N item(s) to check | The result of the input check. Click it to read the details |
 | Auto layout | Rearranges the nodes automatically |
@@ -142,14 +143,26 @@ Clicking it lists the problems; clicking one jumps to where it is.
 
 | Message | Meaning |
 | --- | --- |
-| The workflow name is empty | A name is required before saving |
-| The start status name is empty | Give the start status a name |
-| No action starts from "..." | Nothing leads out of the start status |
-| No action reaches "..." | A status cannot be reached from anywhere |
-| "..." has no action leaving it and is not a completed status | A dead end |
-| The action "..." starts and ends on the same status | An arrow back to the same status is not allowed |
-| The action "..." has no user who can run it | Say who may run it |
-| Some action rows have no name | Every action needs a name |
+| The workflow name is empty. It cannot be saved as is. | A name is required before saving |
+| The workflow name is longer than 30 characters. It cannot be saved as it is. | The name is 30 characters at most |
+| Please select the workflow type. / Please select the target table. | Choose the workflow type, and the table for a "Table Only" workflow |
+| The start status name is empty. It cannot be saved as is. | Give the start status a name |
+| No action starts from "...". | Nothing leads out of the start status |
+| There is no status. / There is no action. | Add at least one status and one action |
+| Please set at least one completed status. | Exactly one status must be the completed status |
+| No action reaches "...". | A status cannot be reached from anywhere |
+| "..." has no outgoing action and is not a completed status. | A dead end |
+| Status before / after execution is not set on action "...". | Pick both statuses of the action |
+| Action "..." refers to a deleted status. | The arrow points at a status that no longer exists |
+| There is a row with no action name. It cannot be saved as is. | Every action needs a name |
+| The action name of "..." is longer than 30 characters. | An action name is 30 characters at most |
+| Action "..." has the same status before and after execution. It cannot be saved as is. | An arrow back to the same status is not allowed |
+| Executable user is not set on action "...". It cannot be saved as is. | Say who may run it |
+| The number of people in "Condition to advance to next status" on action "..." must be a number from 0 to 10. | Fix the number of people |
+
+Messages about the user setting of an action are also shown when "Special Action" is combined with "Select the user who executed the previous action", when the first action uses that option or anything other than "Set in advance", and when it is mixed with other settings in the same status.
+
+"No action reaches ..." and "... has no outgoing action…" are warnings and do not stop saving. The other messages stop the save.
 
 ## Create with designer
 
@@ -159,9 +172,10 @@ Opened from [Create with designer], the screen starts with a "Basic information"
 
 | Item | Content |
 | --- | --- |
-| Workflow display name | The name of the workflow |
-| Workflow type | "Common" or "Table only" |
-| Start status name | The first status ("Draft", "Before request"...) |
+| Workflow View Name | The name of the workflow (30 characters at most) |
+| Workflow Type | "Generic" or "Table Only" |
+| Table | The table the workflow is for. Asked only when the type is "Table Only" |
+| Start Status Name | The first status ("Draft", "Before request"...) |
 
 Filling it in and saving puts the start status on the left of the chart.
 
@@ -170,7 +184,7 @@ Filling it in and saving puts the start status on the left of the chart.
 From there, right click to add statuses and drag the dots to join them.
 
 > **The workflow is not registered until you save.**  
-> Once statuses and actions are saved, [Complete setting] in the toolbar becomes available, and step 3 (notify setting) and step 4 (usage setting) can be reached.
+> Once statuses and actions are saved, [Setting Complete] in the toolbar becomes available, and step 3 (notify setting) and step 4 (usage setting) can be reached.
 
 ## The flow preview on step 2
 
@@ -200,14 +214,22 @@ Decides whether the positions of the nodes are remembered.
 
 ## Notes
 
-#### Editing a workflow already in use
-Statuses can still be added and rearranged and actions edited on a workflow that is already running.  
-However, **a status that already holds data cannot be deleted.**
+#### Editing a workflow whose setting is completed
+Once [Setting Complete] has been done, the statuses are locked, the same as on step 1.
 
-#### More than one completed status
-The flow designer can mark several statuses as completed ("Approved" and "Rejected", for example).  
-But **saving on step 1 leaves only the last row of the table as completed.**  
-To keep more than one, save from the flow designer rather than step 1.
+- Statuses cannot be added, deleted or reordered, and the completed status cannot be changed. [Add status] and [Delete status] in the right click menus are greyed out with "Locked because the setting is completed".
+- The status names, "Cannot Edit Data" and every action can still be edited.
+
+Apart from this, **a status that is used by existing data or history cannot be deleted**, even before the setting is completed.
+
+#### Completed status
+While the setting is not completed, a workflow has **exactly one completed status**.
+
+- Only one status can be the completed status. If there are several, clear the others before saving.
+- A workflow with no completed status cannot be saved either.
+- Saving on step 1 also leaves only the last row of the table as completed.
+
+A workflow whose setting is already completed may hold several completed statuses (one that came from a template, for example). They are kept as they are and cannot be changed in the flow designer.
 
 #### Filter conditions (branches)
 The filter conditions of an action are set on step 2.  

@@ -109,7 +109,7 @@ You can select from "required", "optional" and "not used".
 An action to return to the previous status, such as "Reject" or "Remand", or an action in which the administrator approves by special exception Please check it.
 
 ### Setup completed
-When both status setting and action setting are performed, a "Setting completed" button is displayed at the top right of the page.
+When both status setting and action setting are performed, a "Setting Complete" button is displayed at the top right of the page.
 
 ![Workflow screen](img/workflow/workflow_beginning1.png)  
 
@@ -119,7 +119,11 @@ Click to complete the workflow settings.
 - Delete workflow
 - Add, delete, and reorder statuses
 
-### Step3.Use settings
+### Step3.Notify setting
+Step 3 and step 4 are displayed only after [Setting Complete] has been done.  
+Set the notifications sent when the workflow is executed. See [Notification / Email sending settings](/notify.md) for the setting items.
+
+### Step4.Usage settings
 Set which workflow to execute in which table.
 ![Workflow screen](img/workflow/workflow_beginning2.png)  
 

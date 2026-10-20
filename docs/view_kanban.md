@@ -79,10 +79,10 @@ What to put inside the card. With nothing set, the card shows only its title.
 
 | Option | Where |
 | --- | --- |
-| Card head | Above the title |
+| Card header | Above the title |
 | Body line 1 | First line under the title |
 | Body line 2 | Second line under the title |
-| Card foot | At the bottom of the card |
+| Card footer | At the bottom of the card |
 
 ### Style
 
@@ -101,10 +101,6 @@ shape only, which is what lets one preset fit every column.
 Use the pencil button to create or edit a preset - see
 [Cell appearance presets](/cell_style_preset.md).
 
-> A view that used one of the board's own style names ("tag", "pill" and so
-> on) in an earlier version is converted to the preset of the same look when
-> you update, and is changed from this field from then on.
->
 > A card row that is not a column - the workflow status, a system column, the
 > parent record - takes a preset too, but not per-value colours: those are a
 > column's own setting.
@@ -118,20 +114,20 @@ To vary the icon per choice, write `value:class` pairs separated by commas:
 
 The board works with the defaults. Set these only when you need them.
 
-### More on the card
+### Card setting
 
 #### Column for the cover image
 An image column drawn as a cover at the top of the card. Records with no image are drawn without a cover; the first image is used when there are several.
 
 #### Cover image display
-"Cover" fills the frame and cuts off what does not fit. "Contain" fits the whole image and leaves margins.
+"Fill (overflow is cropped)" fills the frame and cuts off what does not fit. "Fit whole image (letterboxed)" shows the whole image and leaves margins.
 
-#### Column for the coloured labels
-A choice column drawn as coloured labels at the top of the card. Multi-select columns can be used, and every value is drawn.  
-The column is also added to the filter panel.
+#### Column for the colored labels
+A choice column drawn as colored labels at the top of the card. Multi-select columns can be used, and every value is drawn.  
+The column is also added to the filter panel while "Columns shown in the filter panel" is left empty.
 
 #### Label display
-"Chip" is a small label with text, "Colour bar only" is a thin bar of colour.
+"Chip with text" is a small label with text, "Color bar only" is a thin bar of color.
 
 #### Column for the corner badge
 Drawn as a small badge at the top right of the card (counts, points, numbers). Records with no value show nothing.
@@ -145,7 +141,8 @@ Draws a progress bar under the card title.
 The date the elapsed days are counted from (the day a request came in, for instance). The left edge of the card changes colour as the days pass.  
 Write three days in ascending order, separated by commas:  
 `1,2,3` - yellow after 1 day, orange after 2, red after 3.  
-`3,7,14` - for longer stages.
+`3,7,14` - for longer stages.  
+`1,2,3` when not changed.
 
 #### Warn this many hours before the deadline
 A card within this many hours of its deadline is marked "due soon" (yellow).  
@@ -171,7 +168,7 @@ The number of cards that may sit in a column at the same time. A column over its
 | Item | Content |
 | --- | --- |
 | Target column | The column the limit applies to |
-| Limit | How many cards may sit there |
+| Limit | How many cards may sit there (1 - 999, 5 when a row is added) |
 
 #### Count the WIP limit in (number column)
 Counts the WIP limit as the total of this number column instead of a number of cards.  
@@ -215,14 +212,17 @@ Their records are not loaded either, which alone makes a large table much faster
 
 | Item | Content |
 | --- | --- |
-| Column the "My cards" button reads | Which column decides whether a card is "mine". The assignee column when left empty. |
-| Column used by auto assign | The column auto assign judges by (an assignment group, say). The person who handles that value most often is suggested for unassigned cards. |
+| Column the "Mine" button reads | Which column decides whether a card is "mine". The assignee column when left empty. |
+| Column used by auto assign | The column auto assign judges by (an assignment group, say). The person who handles that value most often is recommended for unassigned cards (see "Auto assign" below). |
+| Columns shown in the filter panel | The columns the filter panel offers, in the order you pick them. When left empty, the panel offers every column the board reads. |
 | Show the summary bar (KPI) | Draws a bar of figures above the board. |
 | Show quick add | Puts an input at the foot of each column; Enter adds a record. |
 | Allow multi select and bulk change | Shift + click selects several cards and changes them together. |
 | Open the edit form when a card is clicked | Opens the record's edit form over the board. |
 | Open a detail panel when a card is clicked | Opens a panel from the right. |
-| Show the approval history in the detail panel | Adds the workflow approval history to the panel. |
+| Show the approval history in the detail panel | Adds the workflow approval history to the panel. Only offered for a table that has a workflow. |
+
+The summary bar, quick add, multi select, the edit form, the detail panel and the approval history are all YES in a newly made view.
 
 With both "edit form" and "detail panel" set to YES, a click opens the edit form and the panel moves to the "i" button at the top right of the card.  
 With both set to NO, a click goes to the record's detail screen.
@@ -230,15 +230,17 @@ With both set to NO, a click goes to the record's detail screen.
 ### How much to load
 
 #### Cards loaded per column
-How many cards each column loads first.  
+How many cards each column loads first (0 - 500, 0 in a new view).  
 0 (empty) loads up to "Max display count" over the whole board, as before.  
 Something like 50 loads 50 per column and puts a [Load more] button under each one.
 
 Counts, totals, average age and the summary bar are read from the database, not from the cards loaded, so they stay correct.  
+Where the board has to count only the cards already loaded (for example while a filter or a keyword narrows it), it says "Only the N cards already loaded are shown (of M)…".  
 **This is the recommended setting once a table holds thousands of records** - it is not bound by "Max display count".
 
 #### Max display count
-The largest number of records the board will draw. A large number makes the board slow.
+The largest number of records the board will draw (1 - 2000). A large number makes the board slow.  
+New views start at 300, or at the value of the environment key `EXMENT_KANBAN_MAX_SIZE_COUNT` when it is set.
 
 ## Using the board
 
@@ -254,21 +256,45 @@ The largest number of records the board will draw. A large number makes the boar
 | Search in cards | Filters the cards by keyword |
 | My cards | Shows only the cards assigned to you |
 | Save this as a view | Creates a new view from the current filter |
-| Auto assign | Suggests an assignee for unassigned cards |
+| Auto assign | Assigns the unassigned cards on screen that it is confident about (see below) |
+
+#### Auto assign
+
+[Auto assign] **writes** the assignee. It does not only suggest.
+
+- Among the unassigned cards on screen, those with a confidence of 85% or more are assigned at once.
+- The others are left unassigned. The card shows the recommended assignee with its percentage, and the detail panel shows "Suggestion only (please confirm manually)" with an [Apply this assignee] button.
+- Cards hidden by the filter or by "Search in cards", and cards in a column treated as done, are skipped.
+- The result is shown as "N assigned automatically (confidence 85 percent or more) / M suggestions only".
 
 #### Summary bar (KPI)
 
 ![Summary bar](img/view_kanban/kanban_kpi.png ':size=756')
 
-Open, unassigned, overdue, average age and done.  
+Up to six figures are shown. Each one appears only when the setting it reads is made.
+
+| Figure | Shown when |
+| --- | --- |
+| Open | Always |
+| Unassigned | "Column for the assignee" is set |
+| Overdue | "Column for the deadline (SLA timer)" is set |
+| Avg. elapsed days | "Column the elapsed days are counted from" is set |
+| Blocked | "Values treated as blocked" is set |
+| Done | Values are treated as done (on a workflow board, the statuses marked completed) |
+
+Where the board loads a column at a time, "Blocked" can read like "≥8": at least that many.  
 To narrow the board down, use the "Overdue only" / "Unassigned only" checkboxes in the filter panel.
 
 #### Column header
 
 ![Column header](img/view_kanban/kanban_column_header.png)
 
-From the left: the column name, the count (or "count/limit" where a WIP limit is set), the total and the average age.  
-The "&lsaquo;" on the left collapses the column.
+From the left: the "&lsaquo;" that collapses the column, the column name, the policy mark, the count, the number of blocked cards, the WIP, the total and the average age.
+
+- The count is the number of cards drawn. Where the board loads a column at a time and more cards remain, it reads "drawn/total" (for example 14/15).
+- The WIP ("loaded/limit") is a separate figure, shown only for a column that has a WIP limit.
+- The blocked count is shown only where the column holds blocked cards.
+- The total and the average age are shown only when they are switched on in the view setting, and only for a column that has cards.
 
 #### Card
 
@@ -292,7 +318,13 @@ On a workflow board, the confirmation screen of the workflow action opens instea
 
 - Narrow down by the value of each column
 - "Group by" and "Column for swimlanes" can be switched here for this session
-- "Overdue only", "Unassigned only" and "Assigned to me only" checkboxes
+- Checkboxes that narrow the board. Each one appears only when it can work:
+  - "Overdue only" - "Column for the deadline (SLA timer)" is set
+  - "Unassigned only" - "Column for the assignee" is set
+  - "Assigned to me only" - the column behind the "Mine" button holds users, so the board can tell who you are
+  - "Blocked only" - "Values treated as blocked" is set
+  - "Expedite only" - "Values treated as expedite" is set
+- [Reset] clears the panel
 
 [Save this as a view] turns the current filter into a new view.
 
@@ -312,11 +344,12 @@ The "i" button at the top right of the card (or the card itself, where only the 
 
 ![Detail panel](img/view_kanban/kanban_drawer.png ':size=440')
 
-- Shows the columns that are not on the card
+- Shows the record's columns set under "Columns displayed on the card", with the "Column for kanban lanes", the cover image, the title, the progress bar, the labels and the corner badge
 - [Move to] changes the column without dragging
 - [Open record] goes to the normal detail screen
 
-On a table with a workflow, the actions that can be run and the approval history are shown.
+On a board built from the statuses of the workflow, the panel shows the workflow actions that can be run and, when "Show the approval history in the detail panel" is YES, the approval history. [Move to] is not shown there.  
+A board built from a select column shows neither, even on a table that has a workflow.
 
 ![Detail panel with workflow actions](img/view_kanban/kanban_drawer_workflow.png ':size=440')
 
@@ -357,7 +390,7 @@ Once a table holds several thousand records:
    Each column loads a little at a time and [Load more] fetches the rest. Counts and totals are still read from the database, so they stay correct.
 2. **Leave the finished columns out with "Board columns to leave out".**  
    Not loading the finished work alone makes a large difference.
-3. **Narrow the view down with the display condition.**  
+3. **Narrow the view down with the "View Filter".**  
    Limit what is loaded at all - by period, by department.
 
 ## See also

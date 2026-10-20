@@ -209,7 +209,7 @@ Adds a new column for display in the "Filter" of the view.
 ## Aggregation view settings
 
 #### View display name, view authority, default
-The setting items are the same as [View setting items](/view.md?id=view-setting-items) above.
+The setting items are the same as [View settings](/view.md?id=View-settings) above.
 
 #### Group column selection
 Performs grouping in aggregation based on the column selected as the target.  
@@ -320,7 +320,7 @@ Adds a new view display condition.
 ## Calendar view settings
 
 #### View display name, view authority, default
-The setting items are the same as [View setting items](/view.md?id=View-setting-items) above.
+The setting items are the same as [View settings](/view.md?id=View-settings) above.
 
 #### Display column selection
 The settings for the columns displayed in the view.  
@@ -373,7 +373,7 @@ Adds a new view display condition.
 As in the image example, the heading can be displayed in the target date of the data in the calendar view.  
 
 ![Custom view screen](img/view/view_calender_heading.png ':size=270')
-- The displayed heading is the part set as [Use in label](/column.md?id=Use-in-label) in custom column settings.
+- The displayed heading is the part set as [Use in labels](/column.md?id=Use-in-labels) in custom column settings.
 
 - Also, if the column corresponding to "Date and time" in the custom column type is set as the start date for display column selection, the time of the registered data will be displayed at the head of the heading.
 

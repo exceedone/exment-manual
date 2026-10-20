@@ -48,7 +48,7 @@ To reach it at any time, add it to the [menu](/menu.md).
 | Order | Position in the pickers (smaller comes first) |
 | Updated | Last update |
 
-A fresh installation already carries 14 presets.
+A fresh installation already carries 15 presets.
 
 | Preset name | Main column types |
 | --- | --- |
@@ -64,10 +64,14 @@ A fresh installation already carries 14 presets.
 | Number (bold) | Integer, decimal, currency |
 | Date (no wrap) | Date, datetime, time |
 | Code (monospace) | Single line text, auto number, URL, e-mail |
+| Plain text (no name) | All column types |
 | Alert (red, bold) | All column types |
 | Fill the whole cell | All column types |
 
-The presets shipped with Exment can be edited and deleted on this screen too.
+Who can edit or delete a preset:
+
+- A system administrator can edit and delete every preset, including the ones shipped with Exment.
+- Anyone else can edit and delete only the presets they created themselves. Any other preset is read-only for them: [Delete] is not shown, [Update this preset] cannot be pressed, and the editor says "This preset cannot be edited. To use it with changes, save it as a new preset." Use [Save as new preset] to make a changed copy.
 
 ### Creating and editing a preset
 
