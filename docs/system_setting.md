@@ -91,7 +91,8 @@ $ php artisan passport:keys
 - The initial value is "YES".
 
 #### Enable Operation Log
-- This setting enables the system performance log. It is a different feature from the [Operation log](/logs).
+- This setting enables the system performance log. It is a different feature from the [Operation log](/logs).  
+※ In Exment v6.x, this setting is available from v6.2.7 and is displayed with the same label "Enable Operation Log".  
 - If set to "YES", for each request to a screen after login, the request URL, the executing user (email address), the date and time, and the executed SQL are recorded in the table "System Performance Log".  
 The executed SQL is also output to the server log file (laravel.log).
 - The initial value is "NO".

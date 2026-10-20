@@ -44,7 +44,7 @@ https://github.com/wpic/bootstrap-number-input
 
 #### exment-admin-core
 https://github.com/exceedone/exment-admin-core  
-([open-admin](https://github.com/open-admin-org/open-admin)、[laravel-admin](http://laravel-admin.org/)をベースとしたライブラリ)
+([open-admin](https://github.com/open-admin-org/open-admin)、[laravel-admin](http://laravel-admin.org/)をベースとしたライブラリ。Exment v7.0.0より使用)
 
 #### font-awesome
 https://fontawesome.com/?from=io
@@ -54,6 +54,10 @@ https://github.com/farbelous/fontawesome-iconpicker
 
 #### jquery-pjax
 https://github.com/defunkt/jquery-pjax
+
+#### laravel-admin
+http://laravel-admin.org/  
+(Exment v6.x以前で使用)
 
 #### mPDF
 https://github.com/mpdf/mpdf

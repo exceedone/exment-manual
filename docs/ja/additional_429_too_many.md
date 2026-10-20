@@ -23,6 +23,8 @@ EXMENT_API_MAX_RATE_LIMIT=120
 
 ### 注意点
 - 「app/Http/Kernel.php」や「bootstrap/app.php」で、apiのミドルウェアグループに、回数を直接指定した独自のthrottle(「throttle:60,1」など)を設定している場合、そちらの設定が優先され、「EXMENT_API_MAX_RATE_LIMIT」は使用されません。「EXMENT_API_MAX_RATE_LIMIT」で設定する場合、独自のthrottleの記述を削除してください。
-- apiのミドルウェアグループにthrottleの設定がない場合、Exmentが自動的に「throttle:api」を追加します。そのため、「app/Http/Kernel.php」のthrottleの記述をコメントアウトしても、制限を解除することはできません。制限を緩和する場合は、「EXMENT_API_MAX_RATE_LIMIT」に大きな値を設定してください。
+- v7.0.0より、apiのミドルウェアグループにthrottleの設定がない場合、Exmentが自動的に「throttle:api」を追加します。そのため、「app/Http/Kernel.php」のthrottleの記述をコメントアウトしても、制限を解除することはできません。制限を緩和する場合は、「EXMENT_API_MAX_RATE_LIMIT」に大きな値を設定してください。
+- ※Exment v6.x以前では、「app/Http/Kernel.php」のapiのミドルウェアグループに記述されている「\Illuminate\Routing\Middleware\ThrottleRequests::class.':api'」(Laravel 10の既定の記述)により、制限が行われます。Exmentが「throttle:api」を自動的に追加することはないため、この記述をコメントアウトすると、制限を解除することができます。  
+また、「EXMENT_API_MAX_RATE_LIMIT」は、Exment v6.2.4以降で使用できます。
 
 [←追加設定一覧へ戻る](/ja/quickstart_more)

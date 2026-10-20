@@ -3,7 +3,7 @@ You can create a new screen in Exment.
 Use this if you want to use a page that is completely different from the existing features.  
 
 ## Introduction
-Exment plugin pages are developed using the PHP framework [Laravel](http://laravel.jp/) and the admin library [exment-admin-core](https://github.com/exceedone/exment-admin-core) (based on laravel-admin / open-admin).  
+Exment plugin pages are developed using the PHP framework [Laravel](http://laravel.jp/) and the admin library [exment-admin-core](https://github.com/exceedone/exment-admin-core) (based on laravel-admin / open-admin; laravel-admin in v6.x or earlier).  
 When developing a page, it is recommended that people with knowledge of Laravel develop it.
 
 ※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  

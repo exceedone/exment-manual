@@ -36,13 +36,20 @@
 
 ### 1. コマンド実行
 公開フォームで、Google reCAPTCHAを使用する場合のみ、実行します。  
-プロジェクトのルートフォルダで、以下のコマンドを実行してください。  
+プロジェクトのルートフォルダで、ご利用のExmentのバージョンに応じて、以下のコマンドを実行してください。  
+※v7.0.0より、Google reCAPTCHAのライブラリとして「google/recaptcha」を使用します。Exment v6.x以前では「arcanedev/no-captcha」を使用します。  
+
+- Exment v7.0.0以降の場合
 
 ```
 composer require google/recaptcha
 ```
 
-※Exment v6.x以前では、Google reCAPTCHAのライブラリとして「arcanedev/no-captcha」を使用していました。v7.0.0以降は「google/recaptcha」を使用します。
+- Exment v6.x以前の場合
+
+```
+composer require arcanedev/no-captcha=^10.1
+```
 
 ### 2. システム設定画面
 - [システム設定画面](/ja/system_setting)の「STEP2 詳細設定」に遷移し、「公開フォームを使用する」をYESにします。  

@@ -1,6 +1,7 @@
 # Installation procedure (manual installation)
 These are the steps required to start Exment.  
-※  This is a manual installation method.
+※  This is a manual installation method.  
+※ This page describes the installation procedure for Exment v7.0.0 or later. In Exment v6.x or earlier (Laravel 10.X, admin library laravel-admin), the Laravel version and the packages to install differ. For the differences between v6.x and v7.0.0, see [Update procedure v7.0.0](/update/v7_0_0).
 
 ## important point
 - **If you do not have a web server, [set up the server](/server) first.**  

@@ -5,7 +5,7 @@ Exmentのカスタムデータ一覧画面に、新しいデザインや独自�
 ![ビュー実装例](img/plugin/plugin_view1.png)   
 
 ## はじめに
-Exmentのプラグインページは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに管理画面ライブラリ[exment-admin-core](https://github.com/exceedone/exment-admin-core)(laravel-admin / open-adminをベースとしたライブラリ)を使用して開発します。  
+Exmentのプラグインページは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに管理画面ライブラリ[exment-admin-core](https://github.com/exceedone/exment-admin-core)(laravel-admin / open-adminをベースとしたライブラリ、v6.x以前はlaravel-admin)を使用して開発します。  
 ページの開発を行う場合には、特にLaravelの知識がある方が開発することをおすすめします。
 
 

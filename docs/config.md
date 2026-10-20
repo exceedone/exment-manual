@@ -450,6 +450,8 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Role : Maximum number of APIs that can be deleted at the same time by batch deletion.
 
 #### API Access Rate Limit
+※ Available from v6.2.4.
+
 - Setting key : EXMENT_API_MAX_RATE_LIMIT
 - Default value ： 60
 - Role : The maximum number of API accesses per minute for each user (for each IP address if not authenticated). If the limit is exceeded, a 429 error (Too Many Requests) is returned. Please check [here](/additional_429_too_many) for details.

@@ -81,6 +81,7 @@ Please check the link below for the construction method.
 ### server
 - PHP 8.2-8.3 (Since Exment 7.0.0, the PHP version has changed to 8.2-8.3. With the easy installation, PHP 8.4 or higher results in an error)
 - Laravel 12.X (Laravel version changed to 12.X from Exment 7.0.0)
+- ※ For Exment v6.x: PHP 8.2, Laravel 10.X.
 - Database: One of the following
     - MySQL 8.0 or higher
     - MariaDB 10.11 or higher

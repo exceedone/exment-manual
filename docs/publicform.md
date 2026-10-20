@@ -36,13 +36,20 @@ Follow the steps below to set up the public form.
 
 ### 1. Command execution
 Run only if you use Google reCAPTCHA on your public form.  
-Execute the following command in the root folder of the project.  
+Execute the following command in the root folder of the project, according to your Exment version.  
+※ From v7.0.0, "google/recaptcha" is used as the Google reCAPTCHA library. In Exment v6.x or earlier, "arcanedev/no-captcha" is used.  
+
+- Exment v7.0.0 or later
 
 ```
 composer require google/recaptcha
 ```
 
-* Exment v6.x or lower used "arcanedev/no-captcha" as the Google reCAPTCHA library. v7.0.0 or later uses "google/recaptcha".
+- Exment v6.x or earlier
+
+```
+composer require arcanedev/no-captcha=^10.1
+```
 
 ### 2. System setting page
 - Go to "STEP2 Advanced Settings" on the [System setting page](/system_setting) and set "Use Public Form" to YES.  

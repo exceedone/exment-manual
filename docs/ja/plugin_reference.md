@@ -26,7 +26,7 @@
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| &$form | \ExmentAdminCore\Admin\Form | 管理画面ライブラリ(exment-admin-core)のフォームインスタンス |
+| &$form | \ExmentAdminCore\Admin\Form | 管理画面ライブラリ(exment-admin-core、v6.x以前はlaravel-admin)のフォームインスタンス |
 
 ##### 戻り値
 なし
@@ -597,7 +597,7 @@ jsファイルのパスを取得する関数です。
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| &$form | \ExmentAdminCore\Admin\Form | 管理画面ライブラリ(exment-admin-core)のフォームインスタンス |
+| &$form | \ExmentAdminCore\Admin\Form | 管理画面ライブラリ(exment-admin-core、v6.x以前はlaravel-admin)のフォームインスタンス |
 
 ##### 戻り値
 なし

@@ -26,7 +26,7 @@ For more information [here](/plugin_quickstart#Make-your-own-settings-on-the-plu
 ##### argument
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| &$form | \ExmentAdminCore\Admin\Form | form instance of the admin library (exment-admin-core) |
+| &$form | \ExmentAdminCore\Admin\Form | form instance of the admin library (exment-admin-core; laravel-admin in v6.x or earlier) |
 
 ##### Return value
 None
@@ -576,7 +576,7 @@ Defines view-specific settings. For details, please refer to [here](/plugin_quic
 ##### argument
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| &$form | \ExmentAdminCore\Admin\Form | form instance of the admin library (exment-admin-core) |
+| &$form | \ExmentAdminCore\Admin\Form | form instance of the admin library (exment-admin-core; laravel-admin in v6.x or earlier) |
 
 ##### Return value
 None
