@@ -79,6 +79,9 @@ Database password for Exment
 - Click Run Installation.
 ![Installation screen_Settings](img/quickstart/setting_windows3.png)
 
+> **Optional: password hashing cost**  
+> Passwords are hashed with bcrypt, and the cost (rounds) is 12 by default. To change it, add `BCRYPT_ROUNDS` to ".env". See [manual installation](/quickstart_manual) for an example.
+
 ### Setting completed
 After the quick start is complete, continue with [Initial Settings](/first_setting.md).
 

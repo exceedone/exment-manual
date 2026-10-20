@@ -78,6 +78,11 @@ MAIL_ENCRYPTION=null # Enter "ssl" when using ssl
 # add for https communication
 ADMIN_HTTPS=true
 
+# Cost (rounds) of bcrypt password hashing. Optional: the default is 12.
+# OWASP recommends 10 or more. Set it only when you want to change the default.
+# Passwords hashed with another cost are re-hashed at the user's next login.
+# https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+BCRYPT_ROUNDS=12
 ~~~
 
 

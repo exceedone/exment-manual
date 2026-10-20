@@ -70,6 +70,11 @@ APP_LOCALE=ja
 # https通信の場合に追加
 ADMIN_HTTPS=true
 
+# パスワードのハッシュ化(bcrypt)の計算コスト(ラウンド数)。任意設定で、既定値は12です。
+# OWASPは10以上を推奨しています。既定値を変更したい場合のみ設定してください。
+# 別のコストでハッシュ化されたパスワードは、ユーザーが次にログインしたときに自動で再ハッシュされます。
+# https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+BCRYPT_ROUNDS=12
 ~~~
 
 
