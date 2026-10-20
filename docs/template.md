@@ -26,10 +26,12 @@ Enter a name that does not duplicate with other template files.
 - Thumbnail: Upload the thumbnail to be displayed on the template screen. The recommended size is 256px * 256px.  
 If you do not upload, "No Image" image will be displayed on the template screen.
 
-- Export target: Select what to export with this template. When you import a template, the selected items are imported into the system.
+- Export target: Select what to export with this template. When you import a template, the selected items are imported into the system.  
+The following targets can be selected: "Table", "Menu", "Dashboard", "Role group", "Workflow".  
+※ "Workflow" can be selected in v7.0.0 or later.  
 ![Template screen](img/template/template_export1.png)  
 
-- Export target table: When "Table" or "Menu" is selected in "Export target table", only the contents related to the table selected in this table will be exported.  
+- Export target table: When "Table", "Menu", "Role group" or "Workflow" is selected in "Export target", only the contents related to the table selected in this table will be exported.  
 Select this if you want to create a template by exporting only the contents related to the table you created.  
 ※ If not selected, all items will be exported.
 ![Template screen](img/template/template_export2.png)  

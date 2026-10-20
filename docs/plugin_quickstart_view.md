@@ -6,7 +6,7 @@ Please use it when you want to use a completely different function from the stan
 
 
 ## Introduction
-The Exment Plugin page was developed using the PHP framework [Laravel](http://laravel.com/) and [laravel-admin](https://laravel-admin.org/docs/). increase...  
+The Exment Plugin page was developed using the PHP framework [Laravel](http://laravel.com/) and the admin library [exment-admin-core](https://github.com/exceedone/exment-admin-core) (based on laravel-admin / open-admin). increase...  
 When developing a page, we recommend that you develop it especially if you have knowledge of Laravel.
 
 

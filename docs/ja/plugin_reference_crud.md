@@ -4,7 +4,7 @@
 ※CRUDページ専用のリファレンスです。それ以外の種類のリファレンスについては、[こちら](/ja/plugin_reference)をご参照ください。  
 ※主にプラグイン開発者が定義するものを記載します。システムで使用し、プラグイン開発者では変更を実施させたくない内容は割愛します。  
 ※「★」が表記されている関数は、ほぼ必ず定義が必要です。「☆」が表記されている関数は、場合により定義が必要です。  
-※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。  
+※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。詳細は[こちら](/ja/update/v7_0_0)をご確認ください。  
 
 ## PluginCrudBase
 プラグイン(CRUDページ)の抽象クラスです。CRUDページプラグインを開発する場合、こちらのクラスを継承してください。  
@@ -780,8 +780,8 @@ CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、
 
 #### setForm
 CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、データの入力フォームを独自に作成する場合に作成します。  
-※記法は、基本的に[laravel-adminのフォーム](https://laravel-admin.org/docs/en/model-form-fields)の追加する方式です。入力方法については、該当のページをご確認ください。  
-※本関数を定義しない場合は、getFieldDefinitions関数で、"edit"項目が定義されている列を、1行テキスト形式で表示されます。
+※記法は、基本的に管理画面ライブラリ「exment-admin-core」の[フォーム](https://github.com/exceedone/exment-admin-core/blob/master/docs/en/model-form-fields.md)の追加する方式です(元となった[laravel-adminのフォーム](https://laravel-admin.org/docs/en/model-form-fields)と同様です)。入力方法については、該当のページをご確認ください。  
+※本関数を定義しない場合(nullを返した場合)は、getFieldDefinitions関数で、CREATE画面では"create"項目、EDIT画面では"edit"項目が定義されている列を、1行テキスト形式で表示されます。
 
 
 ##### 引数
@@ -793,7 +793,9 @@ CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、
 
 
 ##### 戻り値
-なし
+| 種類 | 説明 |
+| ---- | ---- |
+| ?\ExmentAdminCore\Admin\Widgets\Form | 作成したフォーム。nullを返した場合は、getFieldDefinitions関数の定義から入力フォームを作成します。 |
 
 
 ##### 例

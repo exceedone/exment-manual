@@ -39,8 +39,10 @@ Run only if you use Google reCAPTCHA on your public form.
 Execute the following command in the root folder of the project.  
 
 ```
-composer require google/recaptcha=^1.3.1
+composer require google/recaptcha
 ```
+
+* Exment v6.x or lower used "arcanedev/no-captcha" as the Google reCAPTCHA library. v7.0.0 or later uses "google/recaptcha".
 
 ### 2. System setting page
 - Go to "STEP2 Advanced Settings" on the [System setting page](/system_setting) and set "Use Public Form" to YES.  
@@ -50,7 +52,8 @@ composer require google/recaptcha=^1.3.1
 
 - If you want to use Google reCAPTCHA, please set the item of "Google reCAPTCHA" to V2 or V3.  
 After selecting, the site key and secret key items of Google reCAPTCHA will be displayed, so set the value copied from [Google reCAPTCHA management page](http://www.google.com/recaptcha/admin).  
-* After setting, select whether to use Google reCAPTCHA on each public form setting page.
+* After setting, select whether to use Google reCAPTCHA on each public form setting page.  
+* When V3 is selected, the score threshold can be changed with the [setting value](/config?id=score-threshold-of-google-recaptcha-v3) (default 0.5).
 
 ![System setting page](img/form/system2.png)
 

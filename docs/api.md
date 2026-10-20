@@ -406,5 +406,34 @@ For example, you cannot retrieve information for tables for which you do not hav
 ※When specifying multiple scopes, set them in parameters separated by spaces.  
 
 
+## Error code list
+If an error occurs for some reason when executing the API, an error code is returned.  
+The following is a list of the error codes and the status codes of the HTTP response.  
+
+| Exment error code | HTTP status code | Description |
+| ---- | ---- | ---- |
+| 101 | 403 | You do not have permission to access the endpoint or custom table. Please review the permissions of the executing user. |
+| 102 | 400 | There is a problem with the query string or the values sent. Please review the values. |
+| 103 | 400 | Mainly when adding or updating data, the validation of the values sent has failed. Please review the values sent. |
+| 104 | 403 | Occurs when an action such as creating, updating or deleting data cannot be performed due to the settings. |
+| 105 | 403 | This data cannot be deleted. |
+| 106 | 403 | The scope at API authentication is incorrect. Please review the scope value. |
+| 107 | 400 | When getting specific data by specifying id, the data does not exist. Please specify the id. |
+| 108 | 401 | The access token at API authentication is incorrect or has expired. Please review the access token. |
+| 109 | 400 | Occurs when a request exceeds the number of data that can be created or deleted at the same time (default: 100). |
+| 110 | 403 | Occurs when updating data, etc. for data that has already been deleted. |
+| 111 | 500 | Occurs when the specified plugin does not exist when executing a plugin (API). Please review the plugin name. |
+| 112 | 400 | Occurs when the table and the view are different in an API for a view. |
+| 113 | 400 | Occurs when an unsupported view type is specified in an API for a view. |
+| 201 | 403 | Occurs when updating or deleting data, etc. for data locked by the workflow status. |
+| 202 | 400 | Occurs when the workflow has not been started when executing the "Get the current workflow value" API. |
+| 203 | 400 | Occurs when the workflow has been completed when executing the "Get the list of working users for specific data" or "Get the list of next actions that can be executed for specific data" API. |
+| 204 | 400 | Occurs when the specified action ID cannot be executed when executing the "Execute the workflow for specific data" API. |
+| 205 | 400 | Occurs when the next working user does not exist when executing the "Execute the workflow for specific data" API. |
+| 301 | 400 | The API cannot be executed due to IP restriction. |
+| 401 | 403 | Occurs when the target table is not included in the public form in the API for public forms. |
+| 402 | 403 | Occurs when trying to create the second or later data for a table with "Save Only One Record" set. |
+
+
 ## WebAPI reference
 Please refer to [API Reference](https://exment.net/reference/ja/webapi.html) for API reference.

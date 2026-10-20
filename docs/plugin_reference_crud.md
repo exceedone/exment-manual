@@ -3,7 +3,9 @@ It is a list of functions and properties unique to each plugin.
 ※ For the reference of custom tables, custom columns, and custom data, please refer to [here](/func_reference).  
 ※ This reference is only for CRUD pages. For the reference of other plugin types, please refer to [here](/plugin_reference).  
 ※ This mainly describes items that plugin developers define. Items that are used by the system and that plugin developers should not change are omitted.  
-※ Functions marked with "★" almost always need to be defined. Functions marked with "☆" need to be defined depending on the case.
+※ Functions marked with "★" almost always need to be defined. Functions marked with "☆" need to be defined depending on the case.  
+※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [here](/update/v7_0_0).
 
 ## PluginCrudBase
 An abstract class for plugins (CRUD pages). When developing a CRUD page plugin, inherit this class.  
@@ -655,7 +657,7 @@ Define this function when you want to display your own buttons at the top right 
 
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| $tools | \Encore\Admin\Widgets\Grid\Tools | Tools |
+| $tools | \ExmentAdminCore\Admin\Widgets\Grid\Tools | Tools |
 
 
 ##### Return value
@@ -703,7 +705,7 @@ Define this function when you want to display your own buttons at the top right 
 | Name | Type | Description |
 | ---- | ---- | ---- |
 | $id | string | Key value |
-| $box | \Encore\Admin\Widgets\Box | Box |
+| $box | \ExmentAdminCore\Admin\Widgets\Box | Box |
 
 
 ##### Return value
@@ -743,7 +745,7 @@ Define this function when you want to display your own buttons at the top right 
 | Name | Type | Description |
 | ---- | ---- | ---- |
 | $id | string | Key value |
-| $box | \Encore\Admin\Widgets\Box | Box |
+| $box | \ExmentAdminCore\Admin\Widgets\Box | Box |
 
 
 ##### Return value
@@ -779,20 +781,22 @@ None
 
 #### setForm
 Define this function when you want to create your own data input form on the CREATE (data creation) page or the EDIT (data edit) page.  
-※ The notation basically follows the way fields are added in [laravel-admin forms](https://laravel-admin.org/docs/en/model-form-fields). For the input methods, please refer to that page.  
-※ If this function is not defined, the columns that have "edit" defined in the function getFieldDefinitions are displayed as single-line text fields.
+※ The notation basically follows the way fields are added in [forms](https://github.com/exceedone/exment-admin-core/blob/master/docs/en/model-form-fields.md) of the admin library "exment-admin-core" (the same as the original [laravel-admin forms](https://laravel-admin.org/docs/en/model-form-fields)). For the input methods, please refer to that page.  
+※ If this function is not defined (or returns null), the columns that have "create" (on the CREATE page) or "edit" (on the EDIT page) defined in the function getFieldDefinitions are displayed as single-line text fields.
 
 
 ##### argument
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| $form | \Encore\Admin\Widgets\Form | Input form |
+| $form | \ExmentAdminCore\Admin\Widgets\Form | Input form |
 | $isCreate | bool | true when creating new data |
 | $options | array | Currently unused. Reserved argument. |
 
 
 ##### Return value
-None
+| Type | Description |
+| ---- | ---- |
+| ?\ExmentAdminCore\Admin\Widgets\Form | The created form. If null is returned, the input form is created from the definitions of the function getFieldDefinitions. |
 
 
 ##### Example
@@ -830,7 +834,7 @@ A function for defining validation before data is saved on the CREATE (data crea
 
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| $form | \Encore\Admin\Widgets\Form | Input form |
+| $form | \ExmentAdminCore\Admin\Widgets\Form | Input form |
 | $values | array | Values entered by the user |
 | $isCreate | bool | true when creating new data |
 | $id | string | Key value |

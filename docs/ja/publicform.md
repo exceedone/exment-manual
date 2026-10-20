@@ -39,8 +39,10 @@
 プロジェクトのルートフォルダで、以下のコマンドを実行してください。  
 
 ```
-composer require google/recaptcha=^1.3.1
+composer require google/recaptcha
 ```
+
+※Exment v6.x以前では、Google reCAPTCHAのライブラリとして「arcanedev/no-captcha」を使用していました。v7.0.0以降は「google/recaptcha」を使用します。
 
 ### 2. システム設定画面
 - [システム設定画面](/ja/system_setting)の「STEP2 詳細設定」に遷移し、「公開フォームを使用する」をYESにします。  
@@ -50,7 +52,8 @@ composer require google/recaptcha=^1.3.1
 
 - Google reCAPTCHAを使用したい場合には、「Google reCAPTCHA」の項目を、V2もしくはV3に設定してください。  
 選択後、Google reCAPTCHAのサイトキーとシークレットキー項目が表示されるので、[Google reCAPTCHAの管理ページ](http://www.google.com/recaptcha/admin)よりコピーした値を設定してください。  
-※設定後、各公開フォーム設定画面で、Google reCAPTCHAを使用するかどうかを選択します。
+※設定後、各公開フォーム設定画面で、Google reCAPTCHAを使用するかどうかを選択します。  
+※V3を選択した場合のスコアのしきい値は、[設定値](/ja/config?id=google-recaptcha-v3のスコアのしきい値)で変更できます(既定値0.5)。
 
 ![カスタムフォーム画面](img/form/system2.png)
 

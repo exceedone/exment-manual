@@ -1,6 +1,8 @@
 ## Plugin (CRUD page)
 Add your own CRUD page to Exment.  
 **※ The plugin (CRUD) provides many features and functions. For details, please refer to the [Plugin reference](/plugin_reference_crud).**  
+※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [here](/update/v7_0_0).
 
 ## What is CRUD
 CRUD stands for Create, Read, Update, and Delete.  
@@ -88,8 +90,8 @@ Create the following PHP file. The file name should be "Plugin.php".
 // (1)
 namespace App\Plugins\MySQLWorld;
 
-use Encore\Admin\Widgets\Grid\Grid;
-use Encore\Admin\Widgets\Form;
+use ExmentAdminCore\Admin\Widgets\Grid\Grid;
+use ExmentAdminCore\Admin\Widgets\Form;
 use Exceedone\Exment\Services\Plugin\PluginCrudBase;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -295,6 +297,9 @@ The zip file name should be "(plugin_name).zip".
 
 
 ## Sample plugins
+※The sample plugins below support Exment v7.0.0 or later, and use the namespace "ExmentAdminCore\Admin".  
+If you are using v6.x or lower, please replace "ExmentAdminCore\Admin" with "Encore\Admin" in "Plugin.php" before using them. For details, please check [here](/update/v7_0_0).
+
 The following samples are available.
 
 | Name | Overview | Authentication | Sample link |

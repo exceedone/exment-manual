@@ -3,6 +3,9 @@
 #### AdminLTE
 https://adminlte.io/
 
+#### Apache ECharts
+https://echarts.apache.org/
+
 #### Datetimepicker
 http://eonasdan.github.io/bootstrap-datetimepicker/
 
@@ -39,6 +42,10 @@ https://github.com/kartik-v/bootstrap-fileinput
 #### bootstrap-number-input
 https://github.com/wpic/bootstrap-number-input
 
+#### exment-admin-core
+https://github.com/exceedone/exment-admin-core  
+([open-admin](https://github.com/open-admin-org/open-admin)、[laravel-admin](http://laravel-admin.org/)をベースとしたライブラリ)
+
 #### font-awesome
 https://fontawesome.com/?from=io
 
@@ -47,9 +54,6 @@ https://github.com/farbelous/fontawesome-iconpicker
 
 #### jquery-pjax
 https://github.com/defunkt/jquery-pjax
-
-#### laravel-admin
-http://laravel-admin.org/
 
 #### mPDF
 https://github.com/mpdf/mpdf
