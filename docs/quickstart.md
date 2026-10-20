@@ -12,7 +12,7 @@ If you haven't built the server yet, build a web server or database server.
 Please check [here](/server) for the construction method.
 
 ### Web server construction
-Exment requires PHP 7.3.0.  
+Exment requires PHP 8.2 - 8.3.  
 If you have not built the server yet, please check [here](/server) and build it.
 
 ### Introduced composer
@@ -28,8 +28,8 @@ Please refer to here for the installation method.
 ### Database construction
 Exment's database engine requires one of the following:
 
-- MySQL 5.7.8 or higher and less than 8.0.0
-- MariaDB 10.2.7 and above
+- MySQL 8.0 or higher
+- MariaDB 10.11 or higher
 - SQL Server 13.0.0 or higher (Currently, automatic backup・restore is not supported)
 
 If you have not set up the database server yet, please check [here](/server #database) and build it.

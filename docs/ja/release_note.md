@@ -7,8 +7,34 @@
 
 1. 全般
     - 使用フレームワークを、Laravel10からLaravel12に変更
+    - PHPの対応バージョンを、PHP8.2～8.3に変更
     - 管理画面ライブラリを、「exceedone/laravel-admin」から「exceedone/exment-admin-core」に変更
         - <span class="red bold">名前空間が「Encore\Admin」から「ExmentAdminCore\Admin」に変更となります。</span>プラグイン、「config/admin.php」、「app/Admin」、ならびに独自カスタマイズしたソースコードの修正が必要です。詳細は[こちら](/ja/update/v7_0_0)
+        - <span class="red bold">「exceedone/exment-admin-core」は、composer.jsonへの追加が必要です。</span>詳細は[こちら](/ja/update/v7_0_0)
+1. 機能追加
+    - LINE連携　詳細は[こちら](/ja/line)
+    - 安否確認　詳細は[こちら](/ja/safety_check)
+    - 全文検索エンジン(Meilisearch)による検索　詳細は[こちら](/ja/additional_meilisearch)
+    - カンバンビュー　詳細は[こちら](/ja/view_kanban)
+    - ガントチャートビュー　詳細は[こちら](/ja/view_gantt)
+    - ワークフローのフロー デザイナー　詳細は[こちら](/ja/workflow_design)
+    - 表示プリセット(データ一覧・カンバンのセルの表示設定)　詳細は[こちら](/ja/cell_style_preset)
+    - データ一覧の操作ツール(列の表示切替、列固定、グループ化、インライン編集、クイックプレビュー、一括操作など)　詳細は[こちら](/ja/data_grid_tools)
+    - ダッシュボードのフィルターバー、チャートの絞り込み・グラフ種類の切り替え　詳細は[こちら](/ja/dashboard)
+    - コメントで「＠」を入力し、メンバーを指定して通知する機能(メンション)
+    - 列の設定項目を追加　詳細は[こちら](/ja/column)
+        - 「私が担当」ボタンを表示する(ユーザー)
+        - クリップボードからの貼り付けを受け付ける(画像、ファイル)
+1. 機能改善
+    - 操作ログに記録する値のマスキング対象を、設定ファイルで変更できるように改善　詳細は[こちら](/ja/logs)
+    - 公開フォームのGoogle reCAPTCHA v3で、スコアのしきい値を設定できるように改善　詳細は[こちら](/ja/config?id=google-recaptcha-v3のスコアのしきい値)
+    - パスワードリセットメールの連続送信を制限
+1. 仕様変更
+    - <span class="red bold">Google reCAPTCHAのライブラリを、「arcanedev/no-captcha」から「google/recaptcha」に変更。公開フォームでreCAPTCHAを使用している場合、「composer require google/recaptcha」の実行が必要です。</span>詳細は[こちら](/ja/update/v7_0_0)
+    - Laravel12環境でも、APIの回数制限(throttle)が適用されるように変更
+    - パスワードのハッシュ化コストが現在の設定と異なるパスワードを、ログイン時に自動的に再ハッシュ化するように変更　詳細は[こちら](/ja/update/v7_0_0)
+    - 画像列・エディタで扱う画像形式から、SVGを除外
+    - 管理画面ライブラリのアセット(CSS・JavaScriptなど)の配置先を、「public/vendor/laravel-admin」から「public/vendor/open-admin」に変更　詳細は[こちら](/ja/update/v7_0_0)
 
 ## v6.2.15 (2026/10/09)
 1. 脆弱性対応
@@ -69,7 +95,7 @@
 
 ## v6.2.7 (2025/10/08)
 1. 機能修正
-    - Laravel.log にパフォーマンス調査向けのログ出力を追加  詳細は[こちら](/ja/system_setting?id=%e6%93%8d%e4%bd%9c%e3%83%ad%e3%82%b0%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b)
+    - Laravel.log にパフォーマンス調査向けのログ出力を追加  詳細は[こちら](/ja/system_setting?id=システムパフォーマンスログを有効にする)
     - 集計ビューにフィルタ機能を追加
 1. 不具合修正
     - ワークフローに関する不具合修正

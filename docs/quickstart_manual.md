@@ -9,7 +9,7 @@ These are the steps required to start Exment.
 - For other inquiries, please feel free to [contact us](https://exment.net/inquiry) for free.
 
 ## Server settings
-Exment requires PHP7.3.0 or higher. Also, MySQL 5.7.8 or more and less than 8.0.0 or MariaDB 10.2.7 or more is required.  
+Exment requires PHP 8.2 - 8.3. Also, MySQL 8.0 or higher, MariaDB 10.11 or higher, or SQL Server 13.0.0 or higher is required.  
 XAMPP is recommended when building an environment with PHP, Apache, and MySQL as a development environment from the beginning.  
 Please refer to [here](/install_xampp) for server settings.  
 ※ If you already have an environment, this setting is not required.
@@ -25,13 +25,17 @@ Exment requires the introduction of composer. Please refer here for the introduc
 ## Laravel installation (project creation)
 - At the command line, execute the following command:  
 ※ The folder of the created project is called "root directory" in this manual.  
-※ Exment is currently only available for version 8.X. Please do not install on any other version.  
+※ Exment is currently only available for Laravel version 12.X. Please do not install on any other version.  
+※ Be sure to install the admin library "exceedone/exment-admin-core" together with Exment (it is written in composer.json).  
 
 ~~~
-composer create-project "laravel/laravel=9.*" (Project name)
+composer create-project "laravel/laravel=12.*" (Project name)
 cd (Project name)
-composer require psr/simple-cache=^2.0.0
-composer require exceedone/exment
+composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
+composer require exceedone/exment-admin-core=^1.0.1 exceedone/exment=^7.0 -W
+
+# If you want to specify the version of Exment, run the following instead. Example: v7.0.0
+composer require exceedone/exment-admin-core=^1.0.1 exceedone/exment=7.0.0 -W
 ~~~
 
 ## Create database
@@ -67,14 +71,6 @@ APP_LOCALE=ja
 
 # Optional items below --------------------
 
-# Change the settings for sending mail. Set when sending password reset emails, etc.
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.mailtrap.io # Host name for mail server
-MAIL_PORT=2525 #Port number for mail server
-MAIL_USERNAME=null  # mail server user name
-MAIL_PASSWORD=null # mail server password
-MAIL_ENCRYPTION=null # Enter "ssl" when using ssl
-
 # add for https communication
 ADMIN_HTTPS=true
 
@@ -83,29 +79,6 @@ ADMIN_HTTPS=true
 # Passwords hashed with another cost are re-hashed at the user's next login.
 # https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 BCRYPT_ROUNDS=12
-~~~
-
-
-## (Recommended) Add error page
-
-- Open "app / Exceptions / Handler.php" and add the following to the "render" function.  
-※ Depending on the content of the error, the error page controlled here may not be displayed, and a Laravel error may be displayed.  
-
-~~~ php
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Exception $exception)
-    {
-        // addition
-        return \Exment::error($request, $exception, function($request, $exception){
-            return parent::render($request, $exception);
-        });
-    }
 ~~~
 
 
@@ -128,36 +101,3 @@ Please check the link below.
 - [Task schedule function](/quickstart_more.md#Task-schedule-function)
 - [Server external communication off](/quickstart_more.md#Server-external=communication-off)
 - [Change file upload limit size](/quickstart_more.md#Change-file-upload-limit-size)
-
-
-## (old) config change
-※ These settings are no longer required from v1.2.0.  
-However, I keep a record of the settings in the past version. (Will be removed in the future)  
-
-- Open "config/admin.php" and modify the key "auth.providers.admin.driver" as follows.
-
-~~~ php
-    'auth' => [
-        'providers' => [
-            'admin' => [
-                // Exment Edit------s
-                // 'driver' => 'eloquent',
-                //'model'  => ExmentAdminCore\Admin\Auth\Database\Administrator::class,
-                'driver' => 'exment-auth',
-                // Exment Edit------e
-            ],
-        ],  
-    ],
-~~~
-
-- If you want to change the language and time zone, open "config/app.php" and modify the following line.
-
-~~~ php
-
-    // 'timezone' => 'UTC',
-    'timezone' => 'Asia/Tokyo',
-
-    //'locale' => 'en',
-     'locale' => 'ja',
-
-~~~
