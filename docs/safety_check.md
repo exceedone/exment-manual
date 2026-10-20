@@ -1,13 +1,14 @@
 # Safety check
 This function checks the safety of employees by LINE and email in an emergency, such as an earthquake or a typhoon.  
 An administrator can send a safety check from the screen, and a safety check can also be sent automatically when an earthquake at or above the set seismic intensity occurs.  
-The answers can be checked on the safety check screen and in the safety check answer table.
+The answers can be checked on the safety check screen and in the safety check answer table.  
+※ The safety check is available from v7.0.0.
 
 ![Safety check card received on LINE](img/safety_check/safety_check_line_card.png)
 
 ## How the safety check works
 - Each time a safety check is sent, one data record is created in "Safety Check Events".
-- At the same time, one data record of "Safety Check Answers" is created for every user, with the answer status "not answered".
+- At the same time, one data record of "Safety Check Answers" is created for every user, with the answer status "not_answered".
 - The safety check is sent to each user as follows. Users who receive both LINE and email can answer from either of them.
 
 | Method | Sent to | How to answer |
@@ -47,6 +48,7 @@ The following items are created.
 | Table | Safety Check Answers | One data record is created for each safety check and each user. |
 | Menu | Safety Check | The screen to send, resend and close safety checks. |
 | Mail template | Safety check mail | The template of the safety check email. |
+| LINE Flex template | Safety Check | Its Flex key is "safety_check". The content of the safety check card on LINE is fixed, so editing this template does not change the card. Do not select it in the notification settings, and do not edit or delete it. |
 
 ※ The names of the tables and the menu are created in the language set at installation.  
 ※ If they are not created, run "php artisan exment:patchdata line_safety_check".
@@ -61,9 +63,9 @@ Set the following items in "Safety Check Settings" (below "LINE Setting") and cl
 | --- | --- |
 | Auto-send on Earthquake | If YES, a safety check is sent automatically when an earthquake at or above "Minimum Seismic Intensity to Auto-send" occurs. If NO, safety checks can only be sent from the safety check screen.<br />Initial value: NO |
 | Minimum Seismic Intensity to Auto-send | Select the seismic intensity for automatic sending from Shindo 4, 5 Lower, 5 Upper, 6 Lower, 6 Upper and 7. It is compared with the maximum intensity in the whole country of the earthquake information. It cannot be narrowed down by region.<br />Initial value: Shindo 5 Lower |
-| Resend Interval (minutes) | How long (minutes) a safety check is not sent again for the same earthquake. Several pieces of information (preliminary, detailed, corrected, and so on) are announced for one earthquake. Information about the same earthquake that arrives within this time after sending is not sent. For a different earthquake, a safety check is sent regardless of this time.<br />Initial value: 60 |
+| Resend Interval (minutes) | How long (minutes) a safety check is not sent again for the same earthquake. Several pieces of information (preliminary, detailed, corrected, and so on) are announced for one earthquake. Information about the same earthquake that arrives within this time after sending does not trigger another safety check. For a different earthquake, a safety check is sent regardless of this time.<br />Initial value: 60 |
 | Additional Response Window (minutes) | How long (minutes) messages sent after pressing an answer button on LINE are recorded as "additional responses". The window is extended each time an additional response is sent.<br />Initial value: 60 |
-| Earthquake History Range (minutes) | Earthquake information older than this time (minutes) from the occurrence is not sent automatically. This prevents mass sending for past earthquakes right after the function is enabled or after the task schedule has stopped. Normally, leave it at "10".<br />Initial value: 10 |
+| Earthquake History Range (minutes) | No safety check is sent automatically for earthquake information issued more than this number of minutes ago. This prevents mass sending for past earthquakes right after the function is enabled or after the task schedule has stopped. Normally, leave it at "10".<br />Initial value: 10 |
 | Manual Resend Interval (minutes) | How long (minutes) after [Resend] is executed until it can be executed again. 0 means no limit.<br />Initial value: 5 |
 
 ※ For the numeric items other than "Manual Resend Interval (minutes)", if 0 or an empty value is saved, the initial value is used.
@@ -73,7 +75,7 @@ Set the following items in "Safety Check Settings" (below "LINE Setting") and cl
 ### Answer link
 A safety check email contains a link that opens the answer page (answer link). Note the following.
 
-- The answer link is created from the Exment URL. When a safety check is sent automatically for an earthquake, "APP_URL" in the ".env" file is used. Set in "APP_URL" a URL that employees can access from outside the company. When you send from the screen, also open Exment at a URL that employees can access.
+- The answer link is created from the Exment URL. When a safety check is sent automatically for an earthquake, "APP_URL" in the ".env" file is used. Set "APP_URL" to a URL that employees can access from outside the company. When you send from the screen, also open Exment at a URL that employees can access.
 - The answer link has a signature that uses "APP_KEY" in the ".env" file. If "APP_KEY" is changed after the email is sent, the links already sent become invalid. In that case, send new links with [Resend].
 
 ### Mail template
@@ -118,14 +120,14 @@ http(s)://(Exment URL)/admin/safety_check
 
 ※ A drill is also sent to all users, and its LINE messages are also counted toward the message limit.  
 ※ If "A send is already in progress. Please wait a moment and refresh the page." is shown, the previous safety check is still being sent. Wait a moment and refresh the page. Do not click [Send] repeatedly.  
-※ When there are many users, sending may take time. If you use a queue (set "QUEUE_CONNECTION" in the ".env" file and run a queue worker; see the [Laravel documentation](https://laravel.com/docs/10.x/queues)), the sending is executed in the queue. With a queue, messages that failed because LINE is busy or similar are sent again automatically (up to 3 times).
+※ When there are many users, sending may take time. If you use a queue (set "QUEUE_CONNECTION" in the ".env" file and run a queue worker; see the [Laravel documentation](https://laravel.com/docs/12.x/queues)), the sending is executed in the queue. With a queue, messages that failed are sent again automatically (up to 3 attempts, including the first one). LINE messages are sent again only when LINE is busy (HTTP 429) or returns a server error (HTTP 5xx).
 
 ### Sending automatically when an earthquake occurs
 When "Auto-send on Earthquake" in "Safety Check Settings" is YES, Exment gets the earthquake information of the Japan Meteorological Agency from the P2P earthquake information API every minute.  
 When there is earthquake information that meets all of the following conditions, a safety check with the trigger type "JMA Auto" is sent automatically.
 
 - The maximum seismic intensity in the whole country is at or above "Minimum Seismic Intensity to Auto-send"
-- "Earthquake History Range (minutes)" has not passed since the earthquake occurred
+- "Earthquake History Range (minutes)" has not passed since the earthquake information was issued
 - No safety check has been sent for the same earthquake within "Resend Interval (minutes)"
 
 The title of an automatically sent safety check is "Safety Check Events（(occurrence date and time) (hypocenter)）".  
@@ -214,7 +216,7 @@ http(s)://(Exment URL)/admin/data/safety_check_answer
 #### Examples of views
 Creating [custom views](/view) for the Safety Check Answers table makes the answers easier to check.
 
-- **List of users who have not answered** : Create a view (normal view) and set "Answer Status" is "not_answered" in the data display conditions. Add a condition on "Event" to narrow down to a specific safety check.
+- **List of users who have not answered** : Create a view (normal view) and add the condition "Answer Status" is "not_answered" to the data display conditions. Add a condition on "Event" to narrow down to a specific safety check.
 - **Number of users by answer status** : Create a summary view that groups by "Answer Status" and shows the count.
 
 ## Resending and closing
@@ -222,7 +224,8 @@ On the list of the safety check screen, you can execute [Resend] and [Close] for
 
 ### Resend
 Click [Resend], and click [Confirm] in the confirmation dialog.  
-LINE and email are sent again **only to the users who have not answered yet**. Nothing is sent to the users who have already answered.
+LINE and email are sent again **only to the users who have not answered yet**. Nothing is sent to the users who have already answered.  
+Users added after the first sending also receive it, and "Target Count" is updated.
 
 ![Resend](img/safety_check/safety_check_resend.png)
 

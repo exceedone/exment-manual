@@ -129,7 +129,8 @@ Select the notification target.
 The items that can be selected are "Authorized user", "Email" column, "User" column, and "Choice (select from list of values ​​in other tables)".  
 ※ If the notification destination is "Slack" or "Microsoft Teams", this setting will be invalid.  
 ※"Choices (select from a list of values ​​in another table)" is only available when the referenced table has an "Email" column.  
-※When "Execution action" is "Alert in system", the setting of "Email" column and "Choices (select from list of values ​​in other tables)" will be invalid.
+※When "Execution action" is "Alert in system", the setting of "Email" column and "Choices (select from list of values ​​in other tables)" will be invalid.  
+※ When the action is "LINE", the notification target is required. As with "In-system alert", select from the system administrator, authorized users, the create user, a "User" column, specified users, specified organizations, and so on. Notifications are not sent to users who have not linked their LINE account.
 
 #### LINE Flex template
 When the action is "LINE", select the template of the card sent to LINE. If no template is selected, the message is sent as text.  

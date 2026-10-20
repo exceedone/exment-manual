@@ -191,7 +191,9 @@ php artisan exment: resetpassword --email = (target user's email address) --pass
 ### Issuing a LINE link code
 Issues a link code and a link URL (deep link) for linking the LINE account of the specified user.  
 Open the link URL on a smartphone that has added the LINE Official Account as a friend, and send the message shown to complete the link.  
-※ Normally, each user should link their account on the [LINE Link](/line?id=linking-a-line-account) screen.
+※ Normally, each user should link their account on the [LINE Link](/line?id=linking-a-line-account) screen.  
+※ For "user ID", specify the ID (number) of the user data, not the user code.  
+<span class="red">※ If you run this command for a user who has already linked a LINE account, the current link is removed.</span>
 
 ```
 php artisan exment:line-linkcode (user ID)
