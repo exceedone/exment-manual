@@ -29,7 +29,7 @@ When using Meilisearch, the following conditions must be satisfied.
 
 
 ## Notes
-- Meilisearch and the queue worker must keep running at all times. If Meilisearch stops, searches fail; if the queue worker stops, updates are no longer reflected in the index. Steps 1 and 3 register both as services that restart automatically.
+- Meilisearch and the queue worker must keep running at all times. If Meilisearch stops, the search screen switches to the standard search using the database (while narrowing-down conditions are applied, no search results are displayed, and the sort order is not applied). If the queue worker stops, updates are no longer reflected in the index. Steps 1 and 3 register both as services that restart automatically.
 - The index is held separately from the database, so the two can drift apart. Step 4 sets up the daily automatic repair.
 - <span class="red">*When "EXMENT_SEARCH_DOCUMENT" is true, Meilisearch is not used on the search screen</span>, even if "MEILISEARCH_GLOBAL_SEARCH" is true, because attachment file names are not indexed. The input completion of "Select (select from the list of values of another table)" is not affected.
 - <span class="red">*Do not publish Meilisearch to the Internet.</span> Allow connections only from the Exment server or the internal network, and keep the master key secret.
@@ -393,6 +393,9 @@ Some of the settings of Meilisearch can be changed not only from the ".env" but 
 Therefore, **if the contents are not reflected even though you changed the ".env", please check the settings on this screen.**
 - When you save an item on the screen while it is empty, the setting value of the ".env" is used for that item.
 
+> One index can be used by only one Exment installation. The Exment that uses an index first is recorded as its owner in an index named "(index name)__owner". (The recorded value is an identifier created from "APP_KEY" in the ".env".)  
+> When multiple Exment installations use the same Meilisearch server, set a different "Index name" for each Exment. An index whose owner is recorded as another Exment cannot be used. For details, please check [If it does not work properly](#if-it-does-not-work-properly).
+
 
 ## About the search accuracy
 In Meilisearch, before performing a search, the process of splitting a sentence into words (tokenization) is performed.  
@@ -457,7 +460,8 @@ When "MEILISEARCH_GLOBAL_SEARCH" is true, the following functions can be used on
 
     ![Save current conditions](img/meilisearch/meilisearch_saved1.png)  
 
-- Export : Output the search results as CSV or XLSX for each table. If the export target exceeds "MEILISEARCH_PERMISSION_SCAN_CAP" (default value 1000), an error occurs, so please narrow down the search conditions.
+- Export : Output the search results as CSV or XLSX for each table. If the number of export targets reaches the limit (the smaller of "MEILISEARCH_PERMISSION_SCAN_CAP" (default value 1000) and the "maxTotalHits" setting of the index), an error occurs, so please narrow down the search conditions.  
+*The number is judged by all search results (hits) before narrowing down by view permission. Therefore, an error may occur even if the data you can view is less than the limit.
 
 
 ## Recreating and repairing the index
@@ -550,11 +554,12 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |The search results do not change even after updating data|"MEILISEARCH_REALTIME_SYNC" is false, or the queue worker has stopped. Please check the status of the service, and the failed jobs with "php artisan exment:meili-health --failed".|
 |The search results do not change even after changing the column settings|The process of recreating the index has not been completed. Please check whether "gave up after 3 attempts" is output to the log, and execute "php artisan exment:meili-index".|
 |"reindex ... skipped: the queue connection is 'sync'" is output to the log|Since "QUEUE_CONNECTION" is sync, the process was given up. Please execute "php artisan exment:meili-index", or change the queue to database or redis and execute the queue worker.|
-|"Too many results to export (limit N)" is displayed at export|It exceeds "MEILISEARCH_PERMISSION_SCAN_CAP" (default value 1000). Since it is treated as an error instead of reducing the number of records, please narrow down the search conditions, or increase the setting value and then execute "php artisan exment:meili-settings".|
+|"Too many results to export (limit N)" is displayed at export|The number of search results has reached the limit (the smaller of "MEILISEARCH_PERMISSION_SCAN_CAP" (default value 1000) and the "maxTotalHits" setting of the index). The number is judged by the hits before narrowing down by view permission. Since it is treated as an error instead of reducing the number of records, please narrow down the search conditions, or increase the setting value and then execute "php artisan exment:meili-settings".|
 |Some results are not displayed in a Japanese search (such as when kanji and katakana are consecutive)|The tokenization setting is not applied. Please check the setting contents with "php artisan exment:meili-settings --show", and check whether "MEILISEARCH_LOCALES" is empty and whether Meilisearch is v1.10 or later.|
 |There is a difference in the data after an import or a bulk deletion, or a table whose "Search Enabled" was changed to NO is still displayed in the search results|Documents are missing from, or remain in, the index. Please execute "php artisan exment:meili-reconcile" without specifying "--table".|
 |The automatic repair is not executed|The setting of the scheduler has not been performed, or "MEILISEARCH_REPAIR_ENABLED" is false.|
 |The Meilisearch service repeats starting and stopping (Linux)|"WorkingDirectory=/var/lib/meilisearch" is not described in the service configuration file.|
+|"Meilisearch index '(index name)' belongs to another Exment installation" is output by a command or to the log|The configured index is used by another Exment as its owner. This occurs when another Exment uses the same index name on the same Meilisearch server, or when "APP_KEY" in the ".env" has been changed. In this state, the "exment:meili-index" and "exment:meili-reconcile" commands result in an error, and data updates are not reflected in the index. Searches are performed using the database.<br />Change "Index name" in "System Settings (Advanced settings)" to a name not used by any other Exment and save it, then execute "php artisan exment:meili-index" and restart the queue worker. If the cause is a change of "APP_KEY", restoring the original "APP_KEY" value also solves it.|
 
 - For Linux, you can check the error contents of Meilisearch with the following command.
 

@@ -29,7 +29,7 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 
 
 ## 注意点
-- Meilisearchとキューワーカは、常時実行しておく必要があります。Meilisearchが停止した場合は検索が実行されず、キューワーカが停止した場合は更新内容がインデックスへ反映されません。手順1と手順3で、どちらも自動的に再起動するサービスとして登録します。
+- Meilisearchとキューワーカは、常時実行しておく必要があります。Meilisearchが停止した場合、検索画面はデータベースを使用した標準の検索に切り替わります(絞り込み条件を適用している場合は検索結果が表示されず、並び順は適用されません)。キューワーカが停止した場合は、更新内容がインデックスへ反映されません。手順1と手順3で、どちらも自動的に再起動するサービスとして登録します。
 - Meilisearchのインデックスは、Exmentのデータベースとは別に保持されるため、両者の間で差異が発生する場合があります。手順4で、1日1回の自動修復を設定します。
 - <span class="red">※「EXMENT_SEARCH_DOCUMENT」をtrueにしている場合、検索画面ではMeilisearchが使用されません。</span>添付ファイルのファイル名はインデックスに含まれないため、「MEILISEARCH_GLOBAL_SEARCH」がtrueであっても、検索画面の処理はデータベースを使用した検索になります。カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完は影響を受けません。
 - <span class="red">※Meilisearchは、インターネットに公開しないでください。</span>Exmentと同一のサーバー、もしくは内部ネットワークからのみ接続できるように設定し、マスターキーは第三者に共有しないよう厳重に管理してください。
@@ -393,6 +393,9 @@ Meilisearchの設定の一部は、「.env」だけでなく、Exmentの画面�
 そのため、**「.envを変更したのに反映されない」という場合、この画面の設定をご確認ください。**
 - 画面の項目を空にして保存した場合、その項目については、「.env」の設定値が使用されます。
 
+> 1つのインデックスは、1つのExmentでのみ使用することができます。インデックスを最初に使用したExmentが、「(インデックス名)__owner」というインデックスに、所有者として記録されます。(記録される値は、「.env」の「APP_KEY」から作成した識別値です)  
+> 同じMeilisearchサーバーを複数のExmentで使用する場合は、Exmentごとに別の「インデックス名」を設定してください。他のExmentが所有者として記録されているインデックスは、使用することができません。詳細は[うまく動作しない場合](#うまく動作しない場合)をご確認ください。
+
 
 ## 日本語の検索精度について
 Meilisearchでは、検索を行う前に、文章を単語に分割する処理(分かち書き)を行います。  
@@ -457,7 +460,8 @@ php artisan exment:meili-search "キーワード" --limit=5 --highlight --facets
 
     ![現在の条件を保存](img/meilisearch/meilisearch_saved1.png)  
 
-- エクスポート : テーブルごとに、検索結果をCSVもしくはXLSXで出力します。出力対象が「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超える場合はエラーとなるため、検索条件を絞り込んでください。
+- エクスポート : テーブルごとに、検索結果をCSVもしくはXLSXで出力します。出力対象の件数が上限(「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)と、インデックスの「maxTotalHits」設定のうち、小さい方の値)以上の場合はエラーとなるため、検索条件を絞り込んでください。  
+※件数は、閲覧権限による絞り込みを行う前の、すべての検索結果(ヒット)の件数で判定します。そのため、閲覧できるデータが上限より少ない場合でも、エラーとなることがあります。
 
 
 ## インデックスの再作成・修復
@@ -550,11 +554,12 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |データを更新しても検索結果が変わらない|「MEILISEARCH_REALTIME_SYNC」がfalseになっているか、キューワーカが停止しています。サービスの状態と、「php artisan exment:meili-health --failed」で失敗したジョブをご確認ください。|
 |列の設定を変更しても検索結果が変わらない|インデックスを作成しなおす処理が、完了していません。ログに「gave up after 3 attempts」が出力されていないかを確認し、「php artisan exment:meili-index」を実行してください。|
 |ログに「reindex ... skipped: the queue connection is 'sync'」と出力される|「QUEUE_CONNECTION」がsyncのため、処理が中止されています。「php artisan exment:meili-index」を実行するか、キューをdatabase・redisに変更し、キューワーカを実行してください。|
-|エクスポート時に「出力対象が多すぎます（上限 N 件）」と表示される|「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)を超えています。件数を減らさずにエラーとしているため、検索条件を絞り込むか、設定値を大きくしたうえで「php artisan exment:meili-settings」を実行してください。|
+|エクスポート時に「出力対象が多すぎます（上限 N 件）」と表示される|検索結果の件数が、上限(「MEILISEARCH_PERMISSION_SCAN_CAP」(既定値1000)と、インデックスの「maxTotalHits」設定のうち、小さい方の値)以上になっています。件数は閲覧権限で絞り込む前のヒット件数で判定します。件数を減らさずにエラーとしているため、検索条件を絞り込むか、設定値を大きくしたうえで「php artisan exment:meili-settings」を実行してください。|
 |日本語の検索で、検索結果が表示されない場合がある(漢字とカタカナが連続している場合など)|分かち書きの設定が適用されていません。「php artisan exment:meili-settings --show」で設定内容を確認し、「MEILISEARCH_LOCALES」が空になっていないか、Meilisearchがv1.10以降であるかをご確認ください。|
 |インポート・一括削除の後にデータに差異がある、もしくは「検索可能」をNOに変更したテーブルが検索結果に表示される|インデックスのドキュメントが不足している、もしくは残っています。「--table」を指定せずに「php artisan exment:meili-reconcile」を実行してください。|
 |自動修復が実行されない|スケジューラの設定が行われていないか、「MEILISEARCH_REPAIR_ENABLED」がfalseになっています。|
 |Meilisearchのサービスが起動と停止を繰り返す(Linux)|サービスの設定ファイルに「WorkingDirectory=/var/lib/meilisearch」の記載がありません。|
+|コマンドの実行結果やログに「Meilisearch index '(インデックス名)' belongs to another Exment installation」と出力される|設定しているインデックスを、別のExmentが所有者として使用しています。同じMeilisearchサーバーで、別のExmentが同じインデックス名を使用している場合や、「.env」の「APP_KEY」を変更した場合に発生します。この状態では、「exment:meili-index」「exment:meili-reconcile」コマンドはエラーとなり、データの更新内容もインデックスへ反映されません。また、検索はデータベースを使用して行われます。<br />「システム設定(詳細設定)」の「インデックス名」を、他のExmentと重複しない名前に変更して保存した後、「php artisan exment:meili-index」を実行し、キューワーカを再起動してください。「APP_KEY」を変更したことが原因の場合は、「APP_KEY」を元の値に戻すことでも解消します。|
 
 - Linuxの場合、以下のコマンドで、Meilisearchのエラー内容を確認することができます。
 

@@ -24,7 +24,7 @@ The main operations are as follows.
 - The system administrator enters the following URL.  
 http(s)://(Exment URL)/admin/auth/logs  
 
-- Alternatively, add "API App Settings" to the menu.  
+- Alternatively, add "Operation Log" to the menu.  
 Open the "Administrator Settings" > "Menu" page and select the menu type "System Menu" to display the target "Operation Log". Select it and save it.  
 * "Operation log" is not displayed in the menu by default.
 
@@ -67,6 +67,10 @@ The date and time when the operation was performed.
     - verify_code
     - access_token
     - refresh_token
+    - system_line_channel_token
+    - system_line_channel_secret
+
+*The items above are always masked, regardless of the settings in `config/exment.php` described below.
 
 - Currently, it does not support exporting operation logs. note that.
 
@@ -80,23 +84,53 @@ The masking behavior can be customized in the `operation_log` section of the fol
 
 `config/exment.php`
 
-The following example shows how to configure the masking settings.
+The following is the default `operation_log` block in `config/exment.php`. (Some comments are omitted.)
 
 ```php
 'operation_log' => [
+    // Keys masked on every screen
     'mask_columns' => [
-        'client_secret',
+        // SSO (OAuth / SAML) secrets
+        'oauth_client_id',
+        'oauth_client_secret',
+        'saml_sp_privatekey',
+        // System config secrets: reCAPTCHA secret, SMTP password
+        'recaptcha_secret_key',
+        'system_mail_password',
+        // Meilisearch API key
+        'meili_key',
+        // LINE Messaging API channel credentials
+        'system_line_channel_token',
+        'system_line_channel_secret',
+        // Plugin DB connection password
+        'custom_password',
+        // Plugin CRUD page auth
+        'crud_auth_key',
+        'crud_auth_password',
     ],
 
+    // Keys masked only on specific screens / APIs
     'mask_columns_by_uri' => [
-        'oauth/*' => ['client_id'],
+        // API client setting screens
+        'api_setting*' => ['id', 'secret', 'client_api_key'],
+        // OAuth token endpoints
+        'oauth/*' => ['client_id', 'api_key', 'client_secret'],
+        // Password reset form
+        'auth/reset*' => ['token'],
     ],
 
+    // URI prefixes whose next path segment is masked
     'mask_path_prefixes' => [
+        'api_setting' => true,
+        'oauth/clients' => true,
+        // Password reset token. DO NOT remove or set to true.
         'auth/reset' => false,
     ],
 ],
 ```
+
+<span class="red">*If you write `operation_log` in `config/exment.php`, it is not merged with the Exment defaults: the block you write replaces the whole default block.</span>  
+When adding or changing mask targets, write all of the default values above and then add or change entries. In particular, do not remove `'auth/reset' => false` from `mask_path_prefixes`; if it is removed, password reset tokens are logged without masking.
 
 #### mask_columns
 
@@ -115,15 +149,21 @@ The following example shows how to configure the masking settings.
 
 - Specify URI prefixes, relative to the `admin` prefix, when the following path segment contains confidential information.
 - The array value determines how the path segment is masked.
-    - `true`: Keep only the first 8 characters (when the value is long enough) and replace the remainder with `***`. Use this for record IDs when traceability is required.
+    - `true`: If the value is 13 characters or longer, keep only the first 8 characters and replace the remainder with `***`. If it is 12 characters or shorter, replace the entire value with `***`. Use this for record IDs when traceability is required.
     - `false`: Replace the entire value with `***`. Use this for confidential values such as password reset tokens.
 - For example, if `auth/reset` is configured as `false`, the password reset token included in the URL is replaced entirely with `***`.
 
 #### Notes
 
 - Masking is applied when new operation logs are written.
-- If the operation log patch process is executed during an upgrade, existing operation log records are also masked according to the configured rules.
-- When upgrading Exment, review the `operation_log` settings and add any newly introduced mask targets if necessary.
+- <span class="red">Existing operation log records are not masked automatically when Exment is upgraded.</span> To apply the current settings to existing records, back up the database and then execute the following command. Masked values cannot be restored.
+
+```
+php artisan exment:patchdata patch_log_opelation
+```
+
+*"opelation" in the command name is not a typo. Enter it exactly as shown above.
+- `config/exment.php` is not overwritten when Exment is upgraded (`php artisan exment:update`). Therefore, default mask targets added in a new version are not applied to an environment that already has an `operation_log` block. When upgrading, compare your `operation_log` settings with the default values above and add any missing mask targets manually.
 - Use `mask_columns` only for values that are always confidential. For values that are confidential only on specific screens, use `mask_columns_by_uri` or `mask_path_prefixes` to avoid masking normal business data.
 
 ### Operation Log Automatic Deletion
