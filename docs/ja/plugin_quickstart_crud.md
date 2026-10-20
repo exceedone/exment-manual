@@ -1,6 +1,7 @@
 ## プラグイン(CRUDページ)
 Exmentに、独自のCRUDページを追加します。  
 **※プラグイン(CRUD)では、多数の機能や関数を用意しています。詳細は[プラグインリファレンス](/ja/plugin_reference_crud)をご確認ください。**  
+※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。  
 
 ## CRUDとは
 Create、Read、Update、Deleteのことです。  
@@ -88,8 +89,8 @@ https://www.famkruithof.net/uuid/uuidgen
 // (1)
 namespace App\Plugins\MySQLWorld;
 
-use Encore\Admin\Widgets\Grid\Grid;
-use Encore\Admin\Widgets\Form;
+use ExmentAdminCore\Admin\Widgets\Grid\Grid;
+use ExmentAdminCore\Admin\Widgets\Form;
 use Exceedone\Exment\Services\Plugin\PluginCrudBase;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;

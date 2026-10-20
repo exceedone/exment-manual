@@ -2,6 +2,7 @@
 各プラグイン独自の関数やプロパティ一覧になります。  
 ※カスタムテーブルやカスタム列、カスタムデータのリファレンスは、[こちら](/ja/func_reference)をご参照ください。  
 ※プラグイン(CRUDページ)のリファレンスは、[こちら](/ja/plugin_reference_crud)をご参照ください。  
+※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。  
 
 
 
@@ -25,7 +26,7 @@
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| &$form | \Encore\Admin\Form | laravel-adminのフォームインスタンス |
+| &$form | \ExmentAdminCore\Admin\Form | laravel-adminのフォームインスタンス |
 
 ##### 戻り値
 なし
@@ -596,7 +597,7 @@ jsファイルのパスを取得する関数です。
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| &$form | \Encore\Admin\Form | laravel-adminのフォームインスタンス |
+| &$form | \ExmentAdminCore\Admin\Form | laravel-adminのフォームインスタンス |
 
 ##### 戻り値
 なし

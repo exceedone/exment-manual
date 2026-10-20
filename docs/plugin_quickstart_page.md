@@ -6,6 +6,9 @@ Use this if you want to use a page that is completely different from the existin
 Exment plugin pages are developed using the PHP framework [Laravel](http://laravel.jp/) and [laravel-admin](https://laravel-admin.org/docs/).  
 When developing a page, it is recommended that people with knowledge of Laravel develop it.
 
+※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/v7_0_0).
+
 ## How to make
 
 ### sample
@@ -86,7 +89,7 @@ Create the following PHP file. File name should be "Plugin.php".
 // (1)
 namespace App\Plugins\YouTubeSearch;
 
-use Encore\Admin\Widgets\Box;
+use ExmentAdminCore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Services\Plugin\PluginPageBase;
 use GuzzleHttp\Client;

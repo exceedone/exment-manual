@@ -1,6 +1,15 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.0.0 (2026/XX/XX)
+
+- <span class="red bold">v6.X.X以下から、v7.0.0以上へのアップデートは、手動でのアップデートが必要です。[こちら](/ja/update/v7_0_0)の内容を一度ご確認の上、更新を行ってください。</span>
+
+1. 全般
+    - 使用フレームワークを、Laravel10からLaravel12に変更
+    - 管理画面ライブラリを、「exceedone/laravel-admin」から「exceedone/exment-admin-core」に変更
+        - <span class="red bold">名前空間が「Encore\Admin」から「ExmentAdminCore\Admin」に変更となります。</span>プラグイン、「config/admin.php」、「app/Admin」、ならびに独自カスタマイズしたソースコードの修正が必要です。詳細は[こちら](/ja/update/v7_0_0)
+
 ## v6.2.15 (2026/10/09)
 1. 脆弱性対応
     - JVN#05318392（親番号）　クロスサイトスクリプティングの脆弱性

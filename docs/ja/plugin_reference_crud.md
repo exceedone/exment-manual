@@ -3,7 +3,8 @@
 ※カスタムテーブルやカスタム列、カスタムデータのリファレンスは、[こちら](/ja/func_reference)をご参照ください。  
 ※CRUDページ専用のリファレンスです。それ以外の種類のリファレンスについては、[こちら](/ja/plugin_reference)をご参照ください。  
 ※主にプラグイン開発者が定義するものを記載します。システムで使用し、プラグイン開発者では変更を実施させたくない内容は割愛します。  
-※「★」が表記されている関数は、ほぼ必ず定義が必要です。「☆」が表記されている関数は、場合により定義が必要です。
+※「★」が表記されている関数は、ほぼ必ず定義が必要です。「☆」が表記されている関数は、場合により定義が必要です。  
+※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。
 
 ## PluginCrudBase
 プラグイン(CRUDページ)の抽象クラスです。CRUDページプラグインを開発する場合、こちらのクラスを継承してください。  
@@ -655,7 +656,7 @@ GRID(データ一覧)画面で、ページの右上に独自のボタンを表�
 
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| $tools | \Encore\Admin\Widgets\Grid\Tools | ツール |
+| $tools | \ExmentAdminCore\Admin\Widgets\Grid\Tools | ツール |
 
 
 ##### 戻り値
@@ -703,7 +704,7 @@ SHOW(データ詳細)画面で、ページの右上に独自のボタンを表�
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | $id | string | キー値 |
-| $box | \Encore\Admin\Widgets\Box | Box |
+| $box | \ExmentAdminCore\Admin\Widgets\Box | Box |
 
 
 ##### 戻り値
@@ -743,7 +744,7 @@ CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | $id | string | キー値 |
-| $box | \Encore\Admin\Widgets\Box | Box |
+| $box | \ExmentAdminCore\Admin\Widgets\Box | Box |
 
 
 ##### 戻り値
@@ -786,7 +787,7 @@ CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、
 ##### 引数
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| $form | \Encore\Admin\Widgets\Form | 入力フォーム |
+| $form | \ExmentAdminCore\Admin\Widgets\Form | 入力フォーム |
 | $isCreate | bool | 新規作成の場合true |
 | $options | array | 現在未使用。予約引数。 |
 
@@ -830,7 +831,7 @@ CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、
 
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
-| $form | \Encore\Admin\Widgets\Form | 入力フォーム |
+| $form | \ExmentAdminCore\Admin\Widgets\Form | 入力フォーム |
 | $values | array | ユーザーの入力値 |
 | $isCreate | bool | 新規作成の場合true |
 | $id | string | キー値 |

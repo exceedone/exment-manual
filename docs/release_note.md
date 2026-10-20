@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.0.0 (2026/XX/XX)
+
+- <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. Please check the contents of [here](/update/v7_0_0) before updating. </span>
+
+1. General
+    - Changed the framework used from Laravel10 to Laravel12
+    - Changed the admin panel library from "exceedone/laravel-admin" to "exceedone/exment-admin-core"
+        - <span class="red bold">The namespace has been changed from "Encore\Admin" to "ExmentAdminCore\Admin".</span> Plugins, "config/admin.php", "app/Admin" and the source code you customized yourself need to be corrected. For details, please see [here](/update/v7_0_0)
+
 ## v6.2.15 (2026/10/09)
 1. Vulnerability fixes
     - JVN#05318392 (Parent ID): Cross-site scripting vulnerability

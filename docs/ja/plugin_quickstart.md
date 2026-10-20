@@ -3,6 +3,9 @@
 ここでは、Exmentプラグインの作成方法について記載します。  
 プラグインの機能・管理方法についての詳細は、[プラグイン](/ja/plugin.md)をご参照ください。  
 
+※管理画面ライブラリのクラスは、Exment v7.0.0以降の名前空間(「ExmentAdminCore\Admin」)で記載しています。  
+v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてください。  
+
 ## 作成方法リンク
 
 - [ボタン](/ja/plugin_quickstart_button.md)
@@ -55,7 +58,7 @@
 // (1)
 namespace App\Plugins\YouTubeSearch;
 
-use Encore\Admin\Widgets\Box;
+use ExmentAdminCore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Services\Plugin\PluginXXXXBase;
 use GuzzleHttp\Client;
