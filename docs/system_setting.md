@@ -90,19 +90,18 @@ $ php artisan passport:keys
 - If the setting is YES, it is possible to grant the authority specified by the organization in [Use authority management](#Use-authority-management).
 - The initial value is "YES".
 
-#### Enable Operation Log
-- This setting enables the system performance log. It is a different feature from the [Operation log](/logs).  
-※ In Exment v6.x, this setting is available from v6.2.7 and is displayed with the same label "Enable Operation Log".  
-- If set to "YES", for each request to a screen after login, the request URL, the executing user (email address), the date and time, and the executed SQL are recorded in the table "System Performance Log".  
-The executed SQL is also output to the server log file (laravel.log).
+#### Enable System Performance Log
+- If set to "Yes", the activity log feature will be enabled, and all user operations will be recorded.
 - The initial value is "NO".
 
-![Enable Operation Log](img/logs/enable_operation_log.png)  
-- The table "System Performance Log" where the logs are recorded is created automatically by the update command (`php artisan exment:update`) if it does not exist. It can also be imported from the [Template](/template) screen.
-
-![System Performance Log](img/logs/system_log.png)  
-
-<span class="red">*The recorded SQL is stored as is, including input values, without masking. Also, because a log is recorded for every request, processing becomes slower. Set this to YES only while investigating performance, and set it back to NO when the investigation is finished.</span>
+![Enable System Performance Log](img/logs/enable_operation_log.png)  
+- Please download the ZIP file and install the template:
+[Template zip file] (https://exment.net/template/system_logs.zip)
+- Run the update command:
+~~~
+   php artisan exment:update
+~~~
+![System Logs](img/logs/system_log.png)  
 
 #### System Administrator
 - You can set the user who will be the system monitor.
@@ -185,12 +184,6 @@ See [here](/line?id=system-settings) for details.
 ## Safety Check Settings
 In "Safety Check Settings" of [Detail Setting], set the automatic sending on earthquakes and other settings of the [safety check](/safety_check).  
 See [here](/safety_check?id=safety-check-settings) for details.
-
-
-## Meilisearch (full-text search) settings
-In "Meilisearch (full-text search) settings" of [Detail Setting], set the connection and behavior of the [full-text search engine (Meilisearch)](/additional_meilisearch).  
-*The values saved on this screen take priority over the setting values in ".env". If you save an item empty, the setting value in ".env" is used for that item.  
-See [here](/additional_meilisearch?id=system-settings) for the setting of each item, and [here](/additional_meilisearch?id=setting-the-items-of-the-screen-in-the-env) for the points to note when setting them in ".env".
 
 
 ## Password policy
