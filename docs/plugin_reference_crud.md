@@ -5,7 +5,7 @@ It is a list of functions and properties unique to each plugin.
 ※ This mainly describes items that plugin developers define. Items that are used by the system and that plugin developers should not change are omitted.  
 ※ Functions marked with "★" almost always need to be defined. Functions marked with "☆" need to be defined depending on the case.  
 ※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [here](/update/v7_0_0).
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
 
 ## PluginCrudBase
 An abstract class for plugins (CRUD pages). When developing a CRUD page plugin, inherit this class.  

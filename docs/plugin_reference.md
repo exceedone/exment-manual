@@ -3,7 +3,7 @@ It is a list of functions and properties unique to each plug-in.
 ※ Custom tables or columns, reference of custom data, [click here](/func_reference) please refer to.  
 ※ For the reference of plugins (CRUD pages), please refer to [here](/plugin_reference_crud).  
 ※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [here](/update/v7_0_0).
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
 
 ## PluginBase / Plugin common class
 

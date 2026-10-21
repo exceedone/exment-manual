@@ -2,7 +2,7 @@
 Add your own CRUD page to Exment.  
 **※ The plugin (CRUD) provides many features and functions. For details, please refer to the [Plugin reference](/plugin_reference_crud).**  
 ※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [here](/update/v7_0_0).
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
 
 ## What is CRUD
 CRUD stands for Create, Read, Update, and Delete.  
