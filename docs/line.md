@@ -108,8 +108,7 @@ You can also open it from the following URL.
 http(s)://(Exment URL)/admin/line/link
 ~~~
 
-- Click [QRコードを生成] (Generate QR code). The QR code for linking is shown.  
-※ The labels of this screen are shown in Japanese regardless of the language setting.
+- Click [Generate QR code]. The QR code for linking is shown.
 
 ![Generating the QR code](img/line/line_link_qr.png)
 
@@ -121,16 +120,16 @@ The chat with the LINE Official Account opens, with "LINK (link code)" already e
 
 ![Link completed](img/line/line_link_chat.png)
 
-- When you reopen the "LINE Link" screen, "LINE連携済み" (LINE account linked) is shown.
+- When you reopen the "LINE Link" screen, "LINE account linked" is shown.
 
 ![Linked](img/line/line_link_done.png)
 
-※ By default, a link code is valid for 10 minutes. If it has expired, click [QRコードを生成] (Generate QR code) again.  
+※ By default, a link code is valid for 10 minutes. If it has expired, click [Generate QR code] again.  
 ※ A LINE account can be linked to only one user. If a LINE account that is already linked sends a link code, "This LINE account is already linked to an account. To change it, please unlink it on the web first." is replied. However, if the user that the LINE account is linked to has been deleted, the old link is removed automatically and the LINE account can be linked to another user.  
 ※ By default, up to 5 wrong link codes can be sent. If 5 wrong codes are sent within 10 minutes (by default) of the first wrong code, linking is blocked until those 10 minutes have passed. While linking is blocked, even a correct link code gets the reply "The link code is invalid or has expired. Please check and try again.".
 
 ### Unlinking
-On the "LINE Link" screen, click [連携解除] (Unlink).  
+On the "LINE Link" screen, click [Unlink].  
 If you change your smartphone or LINE account, unlink and then link again.
 
 ## LINE Flex templates
@@ -358,9 +357,9 @@ The following settings can be changed in the ".env" file. See the [list of set v
 | --- | --- | --- |
 | Webhook [Verify] fails | - The Webhook URL does not start with "https://", or the SSL certificate is invalid<br />- Exment cannot be accessed from the internet<br />- The channel secret is wrong | Check the Webhook URL, how the server is published, and "Channel secret" in the system settings. |
 | No reply arrives after sending the link code | - "Use webhook" is off<br />- The Webhook URL is wrong | Check the [webhook settings](/line?id=webhook-settings). |
-| Clicking [QRコードを生成] (Generate QR code) shows "The LINE Official Account basic ID is not configured. Set it under Admin settings > System settings." | The basic ID is not set | Enter "LINE Official Account Basic ID" in the system settings. |
-| "The link code is invalid or has expired. Please check and try again." is replied | - The link code has expired or is wrong<br />- Linking is temporarily blocked because wrong link codes were sent repeatedly | Click [QRコードを生成] (Generate QR code) and scan the new QR code. If linking is blocked, wait a while (10 minutes by default) and send the code again. |
-| "This LINE account is already linked to an account. To change it, please unlink it on the web first." is replied | The LINE account is already linked to an Exment user | Log in to Exment as the linked user, click [連携解除] (Unlink) on the "LINE Link" screen, and then link again. |
+| Clicking [Generate QR code] shows "The LINE Official Account basic ID is not configured. Set it under Admin settings > System settings." | The basic ID is not set | Enter "LINE Official Account Basic ID" in the system settings. |
+| "The link code is invalid or has expired. Please check and try again." is replied | - The link code has expired or is wrong<br />- Linking is temporarily blocked because wrong link codes were sent repeatedly | Click [Generate QR code] and scan the new QR code. If linking is blocked, wait a while (10 minutes by default) and send the code again. |
+| "This LINE account is already linked to an account. To change it, please unlink it on the web first." is replied | The LINE account is already linked to an Exment user | Log in to Exment as the linked user, click [Unlink] on the "LINE Link" screen, and then link again. |
 | "To link your account, send: LINK &lt;code&gt;." is replied | A user who has not linked their LINE account sent a message other than a link code | Scan the QR code and link the account by following [Linking a LINE account](/line?id=linking-a-line-account). |
 | "Invalid command." is replied | A user who has linked their LINE account sent a message other than a link code | This is not an error. Exment does not respond to messages other than link codes. For additional responses to a safety check, see [Safety check](/safety_check?id=answering-on-line). |
 | A LINE notification does not arrive, and nothing is recorded in the LINE send log | The notified user has not linked their LINE account | Ask the user to [link their LINE account](/line?id=linking-a-line-account). |
