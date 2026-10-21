@@ -79,7 +79,7 @@ Please check the link below for the construction method.
 
 ## Operating environment
 ### server
-- PHP 8.2-8.3 (Since Exment 7.0.0, the PHP version has changed to 8.2-8.3. With the easy installation, PHP 8.4 or higher results in an error)
+- PHP 8.2 or higher (`^8.2.0`. Exment 7.0.0 uses Laravel 12, which requires PHP 8.2 or higher)
 - Laravel 12.X (Laravel version changed to 12.X from Exment 7.0.0)
 - ※ For Exment v6.x: PHP 8.2, Laravel 10.X.
 - Database: One of the following
