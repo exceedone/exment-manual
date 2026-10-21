@@ -7,7 +7,7 @@
 
 1. General
     - Changed the framework used from Laravel10 to Laravel12
-    - Changed the supported PHP versions to PHP8.2 - 8.3
+    - Changed the supported PHP versions to PHP8.2 or higher (`^8.2.0`)
     - Changed the admin panel library from "exceedone/laravel-admin" to "exceedone/exment-admin-core"
         - <span class="red bold">The namespace has been changed from "Encore\Admin" to "ExmentAdminCore\Admin".</span> Plugins, "config/admin.php", "app/Admin" and the source code you customized yourself need to be corrected. For details, please see [here](/update/v7_0_0)
         - "exceedone/exment-admin-core" is installed automatically as a dependency of Exment, so it does not need to be added to composer.json. For details, please see [here](/update/v7_0_0)

@@ -13,7 +13,7 @@ If you haven't built the server yet, build a web server or database server.
 Please check [here](/server) for the construction method.
 
 ### Web server construction
-Exment requires PHP 8.2 - 8.3.  
+Exment requires PHP 8.2 or higher (`^8.2.0`).  
 If you have not built the server yet, please check [here](/server) and build it.
 
 ### Introduced composer

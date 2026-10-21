@@ -173,7 +173,7 @@ Depending on the environment, it may be faster.
 
 #### About the settings of the full-text search engine (Meilisearch)
 The following setting values beginning with "MEILISEARCH_" are the settings for using the full-text search engine "Meilisearch". For details, please check [here](/additional_meilisearch).
-<span class="red">*Among these, "MEILISEARCH_HOST", "MEILISEARCH_KEY", "MEILISEARCH_INDEX", "MEILISEARCH_GLOBAL_SEARCH", "MEILISEARCH_REALTIME_SYNC", "MEILISEARCH_BATCH_SIZE", "MEILISEARCH_REPAIR_ENABLED", "MEILISEARCH_REPAIR_AT" and "MEILISEARCH_FILTER_MODE" can also be set from the menu "Admin Settings > System Settings (Advanced settings)". When you save from the screen, the settings on the screen take priority over the ".env".</span>
+<span class="red">*Among these, "MEILISEARCH_HOST", "MEILISEARCH_KEY", "MEILISEARCH_INDEX", "MEILISEARCH_GLOBAL_SEARCH", "MEILISEARCH_REALTIME_SYNC", "MEILISEARCH_BATCH_SIZE", "MEILISEARCH_REPAIR_ENABLED", "MEILISEARCH_REPAIR_AT" and "MEILISEARCH_FILTER_MODE" are recommended to be set from the menu "Admin Settings > System Settings (Advanced settings)". Once that screen is saved, the values on the screen take priority over the ".env" for these items, and changes in the ".env" are no longer reflected. For the points to note when setting them in the ".env", please check [here](/additional_meilisearch?id=setting-the-items-of-the-screen-in-the-env).</span>
 *The setting values other than the above can be set only in the ".env".
 
 

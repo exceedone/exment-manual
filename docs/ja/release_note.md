@@ -7,7 +7,7 @@
 
 1. 全般
     - 使用フレームワークを、Laravel10からLaravel12に変更
-    - PHPの対応バージョンを、PHP8.2～8.3に変更
+    - PHPの対応バージョンを、PHP8.2以上(`^8.2.0`)に変更
     - 管理画面ライブラリを、「exceedone/laravel-admin」から「exceedone/exment-admin-core」に変更
         - <span class="red bold">名前空間が「Encore\Admin」から「ExmentAdminCore\Admin」に変更となります。</span>プラグイン、「config/admin.php」、「app/Admin」、ならびに独自カスタマイズしたソースコードの修正が必要です。詳細は[こちら](/ja/update/v7_0_0)
         - 「exceedone/exment-admin-core」は、Exmentの依存ライブラリとして自動的にインストールされるため、composer.jsonへの追加は不要です。詳細は[こちら](/ja/update/v7_0_0)
