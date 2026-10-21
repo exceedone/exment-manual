@@ -1,6 +1,7 @@
 # (For advanced users) Using the full-text search engine (Meilisearch)
 Exment normally searches against the database, but you can use the full-text search engine "[Meilisearch](https://www.meilisearch.com/)".  
 As a result, searches can be performed at high speed even in an environment that holds a large amount of data.  
+*This function is available in Exment v7.0.0 or later.  
 
 You can use the following functions.
 
@@ -94,7 +95,7 @@ sudo chmod 600 /etc/meilisearch.conf
 Since "openssl rand -hex 16" generates a character string of 32 characters, this condition is satisfied.
 
 - Execute the following command and check the generated master key.  
-**Please be sure to keep this key, because you will write it in the ".env" of Exment later.**
+**Please be sure to keep this key, because you will enter it in the System settings of Exment later.**
 
 ```
 sudo grep MASTER_KEY /etc/meilisearch.conf
@@ -163,7 +164,7 @@ C:\meilisearch\meilisearch.exe --version
 ```
 
 - Execute the following command to generate a master key of 32 characters.  
-**Please be sure to keep this key, because you will write it in the ".env" of Exment later.**
+**Please be sure to keep this key, because you will enter it in the System settings of Exment later.**
 
 ```
 $key = -join (1..32 | ForEach-Object { '0123456789abcdef'[(Get-Random -Maximum 16)] })
@@ -215,41 +216,22 @@ composer require meilisearch/meilisearch-php
 ```
 
 ### .env settings
-- Open the ".env" file from the Exment folder and write the following settings.
+- Open the ".env" file from the Exment folder and write the following settings.  
+The connection to the Meilisearch server and the main switches are set on the System settings screen in a later step, not in the ".env".
 
 ```
 #Queue driver. If it remains the default value "sync", the process on the screen will be blocked
 QUEUE_CONNECTION=database
 
-#Connection destination of the Meilisearch server
-MEILISEARCH_HOST=http://127.0.0.1:7700
-
-#Master key of Meilisearch. Write the key generated at installation
-MEILISEARCH_KEY=(the generated master key)
-
-#Use Meilisearch when searching (setting on the search side)
-MEILISEARCH_GLOBAL_SEARCH=true
-
-#Reflect updates of custom data in the index in real time (setting on the update side)
-MEILISEARCH_REALTIME_SYNC=true
-
-#Automatically repair the difference between the database and the index periodically
-MEILISEARCH_REPAIR_ENABLED=true
-
-#Time to execute the automatic repair. Write it in the "HH:MM" format
-MEILISEARCH_REPAIR_AT=03:00
-
 #Execute the process of recreating the index for each table (heavy process) in a queue separate from the sync process for each custom data record
 MEILISEARCH_REINDEX_QUEUE=meili-reindex
 ```
-
-> Since "MEILISEARCH_GLOBAL_SEARCH" is a setting on the search side, you can also change it to true after the creation of the index is completed.
 
 - For settings other than the above, please check "Search" in [List of setting values](/config). Write them only when you change them from the default values.
 
 > The configuration file of Meilisearch is loaded inside the Exment package. Therefore, it is not necessary to execute "php artisan vendor:publish".
 
-### Execute the commands
+### Create the tables
 - Execute the following commands to create the tables for holding the information of the queue, and the tables used by Meilisearch.
 
 ```
@@ -272,6 +254,30 @@ php artisan migrate
 php artisan config:clear
 ```
 
+### System settings
+- Log in to Exment as a system administrator, open the menu "Admin Settings > System Settings", and switch to "Advanced settings".
+- In "Meilisearch (full-text search) settings", set the following items and save.  
+![Meilisearch (full-text search) settings in System settings](img/meilisearch/meilisearch_system1.png)  
+
+|Item|Value to set|
+|---|---|
+|Meilisearch Host|The connection destination of the Meilisearch server. When Meilisearch is on the same server as Exment, leave "http://127.0.0.1:7700".|
+|Master API Key|The master key generated when installing the Meilisearch server.|
+|Index name|Leave "exment_global". When multiple Exment installations use the same Meilisearch server, set a different name for each Exment.|
+|Enable Global Search via Meilisearch|YES. This is the setting on the search side, so you can also turn it on after the creation of the index is completed.|
+|Real-time index sync|YES. This is the setting on the update side, so the queue worker registered in step 3 is required.|
+|Batch size (indexing)|Leave 1000.|
+|Scheduled index repair|YES. The scheduler set in step 4 is required.|
+|Repair time (HH:MM)|A time when the load is low, such as 03:00.|
+|Search filter columns|Leave "Auto + Custom".|
+
+> The values saved on this screen are held in the database and take priority over the ".env". The Master API Key is stored encrypted.  
+> These items can also be set in the ".env" instead of the screen. For details, please check [Setting the items of the screen in the .env](#setting-the-items-of-the-screen-in-the-env).
+
+> One index can be used by only one Exment installation. The Exment that uses an index first is recorded as its owner in an index named "(index name)__owner". (The recorded value is an identifier created from "APP_KEY" in the ".env".)  
+> When multiple Exment installations use the same Meilisearch server, set a different "Index name" for each Exment. An index whose owner is recorded as another Exment cannot be used. For details, please check [If it does not work properly](#if-it-does-not-work-properly).
+
+### Create the index
 - Execute the following command to create the index from the contents of the database.  
 *Depending on the number of data, the process may take time.
 
@@ -369,12 +375,8 @@ schtasks /create /tn "ExmentScheduler" /sc minute /mo 1 /ru SYSTEM /f /tr "C:\ph
 > "/f" is the option to overwrite without displaying a confirmation message, when a task with the same name is already registered.
 
 
-## Priority of the setting values
-Some of the settings of Meilisearch can be changed not only from the ".env" but also from the screen of Exment.  
-**The settings saved from the screen take priority over the settings of the ".env".**
-
-- The items that can be set from "Meilisearch (full-text search) settings" in the menu "Admin Settings > System Settings (Advanced settings)" are as follows.  
-![Meilisearch (full-text search) settings in System settings](img/meilisearch/meilisearch_system1.png)  
+## Setting the items of the screen in the .env
+The items of "Meilisearch (full-text search) settings" can also be set in the ".env" instead of the System settings screen, for example when the settings are deployed automatically. The setting keys are as follows.
 
 |Item|Setting key of the ".env"|
 |---|---|
@@ -388,13 +390,13 @@ Some of the settings of Meilisearch can be changed not only from the ".env" but 
 |Repair time (HH:MM)|MEILISEARCH_REPAIR_AT|
 |Search filter columns|MEILISEARCH_FILTER_MODE ("Auto + Custom" is override, "Custom only" is manual)|
 
-- The setting values other than the above can be set only in the ".env".
-- When you save a value on this screen, that value is held in the database and overwrites the contents of the ".env".  
-Therefore, **if the contents are not reflected even though you changed the ".env", please check the settings on this screen.**
-- When you save an item on the screen while it is empty, the setting value of the ".env" is used for that item.
+<span class="red">*The "Advanced settings" screen of System settings writes all of the above items to the database every time it is saved, even the items you did not change. After that, the values saved on the screen take priority, and the values in the ".env" are ignored for those items.</span>  
+When you manage these items in the ".env", keep the following in mind.
 
-> One index can be used by only one Exment installation. The Exment that uses an index first is recorded as its owner in an index named "(index name)__owner". (The recorded value is an identifier created from "APP_KEY" in the ".env".)  
-> When multiple Exment installations use the same Meilisearch server, set a different "Index name" for each Exment. An index whose owner is recorded as another Exment cannot be used. For details, please check [If it does not work properly](#if-it-does-not-work-properly).
+- "Enable Global Search via Meilisearch", "Real-time index sync", "Scheduled index repair" and "Search filter columns" cannot be saved empty. Once the screen has been saved, these four items always use the value on the screen, so change them on the screen.
+- "Meilisearch Host", "Master API Key", "Index name", "Batch size (indexing)" and "Repair time (HH:MM)" use the value in the ".env" again when they are saved empty on the screen.
+- If the contents are not reflected even though you changed the ".env", check whether values are saved on the screen.
+- The setting values other than the above can be set only in the ".env".
 
 
 ## About the search accuracy

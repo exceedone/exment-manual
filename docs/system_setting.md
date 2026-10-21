@@ -188,20 +188,9 @@ See [here](/safety_check?id=safety-check-settings) for details.
 
 
 ## Meilisearch (full-text search) settings
-In "Meilisearch (full-text search) settings" of [Detail Setting], set the connection and behavior of the [full-text search engine (Meilisearch)](/additional_meilisearch). The following items can be set.
-
-- Meilisearch Host : The connection destination of the Meilisearch server. (e.g. http://127.0.0.1:7700)
-- Master API Key : The master key of the Meilisearch server. It is stored encrypted.
-- Index name : The name of the index to use.
-- Enable Global Search via Meilisearch : Set whether to use Meilisearch on the search screen.
-- Real-time index sync : Set whether to reflect data updates in the index automatically through the queue.
-- Batch size (indexing) : The number of documents sent at once when creating the index in bulk.
-- Scheduled index repair : Set whether to repair the index daily. (The scheduler setting is required.)
-- Repair time (HH:MM) : The time to run the index repair.
-- Search filter columns : Select how the columns used to narrow down search results are chosen, from "Auto + Custom" or "Custom only".
-
+In "Meilisearch (full-text search) settings" of [Detail Setting], set the connection and behavior of the [full-text search engine (Meilisearch)](/additional_meilisearch).  
 *The values saved on this screen take priority over the setting values in ".env". If you save an item empty, the setting value in ".env" is used for that item.  
-See [here](/additional_meilisearch?id=priority-of-the-setting-values) for details.
+See [here](/additional_meilisearch?id=system-settings) for the setting of each item, and [here](/additional_meilisearch?id=setting-the-items-of-the-screen-in-the-env) for the points to note when setting them in ".env".
 
 
 ## Password policy

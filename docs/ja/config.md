@@ -175,7 +175,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 #### 全文検索エンジン(Meilisearch)の設定について
 以下の「MEILISEARCH_」で始まる設定値は、全文検索エンジン「Meilisearch」を使用する場合の設定です。詳細は[こちら](/ja/additional_meilisearch)をご確認ください。
-<span class="red">※このうち、「MEILISEARCH_HOST」「MEILISEARCH_KEY」「MEILISEARCH_INDEX」「MEILISEARCH_GLOBAL_SEARCH」「MEILISEARCH_REALTIME_SYNC」「MEILISEARCH_BATCH_SIZE」「MEILISEARCH_REPAIR_ENABLED」「MEILISEARCH_REPAIR_AT」「MEILISEARCH_FILTER_MODE」は、メニュー「管理者設定 > システム設定(詳細設定)」からも設定することができます。画面から保存を行った場合、画面の設定が「.env」よりも優先されます。</span>
+<span class="red">※このうち、「MEILISEARCH_HOST」「MEILISEARCH_KEY」「MEILISEARCH_INDEX」「MEILISEARCH_GLOBAL_SEARCH」「MEILISEARCH_REALTIME_SYNC」「MEILISEARCH_BATCH_SIZE」「MEILISEARCH_REPAIR_ENABLED」「MEILISEARCH_REPAIR_AT」「MEILISEARCH_FILTER_MODE」は、メニュー「管理者設定 > システム設定(詳細設定)」から設定することを推奨します。この画面を保存すると、これらの項目は画面の値が「.env」よりも優先され、「.env」の変更は反映されなくなります。「.env」で設定する場合の注意点は、[こちら](/ja/additional_meilisearch?id=画面の項目をenvで設定する)をご確認ください。</span>
 ※上記以外の設定値は、「.env」でのみ設定することができます。
 
 
