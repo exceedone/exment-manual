@@ -42,7 +42,7 @@ Execute the following command in the root folder of the project, according to yo
 - Exment v7.0.0 or later
 
 ```
-composer require google/recaptcha
+composer require google/recaptcha=^1.3.1
 ```
 
 - Exment v6.x or earlier

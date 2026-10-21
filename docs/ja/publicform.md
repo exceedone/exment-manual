@@ -42,7 +42,7 @@
 - Exment v7.0.0以降の場合
 
 ```
-composer require google/recaptcha
+composer require google/recaptcha=^1.3.1
 ```
 
 - Exment v6.x以前の場合
