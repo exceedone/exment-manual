@@ -23,7 +23,7 @@ Therefore, even if the notification has actually failed, the message "The notifi
 - Open the .env and write the following settings.
 
 ```
-#Queue driver. The default value is sync (synchronous processing)
+#Queue driver. The value set in the Exment installation steps is sync (synchronous processing)
 QUEUE_CONNECTION=database
 ```
 

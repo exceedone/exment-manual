@@ -27,16 +27,10 @@ Exment requires the introduction of composer. Please refer here for the introduc
 - At the command line, execute the following command:  
 ※ The folder of the created project is called "root directory" in this manual.  
 ※ Exment is currently only available for Laravel version 12.X. Please do not install on any other version.  
-※ The admin library "exceedone/exment-admin-core" is installed automatically as a dependency of Exment. It does not need to be installed separately.  
 
 ~~~
 composer create-project "laravel/laravel=12.*" (Project name)
 cd (Project name)
-composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
-composer require exceedone/exment=^7.0 -W
-
-# If you want to specify the version of Exment, run the following instead. Example: v7.0.0
-composer require exceedone/exment=7.0.0 -W
 ~~~
 
 ## Create database
@@ -47,6 +41,8 @@ composer require exceedone/exment=7.0.0 -W
 
 - Open ".env" and add or change the following contents.  
  **※Note that the value of DB_CONNECTION differs depending on whether your database is MySQL or MariaDB.**  
+ - SESSION_DRIVER, CACHE_STORE, QUEUE_CONNECTION: In Laravel 12, the default value of session, cache and queue is "database". With these defaults, opening the screen before installation causes an error, and notifications such as e-mails stay in the queue and are not sent. To make Exment work in the same way as v6.x or earlier (Laravel 10), change them to the values below. To use the queue, see [Delayed execution of notification processing](/additional_queue).
+ - <span class="red bold">Change .env before "Exment installation" below.</span> In the default settings of Laravel 12, the database is "sqlite", so installing Exment before changing it shows an error.
 
 ~~~
 # Required items below --------------------
@@ -69,6 +65,11 @@ DB_PASSWORD=secret # 1 password of MySQL Exment database
 APP_TIMEZONE=Asia/Tokyo
 APP_LOCALE=ja
 
+# Session, cache and queue settings. Change them from the Laravel 12 default (database)
+SESSION_DRIVER=file
+CACHE_STORE=file
+QUEUE_CONNECTION=sync
+
 
 # Optional items below --------------------
 
@@ -80,6 +81,19 @@ ADMIN_HTTPS=true
 # Passwords hashed with another cost are re-hashed at the user's next login.
 # https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 BCRYPT_ROUNDS=12
+~~~
+
+
+## Exment installation
+- In the root directory, execute the following commands.  
+※ The admin library "exceedone/exment-admin-core" is installed automatically as a dependency of Exment. It does not need to be installed separately.  
+
+~~~
+composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
+composer require exceedone/exment=^7.0 -W
+
+# If you want to specify the version of Exment, run the following instead. Example: v7.0.0
+composer require exceedone/exment=7.0.0 -W
 ~~~
 
 

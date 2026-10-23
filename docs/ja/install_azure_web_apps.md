@@ -314,8 +314,9 @@ composer require predis/predis
 ~~~
 
 # すでにある設定値の変更
-CACHE_DRIVER=redis #キャッシュの保存先を変更する場合。redisに書き換え
+CACHE_STORE=redis #キャッシュの保存先を変更する場合。redisに書き換え
 SESSION_DRIVER=redis #キャッシュの保存先を変更する場合。redisに書き換え
+REDIS_CLIENT=predis #上記でインストールした「predis」を使用してRedisに接続する
 REDIS_HOST=127.0.0.1 #redisのホスト名
 REDIS_PASSWORD=XXXXXX #redisのパスワード、設定した場合のみ記述
 REDIS_PORT=6379 #redisのポート番号、6379でない場合のみ記述

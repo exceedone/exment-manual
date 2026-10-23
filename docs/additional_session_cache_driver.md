@@ -63,12 +63,17 @@ composer require predis/predis
 - Open the .env file and add or change the following settings.  
 
 ~~~
-CACHE_DRIVER=redis #When changing the cache storage location. rewrite to redis  
+CACHE_STORE=redis #When changing the cache storage location. rewrite to redis (when Exment v7.0.0 or later was newly installed)
+CACHE_DRIVER=redis #When changing the cache storage location. rewrite to redis (when updated from Exment v6.x or earlier)
 SESSION_DRIVER=redis #When changing the cache storage location. rewrite to redis  
+REDIS_CLIENT=predis #connect to Redis with "predis" installed above
 REDIS_HOST=127.0.0.1 #redis host name
 REDIS_PASSWORD=XXXXXX #redis password, described only if set
 REDIS_PORT=6379 #redis port number, described only if it is not 6379  
 ~~~
+
+※ The name of the cache setting is the one written in "default" of "config/cache.php". It is "CACHE_STORE" when Exment v7.0.0 or later was newly installed, and "CACHE_DRIVER" when updated from v6.x or earlier ("config/cache.php" is still the v6.x one).  
+※ Without "REDIS_CLIENT=predis", Laravel tries to connect with the PHP extension "phpredis", and the error "Class "Redis" not found" occurs.
 
 
 [←Back to list of additional settings](/quickstart_more)

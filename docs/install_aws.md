@@ -324,8 +324,9 @@ composer require predis/predis
 ~~~
 
 # Change existing settings
-CACHE_DRIVER=redis #When changing the cache storage location. Rewrite to redis
+CACHE_STORE=redis #When changing the cache storage location. Rewrite to redis
 SESSION_DRIVER=redis #When changing the cache storage location. Rewrite to redis
+REDIS_CLIENT=predis #connect to Redis with "predis" installed above
 REDIS_HOST=127.0.0.1 #redis host name
 REDIS_PASSWORD=XXXXXX #redis password, enter only if set
 REDIS_PORT=6379 #redis port number, write only if it is not 6379

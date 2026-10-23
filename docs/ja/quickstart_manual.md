@@ -19,16 +19,10 @@ Exmentを開始するために必要となる手順です。
 - コマンドラインで、以下のコマンドを実行します。  
 ※作成したプロジェクトのフォルダを、このマニュアルでは「ルートディレクトリ」と呼びます。  
 ※Exmentは現在、Laravelのバージョン12.Xのみの対応です。それ以外のバージョンでインストールは行わないよう、お願いします。  
-※管理画面ライブラリ「exceedone/exment-admin-core」は、Exmentの依存ライブラリとして自動的にインストールされます。個別にインストールする必要はありません。
 
 ~~~
 composer create-project "laravel/laravel=12.*" (プロジェクト名)
 cd (プロジェクト名)
-composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
-composer require exceedone/exment=^7.0 -W
-
-# Exmentのバージョンを指定したい場合、代わりに以下を実行。例：v7.0.0
-composer require exceedone/exment=7.0.0 -W
 ~~~
 
 
@@ -37,6 +31,8 @@ composer require exceedone/exment=7.0.0 -W
 - ".env" を開き、以下の内容を追加・変更します。<span class="red bold">特に、以下の値をご確認ください。</span>  
     - DB_CONNECTION : ※お使いのデータベースが、MySQLか、MariaDBか、SQL Serverかで、DB_CONNECTIONの値が異なります
     - APP_TIMEZONE、APP_LOCALE : 言語とタイムゾーンです。インストール前に値を記入してください。
+    - SESSION_DRIVER、CACHE_STORE、QUEUE_CONNECTION : Laravel12では、セッション・キャッシュ・キューの初期値が「database」になっています。このままでは、インストール前に画面を開くとエラーが発生し、またメール送信などの通知がキューに保持されたまま実行されません。v6.x以前(Laravel10)と同じ動作にするため、以下の値に変更してください。キューを利用する場合は、[通知処理の遅延実行](/ja/additional_queue)をご参照ください。
+- <span class="red bold">.envの変更は、次の「Exmentインストール」の前に行ってください。</span>Laravel12の初期設定ではデータベースが「sqlite」になっているため、変更前にExmentをインストールすると、エラーが表示されます。
 
 ~~~
 # 以下、必須設定項目 --------------------
@@ -61,6 +57,11 @@ DB_PASSWORD=secret #データベースのExment用データベースの1パス�
 APP_TIMEZONE=Asia/Tokyo
 APP_LOCALE=ja
 
+# セッション・キャッシュ・キューの設定。Laravel12の初期値(database)から変更します
+SESSION_DRIVER=file
+CACHE_STORE=file
+QUEUE_CONNECTION=sync
+
 
 # 以下、任意設定項目 --------------------
 
@@ -72,6 +73,19 @@ ADMIN_HTTPS=true
 # 別のコストでハッシュ化されたパスワードは、ユーザーが次にログインしたときに自動で再ハッシュされます。
 # https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 BCRYPT_ROUNDS=12
+~~~
+
+
+### Exmentインストール
+- ルートディレクトリで、以下のコマンドを実行します。  
+※管理画面ライブラリ「exceedone/exment-admin-core」は、Exmentの依存ライブラリとして自動的にインストールされます。個別にインストールする必要はありません。
+
+~~~
+composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
+composer require exceedone/exment=^7.0 -W
+
+# Exmentのバージョンを指定したい場合、代わりに以下を実行。例：v7.0.0
+composer require exceedone/exment=7.0.0 -W
 ~~~
 
 
