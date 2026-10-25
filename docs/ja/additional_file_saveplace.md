@@ -156,8 +156,7 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require phpseclib/phpseclib ^2.0
-composer require league/flysystem-sftp ~3.0
+composer require league/flysystem-sftp-v3 ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.sftp"の設定値を確認します。  
