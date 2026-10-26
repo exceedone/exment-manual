@@ -1,7 +1,7 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v7.0.0 (2026/XX/XX)
+## v7.0.0 (2026/10/27)
 
 - <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. Please check the contents of [here](/update/v7_0_0) before updating. </span>
 
@@ -12,28 +12,20 @@
         - <span class="red bold">The namespace has been changed from "Encore\Admin" to "ExmentAdminCore\Admin".</span> Plugins, "config/admin.php", "app/Admin" and the source code you customized yourself need to be corrected. For details, please see [here](/update/v7_0_0)
         - "exceedone/exment-admin-core" is installed automatically as a dependency of Exment, so it does not need to be added to composer.json. For details, please see [here](/update/v7_0_0)
 1. Added Features
-    - LINE integration. Details [here](/line)
-    - Safety check. Details [here](/safety_check)
-    - Search with the full-text search engine (Meilisearch). Details [here](/additional_meilisearch)
     - Kanban view. Details [here](/view_kanban)
     - Gantt chart view. Details [here](/view_gantt)
     - Flow designer for workflows. Details [here](/workflow_design)
     - Cell style presets (display settings of the cells in the data list and the kanban). Details [here](/cell_style_preset)
     - Data list tools (switching displayed columns, freezing columns, grouping, inline editing, quick preview, bulk operations, etc.). Details [here](/data_grid_tools)
-    - Dashboard filter bar, and filtering and switching the chart type of charts. Details [here](/dashboard)
-    - Notifying members by typing "@" in a comment (mention)
-    - Added column settings. Details [here](/column)
-        - Show an "assign to me" button (User)
-        - Accept images pasted from the clipboard (Image, File)
 1. Improvements
     - The mask targets of the values recorded in the operation log can now be changed in the config file. Details [here](/logs)
     - The score threshold can now be set for Google reCAPTCHA v3 of public forms. Details [here](/config?id=score-threshold-of-google-recaptcha-v3)
-    - Limited consecutive sending of password reset emails
+    - Added "Step3. Notify setting" to the workflow settings, which now consist of Steps 1 to 4. Details [here](/workflow_setting?id=step3notify-setting)
 1. Specification changes
     - <span class="red bold">Changed the Google reCAPTCHA library from "arcanedev/no-captcha" to "google/recaptcha". If you use reCAPTCHA in public forms, you need to run "composer require google/recaptcha".</span> Details [here](/update/v7_0_0)
     - The API rate limit (throttle) is now applied on Laravel 12 as well
     - Passwords hashed with a hashing cost different from the current setting are now re-hashed automatically at login. Details [here](/update/v7_0_0)
-    - Excluded SVG from the image formats handled by image columns and the editor
+    - Changed "Reload" on the data list to "Auto refresh" (off / 30 seconds / 1 minute / 5 minutes). Details [here](/data_grid_tools?id=auto-refresh)
     - Changed the location of the admin library assets (CSS, JavaScript, etc.) from "public/vendor/laravel-admin" to "public/vendor/open-admin". Details [here](/update/v7_0_0)
 
 ## v6.2.15 (2026/10/09)
