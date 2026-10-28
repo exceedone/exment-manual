@@ -6,6 +6,10 @@ Please check [here](/release_note)for the update history.
 
 - <span class="red bold">Updating from v4.3.X or lower to v4.4.X or higher requires a manual update. Please check the contents of [here](/update/v4_4) once and then update.</span>
 
+- <span class="red bold">Updating from v5.0.X or lower to v6.0.0 or higher requires a manual update. Please check the contents of [here](/update/v6_0_php8) once and then update.</span>
+
+- <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. The Laravel version and the namespace of the admin library have changed. Please check the contents of [here](/update/v7_0_0) once and then update.</span>
+
 - If you get an error during the update, please refer to [Troubleshooting](/troubleshooting).
 
 ## (First time only) Download update batch

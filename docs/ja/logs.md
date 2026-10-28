@@ -24,7 +24,7 @@ Exmentの各種ログについて記載します。
 - システム管理者が、以下のURLを入力します。  
 http(s)://(ExmentのURL)/admin/auth/logs  
 
-- もしくは、メニューに「APIアプリ設定」を追加します。  
+- もしくは、メニューに「操作ログ」を追加します。  
 「管理者設定」 > 「メニュー」ページを開き、メニュー種類「システムメニュー」を選択すると、対象の「操作ログ」が表示されますので、選択し、保存を行ってください。  
 ※「操作ログ」は、デフォルトの設定ではメニューに表示されていません。
 
@@ -67,6 +67,105 @@ HTTPリクエストのクエリ文字列、もしくはPOST値です。
     - verify_code
     - access_token
     - refresh_token
+    - system_line_channel_token
+    - system_line_channel_secret
+
+※上記の項目は、後述の`config/exment.php`の設定内容にかかわらず、常にマスクされます。  
+※「system_line_channel_token」「system_line_channel_secret」は、v7.0.0以降でマスクされます。
+
+
+### 機密情報のマスキング
+※この設定は、Exment v7.0.0以降で利用できます。v6.xでは、上記の「その他」に記載した項目(LINEの2項目を除く)のみがマスクされます。
+
+操作ログには、ユーザーが入力したリクエスト値や、APIから送信されたリクエスト値、およびURLパスパラメータが記録される場合があります。
+
+認証情報などの機密情報が平文で保存されることを防ぐため、Exmentは操作ログの記録時に、設定されたリクエスト項目およびURLパス値をマスクします。
+
+マスキングの設定は、以下のファイルの`operation_log`セクションで変更できます。
+
+`config/exment.php`
+
+以下は、`config/exment.php`に記載されている`operation_log`の既定値です。(コメントは一部省略しています)
+
+```php
+'operation_log' => [
+    // すべての画面でマスクする項目名
+    'mask_columns' => [
+        // SSO (OAuth / SAML)
+        'oauth_client_id',
+        'oauth_client_secret',
+        'saml_sp_privatekey',
+        // システム設定 (reCAPTCHAのシークレットキー、SMTPのパスワード)
+        'recaptcha_secret_key',
+        'system_mail_password',
+        // MeilisearchのAPIキー
+        'meili_key',
+        // LINE Messaging APIのチャネル情報
+        'system_line_channel_token',
+        'system_line_channel_secret',
+        // プラグインのデータベース接続パスワード
+        'custom_password',
+        // プラグイン(CRUDページ)の認証情報
+        'crud_auth_key',
+        'crud_auth_password',
+    ],
+
+    // 特定の画面・APIでのみマスクする項目名
+    'mask_columns_by_uri' => [
+        // API設定画面
+        'api_setting*' => ['id', 'secret', 'client_api_key'],
+        // OAuthのトークン取得API
+        'oauth/*' => ['client_id', 'api_key', 'client_secret'],
+        // パスワードリセット画面
+        'auth/reset*' => ['token'],
+    ],
+
+    // 直後のパスセグメントをマスクするURIプレフィックス
+    'mask_path_prefixes' => [
+        'api_setting' => true,
+        'oauth/clients' => true,
+        // パスワードリセットのトークン。削除したり、trueに変更したりしないでください
+        'auth/reset' => false,
+    ],
+],
+```
+
+<span class="red">※`config/exment.php`に`operation_log`を記載した場合、Exment本体の既定値とは結合されず、記載した内容で既定値全体が置き換わります。</span>  
+マスク対象を追加・変更する場合は、上記の既定値をすべて記載したうえで、項目を追加・変更してください。特に、`mask_path_prefixes`の`'auth/reset' => false`は削除しないでください。削除した場合、パスワードリセットのトークンがマスクされずに記録されます。
+
+#### mask_columns
+
+- リクエストURIに関係なく、常にマスクするリクエスト項目名を指定します。
+- APIキーやクライアントシークレットなど、常に機密情報として扱う値に使用してください。
+- ここで指定した項目名がユーザー定義テーブルの通常の業務データ項目として使用されている場合でも、その値はマスクされます。
+
+#### mask_columns_by_uri
+
+- 特定の画面またはAPIのみでマスクするリクエスト項目名を指定します。
+- 配列のキーには、`admin`プレフィックスからの相対URIパターンを指定します。ワイルドカード`*`が使用できます。
+- `id`、`secret`、`client_id`、`api_key`、`token`のように、他の画面では通常の業務データとして使用される可能性がある項目名に使用してください。
+- 一致した項目は、ネストされたリクエスト構造内の値も含めて再帰的にマスクされます。
+
+#### mask_path_prefixes
+
+- `admin`プレフィックスからの相対URIプレフィックスを指定し、その直後のパスセグメントに機密情報が含まれる場合にマスクします。
+- 配列の値によってマスク方法を指定します。
+    - `true`: 値が13文字以上の場合は、先頭8文字のみを残し、以降を`***`に置き換えます。12文字以下の場合は、値全体を`***`に置き換えます。追跡が必要なレコードIDなどに使用します。
+    - `false`: 値全体を`***`に置き換えます。パスワードリセットトークンなど、完全に秘匿すべき値に使用します。
+- 例えば、`auth/reset`を`false`に設定した場合、URLに含まれるパスワードリセットトークン全体が`***`に置き換えられます。
+
+#### 注意事項
+
+- マスキングは、新しく作成される操作ログに適用されます。
+- <span class="red">既存の操作ログは、Exmentのアップグレード時に自動ではマスクされません。</span>既存の操作ログにも現在の設定内容を適用する場合は、データベースのバックアップを取得したうえで、以下のコマンドを実行してください。マスクした値は元に戻すことができません。
+
+```
+php artisan exment:patchdata patch_log_opelation
+```
+
+※コマンド名の「opelation」は誤記ではありません。上記のとおり入力してください。
+- `config/exment.php`は、Exmentのアップグレード(`php artisan exment:update`)では上書きされません。そのため、新しいバージョンで既定のマスク対象が追加された場合でも、すでに`operation_log`を記載している環境には反映されません。アップグレード時には、`operation_log`の設定を上記の既定値と比較し、不足しているマスク対象を手動で追加してください。
+- 常に機密情報となる値には`mask_columns`を使用してください。特定の画面やAPIのみで機密情報となる値には、通常の業務データを誤ってマスクしないよう、`mask_columns_by_uri`または`mask_path_prefixes`を使用してください。
 
 
 ### 操作ログ自動削除

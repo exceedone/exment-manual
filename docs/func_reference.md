@@ -3,7 +3,8 @@
 
 ## Introduction
 Exment is an open source system using PHP.  
-Also, [Laravel](https://laravel.com/) and [laravel-admin](http://laravel-admin.org/docs/#/) are used for the framework.  
+Also, [Laravel](https://laravel.com/) is used for the framework, and [exment-admin-core](https://github.com/exceedone/exment-admin-core) (an admin library based on laravel-admin / open-admin) is used for the admin screen.  
+※ In Exment v6.x or earlier, [laravel-admin](http://laravel-admin.org/docs/#/) is used for the admin screen.  
 Therefore, all of these functions and models can be used.  
 
 However, there are some places in Exment that require special notation, which is different from ordinary Laravel's Eloquent, mainly for realizing custom tables.  

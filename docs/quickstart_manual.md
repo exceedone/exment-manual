@@ -1,6 +1,7 @@
 # Installation procedure (manual installation)
 These are the steps required to start Exment.  
-※  This is a manual installation method.
+※  This is a manual installation method.  
+※ This page describes the installation procedure for Exment v7.0.0 or later. In Exment v6.x or earlier (Laravel 10.X, admin library laravel-admin), the Laravel version and the packages to install differ. For the differences between v6.x and v7.0.0, see [Update procedure v7.0.0](/update/v7_0_0).
 
 ## important point
 - **If you do not have a web server, [set up the server](/server) first.**  
@@ -9,7 +10,7 @@ These are the steps required to start Exment.
 - For other inquiries, please feel free to [contact us](https://exment.net/inquiry) for free.
 
 ## Server settings
-Exment requires PHP7.3.0 or higher. Also, MySQL 5.7.8 or more and less than 8.0.0 or MariaDB 10.2.7 or more is required.  
+Exment requires PHP 8.2 or higher (`^8.2.0`). Also, MySQL 8.0 or higher, MariaDB 10.11 or higher, or SQL Server 13.0.0 or higher is required.  
 XAMPP is recommended when building an environment with PHP, Apache, and MySQL as a development environment from the beginning.  
 Please refer to [here](/install_xampp) for server settings.  
 ※ If you already have an environment, this setting is not required.
@@ -25,13 +26,11 @@ Exment requires the introduction of composer. Please refer here for the introduc
 ## Laravel installation (project creation)
 - At the command line, execute the following command:  
 ※ The folder of the created project is called "root directory" in this manual.  
-※ Exment is currently only available for version 8.X. Please do not install on any other version.  
+※ Exment is currently only available for Laravel version 12.X. Please do not install on any other version.  
 
 ~~~
-composer create-project "laravel/laravel=9.*" (Project name)
+composer create-project "laravel/laravel=12.*" (Project name)
 cd (Project name)
-composer require psr/simple-cache=^2.0.0
-composer require exceedone/exment
 ~~~
 
 ## Create database
@@ -42,6 +41,8 @@ composer require exceedone/exment
 
 - Open ".env" and add or change the following contents.  
  **※Note that the value of DB_CONNECTION differs depending on whether your database is MySQL or MariaDB.**  
+ - SESSION_DRIVER, CACHE_STORE, QUEUE_CONNECTION: In Laravel 12, the default value of session, cache and queue is "database". With these defaults, opening the screen before installation causes an error, and notifications such as e-mails stay in the queue and are not sent. To make Exment work in the same way as v6.x or earlier (Laravel 10), change them to the values below. To use the queue, see [Delayed execution of notification processing](/additional_queue).
+ - <span class="red bold">Change .env before "Exment installation" below.</span> In the default settings of Laravel 12, the database is "sqlite", so installing Exment before changing it shows an error.
 
 ~~~
 # Required items below --------------------
@@ -64,43 +65,35 @@ DB_PASSWORD=secret # 1 password of MySQL Exment database
 APP_TIMEZONE=Asia/Tokyo
 APP_LOCALE=ja
 
+# Session, cache and queue settings. Change them from the Laravel 12 default (database)
+SESSION_DRIVER=file
+CACHE_STORE=file
+QUEUE_CONNECTION=sync
+
 
 # Optional items below --------------------
-
-# Change the settings for sending mail. Set when sending password reset emails, etc.
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.mailtrap.io # Host name for mail server
-MAIL_PORT=2525 #Port number for mail server
-MAIL_USERNAME=null  # mail server user name
-MAIL_PASSWORD=null # mail server password
-MAIL_ENCRYPTION=null # Enter "ssl" when using ssl
 
 # add for https communication
 ADMIN_HTTPS=true
 
+# Cost (rounds) of bcrypt password hashing. Optional: the default is 12.
+# OWASP recommends 10 or more. Set it only when you want to change the default.
+# Passwords hashed with another cost are re-hashed at the user's next login.
+# https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+BCRYPT_ROUNDS=12
 ~~~
 
 
-## (Recommended) Add error page
+## Exment installation
+- In the root directory, execute the following commands.  
+※ The admin library "exceedone/exment-admin-core" is installed automatically as a dependency of Exment. It does not need to be installed separately.  
 
-- Open "app / Exceptions / Handler.php" and add the following to the "render" function.  
-※ Depending on the content of the error, the error page controlled here may not be displayed, and a Laravel error may be displayed.  
+~~~
+composer config --no-plugins allow-plugins.kylekatarnls/update-helper true
+composer require exceedone/exment=^7.0 -W
 
-~~~ php
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Exception $exception)
-    {
-        // addition
-        return \Exment::error($request, $exception, function($request, $exception){
-            return parent::render($request, $exception);
-        });
-    }
+# If you want to specify the version of Exment, run the following instead. Example: v7.0.0
+composer require exceedone/exment=7.0.0 -W
 ~~~
 
 
@@ -123,36 +116,3 @@ Please check the link below.
 - [Task schedule function](/quickstart_more.md#Task-schedule-function)
 - [Server external communication off](/quickstart_more.md#Server-external=communication-off)
 - [Change file upload limit size](/quickstart_more.md#Change-file-upload-limit-size)
-
-
-## (old) config change
-※ These settings are no longer required from v1.2.0.  
-However, I keep a record of the settings in the past version. (Will be removed in the future)  
-
-- Open "config/admin.php" and modify the key "auth.providers.admin.driver" as follows.
-
-~~~ php
-    'auth' => [
-        'providers' => [
-            'admin' => [
-                // Exment Edit------s
-                // 'driver' => 'eloquent',
-                //'model'  => Encore\Admin\Auth\Database\Administrator::class,
-                'driver' => 'exment-auth',
-                // Exment Edit------e
-            ],
-        ],  
-    ],
-~~~
-
-- If you want to change the language and time zone, open "config/app.php" and modify the following line.
-
-~~~ php
-
-    // 'timezone' => 'UTC',
-    'timezone' => 'Asia/Tokyo',
-
-    //'locale' => 'en',
-     'locale' => 'ja',
-
-~~~

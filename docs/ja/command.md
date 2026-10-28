@@ -20,7 +20,7 @@ Exmentを手動でアップデートするためのコマンドです。
 ※アップデートは、下記のコマンド以外にも必要な作業がございます。アップデート実行時には、基本的に上記のリンク先の内容に従い、実行してください。
 
 ```
-php artisan exment:publish
+php artisan exment:update
 ```
 
 ### css・jsファイルなど発行
@@ -115,6 +115,22 @@ php artisan exment:refreshtable (テーブル名)
 ```
 
 
+### 操作ログの削除
+[操作ログ](/ja/logs)のデータを削除します。  
+- --keep-days=(日数。指定した日数より前の操作ログを削除します。1以上の整数を指定します。未指定の場合、すべての操作ログを削除します)
+- --force(指定した場合、削除前の確認メッセージを表示せずに実行します)
+
+<span class="red">※「--keep-days」を指定しない場合、すべての操作ログが削除されますので、ご注意ください。</span>  
+※確認メッセージを表示できない環境(cronなど)では、「--force」を指定しない場合、削除は行われません。
+
+```
+php artisan exment:log-clear {--keep-days=} {--force}
+
+# 180日より前の操作ログを、確認メッセージを表示せずに削除する場合
+php artisan exment:log-clear --keep-days=180 --force
+```
+
+
 
 
 
@@ -167,6 +183,30 @@ php artisan exment:notify {id?} {--name=}
 ```
 
 
+### 安否確認(地震情報の確認)
+地震情報を取得し、[安否確認](/ja/safety_check)の自動送信の条件に合致する地震があれば、安否確認を送信します。  
+[タスクスケジュール](/ja/additional_task_schedule)により、毎分実行されます。  
+※システム設定の「地震発生時に自動送信する」がNOの場合は、何も実行しません。
+
+```
+php artisan exment:safetywatch
+```
+
+
+
+## 全文検索エンジン(Meilisearch)
+全文検索エンジン「Meilisearch」を使用する場合のコマンドです。  
+各コマンドの詳細は[こちら](/ja/additional_meilisearch)をご確認ください。
+
+|コマンド|内容|
+|---|---|
+|php artisan exment:meili-index {--fresh} {--force}|データベースの内容から、インデックスを作成します。「--fresh」を指定した場合、インデックスをすべて作成しなおします。詳細は[こちら](/ja/additional_meilisearch?id=インデックスの再作成)をご確認ください。|
+|php artisan exment:meili-reconcile {--dry-run} {--table=}|データベースとインデックスの差異を修復します。詳細は[こちら](/ja/additional_meilisearch?id=差異の修復)をご確認ください。|
+|php artisan exment:meili-settings {--show}|インデックスの設定(言語・シノニム・ストップワードなど)を反映します。「--show」を指定した場合、現在の設定内容を表示します。詳細は[こちら](/ja/additional_meilisearch?id=設定のみの反映)をご確認ください。|
+|php artisan exment:meili-health {--failed}|Meilisearchとの接続状態と、登録されているドキュメント件数を表示します。「--failed」を指定した場合、同期待ちのジョブと、同期に失敗したジョブの件数もあわせて表示します。|
+|php artisan exment:meili-search (キーワード) {--limit=10} {--table=} {--highlight} {--facets}|Meilisearchで検索を行い、検索結果と処理時間を表示します。動作確認用のコマンドです。詳細は[こちら](/ja/additional_meilisearch?id=動作確認)をご確認ください。|
+
+
 
 ## その他、開発用
 
@@ -192,6 +232,18 @@ php artisan exment:resetpassword --email=(対象ユーザーのメールアド�
 
 ```
 php artisan exment:workflow-clear (テーブル名) (ID)
+```
+
+
+### LINE連携コードの発行
+指定したユーザーの、LINEアカウント連携用の連携コードと、連携用のURL(ディープリンク)を発行します。  
+連携用のURLを、LINE公式アカウントを友だち追加したスマートフォンで開き、表示されたメッセージを送信すると、連携が完了します。  
+※通常は、[LINE連携](/ja/line?id=lineアカウント連携)の画面から、各ユーザーが連携してください。  
+※「ユーザーのID」には、ユーザーのデータのID(数値)を指定します。ユーザーコードではありません。  
+<span class="red">※すでにLINEアカウントを連携しているユーザーに実行すると、現在の連携は解除されます。</span>
+
+```
+php artisan exment:line-linkcode (ユーザーのID)
 ```
 
 

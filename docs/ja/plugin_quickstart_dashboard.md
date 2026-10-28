@@ -3,7 +3,7 @@ Exmentのダッシュボードに、新しい画面を作成することがで�
 ダッシュボードのアイテムとして、独自のページを使用したい場合にご利用ください。  
 
 ## はじめに
-Exmentのプラグインページは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに[laravel-admin](https://laravel-admin.org/docs/) を使用して開発します。  
+Exmentのプラグインページは、PHPのフレームワーク[Laravel](http://laravel.jp/)、ならびに管理画面ライブラリ[exment-admin-core](https://github.com/exceedone/exment-admin-core)(laravel-admin / open-adminをベースとしたライブラリ、v6.x以前はlaravel-admin)を使用して開発します。  
 ページの開発を行う場合には、特にLaravelの知識がある方が開発することをおすすめします。
 
 ## 作成方法

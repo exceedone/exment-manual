@@ -1,7 +1,8 @@
 # Installation procedure
 This is the procedure required to start Exment. You can make settings on the screen and install.
 
-> ※Please refer to [here](/quickstart_manual) for manual installation or installation by specifying the version.
+> ※Please refer to [here](/quickstart_manual) for manual installation or installation by specifying the version.  
+> ※This page describes Exment v7.0.0 or later. In Exment v6.x or earlier (Laravel 10.X, admin library laravel-admin), the requirements such as the PHP version differ. For the differences between v6.x and v7.0.0, see [Update procedure v7.0.0](/update/v7_0_0).
 
 ## important point
 - If you encounter an error during installation, please refer to [Troubleshooting](/troubleshooting).
@@ -12,7 +13,7 @@ If you haven't built the server yet, build a web server or database server.
 Please check [here](/server) for the construction method.
 
 ### Web server construction
-Exment requires PHP 7.3.0.  
+Exment requires PHP 8.2 or higher (`^8.2.0`).  
 If you have not built the server yet, please check [here](/server) and build it.
 
 ### Introduced composer
@@ -28,8 +29,8 @@ Please refer to here for the installation method.
 ### Database construction
 Exment's database engine requires one of the following:
 
-- MySQL 5.7.8 or higher and less than 8.0.0
-- MariaDB 10.2.7 and above
+- MySQL 8.0 or higher
+- MariaDB 10.11 or higher
 - SQL Server 13.0.0 or higher (Currently, automatic backup・restore is not supported)
 
 If you have not set up the database server yet, please check [here](/server #database) and build it.
@@ -78,6 +79,9 @@ Database password for Exment
   
 - Click Run Installation.
 ![Installation screen_Settings](img/quickstart/setting_windows3.png)
+
+> **Optional: password hashing cost**  
+> Passwords are hashed with bcrypt, and the cost (rounds) is 12 by default. To change it, add `BCRYPT_ROUNDS` to ".env". See [manual installation](/quickstart_manual) for an example.
 
 ### Setting completed
 After the quick start is complete, continue with [Initial Settings](/first_setting.md).

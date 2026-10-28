@@ -143,13 +143,14 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### 検索画面から一覧画面へ遷移時の、フィルタ有無
 - 設定キー : EXMENT_SEARCH_LIST_LINK_FILTER
 - 既定値 : true
-- 役割 : trueにすると、データ検索画面から、データ一覧画面へ移動時に、入力した検索条件をフィルタとして維持したまま、一覧表示を行うことができます。
+- 役割 : trueにすると、全データ検索画面／関連データ検索画面から、データ一覧画面へ移動時に、入力した検索条件をフィルタとして維持したまま、一覧表示を行うことができます。
 
 
 #### 検索バーから検索時、カスタムデータの「添付ファイル」のファイル名を検索対象にする
 - 設定キー : EXMENT_SEARCH_DOCUMENT
 - 既定値 : false
 - 役割 : trueにすることで、検索バーから検索時、カスタムデータの「添付ファイル」のファイル名を検索対象にすることができます。
+<span class="red">※trueの場合、検索画面では全文検索エンジン(Meilisearch)が使用されません。詳細は[こちら](/ja/additional_meilisearch)をご確認ください。</span>
 
 
 #### キーワード検索最大件数
@@ -167,8 +168,155 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### フリーワード検索時にビュー維持
 - 設定キー : EXMENT_SEARCH_KEEP_DEFAULT_VIEW
 - 既定値 : false
-- 役割 : trueの場合、リーワード検索時にテーブル単位のフリーワード検索時にその時選択しているビューが維持されます。
+- 役割 : trueの場合、テーブル単位のフリーワード検索時に、その時選択しているビューが維持されます。
 （falseの場合、全件ビューでフリーワード検索します。）
+
+
+
+#### 全文検索エンジン(Meilisearch)の設定について
+以下の「MEILISEARCH_」で始まる設定値は、全文検索エンジン「Meilisearch」を使用する場合の設定です。詳細は[こちら](/ja/additional_meilisearch)をご確認ください。
+<span class="red">※このうち、「MEILISEARCH_HOST」「MEILISEARCH_KEY」「MEILISEARCH_INDEX」「MEILISEARCH_GLOBAL_SEARCH」「MEILISEARCH_REALTIME_SYNC」「MEILISEARCH_BATCH_SIZE」「MEILISEARCH_REPAIR_ENABLED」「MEILISEARCH_REPAIR_AT」「MEILISEARCH_FILTER_MODE」は、メニュー「管理者設定 > システム設定(詳細設定)」から設定することを推奨します。この画面を保存すると、これらの項目は画面の値が「.env」よりも優先され、「.env」の変更は反映されなくなります。「.env」で設定する場合の注意点は、[こちら](/ja/additional_meilisearch?id=画面の項目をenvで設定する)をご確認ください。</span>
+※上記以外の設定値は、「.env」でのみ設定することができます。
+
+
+#### Meilisearchサーバーの接続先
+- 設定キー : MEILISEARCH_HOST
+- 既定値 : http://127.0.0.1:7700
+- 役割 : Meilisearchサーバーの接続先です。
+
+
+#### Meilisearchのマスターキー
+- 設定キー : MEILISEARCH_KEY
+- 既定値 : (なし)
+- 役割 : Meilisearchへ接続するためのマスターキーです。Meilisearchのインストール時に生成したキーを記入します。
+
+
+#### 検索時にMeilisearchを使用する
+- 設定キー : MEILISEARCH_GLOBAL_SEARCH
+- 既定値 : false
+- 役割 : trueの場合、フリーワード検索時に、データベースではなくMeilisearchを使用して検索を行います。
+
+
+#### 更新内容をリアルタイムでMeilisearchへ反映する
+- 設定キー : MEILISEARCH_REALTIME_SYNC
+- 既定値 : false
+- 役割 : trueの場合、カスタムデータの新規作成・更新・削除時に、その内容をMeilisearchのインデックスへ反映します。
+※この設定を使用する場合、キューの設定と、キューワーカの実行が必要です。
+
+
+#### Meilisearchのインデックス自動修復
+- 設定キー : MEILISEARCH_REPAIR_ENABLED
+- 既定値 : false
+- 役割 : trueの場合、データベースとMeilisearchのインデックスの差異を、1日1回自動的に修復します。
+※この設定を使用する場合、タスクスケジュールの設定が必要です。
+
+
+#### Meilisearchのインデックス自動修復 実行時刻
+- 設定キー : MEILISEARCH_REPAIR_AT
+- 既定値 : 03:00
+- 役割 : インデックスの自動修復を実行する時刻です。「HH:MM」の形式で記入します。
+※「HH:MM」以外の形式を設定した場合、自動修復は実行されず、ログに警告が出力されます。
+
+
+#### Meilisearchのインデックス名
+- 設定キー : MEILISEARCH_INDEX
+- 既定値 : exment_global
+- 役割 : Meilisearchに作成する、インデックスの名前です。  
+※変更した場合、「php artisan exment:meili-index」を実行し、インデックスを作成しなおしてください。  
+※1つのMeilisearchサーバーを複数のExmentで使用する場合、インデックス名はExmentごとに別の名前にしてください。他のExmentが使用しているインデックスは使用できません。  
+(インデックスを使用しているExmentは、「(インデックス名)__owner」というインデックスに、「APP_KEY」から生成した識別子で記録されます。そのため、「APP_KEY」を変更した場合も、別のExmentとして扱われます。)
+
+
+#### Meilisearchのインデックス作成単位
+- 設定キー : MEILISEARCH_BATCH_SIZE
+- 既定値 : 1000
+- 役割 : インデックスの作成時に、1回のリクエストで送信するドキュメントの件数です。
+
+
+#### Meilisearchの接続タイムアウト時間
+- 設定キー : MEILISEARCH_CONNECT_TIMEOUT
+- 既定値 : 1.0
+- 役割 : Meilisearchサーバーへの接続時の、タイムアウト時間(秒)です。
+
+
+#### Meilisearchのタイムアウト時間
+- 設定キー : MEILISEARCH_TIMEOUT
+- 既定値 : 5.0
+- 役割 : Meilisearchサーバーへのリクエストの、タイムアウト時間(秒)です。
+
+
+#### Meilisearchの接続失敗時の待機時間
+- 設定キー : MEILISEARCH_UNREACHABLE_BACKOFF
+- 既定値 : 10
+- 役割 : Meilisearchサーバーに接続できなかった場合に、再度接続を試みるまでの時間(秒)です。この時間内は、Meilisearchへの接続を試みずに、すぐにエラーとして扱います(検索時は、データベースによる検索に切り替わります)。Meilisearchの停止中に、処理のたびに接続タイムアウトまで待たされることを防ぎます。  
+※0を設定した場合、待機を行わず、毎回接続を試みます。
+
+
+#### Meilisearchの検索一致条件
+- 設定キー : MEILISEARCH_MATCHING_STRATEGY
+- 既定値 : all
+- 役割 : 複数の単語で検索した場合の、一致条件です。allの場合、すべての単語を含むデータを検索します。lastの場合、一致する件数が少ない場合に、末尾の単語から順に条件を除外して検索します。
+
+
+#### Meilisearchの権限フィルタ取得件数
+- 設定キー : MEILISEARCH_PERMISSION_SCAN_CAP
+- 既定値 : 1000
+- 役割 : 検索結果に対してユーザーの権限による絞り込みを行うため、あらかじめ多めに取得する件数の上限です。
+
+
+#### Meilisearchのファセット最大値
+- 設定キー : MEILISEARCH_MAX_FACET_VALUES
+- 既定値 : 1000
+- 役割 : 検索結果の絞り込み(ファセット)で、1つの項目あたりに取得する値の上限です。
+※1000未満の値を設定した場合、1000として扱われます。
+
+
+#### Meilisearchのフィルタ動作
+- 設定キー : MEILISEARCH_FILTER_MODE
+- 既定値 : override
+- 役割 : 検索結果画面の絞り込み(ファセット)で、対象とする列の決定方法です。
+overrideの場合、列の種類から自動で対象を決定したうえで、「検索フィルター設定」画面で追加した列を加え、除外した列を取り除きます。(画面では「自動 ＋ カスタム」)
+manualの場合、「検索フィルター設定」画面で追加した列のみを対象とします。(画面では「カスタムのみ」)  
+※変更した場合、インデックスの作成しなおしが必要です。「php artisan exment:meili-index」を実行してください。
+
+
+#### 選択肢(他のテーブルの値一覧から選択)でMeilisearchを使用する
+- 設定キー : MEILISEARCH_SELECT_TABLE
+- 既定値 : false
+- 役割 : trueの場合、カスタム列「選択肢 (他のテーブルの値一覧から選択)」の入力補完(フォーム・API)で、Meilisearchを使用します。「MEILISEARCH_GLOBAL_SEARCH」とは独立した設定です。
+※trueにした場合、候補の検索方法が、保存された値に対する部分一致から、単語単位の前方一致に変わります。
+
+
+#### Meilisearchのインデックス再作成単位
+- 設定キー : MEILISEARCH_REINDEX_CHUNK_SIZE
+- 既定値 : 500
+- 役割 : カスタムテーブル・カスタム列の設定変更にともなうインデックスの再作成で、1回の処理あたりに登録するドキュメントの件数です。
+
+
+#### Meilisearchの保存済検索条件の上限
+- 設定キー : MEILISEARCH_SAVED_SEARCH_LIMIT
+- 既定値 : 50
+- 役割 : 1人のユーザーが保存できる、検索条件の最大件数です。
+
+
+#### Meilisearchの同期キュー名
+- 設定キー : MEILISEARCH_SYNC_QUEUE
+- 既定値 : default
+- 役割 : カスタムデータ1件単位の同期処理を実行する、キューの名前です。
+
+
+#### Meilisearchの再作成キュー名
+- 設定キー : MEILISEARCH_REINDEX_QUEUE
+- 既定値 : (MEILISEARCH_SYNC_QUEUEと同じ値。初期状態ではdefault)
+- 役割 : テーブル単位でインデックスを作成しなおす処理を実行する、キューの名前です。  
+この処理は重いため、カスタムデータ1件単位の同期処理と分けて実行する場合は、「meili-reindex」など、MEILISEARCH_SYNC_QUEUEとは異なる名前を設定してください。その場合、キューワーカの「--queue=」にも、その名前を追加する必要があります。
+
+
+#### Meilisearchの検索対象言語
+- 設定キー : MEILISEARCH_LOCALES
+- 既定値 : jpn
+- 役割 : Meilisearchが文章を単語に分割する(分かち書き)際に使用する、言語の設定です。ISO-639-3の言語コードを、カンマ区切りで記入します。(例:「jpn」「jpn,eng」)空にした場合、この設定はインデックスから削除され、Meilisearchが自動的に言語を判定します。
+※この設定を使用するには、Meilisearch v1.10以降が必要です。変更した場合、「php artisan exment:meili-settings」を実行してください。
 
 
 ### メール・通知設定
@@ -219,6 +367,65 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : 組織あてのワークフローのアクションを組織のメンバーが実行した場合に、同じ組織のほかのメンバーへシステム内アラートで通知します。falseの場合、通知しません。  
 詳細は[未処理タスク](/ja/workflow_task?id=同じ組織のメンバーへの通知)をご確認ください。
 
+### LINE連携
+
+#### チャネルアクセストークン
+- 設定キー : LINE_CHANNEL_ACCESS_TOKEN
+- 既定値 : (なし)
+- 役割 : [LINE連携](/ja/line)で使用する、LINEのチャネルアクセストークンです。システム設定画面の「LINE設定」で保存した値が優先されます。
+
+#### チャネルシークレット
+- 設定キー : LINE_CHANNEL_SECRET
+- 既定値 : (なし)
+- 役割 : LINEのチャネルシークレットです。システム設定画面の「LINE設定」で保存した値が優先されます。
+
+#### LINE公式アカウントのベーシックID
+- 設定キー : LINE_OA_BASIC_ID
+- 既定値 : (なし)
+- 役割 : LINE公式アカウントのベーシックID(「@」から始まるID)です。システム設定画面の「LINE設定」で保存した値が優先されます。
+
+#### LINE通知(時間の経過)の重複送信を防止する時間(分)
+- 設定キー : LINE_DEDUPE_MINUTES
+- 既定値 : 0
+- 役割 : 実施トリガー「時間の経過」のLINE通知で、同じユーザーに同じデータについてのLINEメッセージを送信してから、この時間(分)は再度送信しません。他の通知設定で送信したメッセージや、送信に失敗したメッセージも対象です。0の場合、この機能は無効です。
+
+#### LINE連携コードの有効期限(分)
+- 設定キー : LINE_LINK_CODE_TTL_MINUTES
+- 既定値 : 10
+- 役割 : [LINEアカウント連携](/ja/line?id=lineアカウント連携)で使用する、連携コードの有効期限(分)です。
+
+#### LINE連携コードの送信失敗回数
+- 設定キー : LINE_LINK_MAX_ATTEMPTS
+- 既定値 : 5
+- 役割 : 誤った連携コードを送信できる回数です。この回数を超えると、一定時間連携できなくなります。
+
+#### LINE連携コードの送信失敗を数える時間(分)
+- 設定キー : LINE_LINK_ATTEMPT_DECAY_MINUTES
+- 既定値 : 10
+- 役割 : 誤った連携コードの送信回数を数える時間(分)です。最初に誤ったコードを送信してからこの時間内に「LINE_LINK_MAX_ATTEMPTS」の回数を誤ると、この時間が過ぎるまで連携できません。
+
+#### LINE通信のタイムアウト(秒)
+- 設定キー : LINE_HTTP_TIMEOUT
+- 既定値 : 10
+- 役割 : LINEのサーバーと通信する際の、タイムアウト時間(秒)です。
+
+#### LINE Messaging APIのURL
+- 設定キー : LINE_API_BASE
+- 既定値 : https://api.line.me
+- 役割 : LINE Messaging APIのURLです。通常は変更しないでください。
+
+### 安否確認
+
+#### 地震情報の取得先URL
+- 設定キー : EXMENT_SAFETY_CHECK_FEED_URL
+- 既定値 : https://api.p2pquake.net/v2/history
+- 役割 : [安否確認](/ja/safety_check)の地震発生時の自動送信で、地震情報を取得するAPIのURLです。通常は変更しないでください。
+
+#### 地震情報の取得件数
+- 設定キー : EXMENT_SAFETY_CHECK_FEED_LIMIT
+- 既定値 : 10
+- 役割 : 1回の確認(毎分)で取得する、最新の地震情報の件数です。1～100の範囲で設定します。
+
 ### API
 
 #### API有効・無効
@@ -245,9 +452,11 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 役割 : APIの一括削除で、同時に削除できる最大件数です。
 
 #### APIのアクセス回数上限
+※v6.2.4より利用できます。
+
 - 設定キー : EXMENT_API_MAX_RATE_LIMIT
 - 既定値 ： 60
-- 役割 : APIトークンのユーザー毎の1分あたりのAPIアクセス回数を指定できます。
+- 役割 : APIの、ユーザー毎(未認証の場合はIPアドレス毎)の、1分あたりのアクセス回数の上限です。上限を超えた場合、429エラー(Too Many Requests)となります。詳細は[こちら](/ja/additional_429_too_many)をご確認ください。
 
 #### データのlabel（）
 - 設定キー : EXMENT_API_APPEND_LABEL
@@ -345,6 +554,12 @@ EXMENT_FILTER_SEARCH_FULL=true
 - 既定値 : false
 - 役割 : trueにすることで、カスタムビューの表示時、IDと各項目のデータも取得するようにします。  
 ※[プラグイン(スクリプト)](/ja/plugin_quickstart_script)で、カスタムビューの表示を書き換える際に、各データの値を使用したい場合はtrueにしてください。
+
+#### カンバンビューの最大表示件数
+- 設定キー : EXMENT_KANBAN_MAX_SIZE_COUNT
+- 既定値 : 300
+- 役割 : [カンバンビュー](/ja/view_kanban)に表示するデータの最大件数の既定値です。新しくカンバンビューを作成する際の「最大表示件数」の初期値になります。  
+※ビューの「最大表示件数」が設定されている場合、ビューの設定が優先されます。件数が多いと表示が遅くなります。
 
 #### 「custom_value_(テーブル名)」クラスの位置
 - 設定キー : EXMENT_SHOW_PAGE_CLASS_TYPE
@@ -483,6 +698,38 @@ EXMENT_FILTER_SEARCH_FULL=true
 - その他特記事項 : ファイルクリックの挙動について、以前は全ファイルをブラウザ上で表示していましたが、[脆弱性の指摘](/ja/weakness/20200819_2)を受け、添付ファイルはダウンロードする形式にしています。  
 上記のような背景がありますので、<span class="red">この設定は、自己責任でお願いします。</span>
 
+#### ファイルダウンロード時の一時URLの有効期限
+- 設定キー : EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES
+- 既定値 : 15
+- 役割 : [ファイルの保存先](/ja/additional_file_saveplace)をAmazon S3など、一時URL(署名付きURL)を発行できるストレージにした場合の、一時URLの有効期限(分)です。  
+このようなストレージの場合、ファイルのダウンロード時は、ストレージの一時URLへリダイレクトされ、ブラウザがストレージから直接ファイルをダウンロードします。  
+※有効期限はダウンロードの開始時に確認されるため、ダウンロード中に有効期限を過ぎても、ダウンロードは中断されません。ただし、通信エラーなどで中断したダウンロードを再開する場合、有効期限を過ぎていると失敗します。
+
+
+
+### 公開フォーム(Google reCAPTCHA)
+
+#### Google reCAPTCHA v3のスコアのしきい値
+- 設定キー : EXMENT_RECAPTCHA_V3_SCORE_THRESHOLD
+- 既定値 : 0.5
+- 役割 : [公開フォーム](/ja/publicform)でGoogle reCAPTCHA v3を使用する場合の、スコアのしきい値です。reCAPTCHA v3は、0.0(ボットの可能性が高い)～1.0(人間の可能性が高い)のスコアを返却し、スコアがこの値未満の場合、送信はエラーとなります。スパムの送信が続く場合は値を大きく、正規の利用者がエラーになる場合は値を小さくしてください。  
+※システム設定画面で、Google reCAPTCHAに「V3」を選択している場合のみ使用されます。  
+※0～1の範囲外の値を設定した場合、0.5として扱われます。
+
+#### Google reCAPTCHAの確認を行わないIPアドレス
+- 設定キー : なし(「config/exment.php」の「recaptcha_skip_ips」で設定)
+- 既定値 : [] (なし)
+- 役割 : Google reCAPTCHAの確認を行わない、IPアドレスの一覧です。社内から公開フォームの動作確認を行う場合などに使用します。  
+<span class="red">※ここに記入したIPアドレスからの送信は、reCAPTCHAの確認がすべて行われません。本番環境では、設定しないことを推奨します。</span>  
+※この設定は「.env」では設定できません。"config/exment.php"ファイルを開き、以下のように記載してください。  
+※Exment v6.x以前で、「config/no-captcha.php」の「skip-ips」を設定していた場合、v7.0.0以降は、この設定に記載しなおしてください。
+
+``` php
+    'recaptcha_skip_ips' => [
+        '192.168.0.1',
+    ],
+```
+
 
 
 ### その他
@@ -509,7 +756,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 
 #### データ詳細画面で「隠しフィールド」を非表示にする
 - 設定キー : EXMENT_HIDE_HIDDENFIELD
-- 既定値 : false
+- 既定値 : true
 - 役割 : trueにすることで、データ詳細画面で、フォーム設定で「隠しフィールド」になっているデータを非表示にします。
 
 

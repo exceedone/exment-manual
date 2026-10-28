@@ -90,11 +90,11 @@ $ php artisan passport:keys
 - If the setting is YES, it is possible to grant the authority specified by the organization in [Use authority management](#Use-authority-management).
 - The initial value is "YES".
 
-#### Enable Operation Log
+#### Enable System Performance Log
 - If set to "Yes", the activity log feature will be enabled, and all user operations will be recorded.
 - The initial value is "NO".
 
-![Enable Operation Log](img/logs/enable_operation_log.png)  
+![Enable System Performance Log](img/logs/enable_operation_log.png)  
 - Please download the ZIP file and install the template:
 [Template zip file] (https://exment.net/template/system_logs.zip)
 - Run the update command:
@@ -174,6 +174,16 @@ Please note that SPF record settings are not supported by us. Please note.
 - <span class = "small"> Originally, in Laravel, the setting value of ".env" file is used as a parameter of mail transmission, but from v1.3.6, the setting value of .env file is not used and the screen The value registered in "System Settings" of is now used. </span>
 - <span class = "small"> However, in some cases you may want to continue setting the ".env" file. Especially with Laravel, you can also send emails using a sending method other than SMTP. </span>
 - <span class = "small"> In that case, enter "EXMENT_MAIL_SETTING_ENV_FORCE = true" in the ".env" file. You will continue to use the settings you entered in the ".env" file. </span>
+
+
+## LINE Setting
+In "LINE Setting" of [Detail Setting], set the information of the LINE Official Account used by [LINE integration](/line) (channel access token, channel secret and basic ID).  
+See [here](/line?id=system-settings) for details.
+
+
+## Safety Check Settings
+In "Safety Check Settings" of [Detail Setting], set the automatic sending on earthquakes and other settings of the [safety check](/safety_check).  
+See [here](/safety_check?id=safety-check-settings) for details.
 
 
 ## Password policy

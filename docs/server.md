@@ -61,8 +61,8 @@ Please refer to the following URL for the installation method.
 ## Database
 Exment's database engine requires one of the following:
 
-- MySQL 5.7.8 or higher and less than 8.0.0
-- MariaDB 10.2.7 and above
+- MySQL 8.0 or higher
+- MariaDB 10.11 or higher
 - SQL Server 13.0.0 or higher (Currently, automatic backup / restore is not supported)
 
 ### Database environment construction
@@ -79,11 +79,12 @@ Please check the link below for the construction method.
 
 ## Operating environment
 ### server
-- PHP 8.0-8.1 (Since Exment 5.0.0, the PHP version has changed to 8.0-8.1)
-- Laravel 9.X (Laravel version changed to 9.X from Exment 5.0.0)
+- PHP 8.2 or higher (`^8.2.0`. Exment 7.0.0 uses Laravel 12, which requires PHP 8.2 or higher)
+- Laravel 12.X (Laravel version changed to 12.X from Exment 7.0.0)
+- ※ For Exment v6.x: PHP 8.2, Laravel 10.X.
 - Database: One of the following
-    - MySQL 5.7.8 or higher, less than 8.0.0
-    - MariaDB 10.2.7 and above
+    - MySQL 8.0 or higher
+    - MariaDB 10.11 or higher
     - SQL Server 13.0.0 or higher
 
 ### Operation check browser
@@ -104,7 +105,7 @@ You can check system requirements and server settings from the screen or command
 ### Confirmation method
 You can check the system requirements, etc. by the following methods.
 
-- Installation page for [easy installation](/quickstart_easy)
+- Installation page for [easy installation](/quickstart)
 - After installation, [system setting page](/system_setting)
 - command. Details below
 
@@ -129,7 +130,6 @@ Please check [here](#file-permissions) for more information.
 
 #### Composer installation
 Check if the Composer used to update the Exment is installed on your web server.  
-In addition, the "Update from screen" function added from v4.1.0 requires that this composer be installed normally.  
 \* A warning may be displayed even though composer is actually installed. This is because the composer path is not passed by the user who runs the web server, or the authority is insufficient.  
 If composer is successfully installed and can be run by the user who actually performs the update, ignore this warning.  
 \* In order to pass through the composer, please verify [here](/troubleshooting#To-pass-the-composer-path) "To pass the composer path".

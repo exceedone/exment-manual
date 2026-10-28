@@ -409,6 +409,22 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
+                <a href="#/ja/line">
+                    <div class="tile-inner">
+                        <h5>LINE連携</h5>
+                        <p>LINE公式アカウントと連携し、通知の受信やワークフローのアクションの実行をLINEで行います。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/ja/safety_check">
+                    <div class="tile-inner">
+                        <h5>安否確認</h5>
+                        <p>地震などの緊急時に、従業員の安否をLINEとメールで確認します。</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
                 <a href="#/ja/logs">
                     <div class="tile-inner">
                         <h5>ログ</h5>

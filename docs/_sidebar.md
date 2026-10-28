@@ -25,6 +25,9 @@
   * [Relation settings](/relation.md)
   * [Custom form](/form.md)
   * [Custom views](/view.md)
+  * [Kanban view](/view_kanban.md)
+  * [Gantt chart view](/view_gantt.md)
+  * [Cell style presets](/cell_style_preset.md)
   * [Operation](/operation)
   * [2D Barcode settings](/2d_barcode.md)
   * [JAN Barcode Settings](/jancode.md)
@@ -32,6 +35,7 @@
 * 【5. Data management】
   * [Data](/data.md)
   * [List of data](/data_grid.md)
+  * [Data list tools](/data_grid_tools.md)
   * [Data details](/data_details.md)  
   * [Data registration](/data_form.md)
   * [Deleted data](/deleted_data)
@@ -49,6 +53,7 @@
  
 * 【7. Workflow】
   * [Workflow settings](/workflow_setting.md)
+  * [Flow designer](/workflow_design.md)
   * [Workflow setting example](/workflow_example.md)
   * [Workflow implementation](/workflow_execution.md)
   * [Pending tasks](/workflow_task.md)
@@ -63,6 +68,8 @@
   * [Dashboard](/dashboard.md)
   * [Mail template](/mail.md)
   * [Notification](/notify.md)
+  * [LINE integration](/line.md)
+  * [Safety check](/safety_check.md)
   * [Log](/logs)
 
 * 【10. Function extension】
@@ -93,6 +100,7 @@
   * [Function reference](/func_reference.md)
   * [Column reference](/column_reference)
   * [Plugin reference](/plugin_reference.md)
+  * [Plugin reference (CRUD page)](/plugin_reference_crud.md)
   * [Database table definition](/table_definition)
   * [List of set values](/config.md)
   * [Command](/command)

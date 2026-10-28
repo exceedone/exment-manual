@@ -3,6 +3,9 @@ Exment has a task scheduling function.
 Specifically, it is used for the following purposes.  
 - Back up databases and files daily at a fixed time.
 - Send e-mail at a specific time to a person who is interested in data that matches specific conditions, based on the notification settings that are set in advance.  
+- Check earthquake information every minute, and automatically send a [safety check](/safety_check) if there is an earthquake that meets the conditions ("exment:safetywatch" command).
+- When using the full-text search engine (Meilisearch), automatically repair the difference between the database and the index once a day ("exment:meili-reconcile" command).  
+※It is executed at the time of "MEILISEARCH_REPAIR_AT" only when "MEILISEARCH_REPAIR_ENABLED" is true. Please check [here](/additional_meilisearch) for details.
 
 Performing these functions requires additional work on the server side.  
 The procedure differs depending on Linux and Windows.  

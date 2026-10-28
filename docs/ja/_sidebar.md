@@ -26,6 +26,9 @@
   * [リレーション設定](/ja/relation)
   * [カスタムフォーム](/ja/form)
   * [カスタムビュー](/ja/view)
+  * [カンバンビュー](/ja/view_kanban)
+  * [ガントチャートビュー](/ja/view_gantt)
+  * [表示プリセット](/ja/cell_style_preset)
   * [データ更新設定](/ja/operation)
   * [二次元バーコード設定](/ja/2d_barcode)
   * [JANバーコード設定](/ja/jancode)
@@ -33,6 +36,7 @@
 * 【5. データ管理】
   * [データ](/ja/data)
   * [データ一覧](/ja/data_grid)
+  * [データ一覧の操作ツール](/ja/data_grid_tools)
   * [データ詳細](/ja/data_details)  
   * [データ登録](/ja/data_form)
   * [削除済データ](/ja/deleted_data)
@@ -50,6 +54,7 @@
  
 * 【7. ワークフロー】
   * [ワークフロー設定](/ja/workflow_setting)
+  * [フロー デザイナー](/ja/workflow_design)
   * [ワークフロー設定例](/ja/workflow_example)
   * [ワークフロー実施](/ja/workflow_execution)
   * [未処理タスク](/ja/workflow_task)
@@ -64,6 +69,8 @@
   * [ダッシュボード](/ja/dashboard)
   * [通知テンプレート](/ja/mail)
   * [通知](/ja/notify)
+  * [LINE連携](/ja/line)
+  * [安否確認](/ja/safety_check)
   * [ログ](/ja/logs)
 
 * 【10. 機能拡張】
@@ -93,6 +100,7 @@
   * [関数リファレンス](/ja/func_reference)
   * [カスタム列リファレンス](/ja/column_reference)
   * [プラグインリファレンス](/ja/plugin_reference)
+  * [プラグインリファレンス(CRUDページ)](/ja/plugin_reference_crud)
   * [利用者向けサイト構築](/ja/public_site)
   * [DBテーブル定義](/ja/table_definition)
   * [設定値一覧](/ja/config)

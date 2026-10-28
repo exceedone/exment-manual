@@ -36,7 +36,16 @@
 
 ### 1. コマンド実行
 公開フォームで、Google reCAPTCHAを使用する場合のみ、実行します。  
-プロジェクトのルートフォルダで、以下のコマンドを実行してください。  
+プロジェクトのルートフォルダで、ご利用のExmentのバージョンに応じて、以下のコマンドを実行してください。  
+※v7.0.0より、Google reCAPTCHAのライブラリとして「google/recaptcha」を使用します。Exment v6.x以前では「arcanedev/no-captcha」を使用します。  
+
+- Exment v7.0.0以降の場合
+
+```
+composer require google/recaptcha=^1.3.1
+```
+
+- Exment v6.x以前の場合
 
 ```
 composer require arcanedev/no-captcha=^10.1
@@ -50,7 +59,8 @@ composer require arcanedev/no-captcha=^10.1
 
 - Google reCAPTCHAを使用したい場合には、「Google reCAPTCHA」の項目を、V2もしくはV3に設定してください。  
 選択後、Google reCAPTCHAのサイトキーとシークレットキー項目が表示されるので、[Google reCAPTCHAの管理ページ](http://www.google.com/recaptcha/admin)よりコピーした値を設定してください。  
-※設定後、各公開フォーム設定画面で、Google reCAPTCHAを使用するかどうかを選択します。
+※設定後、各公開フォーム設定画面で、Google reCAPTCHAを使用するかどうかを選択します。  
+※V3を選択した場合のスコアのしきい値は、[設定値](/ja/config?id=google-recaptcha-v3のスコアのしきい値)で変更できます(既定値0.5)。
 
 ![カスタムフォーム画面](img/form/system2.png)
 

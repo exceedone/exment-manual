@@ -18,6 +18,16 @@ On the dashboard, you can view charts.
 ![Custom view screen](img/view/view_sample3.png)
 Registered data can be displayed in calendar format.
 
+### Kanban view
+![Custom view screen](img/view_kanban/kanban_board.png)
+Registered data is shown as cards, in one column per state.  
+Dragging a card to another column changes the value of that item.  
+See [Kanban view](/view_kanban.md) for details.
+
+### Gantt chart view
+Registered data is shown on a timeline, each record as a bar from its start date to its end (due) date.  
+See [Gantt chart view](/view_gantt.md) for details.
+
 ### All view
 It is basically the same as the normal view, but has the following features.  
 - Created automatically by the system.
@@ -86,6 +96,10 @@ The column to be displayed in the view.
 
 - Display as:  
 Displayed in the view with the set name.
+
+- Cell appearance preset:  
+How this column is painted in this view. It wins over the custom column setting.  
+See [Cell style presets](/cell_style_preset.md) for details.
 
 
 - [↓] Button  
@@ -199,7 +213,7 @@ Adds a new column for display in the "Filter" of the view.
 ## Aggregation view settings
 
 #### View display name, view authority, default
-The setting items are the same as [View setting items](/view.md?id=view-setting-items) above.
+The setting items are the same as [View settings](/view.md?id=View-settings) above.
 
 #### Group column selection
 Performs grouping in aggregation based on the column selected as the target.  
@@ -310,7 +324,7 @@ Adds a new view display condition.
 ## Calendar view settings
 
 #### View display name, view authority, default
-The setting items are the same as [View setting items](/view.md?id=View-setting-items) above.
+The setting items are the same as [View settings](/view.md?id=View-settings) above.
 
 #### Display column selection
 The settings for the columns displayed in the view.  
@@ -362,13 +376,21 @@ Adds a new view display condition.
 #### Headings in calendar view
 As in the image example, the heading can be displayed in the target date of the data in the calendar view.  
 
-![Custom view screen](img/view/view_calender_heading.png)
-- The displayed heading is the part set as [Use in label](/column.md?id=Use-in-label) in custom column settings.
+![Custom view screen](img/view/view_calender_heading.png ':size=270')
+- The displayed heading is the part set as [Use in labels](/column.md?id=Use-in-labels) in custom column settings.
 
 - Also, if the column corresponding to "Date and time" in the custom column type is set as the start date for display column selection, the time of the registered data will be displayed at the head of the heading.
 
 ## Save
 After filling in the settings, click “Submit”.
+
+## Preview
+On the screen for creating or editing a view, click the [Preview] button at the top right of the page to show the data (the data list, the kanban board or the gantt chart) with the settings as they are being entered, in a separate window.  
+You can check the result before saving the settings.
+
+※ The [Preview] button is shown for the normal view, the all data view, the kanban view and the gantt chart view. It is not shown for the summary view, the calendar view, the condition view and so on.  
+※ The preview does not save the settings. To refresh it after changing the settings, click the [Preview] button again on the original screen.  
+※ Rows of "Display column selection", "Data display conditions" and "Data Sorting" whose target column or condition is not chosen yet are left out of the preview. In that case, the preview shows "N row(s) are left out of this preview: their column or condition is not chosen yet."
 
 ## Edit
 If you want to edit the view, click the "Edit" button in the corresponding row.

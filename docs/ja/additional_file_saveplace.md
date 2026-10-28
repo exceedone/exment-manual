@@ -156,8 +156,7 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 - 以下のコマンドを実行します。
 
 ~~~
-composer require phpseclib/phpseclib ^2.0
-composer require league/flysystem-sftp ~3.0
+composer require league/flysystem-sftp-v3 ~3.0
 ~~~
 
 - "config/filesystems.php"を開き、"disks.sftp"の設定値を確認します。  
@@ -267,6 +266,10 @@ AWS_BUCKET_BACKUP=exment_backup
 AWS_BUCKET_TEMPLATE=exment_template
 AWS_BUCKET_PLUGIN=exment_plugin
 ~~~
+
+- 添付ファイルの保存先をAmazon S3にした場合、添付ファイルのダウンロード時は、Amazon S3の一時URL(署名付きURL)へリダイレクトされます。ブラウザが、Exmentを経由せずに、Amazon S3から直接ファイルをダウンロードします。  
+そのため、ユーザーのブラウザから、Amazon S3(のエンドポイント)へ接続できる必要があります。  
+※一時URLの有効期限(分)は、".env"の「EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES」で変更できます(既定値は15)。詳細は[こちら](/ja/config?id=ファイルダウンロード時の一時urlの有効期限)をご確認ください。
 
 
 #### Azure Blob

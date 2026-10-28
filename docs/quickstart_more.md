@@ -27,7 +27,7 @@ This is the procedure to change the upload size of attached file and PHP memory 
 - [IP filter](/additional_ip_filter)  
 Web page requests and API execution can be restricted by IP address.
 
-- [When 429 error occurs in API](additional_429_too_many)  
+- [When 429 error occurs in API](/additional_429_too_many)  
 This is the solution when 429 Too Many Requests occurs during API implementation.
 
 - [Add label column with data acquisition API](/additional_api_label)  
@@ -41,6 +41,9 @@ Some processes such as notifications can be delayed (queued).
 
 - [Reverse proxy settings](/additional_reverse_proxy)  
 This is an additional setting when building an environment with a reverse proxy.
+
+- [Using the full-text search engine (Meilisearch)](/additional_meilisearch)  
+This is the setting method for using the full-text search engine "Meilisearch" and searching at high speed in an environment that holds a large amount of data.
 
 - [Expert mode](/additional_expert)  
 This is a procedure for displaying more flexible setting items.

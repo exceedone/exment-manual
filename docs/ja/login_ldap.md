@@ -28,8 +28,9 @@ extension=ldap
 - 以下のコマンドを実行します。
 
 ```
-composer require adldap2/adldap2-laravel
+composer require directorytree/ldaprecord
 ```
+※Exment v7.0.0以降で使用するライブラリです。Exment v6.x以前をご利用の場合は、代わりに「composer require adldap2/adldap2-laravel」を実行してください。  
 
 
 ### Linux(CentOS)の場合
@@ -56,9 +57,10 @@ extension=ldap.so
 - 以下のコマンドを実行します。
 
 ```
-composer require adldap2/adldap2-laravel
+composer require directorytree/ldaprecord
 sudo service httpd restart
 ```
+※Exment v7.0.0以降で使用するライブラリです。Exment v6.x以前をご利用の場合は、代わりに「composer require adldap2/adldap2-laravel」を実行してください。  
 
 
 ## 画面での設定

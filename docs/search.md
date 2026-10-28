@@ -58,3 +58,8 @@ To change to a partial match, change the "Data search method" to a partial match
 
 This setting allows the search to be a partial match.  
 ※ This setting may reduce search performance. Please note.
+
+## (Supplement) Using the full-text search engine (Meilisearch)
+In an environment with a large number of data, search performance may decrease when performing a partial match search.  
+In that case, you can perform the search at high speed by using the full-text search engine "Meilisearch".  
+For details, please check [here](/additional_meilisearch).

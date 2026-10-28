@@ -141,13 +141,14 @@ Depending on the environment, it may be faster.
 #### With or without filter when transitioning from the search page to the list page
 - Setting key : EXMENT_SEARCH_LIST_LINK_FILTER
 - Default value : true
-- Role : When set to true, when moving from the data search page to the data list page, the list can be displayed while maintaining the entered search conditions as a filter.
+- Role : When set to true, the search conditions entered on the "Search All Data" screen or "Search Relation Data" screen are retained as filters when navigating to the Data List screen.
 
 
 #### When searching from the search bar, the file name of the "attached file" of the custom data is searched
 - Setting key : EXMENT_SEARCH_DOCUMENT
 - Default value : false
 - Role : By setting to true, the file name of "Attachment" of custom data can be searched when searching from the search bar.
+<span class="red">*If it is true, the full-text search engine (Meilisearch) is not used on the search screen. For details, please check [here](/additional_meilisearch).</span>
 
 
 #### Maximum number of keyword searches
@@ -165,8 +166,155 @@ Depending on the environment, it may be faster.
 #### Maintain view when searching for free words
 - Setting key : EXMENT_SEARCH_KEEP_DEFAULT_VIEW
 - Default value : false
-- Role : If true, the currently selected view will be maintained when searching for free words in a table.
+- Role : If true, the currently selected view is preserved during table-level freeword search.
 (If false, a free word search will be performed in all view.)
+
+
+
+#### About the settings of the full-text search engine (Meilisearch)
+The following setting values beginning with "MEILISEARCH_" are the settings for using the full-text search engine "Meilisearch". For details, please check [here](/additional_meilisearch).
+<span class="red">*Among these, "MEILISEARCH_HOST", "MEILISEARCH_KEY", "MEILISEARCH_INDEX", "MEILISEARCH_GLOBAL_SEARCH", "MEILISEARCH_REALTIME_SYNC", "MEILISEARCH_BATCH_SIZE", "MEILISEARCH_REPAIR_ENABLED", "MEILISEARCH_REPAIR_AT" and "MEILISEARCH_FILTER_MODE" are recommended to be set from the menu "Admin Settings > System Settings (Advanced settings)". Once that screen is saved, the values on the screen take priority over the ".env" for these items, and changes in the ".env" are no longer reflected. For the points to note when setting them in the ".env", please check [here](/additional_meilisearch?id=setting-the-items-of-the-screen-in-the-env).</span>
+*The setting values other than the above can be set only in the ".env".
+
+
+#### Connection destination of the Meilisearch server
+- Setting key : MEILISEARCH_HOST
+- Default value : http://127.0.0.1:7700
+- Role : This is the connection destination of the Meilisearch server.
+
+
+#### Master key of Meilisearch
+- Setting key : MEILISEARCH_KEY
+- Default value : (none)
+- Role : This is the master key for connecting to Meilisearch. Write the key generated when installing Meilisearch.
+
+
+#### Use Meilisearch when searching
+- Setting key : MEILISEARCH_GLOBAL_SEARCH
+- Default value : false
+- Role : If true, free word search is performed using Meilisearch instead of the database.
+
+
+#### Reflect updates in Meilisearch in real time
+- Setting key : MEILISEARCH_REALTIME_SYNC
+- Default value : false
+- Role : If true, the contents are reflected in the Meilisearch index when custom data is created, updated or deleted.
+*When using this setting, the setting of the queue and the execution of the queue worker are required.
+
+
+#### Automatic repair of the Meilisearch index
+- Setting key : MEILISEARCH_REPAIR_ENABLED
+- Default value : false
+- Role : If true, the difference between the database and the Meilisearch index is automatically repaired once a day.
+*When using this setting, the setting of the task schedule is required.
+
+
+#### Execution time of the automatic repair of the Meilisearch index
+- Setting key : MEILISEARCH_REPAIR_AT
+- Default value : 03:00
+- Role : This is the time to execute the automatic repair of the index. Write it in the "HH:MM" format.
+*When a format other than "HH:MM" is set, the automatic repair is not executed, and a warning is output to the log.
+
+
+#### Index name of Meilisearch
+- Setting key : MEILISEARCH_INDEX
+- Default value : exment_global
+- Role : This is the name of the index created in Meilisearch.  
+*When you have changed it, please execute "php artisan exment:meili-index" and recreate the index.  
+*When multiple Exment installations use one Meilisearch server, give each Exment its own index name. An index used by another Exment cannot be used.  
+(The Exment that uses the index is recorded in the index "(index name)__owner" with an identifier generated from "APP_KEY". Therefore, if you change "APP_KEY", it is also treated as another Exment.)
+
+
+#### Unit of the index creation of Meilisearch
+- Setting key : MEILISEARCH_BATCH_SIZE
+- Default value : 1000
+- Role : This is the number of documents sent in one request when creating the index.
+
+
+#### Connection timeout of Meilisearch
+- Setting key : MEILISEARCH_CONNECT_TIMEOUT
+- Default value : 1.0
+- Role : This is the timeout (seconds) when connecting to the Meilisearch server.
+
+
+#### Timeout of Meilisearch
+- Setting key : MEILISEARCH_TIMEOUT
+- Default value : 5.0
+- Role : This is the timeout (seconds) of a request to the Meilisearch server.
+
+
+#### Wait time after a Meilisearch connection failure
+- Setting key : MEILISEARCH_UNREACHABLE_BACKOFF
+- Default value : 10
+- Role : This is the time (seconds) before trying to connect again when the Meilisearch server could not be reached. Within this time, Exment does not try to connect to Meilisearch and treats it as an error immediately (searches switch to the search by the database). This prevents each process from waiting for the connection timeout while Meilisearch is down.  
+*If 0 is set, Exment does not wait and tries to connect every time.
+
+
+#### Matching strategy of the Meilisearch search
+- Setting key : MEILISEARCH_MATCHING_STRATEGY
+- Default value : all
+- Role : This is the matching condition when searching with multiple words. In the case of "all", data containing all the words is searched. In the case of "last", when the number of matches is small, the conditions are excluded in order from the last word.
+
+
+#### Number of records fetched for the permission filter of Meilisearch
+- Setting key : MEILISEARCH_PERMISSION_SCAN_CAP
+- Default value : 1000
+- Role : This is the upper limit of the number of records fetched in advance, in order to narrow down the search results by the permission of the user.
+
+
+#### Maximum number of facet values of Meilisearch
+- Setting key : MEILISEARCH_MAX_FACET_VALUES
+- Default value : 1000
+- Role : This is the upper limit of the number of values fetched per item in the narrowing down (facet) of the search results.
+*When a value less than 1000 is set, it is treated as 1000.
+
+
+#### Filter behavior of Meilisearch
+- Setting key : MEILISEARCH_FILTER_MODE
+- Default value : override
+- Role : This is how the target columns are decided for the narrowing down (facet) on the search result page.
+In the case of "override", the targets are decided automatically from the column type, then the columns added on the "Search Filter Setting" screen are added and the excluded columns are removed. ("Auto + Custom" on the screen)
+In the case of "manual", only the columns added on the "Search Filter Setting" screen become the target. ("Custom only" on the screen)  
+*When you have changed it, it is necessary to recreate the index. Please execute "php artisan exment:meili-index".
+
+
+#### Use Meilisearch for "Select (select from the list of values of another table)"
+- Setting key : MEILISEARCH_SELECT_TABLE
+- Default value : false
+- Role : If true, Meilisearch is used for the input completion (form and API) of the custom column "Select (select from the list of values of another table)". This setting is independent of "MEILISEARCH_GLOBAL_SEARCH".
+*When you set it to true, the search method of the candidates changes from a partial match against the stored value to a prefix match by word.
+
+
+#### Unit of the index recreation of Meilisearch
+- Setting key : MEILISEARCH_REINDEX_CHUNK_SIZE
+- Default value : 500
+- Role : This is the number of documents registered per run, in the index recreation that accompanies a change of the custom table / custom column settings.
+
+
+#### Upper limit of the saved searches of Meilisearch
+- Setting key : MEILISEARCH_SAVED_SEARCH_LIMIT
+- Default value : 50
+- Role : This is the maximum number of search conditions that one user can save.
+
+
+#### Sync queue name of Meilisearch
+- Setting key : MEILISEARCH_SYNC_QUEUE
+- Default value : default
+- Role : This is the name of the queue that executes the sync process for each custom data record.
+
+
+#### Reindex queue name of Meilisearch
+- Setting key : MEILISEARCH_REINDEX_QUEUE
+- Default value : (the same value as MEILISEARCH_SYNC_QUEUE. "default" in the initial state)
+- Role : This is the name of the queue that executes the process of recreating the index for each table.  
+Since this process is heavy, when you want to execute it separately from the sync process for each custom data record, set a name different from MEILISEARCH_SYNC_QUEUE, such as "meili-reindex". In that case, it is also necessary to add that name to "--queue=" of the queue worker.
+
+
+#### Target language of the Meilisearch search
+- Setting key : MEILISEARCH_LOCALES
+- Default value : jpn
+- Role : This is the language setting used when Meilisearch splits a sentence into words (tokenization). Write the language codes of ISO-639-3 separated by commas. (Example: "jpn", "jpn,eng") When it is left empty, this setting is deleted from the index and Meilisearch determines the language automatically.
+*In order to use this setting, Meilisearch v1.10 or later is required. When you have changed it, please execute "php artisan exment:meili-settings".
 
 
 ### Email / Notification settings
@@ -217,6 +365,65 @@ The pending task list can still be opened from the URL "/admin/workflow_task".
 - Role : When a member of an organization executes a workflow action assigned to that organization, the other members of the organization are notified by an in-system alert. If false, they are not notified.  
 See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organization) for details.
 
+### LINE integration
+
+#### Channel access token
+- Setting key : LINE_CHANNEL_ACCESS_TOKEN
+- Default value : (none)
+- Role : The LINE channel access token used by [LINE integration](/line). The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Channel secret
+- Setting key : LINE_CHANNEL_SECRET
+- Default value : (none)
+- Role : The LINE channel secret. The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Basic ID of the LINE Official Account
+- Setting key : LINE_OA_BASIC_ID
+- Default value : (none)
+- Role : The basic ID of the LINE Official Account (the ID that starts with "@"). The value saved in "LINE Setting" on the system settings screen takes priority.
+
+#### Time to prevent duplicate LINE notifications (passage of time) (minutes)
+- Setting key : LINE_DEDUPE_MINUTES
+- Default value : 0
+- Role : For LINE notifications triggered by "The Passage of Time", after a LINE message about the same record is sent to a user, no message is sent to the user again for this number of minutes. Messages sent by other notification settings and messages that failed also count. 0 disables this function.
+
+#### Validity period of the LINE link code (minutes)
+- Setting key : LINE_LINK_CODE_TTL_MINUTES
+- Default value : 10
+- Role : How long the link code used for [linking a LINE account](/line?id=linking-a-line-account) is valid (minutes).
+
+#### Maximum number of wrong LINE link codes
+- Setting key : LINE_LINK_MAX_ATTEMPTS
+- Default value : 5
+- Role : How many wrong link codes can be sent. When this number is exceeded, linking is blocked for a while.
+
+#### Period for counting wrong LINE link codes (minutes)
+- Setting key : LINE_LINK_ATTEMPT_DECAY_MINUTES
+- Default value : 10
+- Role : The period (minutes) in which wrong link codes are counted. If "LINE_LINK_MAX_ATTEMPTS" wrong codes are sent within this period after the first wrong code, linking is blocked until the period has passed.
+
+#### Timeout of LINE communication (seconds)
+- Setting key : LINE_HTTP_TIMEOUT
+- Default value : 10
+- Role : The timeout (seconds) when communicating with the LINE platform.
+
+#### URL of the LINE Messaging API
+- Setting key : LINE_API_BASE
+- Default value : https://api.line.me
+- Role : The URL of the LINE Messaging API. Normally, do not change it.
+
+### Safety check
+
+#### URL to get earthquake information
+- Setting key : EXMENT_SAFETY_CHECK_FEED_URL
+- Default value : https://api.p2pquake.net/v2/history
+- Role : The URL of the API from which the [safety check](/safety_check) gets earthquake information for automatic sending. Normally, do not change it.
+
+#### Number of earthquake information records to get
+- Setting key : EXMENT_SAFETY_CHECK_FEED_LIMIT
+- Default value : 10
+- Role : The number of the latest earthquake information records to get in each check (every minute). Set a value from 1 to 100.
+
 ### API
 
 #### API enabled / disabled
@@ -241,12 +448,13 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Setting key : EXMENT_API_MAX_DELETE_COUNT
 - Default value ： 100
 - Role : Maximum number of APIs that can be deleted at the same time by batch deletion.
-Here is the translation to English in Markdown format:
 
 #### API Access Rate Limit
-- Setting Key: EXMENT_API_MAX_RATE_LIMIT
-- Default Value: 60
-- Role: Specifies the number of API accesses per user per minute for each API token.
+※ Available from v6.2.4.
+
+- Setting key : EXMENT_API_MAX_RATE_LIMIT
+- Default value ： 60
+- Role : The maximum number of API accesses per minute for each user (for each IP address if not authenticated). If the limit is exceeded, a 429 error (Too Many Requests) is returned. Please check [here](/additional_429_too_many) for details.
 
 #### Get data label
 - Setting key : EXMENT_API_APPEND_LABEL
@@ -325,6 +533,12 @@ Here is the translation to English in Markdown format:
 - Setting key : EXMENT_DELETE_FORCE_CUSTOM_VALUE
 - Default value : false
 - Role : By setting to true, physical deletion is always performed without using logical deletion of custom data.
+
+#### Maximum number of records displayed in the kanban view
+- Setting key : EXMENT_KANBAN_MAX_SIZE_COUNT
+- Default value : 300
+- Role : The default maximum number of records displayed in the [kanban view](/view_kanban). It is the initial value of "Max display count" when creating a new kanban view.  
+※If "Max display count" is set in the view, the view setting takes priority. The more records there are, the slower the display becomes.
 
 
 ### Organization settings
@@ -465,6 +679,38 @@ To change it, open the "config/extension.php" file and make the following change
 - Other special notes : Regarding the behavior of file click, all files were displayed on the browser before, but due to the [indication of the vulnerability](/weakness/20200819_2), the attached file is in the download format.
 Due to the above background, <span class="red">please make this setting at your own risk.</span>
 
+#### Validity period of the temporary URL when downloading a file
+- Setting key : EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES
+- Default value : 15
+- Role : The validity period (minutes) of the temporary URL (signed URL) when the [file save destination](/additional_file_saveplace) is a storage that can issue temporary URLs, such as Amazon S3.  
+For such a storage, downloading a file redirects to the temporary URL of the storage, and the browser downloads the file directly from the storage.  
+※The validity period is checked when the download starts, so a download in progress is not interrupted even if the validity period passes. However, resuming a download interrupted by a network error fails once the validity period has passed.
+
+
+
+### Public form (Google reCAPTCHA)
+
+#### Score threshold of Google reCAPTCHA v3
+- Setting key : EXMENT_RECAPTCHA_V3_SCORE_THRESHOLD
+- Default value : 0.5
+- Role : The score threshold when using Google reCAPTCHA v3 in the [public form](/publicform). reCAPTCHA v3 returns a score from 0.0 (very likely a bot) to 1.0 (very likely a human), and a submission whose score is below this value is rejected. Raise the value if spam still gets through, and lower it if real visitors are blocked.  
+※It is used only when "V3" is selected for Google reCAPTCHA on the system settings screen.  
+※If a value outside the range 0 to 1 is set, 0.5 is used instead.
+
+#### IP addresses that skip Google reCAPTCHA
+- Setting key : None (set with "recaptcha_skip_ips" in "config/exment.php")
+- Default value : [] (none)
+- Role : The list of IP addresses that are not checked by Google reCAPTCHA. Use it, for example, when testing the public form from your office.  
+<span class="red">※Submissions from the IP addresses written here are never checked by reCAPTCHA. It is recommended not to set it in the production environment.</span>  
+※This setting cannot be set in ".env". Open the "config/exment.php" file and write it as follows.  
+※If you set "skip-ips" in "config/no-captcha.php" in Exment v6.x or earlier, write it again in this setting in v7.0.0 or later.
+
+``` php
+    'recaptcha_skip_ips' => [
+        '192.168.0.1',
+    ],
+```
+
 
 
 ### Other
@@ -482,9 +728,9 @@ Due to the above background, <span class="red">please make this setting at your 
 
 > From v3.5.0, it has been changed to change from the system setting page.
 
-#### Prevents anyone other than the uploader from deleting attachments
+#### Hide "Hidden field" on the data detail screen
 - Setting key : EXMENT_HIDE_HIDDENFIELD
-- Default value : false
+- Default value : true
 - Role : By setting to true, the data which is "Hidden field" in the form setting is hidden on the data detail screen.
 
 

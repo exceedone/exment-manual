@@ -34,6 +34,17 @@ The file can be attached to the data detail screen by the above procedure.
 ※You can only delete comments made by the logged-in user.  
 In the example of the image, since you are logged in as user, the "Delete" button of the comment made by admin is not displayed.  
 
+#### Mentions (notify a member with @)
+You can name users in a comment to notify them.
+
+- Type "@" (the full-width "＠" also works) in the comment box, and a list of users appears.  
+Keep typing to narrow the list down. Click a user (or pick one with the up / down keys and press Enter), and "@user code" is entered.  
+- When the comment is sent, each user named there receives an in-system alert (the notification icon at the top right of the page) titled "You were mentioned in a comment: (label of the data)". The body of the notification shows the comment text.
+
+※ The list appears when "@" is typed at the start of a line or right after a space.  
+※ Only users who have a user code are listed. Up to 20 users are listed at a time (following the setting value `EXMENT_API_DEFAULT_DATA_COUNT`).  
+※ The notification is sent only to users who have permission to view the data. Naming yourself sends no notification.
+
 ## Change log
 
 ![Data screen](img/data/data_history1.png)  

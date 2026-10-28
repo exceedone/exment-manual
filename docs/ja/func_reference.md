@@ -3,7 +3,8 @@
 
 ## はじめに
 ExmentはPHPを使用したオープンソースシステムです。  
-また、フレームワークに[Laravel](https://laravel.com/)、[laravel-admin](http://laravel-admin.org/docs/#/)を使用しています。  
+また、フレームワークに[Laravel](https://laravel.com/)、管理画面ライブラリに[exment-admin-core](https://github.com/exceedone/exment-admin-core)(laravel-admin / open-adminをベースとしたライブラリ)を使用しています。  
+※Exment v6.x以前では、管理画面ライブラリに[laravel-admin](http://laravel-admin.org/docs/#/)を使用しています。  
 そのため、これらの使用している関数やモデルはすべて、使用できます。  
 
 ただしExmentでは、主にカスタムテーブルの実現のために、通常のLaravelのEloquentとは異なる、特殊な記法が必要な箇所があります。  

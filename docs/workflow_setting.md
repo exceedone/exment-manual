@@ -1,6 +1,8 @@
 # Workflow settings
 Set the workflow to be used in Exment.
 
+Statuses and actions can also be created and edited directly on the flow chart. See [Flow designer](/workflow_design.md) for details.
+
 ## What is a workflow?
 Workflow refers to "the flow of a series of business interactions".  
 In many operations performed in an organization, there is a flow of “who starts how, makes decisions, processes, and completes”.  
@@ -82,7 +84,7 @@ The settings vary depending on the workflow type.
   
 ※ If the workflow type is "General":  
 Set the status after executing this action. Choose a different action than "Pre-execution status".
-![Workflow screen](img/workflow/workflow_action1.png)
+![Workflow screen](img/workflow/workflow_action1.png ':size=700')
   
 ※ If the workflow type is "Table only":  
 Set the conditions for executing the action and the status after execution.  
@@ -101,14 +103,15 @@ Up to three combinations of conditions and status can be set.
 In that case, change this setting value.  
 
 - **Optional settings> Comments** : You can enter a comment when each user performs an action.  
-You can select from "required", "optional" and "not used".
+You can select from "Required", "Nullable" and "Not Use".  
+※ An action whose comment is "Required" has no button on the [LINE](/line?id=executing-workflow-actions-from-line) notification card, and cannot be executed from LINE.
 
 - **Option settings> Special actions** : By checking, the "Executable user" set for the action is not included in the current work user. (The current working user is a user who can execute any workflow action in the current status.)  
 An action to return to the previous status, such as "Reject" or "Remand", or an action in which the administrator approves by special exception Please check it.  
 ※ A special action is not shown as a task on the [Pending tasks](/workflow_task) list either.
 
 ### Setup completed
-When both status setting and action setting are performed, a "Setting completed" button is displayed at the top right of the page.
+When both status setting and action setting are performed, a "Setting Complete" button is displayed at the top right of the page.
 
 ![Workflow screen](img/workflow/workflow_beginning1.png)  
 
@@ -118,7 +121,11 @@ Click to complete the workflow settings.
 - Delete workflow
 - Add, delete, and reorder statuses
 
-### Step3.Use settings
+### Step3.Notify setting
+Step 3 and step 4 are displayed only after [Setting Complete] has been done.  
+Set the notifications sent when the workflow is executed. See [Notification / Email sending settings](/notify.md) for the setting items.
+
+### Step4.Usage settings
 Set which workflow to execute in which table.
 ![Workflow screen](img/workflow/workflow_beginning2.png)  
 

@@ -3,14 +3,25 @@
 This section describes how to create an Exment plug-in.  
 For more information on plug-in functions and management methods, see [Plugins](/plugin.md).
 
+※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
+
 ## Creation method link
 - [trigger](/plugin_quickstart_trigger.md)
 - [page](/plugin_quickstart_page.md)
 - [document](/plugin_quickstart_document.md)
 - [dashboard](/plugin_quickstart_dashboard.md)
+- [CRUD page](/plugin_quickstart_crud)
 - [batch](/plugin_quickstart_batch.md)
 - [script](/plugin_quickstart_script.md)
 - [style](/plugin_quickstart_style.md)
+
+## Plugin name namespace
+Name the namespace of the plugin according to the following rule.
+- The namespace should be **App\Plugins\\(Pascal case of plugin name)**.
+    - Example: plugin name "testplugin" → App\Plugins\\Testplugin
+    - Example: plugin name "customer_list" → App\Plugins\\CustomerList
+    - Example: plugin name "get-user" → App\Plugins\\GetUser
 
 
 ## Other special settings
@@ -34,7 +45,7 @@ Example: Set the access key required to execute the YouTube Data API from the sc
 // (1)
 namespace App\Plugins\YouTubeSearch;
 
-use Encore\Admin\Widgets\Box;
+use ExmentAdminCore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Services\Plugin\PluginPageBase;
 use GuzzleHttp\Client;

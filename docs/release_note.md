@@ -1,6 +1,33 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.0.0 (2026/10/27)
+
+- <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. Please check the contents of [here](/update/v7_0_0) before updating. </span>
+
+1. General
+    - Changed the framework used from Laravel10 to Laravel12
+    - Changed the supported PHP versions to PHP8.2 or higher (`^8.2.0`)
+    - Changed the admin panel library from "exceedone/laravel-admin" to "exceedone/exment-admin-core"
+        - <span class="red bold">The namespace has been changed from "Encore\Admin" to "ExmentAdminCore\Admin".</span> Plugins, "config/admin.php", "app/Admin" and the source code you customized yourself need to be corrected. For details, please see [here](/update/v7_0_0)
+        - "exceedone/exment-admin-core" is installed automatically as a dependency of Exment, so it does not need to be added to composer.json. For details, please see [here](/update/v7_0_0)
+1. Added Features
+    - Kanban view. Details [here](/view_kanban)
+    - Gantt chart view. Details [here](/view_gantt)
+    - Flow designer for workflows. Details [here](/workflow_design)
+    - Cell style presets (display settings of the cells in the data list and the kanban). Details [here](/cell_style_preset)
+    - Data list tools (switching displayed columns, freezing columns, grouping, inline editing, quick preview, bulk operations, etc.). Details [here](/data_grid_tools)
+1. Improvements
+    - The mask targets of the values recorded in the operation log can now be changed in the config file. Details [here](/logs)
+    - The score threshold can now be set for Google reCAPTCHA v3 of public forms. Details [here](/config?id=score-threshold-of-google-recaptcha-v3)
+    - Added "Step3. Notify setting" to the workflow settings, which now consist of Steps 1 to 4. Details [here](/workflow_setting?id=step3notify-setting)
+1. Specification changes
+    - <span class="red bold">Changed the Google reCAPTCHA library from "arcanedev/no-captcha" to "google/recaptcha". If you use reCAPTCHA in public forms, you need to run "composer require google/recaptcha".</span> Details [here](/update/v7_0_0)
+    - The API rate limit (throttle) is now applied on Laravel 12 as well
+    - Passwords hashed with a hashing cost different from the current setting are now re-hashed automatically at login. Details [here](/update/v7_0_0)
+    - Changed "Reload" on the data list to "Auto refresh" (off / 30 seconds / 1 minute / 5 minutes). Details [here](/data_grid_tools?id=auto-refresh)
+    - Changed the location of the admin library assets (CSS, JavaScript, etc.) from "public/vendor/laravel-admin" to "public/vendor/open-admin". Details [here](/update/v7_0_0)
+
 ## v6.2.15 (2026/10/09)
 1. Vulnerability fixes
     - JVN#05318392 (Parent ID): Cross-site scripting vulnerability
@@ -61,7 +88,7 @@
 
 ## v6.2.7 (2025/10/08)
 1. Feature Fixes
-    - Added logging to Laravel.log for performance analysis, please see [here](/system_setting?id=%e6%93%8d%e4%bd%9c%e3%83%ad%e3%82%b0%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b)
+    - Added logging to Laravel.log for performance analysis, please see [here](/system_setting?id=enable-operation-log)
     - Added filter functionality to the summary view.
 1. Bug Fixes
     - Fixed a workflow bug.
@@ -441,7 +468,7 @@
     - Changed the framework used from Laravel6 to Laravel8
     - Changed the minimum version of PHP from PHP 7.2 to 7.3
 1. Addition of functions
-    - Added CRUD page to plugin type.
+    - Added CRUD page to plugin type. For details, [click here](/plugin_quickstart_crud)
     - Added the function to select the position of the column name of the view by left justification, center, right justification on the view setting screen.
 1. Bug fix
     - Fixed a bug that an error occurs when getting the parent data when N: N relation is performed in the parameter setting.
@@ -937,7 +964,7 @@
     - When logging in to SSO, an error message when there is a problem with user information is displayed on the screen.
     - In SSO login, when logging in as a user who has already been added to Exment, the validation rule when the SSO setting "Update user information" is NO has been relaxed.
 1. Bug fix
-    - Fixed a bug that the file backed up with v3.6.7 did not complete normally when restored to v3.6.7 environment (caused by database view. When restoring to v3.6.7, Please execute [here](/patch/restore_ignore_view)).
+    - Fixed a bug that the file backed up with v3.6.7 did not complete normally when restored to v3.6.7 environment (caused by database view. When restoring to v3.6.7, Please execute [here](/patch/resotre_ignore_view)).
     - Fixed a bug that importing data of a table with multiple n: n relations did not complete normally.
     - Fixed a bug that an error occurs when a user is completely deleted.
     - Other minor corrections.
@@ -1359,7 +1386,7 @@
 - Other minor corrections
 
 ## v3.0.21 (2020/02/16)
-- In the data export, in the case of "Parent data ID", "User", "Organization", and "Choice (select from the value list of other tables)", the function to output the value other than id has been added. Click [here](/ata_import_export#Change-output-value-when-exporting) for details.
+- In the data export, in the case of "Parent data ID", "User", "Organization", and "Choice (select from the value list of other tables)", the function to output the value other than id has been added. Click [here](/data_import_export?id=data-export) for details.
 - Added setting to disable file type csv, xlsx in data import / export. Click [here](/config#import-export) for details.
 - Other minor corrections
 
@@ -1388,7 +1415,7 @@
 ## v3.0.17 (2020/01/24)
 - Fixed a relation bug when "User" and "Organization" were in the form at the same time.
 - Fixed a bug that parent-child form remains when the relation is deleted after registering the form.
-* If the form remains in the relation deleted in the past, delete it with [here](/patch / remove_deleted_relation).
+* If the form remains in the relation deleted in the past, delete it with [here](/patch/remove_deleted_relation).
 - Fixed a bug that an error occurs when linking settings are made in the user column and organization column.
 - Fixed a bug that images could not be acquired normally when SSO login was performed with a Google account. Click [here](/patch/sso_google) for details.
 

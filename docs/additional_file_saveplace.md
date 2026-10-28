@@ -257,6 +257,10 @@ AWS_BUCKET_TEMPLATE=exment_template
 AWS_BUCKET_PLUGIN=exment_plugin
 ~~~
 
+- When the save destination of attachments is Amazon S3, downloading an attachment redirects to a temporary URL (signed URL) of Amazon S3. The browser downloads the file directly from Amazon S3 without going through Exment.  
+Therefore, the user's browser must be able to connect to Amazon S3 (its endpoint).  
+※The validity period (minutes) of the temporary URL can be changed with "EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES" in ".env" (default value is 15). Please check [here](/config?id=validity-period-of-the-temporary-url-when-downloading-a-file) for details.
+
 
 #### Azure Blob
 - Create Azure Blob.  

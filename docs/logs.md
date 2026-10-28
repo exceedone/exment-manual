@@ -24,7 +24,7 @@ The main operations are as follows.
 - The system administrator enters the following URL.  
 http(s)://(Exment URL)/admin/auth/logs  
 
-- Alternatively, add "API App Settings" to the menu.  
+- Alternatively, add "Operation Log" to the menu.  
 Open the "Administrator Settings" > "Menu" page and select the menu type "System Menu" to display the target "Operation Log". Select it and save it.  
 * "Operation log" is not displayed in the menu by default.
 
@@ -67,9 +67,106 @@ The date and time when the operation was performed.
     - verify_code
     - access_token
     - refresh_token
+    - system_line_channel_token
+    - system_line_channel_secret
+
+*The items above are always masked, regardless of the settings in `config/exment.php` described below.  
+*"system_line_channel_token" and "system_line_channel_secret" are masked from v7.0.0.
 
 - Currently, it does not support exporting operation logs. note that.
 
+### Masking Confidential Information
+*This setting is available from Exment v7.0.0. In v6.x, only the items listed in "Other" above (except the two LINE items) are masked.
+
+Operation logs may contain request values and URL path parameters entered by users or sent by APIs.
+
+To prevent credentials and other confidential information from being stored in plain text, Exment masks configured request fields and URL path values when writing operation logs.
+
+The masking behavior can be customized in the `operation_log` section of the following file.
+
+`config/exment.php`
+
+The following is the default `operation_log` block in `config/exment.php`. (Some comments are omitted.)
+
+```php
+'operation_log' => [
+    // Keys masked on every screen
+    'mask_columns' => [
+        // SSO (OAuth / SAML) secrets
+        'oauth_client_id',
+        'oauth_client_secret',
+        'saml_sp_privatekey',
+        // System config secrets: reCAPTCHA secret, SMTP password
+        'recaptcha_secret_key',
+        'system_mail_password',
+        // Meilisearch API key
+        'meili_key',
+        // LINE Messaging API channel credentials
+        'system_line_channel_token',
+        'system_line_channel_secret',
+        // Plugin DB connection password
+        'custom_password',
+        // Plugin CRUD page auth
+        'crud_auth_key',
+        'crud_auth_password',
+    ],
+
+    // Keys masked only on specific screens / APIs
+    'mask_columns_by_uri' => [
+        // API client setting screens
+        'api_setting*' => ['id', 'secret', 'client_api_key'],
+        // OAuth token endpoints
+        'oauth/*' => ['client_id', 'api_key', 'client_secret'],
+        // Password reset form
+        'auth/reset*' => ['token'],
+    ],
+
+    // URI prefixes whose next path segment is masked
+    'mask_path_prefixes' => [
+        'api_setting' => true,
+        'oauth/clients' => true,
+        // Password reset token. DO NOT remove or set to true.
+        'auth/reset' => false,
+    ],
+],
+```
+
+<span class="red">*If you write `operation_log` in `config/exment.php`, it is not merged with the Exment defaults: the block you write replaces the whole default block.</span>  
+When adding or changing mask targets, write all of the default values above and then add or change entries. In particular, do not remove `'auth/reset' => false` from `mask_path_prefixes`; if it is removed, password reset tokens are logged without masking.
+
+#### mask_columns
+
+- Specify request field names that should always be masked, regardless of the request URI.
+- Use this setting for values that should always be treated as confidential, such as API keys or client secrets.
+- If a field name listed here is also used as a normal business column in a user-defined table, that value is also masked.
+
+#### mask_columns_by_uri
+
+- Specify request field names that should be masked only on specific screens or APIs.
+- The array key is a URI pattern relative to the `admin` prefix. The wildcard `*` can be used.
+- Use this setting for common field names such as `id`, `secret`, `client_id`, `api_key`, and `token`, as these names may also be used as normal business data on other screens.
+- Matching field names are masked recursively, including values in nested request structures.
+
+#### mask_path_prefixes
+
+- Specify URI prefixes, relative to the `admin` prefix, when the following path segment contains confidential information.
+- The array value determines how the path segment is masked.
+    - `true`: If the value is 13 characters or longer, keep only the first 8 characters and replace the remainder with `***`. If it is 12 characters or shorter, replace the entire value with `***`. Use this for record IDs when traceability is required.
+    - `false`: Replace the entire value with `***`. Use this for confidential values such as password reset tokens.
+- For example, if `auth/reset` is configured as `false`, the password reset token included in the URL is replaced entirely with `***`.
+
+#### Notes
+
+- Masking is applied when new operation logs are written.
+- <span class="red">Existing operation log records are not masked automatically when Exment is upgraded.</span> To apply the current settings to existing records, back up the database and then execute the following command. Masked values cannot be restored.
+
+```
+php artisan exment:patchdata patch_log_opelation
+```
+
+*"opelation" in the command name is not a typo. Enter it exactly as shown above.
+- `config/exment.php` is not overwritten when Exment is upgraded (`php artisan exment:update`). Therefore, default mask targets added in a new version are not applied to an environment that already has an `operation_log` block. When upgrading, compare your `operation_log` settings with the default values above and add any missing mask targets manually.
+- Use `mask_columns` only for values that are always confidential. For values that are confidential only on specific screens, use `mask_columns_by_uri` or `mask_path_prefixes` to avoid masking normal business data.
 
 ### Operation Log Automatic Deletion
 At the bottom of the Operation Log screen, you can configure settings for automatic deletion of operation logs.

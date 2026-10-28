@@ -386,6 +386,22 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                     </div>
                 </a>
             </div>
+            <div class="col-sm-6 tile">
+                <a href="#/line">
+                    <div class="tile-inner">
+                        <h5>LINE integration</h5>
+                        <p>Connect a LINE Official Account to receive notifications and execute workflow actions on LINE.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 tile">
+                <a href="#/safety_check">
+                    <div class="tile-inner">
+                        <h5>Safety check</h5>
+                        <p>Check the safety of employees by LINE and email in an emergency such as an earthquake.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div>

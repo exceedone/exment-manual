@@ -68,7 +68,7 @@ If set to YES, it will be a required item on the data entry screen, and if not e
 
 
 
-- Search index: See "[Search index](#Search-index)" below. 
+- Index Enabled: See "[Search index](#Search-index)" below. 
 
 - Unique (unique): If set to YES, you will not be able to register values that duplicate other data when registering data.  
 Please refer to [Compound unique key setting](/table.md#Compound-unique-key-setting) if you want to prevent duplicate registration in a specific combination by multiple column values.  
@@ -86,6 +86,9 @@ It is for display only when editing data.
 
 - Add to default form view: If YES, add columns to the default form view as new ones are created.  
 It can be set only when creating a new column. When updating, please change from [form screen](/form.md) and [view screen](/view.md).
+
+- Cell appearance: How the value of this column is painted in the data list (colour, tag, badge...).  
+It is picked from the preset library - see [Cell style presets](/cell_style_preset.md) for details.
 
 ## Detailed explanation of entry items (by column type)
 - Maximum number of characters (single line text, multiple line text): The maximum number of characters that can be entered in form items.  If it exceeds, an error will occur.  
@@ -118,6 +121,14 @@ When saving data in the form, the value of the first column is saved in the data
 
 - Number of digits (automatic numbering): The number of digits to be registered as data at the time of automatic numbering.  
 Register the missing part with zero padding.  
+
+- Show an "assign to me" button (user): If YES, the [Assign to me] button is shown next to this column on the data create/edit screen. Click the button to select the logged-in user.  
+If "Allow multiple selections" is YES, the logged-in user is added to the selected users.  
+
+- Accept images pasted from the clipboard (image, file): If YES, an image (such as a screenshot) pasted with Ctrl+V on the data create/edit screen is added to this column as a file. The file is named "paste-(date)-(time)-(sequence number)".  
+If "Allow multiple selections" is YES, the image is added to the selected files. If NO, the image replaces the selected file.  
+An image pasted inside the rich text editor goes into the text as before. Text pasted into a text box is not added as a file.  
+If the screen has more than one column with this setting set to YES, the image is added to the first one.  
 
 - Allow multiple selections: Set YES if you want to make multiple selections for items such as images, files, and options.  
 
@@ -152,7 +163,8 @@ When set to YES, the following functions are enabled.
 Set YES for columns that you want to search on the search screen, such as various codes and various names.  
 
 ※ If you set a large number of "search indexes" in the same table, performance may decrease when new data is created or updated.  
-Up to 10 "search indexes" can be set in the same table.  
+Up to 10 "search indexes" are recommended, and up to 20 can be set in the same table.  
+※ The upper limit of search indexes can be changed in [Setting values](/config.md?id=number-of-search-indexes).  
 
 
 ## Use in labels
