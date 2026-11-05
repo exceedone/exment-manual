@@ -71,6 +71,8 @@
   * [LINE integration](/line.md)
   * [Safety check](/safety_check.md)
   * [Log](/logs)
+  * [Login history](/login_history)
+  * [Blocked IP addresses](/login_ip_block)
 
 * 【10. Function extension】
   * [API setting](/api.md)

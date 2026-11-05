@@ -69,6 +69,12 @@ How to create a new role group.
 - The new role group creation screen is displayed. Enter the necessary information and click "Submit".  
 ![Role group screen](img/role/role_group4.png)
 
+- The "Require two-step authentication" item is shown after "Use two-factor authentication" of [two-factor authentication](/login_2factor_setting) is saved as "YES".  
+If "YES", the users of this role group (both as a user and through their organization) are required two-step authentication at every login.  
+It works when "Specify Required Users by Role Group" of the login setting is "YES". See [Users required two-step authentication](/login_2factor_setting#users-required-two-step-authentication) for details.  
+※ The users who belong to no role group are also required two-step authentication.
+![Role group page](img/role/role_group_2factor.png)  
+
 - After saving, the list screen is displayed again and the created role is created.  
 ![Role group screen](img/role/role_group5.png)
 

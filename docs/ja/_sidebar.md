@@ -72,6 +72,8 @@
   * [LINE連携](/ja/line)
   * [安否確認](/ja/safety_check)
   * [ログ](/ja/logs)
+  * [ログイン履歴](/ja/login_history)
+  * [ブロック中のIPアドレス](/ja/login_ip_block)
 
 * 【10. 機能拡張】
   * [API設定](/ja/api)

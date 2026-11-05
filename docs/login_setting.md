@@ -62,6 +62,164 @@ If the new password is compared with the password for the latest to the number o
 Not applicable if set by the system administrator. </span>
 
 
+### Login restriction by country
+When logging in, the country is judged from the IP address, and only logins from the allowed countries are accepted.  
+Use it, for example, to prevent unauthorized logins from abroad.
+
+![Login restriction by country](img/login/login_country_restriction.png)  
+
+- The following logins are checked.
+    - Login form (default / LDAP)
+    - SSO (OAuth / SAML)
+    - Auto login by "Remember me" (cookie)
+
+- Operations of users who have already logged in are not checked. Changing the setting does not log out the users who have already logged in.
+- API authentication is not checked.
+- The [GeoIP database](/login_history#geoip-database) is required to judge the country.
+- The IP address of the current access and its country are displayed at the top of the setting.
+
+#### Use Login Restriction by Country
+- If YES, logins from countries other than the allowed countries are blocked.
+- The initial value is "NO".
+- Saving with NO keeps the settings of "Allowed Countries" and "IP Addresses Allowed Regardless of Country".
+
+#### Allowed Countries
+- Select the countries allowed to log in. You can search by the country name or the country code (Ex. JP). Multiple countries can be selected.
+- Logins from the countries not selected (Ex. North Korea) are blocked.
+- The initial values are "Japan", "United States", "Vietnam" and "Thailand".
+- At least one country is required when "Use Login Restriction by Country" is YES.
+
+#### Allow Login When Country Is Unknown
+- Set YES to allow logins from IP addresses whose country cannot be judged, such as addresses not in the GeoIP database.
+- The initial value is "YES".
+
+#### IP Addresses Allowed Regardless of Country
+- Enter IP addresses allowed to log in regardless of the country, such as overseas offices or business trips. Separate multiple addresses with line breaks.
+- CIDR format (Ex. 203.0.113.0/24) is also available.
+
+#### Order of judgment
+Whether a login is allowed is judged in the following order.
+
+1. If the IP address is in "IP Addresses Allowed Regardless of Country", it is allowed.
+1. If the IP address is a private IP address such as the company network (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 100.64.0.0/10, loopback, link-local, IPv6 unique local address), it is allowed.
+1. If the country cannot be judged, it follows "Allow Login When Country Is Unknown".
+1. If the country is in "Allowed Countries", it is allowed. Otherwise it is blocked.
+
+#### When blocked
+- "You cannot log in from your network. Please contact your system administrator." is displayed on the login page. The allowed countries are not displayed.
+![Blocked by the login restriction by country](img/login/login_country_blocked.png)  
+
+- On the login form, the login is blocked before the password is authenticated. So it cannot be checked from a country that is not allowed whether the password is correct.
+- When an auto login by "Remember me" is blocked, the cookie of the device is deleted and the login page is displayed.
+- Blocked logins are recorded in the [login history](/login_history#blocked-logins).
+
+#### When the setting cannot be saved
+The setting cannot be saved in the following cases.
+
+- "Use Login Restriction by Country" is YES, and no country is selected in "Allowed Countries"
+- "Use Login Restriction by Country" is YES, and the GeoIP database is not placed
+- "IP Addresses Allowed Regardless of Country" has a line that is not an IP address nor CIDR format
+- The administrator saving the setting could not log in from the current IP address any more  
+* In that case, add the current country to "Allowed Countries", or the current IP address to "IP Addresses Allowed Regardless of Country".
+
+#### Note
+- <span class="small">If Exment is operated behind a reverse proxy or a load balancer, configure the [reverse proxy setting](/additional_reverse_proxy). Otherwise every access is judged as the IP address of the proxy (a private IP address), and the restriction does not work.</span>
+- <span class="small">The country judged from the IP address is approximate. With VPN or mobile networks, it may be judged as a country different from the actual one.</span>
+
+
+### Protection against brute-force attacks
+Protects the system from repeated failed logins in a short time (attacks guessing passwords).  
+You can block an IP address that keeps failing (IP block), ask for the characters in an image (CAPTCHA), warn when one account is attacked from many IP addresses, and limit wrong codes of two-step authentication.
+
+![Protection against brute-force attacks](img/login/login_brute_force.png)  
+
+- The login form (default login and LDAP) is protected.
+- SSO (OAuth, SAML) logins, the pages of logged-in users, and API authentication are not affected.
+- The IP address of the current access is shown at the top of the setting. When Exment runs behind a reverse proxy or a load balancer, make sure that it is the IP address of the user (see "Note" below).
+
+#### Period to Count Failures (minutes)
+- Period in which failed logins are counted, for the IP block and CAPTCHA. From 1 to 1440 minutes.
+- The default is "5".
+
+#### Use IP Block
+- If YES, when failed logins from the same IP address reach "Failures to Block" in the period, logins from the IP address are blocked for a while.
+- Wrong IDs or passwords, and wrong CAPTCHA are counted. Failures with an ID that does not exist are also counted.
+- The default is "NO".
+- A login from a blocked IP address shows "Logins from your IP address are temporarily restricted because of repeated failed logins. Please try again in N minutes." The login is blocked before the password is checked, so it cannot be known whether the password is correct while blocked.
+![IP block](img/login/login_ip_blocked.png)  
+
+- Users already logged in keep using Exment while their IP address is blocked.
+- IPv6 addresses with the same first 64 bits are treated as the same IP address.
+
+#### Failures to Block
+- From 1 to 1000. The default is "10".
+
+#### Block Time (minutes)
+- From 1 to 10080 minutes. The default is "5".
+
+#### Longer Block When Blocked Again
+- If YES, an IP address blocked again within 24 hours after the last block ended is blocked longer.
+- Enter "Block Time of the 2nd Block (minutes)" (default "30") and "Block Time from the 3rd Block (minutes)" (default "1440" = 24 hours). Enter the same or longer times in the order of the block time, the 2nd and the 3rd.
+- The default is "YES".
+
+#### IP Addresses Never Blocked
+- Enter IP addresses never blocked, such as the office network. Separate multiple addresses with line breaks.
+- CIDR format (Ex. 203.0.113.0/24) is also available.
+- CAPTCHA is not shown to these IP addresses either.
+
+#### Notify System Administrators of a Block
+- If YES, system administrators are notified that an IP address was blocked. The notification is shown on the bell icon at the top of the page, and opens the detail of the blocked IP address.
+- The default is "YES".
+
+#### Blocked IP Addresses
+- The link "Blocked IP Addresses" of the setting shows the IP addresses blocked now, and releases the blocks. See [Blocked IP addresses](/login_ip_block) for details.
+
+#### Use CAPTCHA
+- If YES, when logins keep failing, the login form shows a field to enter the characters in an image (CAPTCHA), to stop automated login attempts by programs.
+- Shown in either case:
+    - failed logins from the same IP address reach "Failures to Show CAPTCHA" in the period
+    - wrong passwords of the same ID reach "Failures to Show CAPTCHA" in the period (against an attack changing IP addresses)
+- The characters are not case-sensitive. If they are hard to read, click "Show another image". An image is valid for 10 minutes, and can be used only once.
+- When CAPTCHA is wrong, the password is not checked. Wrong CAPTCHA is also counted for the IP block.
+- The image is drawn on the Exment server: no external service is needed. The GD extension of PHP is required.
+- The default is "NO". The default of "Failures to Show CAPTCHA" is "3" (1 to 1000).
+
+![CAPTCHA](img/login/login_captcha.png)  
+
+#### Warn of Attempts from Many IP Addresses
+- If YES, system administrators are notified when wrong passwords for one account come from many IP addresses. It detects a distributed attack that keeps the failures of each IP address few to avoid the IP block.
+- Notified when the number of IP addresses with wrong passwords reaches "IP Addresses to Warn" in "Period of the Warning (minutes)". An account is warned only once in the period.
+- The user code and the e-mail address of a user are counted as the same account. IDs that do not exist are not warned.
+- The notification opens the detail of the user. Check with the user, and change the password if needed.
+![Notification of attempts from many IP addresses](img/login/login_multi_ip_warning.png)  
+
+- The default is "YES". The default of "IP Addresses to Warn" is "5" (2 to 1000), and "Period of the Warning (minutes)" is "60" (1 to 10080).
+
+#### Limit Wrong Two-step Authentication Codes
+- If YES, a user who keeps entering wrong codes of two-step authentication (authentication codes or recovery codes) is logged out, and cannot pass two-step authentication until the lock time passes.
+- Locked when wrong codes reach "Failures to Lock" in "Lock Time (minutes)". Counted per user, not per IP address, so other users of the same office network are not affected.
+- Effective only when two-step authentication is used. For details, see [Limit of wrong codes](/login_2factor_setting#limit-of-wrong-codes).
+- The default is "YES". The default of "Failures to Lock" is "5" (1 to 100), and "Lock Time (minutes)" is "15" (1 to 1440).
+
+#### Also Notify by Mail
+- If YES, the notifications of blocked IP addresses and attempts from many IP addresses are also sent to system administrators by mail.
+- The default is "NO".
+
+#### When the setting cannot be saved
+The setting cannot be saved in the following cases.
+
+- A number is out of the range, or not an integer
+- "Longer Block When Blocked Again" is YES, and the 2nd block time is shorter than the block time, or the 3rd is shorter than the 2nd
+- "IP Addresses Never Blocked" has a line that is not an IP address nor CIDR
+- "Use CAPTCHA" is YES on a server without the GD extension of PHP
+
+#### Note
+- <span class="small">When Exment runs behind a reverse proxy or a load balancer, configure the [reverse proxy setting](/additional_reverse_proxy). Otherwise, all users are treated as the IP address of the proxy, and one block makes everyone unable to log in.</span>
+- <span class="small">The records of failed logins are deleted automatically after 7 days (the schedule must be running). Failed logins are not recorded in the login history.</span>
+- <span class="small">Wrong codes of two-step authentication are not counted for the IP block: they are limited per user. See [Two-factor authentication system settings](/login_2factor_setting#limit-of-wrong-codes) for details.</span>
+- <span class="small">The existing limit by the combination of the ID and the IP address ("EXMENT_MAX_ATTEMPTS" etc.) still works.</span>
+
+
 ### Other
 - If you update from less than v3.3.0 to v3.3.0 or higher and log in with a provider that includes "dot (.)" In the user code, an error may occur.  
 In that case, take the following actions.  
