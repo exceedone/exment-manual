@@ -79,20 +79,20 @@ Depending on the environment, it may be faster.
 
 #### IP that allows reverse proxy
 - Setting key : ADMIN_TRUST_PROXY_IPS
-- Default value : なし
+- Default value : (None)
 - Role : Click [here](/additional_reverse_proxy) for details.
 
 
 #### Reverse proxy determination header
 - Setting key : ADMIN_TRUST_PROXY_HEADERS
-- Default value : なし
+- Default value : (None)
 - Role : Click [here](/additional_reverse_proxy) for details.
 
 
 #### Disable Exment standard error handling
 - Setting key : EXMENT_DISABLE_EXMENT_EXCEPTION_HANDLER
 - Default value : false
-- Role :  Set to true to disable the error handling provided by the Extension package.
+- Role :  Set to true to disable the error handling provided by the Exment package.
 
 
 ### Login
@@ -528,11 +528,31 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Default value : 5
 - Role : The number of custom data attachments that can be uploaded at one time.
 
+#### Hide "Read only" fields on the custom data detail screen
+- Setting key : EXMENT_DISABLE_SHOW_FIELD_READONLY
+- Default value : false
+- Role : By setting to true, the items set to "Read only" are hidden on the custom data detail screen.
+
+#### Hide "View only" fields on the custom data detail screen
+- Setting key : EXMENT_DISABLE_SHOW_FIELD_VIEWONLY
+- Default value : false
+- Role : By setting to true, the items set to "View only" are hidden on the custom data detail screen.
+
+#### Maximum number of characters of the custom columns "Multi-line text" and "Editor"
+- Setting key : EXMENT_CHAR_LENGTH_LIMIT_COUNT
+- Default value : 63999
+- Role : The maximum number of characters of the custom columns "Multi-line text" and "Editor" that can be set as a system.
 
 #### Always perform physical deletion without using logical deletion
 - Setting key : EXMENT_DELETE_FORCE_CUSTOM_VALUE
 - Default value : false
 - Role : By setting to true, physical deletion is always performed without using logical deletion of custom data.
+
+#### Also get the ID and the data of each item when displaying the calendar view
+- Setting key : EXMENT_CALENDAR_DATA_GET_VALUE
+- Default value : false
+- Role : By setting to true, the ID and the data of each item are also obtained when the calendar view is displayed.  
+※Set it to true if you want to use the value of each data when rewriting the display of the view with a [plugin (script)](/plugin_quickstart_script).
 
 #### Maximum number of records displayed in the kanban view
 - Setting key : EXMENT_KANBAN_MAX_SIZE_COUNT
@@ -547,14 +567,6 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Setting key : EXMENT_SHOW_ORGANIZATION_TREE
 - Default value : false
 - Role : By setting to true, you can display the hierarchy of the organization on the organization list page.
-
-#### Custom data automatic sharing setting-Default value
-- Setting key : EXMENT_CUSTOM_VALUE_SAVE_AUTOSHARE_DEFAULT
-- Default value : 0
-- Role : Default value in "Custom data automatic sharing setting" of custom table setting. Please choose from the following.
-    - 0 : Login user only
-    - 1 : Login user and lowest organization
-    - 2 : Login user and all affiliated organizations
 
 #### Location of the 'custom_value_(table_name)' class
 - Setting Key: EXMENT_SHOW_PAGE_CLASS_TYPE
@@ -674,7 +686,7 @@ To change it, open the "config/extension.php" file and make the following change
 
 #### Change the extension displayed on the browser when clicking the attached file
 - Setting key : EXMENT_FILE_DOWNLOAD_INLINE_EXTENSIONS
-- Default value : なし
+- Default value : (None)
 - Role : The extension to be displayed on the browser when the attached file is clicked is described without dots and separated by the extension. (Example: png, jpg, gif)  
 - Other special notes : Regarding the behavior of file click, all files were displayed on the browser before, but due to the [indication of the vulnerability](/weakness/20200819_2), the attached file is in the download format.
 Due to the above background, <span class="red">please make this setting at your own risk.</span>
@@ -715,6 +727,11 @@ For such a storage, downloading a file redirects to the temporary URL of the sto
 
 ### Other
 
+#### In public forms, allow the initial value of the custom columns "Select (reference to other table)", "User" and "Organization" to be set only by suuid (20-digit random string)
+- Setting key : EXMENT_PUBLICFORM_URLPARAM_SUUID
+- Default value : false
+- Role : Click [here](/publicform) for details.
+
 #### Line feed code removal in HTTP response
 - Setting key : EXMENT_REMOVE_RESPONSE_SPACE
 - Default value : false
@@ -750,7 +767,7 @@ For such a storage, downloading a file redirects to the temporary URL of the sto
 #### Debug mode (SQL log output)
 - Setting key : EXMENT_DEBUG_MODE_SQL
 - Default value ： false
-- Role : By setting to true, you can log the SQL statement when executing SQL with Extension.  
+- Role : By setting to true, you can log the SQL statement when executing SQL with Exment.  
 \* For development.
 
 #### Debug mode (SQL log output-function display)

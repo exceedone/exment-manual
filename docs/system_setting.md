@@ -209,7 +209,7 @@ If the new password is compared with the password for the latest to the number o
 
 #### Note
 
-- <span class = "small"> To display this setting field, you need to add "EXMENT_PASSWORD_POLICY = true" to the ".env" file.</span>
+- <span class = "small"> This setting has been moved to the [login setting screen](/login_setting).</span>
 - <span class = "small"> "Complex password" and "Password history" are applied when the user sets the password by himself / herself on the user setting screen or password reset screen. Not applicable if set by the system administrator. </span>
 
 ## IP filter settings

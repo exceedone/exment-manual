@@ -156,7 +156,7 @@ client.003.csv
 ## Data import
 Batch data from files in the specified folder to the custom table of Exment.
 ※The files that can be used are EXCEL files or csv files in the same format as those imported from the screen.
-※You can enter more than 1000 data that is limited on the screen.
+※You can enter more than 5000 data that is limited on the screen.
 
 ### important point
 - CSV files compressed in ZIP format are not processed.

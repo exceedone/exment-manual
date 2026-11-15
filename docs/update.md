@@ -6,6 +6,8 @@ Please check [here](/release_note)for the update history.
 
 - <span class="red bold">Updating from v4.3.X or lower to v4.4.X or higher requires a manual update. Please check the contents of [here](/update/v4_4) once and then update.</span>
 
+- <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check the contents of [here](/update/v5_0_php8) once and then update.</span>
+
 - <span class="red bold">Updating from v5.0.X or lower to v6.0.0 or higher requires a manual update. Please check the contents of [here](/update/v6_0_php8) once and then update.</span>
 
 - <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. The Laravel version and the namespace of the admin library have changed. Please check the contents of [here](/update/v7_0_0) once and then update.</span>
@@ -81,15 +83,9 @@ sh ExmentUpdateLinux.sh
 ExmentUpdateWindows.bat
 ~~~
 
-## Run update batch
-The update batch does the following:
-  - Data backup
-  - Obtain the latest source and reflect
-  - Database update
-
 ## Update batch execution contents
 The following contents are executed in the update batch.  
- - ata backup
+ - Data backup
  - Acquire and reflect the latest sources
  - Database update
 
@@ -104,8 +100,8 @@ This item is managed by a mechanism called "session" so that it is not acquired 
 Therefore, **even if an update is performed, the notation of "There is a new version" does not disappear and remains displayed.**  
 After the update, log out and log in again to get the latest version.
 
-## (old) Manual update method
-The following is the backup method for v1.3.0 or earlier. If you want to execute the update manually from the command, please execute this.  
+## Manual update method
+If you want to execute the update manually from the command, please execute this.  
 
 ### (Recommended) Data backup
 Perform a data backup. For more information [backup](/backup) Please confirm.  
@@ -127,8 +123,10 @@ Perform a data backup. For more information [backup](/backup) Please confirm.
 - In the command line, execute the following command.  
   ※Immediately after the release, the latest version might not be detected. In that case, wait for about 10-20 minutes and then run the command again.  
 
-~~~  
-cd (Project’s root directory)  
-composer update --ignore-platform-reqs`  
-php artisan exment:update  
+~~~
+cd (Project’s root directory)
+composer update
+# For XServer, execute the following instead of "composer update"
+# composer update --ignore-platform-reqs
+php artisan exment:update
 ~~~

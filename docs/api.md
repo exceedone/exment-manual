@@ -3,8 +3,8 @@ In Exment, API can be executed.
 This can be done by OAuth-based authentication using an Exment account.  
   
 Exment uses [laravel / passport](https://github.com/laravel/passport) for authentication.  
-Reference: [Laravel 6.X API authentication](https://readouble.com/laravel/6.x/en/passport.html)  
-Therefore, authentication depends on laravel / passport, but this manual introduces two types of authentication.  
+Reference: [Laravel 12.x Laravel Passport](https://laravel.com/docs/12.x/passport)  
+Therefore, authentication depends on laravel / passport, but this manual introduces three types of authentication.  
 
 ## Change system settings
 > From v2.1.7, the setting has been changed from the screen.
@@ -16,7 +16,9 @@ To use the API in Exment, change "Use API" to YES from the menu "Admin Settings>
 This format allows the user to use the API by entering the Exment login ID and password from the screen.  
 Recommended for running APIs on the web.  
 1. **Password Grant Token(Password Format)** :  
-This is a format in which the login ID and password are set in advance at the execution source that calls the API, and the API is used. Recommended for batch execution.  
+This is a format in which the login ID and password are set in advance at the execution source that calls the API, and the API is used. Recommended for client applications where it is difficult to call a Web screen.  
+1. **API Key(API Key Format)** :  
+An API key is created when the API application is created. After that, the API can be used by including the API key in the authentication request. Recommended for batch execution.  
 
 ### 1. OAuth 2.0, Authorization Code Flow(Screen Login Format)
 This authentication method can be used for users who log in to Exment and use Exment data from a newly constructed Web service (eg, accounting system).  
@@ -207,6 +209,64 @@ Content-Type: application/json
 Use this access token to execute the API.  
 
 
+##### Implementation of the program developed independently (for LDAP authentication)
+- For LDAP authentication, POST as follows.
+
+~~~
+http(s)://(Exment URL)/admin/oauth/token'  POST
+Content-Type: application/json
+
+{
+    "grant_type": "password",
+    "client_id": "(Client ID copied)",
+    "client_secret": "(Client Secret copied)",
+    "login_type": "ldap",
+    "provider_name": "(\"LDAP name (alphanumeric)\" entered on the login setting screen)",
+    "username": "(User ID or email address to log in)",
+    "password": "(User password to log in)",
+    "scope": "(The scope to access. The list is described below. Space delimiter if there are multiple)"
+}
+~~~
+
+
+### 3. API Key(API Key Format)
+An API key is created when the API application is created. After that, the API can be used by including the API key in the authentication request.
+
+- The user does not need to enter the ID and password on the screen.  
+Also, since the password does not need to be set at the execution source, there is no need to embed the password even when developing batch processing, which lowers the security risk.
+
+- **If the API application is registered with this setting, the REST API is executed as the user who created the API application.**  
+Therefore, it is not recommended that the system administrator registers the API application. It is recommended to create a [role group](/role_group) with the "API Application" permission and the permissions for the tables to be used by the API, add a user for API execution to that role group, and register the API application as that user.
+
+#### Setting method
+
+##### Exment page settings
+- Display the API application setting screen (http(s)://(Exment URL)/admin/api_setting) in the same way as the other authentication methods, and click [New].  
+
+- Select "API Key" for the authentication type, enter the application name, and save.  
+
+- After saving, the Client ID, Client Secret and API key required for authentication are displayed, so copy them.  
+
+##### Implementation of the program developed independently
+- Create a request to obtain an access token at the caller.
+
+~~~
+http(s)://(Exment URL)/admin/oauth/token'  POST
+Content-Type: application/json
+
+{
+    "grant_type": "api_key",
+    "client_id": "(Client ID copied)",
+    "client_secret": "(Client Secret copied)",
+    "api_key": "(API key copied)",
+    "scope": "(The scope to access. The list is described below. Space delimiter if there are multiple)"
+}
+~~~
+
+- By this, json including access_token, refresh_token, expires_in attribute is returned in the response value.  
+Use this access token to execute the API.  
+
+
 ## API execution method
 To execute the API, add the following to the request header.  
   
@@ -390,10 +450,11 @@ For example, you cannot retrieve information for tables for which you do not hav
 | Parameter name | Description |
 | ---- | ---- |
 | me | You can get the login user information. |
-| system_read | You can get system information. |
-| system_write | You can get, add, update, and delete system information. |
+| system_read | You can get system information. (Currently unused. Listed as a reserved word) |
+| system_write | You can get, add, update, and delete system information. (Currently unused. Listed as a reserved word) |
 | table_read | You can get the setting information of the custom table. |
-| table_write | You can get / add new / update / delete setting information of custom table. |
+| table_write | You can get / add new / update / delete setting information of custom table. (Currently unused. Listed as a reserved word) |
+| view_read | You can get the setting information of the custom view. |
 | value_read | You can get information on custom data. |
 | value_write | You can get / add new / update / delete information of custom data. |
 | notify_read | You can get notification information. |
