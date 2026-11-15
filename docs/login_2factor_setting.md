@@ -29,8 +29,9 @@ This is how to set up two-factor authentication.
 
 ~~~
 composer require pragmarx/google2fa
-composer require simplesoftwareio/simple-qrcode=^2.0.0
 ~~~
+
+> Since v7.0.0, simplesoftwareio/simple-qrcode is installed automatically as a dependency of Exment, so you do not need to add it.
 
 - Open the ".env" file from the root folder of the project, and add as follows.  
 ※ how to edit the configuration file, for more information click [here](/config) Please refer to.

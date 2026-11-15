@@ -29,8 +29,9 @@ ID/パスワードによるログイン後、Google認証システムを使用�
 
 ~~~
 composer require pragmarx/google2fa
-composer require simplesoftwareio/simple-qrcode=^2.0.0
 ~~~
+
+> v7.0.0 以降、simplesoftwareio/simple-qrcode は Exment の依存ライブラリとして自動でインストールされるため、追加は不要です。
 
 - プロジェクトのルートフォルダより、「.env」ファイルを開き、以下のように追記を行ってください。  
 ※設定ファイルの編集方法について、詳細は[こちら](/ja/config)をご参照ください。
