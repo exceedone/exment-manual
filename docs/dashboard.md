@@ -91,6 +91,7 @@ Set the items shown on the filter bar, one per row. Add rows with "New".
 # Select items to display
 You can select the item you want to display from these four types,
 "Data List", "System", "Chart", "Calendar" in the upper right "New" of each column of the created dashboard.  
+※If a [plugin (dashboard)](/plugin_quickstart_dashboard) is installed, "Plugin" can also be selected.
 
 ![Dashboard screen](img/dashboard/dashboard_grid4.png)  
 
