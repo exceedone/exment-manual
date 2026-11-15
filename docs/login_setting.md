@@ -86,17 +86,17 @@ Password reset can be performed by command.
 - The system administrator executes the following command on the console.  
 
 ~~~
-php artisan exment: resetpassword --email = foobar@test.com --password = P @ ssw0rd!
+php artisan exment:resetpassword --email=foobar@test.com --password=P@ssw0rd!
 ~~~
 
-- By executing the above command, set the password "P @ ssw0rd!" To the user whose email address is "foobar@test.com".  
+- By executing the above command, set the password "P@ssw0rd!" To the user whose email address is "foobar@test.com".  
 
 
 ### Command arguments
 
-`` ```
-exment: resetpassword {--id =} {--email=} {--user_code =} {--password =} {--random = 0} {--send = 0} {--reset_first_login = 0}
-`` ```
+```
+exment:resetpassword {--id=} {--email=} {--user_code=} {--password=} {--random=0} {--send=0} {--reset_first_login=0}
+```
 
 #### Arguments: User specified
 ※One of the following arguments is required. If more than one of the following arguments is selected, the search will be performed in the order of priority of id> email> user_code.  
@@ -139,12 +139,12 @@ After changing the password, the screen for changing the password will be displa
 
 ~~~
 # Example: Reset by specifying password for user with id1
-php artisan exment: resetpassword --id = 1 --password = P @ ssw0rd!
+php artisan exment:resetpassword --id=1 --password=P@ssw0rd!
 
 # Example: Set a random password for the user with user code "user1" and send an email
-php artisan exment: resetpassword --user_code = user1 --random = 1 --send = 1
+php artisan exment:resetpassword --user_code=user1 --random=1 --send=1
 
 #Example: Set a random password for the user with email address "foobar@test.com"
-php artisan exment: resetpassword --email = foobar@test.com --random = 1
+php artisan exment:resetpassword --email=foobar@test.com --random=1
 I have reset my password. New password: XXXXXXXXXX #The changed password is output to the console
 ~~~

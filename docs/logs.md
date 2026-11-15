@@ -240,7 +240,7 @@ Outputs a log file on the server mainly when an error occurs.
 - ##### SQL Log Output
     - Setting Key : EXMENT_DEBUG_MODE_SQL
     - Defaul Value ： false
-    - Role : By setting it to true, you can log the SQL statement when executing SQL with Extension.
+    - Role : By setting it to true, you can log the SQL statement when executing SQL with Exment.
 
 - ##### SQL Log Output - Function display
     - Setting Key : EXMENT_DEBUG_MODE_SQLFUNCTION

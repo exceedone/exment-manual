@@ -33,7 +33,7 @@ Exment's database engine requires one of the following:
 - MariaDB 10.11 or higher
 - SQL Server 13.0.0 or higher (Currently, automatic backup・restore is not supported)
 
-If you have not set up the database server yet, please check [here](/server #database) and build it.
+If you have not set up the database server yet, please check [here](/server?id=database) and build it.
 
 
 ## Exment app settings
@@ -41,14 +41,14 @@ After the server construction is completed, set the application of Exment.
 
 ### zip Download / Extract
 - Download the zip file from the following URL.
-[Exment zip file] (https://exment.net/downloads/ja/exment.zip)
+[Exment zip file](https://exment.net/downloads/ja/exment.zip)
 
 - Extract the zip file to a PHP executable path.
-Example 1 (XAMPP Windows): C: \ xampp \ local \ extension
-Example 2 (XAMPP Mac): / Applications / XAMPP / local / extension
-Example 3 (XServer): $ HOME / domain.com.foobar/exment/
+Example 1 (XAMPP Windows): C:\xampp\local\exment  
+Example 2 (XAMPP Mac): /Applications/XAMPP/local/exment  
+Example 3 (XServer): $HOME/domain.com.foobar/exment/
   
-- <span class = "red bold"> Do not put the zip file directly under the public folder of each server (eg linux: / var / www / html). Installation files containing database settings and email passwords will be disclosed to the outside, leading to fatal information leakage. </span>
+- <span class = "red bold"> Do not put the zip file directly under the public folder of each server (eg linux: /var/www/html). Installation files containing database settings and email passwords will be disclosed to the outside, leading to fatal information leakage. </span>
 
 Be sure to check the [Server Settings](/server) of each procedure for the installation procedure.
 

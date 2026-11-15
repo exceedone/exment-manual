@@ -240,7 +240,7 @@ Since this setting can be set individually for each View, it is possible to make
   
     There are two types, "Filter condition" and "Sort setting", which are prepared by Plugin's own setting and Exment standard function.  
     * To get the set value, use the function "$ this->custom_view->getCustomOption('parameter name')".  
-    * Also, when using the column settings used in View, which is a standard function of Extension, describe as follows.  
+    * Also, when using the column settings used in View, which is a standard function of Exment, describe as follows.  
 
 - (5) The function "public function setCustomOptionForm (&$form)" is an item displayed on the Plugin setting screen.  
 This setting is commonly used for all views.  
