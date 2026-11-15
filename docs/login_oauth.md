@@ -39,6 +39,7 @@ http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
+※ In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so this command is not required.
 
 - Carry out [Screen Settings](#On-screen-settings).
 
@@ -200,6 +201,7 @@ http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
+※ In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so this command is not required.
 
 - Add the packages specified in [Socialite Providers](https://socialiteproviders.github.io/).
 
@@ -359,6 +361,22 @@ protected $listen = [
         \SocialiteProviders\Microsoft\MicrosoftExtendSocialite::class.'@handle',
     ],
 ];
+
+~~~
+
+※ If Exment v7.0.0 or later was newly installed (a project created with Laravel 12), "app/Providers/EventServiceProvider.php" does not exist. In that case, write as follows in the boot method of "app/Providers/AppServiceProvider.php".
+
+~~~php
+
+// Example: EntraID
+
+public function boot(): void
+{
+    \Illuminate\Support\Facades\Event::listen(
+        \SocialiteProviders\Manager\SocialiteWasCalled::class,
+        [\SocialiteProviders\Microsoft\MicrosoftExtendSocialite::class, 'handle']
+    );
+}
 
 ~~~
 

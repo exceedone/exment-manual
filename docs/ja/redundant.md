@@ -42,7 +42,7 @@ composer require predis/predis
 
 ~~~
 ###ファイルアップロード管理
-EXMENT_DRIVER_DEFAULT=s3 #Exmentでファイルアップロードを行う先。s3に設定
+EXMENT_DRIVER_EXMENT=s3 #Exmentでファイルアップロードを行う先。s3に設定
 AWS_ACCESS_KEY_ID=XXXXXX #AWSのS3のアクセスキー
 AWS_SECRET_ACCESS_KEY=XXXXXX #AWSのS3のシークレットキー
 AWS_DEFAULT_REGION=ap-northeast-1 #AWSのS3のリージョン

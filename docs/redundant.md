@@ -40,7 +40,7 @@ composer require predis/predis
 
 ~~~
 ###File upload management
-EXMENT_DRIVER_DEFAULT=s3 #s3 Destination to upload files with Exment. Set to s3
+EXMENT_DRIVER_EXMENT=s3 #s3 Destination to upload files with Exment. Set to s3
 AWS_ACCESS_KEY_ID=XXXXXX #AWS S3 secret key
 AWS_SECRET_ACCESS_KEY=XXXXXX #AWS S3 region
 AWS_DEFAULT_REGION=ap-northeast-1 #AWS S3 region

@@ -25,11 +25,11 @@ By performing the setting once, the initial setting will not be performed for th
 ## Setting method
 This is how to set up two-factor authentication.
 
-- Execute the following command from the root folder of the project.  
+- If the authentication method to use is "Google Authenticator", execute the following command from the root folder of the project.  
 
 ~~~
-composer remove pragmarx/google2fa
-composer remove  simplesoftwareio/simple-qrcode=^2.0.0
+composer require pragmarx/google2fa
+composer require simplesoftwareio/simple-qrcode=^2.0.0
 ~~~
 
 - Open the ".env" file from the root folder of the project, and add as follows.  

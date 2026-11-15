@@ -39,6 +39,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
+※Exment v7.0.0以降では、「laravel/socialite」はExmentの依存ライブラリとして自動的にインストールされるため、このコマンドの実行は不要です。
 
 - [画面での設定](#画面での設定)を実施します。
 
@@ -197,6 +198,7 @@ http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
+※Exment v7.0.0以降では、「laravel/socialite」はExmentの依存ライブラリとして自動的にインストールされるため、このコマンドの実行は不要です。
 
 - [Socialite Providers](https://socialiteproviders.github.io/)で指定されているパッケージを追加します。  
 
@@ -316,6 +318,22 @@ protected $listen = [
         \SocialiteProviders\Microsoft\MicrosoftExtendSocialite::class.'@handle',
     ],
 ];
+
+~~~
+
+※Exment v7.0.0以降で新規インストールした場合(Laravel12で作成したプロジェクト)、「app/Providers/EventServiceProvider.php」は存在しません。その場合は、「app/Providers/AppServiceProvider.php」のbootメソッドに、以下のように記載してください。
+
+~~~php
+
+// 例：EntraIDの場合
+
+public function boot(): void
+{
+    \Illuminate\Support\Facades\Event::listen(
+        \SocialiteProviders\Manager\SocialiteWasCalled::class,
+        [\SocialiteProviders\Microsoft\MicrosoftExtendSocialite::class, 'handle']
+    );
+}
 
 ~~~
 

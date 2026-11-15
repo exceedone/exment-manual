@@ -41,7 +41,7 @@ composer require directorytree/ldaprecord
 ※事前に、[Linuxによる環境構築](/ja/install_linux)などで実施している、epelの更新・rpmインストールを行ってください。
 
 ```
-sudo yum install --enablerepo=remi-php74 php-ldap
+sudo dnf install php-ldap
 ```
 
 - php.iniファイルを開きます。  
