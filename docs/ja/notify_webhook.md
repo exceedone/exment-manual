@@ -57,7 +57,7 @@ Slackで、個別メンションを実施したい場合、ユーザー列のSla
     - 列種類：「1行テキスト」
 ![通知](img/notify/notify_slack4.png) 
 
-- [システム設定](/ja/system)画面の「詳細設定」で、「Slack ID設定列(ユーザー)」に、先ほど追加したSlack ID列を選択します。
+- [システム設定](/ja/system_setting)画面の「詳細設定」で、「Slack ID設定列(ユーザー)」に、先ほど追加したSlack ID列を選択します。
 ![通知](img/notify/notify_slack5.png) 
 
 - これで、通知設定画面で、ユーザーデータに入力されているSlack IDに、メンションを実施することができます。  

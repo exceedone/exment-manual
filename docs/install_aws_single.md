@@ -19,7 +19,7 @@ This page is constructed with the following contents.
 - This procedure only describes the steps to run Exment on Linux.   
 General IT knowledge such as SSH, database creation, Linux commands, etc. is not included. note that.   
 
-- If an error occurs during installation, please refer to [Troubleshooting](/en/troubleshooting).
+- If an error occurs during installation, please refer to [Troubleshooting](/troubleshooting).
 
 
 ## Installation instructions using Linux

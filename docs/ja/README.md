@@ -327,7 +327,7 @@ Exmentは、情報資産をWeb上で管理するための、オープンソー�
                 </a>
             </div>
             <div class="col-sm-6 tile">
-                <a href="#/ja/data_workflow">
+                <a href="#/ja/workflow_execution">
                     <div class="tile-inner">
                         <h5>ワークフロー実行</h5>
                         <p>各ユーザーが、ワークフローを実行するための手順です。</p>

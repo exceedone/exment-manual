@@ -40,8 +40,6 @@ MariaDB10.4未満を利用している場合は、MariaDB10.4へアップデー�
 
 - [AWSに構築(Amazon Linux2)](/ja/install_aws_single)
 
-- [AWSに構築(Ubuntu Server)](/ja/install_aws_ubuntu_single)
-
 - [AWSに構築-冗長化 ](/ja/install_aws)  
 
 - [Dockerで構築  ](/ja/install_docker)  

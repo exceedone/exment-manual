@@ -40,8 +40,6 @@ Please follow these steps to update your PHP version.
 
 - [Build on AWS(Amazon Linux2)](/install_aws_single)  
 
-- [Build on AWS(Ubuntu)](/install_aws_ubuntu_single)  
-
 - [Build on AWS - Redundancy](/install_aws)  
 
 - [Build with Docker  ](/install_docker)  

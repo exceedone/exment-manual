@@ -9,7 +9,7 @@ In ver2, the following measures are implemented.
 - Significant improvements in both speed and memory usage
 - require/remove and partial updates are much faster
 
-![composer2](img/update/composer2.png)
+![composer2](ja/img/update/composer2.png)
 
 Quote:  
 https://blog.packagist.com/composer-2-0-is-now-available  

@@ -22,7 +22,7 @@ This time, I will use Redis.
 ## How to build
 ### Web server construction
 Build each Web server.  
-Basically, there is no problem if you [install using the normal installation method](/quick_start), but you need to additionally perform only the following contents.  
+Basically, there is no problem if you [install using the normal installation method](/quickstart), but you need to additionally perform only the following contents.  
 
 #### Installing additional libraries
 Execute composer and install the following library on the web server.  

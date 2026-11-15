@@ -41,7 +41,7 @@ Regarding AWS, general IT knowledge such as SSH, database creation, Linux comman
 
 - **This procedure assumes that you are running with an administrator account. If executed by a user who is not an administrator account, add "sudo" to the beginning**
 
-- If an error occurs during installation, please refer to [Troubleshooting](/en/troubleshooting).
+- If an error occurs during installation, please refer to [Troubleshooting](/troubleshooting).
 
 - This procedure can be found in [AWS Tutorial](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html#setting-file-permissions- It is created based on 2).
 
