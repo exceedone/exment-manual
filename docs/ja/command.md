@@ -38,6 +38,14 @@ php artisan exment:publish
 php artisan exment:setup-dir {--user=} {--group=} {--easy=0} {--easy_clear=0}
 ```
 
+### システム要件の確認
+PHPのバージョンや拡張機能、フォルダの書き込み権限など、Exmentの実行に必要なシステム要件を満たしているかどうかを確認し、結果を表示します。  
+詳細は[こちら](/ja/server)の「システム要件確認」をご確認ください。
+
+```
+php artisan exment:checkrequire
+```
+
 
 
 ## データインポート・エクスポート・データ削除
@@ -175,11 +183,25 @@ php artisan exment:schedule
 
 
 ### 通知(時間の経過)を実行
-通知の実施トリガー「時間の経過」で設定している通知を、「通知時間」設定よらずに、即時実行します。  
+通知の実施トリガー「時間の経過」で設定している通知を、「通知時間」設定によらずに、即時実行します。  
+対象の通知は、通知のID、「--name=(通知名(英数字))」、「--suuid=(通知のsuuid)」のいずれかで指定します。  
+※有効フラグがNOの通知も実行されます。  
 詳細は[こちら](/ja/notify)をご確認ください。
 
 ```
-php artisan exment:notify {id?} {--name=}
+php artisan exment:notify {id?} {--name=} {--suuid=}
+
+# 例：IDが3の通知を実行する場合
+php artisan exment:notify 3
+```
+
+
+### 通知(時間の経過)を、通知時間に従って実行
+実施トリガーが「時間の経過」で、有効フラグがYESの通知のうち、「通知時間」が現在の時刻(時)と一致する通知を実行します。  
+※通常は、「スケジュール実行」(exment:schedule)の中で同じ処理が実行されるため、このコマンドを個別に実行する必要はありません。
+
+```
+php artisan exment:notifyschedule
 ```
 
 
@@ -224,6 +246,14 @@ Exmentのログインパスワードリセットを、コマンドから実行�
 
 ```
 php artisan exment:resetpassword --email=(対象ユーザーのメールアドレス) --password=(変更後パスワード)
+```
+
+### APIクライアントの一覧表示
+[API設定](/ja/api)で登録しているクライアントの一覧を表示します。クライアントごとに、名前、種類、ユーザーID、Client ID、Client Secret、リダイレクトURLを表示します。  
+<span class="red">※Client Secretが表示されます。実行結果の取り扱いにご注意ください。</span>
+
+```
+php artisan passport:clientlist
 ```
 
 ### ワークフローのデータのリセット 

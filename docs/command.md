@@ -49,6 +49,14 @@ php artisan exment:setup-dir --easy=1
 php artisan exment:setup-dir --easy_clear=1
 ```
 
+### Check system requirements
+Checks whether the system requirements for running Exment are met, such as the PHP version, the PHP extensions and the write permissions of the folders, and displays the result.  
+For details, see "Check system requirements" [here](/server).
+
+```
+php artisan exment:checkrequire
+```
+
 
 
 ## Data import / export / data deletion
@@ -187,8 +195,23 @@ php artisan exment:schedule
 Execution of notification The notification set in the trigger "Elapsed time" is executed immediately regardless of the "Notification time" setting.  
 Please check [here](/notify) for details.
 
+Specify the notification by its ID, by "--name=(Notify Name)" or by "--suuid=(suuid of the notification)".  
+※ A notification whose active flag is NO is also executed.
+
 ```
-php artisan exment:notify {id?} {--name=}
+php artisan exment:notify {id?} {--name=} {--suuid=}
+
+# Example: execute the notification whose ID is 3
+php artisan exment:notify 3
+```
+
+
+### Execute notifications (elapsed time) according to the notification time
+Executes the notifications whose trigger is "Elapsed time", whose active flag is YES and whose "Notification time" matches the current hour.  
+※ Normally you do not need to run this command by itself, because "Schedule execution" (exment:schedule) performs the same process.
+
+```
+php artisan exment:notifyschedule
 ```
 
 
@@ -234,6 +257,14 @@ Please check [here](/login_setting#password-reset-command) for details.
 
 ```
 php artisan exment:resetpassword --email=(target user's email address) --password=(changed password)
+```
+
+### List API clients
+Displays the list of the clients registered in the [API settings](/api). For each client, the name, the type, the user ID, the Client ID, the Client Secret and the redirect URL are displayed.  
+<span class="red">※ The Client Secret is displayed. Handle the output with care.</span>
+
+```
+php artisan passport:clientlist
 ```
 
 ### Resetting workflow data
