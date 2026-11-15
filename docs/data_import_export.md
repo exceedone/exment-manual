@@ -17,6 +17,7 @@ The output data format supports csv and xlsx (recommended).
 ![Data screen](img/data/data_export2.png)  
     - All: Outputs all data of the table. However,**data for which the logged-in user does not have permission is not output.**  
     - Current page: Outputs the data list of the currently open page.  
+    - All (with comments): Outputs all data of the table, together with the comments of each data. The comments are output to the sheet "comment" (for CSV format, the file "comment"). This item is displayed only for tables whose "Use Comment" setting is YES. The comments are for reference only: the "comment" sheet (file) is not read when importing.  
     - Selected rows only: Outputs a list of checked data from the data of the currently open page.  
 
 - By clicking each "Output" button, the data will be downloaded as a file.  

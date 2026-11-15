@@ -102,6 +102,12 @@ Set the icon to be displayed on the button on the screen.
 Please set the HTML class to be added to the button on the screen.  
 ※Displayed only when "Update timing" is "When the button on the data details screen is pressed".
 
+- ##### Show Button for Data Locked by Workflow
+Normally, the button is not shown on the data details screen of a data whose workflow status does not allow editing.  
+If set to YES, the button is also shown for such data. The default is NO.  
+The button is shown only to the users who have the permission to edit the data.  
+※Displayed only when "Update timing" is "When the button on the data details screen is pressed".
+
 - ##### Active flag
 If you want to temporarily disable the data update settings or temporarily save the settings that are being created, please set the "Active flag" to NO.  
 

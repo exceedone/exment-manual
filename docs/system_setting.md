@@ -173,7 +173,7 @@ Please note that SPF record settings are not supported by us. Please note.
 
 - <span class = "small"> Originally, in Laravel, the setting value of ".env" file is used as a parameter of mail transmission, but from v1.3.6, the setting value of .env file is not used and the screen The value registered in "System Settings" of is now used. </span>
 - <span class = "small"> However, in some cases you may want to continue setting the ".env" file. Especially with Laravel, you can also send emails using a sending method other than SMTP. </span>
-- <span class = "small"> In that case, enter "EXMENT_MAIL_SETTING_ENV_FORCE = true" in the ".env" file. You will continue to use the settings you entered in the ".env" file. </span>
+- <span class = "small"> In that case, enter "EXMENT_MAIL_SETTING_ENV_FORCE=true" in the ".env" file. You will continue to use the settings you entered in the ".env" file. </span>
 
 
 ## LINE Setting

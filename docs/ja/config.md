@@ -329,7 +329,8 @@ manualの場合、「検索フィルター設定」画面で追加した列の�
 - 設定キー : EXMENT_MAIL_SETTING_ENV_FORCE
 - 既定値 : false
 - 役割 : trueにすると、メール設定を、.envファイルの設定から使用します。  
-(falseの場合、システム設定画面で記入した設定値を使用します。)
+(falseの場合、システム設定画面で記入した設定値を使用します。システム設定画面で「ホスト名」を設定していると、.envの「MAIL_MAILER」が「log」のままでも、SMTPで送信します。)  
+詳細は[こちら](/ja/mailsend_setting)をご確認ください。
 
 #### メール連続通知無視時間(分)
 - 設定キー : EXMENT_NOTIFY_SAVED_SKIP_MINUTES

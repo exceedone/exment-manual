@@ -58,7 +58,7 @@ id, suuid, parent_id, parent_type, created_at, updated_at, deleted_at, created_u
     - YES / NO: Create a switch to switch between “YES” and “NO”. When registering data, YES is registered as 1 and NO is registered as 0.  
     - Binary selection: Creates a switch that switches between two values. You can also change the value at the time of data registration.  
     - Automatic numbering: Create values ​​such as UUIDs and random character strings when creating data.    
-    - Image: An item to upload an image.  
+    - Image: An item to upload an image. On the data list and data details screens, the image is displayed with a link. The link (a tag) has the class "image-link", so a [plugin (script)](/plugin_quickstart_script) or a [plugin (style)](/plugin_quickstart_style) can target only the links of images.
     - File: An item to upload a file.  
     - User: An option to select a user for the system.  
     - Organization: An option to select the organization of the system.  

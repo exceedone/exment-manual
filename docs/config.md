@@ -327,7 +327,8 @@ Since this process is heavy, when you want to execute it separately from the syn
 - Setting key : EXMENT_MAIL_SETTING_ENV_FORCE
 - Default value : false
 - Role : If set to true, the mail settings will be used from the settings in the .env file.  
-(If false, the setting value entered on the system setting screen will be used.)
+(If false, the setting value entered on the system setting screen will be used. When the host name is set on the system setting screen, mail is sent by SMTP even if "MAIL_MAILER" in .env is still "log".)  
+See [here](/mailsend_setting) for details.
 
 #### E-mail continuous notification ignore time (minutes)
 - Setting key : EXMENT_NOTIFY_SAVED_SKIP_MINUTES
