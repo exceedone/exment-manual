@@ -68,6 +68,18 @@ Please refer to the image above for each layout example.
 
 ※If you reload the WEB page after saving the settings, the settings will be reflected and displayed.
 
+#### Screen design
+- Select the design of the login page and the admin pages: "Modern" or "Classic".
+    - Modern: the new design, based on white and gray.
+    - Classic: the same design as v7.0 and earlier.
+- The initial value is "Modern".
+
+※Available from v7.1.0.  
+※After updating to v7.1.0, the screen design changes to "Modern". To go back to the previous design, select "Classic" here and save.  
+※With "Modern", the header and the sidebar are shown in white and gray whichever color is selected in the site skin. If an image is set as the site logo, a blue background is added behind the logo.  
+※If the design is fixed by the server ("EXMENT_UI_DESIGN" in the .env file), that value takes priority. In that case this item cannot be changed, and "(set by the server)" is displayed. See [Setting value list](/config?id=screen-design) for details.  
+※If you reload the WEB page after saving the settings, the settings will be reflected and displayed.
+
 #### Use API 
 - You can use the API by setting it to "YES".  
 Note: Before setting this to YES, you will need to create a Laravel key with the command below.

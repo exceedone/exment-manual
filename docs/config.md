@@ -484,6 +484,13 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Default value : false
 - Role : By setting it to true, the copy link will be displayed in the operation field of the list page.
 
+#### Screen design
+- Setting key : EXMENT_UI_DESIGN
+- Default value : nothing
+- Role : Fixes the design of the login page and the admin pages on the server side. Enter "modern" or "classic". If set, this value takes priority over "Screen design" in the [System setting](/system_setting?id=screen-design), and it can no longer be changed on the system setting page. If not set, "Screen design" in the system setting (initial value: "Modern") is used.
+
+※Available from v7.1.0.
+
 
 
 ### Custom Data
