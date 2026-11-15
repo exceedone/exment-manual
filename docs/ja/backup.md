@@ -94,6 +94,19 @@ Exmentでは、決まった時刻に自動的にバックアップを行うこ�
 php artisan exment:backup
 ~~~
 
+- 「--target=」を指定しない場合は、すべての対象(データベース、プラグインファイル、添付ファイル、ログファイル、設定ファイル)をバックアップします。
+- 対象を絞り込む場合は、「--target=」に、以下のキーをカンマ区切りで指定します。
+    - database : データベース
+    - plugin : プラグインファイル
+    - attachment : 添付ファイル
+    - log : ログファイル
+    - config : 設定ファイル
+
+~~~
+# 例：データベースと添付ファイルのみバックアップする場合
+php artisan exment:backup --target=database,attachment
+~~~
+
 
 ## リストア
 データをリストア(復元)する方法として、「バックアップ一覧から選択」と「アップロード」の2種類あります。  
@@ -205,6 +218,14 @@ SQLServerを使用している場合、現状Exmentでは画面からのバッ�
 
 ~~~
 php artisan exment:restore (zipファイル名)
+~~~
+
+- zipファイル名を省略した場合は、バックアップ一覧が表示されますので、リストアするファイルを選択してください。
+- 実行前に、確認メッセージが表示されます。確認メッセージを表示せずに実行する場合は、「--yes」を指定してください。
+
+~~~
+# 例：確認メッセージを表示せずにリストアする場合
+php artisan exment:restore (zipファイル名) --yes
 ~~~
 
 <h3 id="change_backup_target"><a href="#/ja/backup?id=change_backup_target" data-id="change_backup_target" class="anchor"><span>(上級者向け)バックアップ先の変更</span></a></h3>

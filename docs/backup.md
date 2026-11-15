@@ -70,6 +70,19 @@ Backup by command is also possible. Execute the following command in the root di
 php artisan exment:backup
 ~~~
 
+- If "--target=" is not specified, all targets (database, plugin files, attachment files, log files and config files) are backed up.
+- To back up only some targets, specify the following keys in "--target=", separated by commas.
+    - database : Database
+    - plugin : Plugin File
+    - attachment : Attachment File
+    - log : Log File
+    - config : Config File
+
+~~~
+# Example: back up only the database and the attachment files
+php artisan exment:backup --target=database,attachment
+~~~
+
 
 ## Restore
 There are two ways to restore (restore) data: "Select from backup list" and "Upload".  
@@ -139,6 +152,14 @@ Restoration by command is also possible. Execute the following command in the ro
 
 ~~~
 php artisan exment:restore (zip file name)
+~~~
+
+- If the zip file name is omitted, the backup list is displayed. Select the file to restore.
+- A confirmation message is displayed before the restore starts. To run without the confirmation message, specify "--yes".
+
+~~~
+# Example: restore without the confirmation message
+php artisan exment:restore (zip file name) --yes
 ~~~
 
 
