@@ -20,6 +20,49 @@ Dockerイメージは、[oreno4649氏によるdockerリポジトリ](https://git
 - 本手順では、ExmentをDockerで動作させるための手順のみの記載となります。  
 SSHやデータベース作成、Dockerコマンドなど、一般的なIT系のナレッジについては記載致しておりません。ご了承ください。  
 
+## Windows のパソコンで使う場合（WSL2）
+Windows では、WSL2（Windows の中で Linux を動かす仕組み）の Ubuntu の中に Docker を入れて動かします。開発・検証用の手順です。
+
+### 1. WSL2 と Ubuntu を入れる
+- PowerShell を「管理者として実行」で開き、以下を実行してから、パソコンを再起動します。
+
+```
+wsl --install -d Ubuntu
+```
+
+- 再起動のあと、スタートメニューから「Ubuntu」を開き、Linux のユーザー名とパスワードを決めます。
+- PowerShell で `wsl -l -v` を実行し、Ubuntu の「VERSION」が「2」になっていることを確認します。
+
+> 仮想化が無効というエラーになる場合は、BIOS（UEFI）の仮想化の設定（Intel VT-x・AMD-V）が有効になっているかをご確認ください。
+
+### 2. Ubuntu の中に Docker を入れる
+- Ubuntu の画面で、以下を実行します。
+
+```bash
+sudo apt-get update
+sudo apt-get install -y docker.io docker-compose-v2 git make
+sudo usermod -aG docker $USER
+```
+
+- PowerShell で `wsl --shutdown` を実行してから、Ubuntu を開き直します。
+- `docker run --rm hello-world` を実行し、「Hello from Docker!」と表示されれば完了です。
+
+> Docker が起動しない場合は、`/etc/wsl.conf` に以下を書き、`wsl --shutdown` のあと Ubuntu を開き直してから、`sudo systemctl enable --now docker` を実行してください。
+> ```
+> [boot]
+> systemd=true
+> ```
+
+> Docker Desktop for Windows でも動作します。Docker Desktop は、一定の規模以上の企業での利用が有料です（Docker 社の利用規約をご確認ください）。
+
+### 3. Exment を動かす
+- ファイルは Ubuntu の中（例: `~/exment`）に置き、以下の「Dockerによるインストール手順」を Ubuntu の画面で実行します。C ドライブ（`/mnt/c/...`）に置くと、動作がとても遅くなります。
+- Windows のブラウザーで http://localhost/admin を開きます。
+
+### 注意
+- WSL2 は、しばらく使わないと自動で停止し、Docker のコンテナも停止します。使うときは、Ubuntu を開いて `make mysql-up`（お使いのデータベースに合わせて）を実行してください。
+- Windows の 80 番ポートをほかのソフトが使っている場合は、docker-exment の `.env` の `EXMENT_DOCKER_HTTP_PORTS` を `8080` などに変えてください。そのときは http://localhost:8080/admin で開きます。
+
 ## Dockerによるインストール手順
 
 > ※ここでは、もっともスタンダードな、「Webサーバー」「MySQL」の構成を行う場合の手順になります。  
@@ -28,8 +71,16 @@ SSHやデータベース作成、Dockerコマンドなど、一般的なIT系の
 
 
 ### 定義ファイル取得
-- 以下のページより、必要フォルダをダウンロードし、zipを解凍します。  
-[docker-exment](https://github.com/exceedone/docker-exment)
+- [docker-exment](https://github.com/exceedone/docker-exment) を取得し、その中に [exment-boilerplate](https://github.com/exceedone/exment-boilerplate) を取得します。フォルダ名は「exment-boilerplate」のままにしてください。
+
+```bash
+git clone https://github.com/exceedone/docker-exment.git
+cd docker-exment
+git clone https://github.com/exceedone/exment-boilerplate.git
+```
+
+- git を使わない場合は、両方を zip でダウンロードして解凍し、exment-boilerplate のフォルダの名前を「exment-boilerplate」に変えて（解凍すると「exment-boilerplate-master」になります）、docker-exment のフォルダの中に置きます。
+- 以下のコマンドは、docker-exment のフォルダで実行します。
 
 
 
