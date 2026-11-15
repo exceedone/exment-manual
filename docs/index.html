@@ -31,6 +31,7 @@
   <nav>
     <a href="#/">EN</a>
     <a href="#/ja/">日本語</a>
+    <a href="#/vi/">Tiếng Việt</a>
   </nav>
   <div id="app">Please wait...</div>
   <script>
@@ -46,17 +47,20 @@
       subMaxLevel: 2,
       nameLink: {
         '/ja': '#/ja/',
+        '/vi': '#/vi/',
         '/': ''
       },
       search: {
         noData: {
           '/ja/': '結果がありませんでした',
+          '/vi/': 'Không có kết quả!',
           '/en/': 'No results!',
           '/': 'No results!'
         },
         paths: 'auto',
         placeholder: {
           '/ja/': '検索',
+          '/vi/': 'Tìm kiếm',
           '/en/': 'Search',
           '/': 'Search'
         }
