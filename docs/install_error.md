@@ -2,8 +2,8 @@
 An error may occur during installation, depending on your server environment and version.  
 On this page, the response methods are summarized for each event.  
 
-## If an error occurs during the command "php artisan exment: install"
-When the command "php artisan exment: install" is executed, the following error may occur.  
+## If an error occurs during the command "php artisan exment:install"
+When the command "php artisan exment:install" is executed, the following error may occur.  
 
 ~~~
  Illuminate\Database\QueryException  : SQLSTATE[42000]: Syntax error or access

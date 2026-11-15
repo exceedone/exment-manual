@@ -9,8 +9,10 @@
   * [Installation procedure](/quickstart.md)
   * [Initial setting](/first_setting.md)
   * [System setting](/system_setting.md)
+  * [Basic information](/base_info.md)
   * [Update](/update.md)
   * [Additional settings](/quickstart_more.md)
+  * [(For advanced users) Redundancy](/redundant.md)
   * [Mailsend_setting](/mailsend_setting.md)
 
 * 【3. Login settings】
@@ -106,4 +108,5 @@
   * [Command](/command)
   * [Patch_weakness](/patch_weakness)
   * [Troubleshooting](/troubleshooting)
+  * [Errors during installation](/install_error)
   * [License](/license.md)

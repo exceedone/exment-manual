@@ -47,13 +47,13 @@ $ make mysql-up
 ### Building a MariaDB environment
 
 ````bash
-$ make maridb-init
+$ make mariadb-init
 ````
 
 ### Setting up a MariaDB environment
 
 ````bash
-$ make maridb-init
+$ make mariadb-up
 ````
 
 ### Building a SQL Server environment

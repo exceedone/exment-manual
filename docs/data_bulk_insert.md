@@ -63,7 +63,7 @@ CUST009, test customer name 009 ,,
 
 3. At the command line, run the following command.
 ~~~
-php artisan exment: bulkinsert {folder name}
+php artisan exment:bulkinsert {folder name}
 ~~~
 
 #### Command execution example

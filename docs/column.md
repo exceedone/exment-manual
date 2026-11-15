@@ -171,7 +171,7 @@ Up to 10 "search indexes" are recommended, and up to 20 can be set in the same t
 > This setting method has been changed to [Extended setting of custom table](/table#Extended-setting-of-custom-table) in v1.3.0.
 
 ## Regular expression
-> This setting is displayed only when [Expert mode](/quickstart_more#Expert-mode) is enabled.  
+> This setting is displayed only when [Expert mode](/additional_expert) is enabled.  
 
 If the custom column setting is "1 line text", you can perform validation by regular expression.  
 

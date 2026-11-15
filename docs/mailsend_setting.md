@@ -78,7 +78,7 @@ Please save it once and then send the test email.
 - Enter the following command in the root folder of your project.  
 
 ~~~
-php artisan exment: notifytest --to = (mail destination)
+php artisan exment:notifytest --to=(mail destination)
 ~~~
 
 ### In case of transmission error

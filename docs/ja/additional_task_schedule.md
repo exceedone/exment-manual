@@ -25,8 +25,8 @@ crontab -e
 # 通常のLinux
 * * * * * cd /(Exmentのルートディレクトリ) && php artisan schedule:run >> /dev/null 2>&1
 
-# XServer(PHPバージョンによってパスは異なる。下記はPHP7.4の場合)
-* * * * * cd /(Exmentのルートディレクトリ) && /usr/bin/php7.4 artisan schedule:run >> /dev/null 2>&1
+# XServer(PHPバージョンによってパスは異なる。下記はPHP8.2の場合)
+* * * * * cd /(Exmentのルートディレクトリ) && /usr/bin/php8.2 artisan schedule:run >> /dev/null 2>&1
 
 # さくらインターネット
 * * * * * cd /(Exmentのルートディレクトリ); php artisan schedule:run >> /dev/null 2>&1

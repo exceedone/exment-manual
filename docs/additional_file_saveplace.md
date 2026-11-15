@@ -96,6 +96,13 @@ The description of config is the minimum and the method of describing the settin
 Since the setting values can be reused for each file type, settings can be made relatively easily.  
 
 #### FTP
+
+- Execute the following command.
+
+~~~
+composer require league/flysystem-ftp ~3.0
+~~~
+
 - Open "config/filesystems.php" and check the setting value of "disks.ftp".  
 If not, add the following settings:  
 
@@ -149,7 +156,7 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 - Execute the following command.
 
 ~~~
-composer require league/flysystem-sftp ~3.0
+composer require league/flysystem-sftp-v3 ~3.0
 ~~~
 
 - Open "config/filesystems.php" and check the setting value of "disks.sftp".  

@@ -85,7 +85,7 @@ Upload the plugin.
 - Please refer to the [plug-in](/plugin) for how to upload.  
 - In the case of batch processing, immediately after uploading, the valid flag is set to "invalid" and it is set to not be executed automatically. If you want to change it, switch the valid flag from the [plug-in](/plugin).  
 - **In addition to this setting, task schedule settings are required.**  
-For more information [here](/quickstart_more?id=Task-schedule) please check the.
+For more information [here](/additional_task_schedule) please check the.
 
 
 ### How to start a batch

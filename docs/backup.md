@@ -50,7 +50,7 @@ Click the "Download" link in the backup row.
 ### Automatic backup execution
 Exment allows you to automatically back up at a fixed time.  
 By making regular backups, it is possible to restore data in the event of a major data update error.  
-**※It is necessary to set [Task Schedule](/quickstart_more#Task-Schedule) in advance.**
+**※It is necessary to set [Task Schedule](/additional_task_schedule) in advance.**
 
     
 As an example, it is a method of setting "backup for seven generations" at "3:00 at night", "every other day".  

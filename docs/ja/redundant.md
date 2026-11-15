@@ -24,7 +24,7 @@ Laravelの標準機能を使用する場合、セッション管理は、Webサ�
 ## 構築方法
 ### Webサーバー構築
 Webサーバーを、それぞれ構築します。  
-基本的には、[通常のインストール方法](/ja/quick_start)でインストールを行えば問題ございませんが、以下の内容だけ、追加で行う必要があります。
+基本的には、[通常のインストール方法](/ja/quickstart)でインストールを行えば問題ございませんが、以下の内容だけ、追加で行う必要があります。
 
 #### 追加ライブラリのインストール
 composerを実行し、以下のライブラリを、Webサーバーにインストールしてください。
@@ -42,7 +42,7 @@ composer require predis/predis
 
 ~~~
 ###ファイルアップロード管理
-EXMENT_DRIVER_DEFAULT=s3 #Exmentでファイルアップロードを行う先。s3に設定
+EXMENT_DRIVER_EXMENT=s3 #Exmentでファイルアップロードを行う先。s3に設定
 AWS_ACCESS_KEY_ID=XXXXXX #AWSのS3のアクセスキー
 AWS_SECRET_ACCESS_KEY=XXXXXX #AWSのS3のシークレットキー
 AWS_DEFAULT_REGION=ap-northeast-1 #AWSのS3のリージョン

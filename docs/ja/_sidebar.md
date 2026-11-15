@@ -10,8 +10,10 @@
   * [インストール手順](/ja/quickstart_easy)
   * [初期設定](/ja/first_setting)
   * [システム設定](/ja/system_setting)
+  * [基本情報](/ja/base_info)
   * [アップデート](/ja/update)
   * [追加設定](/ja/quickstart_more)
+  * [(上級者向け)冗長化](/ja/redundant)
   * [メール送信設定](/ja/mailsend_setting)
 
 * 【3. ログイン設定】
@@ -41,7 +43,7 @@
   * [データ登録](/ja/data_form)
   * [削除済データ](/ja/deleted_data)
   * [データインポート・エクスポート](/ja/data_import_export)
-  * [インポート・エクスポート（コマンド](/ja/data_cmd_import_export)
+  * [インポート・エクスポート（コマンド）](/ja/data_cmd_import_export)
   * [インポート（大量データ）](/ja/data_bulk_insert)
   * [検索](/ja/search)
 
@@ -107,5 +109,6 @@
   * [コマンド一覧](/ja/command)
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
   * [トラブルシューティング](/ja/troubleshooting)
+  * [インストール時のエラー](/ja/install_error)
   * [ライセンス](/ja/license)
   * [開発メモ](/ja/develop_memo)

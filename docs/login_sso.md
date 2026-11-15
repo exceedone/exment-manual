@@ -27,7 +27,7 @@ When you click the login button, you will be redirected to the login screen of t
 This is a method of logging in with single sign-on in SAML format.  
 When you click the login button, you will be redirected to the login screen of the provider you registered in advance to log in.  
   
-- [Single sign-on (SAML)](/login_saml)
+- [Single sign-on (SAML)](/ja/login_saml) (Japanese page)
   
 ※Provider example:
 
@@ -40,7 +40,7 @@ When you click the login button, you will be redirected to the login screen of t
 This is a method of logging in in LDAP format.  
 On the Exment login page, enter the user information in the ID / password field and click the login button to perform LDAP authentication and link the user information.  
   
-- [Login Settings (LDAP)](/login_ldap)
+- [Login Settings (LDAP)](/ja/login_ldap) (Japanese page)
   
 ※Provider example:
 
@@ -62,8 +62,8 @@ Select it and save it.
 
 - To add a new SSO provider, click the "+ New" button in the upper right.  
     - [Single sign-on (OAuth)](/login_oauth)
-    - [Single sign-on (SAML)](/login_saml)
-    - [Login Settings (LDAP)](/login_ldap)
+    - [Single sign-on (SAML)](/ja/login_saml) (Japanese page)
+    - [Login Settings (LDAP)](/ja/login_ldap) (Japanese page)
   
 
 ### SSO settings

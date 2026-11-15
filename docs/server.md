@@ -11,16 +11,16 @@ This is the procedure for building a web server. Follow one of the steps below t
 ※XAMPP is recommended when building an environment with PHP, Apache, and MySQL from the beginning as a development environment.
 
 - [XAMPP construction (development / verification environment) Windows](/install_xampp)  
-→ First of all, if you want to install Extension on your personal computer (Windows version)
+→ First of all, if you want to install Exment on your personal computer (Windows version)
 
 - [XAMPP construction (development / verification environment) Mac](/install_xampp_mac)  
-→ First of all, if you want to install Extension on your PC (Mac version)
+→ First of all, if you want to install Exment on your PC (Mac version)
 
 - [Rental server construction](/install_rental)  
 → If you want to publish the Exment and easily access it from other members or smartphones
 
 - [Build on Linux](/install_centos_stream)  
-→ Procedure for installing Extension on Linux (CentOS Stream)
+→ Procedure for installing Exment on Linux (CentOS Stream)
  ※For those who built it on CentOS 8, please refer to [here](/install_linux)
 
 - [Build on IIS](/install_iis)  
@@ -44,9 +44,28 @@ Of the Exment project folders, the following folders and files require write per
 | folder | config | Easy installation and restore |
 | folder | app | Easy installation |
 | folder | public | Easy installation |
+| folder | resources | Easy installation |
 
 <span class="small">* Easy installation authority is required only at the time of installation. If you want to set the permission more strictly, delete the write permission of the folder after executing the simple installation.</span>
 
+
+#### Automatic generation of initial folders
+- The initial folder structure can also be generated automatically with the following command.  
+    - --user=(User name. If not specified, an input prompt is displayed after execution)
+    - --group=(Group name. If not specified, an input prompt is displayed after execution)
+    - --easy=(1 when installing Exment with easy installation. The default is 0)
+    - --easy_clear=(1 when you want to return the folder permissions to the appropriate ones after easy installation. The default is 0)
+
+```
+php artisan exment:setup-dir {--user=} {--group=} {--easy=0} {--easy_clear=0}
+
+# For manual installation
+php artisan exment:setup-dir
+# For easy installation
+php artisan exment:setup-dir --easy=1
+# To return the folder permissions to the original ones after easy installation is completed
+php artisan exment:setup-dir --easy_clear=1
+```
 
 
 ## Introduced composer
@@ -125,7 +144,7 @@ Please check [here](/additional_php_ini) for how to change the settings.
 
 #### File permissions
 Check the file permissions required to run Exment.  
-Please check [here](#file-permissions) for more information.
+Please check [here](#file-permission-settings) for more information.
 
 
 #### Composer installation

@@ -318,7 +318,7 @@ Menus marked with " <span style="color:red;">*</span> " are particularly importa
                 </a>
             </div>
             <div class="col-sm-6 tile">
-                <a href="#/data_workflow">
+                <a href="#/workflow_execution">
                     <div class="tile-inner">
                         <h5>Workflow execution</h5>
                         <p>Steps for each user to execute the workflow.</p>

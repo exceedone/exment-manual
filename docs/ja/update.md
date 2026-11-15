@@ -134,6 +134,8 @@ ExmentUpdateWindows.bat
 
 ~~~
 cd (プロジェクトのルートディレクトリ)
-composer update --ignore-platform-reqs` 
+composer update
+# XServerの場合は、「composer update」の代わりに以下を実行
+# composer update --ignore-platform-reqs
 php artisan exment:update
 ~~~

@@ -32,7 +32,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### 「/admin」URL変更
 - 設定キー : ADMIN_ROUTE_PREFIX
 - 既定値 ： admin
-- 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/quickstart_more?id=urlに含む「admin」の変更・削除)をご確認ください。
+- 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/additional_prefix)をご確認ください。
 
 
 #### 公開フォームの「/publicform」URI変更
@@ -575,14 +575,6 @@ manualの場合、「検索フィルター設定」画面で追加した列の�
 - 設定キー : EXMENT_SHOW_ORGANIZATION_TREE
 - 既定値 : false
 - 役割 : trueにすることで、組織一覧ページで、組織の階層表示が出来るようになります。
-
-#### カスタムデータ自動共有設定-既定値
-- 設定キー : EXMENT_CUSTOM_VALUE_SAVE_AUTOSHARE_DEFAULT
-- 既定値 : 0
-- 役割 : カスタムテーブル設定の「カスタムデータ自動共有設定」での既定値です。以下の中から選択してください。
-    - 0 : ログインユーザーのみ
-    - 1 : ログインユーザーと、所属する最下層の組織
-    - 2 : ログインユーザーと、所属するすべての組織
 
 ### 並び順設定
 

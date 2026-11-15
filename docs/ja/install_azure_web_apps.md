@@ -1,4 +1,5 @@
 # (上級者向け、ベータ版)Azure Web Appsによる環境構築
+<span class="red bold">※このページは、Exment v7.0.0より前のバージョン(Laravel6、PHP7.4)を前提とした古い手順です。Exment v7.0.0(PHP8.2以上、Laravel12)では、このままの手順ではインストールできません。インストール手順は[手動インストール](/ja/quickstart_manual)をご確認ください。</span>  
 本ページでは、Azure Web AppsでExmentを構築する手順を記載します。  
 Azure Web AppsならびにMySQLを作成し、実行するための手順です。
 

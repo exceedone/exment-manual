@@ -39,6 +39,7 @@ http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
+※ In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so this command is not required.
 
 - Carry out [Screen Settings](#On-screen-settings).
 
@@ -79,12 +80,12 @@ Once the server setup is complete, go to the [Login Settings Screen](/login_sett
 
 - Go to the system settings screen using the administrator account.   
 Click the Login Settings button in the top right of the page to go to the Login Settings screen.
-![Login setting screen](img/login/login_setting1.png)  
+![Login setting screen](ja/img/login/login_setting1.png)  
 
 - Click the New button to create a login setting.
 
 ### Provider type
-![Login setting creation screen](img/login/login_oauth1.png)  
+![Login setting creation screen](ja/img/login/login_oauth1.png)  
 
 - If you selected a provider in (1) in the Server/Provider Settings, please select the name of that provider.   
 
@@ -93,7 +94,7 @@ Also, if you select "Other", please enter the alphanumeric characters for the pr
 Example: Microsoft Graph: "graph"  
 Example: EntraID: "microsoft"
 
-![Login setting creation screen](img/login/login_oauth2.png)  
+![Login setting creation screen](ja/img/login/login_oauth2.png)  
 
 
 ### Client ID, Client Secret
@@ -118,7 +119,7 @@ When you log out of Exment, you are also logged out of the provider you logged i
 ### User Setting
 Set the settings for the logged in user.
 
-![User Settings](img/login/login_setting5.png)  
+![User Settings](ja/img/login/login_setting5.png)  
 
 #### Account search column
 Set which columns to use to search for Exment accounts from accounts obtained via SSO.
@@ -147,23 +148,23 @@ If YES, user information such as username will be updated when re-login.
 Set the login button to be displayed on the login screen.
 ※Even if you do not make this setting, if you are using a provider that is standard on Socialite (as in Example 1 above), it will be displayed in the respective format.
 
-![User Settings](img/login/login_setting6.png)  
+![User Settings](ja/img/login/login_setting6.png)  
 
 
 ### Activation and login test
 - Once you save your data at least once, the Activate button and the Test Login button will be displayed.
 
-![User Settings](img/login/login_setting7.png)  
+![User Settings](ja/img/login/login_setting7.png)  
 
 #### activation
 - By enabling it, a button for SSO authentication will be displayed on the login screen.   
-![User Settings](img/login/login_setting8.png)  
+![User Settings](ja/img/login/login_setting8.png)  
 
 #### Login test
 - You can test your login with the login information you set by clicking the Login Test button. This can be done even if you have not enabled the login settings.
 **In that case, please temporarily add or change the URL displayed in the test redirect URL to the callback URL in the provider's OAuth authentication settings.**
 
-![User Settings](img/login/login_setting9.png)  
+![User Settings](ja/img/login/login_setting9.png)  
 
 
 - You can test whether the settings are correct by clicking the Login button.
@@ -200,6 +201,7 @@ http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
+※ In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so this command is not required.
 
 - Add the packages specified in [Socialite Providers](https://socialiteproviders.github.io/).
 
@@ -359,6 +361,22 @@ protected $listen = [
         \SocialiteProviders\Microsoft\MicrosoftExtendSocialite::class.'@handle',
     ],
 ];
+
+~~~
+
+※ If Exment v7.0.0 or later was newly installed (a project created with Laravel 12), "app/Providers/EventServiceProvider.php" does not exist. In that case, write as follows in the boot method of "app/Providers/AppServiceProvider.php".
+
+~~~php
+
+// Example: EntraID
+
+public function boot(): void
+{
+    \Illuminate\Support\Facades\Event::listen(
+        \SocialiteProviders\Manager\SocialiteWasCalled::class,
+        [\SocialiteProviders\Microsoft\MicrosoftExtendSocialite::class, 'handle']
+    );
+}
 
 ~~~
 

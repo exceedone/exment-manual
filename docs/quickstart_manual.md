@@ -6,8 +6,8 @@ These are the steps required to start Exment.
 ## important point
 - **If you do not have a web server, [set up the server](/server) first.**  
 (If you do not know if you have built a server, please check it once)
-- If an error occurs during installation, see If [an error occurs during installation](/install_error).
-- For other inquiries, please feel free to [contact us](https://exment.net/inquiry) for free.
+- If an error occurs during installation, please refer to [Troubleshooting](/troubleshooting).
+- ※We are very sorry, but we are not accepting individual inquiries regarding the installation procedure or server construction. If you would like individual support, please request paid support.
 
 ## Server settings
 Exment requires PHP 8.2 or higher (`^8.2.0`). Also, MySQL 8.0 or higher, MariaDB 10.11 or higher, or SQL Server 13.0.0 or higher is required.  
@@ -34,13 +34,13 @@ cd (Project name)
 ~~~
 
 ## Create database
-- Create a database for Exment with MySQL.
+- Create a database for Exment with your database engine (MySQL, MariaDB or SQL Server).
 
 
 ## .env change
 
 - Open ".env" and add or change the following contents.  
- **※Note that the value of DB_CONNECTION differs depending on whether your database is MySQL or MariaDB.**  
+ **※Note that the value of DB_CONNECTION differs depending on whether your database is MySQL, MariaDB or SQL Server.**  
  - SESSION_DRIVER, CACHE_STORE, QUEUE_CONNECTION: In Laravel 12, the default value of session, cache and queue is "database". With these defaults, opening the screen before installation causes an error, and notifications such as e-mails stay in the queue and are not sent. To make Exment work in the same way as v6.x or earlier (Laravel 10), change them to the values below. To use the queue, see [Delayed execution of notification processing](/additional_queue).
  - <span class="red bold">Change .env before "Exment installation" below.</span> In the default settings of Laravel 12, the database is "sqlite", so installing Exment before changing it shows an error.
 
@@ -50,18 +50,20 @@ cd (Project name)
 APP_URL=http://XXXX.com # URL to access the site. "admin" not required
 
 # Change database settings  
-# For MySQL, the following settings (default)  
-DB_CONNECTION = mysql  
-# In case of MariaDB, modify to the following settings  
-DB_CONNECTION = mariadb  
+# For MySQL, the following settings (default)
+DB_CONNECTION=mysql
+# In case of MariaDB, modify to the following settings
+DB_CONNECTION=mariadb
+# In case of SQL Server, modify to the following settings
+DB_CONNECTION=sqlsrv
 
-DB_HOST=127.0.0.1 #MySQL host name
-DB_PORT=3306 #MySQL port number
-DB_DATABASE=homestead #MySQL database name for Exment
-DB_USERNAME=homestead #MySQL database user name for Exment
-DB_PASSWORD=secret # 1 password of MySQL Exment database
+DB_HOST=127.0.0.1 #Database host name
+DB_PORT=3306 #Database port number
+DB_DATABASE=homestead #Database name for Exment
+DB_USERNAME=homestead #Database user name for Exment
+DB_PASSWORD=secret #Database password for Exment
 
-# Japanese and Japanese time settings from v1.2.0. Set by copy and paste
+# Language and time zone settings (the example is Japanese and Japan time). Set by copy and paste
 APP_TIMEZONE=Asia/Tokyo
 APP_LOCALE=ja
 
@@ -112,7 +114,4 @@ After the installation is complete, continue with the [initial settings](/first_
 ## Other initial settings
 With the above operations, you can start Exment, but you may need to configure additional settings to use some functions.  
 Please check the link below.  
-- [Change / delete "admin" included in URL](/quickstart_more.md#Change/delete-"admin"-included-in-URL)
-- [Task schedule function](/quickstart_more.md#Task-schedule-function)
-- [Server external communication off](/quickstart_more.md#Server-external=communication-off)
-- [Change file upload limit size](/quickstart_more.md#Change-file-upload-limit-size)
+- [Additional settings](/quickstart_more)

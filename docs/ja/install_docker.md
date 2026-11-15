@@ -48,13 +48,13 @@ $ make mysql-up
 ### MariaDB 環境の構築
 
 ````bash
-$ make maridb-init
+$ make mariadb-init
 ````
 
 ### MariaDB 環境のセットアップ
 
 ````bash
-$ make maridb-init
+$ make mariadb-up
 ````
 
 ### SQL Server環境の構築

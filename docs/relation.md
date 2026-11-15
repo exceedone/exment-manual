@@ -38,12 +38,12 @@ This is the method introduced on this page.
 From the "Custom Table" page, click the "Relation Setting" button and register by operating.
 
 ##### (2) Custom column choices (select from a list of values ​​in another table)
-It is a method to set in the [custom column](Related-table-screen/column) screen.  
+It is a method to set in the [custom column](/column) screen.  
 As one of the column types that can be set in the custom column, you can have a column called “Choice (select from a list of values ​​in another table)”.  
 ![Related table screen](img/relation/relation_select_table1.png)
 ![Related table screen](img/relation/relation_select_table2.png)
 
-By making this setting, you can select values ​​from other tables on the [data form screen](Related-table-screen/data_form).  
+By making this setting, you can select values ​​from other tables on the [data form screen](/data_form).  
 Example (customer is test data):  
 ![Related table screen](img/relation/relation_select_table3.png)
 ![Related table screen](img/relation/relation_select_table4.png)

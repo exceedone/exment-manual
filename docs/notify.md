@@ -8,7 +8,7 @@ Exment currently has the following notification types:
 #### Passage of time
 Notification is executed when the date registered in the data approaches the day before a certain date.  
 Example: If the contract renewal date is "7/31" and "Notify 10 days ago" has been set in the settings, an email will be sent to "7/21".  
-**※To execute this function, you need to set the [task schedule](/quickstart_more?id=task-schedule) in advance.**
+**※To execute this function, you need to set the [task schedule](/additional_task_schedule) in advance.**
 
 #### Create / update / share / comment new data
 Notification is executed when the following conditions are met.
