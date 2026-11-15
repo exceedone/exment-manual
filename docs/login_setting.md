@@ -74,7 +74,7 @@ In v3.6.0 or later, if you want to automatically log out when you close the brow
 ※For details on how to edit the configuration file, refer to [here](/config).
 
 ~~~
-EXMENT_SESSION_EXPIRE_ON_CLOSE = true
+EXMENT_SESSION_EXPIRE_ON_CLOSE=true
 ~~~
 
 
