@@ -398,7 +398,7 @@ You can select "Match Default", "Data Edit", "Data Detail", "No transaction". ("
 ![Screen transition when row is clicked](img/table/row_click1.png)  
 
 ### Heading format settings
-> This setting appears only if you have enabled [expert mode](/quickstart_more#expert-mode).
+> This setting appears only if you have enabled [expert mode](/additional_expert).
 
 By using parameter variables, you can flexibly set the values ​​displayed as headings.  
 When expert mode is enabled, format string input items are displayed on the extended setting screen.

@@ -32,7 +32,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 #### 「/admin」URL変更
 - 設定キー : ADMIN_ROUTE_PREFIX
 - 既定値 ： admin
-- 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/quickstart_more?id=urlに含む「admin」の変更・削除)をご確認ください。
+- 役割 : Exmentを表示する際のパス名です。詳細は[こちら](/ja/additional_prefix)をご確認ください。
 
 
 #### 公開フォームの「/publicform」URI変更
