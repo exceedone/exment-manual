@@ -112,7 +112,7 @@ If the table is registered as n in "1: n" in the relation setting, enter the par
 
 - Custom column list: Enter the value to be registered as a custom column.  
 ※ The method of inputting values ​​differs depending on the type of column.   
-Please confirm the following menu「[Custom column input method when importing](#Custom-column-input-method-when-importing)」.
+Please confirm the following menu「[Custom column input method when importing](#custom-column-input-method-when-importing)」.
 
 - Creation date / time, update date / time, deletion date / time: Basically, it is blank.  
 Fill in if you want to specify the date and time when the data was created, updated, and deleted.  
@@ -143,7 +143,7 @@ For details, see "Primary key types" below.
 
 - If there is a problem with the imported data, the line number after the header and the content of the error are displayed in "Error Message".  
 ![Import error](img/data/data_import8.png)
-※The import will not succeed if the data is not entered for the item that is set to "[Required](/column? Id = Common entry details)" in the custom column settings. Check if there is any omission in the import template file.
+※The import will not succeed if the data is not entered for the item that is set to "[Required](/column?id=entry-details-common)" in the custom column settings. Check if there is any omission in the import template file.
 - After successful completion of the acquisition, the dialog is closed and the data is re-read.  
 
 
@@ -185,7 +185,7 @@ Please check out contents below.
 - Choices (select from a list of values ​​in another table), User, Organization: Enter**the ID of the referenced table**. 
 ![Data screen](img/data/data_import10.png)  
 ※In the default setting, specify the data ID of the reference destination table,**but you can specify a custom column and import it.**  
-For details, refer to「[Changing the method of specifying parent table data](#Changing-the-method-of-specifying-parent-table-data)」.
+For details, refer to「[Changing the method of specifying parent table data](#changing-the-method-of-specifying-parent-table-data)」.
 
 - YES / NO: Please input "YES" or "NO", or "1" or "0".  
 

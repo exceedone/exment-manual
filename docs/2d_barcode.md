@@ -88,4 +88,4 @@ You can change the display name of the "2D barcode" on the "2D barcode download"
 ## Launching the camera screen from Exment
 - From the Exment dashboard, you can launch the camera screen to read 2D barcodes.
 
-- For instructions on how to add the item "2D barcode reading" to the Exment dashboard, please see [here](/dashboard#_2d-barcode).
+- For instructions on how to add the item "2D barcode reading" to the Exment dashboard, please see [here](/dashboard#_2djan-barcode).

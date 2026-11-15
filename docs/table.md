@@ -76,7 +76,7 @@ Set it to NO if you want to exclude it from the search results, such as when you
 ![Custom table screen](img/table/table_detail7.png)
 
 #### Use ID for labels
-- ou can add the data ID to the head of the label in the search suggestions displayed when using the search bar. See [Using on Labels](/column?id=Use-in-labels) for more information. Default is NO.
+- ou can add the data ID to the head of the label in the search suggestions displayed when using the search bar. See [Using on Labels](/column?id=use-in-labels) for more information. Default is NO.
 
 ![Custom table screen](img/table/table_detail8.png)
 
@@ -86,12 +86,12 @@ Set it to NO if you want to exclude it from the search results, such as when you
 ![Custom table screen](img/table/table_detail9.png)
 
 #### Use attachments
-- Set to YES to allow uploading [attachments](/data_details?id=attachments) to table data . Default is YES.
+- Set to YES to allow uploading [attachments](/data_details?id=attachment) to table data . Default is YES.
 
 ![Custom table screen](img/table/table_detail10.png)
 
 #### Use comments
-- Set to YES to allow [comments](/data_details?id=comments) on table data. Default is YES.
+- Set to YES to allow [comments](/data_details?id=comment) on table data. Default is YES.
 
 ![Custom table screen](img/table/table_detail11.png)
 

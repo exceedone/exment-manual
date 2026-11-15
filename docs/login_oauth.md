@@ -41,7 +41,7 @@ composer require laravel/socialite=~5.1
 ~~~
 ※ In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so this command is not required.
 
-- Carry out [Screen Settings](#On-screen-settings).
+- Carry out [Screen Settings](#on-screen-settings).
 
 
 
@@ -62,16 +62,16 @@ http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback
 composer require exceedone/microsoft-graph
 ~~~
 
-- Carry out [Screen Settings](#On-screen-settings).
+- Carry out [Screen Settings](#on-screen-settings).
 
 
 ### (3) If you provide your own provider
 If your provider is not listed in (1) or (2), add the unofficial provider at [Socialite Providers](https://socialiteproviders.github.io/).
 Also, unofficial providers do not include a process for obtaining avatars, so if you want to obtain an avatar, you will need to add the process. (Optional)  
   
-※There are several steps, so please see [How to create your own provider](#How to create your own provider) for details.
+※There are several steps, so please see [How to create your own provider](#how-to-create-your-own-provider) for details.
 
-- Once the procedure is complete, proceed to [Settings on screen](#On-screen-settings).
+- Once the procedure is complete, proceed to [Settings on screen](#on-screen-settings).
 
 
 
@@ -101,7 +101,7 @@ Example: EntraID: "microsoft"
 Please set the string provided by your provider.
 
 ### Scope
-Basically, there is no explicit purpose for this when logging in, but we recommend setting it if you will be obtaining an access token with [obtain access token](#Obtaining-an-access-token).
+Basically, there is no explicit purpose for this when logging in, but we recommend setting it if you will be obtaining an access token with [obtain access token](#obtaining-an-access-token).
 
 ### Option Setting
 Set options according to the provider type selected.
@@ -406,7 +406,7 @@ If you want to enter your own provider-specific configuration values, add the va
 
 ### (Required) Configure screen settings
 
-- Once all server-side settings are complete, proceed to [On-screen settings](#On-screen-settings).
+- Once all server-side settings are complete, proceed to [On-screen settings](#on-screen-settings).
 
   
   

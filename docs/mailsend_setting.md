@@ -14,10 +14,10 @@ Example:
 This section describes the setting procedure for sending an email.  
 
 - There are two ways to set up email transmission.  
-    - [Set from screen (default)](#Setting-method-Set-from-screen):
+    - [Set from screen (default)](#setting-method-set-from-the-screen):
     Set the mail sending settings by entering the SMTP settings on the system setting screen. It can be used when sending an email with a simple SMTP setting.
     
-    - [Set in config file or env file](#Setting-method-Set-in-config-file-or-env-file):
+    - [Set in config file or env file](#setting-method-set-with-config-file-or-env-file):
     When setting mail by a method other than SMTP such as Amazon SES, edit the setting file on the server or use composer to make the setting. ※For advanced users.
 
 ### Setting method-Set from the screen

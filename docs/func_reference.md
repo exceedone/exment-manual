@@ -364,7 +364,7 @@ $query->where($title->getIndexColumnName(), 'LIKE', 'Exment%')
 ## CustomValue / custom data
 Class for custom data.  
 ※ This class is an abstract class. With this class as base, a class is dynamically generated for each custom table.  
-If you want to get custom data class for each table , please refer to [getValueModel of CustomTable](#getValueModel) class .  
+If you want to get custom data class for each table , please refer to [getValueModel of CustomTable](#getvaluemodel) class .  
 
 - namespace Exceedone\Exment\Model
 - extends Exceedone\Exment\Model\ModelBase

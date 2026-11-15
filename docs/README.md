@@ -8,7 +8,7 @@ Exment is open source software for managing information assets on the Web.
 <a href="https://en.exment.net" target="_blank">Exment official site</a>
 
 ## Installation method
-Please check [here] (/quickstart) for the installation method.
+Please check [here](/quickstart) for the installation method.
 
 ## Demo site
 Demo site is available to suit your business. Please check the

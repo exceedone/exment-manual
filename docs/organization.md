@@ -12,7 +12,7 @@ http(s)://(URL of Exment)/admin/data/organization
 A list of organizations currently registered in the system is displayed.  
 ![Organization management screen](img/organization/organization2.png)  
   
-※By [setting](/config#Perform-hierarchical-display-on-the-department-list-page) "EXMENT_SHOW_ORGANIZATION_TREE = true", the hierarchy will be displayed.  
+※By [setting](/config#perform-hierarchical-display-on-the-department-list-page) "EXMENT_SHOW_ORGANIZATION_TREE = true", the hierarchy will be displayed.  
 
 ![Organization management screen](img/organization/organization3.png)
 
@@ -110,7 +110,7 @@ In "Multiple form setting" and "Workflow", only the organization to which the us
 
 
 ### Data sharing settings
-With Exment,[custom data sharing settings allow](/data_details#Data-sharing) other organizations to access your data.
+With Exment,[custom data sharing settings allow](/data_details#data-sharing) other organizations to access your data.
 
 ![Organization hierarchy](img/organization/organization5.png)
 ![Organization hierarchy](img/organization/organization6.png)

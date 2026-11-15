@@ -42,7 +42,7 @@ EXMENT_LOGIN_USE_2FACTOR=true
 
 - It will transition to the system setting screen with the administrator account.  
 
-- First, configure the email settings. Enter the settings for sending email. See [System Mail Settings](/system_setting#System-mail-settings) for details.  
+- First, configure the email settings. Enter the settings for sending email. See [System Mail Settings](/system_setting#system-mail-settings) for details.  
 After completing the settings, click “Submit” once to save.  
 
 - After that, "2 step authentication" is displayed at the bottom of the system setting screen.  
@@ -65,7 +65,7 @@ In that case, follow [these steps](/update/v1_4) to import the email template.
 ![System setting screen](img/login/login_2factor_error.png)  
 
 ※In addition, an error like the image below may occur.  
-Occurs when the e-mail transmission settings are not performed properly. In that case, make the correct settings according to the [system mail settings](/system_setting#System-mail-settings).  
+Occurs when the e-mail transmission settings are not performed properly. In that case, make the correct settings according to the [system mail settings](/system_setting#system-mail-settings).  
 ![System setting screen](img/login/login_2factor_error2.png)  
 
 - Then click "Send" to save the settings.

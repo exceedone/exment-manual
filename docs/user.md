@@ -85,7 +85,7 @@ By selecting YES, the "Automatically generate password" item will be displayed.
 #### Automatically generate password
 If YES, automatically generate a password when adding login authority.  
 After automatic generation, a password e-mail is automatically sent to the corresponding e-mail address.  
-**※ To execute this function, you need to configure the [mail settings](/system_setting#System-mail-settings).**  
+**※ To execute this function, you need to configure the [mail settings](/system_setting#system-mail-settings).**  
 ![Login user screen](img/user/loginuser_password.png)
 If NO, a text box for entering the password and the item "Send User Information by Email" will be displayed.  
 
@@ -97,7 +97,7 @@ Enter the password of the login user.
 #### Email user information
 Displayed when "Automatically generate password" is NO.  
 If this item is YES, a password email will be sent to the appropriate email address.  
-**※ To execute this function, you need to configure the [mail settings](/system_setting#System-mail-settings).**
+**※ To execute this function, you need to configure the [mail settings](/system_setting#system-mail-settings).**
 
 ### Delete login authority
 Delete login authority.  

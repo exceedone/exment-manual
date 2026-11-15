@@ -33,7 +33,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 - Setting key : ADMIN_ROUTE_PREFIX
 - Default value ： admin
 - Role : This is the path name when displaying Exment.  
-For more details, please see [here](/quickstart_more?Id=url).
+For more details, please see [here](/additional_prefix).
 
 #### Change "/ publicform" URI of public form
 - Setting key : EXMENT_PUBLICFORM_ROUTE_PREFIX

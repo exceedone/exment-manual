@@ -89,7 +89,7 @@ php artisan exment:import {folder name}
 
 ### Data import - Import attachments for images and file columns
 Attachments can be registered in a batch in the custom column type "Image" and "File" columns of Exment.  
-For more information please check [here](/data_cmd_import_export#import_file).
+For more information please check [here](/data_cmd_import_export).
 
 ```
 php artisan exment:file-import {folder name}
@@ -98,7 +98,7 @@ php artisan exment:file-import {folder name}
 
 ### Data import - Document (Attachment) List
 Files can be registered in a batch in the document (attached file) of the specified custom data.  
-For more information please check [here](/data_cmd_import_export#import_document).
+For more information please check [here](/data_cmd_import_export).
 
 ```
 php artisan exment:document-import {folder name}
@@ -301,7 +301,7 @@ php artisan exment:inittest
 
 ### Email sending test
 Performs an email sending test according to the email settings set in Exment.  
-For details, see [here](/mailsend_setting#command) executed from the.
+For details, see [here](/mailsend_setting#execute-from-command) executed from the.
 
 ```
 php artisan exment:notifytest --to=(mail destination)
