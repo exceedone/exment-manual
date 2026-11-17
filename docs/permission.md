@@ -148,6 +148,14 @@ For the setting method, see [Data automatic sharing setting](/table#Data-automat
 
 
 
+#### Display speed of tables with a lot of data
+For users who can see data through data unit permissions (data sharing), Exment checks which data they may see every time they open a data list. So when **a user can see a very large number of rows through data sharing** (e.g. tens of thousands), the data list takes longer to display, especially **without a filter**.  
+(Measured on v7.1.0: in a table with 90,000 rows, a user who can see all 90,000 rows through data sharing waits about 1.3 seconds for the list without a filter. A user with the permission to view all data waits about 0.4 seconds.)
+
+For users who should see **all** the data of a table, give them "View All Data" (or "Edit All Data") in the "Table permissions" of a [role group](/role_group) instead of data sharing. Exment no longer has to check each row, so the list is displayed faster.
+
+※ With "View All Data", the user can see **all the data of the table, including data added later**. If you want to show only some of the data, keep using data sharing.
+
 ## Organization / user settings
 An overview of Exment's organization and user settings.
 
