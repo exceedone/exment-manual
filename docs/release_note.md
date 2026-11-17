@@ -9,16 +9,6 @@
     - "Remember me" kept working after the password was changed ([#1734](https://github.com/exceedone/exment/issues/1734))
     - Updated phpoffice/phpspreadsheet to ^1.29.9 for CVE-2025-22131 ([#1564](https://github.com/exceedone/exment/issues/1564))
 
-## v6.2.16 (2026/11/17)
-- This version contains vulnerability fixes. We recommend updating if you use v6.2.15 or lower.
-1. Vulnerability fixes
-    - Improper access control: a comment or a document of a record the user cannot access could be read, updated or deleted through the data API ([GHSA-3gg5-vgv3-924j](https://github.com/exceedone/exment/security/advisories/GHSA-3gg5-vgv3-924j))
-    - Improper authorization: a data update operation (button / bulk) could be run on data the user cannot edit ([GHSA-9583-2rq4-5mv4](https://github.com/exceedone/exment/security/advisories/GHSA-9583-2rq4-5mv4))
-    - The password entered on a failed login or password reset was kept in the session and printed in the page ([#1735](https://github.com/exceedone/exment/issues/1735))
-    - "Remember me" kept working after the password was changed ([#1734](https://github.com/exceedone/exment/issues/1734))
-1. Bug fixes
-    - The open select2 list stayed on the screen when a modal was closed ([#1678](https://github.com/exceedone/exment/issues/1678))
-
 ## v7.0.0 (2026/10/27)
 
 - <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. Please check the contents of [here](/update/v7_0_0) before updating. </span>
@@ -45,6 +35,16 @@
     - Passwords hashed with a hashing cost different from the current setting are now re-hashed automatically at login. Details [here](/update/v7_0_0)
     - Changed "Reload" on the data list to "Auto refresh" (off / 30 seconds / 1 minute / 5 minutes). Details [here](/data_grid_tools?id=auto-refresh)
     - Changed the location of the admin library assets (CSS, JavaScript, etc.) from "public/vendor/laravel-admin" to "public/vendor/open-admin". Details [here](/update/v7_0_0)
+
+## v6.2.16 (2026/11/17)
+- This version contains vulnerability fixes. We recommend updating if you use v6.2.15 or lower.
+1. Vulnerability fixes
+    - Improper access control: a comment or a document of a record the user cannot access could be read, updated or deleted through the data API ([GHSA-3gg5-vgv3-924j](https://github.com/exceedone/exment/security/advisories/GHSA-3gg5-vgv3-924j))
+    - Improper authorization: a data update operation (button / bulk) could be run on data the user cannot edit ([GHSA-9583-2rq4-5mv4](https://github.com/exceedone/exment/security/advisories/GHSA-9583-2rq4-5mv4))
+    - The password entered on a failed login or password reset was kept in the session and printed in the page ([#1735](https://github.com/exceedone/exment/issues/1735))
+    - "Remember me" kept working after the password was changed ([#1734](https://github.com/exceedone/exment/issues/1734))
+1. Bug fixes
+    - The open select2 list stayed on the screen when a modal was closed ([#1678](https://github.com/exceedone/exment/issues/1678))
 
 ## v6.2.15 (2026/10/09)
 1. Vulnerability fixes
