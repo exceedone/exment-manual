@@ -1,6 +1,24 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.0.1 (2026/11/17)
+- 脆弱性の修正だけの版です。v7.0.0 をお使いの方は、更新をおすすめします。
+1. 脆弱性対応
+    - アクセス制限不備: 閲覧できないデータに付いたコメント・ドキュメントを、データ API で取得・更新・削除できる（[GHSA-3gg5-vgv3-924j](https://github.com/exceedone/exment/security/advisories/GHSA-3gg5-vgv3-924j)）
+    - 認可不備: 編集できないデータを、データ更新の操作（ボタン・一括）で更新できる（[GHSA-9583-2rq4-5mv4](https://github.com/exceedone/exment/security/advisories/GHSA-9583-2rq4-5mv4)）
+    - パスワードを変更しても、「ログイン状態を記憶」でログインできる（[#1734](https://github.com/exceedone/exment/issues/1734)）
+    - 依存ライブラリ phpoffice/phpspreadsheet の脆弱性（CVE-2025-22131）に対応し、^1.29.9 に更新（[#1564](https://github.com/exceedone/exment/issues/1564)）
+
+## v6.2.16 (2026/11/17)
+- 脆弱性の修正の版です。v6.2.15 以下をお使いの方は、更新をおすすめします。
+1. 脆弱性対応
+    - アクセス制限不備: 閲覧できないデータに付いたコメント・ドキュメントを、データ API で取得・更新・削除できる（[GHSA-3gg5-vgv3-924j](https://github.com/exceedone/exment/security/advisories/GHSA-3gg5-vgv3-924j)）
+    - 認可不備: 編集できないデータを、データ更新の操作（ボタン・一括）で更新できる（[GHSA-9583-2rq4-5mv4](https://github.com/exceedone/exment/security/advisories/GHSA-9583-2rq4-5mv4)）
+    - ログイン・パスワード再設定に失敗したとき、入力したパスワードがセッションに残り、画面に出力される（[#1735](https://github.com/exceedone/exment/issues/1735)）
+    - パスワードを変更しても、「ログイン状態を記憶」でログインできる（[#1734](https://github.com/exceedone/exment/issues/1734)）
+1. 不具合修正
+    - モーダルを閉じても、選択肢の一覧が画面に残る（[#1678](https://github.com/exceedone/exment/issues/1678)）
+
 ## v7.0.0 (2026/10/27)
 
 - <span class="red bold">v6.X.X以下から、v7.0.0以上へのアップデートは、手動でのアップデートが必要です。[こちら](/ja/update/v7_0_0)の内容を一度ご確認の上、更新を行ってください。</span>
