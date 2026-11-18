@@ -1,6 +1,13 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.0.2 (2026/11/18)
+- 不具合の修正だけの版です。v7.0.1 以下をお使いの方は、更新をおすすめします。
+- 管理画面ライブラリ「exceedone/exment-admin-core」を v1.0.2 に更新しています。
+1. 不具合修正
+    - フォームで、読み取り専用の選択欄が変更できる（[exment-admin-core#2](https://github.com/exceedone/exment-admin-core/pull/2)）
+    - Surface などのタッチ画面で、チェックボックス・ラジオボタンをタップしても選択できない（[#1563](https://github.com/exceedone/exment/issues/1563)）
+
 ## v7.0.1 (2026/11/17)
 - 脆弱性の修正だけの版です。v7.0.0 をお使いの方は、更新をおすすめします。
 1. 脆弱性対応

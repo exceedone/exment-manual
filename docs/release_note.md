@@ -1,6 +1,13 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.0.2 (2026/11/18)
+- This version contains bug fixes only. We recommend updating if you use v7.0.1 or lower.
+- The admin panel library "exceedone/exment-admin-core" is updated to v1.0.2.
+1. Bug fixes
+    - Readonly select fields could be changed in a form ([exment-admin-core#2](https://github.com/exceedone/exment-admin-core/pull/2))
+    - A tap could not select a checkbox or radio button on a touch screen such as a Surface tablet ([#1563](https://github.com/exceedone/exment/issues/1563))
+
 ## v7.0.1 (2026/11/17)
 - This version contains vulnerability fixes only. We recommend updating if you use v7.0.0.
 1. Vulnerability fixes
