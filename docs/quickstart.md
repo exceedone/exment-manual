@@ -58,7 +58,9 @@ Be sure to check the [Server Settings](/server) of each procedure for the instal
 
 ### Installation of initial data
 - Access the Exment page and configure the settings.  
-Example: http (s): // (your site URL) / admin  
+Example: http(s)://(your site URL)/admin  
+
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 - Set the language and time zone.  
 Change from the initial value if necessary.  

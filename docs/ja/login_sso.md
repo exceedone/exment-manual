@@ -50,8 +50,10 @@ Exmentのログインページで、ID・パスワード欄にユーザー情報
 ## ログイン設定管理方法
 
 - システム管理者が、以下のURLを入力します。  
-http(s)://(ExmentのURL)/admin/log_setting  
+http(s)://(ExmentのURL)/admin/login_setting  
 ※上記で記載の「システム設定変更」を行うことで、アクセスが出来るようになります。
+
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 - もしくは、メニューに「ログイン設定」を追加します。  
 「管理者設定」 > 「メニュー」ページを開き、メニュー種類「システムメニュー」を選択すると、対象の「ログイン設定」が表示されますので、選択し、保存を行ってください。  

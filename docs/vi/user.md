@@ -34,6 +34,8 @@ http(s)://(URL của Exment)/admin/data/user
 Danh sách người dùng hiện đang được đăng ký trong hệ thống sẽ được hiển thị.
 ![Màn hình người dùng](../img/user/user_grid1.png)
 
+> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
+
 ### Thêm mới người dùng
 - Trên màn hình danh sách "Users", nhấp vào nút [New] ở góc trên bên phải của trang.
 

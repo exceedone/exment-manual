@@ -30,6 +30,8 @@ In addition, tables that are imported as templates are also displayed on the lis
 - The table name can be no longer than 30 characters, and the table name must begin with a letter.
 - This can only be set when creating a new table. Once saved, they cannot be changed.
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ![Custom table screen](img/table/table_detail1.png)
 
 ####  Table display name ※ required

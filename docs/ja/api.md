@@ -9,6 +9,8 @@ Exmentでは、[laravel/passport](https://github.com/laravel/passport)を使用�
 ## システム設定変更
 ExmentでAPIを使用するには、メニュー「管理者設定 > システム設定」より、「APIを使用する」をYESに変更してください。
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 ## API認証方法
 1. **OAuth 2.0, Authorization Code Flow(画面ログイン形式)**  
 ユーザーがブラウザで認証し、アプリの利用を承認することで、認証され、APIを使用できるようになる形式です。Web上からAPIを実行する場合におすすめです。
@@ -393,6 +395,8 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 	"total": 1
 }
 ~~~
+
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ## トークンリフレッシュ
 アクセストークンは、一定時間経過後に有効期限が切れ、無効化されます。  

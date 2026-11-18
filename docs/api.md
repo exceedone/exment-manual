@@ -11,6 +11,8 @@ Therefore, authentication depends on laravel / passport, but this manual introdu
 
 To use the API in Exment, change "Use API" to YES from the menu "Admin Settings> System Settings".
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ## API authentication method
 1. **OAuth 2.0, Authorization Code Flow(Screen Login Format)** :  
 This format allows the user to use the API by entering the Exment login ID and password from the screen.  
@@ -319,6 +321,8 @@ result：
 	"total": 1
 }
 ~~~
+
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ## Token refresh
 The access token expires after a certain period of time and is invalidated.  

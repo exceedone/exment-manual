@@ -79,6 +79,8 @@ https://www.famkruithof.net/uuid/uuidgen
     - function: Method in Controller to execute
     - Example: If the URL set on the Plugin management screen is "youtube_search", the uri specified in config.json is "list", and the specified method is "get", "http(s)://(Exment URL)/admin/plugins/youtube_search/list (method: GET) ".  
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ### Plugin file creation
 
 #### Main logic creation

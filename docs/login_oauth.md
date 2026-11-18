@@ -30,6 +30,8 @@ Before you can add a provider in the login settings screen, you need to enter a 
 ※The callback URL is as follows:   
 http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback  
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
     - Example 1 For GitHub: http(s)://(Exment URL)/admin/auth/login/github/callback  
     - Example 2 For Facebook: http(s)://(Exment URL)/admin/auth/login/facebook/callback  
     - Example 3 For Google: http(s)://(Exment URL)/admin/auth/login/google/callback  

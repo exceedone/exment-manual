@@ -15,8 +15,10 @@ After entering your user information and logging in, you will be able to access 
 ## Login setting management method
 
 - The system administrator enters the following URL.
-http (s): // (Exment URL) / admin / log_setting
+http(s)://(Exment URL)/admin/login_setting
 * You will be able to access by changing the "system settings" described above.
+
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 --Alternatively, add "Login Settings" to the menu.
 Open the "Administrator Settings"> "Menu" page and select the menu type "System Menu". The target "Login Settings" will be displayed. Select it and save it.

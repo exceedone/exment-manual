@@ -169,6 +169,8 @@ http(s)://(Exment URL)/admin/ plugin
 This will display the plugin screen.  
 ![Plugin screen](img/plugin/plugin_grid1.png)  
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ### Plugin upload
 Click "Choose File" and select the created plugin zip file.  
 Then click "Upload" and upload from the screen.

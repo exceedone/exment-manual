@@ -10,6 +10,8 @@ http(s)://(Exment URL)/admin/ template
 This will display the template screen.  
 ![Template screen](img/template/template1.png)  
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 
 ## Export
 Export the template.  

@@ -17,6 +17,8 @@ http(s)://(Exment URL)/admin/auth/menu
 A list of menus currently registered in the system is displayed.
 ![Menu screen](img/menu/menu_grid1.png)
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ### Add new menu
 In the "Menu" list screen, enter the required information in the "New" box on the right side of the page.
 ![Menu screen](img/menu/menu_new1.png)
