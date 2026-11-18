@@ -5,6 +5,8 @@
 Exmentページにアクセスします。  
 http(s)://(あなたのサイトURL)/admin  
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 ## 初期設定画面
 正常にインストールが完了している場合、Exment初期設定画面が表示されます。
 

@@ -58,6 +58,8 @@
 http(s)://(ExmentのURL)/admin/workflow_task
 ~~~
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 左のメニューに追加する場合は、[メニュー](/ja/menu)で、メニュー種類「カスタムURL」、URIに「workflow_task」を設定してください。
 
 ## 画面の見方

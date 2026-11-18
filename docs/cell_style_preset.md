@@ -31,6 +31,8 @@ A preset picked on a view **wins over the column setting**.
 
 Open `(your Exment address)/admin/cell_style_preset` in the browser.
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 To reach it at any time, add it to the [menu](/menu.md).
 
 1. Open "Administrator setting" &gt; "Menu".

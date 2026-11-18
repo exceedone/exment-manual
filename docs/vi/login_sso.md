@@ -50,8 +50,10 @@ Trên trang đăng nhập của Exment, nhập thông tin người dùng vào ô
 ## Cách quản lý thiết lập đăng nhập
 
 - Quản trị viên hệ thống nhập URL sau.  
-http(s)://(URL của Exment)/admin/log_setting  
+http(s)://(URL của Exment)/admin/login_setting  
 ※ Có thể truy cập sau khi thực hiện "thay đổi thiết lập hệ thống" đã nêu ở trên.
+
+> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
 
 - Hoặc thêm "Login Setting" (thiết lập đăng nhập) vào menu.  
 Mở trang "Admin Settings" > "Menu", chọn loại menu "System Menu", khi đó mục "Login Setting" sẽ được hiển thị; hãy chọn mục này rồi lưu lại.  

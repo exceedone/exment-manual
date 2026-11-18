@@ -53,10 +53,12 @@ Please create from the following URL etc.
 https://www.famkruithof.net/uuid/uuidgen
 - plugin_type should be written as dashboard.  
 - route defines a list of URL endpoints to be executed, their HTTP methods, and methods in the controller.  
-    - uri： uri for page display. The actual URL is "http(s):// (URL of Exment) / admin / plugins / (URL set on the plugin management screen) / (specified uri)".  
+    - uri： uri for page display. The actual URL is "http(s)://(Exment URL)/admin/plugins/(URL set on the plugin management screen)/(specified uri)".  
     - method：HTTP method. Please fill in with get, post, put, delete.
     - function：Method in Contoller to execute.
 - Be sure to include a route whose uri is empty (""). Access this endpoint when screen transition from the menu to the plugin page.
+
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ### Plugin file creation
 

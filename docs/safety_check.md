@@ -111,6 +111,8 @@ Click "Safety Check" in the left menu. You can also open it from the following U
 http(s)://(Exment URL)/admin/safety_check
 ~~~
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ### Sending manually or as a drill
 - Enter the title of the safety check in "Title" of "Send New" (example: Typhoon No. 15 safety check).
 - Select "Manual" or "Drill" in "Trigger Type".

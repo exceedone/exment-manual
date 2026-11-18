@@ -179,6 +179,8 @@ http(s)://(ExmentのURL)/admin/plugin
 これにより、プラグイン画面が表示されます。  
 ![プラグイン画面](img/plugin/plugin_grid1.png)  
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 ### プラグインアップロード
 ［ファイルを選択］をクリックし、作成したプラグインzipファイルを選択します。
 その後、［アップロード］をクリックし、画面からアップロードします。  

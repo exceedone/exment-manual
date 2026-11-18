@@ -30,6 +30,8 @@ Ngoài ra, các bảng được nhập (import) dưới dạng template cũng đ
 - Tên bảng không được dài quá 30 ký tự và phải bắt đầu bằng một chữ cái.  
 - Chỉ có thể thiết lập khi tạo mới bảng. Sau khi lưu thì không thể thay đổi.  
 
+> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
+
 ![Màn hình bảng tùy chỉnh](../img/table/table_detail1.png)
 
 #### Table display name (Tên hiển thị của bảng) ※Bắt buộc

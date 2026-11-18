@@ -53,6 +53,8 @@ https://www.famkruithof.net/uuid/uuidgen
     - function：実行するContoller内のメソッド名です。
     - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「admin/api/plugins/sampleapi/column（メソッド：GET）」。
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 ### Pluginファイル作成
 
 #### メインロジック作成
