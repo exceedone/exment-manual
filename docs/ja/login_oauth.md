@@ -30,6 +30,8 @@ Exmentでは、[ログイン設定](/ja/login_setting)により、シングル�
 ※callback URLは以下になります。  
 http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
     - 例1 GitHubの場合：http(s)://(ExmentのURL)/admin/auth/login/github/callback  
     - 例2 Facebookの場合：http(s)://(ExmentのURL)/admin/auth/login/facebook/callback  
     - 例3 Googleの場合：http(s)://(ExmentのURL)/admin/auth/login/google/callback  

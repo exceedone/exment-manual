@@ -13,6 +13,8 @@ Khi đó, màn hình thiết lập người dùng sẽ được hiển thị.
 http(s)://(URL của Exment)/admin/data/organization  
 Danh sách các tổ chức hiện đang được đăng ký trong hệ thống sẽ được hiển thị.
 ![Màn hình quản lý tổ chức](../img/organization/organization2.png)  
+
+> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
   
 ※ Nếu đặt "EXMENT_SHOW_ORGANIZATION_TREE=true" trong [giá trị thiết lập](/config?id=perform-hierarchical-display-on-the-department-list-page), cấu trúc phân cấp sẽ được hiển thị.
 

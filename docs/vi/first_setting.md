@@ -5,6 +5,8 @@
 Truy cập vào trang Exment.  
 http(s)://(URL trang của bạn)/admin  
 
+> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
+
 ## Màn hình thiết lập ban đầu
 Nếu việc cài đặt đã hoàn tất bình thường, màn hình thiết lập ban đầu của Exment sẽ được hiển thị.
 

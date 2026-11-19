@@ -108,6 +108,8 @@ LINEアカウントを連携すると、次回からLINEで受信・回答でき
 http(s)://(ExmentのURL)/admin/safety_check
 ~~~
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 ### 手動・訓練で送信する
 - 「新規送信」の「タイトル」に、安否確認のタイトルを入力します（例：台風15号 安否確認）。
 - 「発動種別」で、「手動」または「訓練」を選択します。

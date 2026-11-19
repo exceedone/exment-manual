@@ -9,6 +9,8 @@ http(s)://(Exment URL)/admin/ mail
 This will display the plugin screen.  
 ![Email template screen](img/mail/mail_grid1.png)  
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ### Add new template
 - On the "Email Template" screen, click the "New" button at the top right of the page.
 

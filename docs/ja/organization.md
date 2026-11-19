@@ -13,6 +13,8 @@ Exmentの組織情報の管理を行います。
 http(s)://(ExmentのURL)/admin/data/organization  
 現在システムで登録されている組織の一覧が表示されます。
 ![組織管理画面](img/organization/organization2.png)  
+
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
   
 ※[設定値](/ja/config#組織一覧ページで階層表示を行う)で、「EXMENT_SHOW_ORGANIZATION_TREE=true」とすることで、階層が表示されます。
 

@@ -64,6 +64,8 @@ Exmentに設定する、以下の3つの値を確認します。
 http(s)://(ExmentのURL)/admin/system?advanced=1
 ~~~
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 - 「LINE設定」に、以下の項目を入力し、［保存］をクリックします。
 
 | 項目 | 内容 |

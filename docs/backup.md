@@ -23,6 +23,8 @@ http(s)://(Exment URL)/admin/backup
 This will bring up the backup screen.  
 ![Backup screen](img/backup/backup1.png)
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 ## Backup
 There are two types of backup methods: "manual" and "automatic".  
 

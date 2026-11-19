@@ -1,6 +1,30 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.0.3 (2026/11/19)
+- 不具合の修正だけの版です。v7.0.2 以下をお使いの方は、更新をおすすめします。
+1. 不具合修正
+    - v7.0.1 以降に更新すると、システムパフォーマンスログを使っていなくても、メニューのいちばん上に空の「システムパフォーマンスログ」が出る（[#1802](https://github.com/exceedone/exment/pull/1802)）
+        - v7.0.3 に更新すると、ログが OFF・データが 0 件・メニューがいちばん上のままのときは、このメニューを消します（テーブルは残します）。
+        - ログを使っている環境では、メニューを「管理者設定」の下へ移します。
+        - システム設定でログを ON にすると、テーブルとメニュー（「管理者設定」の下）を作ります。
+    - 新しくインストールした環境（かんたんインストール zip など）で、システムパフォーマンスログを ON にしても記録されない（[#1802](https://github.com/exceedone/exment/pull/1802)）
+
+## v7.0.2 (2026/11/18)
+- 不具合の修正だけの版です。v7.0.1 以下をお使いの方は、更新をおすすめします。
+- 管理画面ライブラリ「exceedone/exment-admin-core」を v1.0.2 に更新しています。
+1. 不具合修正
+    - フォームで、読み取り専用の選択欄が変更できる（[exment-admin-core#2](https://github.com/exceedone/exment-admin-core/pull/2)）
+    - Surface などのタッチ画面で、チェックボックス・ラジオボタンをタップしても選択できない（[#1563](https://github.com/exceedone/exment/issues/1563)）
+
+## v7.0.1 (2026/11/17)
+- 脆弱性の修正だけの版です。v7.0.0 をお使いの方は、更新をおすすめします。
+1. 脆弱性対応
+    - アクセス制限不備: 閲覧できないデータに付いたコメント・ドキュメントを、データ API で取得・更新・削除できる（[GHSA-3gg5-vgv3-924j](https://github.com/exceedone/exment/security/advisories/GHSA-3gg5-vgv3-924j)）
+    - 認可不備: 編集できないデータを、データ更新の操作（ボタン・一括）で更新できる（[GHSA-9583-2rq4-5mv4](https://github.com/exceedone/exment/security/advisories/GHSA-9583-2rq4-5mv4)）
+    - パスワードを変更しても、「ログイン状態を記憶」でログインできる（[#1734](https://github.com/exceedone/exment/issues/1734)）
+    - 依存ライブラリ phpoffice/phpspreadsheet の脆弱性（CVE-2025-22131）に対応し、^1.29.9 に更新（[#1564](https://github.com/exceedone/exment/issues/1564)）
+
 ## v7.0.0 (2026/10/27)
 
 - <span class="red bold">v6.X.X以下から、v7.0.0以上へのアップデートは、手動でのアップデートが必要です。[こちら](/ja/update/v7_0_0)の内容を一度ご確認の上、更新を行ってください。</span>
@@ -27,6 +51,16 @@
     - パスワードのハッシュ化コストが現在の設定と異なるパスワードを、ログイン時に自動的に再ハッシュ化するように変更　詳細は[こちら](/ja/update/v7_0_0)
     - データ一覧の「再読込」を「自動更新」(オフ・30秒・1分・5分)に変更　詳細は[こちら](/ja/data_grid_tools?id=自動更新)
     - 管理画面ライブラリのアセット(CSS・JavaScriptなど)の配置先を、「public/vendor/laravel-admin」から「public/vendor/open-admin」に変更　詳細は[こちら](/ja/update/v7_0_0)
+
+## v6.2.16 (2026/11/17)
+- 脆弱性の修正の版です。v6.2.15 以下をお使いの方は、更新をおすすめします。
+1. 脆弱性対応
+    - アクセス制限不備: 閲覧できないデータに付いたコメント・ドキュメントを、データ API で取得・更新・削除できる（[GHSA-3gg5-vgv3-924j](https://github.com/exceedone/exment/security/advisories/GHSA-3gg5-vgv3-924j)）
+    - 認可不備: 編集できないデータを、データ更新の操作（ボタン・一括）で更新できる（[GHSA-9583-2rq4-5mv4](https://github.com/exceedone/exment/security/advisories/GHSA-9583-2rq4-5mv4)）
+    - ログイン・パスワード再設定に失敗したとき、入力したパスワードがセッションに残り、画面に出力される（[#1735](https://github.com/exceedone/exment/issues/1735)）
+    - パスワードを変更しても、「ログイン状態を記憶」でログインできる（[#1734](https://github.com/exceedone/exment/issues/1734)）
+1. 不具合修正
+    - モーダルを閉じても、選択肢の一覧が画面に残る（[#1678](https://github.com/exceedone/exment/issues/1678)）
 
 ## v6.2.15 (2026/10/09)
 1. 脆弱性対応

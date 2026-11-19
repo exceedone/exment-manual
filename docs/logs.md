@@ -24,6 +24,8 @@ The main operations are as follows.
 - The system administrator enters the following URL.  
 http(s)://(Exment URL)/admin/auth/logs  
 
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 - Alternatively, add "Operation Log" to the menu.  
 Open the "Administrator Settings" > "Menu" page and select the menu type "System Menu" to display the target "Operation Log". Select it and save it.  
 * "Operation log" is not displayed in the menu by default.

@@ -35,6 +35,8 @@
 
 ブラウザで `(Exmentのアドレス)/admin/cell_style_preset` を開きます。
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 いつでも開けるようにするには、[メニュー](/ja/menu.md)設定でメニューに追加します。
 
 1. 「管理者設定」＞「メニュー」を開きます。

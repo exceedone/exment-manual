@@ -3,8 +3,9 @@ After installation, it is the initial setup procedure such as the first administ
 
 ## URL access  
 Access the Exment page.  
-http(s):// (your site URL)/admin  
-> If you want to change the value of "/ admin", change the value of "route.prefix" in "config/admin.php".  
+http(s)://(your site URL)/admin  
+
+> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ## Initial setting screen  
 If the installation has been completed successfully, the Exment initial setting screen will be displayed.  

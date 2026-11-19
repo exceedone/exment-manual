@@ -12,6 +12,8 @@ http(s)://(ExmentのURL)/admin/data/mail_template
 これにより、通知テンプレート画面が表示されます。  
 ![通知テンプレート画面](img/mail/mail_grid1.png)  
 
+> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+
 ### テンプレートの新規追加
 - 「通知テンプレート」画面で、ページ右上の［新規］ボタンをクリックします。
 
