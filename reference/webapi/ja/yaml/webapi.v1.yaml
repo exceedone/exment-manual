@@ -3972,6 +3972,7 @@ paths:
       description: |
         #### 処理概要
         * 特定のカスタムデータを選択し、そのデータに紐付くドキュメント（添付ファイル）をアップロードする
+        * v7.2.0以降、返却されたurlを使用し、エディター列の本文やコメントに`![説明](url)`と記入すると、画像(PNG・JPEG・GIF・WebP)を表示できる。画像は、そのデータを閲覧できるログインユーザーにのみ表示される
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -4005,6 +4006,214 @@ paths:
         description: ''
       tags:
         - ファイル・ドキュメント
+  '/api/data/{tableKey}/{id}/comments':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: テーブル名(Ex. information)
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: カスタムデータのID
+    get:
+      summary: コメント一覧の取得
+      tags:
+        - データ
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Paginate'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Comment'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 12
+                        suuid: 721a2e1cc8b730ec5584
+                        comment: 確認しました。
+                        created_at: '2026-11-20 11:51:20'
+                        created_user_id: 1
+                        created_user: admin
+                      - id: 13
+                        suuid: 9ce2740b044ea7143a55
+                        comment: "## 対応内容\n\n- 設定を変更しました"
+                        created_at: '2026-11-20 11:55:02'
+                        created_user_id: 2
+                        created_user: user1
+                    first_page_url: 'http://localhost/admin/api/data/footable/1/comments?count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/data/footable/1/comments?count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/data/footable/1/comments'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 2
+                    total: 2
+      operationId: get-comments
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのカスタムデータのコメント一覧を、古い順に取得する
+        * そのカスタムデータを閲覧できるユーザーが実行できる
+        * テーブル設定で「コメントを使用する」がNOの場合は、403エラーを返却する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+
+
+        #### APIスコープ(scope)
+        + value_read
+        + value_write
+
+        #### 対応バージョン
+        v7.2.0
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: 取得するページ番号
+        - schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            default: '20'
+          in: query
+          name: count
+          description: 1回のリクエストで取得する件数。1～100
+    post:
+      summary: コメントの追加
+      operationId: post-comment
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+              examples:
+                Example:
+                  value:
+                    id: 12
+                    suuid: 721a2e1cc8b730ec5584
+                    comment: 確認しました。
+                    created_at: '2026-11-20 11:51:20'
+                    created_user_id: 1
+                    created_user: admin
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータを選択し、そのカスタムデータにコメントを追加する
+        * そのカスタムデータを閲覧できるユーザーが実行できる
+        * 画面からコメントを追加した場合と同じ通知(コメントの通知、@によるメンション)を行う
+        * コメントはMarkdownで記入できる。添付ファイルのAPIが返却するurlを使用し、`![説明](url)`と記入すると、画像(PNG・JPEG・GIF・WebP)を表示できる
+        * テーブル設定で「コメントを使用する」がNOの場合は、403エラーを返却する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+
+
+        #### APIスコープ(scope)
+        + value_write
+
+        #### 対応バージョン
+        v7.2.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  description: コメントの本文(Markdown)
+              required:
+                - comment
+        description: ''
+      tags:
+        - データ
+  '/api/data/{tableKey}/{id}/comments/{suuid}':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: テーブル名(Ex. information)
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: カスタムデータのID
+      - schema:
+          type: string
+        name: suuid
+        in: path
+        required: true
+        description: コメントのsuuid
+    delete:
+      summary: コメントの削除
+      operationId: delete-comment
+      responses:
+        '204':
+          description: 削除成功。レスポンスボディはありません
+      description: |
+        #### 処理概要
+        * 特定のカスタムデータのコメントを削除する
+        * コメントを追加したユーザー本人、もしくはシステム管理者のみ実行できる。それ以外のユーザーの場合は、403エラーを返却する
+        * 該当のコメントがそのカスタムデータに存在しない場合は、404エラーを返却する
+
+        #### Exment権限(Permission)
+        + システム：システム情報
+        + システム：カスタムテーブル
+        + システム：すべてのデータ
+        + テーブル：テーブル
+        + テーブル：すべてのデータの編集
+        + テーブル：すべてのデータの閲覧
+        + テーブル：すべてのデータの参照
+        + テーブル：担当者データの編集
+        + テーブル：担当者データの閲覧
+
+
+        #### APIスコープ(scope)
+        + value_write
+
+        #### 対応バージョン
+        v7.2.0
+      tags:
+        - データ
   '/api/table/{tableKey}/column/{columnKey}':
     parameters:
       - type: string
@@ -5108,6 +5317,29 @@ components:
         created_user_id:
           type: integer
           description: アップロードユーザーID
+    Comment:
+      title: Comment
+      description: コメント情報
+      type: object
+      properties:
+        id:
+          type: integer
+          description: コメントのID
+        suuid:
+          type: string
+          description: コメントのsuuid。削除時に指定する
+        comment:
+          type: string
+          description: コメントの本文
+        created_at:
+          type: string
+          description: コメント日時
+        created_user_id:
+          type: integer
+          description: コメントしたユーザーのID
+        created_user:
+          type: string
+          description: コメントしたユーザーの名前
     CustomView:
       title: CustomView
       description: カスタムビュー情報

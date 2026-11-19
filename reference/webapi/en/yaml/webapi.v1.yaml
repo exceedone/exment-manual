@@ -3881,6 +3881,7 @@ paths:
       description: |
         #### Outline of processing
         * Select specific custom data and upload the document (attachment) associated with that data
+        * From v7.2.0, write `![alt](url)` with the returned url in the body of an editor column or in a comment to show an image (PNG, JPEG, GIF, WebP). The image is shown only to logged-in users who can view the data
 
         #### Exment Permission
         + System : System information
@@ -3914,6 +3915,214 @@ paths:
         description: ''
       tags:
         - FileDocument
+  '/api/data/{tableKey}/{id}/comments':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Custom value ID
+    get:
+      summary: Get a list of comments
+      tags:
+        - Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Paginate'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Comment'
+              examples:
+                Example:
+                  value:
+                    current_page: 1
+                    data:
+                      - id: 12
+                        suuid: 721a2e1cc8b730ec5584
+                        comment: Checked.
+                        created_at: '2026-11-20 11:51:20'
+                        created_user_id: 1
+                        created_user: admin
+                      - id: 13
+                        suuid: 9ce2740b044ea7143a55
+                        comment: "## What was done\n\n- Changed the setting"
+                        created_at: '2026-11-20 11:55:02'
+                        created_user_id: 2
+                        created_user: user1
+                    first_page_url: 'http://localhost/admin/api/data/footable/1/comments?count=20&page=1'
+                    from: 1
+                    last_page: 1
+                    last_page_url: 'http://localhost/admin/api/data/footable/1/comments?count=20&page=1'
+                    next_page_url: null
+                    path: 'http://localhost/admin/api/data/footable/1/comments'
+                    per_page: 20
+                    prev_page_url: null
+                    to: 2
+                    total: 2
+      operationId: get-comments
+      description: |
+        #### Outline of processing
+        * Select specific custom data and get the list of its comments, oldest first
+        * Can be executed by a user who can view the custom data
+        * Returns a 403 error when "Use Comment" of the table setting is NO
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Refer all data
+        + Table : Edit data
+        + Table : View data
+
+
+        #### API scope
+        + value_read
+        + value_write
+
+        #### Append version
+        v7.2.0
+      parameters:
+        - schema:
+            type: integer
+            default: '1'
+          in: query
+          name: page
+          description: Page number to get
+        - schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            default: '20'
+          in: query
+          name: count
+          description: The number of cases to be acquired in one request. 1-100
+    post:
+      summary: Add a comment
+      operationId: post-comment
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+              examples:
+                Example:
+                  value:
+                    id: 12
+                    suuid: 721a2e1cc8b730ec5584
+                    comment: Checked.
+                    created_at: '2026-11-20 11:51:20'
+                    created_user_id: 1
+                    created_user: admin
+      description: |
+        #### Outline of processing
+        * Select specific custom data and add a comment to it
+        * Can be executed by a user who can view the custom data
+        * Sends the same notifications as a comment added on the screen (the comment notification, and mentions by @)
+        * A comment can be written in Markdown. Write `![alt](url)` with the url returned by the document API to show an image (PNG, JPEG, GIF, WebP)
+        * Returns a 403 error when "Use Comment" of the table setting is NO
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Refer all data
+        + Table : Edit data
+        + Table : View data
+
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        v7.2.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  description: Text of the comment (Markdown)
+              required:
+                - comment
+        description: ''
+      tags:
+        - Data
+  '/api/data/{tableKey}/{id}/comments/{suuid}':
+    parameters:
+      - schema:
+          type: string
+        name: tableKey
+        in: path
+        required: true
+        description: Table Name(Ex. information)
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Custom value ID
+      - schema:
+          type: string
+        name: suuid
+        in: path
+        required: true
+        description: suuid of the comment
+    delete:
+      summary: Delete a comment
+      operationId: delete-comment
+      responses:
+        '204':
+          description: Deleted. No response body
+      description: |
+        #### Outline of processing
+        * Delete a comment of specific custom data
+        * Can be executed only by the user who added the comment, or by a system administrator. Returns a 403 error for the other users
+        * Returns a 404 error when the custom data does not have the comment
+
+        #### Exment Permission
+        + System : System information
+        + System : Custom table
+        + System : All data
+        + Table : Table
+        + Table : Edit all data
+        + Table : View all data
+        + Table : Refer all data
+        + Table : Edit data
+        + Table : View data
+
+
+        #### API scope
+        + value_write
+
+        #### Append version
+        v7.2.0
+      tags:
+        - Data
   '/api/table/{tableKey}/column/{columnKey}':
     parameters:
       - type: string
@@ -5013,6 +5222,29 @@ components:
         created_user_id:
           type: integer
           description: Upload user ID
+    Comment:
+      title: Comment
+      description: Comment
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Comment ID
+        suuid:
+          type: string
+          description: suuid of the comment. Specified when deleting
+        comment:
+          type: string
+          description: Text of the comment
+        created_at:
+          type: string
+          description: Comment datetime
+        created_user_id:
+          type: integer
+          description: ID of the user who commented
+        created_user:
+          type: string
+          description: Name of the user who commented
     CustomView:
       title: CustomView
       description: Custom view information
