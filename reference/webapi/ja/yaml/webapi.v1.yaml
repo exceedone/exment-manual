@@ -3972,7 +3972,7 @@ paths:
       description: |
         #### 処理概要
         * 特定のカスタムデータを選択し、そのデータに紐付くドキュメント（添付ファイル）をアップロードする
-        * v7.2.0以降、返却されたurlを使用し、エディター列の本文やコメントに`![説明](url)`と記入すると、画像(PNG・JPEG・GIF・WebP)を表示できる。画像は、そのデータを閲覧できるログインユーザーにのみ表示される
+        * v7.1.0以降、返却されたurlを使用し、エディター列の本文やコメントに`![説明](url)`と記入すると、画像(PNG・JPEG・GIF・WebP)を表示できる。画像は、そのデータを閲覧できるログインユーザーにのみ表示される
 
         #### Exment権限(Permission)
         + システム：システム情報
@@ -4089,7 +4089,7 @@ paths:
         + value_write
 
         #### 対応バージョン
-        v7.2.0
+        v7.1.0
       parameters:
         - schema:
             type: integer
@@ -4148,7 +4148,7 @@ paths:
         + value_write
 
         #### 対応バージョン
-        v7.2.0
+        v7.1.0
       requestBody:
         content:
           application/json:
@@ -4211,7 +4211,7 @@ paths:
         + value_write
 
         #### 対応バージョン
-        v7.2.0
+        v7.1.0
       tags:
         - データ
   '/api/table/{tableKey}/column/{columnKey}':
