@@ -7,11 +7,11 @@ Nothing has to be configured - they are there as soon as a data list is opened.
 
 ## The toolbar buttons
 
-Five buttons sit at the top right of the list, to the left of the view picker.
+Buttons sit at the top right of the list, to the left of the view picker.
 
 ![Toolbar](img/data_grid_tools/grid_toolbar.png ':size=352')
 
-From the left: [Select columns to show], [Pin columns], [Group rows], [Density], [Auto refresh].
+From the left: [Select columns to show], [Pin columns], [Group rows], [Density], [Auto refresh]. From v7.1.0, the [[Excel mode]](#excel-like-editing) button is also shown.
 
 > These settings belong to the person using them. The view is not changed, so nobody else's screen is affected.  
 > [Pin columns] and [Density] are stored **in the browser** and survive closing it.  
@@ -41,7 +41,7 @@ Keeps the chosen columns against the left edge while the table scrolls sideways,
 | --- | --- |
 | Pin first 2 columns / Pin first 3 columns | Common combinations in one click |
 | Unpin all | Releases every pin |
-| Pin action column to the right | Keeps the action column always visible. On by default |
+| Pin the action column | Keeps the action column always visible. On by default. In v7.0 its name is "Pin action column to the right" |
 | Pin header row | Keeps the header visible while scrolling down. On by default |
 | (list of columns) | Pin columns one by one |
 
@@ -87,6 +87,8 @@ The setting is dropped when the tab is closed.
 
 ## Working inside the table
 
+※From v7.1.0, when the screen design is "Modern", the action column (show / edit / delete) is shown right after the checkbox (on the left of the table). In "Classic" it stays at the right end.
+
 ### Inline editing (double click)
 
 Double click a cell to change its value in place. Cells that can be edited show a pencil icon on hover.
@@ -110,6 +112,25 @@ These columns cannot be edited in place:
 
 A table whose Edit action is turned off, and the trash view, show no pencil at all. The pencil does not appear either when the user has no edit right on the table.  
 The save obeys what the record's edit page obeys: the form's column settings, the "cannot change from display" setting, validation, a lock by a workflow, and the user's right on that record. The revision history is kept. A refused value is not saved, a message tells why, and the old display comes back.
+
+### Excel-like editing
+
+Turn on [Excel mode] in the toolbar to select and edit cells with the keyboard, like in Excel (from v7.1.0). It is off by default. On / off is stored in the browser.
+
+![Excel-like editing](img/data_grid_tools/grid_keyboard.png)
+
+| Operation | Content |
+| --- | --- |
+| Click | Selects the cell (the data is not opened) |
+| Arrow keys, Tab, Shift+Tab | Move the selection |
+| Home, End (Ctrl+Home, Ctrl+End) | Go to the first / last cell of the row (of the table) |
+| F2, Enter, double click, typing | Start editing the selected cell. Typing starts the edit with that character (IME input works too) |
+| Delete, Backspace | Start editing with an empty value (the value is not cleared until you save with Enter) |
+| Enter, Tab while editing | Save and move to the next cell |
+| Esc while editing | Cancel the edit and put the old value back |
+
+※When it is off, nothing changes (a click opens the data, a double click or the pencil edits a cell).  
+※Which cells can be edited and how they are saved (validation, permissions, workflow and so on) are the same as [Inline editing](#inline-editing-double-click). Only how an edit starts and ends is different.
 
 ### Right click menu
 
@@ -156,6 +177,19 @@ Ticking the checkboxes on the left changes the row colour and brings up a bar at
 | Clear selection | Unticks everything |
 
 Which buttons appear depends on the permission and on the [operation setting](/operation.md).
+
+#### Run workflow
+On a table with a workflow, you can run a workflow action on the ticked records at once (from v7.1.0).  
+Click [Run Workflow] in the batch menu of the list or in the bulk bar at the bottom.
+
+![Run Workflow](img/data_grid_tools/grid_workflow_bulk.png)
+
+- The actions you can run on the ticked records are listed with counts, such as "Approve (8 / 10 selected)". Choose an action, enter a comment or the next work users if needed, and click [Run].
+- Each record is checked like the action button of its page (the user can see it, the action can be run at its status, it has not been run already) and run one by one. Records that cannot be run are skipped; at the end, the number of records run and skipped (with the reasons) is shown.
+- Notifications, plugins and steps with several approvers work as when running one record. Up to 500 records can be run at a time.
+
+※It is shown to users who can run an action on the data, even without the edit permission. It cannot be used in the trash.  
+※For workflows, see [Workflow implementation](/workflow_execution).
 
 #### Bulk edit
 

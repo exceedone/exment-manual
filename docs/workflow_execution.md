@@ -24,6 +24,8 @@ The administrator must configure the [workflow settings](/workflow_example) in a
 
 ![Workflow screen](img/workflow/workflow_data4.png)
 
+※From v7.1.0, you can also run an action on several records ticked in the data list at once. See [here](/data_grid_tools?id=run-workflow).
+
 ## Checking your pending tasks
 The data on which you need to execute an action can be checked across all tables, from the pending task icon at the top right of the page or on the pending task list.  
 See [Pending tasks](/workflow_task) for details.

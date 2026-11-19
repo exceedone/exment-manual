@@ -11,6 +11,7 @@ Switches to the screen for changing the settings of the currently displayed cust
 
 - "List" button:：  
 Switches to the data list screen.  
+※From v7.1.0, you can also go back with the [← Back to the list] button on the right of the title row. See [here](/data_details?id=back-to-the-list).
 
 - "Display" button:  
 Switch to the screen for browsing data.  

@@ -52,8 +52,16 @@ As an exception, if you have set a 1:n relation, you can also enter data on the 
 #### Form block items
 \* The following are all configuration items for child tables.
 
-- ##### Make the form in table form   
-Display the input fields of the child table in table format.  
+- ##### Make the form in table form  
+Display the input fields of the child table in table format.
+
+- ##### Optimize loading of child-table data  
+If YES, the rows of this child table are loaded automatically after the edit page opens. For data with many child rows, the edit page appears sooner. The default value is NO.  
+It can be used for a 1:N block with "Make the form in table form" set to YES, when existing data is edited. Saving is not possible until the loading is complete.  
+If "Make the form in table form" is set to NO and the form is saved, this setting also becomes NO.  
+※Available from v7.1.0.
+
+![Optimize loading of child-table data](img/form/form_lazy_load.png)
 
 - ##### Form block name  
 The name to be displayed in each block of the form.  
