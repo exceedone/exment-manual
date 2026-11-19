@@ -1,6 +1,61 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.1.0 (2026/11/21)
+- <span class="red bold">更新すると、画面のデザインが「モダン」に変わります。</span>これまでの見た目に戻すには、「管理者設定」→「システム設定」の「画面のデザイン」で「クラシック」を選んで保存してください。詳細は[こちら](/ja/system_setting?id=画面のデザイン)
+- 動作要件：PHP 8.2以上(`^8.2.0`)、Laravel `^12.68.0`、管理画面ライブラリ「exceedone/exment-admin-core」`^1.0.4`
+- 更新方法：`composer update` のあとに `php artisan exment:update` を実行し、ブラウザで Ctrl+F5（スーパーリロード）を押してください。詳細は[こちら](/ja/update)
+1. 機能追加
+    - 画面のデザイン「モダン」(初期値)と「クラシック」の切り替え（[#1773](https://github.com/exceedone/exment/pull/1773)）　詳細は[こちら](/ja/system_setting?id=画面のデザイン)
+        - 「モダン」では、サイトスキンの色がアクセント色(ボタン・リンク・選択中のメニューなど)になります（[#1808](https://github.com/exceedone/exment/pull/1808)）
+        - `.env` の `EXMENT_UI_DESIGN` で、サーバー側からデザインを固定できます。詳細は[こちら](/ja/config?id=画面のデザイン)
+    - 新しい Exment のロゴ（[#1750](https://github.com/exceedone/exment/pull/1750)・[#1751](https://github.com/exceedone/exment/pull/1751)）
+    - データ一覧に、Excel 風のキーボード操作モード（[#1776](https://github.com/exceedone/exment/pull/1776)）　詳細は[こちら](/ja/data_grid_tools?id=excel風に編集)
+    - データ一覧で、チェックしたデータのワークフローをまとめて実行（[#1793](https://github.com/exceedone/exment/pull/1793)）　詳細は[こちら](/ja/data_grid_tools?id=ワークフローを実行)
+    - コメントを Markdown で表示し、本文(エディター列)とコメントに添付した画像を表示（[#1814](https://github.com/exceedone/exment/pull/1814)）　詳細は[こちら](/ja/data_details?id=コメント)
+        - 更新する前に書かれたコメントは、これまでどおりの表示のままです。
+    - データのコメントの一覧・追加・削除の API（[#1813](https://github.com/exceedone/exment/pull/1813)）　詳細は[APIリファレンス](https://exment.net/reference/ja/webapi.html)
+    - データの詳細・編集の画面の見出しの右に「← 一覧に戻る」ボタン（[#1825](https://github.com/exceedone/exment/pull/1825)）　詳細は[こちら](/ja/data_details?id=一覧に戻る)
+    - テーブル設定「一覧表示を最適化する」と、フォームのブロック設定「子テーブルデータの読み込みを最適化する」（どちらも初期値はOFF）（[#1801](https://github.com/exceedone/exment/pull/1801)・[#1817](https://github.com/exceedone/exment/pull/1817)）　詳細は[こちら](/ja/table?id=一覧表示を最適化する)・[こちら](/ja/form?id=子テーブルデータの読み込みを最適化する)
+    - デモモード(`.env` の `EXMENT_DEMO_MODE`)（[#1777](https://github.com/exceedone/exment/pull/1777)・[#1778](https://github.com/exceedone/exment/pull/1778)）　詳細は[こちら](/ja/config?id=デモモード)
+    - データのエクスポートで「全件(コメント付き)」を追加（[#1647](https://github.com/exceedone/exment/issues/1647)）　詳細は[こちら](/ja/data_import_export)
+    - ダッシュボードの行ごとに、アイテムの最大の高さを設定（[#1473](https://github.com/exceedone/exment/issues/1473)）　詳細は[こちら](/ja/dashboard)
+    - データ更新設定に「ワークフローで編集不可のデータにもボタンを表示する」を追加（[#1623](https://github.com/exceedone/exment/issues/1623)）　詳細は[こちら](/ja/operation)
+    - 通知テンプレートで、選択肢(他のテーブルの値一覧から選択)で選んだデータのファイルを添付（[#1717](https://github.com/exceedone/exment/issues/1717)）　詳細は[こちら](/ja/mail)
+    - S3 で、アクセスキーを設定しない場合に IAM ロールで接続（[#1553](https://github.com/exceedone/exment/issues/1553)）　詳細は[こちら](/ja/additional_file_saveplace)
+    - システム設定(詳細設定)の画面に、設定項目へ移動するナビゲーション（[#1771](https://github.com/exceedone/exment/pull/1771)）
+    - カスタム列「画像」のリンクに、クラス「image-link」を追加（[#1548](https://github.com/exceedone/exment/issues/1548)）
+1. 機能改善
+    - メニューの場所を変更
+        - 「LINE連携」を、左のメニューから右上のユーザーメニューへ移動（LINE公式アカウントを設定しているときだけ表示）（[#1822](https://github.com/exceedone/exment/pull/1822)）　詳細は[こちら](/ja/line?id=連携する)
+        - 「安否確認管理」を「管理者設定」の中へ移動（[#1805](https://github.com/exceedone/exment/pull/1805)）
+        - 「ログイン設定」「APIアプリ設定」を「管理者設定」のメニューに追加（[#1826](https://github.com/exceedone/exment/pull/1826)）
+        - 更新時は、メニューがいちばん上にあるときだけ移動します。ご自身で移動したメニューはそのままです。
+    - システムパフォーマンスログを、遅い画面・遅いSQLのときだけ、SQLの値を含めずに記録するように変更。メニューは「管理者設定」の中（[#1787](https://github.com/exceedone/exment/pull/1787)・[#1803](https://github.com/exceedone/exment/pull/1803)）　詳細は[こちら](/ja/system_setting?id=システムパフォーマンスログを有効にする)
+    - システム設定でサイトスキン・画面のデザインを変えたとき、再読込(F5)しなくても反映（[#1823](https://github.com/exceedone/exment/pull/1823)）
+    - 管理画面の下のフッターを削除。左のメニューを畳んだ状態を覚えるように変更
+    - 右上のユーザーメニューの下の部分を灰色にし、ボタンを見やすく変更（[#1824](https://github.com/exceedone/exment/pull/1824)）
+    - ダッシュボードの「Exmentからのお知らせ」を、exment.net/api/posts.json から読むように変更（[#1783](https://github.com/exceedone/exment/pull/1783)）
+    - 定義・組織などのキャッシュの検索を索引で行い、画面の表示を高速化（[#1786](https://github.com/exceedone/exment/pull/1786)・[#1346](https://github.com/exceedone/exment/issues/1346)）
+    - アクセスできるユーザー・組織の一覧のキャッシュを改善（[#1801](https://github.com/exceedone/exment/pull/1801)）
+1. 不具合修正
+    - 公開フォームで、イベント「exment:form_loaded」が動かない（exment-admin-core v1.0.4）（[#1815](https://github.com/exceedone/exment/pull/1815)・[#1816](https://github.com/exceedone/exment/pull/1816)）
+    - プラグインがない「プラグインの公開ファイル」のURLを開くと、500エラーになる（404にしました）（[#1809](https://github.com/exceedone/exment/pull/1809)・[#1811](https://github.com/exceedone/exment/pull/1811)）
+    - せまい画面で左のメニューを畳むと、上のロゴの部分が空になる（[#1824](https://github.com/exceedone/exment/pull/1824)）
+    - 本文に Markdown の画像の書き方があると、保存で500エラーになることがある（[#1789](https://github.com/exceedone/exment/pull/1789)・[#1791](https://github.com/exceedone/exment/pull/1791)）
+    - システム設定画面でメールのホストを設定しても、SMTPで送信されない（[#1748](https://github.com/exceedone/exment/issues/1748)）
+    - スイッチのチェックボックスを変えても、送信される値が変わらない（[#1716](https://github.com/exceedone/exment/issues/1716)）
+    - 同じメールアドレスのユーザーが複数いると、システムアラートが一部のユーザーに届かない（[#1668](https://github.com/exceedone/exment/issues/1668)）
+    - データコピー設定のコピー先テーブル名が、テンプレートに出力されない（[#1689](https://github.com/exceedone/exment/issues/1689)）
+    - 子テーブルのビューで、入力欄の最小幅が子テーブル以外にも効いてしまう（[#1698](https://github.com/exceedone/exment/issues/1698)）
+    - 実行トリガーをカンマ区切りの文字列で持つイベントプラグインが動かない（[#1712](https://github.com/exceedone/exment/issues/1712)）
+    - 子テーブルの既存の行の入力チェックが、正しいデータで行われない（[#1720](https://github.com/exceedone/exment/issues/1720)）
+    - リレーションの一覧で、子テーブルの絞り込みの列が正しくない（[#1733](https://github.com/exceedone/exment/issues/1733)）
+    - ページングの副問い合わせで、文字列の値が正しく扱われない（[#1718](https://github.com/exceedone/exment/issues/1718)）
+    - モーダルを閉じても、選択肢の一覧が画面に残る（[#1678](https://github.com/exceedone/exment/issues/1678)）
+1. セキュリティ
+    - データ API とデータ更新の操作で、データごとの権限を確認（v7.0.1 と同じ修正）（[#1782](https://github.com/exceedone/exment/pull/1782)）
+
 ## v7.0.3 (2026/11/19)
 - 不具合の修正だけの版です。v7.0.2 以下をお使いの方は、更新をおすすめします。
 1. 不具合修正

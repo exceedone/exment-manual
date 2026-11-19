@@ -58,7 +58,8 @@ Choose a header and sidebar color from the following combinations.
 - Header (default setting is blue): Blue / Yellow / Green / Purple / Red / White
 - Sidebar (default setting is white): Black / White
 
-※If you reload the WEB page after saving the settings, the settings will be reflected and displayed.
+※When the [Screen design](#screen-design) is "Modern", the header and the sidebar stay white and gray, and the selected color is the "accent color" (important buttons, links, the selected menu, the frame of the field being edited and so on). With a color other than blue, a thin line of that color is shown at the top edge of the header. A "-light" color has the same accent color as the one without "-light".  
+※From v7.1.0, the change shows right after saving. In v7.0 and earlier, reload the WEB page after saving the settings to see them.
 
 
 #### Site menu layout
@@ -74,11 +75,14 @@ Please refer to the image above for each layout example.
     - Classic: the same design as v7.0 and earlier.
 - The initial value is "Modern".
 
+![Screen design](img/system_setting/system_setting_ui_design.png)
+
 ※Available from v7.1.0.  
 ※After updating to v7.1.0, the screen design changes to "Modern". To go back to the previous design, select "Classic" here and save.  
-※With "Modern", the header and the sidebar are shown in white and gray whichever color is selected in the site skin. If an image is set as the site logo, a blue background is added behind the logo.  
+※With "Modern", the header and the sidebar are based on white and gray, and the color selected in the [Site skin](#site-skin) is the accent color. If an image is set as the site logo, a background of the accent color is added behind the logo.  
+※In the data list of "Modern", the action column (show / edit / delete) is shown right after the checkbox (on the left).  
 ※If the design is fixed by the server ("EXMENT_UI_DESIGN" in the .env file), that value takes priority. In that case this item cannot be changed, and "(set by the server)" is displayed. See [Setting value list](/config?id=screen-design) for details.  
-※If you reload the WEB page after saving the settings, the settings will be reflected and displayed.
+※The change shows right after saving. If the page looks broken, press Ctrl+F5 (super reload) in the browser.
 
 #### Use API 
 - You can use the API by setting it to "YES".  
@@ -103,17 +107,26 @@ $ php artisan passport:keys
 - The initial value is "YES".
 
 #### Enable System Performance Log
-- If set to "Yes", the activity log feature will be enabled, and all user operations will be recorded.
+- If "YES", slow screen operations are saved in the "System Performance Log".
+- What is saved: the URL of the screen (the values of searches etc. are hidden as "***"), the user, the time and the SQL. The SQL is saved with "?", without the values.
 - The initial value is "NO".
 
-![Enable System Performance Log](img/logs/enable_operation_log.png)  
-- Please download the ZIP file and install the template:
-[Template zip file] (https://exment.net/template/system_logs.zip)
-- Run the update command:
-~~~
-   php artisan exment:update
-~~~
-![System Logs](img/logs/system_log.png)  
+![Enable System Performance Log](img/logs/enable_operation_log.png)
+
+With "YES", the following three items are shown (from v7.1.0).
+
+| Item | Content | Initial value |
+| --- | --- | --- |
+| Performance log: seconds of a slow screen | Save the log when a screen takes this number of seconds or more. 0: not by this condition. | 3 |
+| Performance log: seconds of a slow SQL | Save the log when one SQL takes this number of seconds or more. 0: not by this condition. | 1 |
+| Performance log: maximum logs in an hour | The maximum number of logs saved in an hour. Logs over it are not saved. 0: no limit. | 100 |
+
+※When "seconds of a slow screen" and "seconds of a slow SQL" are both 0, every operation is saved (the same as v7.0 and earlier). Use it only for an investigation. A site that had the log on before v7.1.0 stays in this "save everything" state after the update.  
+※To see the log, open "Admin Setting" > "System Performance Log" in the left menu.  
+※From v7.0.3, saving with "YES" makes the table and the menu (under "Admin Setting") automatically. No template needs to be installed.  
+※In v7.0.2 and earlier, install the template ([Template zip file](https://exment.net/template/system_logs.zip)) and run `php artisan exment:update`.
+
+![System Logs](img/logs/system_log.png)
 
 #### System Administrator
 - You can set the user who will be the system monitor.

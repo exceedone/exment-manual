@@ -20,9 +20,8 @@ http(s)://(Exment URL)/admin/login_setting
 
 > Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
---Alternatively, add "Login Settings" to the menu.
-Open the "Administrator Settings"> "Menu" page and select the menu type "System Menu". The target "Login Settings" will be displayed. Select it and save it.
-※"Login settings" is not displayed in the menu by default.
+- From v7.1.0, you can also open it from "Admin Setting" > "Login Setting" in the left menu.
+- In v7.0 and earlier, "Login Setting" is not displayed in the menu by default. To add it, open the "Admin Setting" > "Menu" page and select the menu type "System Menu". The target "Login Setting" will be displayed. Select it and save it.
 
 ![Login setting list](img/login/login_setting4.png)
 
