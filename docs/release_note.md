@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.0.3 (2026/11/19)
+- This version contains bug fixes only. We recommend updating if you use v7.0.2 or lower.
+1. Bug fixes
+    - After updating to v7.0.1 or later, an empty menu "System Performance Log" showed up at the top of the menu, even when the log was not used ([#1802](https://github.com/exceedone/exment/pull/1802))
+        - The update to v7.0.3 removes that menu when the log is off, has no records and the menu is still at the top (the table is kept).
+        - Where the log is used, the menu is moved under "Admin Setting".
+        - When you turn the log on in the system setting, the table and the menu (under "Admin Setting") are made.
+    - On a new install (such as the easy install zip), turning the system performance log on saved nothing ([#1802](https://github.com/exceedone/exment/pull/1802))
+
 ## v7.0.2 (2026/11/18)
 - This version contains bug fixes only. We recommend updating if you use v7.0.1 or lower.
 - The admin panel library "exceedone/exment-admin-core" is updated to v1.0.2.
