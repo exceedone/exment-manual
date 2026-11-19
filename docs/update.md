@@ -12,6 +12,8 @@ Please check [here](/release_note)for the update history.
 
 - <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. The Laravel version and the namespace of the admin library have changed. Please check the contents of [here](/update/v7_0_0) once and then update.</span>
 
+- Updating from v7.0.X to v7.1.0 uses the usual update steps. <span class="red bold">After the update, the screen design becomes "Modern".</span> To go back to the previous look, select "Classic" in the [Screen design](/system_setting?id=screen-design) of the system setting. After the update, press Ctrl+F5 (super reload) in the browser.
+
 - If you get an error during the update, please refer to [Troubleshooting](/troubleshooting).
 
 ## (First time only) Download update batch

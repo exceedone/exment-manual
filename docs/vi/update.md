@@ -12,6 +12,8 @@ Về lịch sử cập nhật, vui lòng xem [tại đây](/release_note).
 
 - <span class="red bold">Việc cập nhật từ v6.X.X trở xuống lên v7.0.0 trở lên cần được thực hiện thủ công. Phiên bản Laravel và namespace của thư viện màn hình quản trị sẽ thay đổi. Vui lòng xem nội dung [tại đây](/update/v7_0_0) trước khi tiến hành cập nhật.</span>
 
+- Việc cập nhật từ v7.0.X lên v7.1.0 được thực hiện theo các bước cập nhật thông thường. <span class="red bold">Sau khi cập nhật, thiết kế màn hình sẽ chuyển thành "Modern".</span> Để quay lại giao diện cũ, hãy chọn "Classic" ở [Screen design](/vi/system_setting?id=screen-design-thiết-kế-màn-hình) trong thiết lập hệ thống. Sau khi cập nhật, hãy nhấn Ctrl+F5 trên trình duyệt.
+
 - Nếu xảy ra lỗi khi cập nhật, vui lòng tham khảo [Xử lý sự cố](/troubleshooting).
 
 
