@@ -18,8 +18,6 @@ The following four types of information are displayed on the data details screen
 ## Back to the list
 On the data show and edit pages, a [← Back to the list] button is shown on the right of the title (table name) row. Click it to go back to the data list of the table (the same place as the [List] button at the top right).
 
-![Back to the list](img/data/data_back_to_list.png)
-
 ※Available from v7.1.0. The button is blue in the "Classic" design, and the accent color of the [Site skin](/system_setting?id=site-skin) in the "Modern" design.
 
 ## Attachment
@@ -43,8 +41,6 @@ In the example of the image, since you are logged in as user, the "Delete" butto
 
 #### Markdown and images (from v7.1.0)
 Comments can be written in Markdown: headings, lists, bold, code, links and tables (GitHub Flavored Markdown). A line break is shown as a line break.
-
-![Markdown in a comment](img/data/comment_markdown.png)
 
 - With [Write] and [Preview] of the comment box, you can check how it looks before sending.
 - Paste or drag and drop an image (PNG, JPEG, GIF, WebP) into the comment box. It is uploaded as an attachment of the data and put in the comment as `![alt](URL)`. The size limit is 10 MB by default (it can be changed with a [setting value](/config?id=maximum-size-of-an-image-pasted-into-a-comment)).

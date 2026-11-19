@@ -75,8 +75,6 @@ Please refer to the image above for each layout example.
     - Classic: the same design as v7.0 and earlier.
 - The initial value is "Modern".
 
-![Screen design](img/system_setting/system_setting_ui_design.png)
-
 ※Available from v7.1.0.  
 ※After updating to v7.1.0, the screen design changes to "Modern". To go back to the previous design, select "Classic" here and save.  
 ※With "Modern", the header and the sidebar are based on white and gray, and the color selected in the [Site skin](#site-skin) is the accent color. If an image is set as the site logo, a background of the accent color is added behind the logo.  

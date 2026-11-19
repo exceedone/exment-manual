@@ -117,8 +117,6 @@ The save obeys what the record's edit page obeys: the form's column settings, th
 
 Turn on [Excel mode] in the toolbar to select and edit cells with the keyboard, like in Excel (from v7.1.0). It is off by default. On / off is stored in the browser.
 
-![Excel-like editing](img/data_grid_tools/grid_keyboard.png)
-
 | Operation | Content |
 | --- | --- |
 | Click | Selects the cell (the data is not opened) |
@@ -181,8 +179,6 @@ Which buttons appear depends on the permission and on the [operation setting](/o
 #### Run workflow
 On a table with a workflow, you can run a workflow action on the ticked records at once (from v7.1.0).  
 Click [Run Workflow] in the batch menu of the list or in the bulk bar at the bottom.
-
-![Run Workflow](img/data_grid_tools/grid_workflow_bulk.png)
 
 - The actions you can run on the ticked records are listed with counts, such as "Approve (8 / 10 selected)". Choose an action, enter a comment or the next work users if needed, and click [Run].
 - Each record is checked like the action button of its page (the user can see it, the action can be run at its status, it has not been run already) and run one by one. Records that cannot be run are skipped; at the end, the number of records run and skipped (with the reasons) is shown.

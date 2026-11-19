@@ -113,8 +113,6 @@ If you enter "200", the first update history information will be deleted at the 
 - It defers drawing the rows. It does not reduce the database queries.
 - The setting applies when you open the data list again.
 
-![Optimize list display](img/table/table_lazy_grid.png)
-
 ※Available from v7.1.0.
 
 #### Editable by all users

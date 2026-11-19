@@ -61,8 +61,6 @@ It can be used for a 1:N block with "Make the form in table form" set to YES, wh
 If "Make the form in table form" is set to NO and the form is saved, this setting also becomes NO.  
 ※Available from v7.1.0.
 
-![Optimize loading of child-table data](img/form/form_lazy_load.png)
-
 - ##### Form block name  
 The name to be displayed in each block of the form.  
 

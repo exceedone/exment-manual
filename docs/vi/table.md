@@ -115,8 +115,6 @@ Nếu nhập "200", thì ở lần cập nhật thứ 201, thông tin lịch s�
 - Thiết lập này chỉ trì hoãn việc vẽ các dòng, không làm giảm số truy vấn cơ sở dữ liệu.
 - Thiết lập được áp dụng khi mở lại danh sách dữ liệu.
 
-![Optimize list display](../img/table/table_lazy_grid.png)
-
 ※ Có thể sử dụng từ v7.1.0.
 
 #### Editable by all users (Tất cả người dùng đều có thể chỉnh sửa)

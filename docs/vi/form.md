@@ -57,8 +57,6 @@ Có thể dùng cho khối 1:N có "Make the form in table form" là YES, khi ch
 Nếu đặt "Make the form in table form" thành NO rồi lưu form, thiết lập này cũng trở thành NO.  
 ※ Có thể sử dụng từ v7.1.0.
 
-![Optimize loading of child-table data](../img/form/form_lazy_load.png)
-
 - ##### Form block name (Tên khối form)  
 Tên được hiển thị ở từng khối của form.  
 

@@ -6,8 +6,6 @@ After logging into the system, a menu will appear on the page.
 In this menu, you can add menu items that transition to "pages prepared by the system", "pages of plugins", "pages to each table", and "arbitrary URL".  
 ※ Menu items are displayed only on pages that can be displayed by the logged-in user.
 
-![The Admin Setting menu](img/menu/admin_setting_menu.png)
-
 ※From v7.1.0, "Safety Check", "Login Setting", "API Setting" and "System Performance Log", which the system administrator uses, are shown under "Admin Setting". "LINE Link" is shown in the user menu at the top right, not in the left menu ([LINE Link](/line?id=linking)). When updating from v7.0, a menu is moved only when it is still at the top. A menu you moved yourself stays where it is.
 
 ## Menu management

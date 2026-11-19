@@ -78,8 +78,6 @@ Vui lòng tham khảo các hình ảnh ở phía trên để xem ví dụ của 
     - Classic: thiết kế giống v7.0 trở về trước.
 - Giá trị ban đầu là "Modern".
 
-![Screen design](../img/system_setting/system_setting_ui_design.png)
-
 ※ Có thể sử dụng từ v7.1.0.  
 ※ Sau khi cập nhật lên v7.1.0, thiết kế màn hình sẽ chuyển thành "Modern". Để quay lại thiết kế cũ, hãy chọn "Classic" ở mục này rồi lưu lại.  
 ※ Với "Modern", màu đã chọn trong [Site skin](#site-skin-giao-diện-màu-của-trang) là màu nhấn. Trong danh sách dữ liệu, cột thao tác (xem / sửa / xóa) được hiển thị ngay bên phải ô chọn (bên trái bảng).  

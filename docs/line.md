@@ -106,8 +106,6 @@ Each user who receives notifications on LINE links their own LINE account.
 - Log in to Exment, open the user menu at the top right (your name) and click [LINE Link].  
 You can also open it from the following URL.
 
-![LINE Link in the user menu](img/common/user_menu_line.png)
-
 ※From v7.1.0, "LINE Link" is in the user menu at the top right, not in the left menu. It is shown only when the basic ID of the LINE Official Account is set in the [System settings](#system-settings). In v7.0, open it from "LINE Link" at the top of the left menu (the update to v7.1.0 removes that menu when it is still at the top; a menu you moved yourself stays).
 
 ~~~

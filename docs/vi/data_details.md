@@ -19,8 +19,6 @@ Ngoài ra, màn hình chi tiết dữ liệu hiển thị 4 loại thông tin sa
 ## Quay lại danh sách
 Trên màn hình chi tiết và chỉnh sửa dữ liệu, nút [← Back to the list] được hiển thị ở bên phải dòng tiêu đề (tên bảng). Nhấp vào nút này để quay lại danh sách dữ liệu của bảng (cùng đích đến với nút [List] ở góc trên bên phải).
 
-![Back to the list](../img/data/data_back_to_list.png)
-
 ※ Có thể sử dụng từ v7.1.0.
 
 ## Tệp đính kèm
@@ -45,8 +43,6 @@ Trong ví dụ ở hình trên, do đang đăng nhập với tư cách user nên
 
 #### Markdown và hình ảnh (từ v7.1.0)
 Có thể viết bình luận bằng Markdown: tiêu đề, danh sách, chữ đậm, mã, liên kết, bảng (GitHub Flavored Markdown). Xuống dòng được hiển thị nguyên như vậy.
-
-![Markdown trong bình luận](../img/data/comment_markdown.png)
 
 - Dùng [Write] và [Preview] của ô bình luận để kiểm tra trước khi gửi.
 - Dán hoặc kéo thả hình ảnh (PNG, JPEG, GIF, WebP) vào ô bình luận: hình ảnh được tải lên làm tệp đính kèm của dữ liệu và được chèn vào bình luận dưới dạng `![mô tả](URL)`. Kích thước tối đa mặc định là 10 MB.
