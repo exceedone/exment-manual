@@ -77,6 +77,7 @@
 * 【10. Function extension】
   * [API setting](/api.md)
   * [Plugin](/plugin.md)
+  * [Project Management (official plugin)](/plugin_pm)
   * [Plugin creation method](/plugin_quickstart.md)
     * [Button](/plugin_quickstart_button)
     * [Event](/plugin_quickstart_event)
