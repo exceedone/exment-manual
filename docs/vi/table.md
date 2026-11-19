@@ -110,6 +110,15 @@ Nếu nhập "200", thì ở lần cập nhật thứ 201, thông tin lịch s�
 
 ![Màn hình bảng tùy chỉnh](../img/table/table_detail13.png)
 
+#### Optimize list display (Tối ưu hiển thị danh sách)
+- Nếu đặt là YES, màn hình danh sách dữ liệu được hiển thị trước, sau đó các dòng được tải tự động. Với bảng có nhiều dữ liệu hoặc nhiều cột, màn hình danh sách sẽ xuất hiện nhanh hơn. Giá trị mặc định là NO.
+- Thiết lập này chỉ trì hoãn việc vẽ các dòng, không làm giảm số truy vấn cơ sở dữ liệu.
+- Thiết lập được áp dụng khi mở lại danh sách dữ liệu.
+
+![Optimize list display](../img/table/table_lazy_grid.png)
+
+※ Có thể sử dụng từ v7.1.0.
+
 #### Editable by all users (Tất cả người dùng đều có thể chỉnh sửa)
 
 > Về tổng quan quyền của bảng, trước tiên vui lòng xem trang [Tổng quan về vai trò và quyền trong Exment](/permission).

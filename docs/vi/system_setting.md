@@ -59,17 +59,32 @@ Small Icon (biểu tượng nhỏ)
 #### Site skin (Giao diện màu của trang)
 - Thiết lập màu chủ đề của trang. Chọn màu của header và sidebar từ các tổ hợp dưới đây.  
 - Header (mặc định là xanh dương): xanh dương, vàng, xanh lá, tím, đỏ, trắng  
-- Sidebar (mặc định là trắng): đen, trắng  
+- Sidebar (mặc định là trắng): đen, trắng
 
-※Sau khi lưu thiết lập, hãy tải lại trang web để thiết lập được áp dụng và hiển thị.
+※ Khi [Screen design](#screen-design-thiết-kế-màn-hình) là "Modern", header và sidebar vẫn có màu trắng và xám, còn màu đã chọn trở thành "màu nhấn" (accent color) cho các nút quan trọng, liên kết, menu đang chọn, viền ô đang nhập, v.v. Với màu khác xanh dương, một đường mảnh có màu đó được hiển thị ở mép trên của header.  
+※ Từ v7.1.0, thay đổi được áp dụng ngay sau khi lưu. Ở v7.0 trở về trước, hãy tải lại trang web sau khi lưu thiết lập.
 
 
 #### Site menu layout (Bố cục menu của trang)
 - Chọn một trong hai bố cục "Standard" hoặc "Small Icon" làm menu của trang.  
 Vui lòng tham khảo các hình ảnh ở phía trên để xem ví dụ của từng bố cục.
-- Giá trị ban đầu là "Standard".  
+- Giá trị ban đầu là "Standard".
 
 ※Sau khi lưu thiết lập, hãy tải lại trang web để thiết lập được áp dụng và hiển thị.
+
+#### Screen design (Thiết kế màn hình)
+- Chọn thiết kế của màn hình đăng nhập và các màn hình quản trị: "Modern" hoặc "Classic".
+    - Modern: thiết kế mới, dựa trên màu trắng và xám.
+    - Classic: thiết kế giống v7.0 trở về trước.
+- Giá trị ban đầu là "Modern".
+
+![Screen design](../img/system_setting/system_setting_ui_design.png)
+
+※ Có thể sử dụng từ v7.1.0.  
+※ Sau khi cập nhật lên v7.1.0, thiết kế màn hình sẽ chuyển thành "Modern". Để quay lại thiết kế cũ, hãy chọn "Classic" ở mục này rồi lưu lại.  
+※ Với "Modern", màu đã chọn trong [Site skin](#site-skin-giao-diện-màu-của-trang) là màu nhấn. Trong danh sách dữ liệu, cột thao tác (xem / sửa / xóa) được hiển thị ngay bên phải ô chọn (bên trái bảng).  
+※ Nếu thiết kế được cố định bằng thiết lập của máy chủ ("EXMENT_UI_DESIGN" trong tệp .env), giá trị đó sẽ được ưu tiên. Khi đó không thể thay đổi mục này, và "(set by the server)" sẽ được hiển thị. Xem [danh sách giá trị thiết lập](/config?id=screen-design).  
+※ Thay đổi được áp dụng ngay sau khi lưu. Nếu màn hình hiển thị không đúng, hãy nhấn Ctrl+F5 trên trình duyệt.
 
 #### Use API (Sử dụng API)
 - Đặt thành "YES" để có thể sử dụng API.
@@ -89,16 +104,22 @@ Vui lòng tham khảo các hình ảnh ở phía trên để xem ví dụ của 
 - Giá trị ban đầu là "YES".  
 
 #### Enable System Performance Log (Bật nhật ký hiệu năng hệ thống)
-- Khi đặt thành YES, chức năng nhật ký (log) được bật và mọi thao tác của người dùng sẽ được ghi lại.
+- Khi đặt thành YES, các thao tác màn hình chậm sẽ được ghi vào "System Performance Log": URL của màn hình (giá trị tìm kiếm v.v. được ẩn bằng "***"), người dùng, thời gian xử lý và SQL (giữ nguyên "?", không chứa giá trị).
 - Giá trị ban đầu là "NO".
 
-![Bật nhật ký hiệu năng hệ thống](../img/logs/enable_operation_log.png)  
-- Hãy tải xuống tệp ZIP và cài đặt template.
-[Template zip file](https://exment.net/template/system_logs.zip)
-- Chạy lệnh cập nhật.
-~~~
-   php artisan exment:update
-~~~
+![Bật nhật ký hiệu năng hệ thống](../img/logs/enable_operation_log.png)
+
+Khi đặt thành YES, 3 mục sau được hiển thị (từ v7.1.0).
+
+| Mục | Nội dung | Giá trị ban đầu |
+| --- | --- | --- |
+| Performance log: seconds of a slow screen | Ghi lại khi màn hình xử lý mất từ số giây này trở lên. 0: không ghi theo điều kiện này. | 3 |
+| Performance log: seconds of a slow SQL | Ghi lại khi một câu SQL mất từ số giây này trở lên. 0: không ghi theo điều kiện này. | 1 |
+| Performance log: maximum logs in an hour | Số bản ghi tối đa trong 1 giờ. Vượt quá sẽ không được ghi. 0: không giới hạn. | 100 |
+
+※ Nếu cả hai mục số giây đều là 0, mọi thao tác sẽ được ghi lại (giống v7.0 trở về trước). Chỉ dùng khi điều tra.  
+※ Để xem nhật ký, mở "Admin Setting" > "System Performance Log" ở menu bên trái.  
+※ Từ v7.0.3, khi lưu với YES, bảng và menu (bên trong "Admin Setting") được tạo tự động; không cần cài đặt template. Ở v7.0.2 trở về trước, hãy cài đặt template ([Template zip file](https://exment.net/template/system_logs.zip)) rồi chạy `php artisan exment:update`.
 ![Nhật ký hiệu năng hệ thống](../img/logs/system_log.png)  
 
 #### System Administrator (Quản trị viên hệ thống)

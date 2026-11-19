@@ -13,8 +13,15 @@ Ngoài ra, màn hình chi tiết dữ liệu hiển thị 4 loại thông tin sa
 
 
 ## Chi tiết nội dung
-![Màn hình dữ liệu](../img/data/data_details1.png)  
-- Hiển thị chi tiết các nội dung đã được đăng ký làm dữ liệu.  
+![Màn hình dữ liệu](../img/data/data_details1.png)
+- Hiển thị chi tiết các nội dung đã được đăng ký làm dữ liệu.
+
+## Quay lại danh sách
+Trên màn hình chi tiết và chỉnh sửa dữ liệu, nút [← Back to the list] được hiển thị ở bên phải dòng tiêu đề (tên bảng). Nhấp vào nút này để quay lại danh sách dữ liệu của bảng (cùng đích đến với nút [List] ở góc trên bên phải).
+
+![Back to the list](../img/data/data_back_to_list.png)
+
+※ Có thể sử dụng từ v7.1.0.
 
 ## Tệp đính kèm
 ![Màn hình dữ liệu](../img/data/data_attached_file.png)  
@@ -35,6 +42,19 @@ Với các bước trên, bạn có thể đính kèm tệp vào màn hình chi 
 
 ※ Chỉ có thể xóa những bình luận do chính người dùng đang đăng nhập gửi.  
 Trong ví dụ ở hình trên, do đang đăng nhập với tư cách user nên nút [Delete] của bình luận do admin gửi không được hiển thị.
+
+#### Markdown và hình ảnh (từ v7.1.0)
+Có thể viết bình luận bằng Markdown: tiêu đề, danh sách, chữ đậm, mã, liên kết, bảng (GitHub Flavored Markdown). Xuống dòng được hiển thị nguyên như vậy.
+
+![Markdown trong bình luận](../img/data/comment_markdown.png)
+
+- Dùng [Write] và [Preview] của ô bình luận để kiểm tra trước khi gửi.
+- Dán hoặc kéo thả hình ảnh (PNG, JPEG, GIF, WebP) vào ô bình luận: hình ảnh được tải lên làm tệp đính kèm của dữ liệu và được chèn vào bình luận dưới dạng `![mô tả](URL)`. Kích thước tối đa mặc định là 10 MB.
+- Hình ảnh viết dạng `![mô tả](/files/(uuid của tệp))` trong nội dung (cột tùy chỉnh "Editor") cũng được hiển thị thành hình ảnh trên màn hình chi tiết dữ liệu.
+
+※ **Các bình luận viết trước khi cập nhật lên v7.1.0 vẫn được hiển thị như cũ** (không đọc dưới dạng Markdown).  
+※ HTML viết trong bình luận được hiển thị dưới dạng văn bản. Hình ảnh chỉ hiển thị cho người dùng đã đăng nhập và có thể xem dữ liệu chứa tệp đó. Hình SVG và hình của trang khác được hiển thị dưới dạng liên kết.  
+※ Cũng có thể lấy danh sách, thêm và xóa bình luận bằng API. Xem [API reference](https://exment.net/reference/en/webapi.html).
 
 #### Nhắc tên (thông báo cho thành viên bằng @)
 Trong bình luận, bạn có thể chỉ định người dùng cụ thể để gửi thông báo cho họ.

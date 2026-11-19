@@ -21,9 +21,8 @@ http(s)://(URL của Exment)/admin/login_setting
 
 > Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
 
-- Hoặc thêm "Login Setting" (thiết lập đăng nhập) vào menu.  
-Mở trang "Admin Settings" > "Menu", chọn loại menu "System Menu", khi đó mục "Login Setting" sẽ được hiển thị; hãy chọn mục này rồi lưu lại.  
-※ Theo thiết lập mặc định, "Login Setting" không được hiển thị trên menu.
+- Từ v7.1.0, cũng có thể mở từ "Admin Setting" > "Login Setting" ở menu bên trái.
+- Ở v7.0 trở về trước, theo thiết lập mặc định "Login Setting" không được hiển thị trên menu. Để thêm vào menu, mở trang "Admin Settings" > "Menu", chọn loại menu "System Menu", khi đó mục "Login Setting" sẽ được hiển thị; hãy chọn mục này rồi lưu lại.
 
 ![Danh sách thiết lập đăng nhập](../img/login/login_setting4.png)  
 
