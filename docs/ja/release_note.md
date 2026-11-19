@@ -36,7 +36,8 @@
     - 管理画面の下のフッターを削除。左のメニューを畳んだ状態を覚えるように変更
     - 右上のユーザーメニューの下の部分を灰色にし、ボタンを見やすく変更（[#1824](https://github.com/exceedone/exment/pull/1824)）
     - ダッシュボードの「Exmentからのお知らせ」を、exment.net/api/posts.json から読むように変更（[#1783](https://github.com/exceedone/exment/pull/1783)）
-    - 定義・組織などのキャッシュの検索を索引で行い、画面の表示を高速化（[#1786](https://github.com/exceedone/exment/pull/1786)・[#1346](https://github.com/exceedone/exment/issues/1346)）
+    - 定義・組織などのキャッシュの検索を索引で行い、画面の表示を高速化（[#1786](https://github.com/exceedone/exment/pull/1786)・[#1801](https://github.com/exceedone/exment/pull/1801)・[#1346](https://github.com/exceedone/exment/issues/1346)）
+        - 組織が多いとき（例：組織 253 件・3 階層、組織管理 ON）、データの一覧・詳細・編集、ユーザーの一覧、組織の一覧、ダッシュボードの表示が約 3〜4 倍速くなりました（一覧 1.45 秒 → 0.46 秒、編集 4.0 秒 → 0.76 秒。当社の検証環境）。
     - アクセスできるユーザー・組織の一覧のキャッシュを改善（[#1801](https://github.com/exceedone/exment/pull/1801)）
 1. 不具合修正
     - 公開フォームで、イベント「exment:form_loaded」が動かない（exment-admin-core v1.0.4）（[#1815](https://github.com/exceedone/exment/pull/1815)・[#1816](https://github.com/exceedone/exment/pull/1816)）

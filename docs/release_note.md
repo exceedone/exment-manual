@@ -36,7 +36,8 @@
     - The footer of the admin pages is removed. Whether the side menu is folded is remembered
     - The lower part of the user menu at the top right is gray, so its buttons are easier to see ([#1824](https://github.com/exceedone/exment/pull/1824))
     - The dashboard news "News from Exment" is read from exment.net/api/posts.json ([#1783](https://github.com/exceedone/exment/pull/1783))
-    - Cached definitions, organizations and so on are found by an index, for faster pages ([#1786](https://github.com/exceedone/exment/pull/1786), [#1346](https://github.com/exceedone/exment/issues/1346))
+    - Cached definitions, organizations and so on are found by an index, for faster pages ([#1786](https://github.com/exceedone/exment/pull/1786), [#1801](https://github.com/exceedone/exment/pull/1801), [#1346](https://github.com/exceedone/exment/issues/1346))
+        - With many organizations (e.g. 253 organizations in 3 levels, organization management on), the data list, show and edit pages, the user and organization lists and the dashboard are about 3–4 times faster (list 1.45 s → 0.46 s, edit 4.0 s → 0.76 s, in our test environment).
     - Better cache of the users and organizations a user can access ([#1801](https://github.com/exceedone/exment/pull/1801))
 1. Bug fixes
     - The event "exment:form_loaded" did not run on public forms (exment-admin-core v1.0.4) ([#1815](https://github.com/exceedone/exment/pull/1815), [#1816](https://github.com/exceedone/exment/pull/1816))
