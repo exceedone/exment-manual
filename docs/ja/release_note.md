@@ -1,6 +1,49 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.1.0 (2026/11/20)
+- 新しい機能と、画面のデザインの変更を含む版です。
+- 管理画面ライブラリ「exceedone/exment-admin-core」は v1.0.4 以上が必要です（`composer update` で一緒に更新されます）。
+- <span class="red bold">更新すると、画面のデザインが新しい「モダン」に変わります。</span>これまでのデザインに戻すには、「システム設定」の「画面のデザイン」で「クラシック」を選んで保存してください（.env の `EXMENT_UI_DESIGN` でも指定できます）。
+1. 機能追加
+    - 新しい画面のデザイン「モダン」（初期値）。「クラシック」（これまでのデザイン）に切り替えできます。新しいロゴ、サイトスキンに合わせたアクセントの色（[#1773](https://github.com/exceedone/exment/pull/1773)・[#1808](https://github.com/exceedone/exment/pull/1808)）
+    - データ一覧の「Excel 風に編集」モード。矢印キー・Tab・Enter でセルを移り、そのまま入力して編集できます（初期値はオフ）。モダンデザインでは、操作列（表示・編集・削除）を左に表示します（[#1776](https://github.com/exceedone/exment/pull/1776)）
+    - ワークフローの実行を、データ一覧でチェックしたデータにまとめて行えるように（[#1793](https://github.com/exceedone/exment/pull/1793)）
+    - コメントを API で一覧・追加・削除（[#1813](https://github.com/exceedone/exment/pull/1813)）
+    - コメントの Markdown 表示と、本文・コメントへの画像の貼り付け（[#1814](https://github.com/exceedone/exment/pull/1814)）
+    - データのコメントのエクスポート（[#1765](https://github.com/exceedone/exment/pull/1765)）
+    - デモモード（.env の `EXMENT_DEMO_MODE`）。管理者設定の変更などを止めます（[#1777](https://github.com/exceedone/exment/pull/1777)・[#1778](https://github.com/exceedone/exment/pull/1778)）
+    - データの詳細・編集の画面に「一覧に戻る」ボタン（[#1825](https://github.com/exceedone/exment/pull/1825)）
+    - 通知テンプレートで、選択肢（テーブル）のデータのファイルを添付（[#1766](https://github.com/exceedone/exment/pull/1766)）
+    - ワークフローでロックされたデータに、データ更新ボタンを表示する設定（[#1768](https://github.com/exceedone/exment/pull/1768)）
+    - ダッシュボードの行ごとに、項目の高さの上限を設定（[#1767](https://github.com/exceedone/exment/pull/1767)）
+    - S3 のアクセスキーがないとき、IAM ロールを使う（[#1764](https://github.com/exceedone/exment/pull/1764)）
+1. 機能改善
+    - パフォーマンス改善：テーブル・列・組織などの検索を索引で速く（[#1786](https://github.com/exceedone/exment/pull/1786)）
+    - パフォーマンス改善：データ一覧の行・子テーブルを、画面を開いたあとに読み込む設定（テーブルの「一覧表示を最適化する」、フォームの「子テーブルデータの読み込みを最適化する」。初期値はオフ）、権限のキャッシュの直し（[#1801](https://github.com/exceedone/exment/pull/1801)）
+    - システムパフォーマンスログを、遅いリクエストだけ・SQL の値なしで記録（[#1787](https://github.com/exceedone/exment/pull/1787)）
+    - システム設定の詳細設定に、項目へ移るナビゲーション（[#1771](https://github.com/exceedone/exment/pull/1771)）
+    - サイドメニューをたたんだ状態を覚える
+    - 画像列のリンクに class「image-link」を付ける（[#1762](https://github.com/exceedone/exment/pull/1762)）
+1. 仕様変更
+    - メニューの場所を変更：「安否確認管理」「ログイン設定」「API 設定」を「管理者設定」の下へ（[#1805](https://github.com/exceedone/exment/pull/1805)・[#1826](https://github.com/exceedone/exment/pull/1826)）、「LINE」をユーザーメニューへ（[#1822](https://github.com/exceedone/exment/pull/1822)）。`php artisan exment:update` で移ります
+    - 管理画面の下のフッター（「Powered by Exment」とバージョン）を削除。バージョンは、「システム設定」の画面の下の「システムのバージョン情報」で確かめられます
+    - ダッシュボードのお知らせを、exment.net の API から読み込む（[#1783](https://github.com/exceedone/exment/pull/1783)）
+1. 不具合修正
+    - 公開フォームで、プラグインのイベント `exment:form_loaded` が発生しない（[#1815](https://github.com/exceedone/exment/pull/1815)、[exment-admin-core#7](https://github.com/exceedone/exment-admin-core/pull/7)）
+    - プラグインがない公開ファイルの URL で、404 ではなく 500 エラーになる（[#1811](https://github.com/exceedone/exment/pull/1811)）
+    - Markdown の画像の場所によって、500 エラーになる（[#1789](https://github.com/exceedone/exment/pull/1789)）
+    - スイッチのチェックボックスで、送信される値が変わらない（[#1716](https://github.com/exceedone/exment/issues/1716)）
+    - 同じメールアドレスのユーザーがいると、システムのアラートが一部のユーザーに届かない（[#1668](https://github.com/exceedone/exment/issues/1668)）
+    - システム設定でホストを設定しても、SMTP でメールが送られない（[#1748](https://github.com/exceedone/exment/issues/1748)）
+    - 子テーブルの既存の行が、それぞれのデータで検証されない（[#1720](https://github.com/exceedone/exment/issues/1720)）
+    - リレーションの一覧で、子テーブルの絞り込みが正しい列を使わない（[#1733](https://github.com/exceedone/exment/issues/1733)）
+    - ページ送りの副問い合わせで、文字列の値が正しく扱われない（[#1718](https://github.com/exceedone/exment/issues/1718)）
+    - イベントプラグインの event_triggers がカンマ区切りの文字列だと実行されない（[#1712](https://github.com/exceedone/exment/issues/1712)）
+    - 子テーブルの入力欄の最小幅が、ほかのフォームにも効いてしまう（[#1698](https://github.com/exceedone/exment/issues/1698)）
+    - テンプレートのエクスポートで、データコピー設定のコピー先テーブル名が出力されない（[#1689](https://github.com/exceedone/exment/issues/1689)）
+    - モーダルを閉じても、開いていた選択リスト（select2）が残る（[#1678](https://github.com/exceedone/exment/issues/1678)）
+
 ## v7.0.3 (2026/11/19)
 - 不具合の修正だけの版です。v7.0.2 以下をお使いの方は、更新をおすすめします。
 1. 不具合修正
