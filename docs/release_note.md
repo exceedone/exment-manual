@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.1.1 (2026/11/21)
+- A bug fix only. We recommend updating if you installed v7.1.0 as a new site in Japanese.
+1. Bug fixes
+    - On a new install of v7.1.0 in Japanese, the menus under "Admin Setting" were wrong: "Login Setting" did not show in the side menu (with the API on, it opened the API setting page), and there was no "API Setting" menu ([#1833](https://github.com/exceedone/exment/pull/1833))
+        - The update to v7.1.1 repairs these two menus. Sites updated from v7.0.x, and sites installed in English, were not affected and are not changed.
+
 ## v7.1.0 (2026/11/20)
 - <span class="red bold">After the update, the screen design becomes "Modern".</span> To go back to the previous look, select "Classic" in "Screen design" of "Admin Setting" > "System Setting" and save. Details [here](/system_setting?id=screen-design)
 - Requirements: PHP 8.2 or higher (`^8.2.0`), Laravel `^12.68.0`, admin panel library "exceedone/exment-admin-core" `^1.0.4`
