@@ -78,6 +78,7 @@
 * 【10. 機能拡張】
   * [API設定](/ja/api)
   * [プラグイン](/ja/plugin)
+  * [プロジェクト管理（公式プラグイン）](/ja/plugin_pm)
   * [プラグイン作成方法](/ja/plugin_quickstart)
     * [ボタン](/ja/plugin_quickstart_button)
     * [イベント](/ja/plugin_quickstart_event)

@@ -161,6 +161,13 @@ The template that is the basis of the document is in Excel format and is output 
 * Deprecated from v3.2.0.  
 In the future, please implement by "button" or "event".
 
+## Official plugins
+Official plugins are made and supported by Exceed One. Download them from [exceedone/exment-plugins](https://github.com/exceedone/exment-plugins) on GitHub.
+
+| Plugin | What it does |
+| --- | --- |
+| [Project Management](/plugin_pm) | Projects and issues (tickets): issue tree, milestones, board, Gantt chart, wiki, comments, notifications and more |
+
 ## Management method
 ### Page display
 - Select "Plug-in" from the left menu.  
