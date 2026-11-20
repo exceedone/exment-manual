@@ -1,7 +1,7 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
-## v7.1.0 (2026/11/21)
+## v7.1.0 (2026/11/20)
 - <span class="red bold">更新すると、画面のデザインが「モダン」に変わります。</span>これまでの見た目に戻すには、「管理者設定」→「システム設定」の「画面のデザイン」で「クラシック」を選んで保存してください。詳細は[こちら](/ja/system_setting?id=画面のデザイン)
 - 動作要件：PHP 8.2以上(`^8.2.0`)、Laravel `^12.68.0`、管理画面ライブラリ「exceedone/exment-admin-core」`^1.0.4`
 - 更新方法：`composer update` のあとに `php artisan exment:update` を実行し、ブラウザで Ctrl+F5（スーパーリロード）を押してください。詳細は[こちら](/ja/update)

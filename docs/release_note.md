@@ -1,7 +1,7 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v7.1.0 (2026/11/21)
+## v7.1.0 (2026/11/20)
 - <span class="red bold">After the update, the screen design becomes "Modern".</span> To go back to the previous look, select "Classic" in "Screen design" of "Admin Setting" > "System Setting" and save. Details [here](/system_setting?id=screen-design)
 - Requirements: PHP 8.2 or higher (`^8.2.0`), Laravel `^12.68.0`, admin panel library "exceedone/exment-admin-core" `^1.0.4`
 - How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)
