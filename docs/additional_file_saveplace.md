@@ -246,6 +246,11 @@ AWS_SECRET_ACCESS_KEY=(AWS S3 secret access key)
 AWS_DEFAULT_REGION=(region of AWS S3)  
 ~~~
 
+> **To connect with an IAM role, without an access key**
+> The access key is used only when both "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY" are set.
+> If either of them is not set, the AWS SDK looks for the credentials in its default way (environment variables, the shared credentials file, the IAM role of the ECS task or of the EC2 instance, and so on).
+> If an IAM role is assigned to your EC2 instance or ECS task, leave these two keys out, and Exment connects to S3 without saving any access key. "AWS_DEFAULT_REGION" and the bucket settings are still required.
+
 - Add the following settings for each file type that you want to use Amazon S3.
 
 ~~~

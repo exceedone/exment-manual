@@ -52,6 +52,11 @@ Select the number of columns to display in each row of the dashboard.
 Up to 4 columns can be displayed per line. 
 ※The number of columns and the display area per one are inversely proportional.  
 
+#### Dashboard Row (n) Max Height(px)
+The max height, in pixels, of the items displayed on that row. It can be set for each row.  
+If the content of an item is higher than this value, the item scrolls.  
+Enter an integer from 150 to 3000. If empty, it is 400px.
+
 ### Example of displaying four columns in one line
 ![Dashboard screen](img/dashboard/dashboard_grid3.png)  
 
@@ -86,6 +91,7 @@ Set the items shown on the filter bar, one per row. Add rows with "New".
 # Select items to display
 You can select the item you want to display from these four types,
 "Data List", "System", "Chart", "Calendar" in the upper right "New" of each column of the created dashboard.  
+※If a [plugin (dashboard)](/plugin_quickstart_dashboard) is installed, "Plugin" can also be selected.
 
 ![Dashboard screen](img/dashboard/dashboard_grid4.png)  
 

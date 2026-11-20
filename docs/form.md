@@ -179,7 +179,7 @@ Use this setting for items that you do not want to be tampered with or modified,
 Please refer to the [Data linkage settings](#data-linkage-settings).  
 
 ##### Related refinement settings (items)  
-Please refer to the [Related refinement settings](#Related-refinement-settings).  
+Please refer to the [Related refinement settings](#related-refinement-settings).  
 
 
 ## Data linkage settings

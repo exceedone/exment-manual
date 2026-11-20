@@ -14,7 +14,7 @@ A list of organizations currently registered in the system is displayed.
 
 > Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
   
-※By [setting](/config#Perform-hierarchical-display-on-the-department-list-page) "EXMENT_SHOW_ORGANIZATION_TREE = true", the hierarchy will be displayed.  
+※By [setting](/config#perform-hierarchical-display-on-the-department-list-page) "EXMENT_SHOW_ORGANIZATION_TREE = true", the hierarchy will be displayed.  
 
 ![Organization management screen](img/organization/organization3.png)
 
@@ -112,7 +112,7 @@ In "Multiple form setting" and "Workflow", only the organization to which the us
 
 
 ### Data sharing settings
-With Exment,[custom data sharing settings allow](/data_details#Data-sharing) other organizations to access your data.
+With Exment,[custom data sharing settings allow](/data_details#data-sharing) other organizations to access your data.
 
 ![Organization hierarchy](img/organization/organization5.png)
 ![Organization hierarchy](img/organization/organization6.png)

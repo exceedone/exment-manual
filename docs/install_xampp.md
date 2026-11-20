@@ -67,7 +67,7 @@ C:\xampp\mysql\bin
 - Once you have made your entries, click OK on any dialogs that launch to complete them.   
 
 ##### When running Mysql under XAMPP
-- When running Mysql under XAMPP, add the path to the folder where the executable file is located in .env in the root directory of Exment during the [Exment installation](#Exment-installation) step. please.   
+- When running Mysql under XAMPP, add the path to the folder where the executable file is located in .env in the root directory of Exment during the [Exment installation](#exment-installation) step. please.   
 ~~~
 #example  
 EXMENT_MYSQL_BIN_DIR="C:/xampp/mysql/bin"

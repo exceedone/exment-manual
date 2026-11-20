@@ -96,7 +96,7 @@ If for some reason you want to forcibly disable the SSO login settings, make the
 ※For details on how to edit the configuration file, refer to [here](/config).  
 
 ~~~
-EXMENT_CUSTOM_LOGIN_DISABLED = true
+EXMENT_CUSTOM_LOGIN_DISABLED=true
 ~~~
 
 By making this setting, the login form with the normal ID and password will be displayed on the login screen.  
@@ -126,5 +126,5 @@ In v3.6.0 or later, if you want to automatically log out when you close the brow
 ※For details on how to edit the configuration file, refer to [here](/config).  
 
 ~~~
-EXMENT_SESSION_EXPIRE_ON_CLOSE = true
+EXMENT_SESSION_EXPIRE_ON_CLOSE=true
 ~~~

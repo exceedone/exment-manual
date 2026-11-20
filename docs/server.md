@@ -151,7 +151,7 @@ Please check [here](#file-permission-settings) for more information.
 Check if the Composer used to update the Exment is installed on your web server.  
 \* A warning may be displayed even though composer is actually installed. This is because the composer path is not passed by the user who runs the web server, or the authority is insufficient.  
 If composer is successfully installed and can be run by the user who actually performs the update, ignore this warning.  
-\* In order to pass through the composer, please verify [here](/troubleshooting#To-pass-the-composer-path) "To pass the composer path".
+\* In order to pass through the composer, please verify [here](/troubleshooting#to-pass-the-composer-path) "To pass the composer path".
 
 
 

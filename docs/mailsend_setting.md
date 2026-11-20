@@ -14,10 +14,10 @@ Example:
 This section describes the setting procedure for sending an email.  
 
 - There are two ways to set up email transmission.  
-    - [Set from screen (default)](#Setting-method-Set-from-screen):
+    - [Set from screen (default)](#setting-method-set-from-the-screen):
     Set the mail sending settings by entering the SMTP settings on the system setting screen. It can be used when sending an email with a simple SMTP setting.
     
-    - [Set in config file or env file](#Setting-method-Set-in-config-file-or-env-file):
+    - [Set in config file or env file](#setting-method-set-with-config-file-or-env-file):
     When setting mail by a method other than SMTP such as Amazon SES, edit the setting file on the server or use composer to make the setting. ※For advanced users.
 
 ### Setting method-Set from the screen
@@ -25,6 +25,11 @@ This section describes the setting procedure for sending an email.
 
 - Enter the following settings.
 ![System setting screen](img/system_setting/system_setting_mail.png)
+
+- When the host name is entered and saved, Exment sends mail by SMTP, using the settings on the screen.  
+Mail is sent by SMTP even if "MAIL_MAILER" in ".env" is still "log", the initial value of Laravel (which writes the mail to the log instead of sending it).  
+※If "MAIL_MAILER" in ".env" is set to something other than "log" (sendmail, ses, and so on), that sending method is used.  
+※If "EXMENT_MAIL_SETTING_ENV_FORCE=true" is set in ".env", the settings on the screen are not used. See [Set in config file or env file](#setting-method-set-with-config-file-or-env-file).
 
 ※SMTP setting example (for Xserver): [here](https://www.xserver.ne.jp/manual/man_mail_setting.php)
 
@@ -35,7 +40,7 @@ This section describes the setting procedure for sending an email.
 - Open the .env file and enter the following settings.
 
 ~~~
-EXMENT_MAIL_SETTING_ENV_FORCE = true
+EXMENT_MAIL_SETTING_ENV_FORCE=true
 ~~~
 
 > <span class = "small"> Originally, in Laravel, the setting value of ".env" file is used as a parameter of mail transmission, but from v1.3.6, the setting value of ".env" file is not used and the screen The value registered in "System Settings" of is now used.  

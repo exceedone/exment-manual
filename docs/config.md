@@ -33,7 +33,7 @@ EXMENT_FILTER_SEARCH_FULL=true
 - Setting key : ADMIN_ROUTE_PREFIX
 - Default value ： admin
 - Role : This is the path name when displaying Exment.  
-For more details, please see [here](/quickstart_more?Id=url).
+For more details, please see [here](/additional_prefix).
 
 #### Change "/ publicform" URI of public form
 - Setting key : EXMENT_PUBLICFORM_ROUTE_PREFIX
@@ -131,6 +131,26 @@ Depending on the environment, it may be faster.
 - Setting key : EXMENT_DISABLE_LOGIN_HEADER_LOGO
 - Default value : false
 - Role : If true, do not use headers on the login page, even if the logo is set in the Exment system settings.
+
+#### Use two-factor authentication
+- Setting key : EXMENT_LOGIN_USE_2FACTOR
+- Default value : false
+- Role : If true, the two-factor authentication settings are displayed on the login setting screen, and two-factor authentication can be used. See [here](/login_2factor_setting) for details.
+
+#### Valid period of the two-factor authentication code sent by email (minutes)
+- Setting key : EXMENT_LOGIN_2FACTOR_VALID_PERIOD
+- Default value : 10
+- Role : For two-factor authentication by email, how long (in minutes) the verification code sent by email is valid.
+
+#### Disable SSO login settings
+- Setting key : EXMENT_CUSTOM_LOGIN_DISABLED
+- Default value : false
+- Role : If true, the login settings such as SSO are forcibly disabled, and only the login form with the Exment ID and password is displayed. See [here](/login_sso) for details.
+
+#### Disable IP filter
+- Setting key : EXMENT_DISABLE_IP_FILTER
+- Default value : false
+- Role : If true, the IP address restriction of the system settings is forcibly disabled. Use it when you can no longer access Exment because of a wrong IP address restriction. See [here](/additional_ip_filter) for details.
 
 
 ### Search
@@ -327,7 +347,8 @@ Since this process is heavy, when you want to execute it separately from the syn
 - Setting key : EXMENT_MAIL_SETTING_ENV_FORCE
 - Default value : false
 - Role : If set to true, the mail settings will be used from the settings in the .env file.  
-(If false, the setting value entered on the system setting screen will be used.)
+(If false, the setting value entered on the system setting screen will be used. When the host name is set on the system setting screen, mail is sent by SMTP even if "MAIL_MAILER" in .env is still "log".)  
+See [here](/mailsend_setting) for details.
 
 #### E-mail continuous notification ignore time (minutes)
 - Setting key : EXMENT_NOTIFY_SAVED_SKIP_MINUTES
@@ -358,6 +379,11 @@ The pending task list can still be opened from the URL "/admin/workflow_task".
 - Default value : 300
 - Role : How often (in seconds) the count of the pending task icon in the upper right corner of the header is updated. A value below 30 is treated as 30.  
 ※ Every update checks the data of all workflows. The shorter the interval, the higher the load on the server.
+
+#### Show workflow IDs
+- Setting key : EXMENT_SHOW_WORKFLOW_ID
+- Default value : false
+- Role : If true, the ID of the workflow and the IDs of its actions are displayed on the workflow setting screen. Use it when you need the IDs for plugins or the API.
 
 #### Notify the other members of the same organization
 - Setting key : EXMENT_SAME_ORG_WORKFLOW_NOTIFY
@@ -479,6 +505,21 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Default value : nothing
 - Role : Please enter the setting value for the number of display options on the custom data list page. If multiple, please separate them with commas. example:100,200,500,1000
 
+#### Minimum width of the columns on the list page (px)
+- Setting key : EXMENT_GRID_MIN_WIDTH
+- Default value : 100
+- Role : The default minimum width (px) of the columns on the list page.
+
+#### Maximum width of the columns on the list page (px)
+- Setting key : EXMENT_GRID_MAX_WIDTH
+- Default value : 300
+- Role : The default maximum width (px) of the columns on the list page.
+
+#### Maximum number of characters displayed on the list page
+- Setting key : EXMENT_GRID_MAX_LENGTH
+- Default value : 50
+- Role : The maximum number of characters displayed for one item on the list page. A longer value is cut and displayed with "..." at the end.
+
 #### Display custom data copy link
 - Setting key : EXMENT_GRIDROW_SHOW_COPY_BUTTON
 - Default value : false
@@ -540,6 +581,31 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Default value : 10240
 - Role : The largest image (PNG, JPEG, GIF, WebP) that can be pasted or dropped into the comment box of a data, in kilobytes. ※Available from v7.1.0.
 
+#### Allow deleting attachments even in tables whose deletion is disabled by "Cannot changed from display"
+- Setting key : EXMENT_ALLOW_DELETE_ATTACHMENT
+- Default value : false
+- Role : In a table where "Delete" is checked in "Cannot changed from display" of the custom table settings, the attachments on the data detail screen normally cannot be deleted either. By setting to true, users who can edit the data can delete the attachments in such tables.
+
+#### Maximum number of records fetched by the calendar view
+- Setting key : EXMENT_CALENDAR_MAX_SIZE_COUNT
+- Default value : 300
+- Role : The maximum number of records fetched for the displayed period in the calendar view.
+
+#### Display of spaces in the custom column "Multiple-Line Text"
+- Setting key : EXMENT_TEXTAREA_SPACE_TAG
+- Default value : true
+- Role : If true, when a value of the custom column "Multiple-Line Text" is displayed on the list or detail screen, each space is replaced with a tag that has a width, so consecutive spaces are displayed as entered. If false, spaces are not replaced.
+
+#### Disable the relation filter
+- Setting key : SELECT_RELATION_LINKAGE_DISABLED
+- Default value : false
+- Role : By setting to true, the "Relation Filter Setting" of custom forms (narrowing down the options of an item when another item is selected) is disabled in all forms.
+
+#### Disable user views for specific tables
+- Setting key : EXMENT_USERVIEW_UNAVAILABLE_TABLE
+- Default value : (None)
+- Role : Enter the names (alphanumeric) of the tables where user views are disabled, separated by commas. (Example: information,contract) In these tables, even if user views are enabled in the system settings, only users who have the permission for system views, such as table administrators, can create and edit views.
+
 #### Hide "Read only" fields on the custom data detail screen
 - Setting key : EXMENT_DISABLE_SHOW_FIELD_READONLY
 - Default value : false
@@ -579,6 +645,11 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Setting key : EXMENT_SHOW_ORGANIZATION_TREE
 - Default value : false
 - Role : By setting to true, you can display the hierarchy of the organization on the organization list page.
+
+#### Depth of the organization hierarchy
+- Setting key : EXMENT_ORGANIZATION_DEEPS
+- Default value : 4
+- Role : The maximum number of levels followed when getting parent and child organizations, for example when checking permissions.
 
 #### Location of the 'custom_value_(table_name)' class
 - Setting Key: EXMENT_SHOW_PAGE_CLASS_TYPE
@@ -640,6 +711,12 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Default value : false
 - Role : By setting to true, BOM will be added when exporting CSV data. (The characters are not garbled even if opened in Excel.)
 
+#### Maximum number of rows for import from the screen
+- Setting key : EXMENT_IMPORT_MAX_ROW_COUNT
+- Default value : 5000
+- Role : The maximum number of rows that can be imported at one time from the screen. A file with more rows causes an error.  
+※ Increasing this value may cause timeouts or out-of-memory errors. To import a large amount of data, consider [bulk insert](/data_bulk_insert).
+
 #### Enable import / export for role group
 - Setting key : ROLE_GROUP_IMPORT_EXPORT
 - Default value : false
@@ -696,6 +773,16 @@ To change it, open the "config/extension.php" file and make the following change
 - Default value : false
 - Role : Set to true to disable drag and drop display items such as custom column files and image columns.
 
+#### File save destination
+- Setting key : EXMENT_DRIVER_EXMENT, EXMENT_DRIVER_BACKUP, EXMENT_DRIVER_TEMPLATE, EXMENT_DRIVER_PLUGIN
+- Default value : local
+- Role : Changes where attachments, backups, templates and plugins are saved (local, FTP, SFTP, Amazon S3, Azure Blob, and so on). See [here](/additional_file_saveplace) for details, including the settings each destination needs (such as AWS_BUCKET_EXMENT).
+
+#### 7-Zip folder (Windows)
+- Setting key : EXMENT_7ZIP_DIR
+- Default value : C:\Program Files\7-Zip
+- Role : On a Windows server, the folder where 7-Zip is installed. It is used to create password-protected zip files when "Email attachment encryption" (EXMENT_ARCHIVE_MAIL_ATTACHMENT) is used. Enter the folder that contains "7z.exe".
+
 #### Change the extension displayed on the browser when clicking the attached file
 - Setting key : EXMENT_FILE_DOWNLOAD_INLINE_EXTENSIONS
 - Default value : (None)
@@ -720,6 +807,16 @@ For such a storage, downloading a file redirects to the temporary URL of the sto
 - Role : The score threshold when using Google reCAPTCHA v3 in the [public form](/publicform). reCAPTCHA v3 returns a score from 0.0 (very likely a bot) to 1.0 (very likely a human), and a submission whose score is below this value is rejected. Raise the value if spam still gets through, and lower it if real visitors are blocked.  
 ※It is used only when "V3" is selected for Google reCAPTCHA on the system settings screen.  
 ※If a value outside the range 0 to 1 is set, 0.5 is used instead.
+
+#### Hide "Powered by Exment" in the footer of public forms
+- Setting key : EXMENT_DISABLE_PUBLICFORM_USE_FOOTER_LABEL
+- Default value : false
+- Role : By setting to true, "Powered by Exment" displayed in the footer of public forms is hidden.
+
+#### Change the "/publicformapi" URI of the public form API
+- Setting key : EXMENT_PUBLICFORMAPI_ROUTE_PREFIX
+- Default value : publicformapi
+- Role : The path name of the URL of the API that public forms use internally (for example, to get options).
 
 #### IP addresses that skip Google reCAPTCHA
 - Setting key : None (set with "recaptcha_skip_ips" in "config/exment.php")

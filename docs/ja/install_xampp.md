@@ -67,7 +67,7 @@ C:\xampp\mysql\bin
 - 入力を行ったら、起動したダイアログをすべて「OK」をクリックし、完了させます。  
 
 ##### XAMPP配下のMysqlを実行する場合
-- XAMPP配下のMysqlを実行する場合には、[Exmentインストール](#Exmentインストール)の手順の際に、実行ファイルがあるフォルダまでのパスを、Exmentのルートディレクトリにある.env 内に追加してください。  
+- XAMPP配下のMysqlを実行する場合には、[Exmentインストール](#exmentインストール)の手順の際に、実行ファイルがあるフォルダまでのパスを、Exmentのルートディレクトリにある.env 内に追加してください。  
 ~~~
 #例  
 EXMENT_MYSQL_BIN_DIR="C:/xampp/mysql/bin"

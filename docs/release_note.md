@@ -178,7 +178,7 @@
 
 ## v6.2.7 (2025/10/08)
 1. Feature Fixes
-    - Added logging to Laravel.log for performance analysis, please see [here](/system_setting?id=enable-operation-log)
+    - Added logging to Laravel.log for performance analysis, please see [here](/system_setting?id=enable-system-performance-log)
     - Added filter functionality to the summary view.
 1. Bug Fixes
     - Fixed a workflow bug.
@@ -264,7 +264,7 @@
     - Fixed a bug where files uploaded to the dashboard editor are not displayed the next day.
     - Fixed a bug where an error occurs when paging through multiple child tables on the parent table details screen. (laravel-admin)
 1. Other
-    - Added a warning comment in API settings when a Composer error occurs. For details, please see [here](/system_setting?id=api%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b)
+    - Added a warning comment in API settings when a Composer error occurs. For details, please see [here](/system_setting?id=use-api)
 
 
 ## v6.1.7 (2024/11/12)
@@ -716,7 +716,7 @@
         - Fixed so that you can sort by specifying the column of the parent table of the relation and the related table in "Data sort" of the all view / normal view (however, many-to-many relations are excluded).
         - Added "Specify" filter "item of view" in all view / normal view. The filter displayed at the top of the view will be able to display the specified columns. You can also narrow down the columns of the parent table and related table of the relationship.
         
-    - In the public form "Set initial value from URL", in the custom columns "Choice (select from other tables)" "User" "Organization", you can set the initial value only with suuid (20-digit random character string) Add settings to do so. The setting method is [here] (/ja/publicform) "Custom column" Choice (select from other tables) ""User "" Organization ", the initial value can be set only with suuid (20-digit random character string) If you want to do so, please check"
+    - In the public form "Set initial value from URL", in the custom columns "Choice (select from other tables)" "User" "Organization", you can set the initial value only with suuid (20-digit random character string) Add settings to do so. The setting method is [here](/publicform) "Custom column" Choice (select from other tables) ""User "" Organization ", the initial value can be set only with suuid (20-digit random character string) If you want to do so, please check"
     - Fixed so that "Date" and "Date" columns of the parent table and related table of the relation can be specified in "Time elapsed" of the notification.
     - Fixed so that the "Email" column of the parent table and related table can be specified when the "Email" column is selected in the "Implementation action" of the notification.
 1. Bug fix
@@ -848,7 +848,7 @@
 ## v4.0.4 (2021/02/22)
 1. Functional modification
     - Addition of batch command import function for attached files. Check [here](/ja/data_cmd_import_export#import_file) or [here](/ja/data_cmd_import_export#import_document)
-    - Added a command to get the version of Exment. Check [here](/ja/command?Exmentバージョン)
+    - Added a command to get the version of Exment. Check [here](/command?id=exment-version)
 1. Bug fix
     - Fixed a bug that the corresponding plugin is not displayed in the menu when multiple plugin types are included in one plugin and there is a type "page".
     - Fixed a bug that some files such as plug-ins may not be restored normally when restoring from Windows environment to Linux environment.
@@ -930,7 +930,7 @@
 1. Other
     - Refactor the code for data filtering
     - Create automated tests for plugins
-    - Optimized the manual for initial setting and installation. The contents are [here] (/quickstart)
+    - Optimized the manual for initial setting and installation. The contents are [here](/quickstart)
 
 
 ## v3.9.2 (2020/12/21)
@@ -954,9 +954,9 @@
     - Enhanced validation of input form
 
 ## v3.8.0 (2020/12/11)
-**There are some points to check when updating to v3.8.0 or higher. Please check the contents of [here] (/ja/update/v3_8) once and then update.**
+**There are some points to check when updating to v3.8.0 or higher. Please check the contents of [here](/ja/update/v3_8) once and then update.**
 1. Function addition / improvement
-    - Improved data import / export performance and memory usage. For details, please check the contents of [here] (/ja/update/v3_8).
+    - Improved data import / export performance and memory usage. For details, please check the contents of [here](/ja/update/v3_8).
     - Improvement of screen display contents when import command is executed, modified so that you can see which line is currently being imported.
     - In addition, refactoring of import / export
 1. Bug fix
@@ -1010,7 +1010,7 @@
 ## v3.7.2 (2020/10/27)
 1. Function addition / correction
     - Supports comparison using system date in "Compare two columns" setting of custom table extension setting.
-    - Added "read-only" and "display-only" as separate settings in the form settings. Click [here](/form#read-only) for details.
+    - Added "read-only" and "display-only" as separate settings in the form settings. Click [here](/form) for details.
     - Supports data detail screen transition in a separate window on the list screen from the search button.
     - Slightly improved usability on the form settings screen.
     - Added a function that can output a log of request value as a debugging function. For details, refer to "Debug mode (request value output)" in [here](/config).
@@ -1035,7 +1035,7 @@
     - Added support for SQL Server (backup / restore function is not supported).
     - Added "valid flag" to the notification settings. You can turn off notifications by disabling.
     - Added "Notify work performer" option to notification settings. By setting YES, you can also send a notification to the worker.
-    - Added the ability to add mentions to Slack notifications. Click [here](/notify#Slack) for details.
+    - Added the ability to add mentions to Slack notifications. Click [here](/notify) for details.
     - Regarding the filter function of various list screens, filter items have been added to screens where the item was only "ID".
 1. Bug fix
     - Fixed a bug that could not be saved normally when the parent-child form was set and the column of the child table was set to "unique".
@@ -1107,11 +1107,11 @@
 ## v3.6.3 (2020/09/11)
 
 > <span class = "red bold"> As of 09/11/2020, we have confirmed the phenomenon that composer error occurs when updating Exment. </span>
-[This page](/troubleshooting?Id=A-composer-error-occurs-during-manual-installation-or-update) describes how to deal with it. If an error occurs in the update, follow the procedure to deal with it. Please go.
+[This page](/troubleshooting?id=a-composer-error-occurs-during-manual-installation-or-update) describes how to deal with it. If an error occurs in the update, follow the procedure to deal with it. Please go.
 
 1. Addition of functions
     - Added the function to set the background color and background image of the login page. It can be changed from [Login settings](login_setting).
-    - Supports password reset command execution. Click [here](/login_setting#password_reset_command) for details.
+    - Supports password reset command execution. Click [here](/login_setting#password-reset-command) for details.
     - Added the function to use the original driver at the file upload destination. Click [here](/additional_file_saveplace) for details.
     - Added a check box to select the transition destination after saving on the role group workflow setting screen.
     - Added a function to select the type of notification email from HTML and text.
@@ -1198,7 +1198,7 @@
     - You can now select the screen type in the form priority settings. You can make settings such as "form that is displayed only when creating a new form" and "form that is displayed only on the data details screen". Form priority setting is [here](/form#form-priority-settings)
     - Added the editing function of the plug-in. You can edit, upload new, and delete plug-in files from the screen.
     - Fixed so that the user view / user dashboard can be enabled / disabled from the system settings.
-    - Drag and drop is supported for file / image columns. * To disable it, click [here](/config#disable-drag-and-drop-of-file).
+    - Drag and drop is supported for file / image columns. * To disable it, click [here](/config#invalid-file-drag-and-drop).
 1. Bug fix
     - Fixed a bug that the radio button is not displayed on another screen after transitioning to the form screen.
     - Other minor corrections
@@ -1207,7 +1207,7 @@
 
 ## v3.4.3 (2020/07/20)
 1. Addition of functions
-    - Added a setting to change the color of the graph displayed on the dashboard. Click [here](/config # Change the color of the dashboard graph display) for details.
+    - Added a setting to change the color of the graph displayed on the dashboard. Click [here](/config#change-the-color-of-the-dashboard-graph-display) for details.
     - Added the function to control the display / non-display of buttons by logic in "Button" and "Document" of the plug-in. For details, see [here (button)](/plugin_quickstart_button) or [here (document)](/plugin_quickstart_document).
 1. Bug fix
     - Fixed a bug that an exclusive control error occurs when data is saved as it is after deleting a file in the custom columns "File" and "Image".
@@ -1251,7 +1251,7 @@
 ## v3.4.0 (2020/07/03)
 1. Addition of functions
     - Addition of settings for external portal sites. You can prevent each user from viewing user information outside your organization. Click [here](/multiuser) for details.
-    - Added automatic data sharing setting for each table. When saving data, you can automatically share the data with the organization or user that is set as the value. Click [here](/table#data_automatic_sharing_settings) for details.
+    - Added automatic data sharing setting for each table. When saving data, you can automatically share the data with the organization or user that is set as the value. Click [here](/table#data-automatic-sharing-settings) for details.
     - Addition of an option that allows users / organizations who cannot access the table to be displayed as candidate choices in the "User" and "Organization" settings of the custom column.
     - Changed to select the search target column in the header, the search bar on the data list screen, and the data search by API (performance measures)
     - Changed to output the margin by tag when multi-line text is displayed in html and the body contains a half-width space.
@@ -1280,7 +1280,7 @@
 
 ## v3.3.1 (2020/06/23)
 1. Addition of functions
-    - When a custom column (choice to refer to another table) to a table with parent-child / reference relationship exists in the same form, by selecting the parent item, only the child item associated with that parent is automatically automatically Expansion of functions to be narrowed down. Click [here](/form#related_refinement_settings) for details.
+    - When a custom column (choice to refer to another table) to a table with parent-child / reference relationship exists in the same form, by selecting the parent item, only the child item associated with that parent is automatically automatically Expansion of functions to be narrowed down. Click [here](/form#related-refinement-settings) for details.
     - Changed to call the "Filter" item on the data list screen asynchronously. * Since it takes time to get the option list, the function has been modified to render only when necessary.
 1. Bug fix
     - Fixed a cumulative bug related to "Custom column (choice to refer to another table)". In particular, fixed a bug when "Allow multiple selection" was performed.
@@ -1310,7 +1310,7 @@
 
 ## v3.2.8 (2020/06/10)
 1. Addition of functions
-    - Added setting value to hide "Table details" and "Change view" buttons on the custom data screen. Click [here](/config#"Table-details"button-on-the-custom-data-screen-is-hidden) for details.
+    - Added setting value to hide "Table details" and "Change view" buttons on the custom data screen. Click [here](/config#hide-table-details-button-on-custom-data-page) for details.
 1. Bug fix
     - Fixed a bug that Japanese characters in file names are garbled when exporting data in Edge
     - Fixed a bug that an error occurs when the character string "parent table name_small table name" becomes 31 characters or more in total due to the relation setting when exporting data.
@@ -1332,12 +1332,12 @@
     - Fixed a bug in importing CSV and numerical values ​​in the YES column and the option column where "Allow multiple columns"
 1. Other
     - Added a process to redirect to the edit screen when the URL is directly entered on some endpoints.
-    - Added a manual for batch import function of logged-in users. Click [here](/user?Id=Bulk-import-of-login-user-information) for details.
+    - Added a manual for batch import function of logged-in users. Click [here](/user) for details.
 
 
 ## v3.2.4 (2020/05/22)
 1. Addition of functions
-    - BOM can now be added when exporting csv data. (The characters are not garbled even if opened in Excel.) The setting method is [here](/config#csv-format) (BOM is added when exporting in).
+    - BOM can now be added when exporting csv data. (The characters are not garbled even if opened in Excel.) The setting method is [here](/config#add-bom-when-exporting-in-csv-format) (BOM is added when exporting in).
 1. Bug fix
     - Fixed a bug that backup loading did not end when "Keep backup generation" was set when backing up data.
 
@@ -1371,9 +1371,9 @@
 
 ## v3.2.0 (May 05, 2020)
 - Added a function so that "Match any condition" can be selected in the view display condition, form switching condition, and workflow action setting condition.
-- Added a function that allows you to set binary comparison validation from the screen when saving data. Click [here](/table?Id=comparing-two-columns)
+- Added a function that allows you to set binary comparison validation from the screen when saving data. Click [here](/table?id=compare-two-columns)
 - Changed "Detailed table settings", "Import / export", and "Change view settings" to a dialog display format.
-- Added the role authority management function of the plugin. Click [here](/plugin?Id=role-authority-management) for details.
+- Added the role authority management function of the plugin. Click [here](/plugin) for details.
 - Added "Export" to the plugin type. Click [here](/plugin_quickstart_export) for details.
 - Deprecated "Trigger" in the plugin type, and added [Button](/plugin_quickstart_button) and [Event](/plugin_quickstart_event) instead.
 - Added "When screen is loaded" and "When dashboard is loaded" events in the plug-in type "Script". Click [here](/plugin_quickstart_script) for details
@@ -1442,7 +1442,7 @@
 
 ## v3.1.5 (2020/03/18)
 - Added export function using the displayed view on the data list screen. Click [here](/data_import_export) for details.
-* Currently, the data export / import menu is very long. If there are unnecessary items, they can be hidden by [Setting value](/config#Import_Export).
+* Currently, the data export / import menu is very long. If there are unnecessary items, they can be hidden by [Setting value](/config#import-export).
 - Fixed the notification to the right of the header so that the bell sways when a notification is added
 - Strengthen deletion check for table deletion when performing relations and table references
 - Other minor corrections
@@ -1466,7 +1466,7 @@
 ## v3.1.0 (2020/02/22)
 - Added the function to restore logically deleted data. Click [here](/deleted_data) for details.
 - Added a file save function to image / file columns using the data API. Click [here](https://exment.net/reference/ja/webapi.html#operation/post-values) for details.
-- Supports the function to import templates from Excel files. Click [here](/template # import-excel) for details.
+- Supports the function to import templates from Excel files. Click [here](/template#import) for details.
 - Changed the system setting screen to be divided into "basic settings" and "detailed settings"
 - Other minor corrections
 
@@ -1535,10 +1535,10 @@
 - Fixed a bug that HTTP logs were not saved.
 - Fixed a bug that password reset email was not sent properly.
 - When restoring, if the target is local, nothing is executed and the process ends.
-- "Process to reduce line feed code in HTML response" is added as an option. Click [here](/config#Line-feed-code-removal-in-HTTP-response) for details.
+- "Process to reduce line feed code in HTML response" is added as an option. Click [here](/config#line-feed-code-removal-in-http-response) for details.
 
 ## v3.0.10(2019/12/12)
-- Added option to not show latest version of dashboard. Click [here](/config#Disable-latest-version-display-of-dashboard) for details. 
+- Added option to not show latest version of dashboard. Click [here](/config#disable-latest-version-display-of-dashboard) for details. 
 - Added processing to save execution log when executing API.
 - Fixed a bug that history is not displayed properly when creating / updating custom data with API. Click [here](/patch/api_revision) for details.
 - Fixed a bug that workflow parameters were not displayed correctly in workflow email notifications.

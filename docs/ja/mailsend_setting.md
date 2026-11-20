@@ -26,6 +26,11 @@ Exmentからメール送信を行うための設定を行います。
 - 以下の設定を入力します。
 ![システム設定画面](img/system_setting/system_setting_mail.png)  
 
+- 「ホスト名」を入力して保存すると、Exmentは画面の設定を使用して、SMTPでメールを送信します。  
+「.env」の「MAIL_MAILER」が、Laravelの初期値である「log」(メールを送信せず、ログに出力する設定)のままでも、SMTPで送信します。  
+※「.env」の「MAIL_MAILER」に「log」以外(sendmail、sesなど)を設定している場合は、その送信方法を使用します。  
+※「.env」に「EXMENT_MAIL_SETTING_ENV_FORCE=true」を設定している場合は、画面の設定は使用しません。詳細は[configファイルやenvファイルで設定](#設定方法-configファイルやenvファイルで設定)をご確認ください。
+
 ※SMTP設定例(Xserverの場合) ： [こちら](https://www.xserver.ne.jp/manual/man_mail_setting.php)  
 
 ※SMTP設定例(さくらインターネットの場合) ： [こちら](https://help.sakura.ad.jp/hc/ja/articles/206054132--%E3%83%A9%E3%82%A4%E3%83%88-%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%89-%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0-%E3%83%A1%E3%83%BC%E3%83%AB%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9-%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%BD%E3%83%95%E3%83%88%E3%81%AE%E4%B8%80%E8%88%AC%E7%9A%84%E3%81%AA%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95)  

@@ -230,7 +230,7 @@ class Plugin extends PluginViewBase
 }
 ~~~
 
-- (1) The namespace should be **App\Plugins\\(Pascal case of Plugin name)**. [Click here for details](/plugin_quickstart#Plugin-name-namespace)  
+- (1) The namespace should be **App\Plugins\\(Pascal case of Plugin name)**. [Click here for details](/plugin_quickstart#plugin-name-namespace)  
 Also, set the class name to "Plugin" and inherit PluginViewBase.
 
 - (2) The public method name when the list screen is displayed is fixed to grid.

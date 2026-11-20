@@ -24,7 +24,7 @@ php artisan exment:export information
 ### コマンドの引数
 
 ```
-php artisan exment:export (テーブル名) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0}
+php artisan exment:export (テーブル名) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0} {--add_comment=0}
 ```
 
 - ##### テーブル名  
@@ -62,6 +62,14 @@ php artisan exment:export (テーブル名) {--action=default} {--type=all} {--p
 
 - ##### add_setting  
 (オプション)設定データも出力するかどうか。既定値は0(出力しない)。Xlsx形式、ならびにactionがdefaultの場合でのみ有効。
+
+- ##### add_comment  
+(オプション)各データのコメントも出力するかどうか。既定値は0(出力しない)。1を指定すると、シート(CSV形式の場合はファイル)「comment」に、コメントを出力します。actionがdefaultで、カスタムテーブル設定の「コメント使用」がYESのテーブルの場合でのみ有効。
+
+~~~
+# 例：コメントも含めて、Xlsx形式で出力
+php artisan exment:export information --format=xlsx --add_comment=1
+~~~
 
 
 

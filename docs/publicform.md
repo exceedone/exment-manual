@@ -200,7 +200,7 @@ Select a notification template to send to your administrator. You need to create
 
 - ##### Notification Target
 Please select the notification target.  
-* Please check [Notification Action Settings](/notify#Notification-action-settings) for the items to be notified and the setting method.
+* Please check [Notification Action Settings](/notify#notification-action-settings) for the items to be notified and the setting method.
 
 
 
@@ -237,7 +237,7 @@ Select the template to send to the administrator. You need to create a new templ
 
 - ##### Notification Target
 Please select the notification target.  
-* Please check [Notification Action Settings](/notify#Notification-action-settings) for the items to be notified and the setting method.
+* Please check [Notification Action Settings](/notify#notification-action-settings) for the items to be notified and the setting method.
 
 
 #### CSS / Javascript
@@ -276,7 +276,7 @@ Set other options.
 ![Option Setting Form](img/form/public_form_option_setting.png)
 
 - ##### Make the initial value settable from the URL
-By setting YES, the value of the query string of the URL can be set as the initial value of the form. For details, please see [here](#set-the-initial-value-from-the-URL).
+By setting YES, the value of the query string of the URL can be set as the initial value of the form. For details, please see [here](#set-the-initial-value-from-the-url).
 
 - ##### Google Analytics
 If you want to set Google Analytics on the form, please enter the Google Analytics tag starting with "UA-" or "G-".

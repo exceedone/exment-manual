@@ -1,6 +1,6 @@
 # Notification / Email sending settings
 Under certain conditions, you can send an email to a user or a designated email address.
-**※ To execute this function, you need to [configure the mail settings](/system_setting#System-mail-settings).**
+**※ To execute this function, you need to [configure the mail settings](/system_setting#system-mail-settings).**
 
 ### Notification type
 Exment currently has the following notification types:
@@ -67,7 +67,7 @@ Set the conditions for notification "Notification condition setting" and "Notifi
 
 #### Enforcement trigger
 Select the setting that will be the condition for notification.  
-For details on the settings, see the [notification types](#notification-types) above.  
+For details on the settings, see the [notification types](#notification-type) above.  
 
 #### Target table
 Select the table to be notified and the table to be notified.

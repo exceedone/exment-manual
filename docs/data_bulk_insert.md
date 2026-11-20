@@ -6,7 +6,7 @@ Put a large amount of data (bulk insert. 1000 or more) prepared as a csv file in
 
     - ** Even if the created csv or data content is incomplete, detailed error checking will not be executed. ** Please check carefully when creating the file, and if a problem occurs, check that part of the data is imported by importing from the screen.
 
-    - "[Change the data specification method of another table](/data_import_export#Change-the-data-specification-method-of-another-table)" that can be realized by [Normal import](/data_import_export) cannot be executed by this function. .. Please enter the id in the column and import.
+    - "[Change the data specification method of another table](/data_import_export#changing-the-method-of-specifying-parent-table-data)" that can be realized by [Normal import](/data_import_export) cannot be executed by this function. .. Please enter the id in the column and import.
 
 
 ## Data preparation

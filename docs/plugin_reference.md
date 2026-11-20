@@ -21,7 +21,7 @@ Therefore, I decided to define the properties to be added in v4.2.2 or later in 
 
 #### setCustomOptionForm
 Defines plugin-specific settings.  
-For more information [here](/plugin_quickstart#Make-your-own-settings-on-the-plugin-settings-screen), please refer to.
+For more information [here](/plugin_quickstart#make-your-own-settings-on-the-plugin-settings-screen), please refer to.
 
 ##### argument
 | Name | Type | Description |
@@ -32,7 +32,7 @@ For more information [here](/plugin_quickstart#Make-your-own-settings-on-the-plu
 None
 
 ##### Example of use
-Click [here](/plugin_quickstart#Make-your-own-settings-on-the-plugin-settings-screen) Please refer to.  
+Click [here](/plugin_quickstart#make-your-own-settings-on-the-plugin-settings-screen) Please refer to.  
 
 ---
 

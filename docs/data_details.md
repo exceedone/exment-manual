@@ -1,7 +1,7 @@
 # Data details
 Click the target data in [Data List](/data_grid.md) to display the data details.  
-In the data list, only the contents specified in [Display column selection](/view?Id=Display-Column-Selection) in the view settings are displayed.  
-In the data details, matching form items are displayed according to the priority set in the [form priority](/form?Id=form-priority-settings) settings.
+In the data list, only the contents specified in [Display column selection](/view?id=display-column-selection) in the view settings are displayed.  
+In the data details, matching form items are displayed according to the priority set in the [form priority](/form?id=form-priority-settings) settings.
 
 The following four types of information are displayed on the data details screen.  
 
@@ -66,7 +66,7 @@ Keep typing to narrow the list down. Click a user (or pick one with the up / dow
 
 ![Data screen](img/data/data_history1.png)  
 
-- The update history is displayed when [Use data change history](/table?Id=Use-Data-Change-History) in the table settings is set to YES.
+- The update history is displayed when [Use data change history](/table?id=use-data-change-history) in the table settings is set to YES.
 - When you edit the data, the date and time of the edit and the user name are automatically described.  
 - When you edit the data, the date and time of the edit and the user name are automatically described.  
 
@@ -80,7 +80,7 @@ Keep typing to narrow the list down. Click a user (or pick one with the up / dow
 
 ## Data sharing
 Share the saved data to other users / organizations.  
-※In [Role group setting](/role_ group), it can be executed only if you have "Data sharing" authority.
+※In [Role group setting](/role_group), it can be executed only if you have "Data sharing" authority.
 
 #### Sharing method
 - On the data details screen, the "Share" button is displayed. Click it.

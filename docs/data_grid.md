@@ -50,7 +50,7 @@ Filtered items are displayed by clicking the "Filter" button.
 
 - In addition to the refinement condition of the displayed view, refinement is performed by the filter function.  
 
-- For text-type columns, whether the keyword matches the start of the value (prefix match) or any part of it (partial match) follows "Data search method" in [System settings](/system_setting.md?id=Data-search-method). The initial value is prefix match.  
+- For text-type columns, whether the keyword matches the start of the value (prefix match) or any part of it (partial match) follows "Data search method" in [System settings](/system_setting.md?id=data-search-method). The initial value is prefix match.  
 
 
 ### The view
