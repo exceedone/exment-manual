@@ -1,6 +1,49 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.1.0 (2026/11/20)
+- This version contains new features and a change of the screen design.
+- The admin panel library "exceedone/exment-admin-core" v1.0.4 or later is required (`composer update` updates it too).
+- <span class="red bold">After the update, the screens use the new "Modern" design.</span> To go back to the previous design, select "Classic" in "Screen Design" on the system setting page and save (it can also be set by `EXMENT_UI_DESIGN` in .env).
+1. Added Features
+    - New screen design "Modern" (default), with "Classic" (the previous design) as an option. A new logo, and an accent color that follows the site skin ([#1773](https://github.com/exceedone/exment/pull/1773), [#1808](https://github.com/exceedone/exment/pull/1808))
+    - "Excel-like editing" mode on the data list: move between cells with the arrow keys, Tab and Enter, and type to edit (off by default). In the modern design, the action column (view / edit / delete) is shown on the left ([#1776](https://github.com/exceedone/exment/pull/1776))
+    - Run a workflow action on the records ticked on the data list ([#1793](https://github.com/exceedone/exment/pull/1793))
+    - List, add and delete comments by the API ([#1813](https://github.com/exceedone/exment/pull/1813))
+    - Markdown in comments, and pasted images in the body and in comments ([#1814](https://github.com/exceedone/exment/pull/1814))
+    - Export the comments of the data ([#1765](https://github.com/exceedone/exment/pull/1765))
+    - Demo mode (`EXMENT_DEMO_MODE` in .env), which blocks changes to the admin settings and so on ([#1777](https://github.com/exceedone/exment/pull/1777), [#1778](https://github.com/exceedone/exment/pull/1778))
+    - A "Back to the list" button on the data show and edit pages ([#1825](https://github.com/exceedone/exment/pull/1825))
+    - Attach the file of a select_table's data in notification templates ([#1766](https://github.com/exceedone/exment/pull/1766))
+    - An option to show a data update button for data locked by a workflow ([#1768](https://github.com/exceedone/exment/pull/1768))
+    - Set the max height of the items of each dashboard row ([#1767](https://github.com/exceedone/exment/pull/1767))
+    - Use the IAM role for S3 when no access key is set ([#1764](https://github.com/exceedone/exment/pull/1764))
+1. Improvements
+    - Performance: tables, columns, organizations and so on are found by an index ([#1786](https://github.com/exceedone/exment/pull/1786))
+    - Performance: settings to load the rows of the data list and child tables after the page opens ("Optimize list display" of a table, "Optimize loading of child-table data" of a form; off by default), and fixes of the permission cache ([#1801](https://github.com/exceedone/exment/pull/1801))
+    - The system performance log records slow requests only, without SQL values ([#1787](https://github.com/exceedone/exment/pull/1787))
+    - Section navigation on the system detail settings ([#1771](https://github.com/exceedone/exment/pull/1771))
+    - The folded state of the side menu is remembered
+    - The class "image-link" on the link of an image column ([#1762](https://github.com/exceedone/exment/pull/1762))
+1. Specification changes
+    - Menus moved: "Safety Check", "Login Setting" and "API Setting" under "Admin Setting" ([#1805](https://github.com/exceedone/exment/pull/1805), [#1826](https://github.com/exceedone/exment/pull/1826)), and "LINE" to the user menu ([#1822](https://github.com/exceedone/exment/pull/1822)). `php artisan exment:update` moves them
+    - The footer of the admin pages ("Powered by Exment" and the version) is removed. The version is shown in "System version infomation" at the bottom of the system setting page
+    - The news on the dashboard is read from the API of exment.net ([#1783](https://github.com/exceedone/exment/pull/1783))
+1. Bug fixes
+    - The plugin event `exment:form_loaded` did not fire on public forms ([#1815](https://github.com/exceedone/exment/pull/1815), [exment-admin-core#7](https://github.com/exceedone/exment-admin-core/pull/7))
+    - The URL of a plugin public file without its plugin gave a 500 error instead of 404 ([#1811](https://github.com/exceedone/exment/pull/1811))
+    - Some markdown image locations gave a 500 error ([#1789](https://github.com/exceedone/exment/pull/1789))
+    - A plain switch checkbox did not change the posted value ([#1716](https://github.com/exceedone/exment/issues/1716))
+    - The system alert did not reach every user when users had the same mail address ([#1668](https://github.com/exceedone/exment/issues/1668))
+    - Mail was not sent by SMTP when the host was set on the system setting page ([#1748](https://github.com/exceedone/exment/issues/1748))
+    - Existing child rows were not validated with their own record ([#1720](https://github.com/exceedone/exment/issues/1720))
+    - The child table filter of the relation list did not use the real column ([#1733](https://github.com/exceedone/exment/issues/1733))
+    - String bindings were not quoted in the paging subquery ([#1718](https://github.com/exceedone/exment/issues/1718))
+    - Event plugins whose event_triggers is a comma separated string did not run ([#1712](https://github.com/exceedone/exment/issues/1712))
+    - The input min-width of the child table view affected other forms ([#1698](https://github.com/exceedone/exment/issues/1698))
+    - The template export missed the to table name of a data copy setting ([#1689](https://github.com/exceedone/exment/issues/1689))
+    - Open select2 lists stayed after the modal was closed ([#1678](https://github.com/exceedone/exment/issues/1678))
+
 ## v7.0.3 (2026/11/19)
 - This version contains bug fixes only. We recommend updating if you use v7.0.2 or lower.
 1. Bug fixes
