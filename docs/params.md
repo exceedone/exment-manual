@@ -100,6 +100,7 @@ By setting the parameters in the "Custom Attachment" column of the notification 
 | item | Description |
 | ---- | ---- |
 | ${file:(column name)} | Attachments registered in the custom column types "File" and "Image" |
+| ${file:select_table:(select table column name).(file column name of the referenced table)} | Attachments registered in a "File" or "Image" column of the data selected in a custom column "Select (From Table)".<br/>Example: ${file:select_table:customer.contract_file} |
 | ${documents} | Attachment file registered for the data details screen (location corresponding to the image below) |
 
 #### Login user

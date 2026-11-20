@@ -58,7 +58,7 @@ id, suuid, parent_id, parent_type, created_at, updated_at, deleted_at, created_u
     - YES / NO: Create a switch to switch between “YES” and “NO”. When registering data, YES is registered as 1 and NO is registered as 0.  
     - Binary selection: Creates a switch that switches between two values. You can also change the value at the time of data registration.  
     - Automatic numbering: Create values ​​such as UUIDs and random character strings when creating data.    
-    - Image: An item to upload an image.  
+    - Image: An item to upload an image. On the data list and data details screens, the image is displayed with a link. The link (a tag) has the class "image-link", so a [plugin (script)](/plugin_quickstart_script) or a [plugin (style)](/plugin_quickstart_style) can target only the links of images.
     - File: An item to upload a file.  
     - User: An option to select a user for the system.  
     - Organization: An option to select the organization of the system.  
@@ -68,10 +68,10 @@ If set to YES, it will be a required item on the data entry screen, and if not e
 
 
 
-- Index Enabled: See "[Search index](#Search-index)" below. 
+- Index Enabled: See "[Search index](#search-index)" below. 
 
 - Unique (unique): If set to YES, you will not be able to register values that duplicate other data when registering data.  
-Please refer to [Compound unique key setting](/table.md#Compound-unique-key-setting) if you want to prevent duplicate registration in a specific combination by multiple column values.  
+Please refer to [Compound unique key setting](/table.md#composite-unique-key-setting) if you want to prevent duplicate registration in a specific combination by multiple column values.  
 
 - Enter once only: If you set YES, you can make it a column where data can be registered only at the time of new registration.  
 It is for display only when editing data.
@@ -96,7 +96,7 @@ It is picked from the preset library - see [Cell style presets](/cell_style_pres
 - Suggest input (single line text): Displays values ​​that match the input content as input candidates from the data values ​​already registered in the same custom column.
 ![Custom column screen](img/column/suggest.png)
 
-- Regular expression (1 line text): The input contents can be validated by regular expression. See [Regular Expression](#Regular-Expression) for details.
+- Regular expression (1 line text): The input contents can be validated by regular expression. See [Regular Expression](#regular-expression) for details.
 
 - Minimum value (integer, decimal): The minimum value that can be entered in the form item. If you send below that value, an error will occur.  
 If left blank, the minimum value will not be checked.  
@@ -168,7 +168,7 @@ Up to 10 "search indexes" are recommended, and up to 20 can be set in the same t
 
 
 ## Use in labels
-> This setting method has been changed to [Extended setting of custom table](/table#Extended-setting-of-custom-table) in v1.3.0.
+> This setting method has been changed to [Extended setting of custom table](/table#extended-settings) in v1.3.0.
 
 ## Regular expression
 > This setting is displayed only when [Expert mode](/additional_expert) is enabled.  

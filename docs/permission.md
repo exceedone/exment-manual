@@ -142,7 +142,7 @@ When new data is created / updated on the screen or API, the data can be automat
 
 - Example: A user added to the "Person in charge" column of the "Task Management" table is automatically given permission to edit the data when the data is saved.
 
-For the setting method, see [Data automatic sharing setting](/table#Data-automatic-sharing-setting).
+For the setting method, see [Data automatic sharing setting](/table#data-automatic-sharing-settings).
 
 ![Role / Authority] (img/table/table_extended_share1.png)
 

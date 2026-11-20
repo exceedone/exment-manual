@@ -24,7 +24,7 @@ php artisan exment:export information
 ### Command arguments
 
 ```
-php artisan exment:export (table name) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0}
+php artisan exment:export (table name) {--action=default} {--type=all} {--page=1} {--count=} {--format=csv} {--view=} {--dirpath=} {--add_setting=0} {--add_relation=0} {--add_comment=0}
 ```
 
 - ##### table name  
@@ -67,6 +67,15 @@ The default value is 0 (no output).
 - ##### add_setting
 (Optional) Whether to output setting data as well.  
 The default value is 0 (no output).
+
+- ##### add_comment
+(Optional) Whether to output the comments of each data as well.  
+The default value is 0 (no output). If 1 is specified, the comments are output to the sheet "comment" (for CSV format, the file "comment"). Valid only when action is default and the "Use Comment" setting of the table is YES.
+
+~~~
+# Example: export in Xlsx format, with the comments
+php artisan exment:export information --format=xlsx --add_comment=1
+~~~
 
 
 

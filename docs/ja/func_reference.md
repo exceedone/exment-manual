@@ -479,7 +479,7 @@ $query->where($title->getIndexColumnName(), 'LIKE', 'Exment%')
 ## CustomValue / カスタムデータ
 カスタムデータのクラスです。  
 ※このクラスは抽象クラスです。このクラスをbaseとし、各カスタムテーブルごとに、クラスが動的に生成されます。
-各テーブルごとのカスタムデータクラスを取得したい場合は、[CustomTableクラスのgetValueModel](#getValueModel)をご参照ください。
+各テーブルごとのカスタムデータクラスを取得したい場合は、[CustomTableクラスのgetValueModel](#getvaluemodel)をご参照ください。
 
 - namespace Exceedone\Exment\Model
 - extends Exceedone\Exment\Model\ModelBase
@@ -531,7 +531,7 @@ CustomTable::getEloquent('information')
 指定したカスタム列をキーとして、保存している値を取得します。  
 ※引数$valueTypeの内容によって、戻り値の型や内容が異なります。  
 例えば、カスタム列種類が「選択肢（他のテーブルから取得）」の場合、$valueTypeがfalseの場合、選択したデータのオブジェクトを返却します。  
-**※カスタム列種類毎の返却値は、[こちら](#カスタム列ごとのgetValueの返却値)をご確認ください。**  
+**※カスタム列種類毎の返却値は、[こちら](/ja/column_reference)をご確認ください。**  
 
 ##### 引数
 | 名前 | 種類 | 説明 |

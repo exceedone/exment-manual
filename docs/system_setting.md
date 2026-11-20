@@ -15,7 +15,7 @@ When managing information with Exment, set the basic information as a site.
 
 - There are two types of display formats for Exment's menu layout: "standard" and "small icon".  
 Please refer to the image below for the difference in display.  
-- Regarding the menu layout, the default display format is set in [Site Menu Layout](#Site-Menu-Layout), but you can switch each time by clicking the red frame part of the image.  
+- Regarding the menu layout, the default display format is set in [Site Menu Layout](#site-menu-layout), but you can switch each time by clicking the red frame part of the image.  
 
 standard
 ![System setting screen](img/system_setting/system_setting_layout1.png)
@@ -82,12 +82,12 @@ $ php artisan passport:keys
 - The initial value is "YES".
 
 #### Use privilege management
-- If the setting is YES, you can set [Permissions for the entire system] (#Permission settings) and [Permissions for each custom table](/table.md?id=Permission).
+- If the setting is YES, you can set [permissions for the entire system and for each custom table](/role_group).
 - If this setting is YES, it is possible to grant the specified authority to the user.
 - The initial value is "YES".
 
 #### Use organizational management
-- If the setting is YES, it is possible to grant the authority specified by the organization in [Use authority management](#Use-authority-management).
+- If the setting is YES, it is possible to grant the authority specified by the organization in [Use authority management](#use-privilege-management).
 - The initial value is "YES".
 
 #### Enable System Performance Log
@@ -113,7 +113,7 @@ $ php artisan passport:keys
 - The initial value is "20".
 
 #### Number of search / dashboard displays
-- Default number of data displayed when [Keyword search](/search.md?id=word-search) is performed or [Dashboard data list](/dashboard.md?id=datalist) is.
+- Default number of data displayed when [Keyword search](/search.md?id=word-search) is performed or [Dashboard data list](/dashboard.md?id=list-of-data) is.
 Select one of "5", "10", and "20".
 - The initial value is "5".
 
@@ -173,7 +173,7 @@ Please note that SPF record settings are not supported by us. Please note.
 
 - <span class = "small"> Originally, in Laravel, the setting value of ".env" file is used as a parameter of mail transmission, but from v1.3.6, the setting value of .env file is not used and the screen The value registered in "System Settings" of is now used. </span>
 - <span class = "small"> However, in some cases you may want to continue setting the ".env" file. Especially with Laravel, you can also send emails using a sending method other than SMTP. </span>
-- <span class = "small"> In that case, enter "EXMENT_MAIL_SETTING_ENV_FORCE = true" in the ".env" file. You will continue to use the settings you entered in the ".env" file. </span>
+- <span class = "small"> In that case, enter "EXMENT_MAIL_SETTING_ENV_FORCE=true" in the ".env" file. You will continue to use the settings you entered in the ".env" file. </span>
 
 
 ## LINE Setting

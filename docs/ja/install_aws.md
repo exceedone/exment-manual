@@ -408,4 +408,4 @@ Amazon Elastic Load Balancingによって、リバースプロキシ設定が行
 
 
 ## PHPバージョンアップ時の対応
-[こちら](/ja/install_aws_single#PHPバージョンアップ時の対応)に移動しました。
+[こちら](/ja/install_aws_single#phpバージョンアップ時の対応)に移動しました。

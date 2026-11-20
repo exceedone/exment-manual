@@ -29,7 +29,7 @@ The gantt chart is read only. A bar cannot be dragged on the chart to change its
 "Gantt chart view new creation" is not offered when the table has no "Date" or "Date and Time" column at all.
 
 #### View display name, view permissions, default, Use View Infobox
-The setting items are the same as [View settings](/view.md?id=View-settings).
+The setting items are the same as [View settings](/view.md?id=view-settings).
 
 ## Basic Setting
 
@@ -90,7 +90,7 @@ When more records match the view filter, "The number of records exceeds the limi
 
 ## Sort data and View Filter
 
-The setting items are the same as "Data Sorting" and "Data display conditions" in [View settings](/view.md?id=View-settings).  
+The setting items are the same as "Data Sorting" and "Data display conditions" in [View settings](/view.md?id=view-settings).  
 "Data display conditions" narrows down the records drawn on the chart.
 
 Whatever the sort setting, the rows on the chart are drawn by start date, earliest first, within each group (records with no start date last). The sort setting decides which records are drawn when they are more than "Max records".
@@ -158,7 +158,7 @@ Clicking a bar, or the record label on the left side of a row, goes to the recor
 
 - The gantt chart is read only. Bars cannot be dragged, and nothing can be edited on the chart.
 - Only records the logged-in user may view are shown.
-- The [Preview] button on the view setting screen shows the chart before saving (see [Custom views](/view.md?id=Preview)).
+- The [Preview] button on the view setting screen shows the chart before saving (see [Custom views](/view.md?id=preview)).
 - Gantt chart views cannot be chosen in the "List of data" and "chart" boxes of a dashboard (see [Dashboard](/dashboard.md)).
 
 ## See also

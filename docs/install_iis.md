@@ -346,7 +346,7 @@ The Exment installation page appears.
    3. Click \[Run installation\]   
    ![Installation procedure](img/iis/iis_s24.png)  
    If the installation has been completed successfully, the Exment initial settings screen will be displayed.   
-   For initial settings, please see [here](/first_setting.md?id=Initial settings screen).
+   For initial settings, please see [here](/first_setting.md?id=initial-setting-screen).
 
 18.  Once the installation is complete, remove the access permissions set for the exment folder.
 

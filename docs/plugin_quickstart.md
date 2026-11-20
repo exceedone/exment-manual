@@ -27,8 +27,8 @@ Name the namespace of the plugin according to the following rule.
 ## Other special settings
 In addition to the basic creation method described above, special setting information is described.
 
-- [Make your own settings on the plugin settings screen](#Make-your-own-settings-on-the-plugin-settings-screen)
-- [Support multiple plugin types with one plugin](#Support-multiple-plugin-types-with-one-plugin)
+- [Make your own settings on the plugin settings screen](#make-your-own-settings-on-the-plugin-settings-screen)
+- [Support multiple plugin types with one plugin](#support-multiple-plug-in-types-with-one-plugin)
 
 ### Make your own settings on the plugin settings screen
 
@@ -113,7 +113,7 @@ class PluginTrigger extends PluginPageBase
 
 
 #### (Optional) Create php file for configuration
-- "[Do your own settings in the plug-in settings screen](#Do-your-own-settings-in-the-plugin-settings-screen) if you want to do your own settings as described in" to create a "PluginSetting.php" file.  
+- "[Do your own settings in the plug-in settings screen](#make-your-own-settings-on-the-plugin-settings-screen) if you want to do your own settings as described in" to create a "PluginSetting.php" file.  
 
 ~~~ php
 // File name：PluginSetting.php

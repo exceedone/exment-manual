@@ -12,7 +12,7 @@ There are currently the following types of plugins:
 - [view](#view)
 - [CRUD page](#crud-page)
 - [batch](#batch)
-- [API](#API)
+- [API](#api)
 - [validation](#validation)
 - [script](#script)
 - [style](#style)
