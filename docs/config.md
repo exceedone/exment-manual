@@ -525,6 +525,13 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Default value : false
 - Role : By setting it to true, the copy link will be displayed in the operation field of the list page.
 
+#### Screen design
+- Setting key : EXMENT_UI_DESIGN
+- Default value : nothing
+- Role : Fixes the design of the login page and the admin pages on the server side. Enter "modern" or "classic". If set, this value takes priority over "Screen design" in the [System setting](/system_setting?id=screen-design), and it can no longer be changed on the system setting page. If not set, "Screen design" in the system setting (initial value: "Modern") is used.
+
+※Available from v7.1.0.
+
 
 
 ### Custom Data
@@ -568,6 +575,11 @@ See [Pending tasks](/workflow_task?id=notifying-the-other-members-of-the-organiz
 - Setting key : EXMENT_DOCUMENT_UPLOAD_MAX_COUNT
 - Default value : 5
 - Role : The number of custom data attachments that can be uploaded at one time.
+
+#### Maximum size of an image pasted into a comment
+- Setting key : EXMENT_COMMENT_IMAGE_MAX_SIZE_KB
+- Default value : 10240
+- Role : The largest image (PNG, JPEG, GIF, WebP) that can be pasted or dropped into the comment box of a data, in kilobytes. ※Available from v7.1.0.
 
 #### Allow deleting attachments even in tables whose deletion is disabled by "Cannot changed from display"
 - Setting key : EXMENT_ALLOW_DELETE_ATTACHMENT
@@ -846,6 +858,13 @@ For such a storage, downloading a file redirects to the temporary URL of the sto
 - Setting key : EXMENT_HIDE_HIDDENFIELD
 - Default value : true
 - Role : By setting to true, the data which is "Hidden field" in the form setting is hidden on the data detail screen.
+
+#### Demo mode
+- Setting key : EXMENT_DEMO_MODE
+- Default value : false
+- Role : For a public demo site that publishes the administrator login. If true, operations that run code on the server, change the server or other sites, send anything outside or show secrets are refused, even for the system administrator (plugin upload and code editing, backup, template import, mail / login / API settings, password changes and so on). Mail is only written to the log, and Slack, Teams and LINE messages are not sent. "This is a demo site" is shown at the top of the page. Console commands (such as a nightly restore by cron) are not limited. Do not set it on a site in normal use.
+
+※Available from v7.1.0.
 
 
 ### For debug and developers

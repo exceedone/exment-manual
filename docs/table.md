@@ -108,6 +108,13 @@ If you enter "200", the first update history information will be deleted at the 
 
 ![Custom table screen](img/table/table_detail13.png)
 
+#### Optimize list display
+- If YES, the data list page is shown first, and its rows are loaded automatically after that. For a table with many records or columns, the list page appears sooner. The default value is NO.
+- It defers drawing the rows. It does not reduce the database queries.
+- The setting applies when you open the data list again.
+
+※Available from v7.1.0.
+
 #### Editable by all users
 > For an overview of table permissions, please see the [Overview of Roles / Permissions in Exment](/permission) page first.
 

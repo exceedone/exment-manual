@@ -51,6 +51,12 @@ Ngoại lệ, nếu đã thiết lập quan hệ 1:n, có thể nhập đồng t
 - ##### Make the form in table form (Hiển thị form dạng bảng)  
 Hiển thị các ô nhập của bảng con dưới dạng bảng.
 
+- ##### Optimize loading of child-table data (Tối ưu tải dữ liệu bảng con)  
+Nếu đặt là YES, các dòng của bảng con này được tải tự động sau khi màn hình chỉnh sửa mở ra. Giá trị mặc định là NO.  
+Có thể dùng cho khối 1:N có "Make the form in table form" là YES, khi chỉnh sửa dữ liệu đã có. Không thể lưu cho đến khi tải xong.  
+Nếu đặt "Make the form in table form" thành NO rồi lưu form, thiết lập này cũng trở thành NO.  
+※ Có thể sử dụng từ v7.1.0.
+
 - ##### Form block name (Tên khối form)  
 Tên được hiển thị ở từng khối của form.  
 

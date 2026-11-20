@@ -12,8 +12,13 @@ The following four types of information are displayed on the data details screen
 
 
 ## Details of contents
-![Data screen](img/data/data_details1.png)  
-- Displays details registered as data.  
+![Data screen](img/data/data_details1.png)
+- Displays details registered as data.
+
+## Back to the list
+On the data show and edit pages, a [← Back to the list] button is shown on the right of the title (table name) row. Click it to go back to the data list of the table (the same place as the [List] button at the top right).
+
+※Available from v7.1.0. The button is blue in the "Classic" design, and the accent color of the [Site skin](/system_setting?id=site-skin) in the "Modern" design.
 
 ## Attachment
 ![Data screen](img/data/data_attached_file.png)  
@@ -32,7 +37,19 @@ The file can be attached to the data detail screen by the above procedure.
 - The comment made can be deleted from the "Delete" button.  
 
 ※You can only delete comments made by the logged-in user.  
-In the example of the image, since you are logged in as user, the "Delete" button of the comment made by admin is not displayed.  
+In the example of the image, since you are logged in as user, the "Delete" button of the comment made by admin is not displayed.
+
+#### Markdown and images (from v7.1.0)
+Comments can be written in Markdown: headings, lists, bold, code, links and tables (GitHub Flavored Markdown). A line break is shown as a line break.
+
+- With [Write] and [Preview] of the comment box, you can check how it looks before sending.
+- Paste or drag and drop an image (PNG, JPEG, GIF, WebP) into the comment box. It is uploaded as an attachment of the data and put in the comment as `![alt](URL)`. The size limit is 10 MB by default (it can be changed with a [setting value](/config?id=maximum-size-of-an-image-pasted-into-a-comment)).
+- An image written as `![alt](/files/(uuid of the file))` in a body (custom column "Editor") is also shown as an image on the data show page (in the list it stays as text, as before). The url returned by "Create a document (attachment)" of the API can be written as it is.
+
+※**Comments written before the update to v7.1.0 are shown as plain text, as before** (they are not read as Markdown). Comments written after the update are shown as Markdown.  
+※HTML written in a comment is shown as text, not as HTML. Links to other sites open in a new tab.  
+※An image is shown only to users who are logged in and can see the data the file belongs to. SVG images and images of other sites are shown as links, not as images, in comments.  
+※Comments can also be listed, added and deleted with the API. See the [API reference](https://exment.net/reference/en/webapi.html) for details.
 
 #### Mentions (notify a member with @)
 You can name users in a comment to notify them.

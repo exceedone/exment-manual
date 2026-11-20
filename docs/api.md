@@ -41,9 +41,8 @@ It can be built in other languages and frameworks.
 http(s)://(Exment URL)/admin/api_setting  
 ※You can access by performing "Change system settings" described above.  
 
-- Or add "API app settings" to the menu.  
-Open the "Administrator Settings"> "Menu" page and select the menu type "System Menu". The target "API Application Settings" will be displayed. Select and save.  
-※"API app settings" is not displayed in the menu with default settings.  
+- From v7.1.0, you can also open it from "Admin Setting" > "API Setting" in the left menu (when "Use API" is YES).
+- In v7.0 and earlier, "API Setting" is not displayed in the menu by default. To add it, open the "Admin Setting" > "Menu" page and select the menu type "System Menu". The target "API Setting" will be displayed. Select and save.
 
 
 ![API authentication screen](img/api/api_setting1.png)  
@@ -157,11 +156,8 @@ It can be built in other languages and frameworks.
 http(s)://(Exment URL)/admin/api_setting  
 ※You can access by performing "Change system settings" described above.
 
-- Or add "API app settings" to the menu.  
-Open the "Administrator Settings"> "Menu" page and select the menu type "System Menu".  
-The target "API Application Settings" will be displayed.  
-Select and save.  
-※"API app settings" is not displayed in the menu with default settings.
+- From v7.1.0, you can also open it from "Admin Setting" > "API Setting" in the left menu (when "Use API" is YES).
+- In v7.0 and earlier, "API Setting" is not displayed in the menu by default. To add it, open the "Admin Setting" > "Menu" page and select the menu type "System Menu". The target "API Setting" will be displayed. Select and save.
 
 ![API authentication screen](img/api/api_setting1.png)  
 

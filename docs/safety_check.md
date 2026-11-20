@@ -105,7 +105,7 @@ Link your LINE account to receive and answer via LINE next time.
 ## Sending a safety check
 
 ### Opening the screen
-Click "Safety Check" in the left menu. You can also open it from the following URL.
+Click "Admin Setting" > "Safety Check" in the left menu (in v7.0 it is at the top of the left menu). You can also open it from the following URL.
 
 ~~~
 http(s)://(Exment URL)/admin/safety_check
