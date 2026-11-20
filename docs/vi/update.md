@@ -2,6 +2,26 @@
 Đây là các bước thực hiện khi Exment có phiên bản mới và cần cập nhật.  
 Về lịch sử cập nhật, vui lòng xem [tại đây](/release_note).
 
+## Trước tiên: các loại nâng cấp phiên bản và cách cập nhật
+Số phiên bản Exment là "major . minor . patch" (ví dụ v7.1.0). Cách cập nhật khác nhau tùy số nào tăng.
+
+| Loại | Ví dụ | Nội dung | Cách cập nhật |
+|---|---|---|---|
+| Patch | v7.0.2 → v7.0.3 | Chỉ sửa lỗi và lỗ hổng | Batch cập nhật và cập nhật tự động đều cập nhật được |
+| Minor | v7.0.x → v7.1.0 | Có chức năng mới; màn hình có thể thay đổi một chút | Batch cập nhật và cập nhật tự động đều cập nhật được. Hãy đọc [release note](/release_note) trước |
+| Major | v6.x → v7.0 | Yêu cầu Laravel / PHP và cấu trúc chương trình thay đổi lớn | **Batch cập nhật và cập nhật tự động không nâng lên được.** Hãy làm theo các bước cập nhật thủ công bên dưới |
+
+### Khác nhau giữa batch cập nhật, cập nhật tự động và cập nhật thủ công
+| Cách | Khi chạy | Làm gì | Nâng tới đâu |
+|---|---|---|---|
+| Batch cập nhật (khuyến nghị) | Khi chạy trên server | Backup (`exment:backup`) → `composer update` → `php artisan exment:update` | Bản mới nhất trong phạm vi ghi ở `composer.json` (ví dụ `"exceedone/exment": "^7.0"` → bản v7.x mới nhất, không lên v8) |
+| Cập nhật tự động | Hằng ngày (cron / Task Scheduler) | Tra bản mới nhất trên Packagist; nếu mới hơn bản đang cài thì chạy batch cập nhật | Giống batch cập nhật (chỉ trong phạm vi `composer.json`) |
+| Thủ công (lệnh) | Khi chạy lệnh | Tự chạy `composer update`... | Theo chỉ định |
+
+- **Cập nhật tự động không bao giờ nâng lên phiên bản major mới**, vì `composer update` chỉ nâng trong phạm vi `composer.json`. Ví dụ đang dùng v6 với `"exceedone/exment": "^6.2"` thì dù đã có v7 cũng chỉ lên bản v6.x mới nhất.
+- Khi đó cập nhật tự động thấy "có bản mới hơn (v7)" nên chạy batch cập nhật mỗi ngày (vẫn ở v6.x mới nhất). Hãy nâng phiên bản major, hoặc tạm dừng cập nhật tự động.
+- Có thể xem phiên bản đang dùng ở màn hình "Cài đặt hệ thống" hoặc `version` của `exceedone/exment` trong `composer.lock`.
+
 - Việc cập nhật từ v3.X.X trở xuống lên v4.0.X cần được thực hiện thủ công. Vui lòng xem nội dung [tại đây](/update/v4_0) trước khi tiến hành cập nhật.
 
 - Việc cập nhật từ v4.3.X trở xuống lên v4.4.X trở lên cần được thực hiện thủ công. Vui lòng xem nội dung [tại đây](/update/v4_4) trước khi tiến hành cập nhật. 
