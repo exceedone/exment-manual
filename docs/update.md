@@ -2,6 +2,26 @@
 This is the procedure when the version of Exment has been updated and an update is required.  
 Please check [here](/release_note)for the update history.  
 
+## First: kinds of version updates and how to update
+An Exment version number is "major . minor . patch" (e.g. v7.1.0). How you update depends on which number goes up.
+
+| Kind | Example | What changes | How to update |
+|---|---|---|---|
+| Patch | v7.0.2 → v7.0.3 | Bug and security fixes only | The update batch and the auto update update it |
+| Minor | v7.0.x → v7.1.0 | New features; the screens may change a little | The update batch and the auto update update it. Please read the [release note](/release_note) first |
+| Major | v6.x → v7.0 | Laravel / PHP requirements and the structure of the program change a lot | **The update batch and the auto update do not update it.** Follow the manual update steps below |
+
+### The update batch, the auto update and the manual update
+| Method | When it runs | What it does | How far it updates |
+|---|---|---|---|
+| Update batch (recommended) | When you run it on the server | Backup (`exment:backup`) → `composer update` → `php artisan exment:update` | The newest version allowed by `composer.json` (e.g. `"exceedone/exment": "^7.0"` → the newest v7.x, never v8) |
+| Auto update | Every day (cron / Task Scheduler) | Looks up the newest version on Packagist; if it is newer than the installed one, runs the update batch | Same as the update batch (only within `composer.json`) |
+| Manual (commands) | When you run the commands | You run `composer update` etc. yourself | As you specify |
+
+- **The auto update never updates to a new major version**, because `composer update` stays within the range in `composer.json`. For example, with v6 and `"exceedone/exment": "^6.2"`, it updates only to the newest v6.x even after v7 is out.
+- In that case the auto update sees "a newer version (v7) exists" and runs the update batch every day (staying on the newest v6.x). Please update the major version, or stop the auto update until you do.
+- You can check your version on the "System Setting" page, or as the `version` of `exceedone/exment` in `composer.lock`.
+
 - Updating from v3.X.X or lower to v4.0.X requires a manual update. Please check the contents of [here](/update/v4_0) once and then update.
 
 - <span class="red bold">Updating from v4.3.X or lower to v4.4.X or higher requires a manual update. Please check the contents of [here](/update/v4_4) once and then update.</span>
