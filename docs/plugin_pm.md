@@ -36,7 +36,7 @@ It manages projects and tickets (issues) on Exment's own tables. It is free.
 ### 1. Download
 Download the newest zip from [Releases](https://github.com/exceedone/exment-plugins/releases) on GitHub. Do not unzip it.
 
-- Latest version (v1.4.0): [ExmentPM-1.4.0.zip](https://github.com/exceedone/exment-plugins/releases/download/ExmentPM-v1.4.0/ExmentPM-1.4.0.zip)
+- Latest version (v1.4.1): [ExmentPM-1.4.1.zip](https://github.com/exceedone/exment-plugins/releases/download/ExmentPM-v1.4.1/ExmentPM-1.4.1.zip)
 
 ※Do not use the green "Code → Download ZIP" button: that is the whole repository, and Exment cannot read it.
 
@@ -57,9 +57,7 @@ Download the newest zip from [Releases](https://github.com/exceedone/exment-plug
 ![First-time setup](img/plugin_pm/pm_setup.png)
 
 - If a table with the same name already exists, it is shown in red. Enter 「テーブル名の接頭辞」 (a table name prefix, for example `pm2_`) to make the tables under other names. The names on the screen stay the same.
-- When it is done, the Project Management dashboard opens. Two 「プロジェクト管理」 entries are added to the left menu:
-    - The upper 「プロジェクト管理」 opens the Project Management screen. This is the one you normally use.
-    - The lower 「プロジェクト管理」 (a folder) opens the tables inside (projects, issues, milestones, categories) on Exment's usual screens.
+- When it is done, the Project Management dashboard opens. One 「プロジェクト管理」 entry is added to the left menu (from 1.4.1). You normally open it from there.
 - The setup also makes:
     - Role groups: プロジェクト管理者グループ (project administrators), プロジェクトメンバーグループ (project members), プロジェクト閲覧者グループ (project viewers)
     - A notification: 課題の登録・更新通知 (issue created / updated, bell)
@@ -264,7 +262,7 @@ The user is not in a Project Management role group. A system administrator shoul
 The user is not in the project's 「参加ユーザー」 (Members). The project manager or a system administrator should add the user in 「設定」 > 「参加ユーザー」 and save.
 
 ### There are two 「プロジェクト管理」 entries in the menu
-The upper one is the Project Management screen. The lower one (a folder) opens the tables inside on Exment's usual screens. You normally use the upper one.
+A new install of 1.4.0 or earlier also made a folder 「プロジェクト管理」 that opens the tables inside (projects, issues, milestones, categories). After updating to 1.4.1 and pressing 「データ構造の更新」, this folder and the menus made by the plugin are removed (menus added by an administrator stay). The tables' screens and data stay as they are.
 
 ### I cannot find 「⚙ 設定」
 「⚙ 設定」 (Project Management settings) is shown only to system administrators. The settings of each project are in the project's 「設定」 tab.
