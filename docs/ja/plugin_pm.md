@@ -5,6 +5,8 @@
 
 - ソースコード・説明：[exceedone/exment-plugins（project-management）](https://github.com/exceedone/exment-plugins/tree/main/project-management)
 - ライセンス：GPL-3.0（Exment と同じ）
+- 紹介ページ：[プロジェクト管理（exment.net）](https://exment.net/project-management/)
+- プラグインの一覧に出る名前：Exment Plugin PM（プロジェクト管理）。zip・内部の名前は `ExmentPM` です（1.2.0 までは `PmPortal`、1.3.0 は `ExmentPluginPM`）。
 
 ## できること
 
@@ -28,7 +30,7 @@
 ### 1. ダウンロード
 GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) から、最新の zip をダウンロードします。展開はしません。
 
-- 最新版（v1.2.0）：[PmPortal-1.2.0.zip](https://github.com/exceedone/exment-plugins/releases/download/PmPortal-v1.2.0/PmPortal-1.2.0.zip)
+- 最新版（v1.4.0）：[ExmentPM-1.4.0.zip](https://github.com/exceedone/exment-plugins/releases/download/ExmentPM-v1.4.0/ExmentPM-1.4.0.zip)
 
 ※緑色の「Code → Download ZIP」のボタンは使わないでください。リポジトリ全体の zip で、Exment では読み込めません。
 
@@ -45,6 +47,11 @@ GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) か�
 ## 更新
 - 新しい版の zip をダウンロードし、インストールと同じ手順でアップロードします。プラグインが置き換わり、データはそのまま残ります。
 - 「プロジェクト管理」を開き、画面に表示されたときは「⚙ 設定」→「データ構造の更新」を押してください。
+
+### 1.4.0 にするとき（PmPortal・ExmentPluginPM を入れている場合）
+1.4.0 で内部の名前が `ExmentPM` に、アドレスが `/admin/plugins/exment_pm` に変わりました。すでに PmPortal（1.2.0 まで）か ExmentPluginPM（1.3.0）を入れている Exment では、zip をそのままアップロードすると「UUIDは存在しますが、プラグイン名が正しくありません」と出て止まります。[README の「ExmentPM への移行」](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行)の手順を 1 回だけ行ってください。古いアドレス（`/admin/plugins/pm_portal/...`）へのリンクやブックマークは開けなくなります。
+
+※Exment SaaS では、利用者の作業はありません（エクシード・ワンが行います）。
 
 ※v1.2.0 から、データ移行の機能はこのプラグインに入りました。以前の版で、データ移行のプラグインを別に入れていた場合は、更新後に「管理者設定」→「プラグイン」で削除してかまいません。
 
