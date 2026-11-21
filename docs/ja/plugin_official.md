@@ -1,0 +1,26 @@
+# 公式プラグイン
+公式プラグインは、エクシード・ワンが作り、テストし、サポートしている、Exment の無料のプラグインです。どれもソースコードを公開しています（[exceedone/exment-plugins](https://github.com/exceedone/exment-plugins)、GPL-3.0）。
+
+| プラグイン | できること |
+| --- | --- |
+| [プロジェクト管理](/ja/plugin_pm) | プロジェクトと課題（チケット）・ボード・ガントチャート・Wiki・ファイル |
+| [IT サポート](/ja/plugin_it_support) | ヘルプデスク。メール・受付フォーム・電話の依頼をチケットで管理し、進み具合をお客様とログインなしで共有 |
+| [Groupware](/ja/plugin_groupware) | Web メールと、ファイルサーバーの Office ファイルをブラウザーで開く・編集する |
+
+## 入れ方
+### Exment v7.2.0 以降
+公式プラグインは、Exment と一緒に届いています。システム管理者が「管理者設定」→「機能の管理」の「[無料の公式プラグイン（Exment に同梱）](/ja/feature?id=無料の公式プラグイン（exment-に同梱）)」の欄で、「使う（インストールする）」を押すと入ります。押すまでは、インストールも読み込みもしません。
+
+- 新しい版があるときは、お知らせだけします。「この版にする」で新しくし、「前の版に戻す」で戻せます。
+- 安全のための直しを含む新しい版があるときは、システム管理者に知らせます。
+<!-- TODO: exment PR #1867 が入ったら確かめる -->
+
+### それより前の Exment
+GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) から zip をダウンロードし、「管理者設定」→「[プラグイン](/ja/plugin)」でアップロードします。展開はしません（緑色の「Code → Download ZIP」は使わないでください）。
+
+### Exment SaaS
+Exment SaaS（`*.exments.com`）では、プラグインマーケットから入れます。
+
+## 関連項目
+- [プラグイン](/ja/plugin)
+- [機能の管理](/ja/feature)
