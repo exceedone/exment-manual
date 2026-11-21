@@ -36,7 +36,7 @@ The file can be attached to the data detail screen by the above procedure.
 - Up to 10 older versions are kept per attachment. Beyond that, the oldest are deleted with their files. Change the number with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env` (0 keeps none).
 - Deleting an attachment deletes its older versions too.
 - Replacing sends the same notification as adding an attachment.
-<!-- Screenshot: the replace button and "Version n" (img/data/data_attached_file_version.png). After exment PR #1866 is merged -->
+![Replace an attachment and its older versions](img/data/data_attached_file_version.png)
 
 ## comment
 ![Data screen](img/data/data_comment.png)  

@@ -40,7 +40,7 @@
 - 前の版は、1 つの添付ファイルにつき 10 個まで残します。超えると、古い版からファイルごと消えます。数は `.env` の `EXMENT_DOCUMENT_VERSION_LIMIT` で変えられます（0 にすると残しません）。
 - 添付ファイルを削除すると、前の版も一緒に消えます。
 - 差し替えたときも、添付ファイルを足したときと同じ通知が届きます。
-<!-- 画面写真：差し替えのボタンと「版 n」（img/data/data_attached_file_version.png）。exment PR #1866 のマージ後に撮る -->
+![添付ファイルの差し替えと前の版](img/data/data_attached_file_version.png)
 
 ## コメント
 ![データ画面](img/data/data_comment.png)  
