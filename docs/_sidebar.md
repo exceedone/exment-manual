@@ -22,6 +22,7 @@
   * [Login 2factor](/login_2factor)
 
 * 【4. Table settings】
+  * [Studio](/studio)
   * [Custom table](/table.md)
   * [Custom columns](/column.md)
   * [Relation settings](/relation.md)
