@@ -57,6 +57,30 @@ Màn hình không giữ thêm một bản thiết lập thứ hai, mà hiển th
 
 <!-- Ảnh màn hình: dòng plugin và các dòng tính năng bên trong (img/feature/feature_plugin.png). Sau khi #1861 được merge -->
 
+## Plugin chính thức miễn phí (đi kèm Exment)
+<!-- TODO: kiểm tra khi exment PR #1867 được đưa vào -->
+Exment đi kèm các plugin chính thức miễn phí (Quản lý dự án, IT Support và Groupware). Cài từ mục "Free official plugins (bundled with Exment)" trên màn hình Feature Management.
+
+- Cho đến khi bấm "Use (install)" (dùng / cài đặt), không cài và không nạp gì (không tạo bảng).
+- Khi bấm, hệ thống kiểm tra rồi cài và bật plugin. Sau đó plugin cũng hiện ở mục "Plugins" phía trên, nơi chọn người được dùng và menu.
+- Khi có phiên bản mới, sẽ hiện "A newer version ... is there." (có phiên bản mới). Không tự cài: bấm "Use this version" (dùng phiên bản này) để cập nhật (thiết lập, menu và quyền được giữ).
+- Phiên bản trước khi cập nhật được giữ lại: "Back to the previous version (...)" (quay lại phiên bản trước) để trở lại.
+- Plugin đã cài tay từ trước vẫn giữ nguyên (không cài lại). Chỉ khi bản đi kèm mới hơn thì mới thông báo.
+- Plugin đi kèm chỉ được cài sau khi kiểm tra chữ ký của Exceed One. Plugin có chữ ký không khớp sẽ không hiện.
+- Ở trang mà nhà cung cấp đổi phiên bản (như SaaS), sẽ hiện "The versions are changed by the provider of this site." và không có nút (`EXMENT_BUNDLED_PLUGINS_UPDATES=false` trong `.env`).
+
+#### Thông báo bản sửa an toàn
+Khi plugin chính thức đã cài có phiên bản mới gồm bản sửa an toàn, quản trị viên hệ thống sẽ được báo.
+
+- Thông báo đỏ trên trang chủ của quản trị viên hệ thống, và dấu "Safety fix" trên dòng trong Feature Management.
+- Thông báo chuông, và email nếu trang gửi được email, một lần.
+- Người dùng khác không thấy gì. Chỉ cập nhật khi quản trị viên hệ thống bấm "Use this version".
+
+#### Thông báo tính năng mới
+Sau khi cập nhật Exment, nếu có tính năng mới chưa ai quyết định, quản trị viên hệ thống nhận thông báo trên trang chủ, chuông và email, một lần ("New features are available: ... (off for now).").
+
+<!-- Ảnh màn hình: mục plugin chính thức miễn phí (img/feature/feature_bundled.png). Sau khi #1867 được merge -->
+
 ## Khi chuyển sang "không dùng"
 - Tính năng không còn trên menu (dòng menu chỉ bị ẩn, không bị xóa).
 - Các trang và API của tính năng không dùng được, kể cả khi mở trực tiếp bằng URL.
