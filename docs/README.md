@@ -4,25 +4,21 @@
 </p>
 
 ## What is Exment
-Exment is open source software for managing information assets on the Web.  
-<a href="https://en.exment.net" target="_blank">Exment official site</a>
+### Move your work out of spreadsheets and scattered files.
+Exment is a **free, open source web database for building your own business apps without code**. Bring customers, deals, requests and tasks into one place, and run them as a team.
 
-## Installation method
-Please check [here](/quickstart) for the installation method.
+- **No code, real results fast**: tables, forms, lists, kanban boards, Gantt charts and summaries, all set up on the screen.
+- **From request to approval, as a team**: workflows, notifications, public forms and an API, built in.
+- **Free, however many users you add**: open source (GPL), so the price never grows with your headcount.
+- **On your server or in the cloud**: runs on your own server, a rental server, AWS, Azure and more, so your data stays yours.
 
-## Demo site
-Demo site is available to suit your business. Please check the
-<a href="https://demo.exment.net/admin" target="_blank">demo site.</a>  
-Then please enter  
-Usercode：admin  
-Password：adminadmin
+## Try it now
+- **Try the demo**: log in and explore project management, deals, workflows and public forms. The login is on the <a href="https://exment.net/en/demo-env/" target="_blank">demo page</a>.
+- **Start for free**: the install steps start [here](/quickstart).
+- **See what it can do**: <a href="https://exment.net/en/functions/" target="_blank">functions and screenshots</a> / <a href="https://exment.net/en/whats-new/" target="_blank">What's new</a> / [Release notes](/release_note)
+- **Talk to us**: <a href="https://exment.net/assets/exment-flyer-en.pdf" target="_blank">brochure (PDF)</a> / <a href="https://exment.net/en/inquiry/" target="_blank">contact us</a>
 
-
-## Features / Screenshots
-Please check<a href="https://exment.net/functions" target="_blank">the functions and screenshots.</a>
-
-## Update history / release notes
-Please check <a href="https://exment.net/docs/#/release_note"> Release Notes </a>.
+<a href="https://exment.net/en/" target="_blank">Exment official site</a>
 
 ## Manual menu
 Menus marked with " <span style="color:red;">*</span> " are particularly important.
