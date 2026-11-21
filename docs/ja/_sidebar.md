@@ -23,6 +23,7 @@
   * [ログイン(2段階認証)](/ja/login_2factor)
 
 * 【4. テーブル設定】
+  * [スタジオ](/ja/studio)
   * [カスタムテーブル](/ja/table)
   * [カスタム列](/ja/column)
   * [リレーション設定](/ja/relation)
