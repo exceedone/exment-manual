@@ -4,19 +4,21 @@
 </p>
 
 ## What is Exment
-Exment is a **free, open source web database for building business systems without programming**. Customers, deals, requests and other information kept in Excel or scattered files come together in one place, set up on the screen alone.
+### Move your work out of spreadsheets and scattered files.
+Exment is a **free, open source web database for building your own business apps without code**. Bring customers, deals, requests and tasks into one place, and run them as a team.
 
-- **Build it on the screen**: tables, forms and views (lists, kanban, Gantt charts, summaries), without programming.
-- **Run it as a team**: workflows (requests and approvals), notifications, public forms and an API.
-- **Keep your data, pay nothing per user**: it runs on your own server, a rental server or the cloud (AWS, Azure and others). The price does not grow with the number of users.
+- **No code, real results fast**: tables, forms, lists, kanban boards, Gantt charts and summaries, all set up on the screen.
+- **From request to approval, as a team**: workflows, notifications, public forms and an API, built in.
+- **Free, however many users you add**: open source (GPL), so the price never grows with your headcount.
+- **On your server or in the cloud**: runs on your own server, a rental server, AWS, Azure and more, so your data stays yours.
+
+## Try it now
+- **Try the demo**: log in and explore project management, deals, workflows and public forms. The login is on the <a href="https://exment.net/en/demo-env/" target="_blank">demo page</a>.
+- **Start for free**: the install steps start [here](/quickstart).
+- **See what it can do**: <a href="https://exment.net/en/functions/" target="_blank">functions and screenshots</a> / <a href="https://exment.net/en/whats-new/" target="_blank">What's new</a> / [Release notes](/release_note)
+- **Talk to us**: <a href="https://exment.net/assets/exment-flyer-en.pdf" target="_blank">brochure (PDF)</a> / <a href="https://exment.net/en/inquiry/" target="_blank">contact us</a>
 
 <a href="https://exment.net/en/" target="_blank">Exment official site</a>
-
-## Try it first
-- **Demo**: log in and try project management, deals, workflows, public forms and more. The login is on the <a href="https://exment.net/en/demo-env/" target="_blank">demo page</a>.
-- **Install**: see [here](/quickstart) for the installation method.
-- **Features and screenshots**: see <a href="https://exment.net/en/functions/" target="_blank">the functions and screenshots</a>.
-- **What's new**: see <a href="https://exment.net/en/whats-new/" target="_blank">What's new</a> (the new features of each version) and the [Release notes](/release_note).
 
 ## Manual menu
 Menus marked with " <span style="color:red;">*</span> " are particularly important.
