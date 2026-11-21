@@ -17,14 +17,16 @@ It manages projects and tickets (issues) on Exment's own tables. It is free.
 | Feature | Content |
 | --- | --- |
 | Projects | Each project has its issues, board, Gantt chart, wiki and files. Members are project managers, members or viewers (on Exment's role groups). |
-| Issues | A list with filters and quick filters, a parent / child tree, inline editing in the list, bulk update and attachments. The body is written in Markdown, and images can be pasted. |
+| Issues | A list with filters and quick filters, a parent / child tree, inline editing in the list, bulk update and attachments. The body is written in Markdown, and images can be pasted. After a save, the list and the detail are drawn again in place, without reloading the whole page (from 1.6.5). |
+| Roles on an issue | Besides the assignees: sub-assignees, managers, reviewers, and a difficulty (easy, normal, hard). The issue detail also shows who raised it. Sub-assignees, managers and reviewers get the update notices like the assignees (from 1.6.0). |
 | Milestones | Issues per milestone, and a burndown chart. |
 | Board and Gantt chart | Shows the issues on a board by status, or on a Gantt chart. |
 | Wiki and files | Share the documents of the project with a wiki and files. |
+| Word, Excel and PowerPoint | 「表示」 (View) on the files of issues, comments, wiki pages and the project opens them on the screen without downloading. Those who may edit can edit and save them there (from 1.7.0 / 1.7.1; needs [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) 0.4.0 or later and a browser with WebGPU). Without it, the files download as before. |
 | Comments | Comment on an issue. Name the users to notify (mentions) or ask for a review. |
 | Read / unread | See who has read an issue. Issues you have not seen are tinted in the list. |
 | Notifications | Bells on the screen, and mail on a new issue or comment, or with the "mail this issue" button (sent with Exment's mail settings). |
-| Settings | In ⚙ Settings: the portal settings and the update of the data structure. System administrators can use "Data migration": export projects with comments, history and attachments to a ZIP and import it into another Exment (check first, then write). |
+| Settings | In ⚙ Settings: the portal settings and the update of the data structure. System administrators can use "Data migration": export projects with comments, history and attachments to a ZIP and import it into another Exment (check first, then write). Imported issues also show their key, URL and author at the source, and its custom attributes (from 1.5.0). |
 
 ## Requirements
 - Exment 7.0 or later (PHP 8.2 or later)
@@ -191,7 +193,7 @@ Each project can ask for a Git repository (Gitea or Forgejo).
 
 ## Update
 - Download the zip of the newer version and upload it the same way as the install. The plugin is replaced; your data stays.
-- As a system administrator, open 「⚙ 設定」 in Project Management and look at 「データ構造の更新」 (Update data structure).
+- As a system administrator, open 「⚙ 設定」 in Project Management and look at 「データ構造の更新」 (Update data structure). When an update is needed, administrators see 「データ構造の更新があります」 at the top of the screen (from 1.6.4); it opens the settings.
     - 「すでに最新の構造です。」 (already up to date): nothing to do.
     - 「データ構造の更新が必要です。」 (an update is needed): back up the database, then press 「更新を実行する」 (Run the update). This update cannot be undone.
 
@@ -268,7 +270,7 @@ A new install of 1.4.0 or earlier also made a folder 「プロジェクト管理
 「⚙ 設定」 (Project Management settings) is shown only to system administrators. The settings of each project are in the project's 「設定」 tab.
 
 ### After an update, the screen looks wrong or new features do not appear
-Check 「⚙ 設定」 > 「データ構造の更新」. If it says 「データ構造の更新が必要です。」, back up the database and press 「更新を実行する」. Other screens such as the dashboard do not tell you about it.
+Check 「⚙ 設定」 > 「データ構造の更新」. If it says 「データ構造の更新が必要です。」, back up the database and press 「更新を実行する」. From 1.6.4, administrators also see 「データ構造の更新があります」 at the top of the screen when an update is needed.
 
 ### Mail does not arrive
 - Mail is never sent by itself. Tick 「メールでも知らせる」, or use 「メールで知らせる」.
