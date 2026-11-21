@@ -1,12 +1,17 @@
 # Studio
 The Studio makes, changes and shows the screens of the site. As with the apps of kintone, placing parts makes the container of the data (a table), its input screen and its list. The screens made can also be used in the phone app (Exment app).
 
-※All that is written here is in Exment v7.2.0. <!-- TODO: to be checked by aa -->
+※All that is written here is in Exment v7.2.0.
 
 ## Getting started
 - The Studio is off at first. When a system administrator turns "Studio" on in "Admin Setting" > "[Feature Management](/feature)", a "Studio" menu appears under "Admin Setting" (the URL is `/admin/studio`).
-- Of those chosen in Feature Management, those who may set tables (with the permission to set tables, forms or views) can use it.
-- Only users who may make tables (the system permission "Table") can make a new app (table). Adding a screen to a table that exists is for those who may set the forms of that table.
+- Of those chosen in Feature Management, the Studio opens for those with the permission to set a table, its forms or its views on any table, and for system administrators.
+
+| To | Permission needed |
+| --- | --- |
+| Make a new app (table) | The system permission "Table" |
+| Add a screen to a table, change in the Studio | The permission to set the forms of that table |
+| Make buttons, add new items (columns) when changing | The permission to set up that table |
 
 <!-- Screenshot: the list of screens of the Studio (img/studio/studio_index.png). Take it after aa checks the page -->
 
@@ -50,13 +55,13 @@ Before saving, the page says what will be made (as "Saving makes the app "..." (
 | File, Image | Attach files or images. |
 
 - Click a part to add it at the end, or drag it to where you want it. Up to 100 items can be placed.
-- For each item, set the item name, the column name (letters and digits) and whether it is required.
+- For each item, set the item name, the column name (letters and numbers) and whether it is required.
 
 ### Rows and columns
-Choose for each row "1 column", "2 columns", "2 columns (left wider)", "2 columns (right wider)", "3 columns" or "4 columns" to place items side by side. On a phone they stand one under another.
+Choose for each row "1 column", "2 columns", "2 columns (wide left)", "2 columns (wide right)", "3 columns" or "4 columns" to place items side by side. On a phone they stand one under another. Up to 50 rows can be made.
 
 ### Shown when
-Each item can be shown or hidden by the value of another item ("equals", "differs", "is empty", "is not empty"). For example, show "Reason" only when the status is "On hold". A required item cannot have a condition.
+Each item can be shown or hidden by the value of another item ("is", "is not", "is empty", "is not empty"; "Always shown" for none). For example, show "Reason" only when the status is "On hold". A required item cannot have a condition.
 
 ### Details (child tables)
 Make details entered in many rows for one record, as the products in an order. Each detail makes a child table, shown as a table under the input screen. Up to 5 details can be made. Calculations and selects from other tables can be used in details too.
@@ -71,14 +76,14 @@ In a calculation part, write other number items (Integer, Decimal, Currency, Cal
 ### Buttons
 Make buttons shown on the page of a record. A button sets the value of an item (for example, "Done" sets the status to "done").
 
-- The item can be a choice, YES/NO, one-line text or integer.
+- Up to 5 buttons per screen. The item can be a choice, YES/NO, one-line text or integer.
 - The button is not shown on a record that has the value already.
 - A button is made as a [data operation](/operation) of the table, where it can be changed or deleted later.
 - Only those with the permission to set up the table can make buttons.
 
 ### More settings
-- **Table name (letters and digits)**: used in the URL of the data and so on. Given automatically when empty. It cannot be changed later.
-- **Add to the menu under**: where in the side menu it is added (or not added).
+- **Table name (letters and numbers)**: used in the URL of the data and so on. Given automatically when empty. It cannot be changed later.
+- **Add to the menu under**: where in the side menu it is added ("Do not add" for none).
 
 ## Make an app in one go
 In "Make a new app", the screens to look at the data can be made together, in "Made with the app".
@@ -96,14 +101,14 @@ In "Make a new app", the screens to look at the data can be made together, in "M
 <!-- Screenshot: "Made with the app" (img/studio/studio_bundle.png) -->
 
 ## Change in the Studio
-An input screen made in the Studio is changed on the same page it was made on. Click the name of the input screen on the list.
+An input screen made in the Studio is changed on the same page it was made on. Click the name of the input screen on the list. Those with the permission to set the forms of the table can change it.
 
 - Move or take off items, add or remove conditions, rename the screen and add buttons.
 - An item taken off the screen stays in the table with its data.
 - A part added from "New items (the table gets their columns)" makes its column in the table on saving, and the column is shown in the list. Only those with the permission to set up the table can do this. A calculation part cannot be added here (add it in the column settings).
 - Items the Studio does not make yet (headings, explanations, HTML, images, lines, system items) are kept. They can be moved or taken off; their content is changed in the form settings.
 - Details (child table input) stay as they are. To change them, open the form settings.
-- Before saving, the page says what will change (as "The table "..." also gets the column "...".").
+- Before saving, the page says what will change (as 'Saving changes this input screen. The table "…" gets the columns "…".').
 
 <!-- Screenshot: changing a screen in the Studio (img/studio/studio_edit.png) -->
 
@@ -112,8 +117,8 @@ Open `/admin/app` in the browser of a phone to use the screens of the Studio as 
 
 - **Screens**: the input screens of the tables you may use are listed. Opening one shows its list; "+" at the bottom right adds a record.
 - **Photos and files**: in a file or image item, take a photo on the spot. Photos are made smaller on the phone before they are sent.
-- **Read a code**: the button at the top reads QR codes and bar codes with the camera. A 2D barcode of Exment ([2D barcode setting](/2d_barcode)) or a QR code of the URL of a record opens that record. Read from the list of a table, the text, integer and auto number columns of that table are searched. JAN codes are searched too.
-- **Without a connection**: <!-- TODO: write when exment PR #1854 is in -->when saving fails offline, the input is kept on the phone as a draft and sent automatically when the connection comes back.
+- **Scan a code**: the button at the top reads QR codes and bar codes with the camera. A 2D barcode of Exment ([2D barcode setting](/2d_barcode)) or a QR code of the URL of a record opens that record. Read from the list of a table, the text, integer and auto number columns of that table are searched. JAN codes are searched too.
+- **Without a connection**: When saving fails offline, the input (with details and photos) is kept on the phone as a draft and sent automatically when the app is opened or the connection comes back. A screen opened once opens without a connection, so new data can be entered too. In "Drafts not sent", open and edit, send now or delete a draft. A draft the server did not accept stays, with the reason. Drafts belong to each user.
 - "PC" goes back to the usual pages.
 
 <!-- Screenshot: the list and the input screen of the phone app (img/studio/studio_app.png) -->

@@ -1,12 +1,17 @@
 # Studio
 Studio là chức năng để tạo, sửa và xem tổng quan các màn hình. Giống như ứng dụng của kintone, chỉ cần đặt các thành phần là tạo được nơi chứa dữ liệu (bảng), màn hình nhập và danh sách. Màn hình đã tạo cũng dùng được trên ứng dụng điện thoại (Exment app).
 
-※Các chức năng ở đây có đầy đủ từ Exment v7.2.0. <!-- TODO: nhờ aa kiểm tra -->
+※Các chức năng ở đây có đầy đủ từ Exment v7.2.0.
 
 ## Bắt đầu sử dụng
 - Studio ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "Studio" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), menu "Studio" sẽ hiện dưới "Admin Setting" (URL là `/admin/studio`).
-- Trong số người được chọn ở Feature Management, người có quyền thiết lập bảng (quyền thiết lập bảng, form hoặc view) mới dùng được.
-- Chỉ người có quyền tạo bảng (quyền hệ thống "Table") mới tạo được ứng dụng (bảng) mới. Thêm màn hình vào bảng đã có thì người thiết lập được form của bảng đó làm được.
+- Trong số người được chọn ở Feature Management, Studio mở được cho người có quyền thiết lập bảng, form hoặc view của một bảng bất kỳ, và cho quản trị viên hệ thống.
+
+| Việc | Quyền cần có |
+| --- | --- |
+| Tạo ứng dụng (bảng) mới | Quyền hệ thống "Table" |
+| Thêm màn hình vào bảng, sửa bằng Studio | Quyền thiết lập form của bảng đó |
+| Tạo nút, thêm mục (cột) mới khi sửa | Quyền thiết lập bảng đó |
 
 <!-- Ảnh màn hình: danh sách màn hình của Studio (img/studio/studio_index.png) -->
 
@@ -53,10 +58,10 @@ Trước khi lưu, màn hình cho biết sẽ tạo gì. Sau khi lưu, có thể
 - Với mỗi mục, đặt tên mục, tên cột (chữ và số) và có bắt buộc hay không.
 
 ### Hàng và cột
-Chọn cho mỗi hàng 1 cột, 2 cột, 2 cột (trái rộng hơn), 2 cột (phải rộng hơn), 3 cột hoặc 4 cột để đặt các mục cạnh nhau. Trên điện thoại, các mục xếp dọc.
+Chọn cho mỗi hàng 1 cột, 2 cột, 2 cột (trái rộng hơn), 2 cột (phải rộng hơn), 3 cột hoặc 4 cột để đặt các mục cạnh nhau. Trên điện thoại, các mục xếp dọc. Tối đa 50 hàng.
 
 ### Điều kiện hiển thị
-Mỗi mục có thể hiện hoặc ẩn theo giá trị của mục khác (bằng, khác, trống, không trống). Ví dụ, chỉ hiện "Lý do" khi trạng thái là "Tạm dừng". Mục bắt buộc không đặt được điều kiện.
+Mỗi mục có thể hiện hoặc ẩn theo giá trị của mục khác ("is" bằng, "is not" khác, "is empty" trống, "is not empty" không trống; "Always shown" là luôn hiện). Ví dụ, chỉ hiện "Lý do" khi trạng thái là "Tạm dừng". Mục bắt buộc không đặt được điều kiện.
 
 ### Chi tiết (bảng con)
 Tạo phần chi tiết nhập nhiều dòng cho một dữ liệu, như các sản phẩm trong một đơn hàng. Mỗi phần chi tiết tạo một bảng con, hiển thị dạng bảng dưới màn hình nhập. Tối đa 5 phần chi tiết. Trong chi tiết cũng dùng được tính toán và chọn từ bảng khác.
@@ -71,7 +76,7 @@ Trong thành phần tính toán, viết các mục số khác (Integer, Decimal,
 ### Nút
 Tạo nút hiện trên trang của dữ liệu. Nút đổi giá trị của một mục (ví dụ "Hoàn thành" đổi trạng thái thành "hoàn thành").
 
-- Mục có thể là lựa chọn, YES/NO, chữ một dòng hoặc số nguyên.
+- Tối đa 5 nút cho một màn hình. Mục có thể là lựa chọn, YES/NO, chữ một dòng hoặc số nguyên.
 - Dữ liệu đã có giá trị đó thì không hiện nút.
 - Nút được tạo thành một thiết lập cập nhật dữ liệu (data operation) của bảng, có thể sửa hoặc xóa sau ở đó.
 - Chỉ người có quyền thiết lập bảng mới tạo được nút.
@@ -112,8 +117,8 @@ Mở `/admin/app` bằng trình duyệt trên điện thoại để dùng màn h
 
 - **Màn hình**: hiện các màn hình nhập của những bảng bạn dùng được. Mở ra là danh sách; nút "+" ở góc dưới bên phải để thêm dữ liệu.
 - **Ảnh, tệp**: ở mục tệp hoặc ảnh, chụp ảnh ngay tại chỗ. Ảnh được thu nhỏ trên điện thoại trước khi gửi.
-- **Quét mã**: nút ở phía trên quét mã QR và mã vạch bằng camera. Mã vạch 2D của Exment ([2D barcode setting (English)](/2d_barcode)) hoặc mã QR của URL dữ liệu sẽ mở dữ liệu đó. Quét từ danh sách của một bảng thì tìm theo các cột chữ, số nguyên và đánh số tự động của bảng đó. Cũng tìm được mã JAN.
-- **Khi không có sóng**: <!-- TODO: viết khi exment PR #1854 được đưa vào -->khi lưu mà không có mạng, dữ liệu được giữ trên điện thoại làm bản nháp và tự gửi khi có mạng lại.
+- **"Scan a code" (quét mã)**: nút ở phía trên quét mã QR và mã vạch bằng camera. Mã vạch 2D của Exment ([2D barcode setting (English)](/2d_barcode)) hoặc mã QR của URL dữ liệu sẽ mở dữ liệu đó. Quét từ danh sách của một bảng thì tìm theo các cột chữ, số nguyên và đánh số tự động của bảng đó. Cũng tìm được mã JAN.
+- **Khi không có sóng**: Khi lưu mà không có mạng, dữ liệu nhập (cả chi tiết và ảnh) được giữ trên điện thoại làm bản nháp và tự gửi khi mở ứng dụng hoặc khi có mạng lại. Màn hình đã mở một lần thì mở được cả khi không có mạng, nên nhập mới được. Trong "Drafts not sent" (bản nháp chưa gửi), có thể mở để sửa, gửi ngay hoặc xóa. Bản nháp máy chủ không nhận sẽ được giữ lại kèm lý do. Bản nháp theo từng người dùng.
 - "PC" để trở về màn hình thường.
 
 <!-- Ảnh màn hình: danh sách và màn hình nhập trên ứng dụng (img/studio/studio_app.png) -->
