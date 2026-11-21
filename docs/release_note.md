@@ -10,7 +10,6 @@
     - To use it, turn it on in "Admin Setting" > "Feature Management". You can also choose who may use it (role groups). Details [here](/feature)
     - On a new installation, it is off at first.
 - The active flag of the plugins and the permissions of the role groups do not change.
-- <span class="red bold">A chart of a list view reads at most 1,000 rows.</span> With more rows, it says "use a chart of a summary view". Change the limit with `EXMENT_CHART_LIST_MAX_ROWS` in `.env` (`0` = no limit).
 - Requirements: the same as v7.1.2 (PHP 8.2 or higher, Laravel `^12.68.0`, "exceedone/exment-admin-core" `^1.0.5`)
 - How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)
 1. New features
@@ -29,6 +28,7 @@
     - Studio: buttons that set an item of the data (for example, "Done" sets the status to "done"). A button is made as a data operation of the table ([#1858](https://github.com/exceedone/exment/pull/1858)). Details [here](/operation)
     - Attachments of a record can be replaced. The previous file is kept as an older version and can be downloaded (up to 10 per attachment; change it with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env`) ([#1866](https://github.com/exceedone/exment/pull/1866)). Details [here](/data_details?id=replace-and-older-versions-v720-or-later)
     - Dashboard aggregation cache: with a number of seconds in `EXMENT_DASHBOARD_CACHE_SECONDS` in `.env`, the results of the charts of summary views are kept per viewer (default `0` = off). Saving or deleting a record aggregates again ([#1852](https://github.com/exceedone/exment/pull/1852))
+    - The number of rows a chart of a list view reads can be limited with `EXMENT_CHART_LIST_MAX_ROWS` in `.env` (default `0`: no limit, as before). Over the limit, it says "use a chart of a summary view" ([#1852](https://github.com/exceedone/exment/pull/1852), [#1877](https://github.com/exceedone/exment/pull/1877)). Details [here](/tuning?id=charts-of-list-views-exment_chart_list_max_rows)
 1. Improvements
     - Faster pages ([#1852](https://github.com/exceedone/exment/pull/1852))
         - Table classes are built only when they are used (on a site with 62 tables: 62 per request → 2–5, in our test environment).

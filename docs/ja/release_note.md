@@ -10,7 +10,6 @@
     - 使うときは、「管理者設定」→「機能の管理」で「使う」にしてください。だれが使えるか（役割グループ）も選べます。詳細は[こちら](/ja/feature)
     - 新しくインストールしたサイトでは、はじめは「使わない」です。
 - プラグインの有効・無効と、役割グループの権限は変わりません。
-- <span class="red bold">一覧ビューのグラフは、1,000 行までを読みます。</span>それより多いときは、「集計ビューのチャートにしてください」と出ます。上限は `.env` の `EXMENT_CHART_LIST_MAX_ROWS` で変えられます（`0` で上限なし）。
 - 動作要件：v7.1.2 と同じです（PHP 8.2以上、Laravel `^12.68.0`、「exceedone/exment-admin-core」`^1.0.5`）
 - 更新方法：`composer update` のあとに `php artisan exment:update` を実行し、ブラウザで Ctrl+F5（スーパーリロード）を押してください。詳細は[こちら](/ja/update)
 1. 機能追加
@@ -29,6 +28,7 @@
     - スタジオ：ボタンで項目の値を変えられます（例：「完了にする」を押すと、状態が「完了」に）。ボタンは、テーブルの「データ更新設定」として作られます（[#1858](https://github.com/exceedone/exment/pull/1858)）　詳細は[こちら](/ja/operation)
     - データの添付ファイルを差し替えられます。前のファイルは「前の版」として残り、ダウンロードできます（1 つの添付ファイルに 10 個まで、`.env` の `EXMENT_DOCUMENT_VERSION_LIMIT` で変更）（[#1866](https://github.com/exceedone/exment/pull/1866)）　詳細は[こちら](/ja/data_details?id=差し替えと前の版（v720以降）)
     - ダッシュボードの集計のキャッシュ：`.env` の `EXMENT_DASHBOARD_CACHE_SECONDS` に秒数を書くと、集計ビューのグラフの結果を、見る人ごとに残します（初期値 `0` = 使わない）。データを保存・削除すると集計しなおします（[#1852](https://github.com/exceedone/exment/pull/1852)）
+    - 一覧ビューのグラフが読む行の上限を、`.env` の `EXMENT_CHART_LIST_MAX_ROWS` で決められるようになりました（初期値 `0`：上限なし。今までと同じ）。上限を超えたときは「集計ビューのチャートにしてください」と出ます（[#1852](https://github.com/exceedone/exment/pull/1852)・[#1877](https://github.com/exceedone/exment/pull/1877)）　詳細は[こちら](/ja/tuning?id=一覧ビューのグラフ（exment_chart_list_max_rows）)
 1. 機能改善
     - 画面の表示を速くしました（[#1852](https://github.com/exceedone/exment/pull/1852)）
         - テーブルのクラスを、使うときにだけ作るようにしました（62 テーブルのサイトで、1 回の表示で作る数が 62 → 2〜5。当社の検証環境）。
