@@ -27,6 +27,7 @@
         - 画面から外した項目も、テーブルの列とデータは残ります。
         - スタジオの一覧で、画面の名前を押すとビルダーで開きます。今までのフォーム設定の画面は、歯車のアイコンから開けます。
     - スタジオ：ボタンで項目の値を変えられます（例：「完了にする」を押すと、状態が「完了」に）。ボタンは、テーブルの「データ更新設定」として作られます（[#1858](https://github.com/exceedone/exment/pull/1858)）　詳細は[こちら](/ja/operation)
+    - データの添付ファイルを差し替えられます。前のファイルは「前の版」として残り、ダウンロードできます（1 つの添付ファイルに 10 個まで、`.env` の `EXMENT_DOCUMENT_VERSION_LIMIT` で変更）（[#1866](https://github.com/exceedone/exment/pull/1866)）　詳細は[こちら](/ja/data_details?id=差し替えと前の版（v720以降）)
     - ダッシュボードの集計のキャッシュ：`.env` の `EXMENT_DASHBOARD_CACHE_SECONDS` に秒数を書くと、集計ビューのグラフの結果を、見る人ごとに残します（初期値 `0` = 使わない）。データを保存・削除すると集計しなおします（[#1852](https://github.com/exceedone/exment/pull/1852)）
 1. 機能改善
     - 画面の表示を速くしました（[#1852](https://github.com/exceedone/exment/pull/1852)）

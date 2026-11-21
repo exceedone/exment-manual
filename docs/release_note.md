@@ -27,6 +27,7 @@
         - An item taken off the screen stays in the table with its data.
         - In the list of the Studio, click the name of a screen to open it in the builder. The form settings page is still there (cog icon).
     - Studio: buttons that set an item of the data (for example, "Done" sets the status to "done"). A button is made as a data operation of the table ([#1858](https://github.com/exceedone/exment/pull/1858)). Details [here](/operation)
+    - Attachments of a record can be replaced. The previous file is kept as an older version and can be downloaded (up to 10 per attachment; change it with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env`) ([#1866](https://github.com/exceedone/exment/pull/1866)). Details [here](/data_details?id=replace-and-older-versions-v720-or-later)
     - Dashboard aggregation cache: with a number of seconds in `EXMENT_DASHBOARD_CACHE_SECONDS` in `.env`, the results of the charts of summary views are kept per viewer (default `0` = off). Saving or deleting a record aggregates again ([#1852](https://github.com/exceedone/exment/pull/1852))
 1. Improvements
     - Faster pages ([#1852](https://github.com/exceedone/exment/pull/1852))
