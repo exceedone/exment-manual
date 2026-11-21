@@ -4,25 +4,19 @@
 </p>
 
 ## What is Exment
-Exment is open source software for managing information assets on the Web.  
-<a href="https://en.exment.net" target="_blank">Exment official site</a>
+Exment is a **free, open source web database for building business systems without programming**. Customers, deals, requests and other information kept in Excel or scattered files come together in one place, set up on the screen alone.
 
-## Installation method
-Please check [here](/quickstart) for the installation method.
+- **Build it on the screen**: tables, forms and views (lists, kanban, Gantt charts, summaries), without programming.
+- **Run it as a team**: workflows (requests and approvals), notifications, public forms and an API.
+- **Keep your data, pay nothing per user**: it runs on your own server, a rental server or the cloud (AWS, Azure and others). The price does not grow with the number of users.
 
-## Demo site
-Demo site is available to suit your business. Please check the
-<a href="https://demo.exment.net/admin" target="_blank">demo site.</a>  
-Then please enter  
-Usercode：admin  
-Password：adminadmin
+<a href="https://exment.net/en/" target="_blank">Exment official site</a>
 
-
-## Features / Screenshots
-Please check<a href="https://exment.net/functions" target="_blank">the functions and screenshots.</a>
-
-## Update history / release notes
-Please check <a href="https://exment.net/docs/#/release_note"> Release Notes </a>.
+## Try it first
+- **Demo**: log in and try project management, deals, workflows, public forms and more. The login is on the <a href="https://exment.net/en/demo-env/" target="_blank">demo page</a>.
+- **Install**: see [here](/quickstart) for the installation method.
+- **Features and screenshots**: see <a href="https://exment.net/en/functions/" target="_blank">the functions and screenshots</a>.
+- **What's new**: see <a href="https://exment.net/en/whats-new/" target="_blank">What's new</a> (the new features of each version) and the [Release notes](/release_note).
 
 ## Manual menu
 Menus marked with " <span style="color:red;">*</span> " are particularly important.

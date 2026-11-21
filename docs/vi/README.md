@@ -6,25 +6,23 @@
 > **Lưu ý:** Bản tiếng Việt của tài liệu này đang được dịch từng bước. Các trang có ghi chú "(English)" trên thanh menu bên trái hiện vẫn là bản tiếng Anh.
 
 ## Exment là gì
-Exment là phần mềm mã nguồn mở dùng để quản lý tài sản thông tin trên nền tảng Web.
-<a href="https://en.exment.net" target="_blank">Trang chính thức của Exment (tiếng Anh)</a>
+Exment là **cơ sở dữ liệu Web mã nguồn mở, miễn phí, giúp xây dựng hệ thống nghiệp vụ mà không cần lập trình**. Thông tin khách hàng, thương vụ, đơn yêu cầu… đang nằm rải rác trong Excel hay nhiều tệp khác nhau được gom về một nơi, chỉ bằng cách thiết lập trên màn hình.
+
+- **Tạo ngay trên màn hình**: bảng, biểu mẫu và view (danh sách, kanban, biểu đồ Gantt, tổng hợp), không cần lập trình.
+- **Vận hành cùng cả nhóm**: workflow (đề xuất, phê duyệt), thông báo, biểu mẫu công khai và API.
+- **Tự giữ dữ liệu, không tính phí theo người dùng**: chạy trên máy chủ của công ty, máy chủ thuê hoặc đám mây (AWS, Azure…). Chi phí không tăng theo số người dùng.
+
+<a href="https://exment.net/vi/" target="_blank">Trang chính thức của Exment</a>
+
+## Dùng thử trước
+- **Demo**: đăng nhập và dùng thử quản lý dự án, thương vụ, workflow, biểu mẫu công khai… Thông tin đăng nhập có ở <a href="https://exment.net/vi/demo-env/" target="_blank">trang demo</a>.
+- **Cài đặt**: khi thiết lập máy chủ và cài đặt Exment, trước tiên vui lòng xem [Quy trình cài đặt](/vi/quickstart).
+- **Chức năng và ảnh chụp màn hình**: vui lòng xem <a href="https://exment.net/vi/functions/" target="_blank">trang giới thiệu chức năng</a>.
+- **Tính năng mới**: vui lòng xem <a href="https://exment.net/vi/whats-new/" target="_blank">What's new</a> (tính năng mới của từng phiên bản) và [Release notes (tiếng Anh)](/release_note).
 
 ## Về tài liệu này
 Tài liệu này luôn được biên soạn theo phiên bản mới nhất của Exment.
 Một số chức năng hoặc câu lệnh được bổ sung trong các lần nâng cấp phiên bản có thể không ghi rõ phiên bản bắt đầu hỗ trợ. Mong quý vị thông cảm.
-
-## Cách cài đặt
-Khi thiết lập máy chủ và cài đặt Exment, trước tiên vui lòng xem [Quy trình cài đặt](/vi/quickstart).
-
-## Danh sách trang demo
-Chúng tôi cung cấp nhiều trang demo phù hợp với từng loại nghiệp vụ.
-Vui lòng xem <a href="https://exment.net/demo-env" target="_blank">danh sách trang demo (tiếng Nhật)</a>.
-
-## Chức năng và ảnh chụp màn hình
-Vui lòng xem <a href="https://exment.net/functions" target="_blank">trang giới thiệu chức năng và ảnh chụp màn hình (tiếng Nhật)</a>.
-
-## Lịch sử cập nhật và ghi chú phát hành
-Vui lòng xem <a href="https://exment.net/docs/#/release_note">Release notes (tiếng Anh)</a>.
 
 ## Mục lục tài liệu
 Các mục được đánh dấu "<span style="color:red;">*</span>" là những nội dung đặc biệt quan trọng.
