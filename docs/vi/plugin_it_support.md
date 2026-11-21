@@ -33,6 +33,7 @@
 1. Cài plugin: từ Feature Management với Exment v7.2.0 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
 2. Với Exment v7.2.0 trở đi, bật "ITサポート：受付箱" (IT Support: hộp tiếp nhận) ở "Admin Setting" → "[Feature Management](/vi/feature)" (khi tắt thì không mở được màn hình thiết lập). Có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "ITサポート：お客様の窓口" (IT Support: cổng khách hàng) (chỉ chạy khi hộp tiếp nhận đang bật).
    - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng IT Support từ trước khi có Feature Management thì cả hai vẫn bật.
+   - Khi tắt "Hộp tiếp nhận", các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường từ menu "ITサポート". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
 3. Mở "ITサポート" trên menu (hoặc `/admin/plugins/exment_it_support`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
 4. Ở "設定" (cài đặt), nhập hộp thư tiếp nhận (IMAP) và địa chỉ của bộ phận hỗ trợ, lưu lại, rồi bấm "IMAP につながるか試す" (thử kết nối IMAP). Nếu nhận email, nhập thêm "差出人の確認" (kiểm tra người gửi) và "受信サーバーの名前" (tên máy chủ nhận: tên đầu tiên trong Authentication-Results). Trước khi nhập, ticket từ email sẽ bị đánh dấu "nghi giả mạo".
 5. Đưa nhân viên vào nhóm vai trò "ITサポート 担当者". Khách đăng nhập vào "ITサポート お客様", liên kết qua "Exment のユーザー" của "お客様の担当者".

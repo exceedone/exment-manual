@@ -33,6 +33,7 @@
 1. Install the plugin: from Feature Management on Exment v7.2.0 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
 2. On Exment v7.2.0 or later, turn on "ITサポート：受付箱" (IT Support: desk) in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "ITサポート：お客様の窓口" (IT Support: customer door) too (it works only while the desk is on).
    - On a new site both are off at first. Sites that used IT Support before Feature Management keep both on.
+   - Turning the desk off stops the desk, the portal and the batch, but the tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables. To hide them, remove the table permissions in the role groups.
 3. Open "ITサポート" in the menu (or `/admin/plugins/exment_it_support`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
 4. In "設定" (settings), enter the mailbox for requests (IMAP) and the address of the desk, save, and press "IMAP につながるか試す" (test IMAP). To receive mail, also enter "差出人の確認" (sender check) and "受信サーバーの名前" (the name of the receiving server: the first name in Authentication-Results of received mail). Until then, tickets from mail are marked "possibly spoofed".
 5. Put agents in the role group "ITサポート 担当者". Customers who log in go in "ITサポート お客様", linked by "Exment のユーザー" of "お客様の担当者".
