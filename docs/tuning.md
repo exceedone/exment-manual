@@ -46,6 +46,7 @@ php artisan config:cache
 
 - After changing `.env` by hand, make it again (the change does not take effect until then).
 - When Exment writes `.env` (install, restore), it removes the cache itself.
+- `bootstrap/cache/config.php` holds the secrets of `.env` (the database password, `APP_KEY`). When the sites of one server run as different OS users (multi-tenant), make it 640 after making it (or run with umask 027), so that the other sites cannot read it.
 - The route cache (`route:cache`) is not used: the routes of plugins are made from the database, so the pages of plugins would not open.
 
 ### Optimized class loading (composer)
