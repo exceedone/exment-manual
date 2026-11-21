@@ -102,10 +102,10 @@ In a table with more than 10,000 rows, a "search index" on the columns often use
 
 ## Other settings for speed
 ### Charts of list views (EXMENT_CHART_LIST_MAX_ROWS)
-A chart of a list view draws one point per row, so it reads at most 1,000 rows. With more rows, it says to use a chart of a summary view. Make charts of large tables with summary views. Change the limit in `.env` (`0` = no limit).
+A chart of a list view draws one point per row. By default (`0`) it reads all the rows. When a large table needs too much memory or time, set a limit in `.env` (for example 1000). Over the limit, it says to use a chart of a summary view. Make charts of large tables with summary views.
 
 ~~~
-# .env
+# .env (to set a limit)
 EXMENT_CHART_LIST_MAX_ROWS=1000
 ~~~
 
