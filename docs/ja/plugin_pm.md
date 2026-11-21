@@ -30,13 +30,13 @@
 - 画面は日本語だけです。
 
 ## インストール
-※Exment v7.2.0 以降は、プロジェクト管理は Exment と一緒に届いています。ダウンロードとアップロードは要らず、「管理者設定」→「機能の管理」の「無料の公式プラグイン」で「使う（インストールする）」を押します。そのあと「3. 初期セットアップ」に進んでください。詳細は[公式プラグイン](/ja/plugin_official)をご覧ください。<!-- TODO: exment PR #1867 が入ったら確かめる -->
+※Exment v7.2.0 以降は、プロジェクト管理は Exment と一緒に届いています。ダウンロードとアップロードは要らず、「管理者設定」→「機能の管理」の「無料の公式プラグイン」で「使う（インストールする）」を押します。そのあと「[3. 初期セットアップ](/ja/plugin_pm?id=_3-初期セットアップ)」に進んでください。機能の管理から入れた時点では、左のメニューに「プロジェクト管理」はまだありません（初期セットアップのあとに出ます）。詳細は[公式プラグイン](/ja/plugin_official)をご覧ください。<!-- TODO: exment PR #1867 が入ったら確かめる -->
 
 
 ### 1. ダウンロード
 GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) から、最新の zip をダウンロードします。展開はしません。
 
-- 最新版（v1.4.1）：[ExmentPM-1.4.1.zip](https://github.com/exceedone/exment-plugins/releases/download/ExmentPM-v1.4.1/ExmentPM-1.4.1.zip)
+- 最新版は、[Releases](https://github.com/exceedone/exment-plugins/releases) の「ExmentPM-v（版）」の中の `ExmentPM-（版）.zip` です。
 
 ※緑色の「Code → Download ZIP」のボタンは使わないでください。リポジトリ全体の zip で、Exment では読み込めません。
 

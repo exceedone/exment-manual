@@ -31,10 +31,12 @@
 
 ## Install
 1. Install the plugin: from Feature Management on Exment v7.2.0 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
-2. Open "ITサポート" in the menu (or `/admin/plugins/exment_it_support`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
-3. In "設定" (settings), enter the mailbox for requests (IMAP) and the address of the desk, save, and press "IMAP につながるか試す" (test IMAP).
-4. Put agents in the role group "ITサポート 担当者". Customers who log in go in "ITサポート お客様", linked by "Exment のユーザー" of "お客様の担当者".
-5. Tell customers the URL of the desk (`https://your-exment/support`).
+2. On Exment v7.2.0 or later, turn on "ITサポート：受付箱" (IT Support: desk) in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "ITサポート：お客様の窓口" (IT Support: customer door) too (it works only while the desk is on).
+   - On a new site both are off at first. Sites that used IT Support before Feature Management keep both on.
+3. Open "ITサポート" in the menu (or `/admin/plugins/exment_it_support`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
+4. In "設定" (settings), enter the mailbox for requests (IMAP) and the address of the desk, save, and press "IMAP につながるか試す" (test IMAP). To receive mail, also enter "差出人の確認" (sender check) and "受信サーバーの名前" (the name of the receiving server: the first name in Authentication-Results of received mail). Until then, tickets from mail are marked "possibly spoofed".
+5. Put agents in the role group "ITサポート 担当者". Customers who log in go in "ITサポート お客様", linked by "Exment のユーザー" of "お客様の担当者".
+6. Tell customers the URL of the desk (`https://your-exment/support`).
 
 ## Tickets from monitoring and error logs
 Monitoring can make tickets through the API. The key is on the settings page.
@@ -48,20 +50,27 @@ curl -X POST https://your-exment/support/intake/alert \
 
 | Field | Meaning |
 | --- | --- |
-| `title` (required) | Subject |
-| `source` | Where it happened. When its domain matches a customer's mail domain, the ticket belongs to that customer |
-| `severity` | critical, error, warning and so on; becomes the priority |
+| `title` (required) | Subject (`message` also works) |
+| `source` | Where it happened (`host` also works). When its domain matches a customer's mail domain, the ticket belongs to that customer |
+| `severity` | Becomes the priority (`level` also works): critical, emergency, alert, fatal → urgent; error, high → high; others → normal |
 | `fingerprint` | Marks the same error (made from the source and the subject when missing) |
+| `detail` | Body |
 | `customer` | Customer code |
 
 A system that can pass the original mail (as a Postfix pipe) can POST it to `/support/intake/mail` (the same key).
 
+- Tickets from monitoring are hidden from the customer at first.
+- When "ITサポート：お客様の窓口" is off in Feature Management, `/support/intake/alert` and `/support/intake/mail` return 404.
+
 ## Safety
 - Customer links are long numbers that cannot be guessed, and only their hashes are stored. A link shows that one ticket only (no internal notes, other customers or agents' addresses).
-- One-time codes last 10 minutes, 5 tries, once. Links and the form are rate-limited per IP.
-- A ticket number in a subject adds the mail to that ticket only from the requester, CC or the same company. Mail that fails SPF, DKIM or DMARC is taken in as "possibly spoofed", hidden from the customer.
+- One-time codes last 10 minutes, 5 tries, once. Per link, codes can be sent 5 times an hour and wrong codes are allowed 10 times a day (beyond that, the link's code cannot be used until the next day).
+- A ticket number in a subject adds the mail to that ticket only from the requester, CC or the same company.
+- By default (recommended), only mail that passed the receiving server's check (DMARC, or DKIM / SPF aligned with the From domain) is trusted. Mail that cannot be checked is taken in as "possibly spoofed": no Cc is added and no contact is made; a reply to an existing ticket becomes an internal note hidden from the customer (tag "要確認"). The setting can be changed to "suspect only mail that failed the check".
+- The request form does not show a link on the page after sending: it mails the link to the address entered. Until that link is opened, the ticket has the tag "メール未確認" and no contact is made.
 - Auto-replies, bounces and mail from its own address are not taken in.
 - Opening a satisfaction link does not save a rating.
+- Only users who may "edit all" of the ticket table (as the role group "ITサポート 担当者") can use the agent desk. "Edit own data only" is not enough.
 
 ### Pages without login
 For safety, Exment does not let a plugin's `config.json` open a page without login. A help desk needs a door for customers without an account, so this plugin registers `/support/...` itself while Exment starts, the same idea as Exment's public forms: the secret in the URL opens one thing only.

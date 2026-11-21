@@ -29,8 +29,13 @@ Exment does not run a mail server. Like Outlook, it connects to the server the c
 ### Microsoft 365 and Google
 A system administrator registers an app once and enters it in the plugin's settings ("Admin Setting" > "Plugin" > "Exment Plugin Groupware" > settings). The settings page shows the redirect URI to register (`…/admin/plugins/exment_groupware/mail/oauth/callback`).
 
-- Microsoft: make a web app in "App registrations" of the Azure portal, with the delegated permissions of Office 365 Exchange Online `IMAP.AccessAsUser.All` and `SMTP.Send`, and `offline_access openid email profile`. SMTP AUTH must be allowed for the mailboxes.
+- Microsoft: make a web app in "App registrations" of the Azure portal, with the delegated permissions of Office 365 Exchange Online `IMAP.AccessAsUser.All` and `SMTP.Send`, and `offline_access openid email profile`. The tenant administrator must allow SMTP AUTH for the user.
 - Google: make an OAuth client ID (web application) in the Google Cloud console, with the scope `https://mail.google.com/`. For a Google Workspace used inside the company, an "internal" app needs no review by Google.
+
+### How to use
+1. Open "メール" (Mail) in the side menu (or `/admin/plugins/exment_groupware/mail`).
+2. Press "アカウントを追加する" (add an account) and choose the service.
+3. For Xserver, KAGOYA and others, enter the password. For Microsoft 365 and Google, press "サインイン" (sign in) and log in on their page.
 
 ### Security
 - Passwords and tokens are stored encrypted with the app key (`APP_KEY`).
@@ -50,11 +55,20 @@ The page of a Word, Excel or PowerPoint file of the [file server](/file_server) 
 Word, Excel and PowerPoint files attached to records can also be seen in the browser's Office (as the files of issues, wiki pages and projects of Project Management). This works without the file server.
 
 - Only those who may download the file can see it.
-- Users who may edit the record get "編集する" (Edit). Saving replaces the content of the attachment and keeps its address. The previous content is kept as an older version of the attachment ("Version n") ([Replace and older versions](/data_details)).
-- Only attachments can be edited (not the values of file columns). A save takes up to 50 MB (or Exment's upload limit, if smaller).
+- Users who may edit the record get "編集する" (Edit). Saving replaces the content of the attachment and keeps its address. A comment on the record says who edited it, with a link to the previous content.
+- On Exment v7.2.0 or later, the previous content is kept as an older version of the attachment ("Version n") ([Replace and older versions](/data_details)): up to 10 per attachment (`EXMENT_DOCUMENT_VERSION_LIMIT`), the oldest deleted first, and all deleted with the attachment.
+- On older Exment, the previous content stays as a separate file, opened only from the link in the comment. It is not deleted when the attachment is deleted.
+- Only attachments can be edited (not the values of file columns). With `EXMENT_FILE_DELETE_USERONLY` set to `true`, only the uploader of the file can. A save takes up to 50 MB (or Exment's upload limit, if smaller).
+
+## Feature Management (Exment v7.2.0 or later)
+- The web mail is one row, "メール" (`exment_groupware.mail`), in "Admin Setting" > "[Feature Management](/feature)". A system administrator turns it on or off and chooses the role groups that may use it.
+- Sites that had the plugin before keep it on after updating. **On a new site it starts off**, so turn on "メール" in Feature Management (while it is off, the mail page returns 404).
+- Office follows the file server feature: when the file server is off, "Open in Office" of the file server does not open.
 
 ## Requirements
-- Exment 7.0 or later (PHP 8.2 or later, with the `zip` extension). Opening files of the file server needs an Exment with the file server (v7.2.0 or later). <!-- TODO: to be checked by d9 -->
+- Exment 7.1 or later (checked on 7.1 and 7.2) and PHP 8.2 or later. The web mail and record attachments work on both.
+- Opening files of the file server needs an Exment with the file server (v7.2.0 or later). Without it, only that part does nothing.
+- The `zip` extension is needed only to install ibisOffice.
 - Office needs a browser with WebGPU (Chrome, Edge, or Safari 26 or later) and a site on HTTPS.
 
 ## Install

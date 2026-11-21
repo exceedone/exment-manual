@@ -19,7 +19,7 @@ Các plugin chính thức đi kèm Exment. Quản trị viên hệ thống bấm
 Tải tệp zip từ [Releases](https://github.com/exceedone/exment-plugins/releases) trên GitHub và tải lên ở "Admin Setting" → "[Plugin (English)](/plugin)". Không giải nén (không dùng nút xanh "Code → Download ZIP").
 
 ### Exment SaaS
-Trên Exment SaaS (`*.exments.com`), cài từ chợ plugin (plugin market).
+Trên Exment SaaS (`*.exments.com`), bên vận hành cài và cập nhật cho tất cả các trang.
 
 ## Mục liên quan
 - [Plugin (English)](/plugin)

@@ -19,7 +19,7 @@ The official plugins come with Exment. A system administrator presses "Use (inst
 Download the zip from [Releases](https://github.com/exceedone/exment-plugins/releases) on GitHub and upload it in "Admin Setting" > "[Plugin](/plugin)". Do not unzip it (do not use the green "Code → Download ZIP" button).
 
 ### Exment SaaS
-On Exment SaaS (`*.exments.com`), install them from the plugin market.
+On Exment SaaS (`*.exments.com`), the operators install and update them for all sites.
 
 ## Related
 - [Plugin](/plugin)

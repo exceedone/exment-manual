@@ -29,8 +29,13 @@ Exment không có máy chủ email. Giống Outlook, nó kết nối với máy 
 ### Microsoft 365 và Google
 Quản trị viên hệ thống đăng ký ứng dụng một lần và nhập vào cài đặt của plugin ("Admin Setting" → "Plugin" → "Exment Plugin Groupware" → cài đặt). Màn hình cài đặt hiện redirect URI cần đăng ký (`…/admin/plugins/exment_groupware/mail/oauth/callback`).
 
-- Microsoft: tạo web app ở "App registrations" của Azure portal, với quyền ủy quyền `IMAP.AccessAsUser.All`, `SMTP.Send` của Office 365 Exchange Online và `offline_access openid email profile`. Hộp thư phải cho phép SMTP AUTH.
+- Microsoft: tạo web app ở "App registrations" của Azure portal, với quyền ủy quyền `IMAP.AccessAsUser.All`, `SMTP.Send` của Office 365 Exchange Online và `offline_access openid email profile`. Quản trị viên tenant phải cho phép SMTP AUTH cho người dùng đó.
 - Google: tạo OAuth client ID (web application) trên Google Cloud console, scope `https://mail.google.com/`.
+
+### Cách dùng
+1. Mở "メール" (email) trên menu bên trái (hoặc `/admin/plugins/exment_groupware/mail`).
+2. Bấm "アカウントを追加する" (thêm tài khoản) và chọn dịch vụ.
+3. Với Xserver, KAGOYA và dịch vụ khác, nhập mật khẩu. Với Microsoft 365 và Google, bấm "サインイン" (đăng nhập) và đăng nhập ở trang của họ.
 
 ### An toàn
 - Mật khẩu và token được mã hóa bằng khóa ứng dụng (`APP_KEY`).
@@ -50,11 +55,20 @@ Trang của tệp Word, Excel, PowerPoint trong [máy chủ tệp](/vi/file_serv
 Tệp Word, Excel, PowerPoint đính kèm vào dữ liệu cũng xem được bằng Office trên trình duyệt (như tệp của công việc, wiki, dự án trong Quản lý dự án). Phần này chạy được không cần máy chủ tệp.
 
 - Chỉ người tải xuống được tệp mới xem được.
-- Người sửa được dữ liệu sẽ thấy "編集する" (sửa). Lưu sẽ thay nội dung tệp đính kèm, địa chỉ giữ nguyên. Nội dung trước được giữ làm phiên bản cũ ("Version n").
+- Người sửa được dữ liệu sẽ thấy "編集する" (sửa). Lưu sẽ thay nội dung tệp đính kèm, địa chỉ giữ nguyên. Dữ liệu có bình luận ghi ai đã sửa, kèm liên kết đến nội dung trước.
+- Với Exment v7.2.0 trở đi, nội dung trước được giữ làm phiên bản cũ của tệp đính kèm ("Version n"): tối đa 10 (`EXMENT_DOCUMENT_VERSION_LIMIT`), cũ nhất bị xóa trước, và bị xóa cùng tệp đính kèm.
+- Với Exment cũ hơn, nội dung trước được giữ thành tệp riêng, chỉ mở từ liên kết trong bình luận, và không bị xóa khi xóa tệp đính kèm.
 - Chỉ sửa được tệp đính kèm (không phải giá trị của cột tệp). Lưu tối đa 50 MB.
 
+## Quản lý tính năng (Exment v7.2.0 trở đi)
+- Web mail hiện thành một dòng "メール" (`exment_groupware.mail`) trong "Admin Setting" → "[Feature Management](/vi/feature)". Quản trị viên hệ thống bật/tắt và chọn nhóm vai trò được dùng.
+- Trang đã cài plugin từ trước vẫn bật sau khi cập nhật. **Trang cài mới bắt đầu ở trạng thái tắt**, hãy bật "メール" trong Feature Management (khi tắt, trang email trả về 404).
+- Office theo tính năng máy chủ tệp: khi máy chủ tệp tắt, "Open in Office" của máy chủ tệp không mở được.
+
 ## Yêu cầu
-- Exment 7.0 trở lên (PHP 8.2 trở lên, extension `zip`). Mở tệp của máy chủ tệp cần Exment có máy chủ tệp (v7.2.0 trở đi). <!-- TODO: nhờ d9 kiểm tra -->
+- Exment 7.1 trở lên (đã kiểm tra trên 7.1 và 7.2) và PHP 8.2 trở lên. Web mail và tệp đính kèm của dữ liệu chạy trên cả hai.
+- Mở tệp của máy chủ tệp cần Exment có máy chủ tệp (v7.2.0 trở đi). Nếu không có, chỉ phần đó không chạy.
+- Extension `zip` chỉ cần để cài ibisOffice.
 - Office cần trình duyệt có WebGPU (Chrome, Edge, hoặc Safari 26 trở lên) và trang chạy HTTPS.
 
 ## Cài đặt

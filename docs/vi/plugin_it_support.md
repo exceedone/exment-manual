@@ -31,10 +31,12 @@
 
 ## Cài đặt
 1. Cài plugin: từ Feature Management với Exment v7.2.0 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
-2. Mở "ITサポート" trên menu (hoặc `/admin/plugins/exment_it_support`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
-3. Ở "設定" (cài đặt), nhập hộp thư tiếp nhận (IMAP) và địa chỉ của bộ phận hỗ trợ, lưu lại, rồi bấm "IMAP につながるか試す" (thử kết nối IMAP).
-4. Đưa nhân viên vào nhóm vai trò "ITサポート 担当者". Khách đăng nhập vào "ITサポート お客様", liên kết qua "Exment のユーザー" của "お客様の担当者".
-5. Báo cho khách URL của bộ phận hỗ trợ (`https://exment-của-bạn/support`).
+2. Với Exment v7.2.0 trở đi, bật "ITサポート：受付箱" (IT Support: hộp tiếp nhận) ở "Admin Setting" → "[Feature Management](/vi/feature)" (khi tắt thì không mở được màn hình thiết lập). Có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "ITサポート：お客様の窓口" (IT Support: cổng khách hàng) (chỉ chạy khi hộp tiếp nhận đang bật).
+   - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng IT Support từ trước khi có Feature Management thì cả hai vẫn bật.
+3. Mở "ITサポート" trên menu (hoặc `/admin/plugins/exment_it_support`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
+4. Ở "設定" (cài đặt), nhập hộp thư tiếp nhận (IMAP) và địa chỉ của bộ phận hỗ trợ, lưu lại, rồi bấm "IMAP につながるか試す" (thử kết nối IMAP). Nếu nhận email, nhập thêm "差出人の確認" (kiểm tra người gửi) và "受信サーバーの名前" (tên máy chủ nhận: tên đầu tiên trong Authentication-Results). Trước khi nhập, ticket từ email sẽ bị đánh dấu "nghi giả mạo".
+5. Đưa nhân viên vào nhóm vai trò "ITサポート 担当者". Khách đăng nhập vào "ITサポート お客様", liên kết qua "Exment のユーザー" của "お客様の担当者".
+6. Báo cho khách URL của bộ phận hỗ trợ (`https://exment-của-bạn/support`).
 
 ## Tạo ticket từ giám sát / nhật ký lỗi
 Hệ thống giám sát có thể tạo ticket qua API. Khóa có trên màn hình cài đặt.
@@ -48,20 +50,27 @@ curl -X POST https://exment-của-bạn/support/intake/alert \
 
 | Trường | Ý nghĩa |
 | --- | --- |
-| `title` (bắt buộc) | Tiêu đề |
-| `source` | Nơi phát sinh. Nếu tên miền khớp "tên miền email" của khách thì ticket thuộc khách đó |
-| `severity` | critical, error, warning…; trở thành mức ưu tiên |
+| `title` (bắt buộc) | Tiêu đề (`message` cũng được) |
+| `source` | Nơi phát sinh (`host` cũng được). Nếu tên miền khớp "tên miền email" của khách thì ticket thuộc khách đó |
+| `severity` | Trở thành mức ưu tiên (`level` cũng được): critical, emergency, alert, fatal → khẩn cấp; error, high → cao; còn lại → bình thường |
 | `fingerprint` | Dấu để gộp lỗi giống nhau (không có thì tạo từ nơi phát sinh và tiêu đề) |
+| `detail` | Nội dung |
 | `customer` | Mã khách hàng |
 
 Hệ thống chuyển được nguyên email gốc (như pipe của Postfix) có thể POST đến `/support/intake/mail` (cùng khóa).
 
+- Ticket tạo từ giám sát ban đầu không cho khách thấy.
+- Khi "ITサポート：お客様の窓口" tắt trong Feature Management, `/support/intake/alert` và `/support/intake/mail` trả về 404.
+
 ## An toàn
 - Liên kết cho khách là chuỗi dài không đoán được, cơ sở dữ liệu chỉ lưu hash. Liên kết chỉ cho thấy đúng 1 ticket.
-- Mã xác nhận: 10 phút, tối đa 5 lần, dùng 1 lần. Liên kết và biểu mẫu giới hạn số lần theo IP.
-- Ghi số ticket trong tiêu đề chỉ vào ticket đó nếu là người yêu cầu, CC hoặc cùng công ty. Email lỗi SPF, DKIM, DMARC được tiếp nhận ở trạng thái "nghi giả mạo", không cho khách thấy.
+- Mã xác nhận: 10 phút, tối đa 5 lần, dùng 1 lần. Theo từng liên kết: gửi mã tối đa 5 lần mỗi giờ, nhập sai tối đa 10 lần mỗi ngày (quá thì mã của liên kết đó không dùng được đến hôm sau).
+- Ghi số ticket trong tiêu đề chỉ vào ticket đó nếu là người yêu cầu, CC hoặc cùng công ty.
+- Mặc định (khuyến nghị), chỉ tin email đã qua kiểm tra của máy chủ nhận (DMARC, hoặc DKIM/SPF khớp tên miền From). Email không kiểm tra được sẽ được nhận ở trạng thái "nghi giả mạo": không thêm Cc, không tạo liên hệ; trả lời vào ticket có sẵn thì thành ghi chú nội bộ (thẻ "要確認"). Có thể đổi cài đặt thành "chỉ nghi email trượt kiểm tra".
+- Biểu mẫu tiếp nhận không hiện liên kết sau khi gửi mà gửi liên kết qua email đến địa chỉ đã nhập. Đến khi mở liên kết đó, ticket có thẻ "メール未確認" và không tạo liên hệ.
 - Không nhận email trả lời tự động, email bị trả về, email từ chính địa chỉ của mình.
 - Chỉ mở liên kết khảo sát thì chưa lưu đánh giá.
+- Chỉ người "sửa tất cả" được bảng ticket (như nhóm vai trò "ITサポート 担当者") mới dùng được màn hình nhân viên. "Chỉ sửa dữ liệu của mình" thì không đủ.
 
 ## Mục liên quan
 - [Plugin chính thức](/vi/plugin_official)
