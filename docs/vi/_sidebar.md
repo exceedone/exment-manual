@@ -77,6 +77,10 @@
 * 【10. Mở rộng chức năng】
   * [API setting (English)](/api.md)
   * [Plugin (English)](/plugin.md)
+    * [Plugin chính thức](/vi/plugin_official.md)
+      * [Project Management (English)](/plugin_pm.md)
+      * [IT Support](/vi/plugin_it_support.md)
+      * [Groupware](/vi/plugin_groupware.md)
   * [Plugin creation method (English)](/plugin_quickstart.md)
     * [Button (English)](/plugin_quickstart_button)
     * [Event (English)](/plugin_quickstart_event)
