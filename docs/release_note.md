@@ -1,6 +1,43 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.0 (2026/11/XX)
+<!-- TODO: the release date -->
+- <span class="red bold">After the update, "Feature Management" and "Tuning" are added to the menu of "Admin Setting".</span>
+- <span class="red bold">On a site that has never used the Studio, the Studio is turned off.</span>
+    - If someone has opened a page of the Studio or the phone app (`/app`) before the update, the Studio stays on and works as before.
+    - If no one has, it is turned off. The "Studio" menu added in v7.1.2 is hidden, and its URL shows "This feature is not used on this site."
+    - To use it, turn it on in "Admin Setting" > "Feature Management". You can also choose who may use it (role groups). Details [here](/feature)
+    - On a new installation, it is off at first.
+- The active flag of the plugins and the permissions of the role groups do not change.
+- <span class="red bold">A chart of a list view reads at most 1,000 rows.</span> With more rows, it says "use a chart of a summary view". Change the limit with `EXMENT_CHART_LIST_MAX_ROWS` in `.env` (`0` = no limit).
+- Requirements: the same as v7.1.2 (PHP 8.2 or higher, Laravel `^12.68.0`, "exceedone/exment-admin-core" `^1.0.5`)
+- How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)
+1. New features
+    - "Admin Setting" > "Feature Management": decide on one page whether new features and plugins are used, which role groups may use them, and whether their menus are shown. A new feature is off at first ([#1861](https://github.com/exceedone/exment/pull/1861)). Details [here](/feature)
+        - A feature that is off is not in the menu, and its pages cannot be opened even by their URL. Its data stays, so turning it on again brings everything back.
+        - `EXMENT_FEATURES_LOCKED` in `.env` keeps features off from the server side. Details [here](/feature?id=lock-features-on-the-server)
+        - A plugin can show its own features on this page with `Features::register()`.
+    - "Admin Setting" > "Tuning": checks OPcache, the PHP version, APP_DEBUG, the config cache, where the cache and the sessions are kept, the queue, the search indexes of large tables and more, and shows how to fix them ([#1852](https://github.com/exceedone/exment/pull/1852))
+        - Also shown on the installer and by `php artisan exment:checkrequire` (only OK or a warning; it does not stop the installation).
+        - Its buttons only do what can be undone (make or remove the config cache, turn off the system performance log).
+        - On a server where several sites share the code, `EXMENT_TUNING_SERVER_ACTIONS=false` in `.env` hides the buttons that change the whole server.
+    - Studio: change an input screen in the same builder it was made in ([#1862](https://github.com/exceedone/exment/pull/1862))
+        - Move or take off items, add or remove display conditions, rename the screen, add buttons, add new items (their columns are made in the table).
+        - An item taken off the screen stays in the table with its data.
+        - In the list of the Studio, click the name of a screen to open it in the builder. The form settings page is still there (cog icon).
+    - Studio: buttons that set an item of the data (for example, "Done" sets the status to "done"). A button is made as a data operation of the table ([#1858](https://github.com/exceedone/exment/pull/1858)). Details [here](/operation)
+    - Dashboard aggregation cache: with a number of seconds in `EXMENT_DASHBOARD_CACHE_SECONDS` in `.env`, the results of the charts of summary views are kept per viewer (default `0` = off). Saving or deleting a record aggregates again ([#1852](https://github.com/exceedone/exment/pull/1852))
+1. Improvements
+    - Faster pages ([#1852](https://github.com/exceedone/exment/pull/1852))
+        - Table classes are built only when they are used (on a site with 62 tables: 62 per request → 2–5, in our test environment).
+        - A list box of a dashboard reads the records and files its rows refer to together (20 rows: 119 SQL queries → 28).
+        - Charts read the names of user, organization and similar axes or groups together.
+    - The notify list marks a webhook that is not sent (the server itself or an internal address) and shows how to allow it (`EXMENT_NOTIFY_WEBHOOK_ALLOW_HOSTS` in `.env`). The log says the same ([#1855](https://github.com/exceedone/exment/pull/1855))
+    - When Exment writes `.env` (install, restore), it removes the config cache so that the next page reads it again ([#1852](https://github.com/exceedone/exment/pull/1852))
+1. Bug fixes
+    - On Windows, backup and restore with 7-Zip could fail when a path had `%` or `!`, after the change in v7.1.2. The command is back as it was, and it checks that the password is only letters and digits ([#1855](https://github.com/exceedone/exment/pull/1855))
+
 ## v7.1.2 (2026/11/21)
 - <span class="red bold">This version contains security fixes. We strongly recommend updating now.</span> The 7.0 line is fixed in v7.0.4 and the 6.2 line in v6.2.17.
 - Requirements: admin panel library "exceedone/exment-admin-core" `^1.0.5` (installed by `composer update`)
