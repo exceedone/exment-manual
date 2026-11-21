@@ -2,7 +2,7 @@
 Quyết định có dùng các tính năng mới và plugin hay không, ai được dùng, và có hiện trên menu hay không.  
 Exment được dùng ở rất nhiều trang, nên tính năng mới ban đầu ở trạng thái "không dùng". Cho đến khi quản trị viên hệ thống chuyển sang "dùng", tính năng đó không hiện trên menu và không dùng được kể cả khi mở bằng URL. Chỉ cập nhật Exment thì màn hình và menu của trang sẽ không thay đổi.
 
-※Phiên bản Exment có màn hình này sẽ được ghi vào khi phát hành. <!-- TODO: phiên bản có exment PR #1861 -->
+※Màn hình này dùng được từ Exment v7.2.0 trở đi.
 
 ## Màn hình thiết lập
 Đăng nhập bằng quản trị viên hệ thống và mở "Admin Setting" (cài đặt quản trị) → "Feature Management" (quản lý tính năng) (URL là `/admin/feature`).  

@@ -2,7 +2,7 @@
 Decide which features and plugins are used, who may use them, and whether their menus are shown.  
 Exment is used by many sites, so a new feature is off at first. Until a system administrator turns it on, it is not in the menu, and its pages cannot be opened even by their URL. Updating Exment does not change the pages or the menu of your site.
 
-※The version of Exment that has this page will be written here at the release. <!-- TODO: the version that has exment PR #1861 -->
+※This page is available in Exment v7.2.0 or later.
 
 ## The page
 Log in as a system administrator and open "Admin Setting" → "Feature Management" (the URL is `/admin/feature`).  
