@@ -9,6 +9,7 @@
   * [Installation procedure](/quickstart.md)
   * [Initial setting](/first_setting.md)
   * [System setting](/system_setting.md)
+  * [Feature Management](/feature)
   * [Basic information](/base_info.md)
   * [Update](/update.md)
   * [Additional settings](/quickstart_more.md)
