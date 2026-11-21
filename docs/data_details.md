@@ -30,10 +30,10 @@ The file can be attached to the data detail screen by the above procedure.
 - The attached file can be deleted from the "Delete" button.  
 
 #### Replace and older versions (v7.2.0 or later)
-- Press "Replace" (the up arrow) on the row of an attachment and choose a file to replace it. The current file is kept as an older version. The list still has one row per attachment.
+- Press "Replace" (the up arrow) on the row of an attachment and choose a file to replace it. The current file is kept as an older version, and "Replaced. Press "Version n" to see the earlier files." is shown. The list still has one row per attachment.
 - An attachment that has been replaced shows "Version n". Press it to open "Older versions", where the older versions can be downloaded.
 - Those who may add attachments can replace them (with the permission to edit the data, on a table that uses attachments). On a site with [EXMENT_FILE_DELETE_USERONLY](/config) set to `true` in `.env`, only the uploader of that attachment can.
-- Up to 10 older versions are kept per attachment. Beyond that, the oldest are deleted with their files. Change the number with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env` (0 keeps none).
+- Up to 10 older versions are kept per attachment. Beyond that, the oldest are deleted with their files. Change the number with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env` (0 keeps none). When a user who may not delete the attachment replaces it, no older version is deleted, even beyond the number.
 - Deleting an attachment deletes its older versions too.
 - Replacing sends the same notification as adding an attachment.
 ![Replace an attachment and its older versions](img/data/data_attached_file_version.png)
