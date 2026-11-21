@@ -57,6 +57,30 @@ The page does not keep a second copy of their settings: it shows the settings th
 
 <!-- Screenshot: a plugin row and the rows of the features in it (img/feature/feature_plugin.png). After #1861 is merged -->
 
+## Free official plugins (bundled with Exment)
+<!-- TODO: check when exment PR #1867 is in -->
+Exment comes with free official plugins (Project Management, IT Support and Groupware). Install them from "Free official plugins (bundled with Exment)" on Feature Management.
+
+- Nothing is installed or loaded (no tables are made) until you press "Use (install)".
+- Pressing it checks the plugin, installs it and makes it active. After that, it is also listed under "Plugins" above, where you choose who may use it and its menu.
+- When a newer version is there, "A newer version ... is there." is shown. It is never installed by itself: "Use this version" updates it (settings, menus and permissions stay).
+- The version before the update is kept: "Back to the previous version (...)" puts it back.
+- A plugin installed by hand before stays as it is (it is not installed again). Only when the bundled one is newer, it is shown.
+- A bundled plugin is installed only after its signature by Exceed One is checked. A plugin whose signature does not match is not listed.
+- On a site where the provider changes the versions (as a SaaS), "The versions are changed by the provider of this site." is shown without the buttons (`EXMENT_BUNDLED_PLUGINS_UPDATES=false` in `.env`).
+
+#### Notices of safety fixes
+When an installed official plugin has a newer version with a fix for safety, the system administrators are told.
+
+- A red notice on the home of the system administrators ("... is available. It includes a fix for safety. Please update to this version in Feature management."), and a "Safety fix" badge on the row in Feature Management.
+- A bell notification, and mail on a site that can send mail, once.
+- Other users see nothing. The plugin is updated only when a system administrator presses "Use this version".
+
+#### Notices of new features
+After Exment is updated, when there are new features no one has decided on, the system administrators get a notice on the home, a bell notification and mail, once ("New features are available: ... (off for now).").
+
+<!-- Screenshot: the free official plugins section (img/feature/feature_bundled.png). After #1867 is merged -->
+
 ## When a feature is off
 - It is no longer in the menu (the menu row is hidden, not removed).
 - Its pages and its API cannot be used, even when the URL is opened directly.
