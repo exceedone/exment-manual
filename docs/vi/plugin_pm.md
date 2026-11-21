@@ -244,13 +244,13 @@ Dùng 「データ移行」 (di chuyển dữ liệu) trong 「⚙ プロジェ�
 ※Quyền theo tổ chức không được chuyển. Hãy kiểm tra 「参加ユーザー」 (thành viên) của dự án ở nơi đến.
 
 ## Trên Exment SaaS
-Trên Exment SaaS (`*.exments.com`), bên vận hành cài và cập nhật plugin cho tất cả các trang. Người dùng không cần tải xuống, cài đặt hay cập nhật.
+Trên Exment SaaS (`*.exments.com`), không cần tải xuống hay tải lên tệp zip.
 
-1. Đăng nhập bằng quản trị viên hệ thống và mở `/plugins/exment_pm`.
-2. Nếu màn hình 「初期セットアップ」 (thiết lập lần đầu) hiện ra, hãy làm [thiết lập lần đầu](/vi/plugin_pm?id=_3-thiết-lập-lần-đầu). Sau đó làm theo [Bắt đầu sử dụng](/vi/plugin_pm?id=bắt-đầu-sử-dụng).
+1. Quản trị viên hệ thống của tenant bấm "Use (install)" (dùng / cài đặt) cho Quản lý dự án ở "Free official plugins" của "Admin Setting" → "[Feature Management](/vi/feature)". Việc cài đặt và thiết lập lần đầu (tạo bảng) được làm tự động.
+2. Mở "プロジェクト管理" trên menu bên trái (`/plugins/exment_pm`). Sau đó làm theo [Bắt đầu sử dụng](/vi/plugin_pm?id=bắt-đầu-sử-dụng).
 
 - Địa chỉ là `https://(tên tenant).exments.com/plugins/exment_pm` (không có `/admin`).
-- Sau khi có phiên bản mới, nếu 「⚙ 設定」 hiện 「データ構造の更新が必要です。」 (cần cập nhật), hãy bấm 「更新を実行する」 (chạy cập nhật) như ở [Cập nhật](/vi/plugin_pm?id=cập-nhật). <!-- TODO: nhờ 10 kiểm tra -->
+- Bên vận hành cập nhật plugin lên phiên bản mới, và chạy luôn cập nhật cấu trúc dữ liệu. Quản trị viên tenant không cần bấm 「更新を実行する」.
 
 ## Câu hỏi thường gặp và lỗi hay gặp
 

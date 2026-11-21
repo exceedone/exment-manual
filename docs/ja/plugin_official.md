@@ -19,7 +19,7 @@
 GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) から zip をダウンロードし、「管理者設定」→「[プラグイン](/ja/plugin)」でアップロードします。展開はしません（緑色の「Code → Download ZIP」は使わないでください）。
 
 ### Exment SaaS
-Exment SaaS（`*.exments.com`）では、運営側がまとめて入れて、新しくします。
+Exment SaaS（`*.exments.com`）でも、テナントのシステム管理者が「機能の管理」で「使う」を押すと、インストールと初期セットアップまで自動で行われます。新しい版にするのは運営側で、データ構造の更新などもそのときに一緒に行います。
 
 ## 関連項目
 - [プラグイン](/ja/plugin)

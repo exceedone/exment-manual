@@ -245,13 +245,13 @@ Use 「データ移行」 (Data migration) in 「⚙ プロジェクト管理の
 ※Organization permissions are not moved. Check the project's 「参加ユーザー」 (Members) on the target.
 
 ## On Exment SaaS
-On Exment SaaS (`*.exments.com`), the operators install and update the plugin for all sites. Users do not download, install or update it.
+On Exment SaaS (`*.exments.com`), no zip download or upload is needed.
 
-1. Log in as a system administrator and open `/plugins/exment_pm`.
-2. If the 「初期セットアップ」 (First-time setup) screen appears, do the [first-time setup](/plugin_pm?id=_3-first-time-setup). After that, follow [Getting started](/plugin_pm?id=getting-started).
+1. The system administrator of the tenant presses "Use (install)" for Project Management in "Free official plugins" of "Admin Setting" > "[Feature Management](/feature)". The install and the first-time setup (making the tables) are done automatically.
+2. Open "Project Management" in the side menu (`/plugins/exment_pm`). After that, follow [Getting started](/plugin_pm?id=getting-started).
 
 - The address is `https://(tenant name).exments.com/plugins/exment_pm` (without `/admin`).
-- After a new version, if 「⚙ 設定」 says 「データ構造の更新が必要です。」 (an update is needed), press 「更新を実行する」 (Run the update) as described in [Update](/plugin_pm?id=update). <!-- TODO: to be checked by 10 (whether the operators run the data structure update on SaaS) -->
+- The operators update the plugin to new versions, and run the data structure update at the same time. The tenant administrator does not need to press 「更新を実行する」.
 
 ## FAQ and common pitfalls
 
