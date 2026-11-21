@@ -31,6 +31,15 @@ Với các bước trên, bạn có thể đính kèm tệp vào màn hình chi 
 
 - Có thể xóa tệp đã đính kèm bằng nút [Delete].
 
+#### Thay thế và phiên bản cũ (từ v7.2.0)
+- Nhấn [Replace] (thay thế, mũi tên hướng lên) trên dòng của tệp đính kèm và chọn tệp để thay. Tệp hiện tại được giữ lại làm phiên bản cũ. Danh sách vẫn là mỗi tệp đính kèm một dòng.
+- Tệp đính kèm đã từng được thay thế sẽ hiện "Version n" (phiên bản n). Nhấn vào để mở "Older versions" (phiên bản cũ) và tải các phiên bản cũ.
+- Người thêm được tệp đính kèm thì thay thế được (có quyền sửa dữ liệu, và bảng dùng tệp đính kèm). Ở trang đặt [EXMENT_FILE_DELETE_USERONLY (English)](/config) là `true` trong `.env`, chỉ người đã tải tệp đó lên mới thay thế được.
+- Mỗi tệp đính kèm giữ tối đa 10 phiên bản cũ. Quá số đó, phiên bản cũ nhất bị xóa cùng tệp. Đổi số này bằng `EXMENT_DOCUMENT_VERSION_LIMIT` trong `.env` (0 = không giữ).
+- Xóa tệp đính kèm thì các phiên bản cũ cũng bị xóa.
+- Khi thay thế, thông báo được gửi giống như khi thêm tệp đính kèm.
+<!-- Ảnh màn hình: nút thay thế và "Version n" (img/data/data_attached_file_version.png). Sau khi exment PR #1866 được merge -->
+
 ## Bình luận
 ![Màn hình dữ liệu](../img/data/data_comment.png)  
 
