@@ -10,7 +10,7 @@
     - 使うときは、「管理者設定」→「機能の管理」で「使う」にしてください。だれが使えるか（役割グループ）も選べます。詳細は[こちら](/ja/feature)
     - 新しくインストールしたサイトでは、はじめは「使わない」です。
 - プラグインの有効・無効と、役割グループの権限は変わりません。
-- 動作要件：v7.1.2 と同じです（PHP 8.2以上、Laravel `^12.68.0`、「exceedone/exment-admin-core」`^1.0.5`）
+- 動作要件：PHP 8.2以上、Laravel `^12.68.0`、「exceedone/exment-admin-core」`^1.0.5`（v7.1.2 と同じ）。同梱の公式プラグインのパッケージ「exceedone/exment-plugins-release」`~7.2.0` が足されます（`composer update` で入ります）
 - 更新方法：`composer update` のあとに `php artisan exment:update` を実行し、ブラウザで Ctrl+F5（スーパーリロード）を押してください。詳細は[こちら](/ja/update)
 1. 機能追加
     - 「管理者設定」→「機能の管理」：新しい機能とプラグインを、使うかどうか・使える役割グループ・メニューに出すかを、1 つの画面で決めます。新しい機能は、はじめは「使わない」です（[#1861](https://github.com/exceedone/exment/pull/1861)）　詳細は[こちら](/ja/feature)
@@ -26,7 +26,14 @@
         - 画面から外した項目も、テーブルの列とデータは残ります。
         - スタジオの一覧で、画面の名前を押すとビルダーで開きます。今までのフォーム設定の画面は、歯車のアイコンから開けます。
     - スタジオ：ボタンで項目の値を変えられます（例：「完了にする」を押すと、状態が「完了」に）。ボタンは、テーブルの「データ更新設定」として作られます（[#1858](https://github.com/exceedone/exment/pull/1858)）　詳細は[こちら](/ja/operation)
-    - データの添付ファイルを差し替えられます。前のファイルは「前の版」として残り、ダウンロードできます（1 つの添付ファイルに 10 個まで、`.env` の `EXMENT_DOCUMENT_VERSION_LIMIT` で変更）（[#1866](https://github.com/exceedone/exment/pull/1866)）　詳細は[こちら](/ja/data_details?id=差し替えと前の版（v720以降）)
+    - 無料の公式プラグインを Exment に同梱しました：プロジェクト管理（ExmentPM）1.7.1・IT サポート（ExmentITSupport）1.0.6・Groupware（ExmentGroupware）0.4.2。「管理者設定」→「機能の管理」の「無料の公式プラグイン（Exment に同梱）」の欄で「使う（インストールする）」を押すと入ります。押すまでは、インストールも読み込みもしません（[#1867](https://github.com/exceedone/exment/pull/1867)・[#1876](https://github.com/exceedone/exment/pull/1876)）　詳細は[こちら](/ja/plugin_official)
+        - パッケージ「exceedone/exment-plugins-release」（7.2.1）で届きます。エクシード・ワンの署名を確かめてから入れます。
+        - 新しいバージョンは、お知らせだけします。「このバージョンに更新する」で更新し、「前のバージョンに戻す」で戻せます。
+        - セキュリティの修正が入ったバージョンがあるときは、システム管理者に、ホーム・ベル・メールで知らせます。
+        - Groupware は、入れたときに左のメニューに「メール」を作ります。
+        - SaaS など運営者がバージョンを管理するサイトでは、`.env` の `EXMENT_BUNDLED_PLUGINS_UPDATES=false` で、バージョンを切り替えるボタンを出しません。
+    - 新しい機能のお知らせ：Exment を更新して新しい機能が増えたときは、システム管理者のホームとベルで知らせます（はじめは「使わない」です）（[#1867](https://github.com/exceedone/exment/pull/1867)）
+    - データの添付ファイルを差し替えられます。前のファイルは「前の版」として残り、「版 n」を押すと出る一覧から開けます（1 つの添付ファイルに 10 個まで、`.env` の `EXMENT_DOCUMENT_VERSION_LIMIT` で変更）（[#1866](https://github.com/exceedone/exment/pull/1866)）　詳細は[こちら](/ja/data_details?id=差し替えと前の版（v720以降）)
     - ダッシュボードの集計のキャッシュ：`.env` の `EXMENT_DASHBOARD_CACHE_SECONDS` に秒数を書くと、集計ビューのグラフの結果を、見る人ごとに残します（初期値 `0` = 使わない）。データを保存・削除すると集計しなおします（[#1852](https://github.com/exceedone/exment/pull/1852)）
     - 一覧ビューのグラフが読む行の上限を、`.env` の `EXMENT_CHART_LIST_MAX_ROWS` で決められるようになりました（初期値 `0`：上限なし。今までと同じ）。上限を超えたときは「集計ビューのチャートにしてください」と出ます（[#1852](https://github.com/exceedone/exment/pull/1852)・[#1877](https://github.com/exceedone/exment/pull/1877)）　詳細は[こちら](/ja/tuning?id=一覧ビューのグラフ（exment_chart_list_max_rows）)
 1. 機能改善

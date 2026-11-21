@@ -10,7 +10,7 @@
     - To use it, turn it on in "Admin Setting" > "Feature Management". You can also choose who may use it (role groups). Details [here](/feature)
     - On a new installation, it is off at first.
 - The active flag of the plugins and the permissions of the role groups do not change.
-- Requirements: the same as v7.1.2 (PHP 8.2 or higher, Laravel `^12.68.0`, "exceedone/exment-admin-core" `^1.0.5`)
+- Requirements: PHP 8.2 or higher, Laravel `^12.68.0`, "exceedone/exment-admin-core" `^1.0.5` (the same as v7.1.2). The package of the bundled official plugins "exceedone/exment-plugins-release" `~7.2.0` is added (installed by `composer update`)
 - How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)
 1. New features
     - "Admin Setting" > "Feature Management": decide on one page whether new features and plugins are used, which role groups may use them, and whether their menus are shown. A new feature is off at first ([#1861](https://github.com/exceedone/exment/pull/1861)). Details [here](/feature)
@@ -26,7 +26,14 @@
         - An item taken off the screen stays in the table with its data.
         - In the list of the Studio, click the name of a screen to open it in the builder. The form settings page is still there (cog icon).
     - Studio: buttons that set an item of the data (for example, "Done" sets the status to "done"). A button is made as a data operation of the table ([#1858](https://github.com/exceedone/exment/pull/1858)). Details [here](/operation)
-    - Attachments of a record can be replaced. The previous file is kept as an older version and can be downloaded (up to 10 per attachment; change it with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env`) ([#1866](https://github.com/exceedone/exment/pull/1866)). Details [here](/data_details?id=replace-and-older-versions-v720-or-later)
+    - The free official plugins are bundled with Exment: Project Management (ExmentPM) 1.7.1, IT Support (ExmentITSupport) 1.0.6 and Groupware (ExmentGroupware) 0.4.2. Press "Use (install)" in "Free official plugins (bundled with Exment)" of "Admin Setting" > "Feature Management" to install one. Nothing is installed or loaded until then ([#1867](https://github.com/exceedone/exment/pull/1867), [#1876](https://github.com/exceedone/exment/pull/1876)). Details [here](/plugin_official)
+        - They come in the package "exceedone/exment-plugins-release" (7.2.1), and are installed only after the signature by Exceed One is checked.
+        - A newer version is only shown. "Update to this version" updates it, and "Back to the previous version" puts it back.
+        - When a version with a security fix is there, the system administrators are told on the home, by a bell notification and by mail.
+        - Groupware makes the "Mail" menu in the side menu when it is installed.
+        - On a site whose provider manages the versions (as a SaaS), `EXMENT_BUNDLED_PLUGINS_UPDATES=false` in `.env` hides the buttons that change the version.
+    - Notices of new features: after Exment is updated with new features, the system administrators are told on the home and by a bell notification (they are off at first) ([#1867](https://github.com/exceedone/exment/pull/1867))
+    - Attachments of a record can be replaced. The previous file is kept as an older version; press "Version n" to see the earlier files (up to 10 per attachment; change it with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env`) ([#1866](https://github.com/exceedone/exment/pull/1866)). Details [here](/data_details?id=replace-and-older-versions-v720-or-later)
     - Dashboard aggregation cache: with a number of seconds in `EXMENT_DASHBOARD_CACHE_SECONDS` in `.env`, the results of the charts of summary views are kept per viewer (default `0` = off). Saving or deleting a record aggregates again ([#1852](https://github.com/exceedone/exment/pull/1852))
     - The number of rows a chart of a list view reads can be limited with `EXMENT_CHART_LIST_MAX_ROWS` in `.env` (default `0`: no limit, as before). Over the limit, it says "use a chart of a summary view" ([#1852](https://github.com/exceedone/exment/pull/1852), [#1877](https://github.com/exceedone/exment/pull/1877)). Details [here](/tuning?id=charts-of-list-views-exment_chart_list_max_rows)
 1. Improvements
