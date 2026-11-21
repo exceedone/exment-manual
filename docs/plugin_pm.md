@@ -32,7 +32,7 @@ It manages projects and tickets (issues) on Exment's own tables. It is free.
 - The screens are in Japanese only.
 
 ## Install
-※From Exment v7.2.0, Project Management comes with Exment. No download or upload is needed: press "Use (install)" in "Free official plugins" of "Admin Setting" > "Feature Management", then go on to "[3. First-time setup](/plugin_pm?id=_3-first-time-setup)" below. Right after installing from Feature Management, there is no "Project Management" in the side menu yet (it appears after the first-time setup). See [Official plugins](/plugin_official). <!-- TODO: check when exment PR #1867 is in -->
+※From Exment v7.2.0, Project Management comes with Exment. No download or upload is needed: press "Use (install)" in "Free official plugins" of "Admin Setting" > "Feature Management", then go on to "[3. First-time setup](/plugin_pm?id=_3-first-time-setup)" below. Right after installing from Feature Management, there is no "Project Management" in the side menu yet (it appears after the first-time setup). See [Official plugins](/plugin_official).
 
 
 ### 1. Download

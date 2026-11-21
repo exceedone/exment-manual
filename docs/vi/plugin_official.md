@@ -11,9 +11,11 @@ Plugin chính thức là các plugin miễn phí của Exment do Exceed One phá
 ### Exment v7.2.0 trở đi
 Các plugin chính thức đi kèm Exment. Quản trị viên hệ thống bấm "Use (install)" (dùng / cài đặt) ở mục "[Free official plugins (bundled with Exment)](/vi/feature?id=plugin-chính-thức-miễn-phí-đi-kèm-exment)" của "Admin Setting" → "Feature Management". Trước khi bấm, không cài và không nạp gì.
 
-- Phiên bản mới chỉ được thông báo. "Use this version" để cập nhật, "Back to the previous version" để quay lại.
-- Khi phiên bản mới có bản sửa an toàn, quản trị viên hệ thống sẽ được báo.
-<!-- TODO: kiểm tra khi exment PR #1867 được đưa vào -->
+- Exment 7.2.0 đi kèm Quản lý dự án (ExmentPM) 1.7.1, IT Support (ExmentITSupport) 1.0.6 và Groupware (ExmentGroupware) 0.4.2 (gói exceedone/exment-plugins-release 7.2.1).
+- Plugin đi kèm chỉ được cài sau khi kiểm tra chữ ký của Exceed One.
+- Phiên bản mới chỉ được thông báo. "Update to this version" (cập nhật lên phiên bản này) để cập nhật, "Back to the previous version (...)" (quay lại phiên bản trước) để quay lại.
+- Khi phiên bản mới có bản sửa lỗi bảo mật, quản trị viên hệ thống sẽ được báo. Xem [Quản lý tính năng](/vi/feature?id=thông-báo-bản-sửa-lỗi-bảo-mật).
+- Groupware tạo menu "メール" (Mail) ở menu bên trái khi được cài.
 
 ### Exment cũ hơn
 Tải tệp zip từ [Releases](https://github.com/exceedone/exment-plugins/releases) trên GitHub và tải lên ở "Admin Setting" → "[Plugin (English)](/plugin)". Không giải nén (không dùng nút xanh "Code → Download ZIP").
