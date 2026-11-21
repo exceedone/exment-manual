@@ -1,6 +1,35 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.1.2 (2026/11/21)
+- <span class="red bold">This version contains security fixes. We strongly recommend updating now.</span> The 7.0 line is fixed in v7.0.4 and the 6.2 line in v6.2.17.
+- Requirements: admin panel library "exceedone/exment-admin-core" `^1.0.5` (installed by `composer update`)
+- How to update: run `composer update exceedone/exment exceedone/exment-admin-core`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser.
+1. Vulnerability fixes
+    - Two-factor authentication and the forced password change could be skipped on the web API routes ([GHSA-8pmx-4cm4-9gww](https://github.com/exceedone/exment/security/advisories/GHSA-8pmx-4cm4-9gww))
+    - The second factor could be guessed without limit ([GHSA-w2jf-2q2w-mrq2](https://github.com/exceedone/exment/security/advisories/GHSA-w2jf-2q2w-mrq2))
+    - A visitor of a public form could read whole records of the tables the form selects from ([GHSA-vxx2-94gw-6422](https://github.com/exceedone/exment/security/advisories/GHSA-vxx2-94gw-6422))
+    - A user who may set one plugin could upload a plugin ([GHSA-9qw4-mj73-r2rm](https://github.com/exceedone/exment/security/advisories/GHSA-9qw4-mj73-r2rm))
+    - Views and other table settings could be changed or deleted without their permission ([GHSA-qvhx-427q-cjw2](https://github.com/exceedone/exment/security/advisories/GHSA-qvhx-427q-cjw2))
+    - A user who may set the members of role groups could import and delete role groups ([GHSA-v49m-8xmq-m4jc](https://github.com/exceedone/exment/security/advisories/GHSA-v49m-8xmq-m4jc))
+    - Stored XSS in the notifications box of a dashboard ([GHSA-24h8-cx9v-4m6g](https://github.com/exceedone/exment/security/advisories/GHSA-24h8-cx9v-4m6g))
+    - Two issues of exment-admin-core (fixed in exment-admin-core v1.0.5)
+1. Security hardening
+    - Permission checks on record actions: copy, file attachments, comments, plugin buttons, workflow users, deleting files.
+    - The send-mail dialog fills only the template's words, and attaches only the record's files.
+    - Escaping of the user info in the header and of selected records on public forms.
+    - Limits on wrong passwords for oauth/token; the API key must belong to the client.
+    - SSO login is refused when the provider says the e-mail address is not verified.
+    - Webhooks are not sent to the server itself or internal addresses (private addresses can also be refused with `EXMENT_NOTIFY_WEBHOOK_DENY_PRIVATE=true`).
+    - X-Frame-Options and X-Content-Type-Options on admin and login pages (`EXMENT_X_FRAME_OPTIONS`).
+    - reCAPTCHA on public forms is checked on save too; table and column names are checked.
+1. Improvements
+    - JS libraries updated (jQuery UI, jQuery Validation, Chart.js, CodeMirror, jstree) ([#1848](https://github.com/exceedone/exment/pull/1848))
+    - Studio app: attach photos and files, read QR and bar codes with the camera ([#1849](https://github.com/exceedone/exment/pull/1849), [#1851](https://github.com/exceedone/exment/pull/1851))
+- Notes
+    - Webhook URLs to the server itself or internal addresses (localhost, 169.254.x.x and so on) are refused from this version.
+    - If your site is shown inside a frame of another site, set `EXMENT_X_FRAME_OPTIONS` in `.env`.
+
 ## v7.1.1 (2026/11/21)
 - A bug fix only. We recommend updating if you installed v7.1.0 as a new site in Japanese.
 1. Bug fixes

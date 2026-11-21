@@ -1,6 +1,35 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.1.2 (2026/11/21)
+- <span class="red bold">脆弱性の修正を含みます。すぐに更新することを強くおすすめします。</span>7.0 系は v7.0.4、6.2 系は v6.2.17 で、同じ問題を直しています。
+- 動作要件：管理画面ライブラリ「exceedone/exment-admin-core」`^1.0.5`（`composer update` で入ります）
+- 更新方法：`composer update exceedone/exment exceedone/exment-admin-core` のあとに `php artisan exment:update` を実行し、ブラウザで Ctrl+F5（スーパーリロード）を押してください。
+1. 脆弱性の修正
+    - Web の API で、2 段階認証とパスワードの変更の強制を飛ばせた（[GHSA-8pmx-4cm4-9gww](https://github.com/exceedone/exment/security/advisories/GHSA-8pmx-4cm4-9gww)）
+    - 2 段階認証のコードを、回数の制限なく試せた（[GHSA-w2jf-2q2w-mrq2](https://github.com/exceedone/exment/security/advisories/GHSA-w2jf-2q2w-mrq2)）
+    - 公開フォームを開いた人が、フォームが選ぶテーブルのデータを読めた（[GHSA-vxx2-94gw-6422](https://github.com/exceedone/exment/security/advisories/GHSA-vxx2-94gw-6422)）
+    - 1 つのプラグインを設定できるユーザーが、プラグインをアップロードできた（[GHSA-9qw4-mj73-r2rm](https://github.com/exceedone/exment/security/advisories/GHSA-9qw4-mj73-r2rm)）
+    - 権限なしで、ビューなどのテーブルの設定を変えたり消したりできた（[GHSA-qvhx-427q-cjw2](https://github.com/exceedone/exment/security/advisories/GHSA-qvhx-427q-cjw2)）
+    - 役割グループのメンバーを設定できるユーザーが、役割グループを取り込んだり消したりできた（[GHSA-v49m-8xmq-m4jc](https://github.com/exceedone/exment/security/advisories/GHSA-v49m-8xmq-m4jc)）
+    - ダッシュボードの「通知」のボックスの XSS（[GHSA-24h8-cx9v-4m6g](https://github.com/exceedone/exment/security/advisories/GHSA-24h8-cx9v-4m6g)）
+    - exment-admin-core の 2 件（exment-admin-core v1.0.5 で修正）
+1. セキュリティの強化
+    - データの複製・添付ファイル・コメント・プラグインのボタン・ワークフローのユーザー・ファイルの削除で、権限を確かめるようにしました。
+    - メール送信のダイアログは、テンプレートの文言だけを入れ、そのデータのファイルだけを添付します。
+    - ヘッダーのユーザー情報と、公開フォームで選んだデータを、エスケープして表示します。
+    - oauth/token のパスワードの誤りに回数の制限を付けました。API キーは、そのクライアントのものでなければ使えません。
+    - SSO のログインで、メールアドレスが確かめられていないと提供元が答えたときは、ログインさせません。
+    - Webhook を、サーバー自身や内部のアドレスには送りません（`.env` の `EXMENT_NOTIFY_WEBHOOK_DENY_PRIVATE=true` で、プライベートのアドレスも止められます）。
+    - 管理画面とログイン画面に X-Frame-Options と X-Content-Type-Options を付けました（`EXMENT_X_FRAME_OPTIONS`）。
+    - 公開フォームの reCAPTCHA を保存のときにも確かめます。テーブル名・列名を確かめます。
+1. 機能改善
+    - JavaScript のライブラリを更新しました（jQuery UI・jQuery Validation・Chart.js・CodeMirror・jstree）（[#1848](https://github.com/exceedone/exment/pull/1848)）
+    - スタジオのスマホのアプリで、写真・ファイルの添付と、カメラでの QR コード・バーコードの読み取り（[#1849](https://github.com/exceedone/exment/pull/1849)・[#1851](https://github.com/exceedone/exment/pull/1851)）
+- 注意
+    - この版から、サーバー自身や内部のアドレス（localhost・169.254.x.x など）への Webhook は送りません。
+    - ほかのサイトのフレームの中に Exment を出している場合は、`.env` に `EXMENT_X_FRAME_OPTIONS` を設定してください。
+
 ## v7.1.1 (2026/11/21)
 - 不具合の修正だけの版です。v7.1.0 を日本語で新しくインストールしたサイトは、更新をおすすめします。
 1. 不具合修正
