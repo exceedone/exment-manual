@@ -201,7 +201,7 @@ Mỗi dự án có thể yêu cầu một repository Git (Gitea hoặc Forgejo).
 ### Chuyển lên 1.4.0 (nếu đang có PmPortal hoặc ExmentPluginPM)
 Ở 1.4.0, tên nội bộ thành `ExmentPM` và địa chỉ thành `/admin/plugins/exment_pm`. Với Exment đã có PmPortal (1.2.0 trở về trước) hoặc ExmentPluginPM (1.3.0), tải nguyên tệp zip lên sẽ dừng với lỗi "UUID tồn tại nhưng tên plugin không đúng". Hãy làm một lần các bước trong ["Moving to ExmentPM" của README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行). Liên kết và dấu trang đến địa chỉ cũ (`/admin/plugins/pm_portal/...`) sẽ không mở được nữa.
 
-※Trên Exment SaaS, bạn không cần làm gì (Exceed One làm).
+※Trên Exment SaaS, bên vận hành làm cho tất cả các trang, nên bạn không cần làm gì.
 
 ※Từ v1.2.0, chức năng di chuyển dữ liệu nằm trong plugin này. Nếu trước đây đã cài riêng plugin di chuyển dữ liệu, có thể xóa nó ở "Admin Setting" → "Plugin" sau khi cập nhật.
 
@@ -244,15 +244,13 @@ Dùng 「データ移行」 (di chuyển dữ liệu) trong 「⚙ プロジェ�
 ※Quyền theo tổ chức không được chuyển. Hãy kiểm tra 「参加ユーザー」 (thành viên) của dự án ở nơi đến.
 
 ## Trên Exment SaaS
-Trên Exment SaaS (`*.exments.com`) không cần tệp zip. Cài từ "Plugin market" (chợ plugin).
+Trên Exment SaaS (`*.exments.com`), bên vận hành cài và cập nhật plugin cho tất cả các trang. Người dùng không cần tải xuống, cài đặt hay cập nhật.
 
-1. Đăng nhập bằng quản trị viên hệ thống và mở "Plugin market".
-2. Chọn "Exment Plugin PM（プロジェクト管理）" và cài đặt.
-3. Mở `/plugins/exment_pm` và làm [thiết lập lần đầu](/vi/plugin_pm?id=_3-thiết-lập-lần-đầu). Sau đó làm theo [Bắt đầu sử dụng](/vi/plugin_pm?id=bắt-đầu-sử-dụng).
+1. Đăng nhập bằng quản trị viên hệ thống và mở `/plugins/exment_pm`.
+2. Nếu màn hình 「初期セットアップ」 (thiết lập lần đầu) hiện ra, hãy làm [thiết lập lần đầu](/vi/plugin_pm?id=_3-thiết-lập-lần-đầu). Sau đó làm theo [Bắt đầu sử dụng](/vi/plugin_pm?id=bắt-đầu-sử-dụng).
 
 - Địa chỉ là `https://(tên tenant).exments.com/plugins/exment_pm` (không có `/admin`).
-
-!> **Lưu ý khi cập nhật**: hiện tại, nút "Update" của chợ plugin có thể không cập nhật đúng plugin này. Cho đến khi được sửa, hãy tải tệp zip phiên bản mới và tải lên ở "Admin Setting" → "Plugin" → "Plugin upload". Sau đó kiểm tra 「データ構造の更新」 như ở [Cập nhật](/vi/plugin_pm?id=cập-nhật).
+- Sau khi có phiên bản mới, nếu 「⚙ 設定」 hiện 「データ構造の更新が必要です。」 (cần cập nhật), hãy bấm 「更新を実行する」 (chạy cập nhật) như ở [Cập nhật](/vi/plugin_pm?id=cập-nhật). <!-- TODO: nhờ 10 kiểm tra -->
 
 ## Câu hỏi thường gặp và lỗi hay gặp
 
