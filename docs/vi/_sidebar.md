@@ -78,7 +78,7 @@
   * [API setting (English)](/api.md)
   * [Plugin (English)](/plugin.md)
     * [Plugin chính thức](/vi/plugin_official.md)
-      * [Project Management (English)](/plugin_pm.md)
+      * [Quản lý dự án](/vi/plugin_pm.md)
       * [IT Support](/vi/plugin_it_support.md)
       * [Groupware](/vi/plugin_groupware.md)
   * [Plugin creation method (English)](/plugin_quickstart.md)
