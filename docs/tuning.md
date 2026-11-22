@@ -1,16 +1,34 @@
 # Tuning
-Check the settings that make this site faster. "Admin Setting" > "Tuning" (the URL is `/tuning`) lists the settings that make Exment faster, with their state now.
+Check the settings that make this site faster. "Settings: System" > "Tuning" (the URL is `/tuning`) lists the settings that make Exment faster, with their state now.
 
 ※This page is available in Exment v7.2.1 or later.  
 ※Only system administrators can see it.
 
-<!-- Screenshot: the Tuning page (img/tuning/tuning.png). Take it when 7.2.0 is complete -->
+![Tuning (Japanese screen)](ja/img/tuning/tuning1.png)
 
 ## Reading the page
 - Each item shows "Already set" or "Not set (recommended)". For the items marked "Not set", set what is shown below them.
 - The items with a button can be changed from this page.
 - Ask the server administrator to change the server settings (php.ini, .env).
 - The same items are shown in "To make it faster (optional)" on the installer and in "== Tuning (optional) ==" of `php artisan exment:checkrequire`. They only say "Already set" or "Not set", and never stop the install.
+
+## Settings Exment can set itself (recommended settings)
+The settings Exment can change safely can be checked and set from this page. Only the ones this server needs are shown.
+
+| Setting | What it does |
+|---|---|
+| Exment cache | `EXMENT_USE_CACHE=true` in `.env` |
+| Screen files | `exment:publish` when JS / CSS files are missing |
+| Where the cache is kept | Redis, only when PHP can reach Redis |
+| Where sessions are kept | Redis as well (this page only; not offered at the setup) |
+| Remove the route cache | Removes a route cache (it keeps plugin pages from opening) |
+| Make the config cache | `config:cache` (permission 640), after the settings that write `.env` |
+| Permissions of the secret files | `.env` and the config cache 640 (only when the PHP user owns them) |
+
+- Pressing "Apply the checked settings" lists them for a confirmation first. What was done goes to the operation log, and the last result (set / already set / failed, with the reason) is shown below.
+- **At the setup too**: the initialize page after the install shows the same settings, checked. Unchecked ones are not applied.
+- php.ini, PHP-FPM, OPcache, cron and the queue are not changed; see the items below and ask the server administrator.
+- With `EXMENT_TUNING_SERVER_ACTIONS=false` in `.env`, neither this box nor the settings at the setup are offered.
 
 ## Items
 ### OPcache
@@ -100,6 +118,27 @@ The system performance log and the debug modes of `.env` (`EXMENT_DEBUG_MODE_REQ
 ### Search index
 In a table with more than 10,000 rows, a "search index" on the columns often used to filter and sort makes lists, searches and summaries faster. In the [column](/column) settings, add "Search index" to the columns often used.
 
+### Scheduled tasks (schedule:run, cron)
+Notifications, schedules and batches run in `schedule:run`, started every minute by cron. It starts PHP and Exment every minute, so heavy tasks take CPU from the pages. The page shows when it last ran and the longest time in a minute, and warns when cron does not run or a task is heavy.
+
+### PHP-FPM processes
+With `pm = ondemand` and a short `pm.process_idle_timeout`, the first request after a quiet time waits for a process to start. Set `pm.max_children` for the memory of the server.
+
+### Route cache (route:cache)
+Exment adds the routes of plugin pages from the database on every request. With a route cache, plugin pages installed later do not open. **Having none is correct.**
+
+### Permissions of the secret files (.env, config cache)
+`.env` and the config cache (`bootstrap/cache/config.php`) hold passwords and APP_KEY. Make them unreadable by the other users of the server, e.g. 640 (also fixable in "Settings Exment can set itself" above).
+
+### Screen files (JS, CSS)
+Checks that the JS and CSS the login page and others load are all there, and that browsers may keep them (Cache-Control, Expires). Their URLs carry the version (`?v=`), so a long cache is safe.
+
+### Slow query log (DB)
+With the slow query log of MySQL / MariaDB on, slow queries are recorded, to find what is slow.
+
+### Indexes of the search index (DB)
+A column with "search index" has its own column and index in the data table. Without the index (after a failed restore or change), every filter and sort reads all rows. Checks that the indexes are there.
+
 ## Other settings for speed
 ### Charts of list views (EXMENT_CHART_LIST_MAX_ROWS)
 A chart of a list view draws one point per row. By default (`0`) it reads all the rows. When a large table needs too much memory or time, set a limit in `.env` (for example 1000). Over the limit, it says to use a chart of a summary view. Make charts of large tables with summary views.
@@ -122,6 +161,7 @@ EXMENT_TUNING_SERVER_ACTIONS=false
 - To hide it from the server side (as a SaaS), write `EXMENT_FEATURES_LOCKED=tuning` in `.env` (separate it with commas from other features). The page answers 404 and is not in the menu.
 
 ## Related
+- [Security check](/security_check)
 - [Feature Management](/feature)
 - [System setting](/system_setting)
 - [Server setting](/server)
