@@ -8,7 +8,7 @@ The official plugins are free plugins of Exment, made, tested and supported by E
 | [Groupware](/plugin_groupware) | Web mail, and opening and editing Office files of File sharing in the browser |
 
 ## Install
-### Exment v7.2.0 or later
+### Exment v7.2.1 or later
 The official plugins come with Exment. A system administrator presses "Use (install)" in "[Free official plugins (bundled with Exment)](/feature?id=free-official-plugins-bundled-with-exment)" of "Admin Setting" > "Feature Management". Nothing is installed or loaded until then.
 
 - Exment 7.2.0 comes with Project Management (ExmentPM) 1.7.1, IT Support (ExmentITSupport) 1.0.6 and Groupware (ExmentGroupware) 0.4.2 (package exceedone/exment-plugins-release 7.2.1).

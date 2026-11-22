@@ -2,7 +2,7 @@
 Share folders and files in a workspace per team, with permissions per folder, versions, previews and a trash. It works like a document library of Box or SharePoint.  
 The files are kept where Exment keeps its files (local, S3, Azure, FTP and so on, as set now).
 
-※This feature is available in Exment v7.2.0 or later. <!-- TODO: the version File sharing comes in -->
+※This feature is available in Exment v7.2.1 or later. <!-- TODO: the version File sharing comes in -->
 
 ## Getting started
 File sharing is off at first. When a system administrator turns "File sharing" on in "Admin Setting" > "[Feature Management](/feature)", "File sharing" appears in the side menu. Who may use it (role groups) is also chosen in Feature Management.

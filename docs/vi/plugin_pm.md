@@ -34,7 +34,7 @@ Plugin quản lý dự án và ticket (công việc) trên chính các bảng c�
 - Màn hình chỉ có tiếng Nhật.
 
 ## Cài đặt
-※Từ Exment v7.2.0, Quản lý dự án đi kèm Exment. Không cần tải xuống hay tải lên: bấm "Use (install)" (dùng / cài đặt) ở "Free official plugins" của "Admin Setting" → "Feature Management", rồi chuyển sang "[3. Thiết lập lần đầu](/vi/plugin_pm?id=_3-thiết-lập-lần-đầu)" bên dưới. Ngay sau khi cài từ Feature Management, menu bên trái chưa có "Quản lý dự án" (sẽ hiện sau khi thiết lập lần đầu). Xem [Plugin chính thức](/vi/plugin_official).
+※Từ Exment v7.2.1, Quản lý dự án đi kèm Exment. Không cần tải xuống hay tải lên: bấm "Use (install)" (dùng / cài đặt) ở "Free official plugins" của "Admin Setting" → "Feature Management", rồi chuyển sang "[3. Thiết lập lần đầu](/vi/plugin_pm?id=_3-thiết-lập-lần-đầu)" bên dưới. Ngay sau khi cài từ Feature Management, menu bên trái chưa có "Quản lý dự án" (sẽ hiện sau khi thiết lập lần đầu). Xem [Plugin chính thức](/vi/plugin_official).
 
 ### 1. Tải xuống
 Tải tệp zip mới nhất từ [Releases](https://github.com/exceedone/exment-plugins/releases) trên GitHub. Không giải nén.

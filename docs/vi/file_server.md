@@ -2,7 +2,7 @@
 Chia sẻ thư mục và tệp trong workspace của từng nhóm, có phân quyền theo thư mục, quản lý phiên bản, xem trước và thùng rác. Dùng giống như thư viện tài liệu của Box hay SharePoint.  
 Tệp được lưu ở nơi Exment đang lưu tệp (máy cục bộ, S3, Azure, FTP…, theo thiết lập hiện tại).
 
-※Tính năng này dùng được từ Exment v7.2.0 trở đi. <!-- TODO: phiên bản có chia sẻ tệp -->
+※Tính năng này dùng được từ Exment v7.2.1 trở đi. <!-- TODO: phiên bản có chia sẻ tệp -->
 
 ## Bắt đầu sử dụng
 Chia sẻ tệp ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "File Server" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), mục "File Server" sẽ hiện trên menu bên trái. Người được dùng (nhóm vai trò) cũng được chọn trong Feature Management.

@@ -1,7 +1,7 @@
 # Studio
 Studio là chức năng để tạo, sửa và xem tổng quan các màn hình. Giống như ứng dụng của kintone, chỉ cần đặt các thành phần là tạo được nơi chứa dữ liệu (bảng), màn hình nhập và danh sách. Màn hình đã tạo cũng dùng được trên ứng dụng điện thoại (Exment app).
 
-※Các chức năng ở đây có đầy đủ từ Exment v7.2.0.
+※Các chức năng ở đây có đầy đủ từ Exment v7.2.1.
 
 ## Bắt đầu sử dụng
 - Studio ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "Studio" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), menu "Studio" sẽ hiện dưới "Admin Setting" (URL là `/admin/studio`).

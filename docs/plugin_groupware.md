@@ -58,24 +58,24 @@ Word, Excel and PowerPoint files attached to records can also be seen in the bro
 
 - Only those who may download the file can see it.
 - Users who may edit the record get "編集する" (Edit). Saving replaces the content of the attachment and keeps its address. A comment on the record says who edited it, with a link to the previous content.
-- On Exment v7.2.0 or later, the previous content is kept as an older version of the attachment ("Version n") ([Replace and older versions](/data_details)): up to 10 per attachment (`EXMENT_DOCUMENT_VERSION_LIMIT`), the oldest deleted first, and all deleted with the attachment.
+- On Exment v7.2.1 or later, the previous content is kept as an older version of the attachment ("Version n") ([Replace and older versions](/data_details)): up to 10 per attachment (`EXMENT_DOCUMENT_VERSION_LIMIT`), the oldest deleted first, and all deleted with the attachment.
 - On older Exment, the previous content stays as a separate file, opened only from the link in the comment. It is not deleted when the attachment is deleted.
 - Only attachments can be edited (not the values of file columns). With `EXMENT_FILE_DELETE_USERONLY` set to `true`, only the uploader of the file can. A save takes up to 50 MB (or Exment's upload limit, if smaller).
 
-## Feature Management (Exment v7.2.0 or later)
+## Feature Management (Exment v7.2.1 or later)
 - The web mail is one row, "メール" (`exment_groupware.mail`), in "Admin Setting" > "[Feature Management](/feature)". A system administrator turns it on or off and chooses the role groups that may use it.
 - Sites that had the plugin before keep it on after updating. **On a new site it starts off**, so turn on "メール" in Feature Management (while it is off, the mail page returns 404).
 - Office follows File sharing feature: when File sharing is off, "Open in Office" of File sharing does not open.
 
 ## Requirements
 - Exment 7.1 or later (checked on 7.1 and 7.2) and PHP 8.2 or later. The web mail and record attachments work on both.
-- Opening files of File sharing needs an Exment with File sharing (v7.2.0 or later). Without it, only that part does nothing.
+- Opening files of File sharing needs an Exment with File sharing (v7.2.1 or later). Without it, only that part does nothing.
 - Installing ibisOffice needs the `zip` extension of PHP and a writable `public/` of the site (about 125 MB).
 - Office needs a browser with WebGPU (Chrome, Edge, or Safari 26 or later) and a site on HTTPS.
 - Neither LibreOffice nor Docker is needed. It works on rental servers such as XServer (the server only hands out the files; Office runs in the browser).
 
 ## Install
-1. Install the plugin: from Feature Management on Exment v7.2.0 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
+1. Install the plugin: from Feature Management on Exment v7.2.1 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
 2. To use Office, open the plugin page (`/admin/plugins/exment_groupware`) as a system administrator and press "ibisOffice 0.8.9 をインストールする" (install ibisOffice). The release of ibisOffice (about 40 MB, 125 MB unpacked) is downloaded, checked against its fixed SHA-256 and put in `public/vendor/exment_groupware/ibisoffice/` of the site.
 
 On a site with several web servers, or where `public/` cannot be written, serve the unpacked release elsewhere and enter the URL of the folder with `index.html` in "ibisOffice の場所（URL）" of the plugin's settings.

@@ -56,23 +56,23 @@ Tệp Word, Excel, PowerPoint đính kèm vào dữ liệu cũng xem được b�
 
 - Chỉ người tải xuống được tệp mới xem được.
 - Người sửa được dữ liệu sẽ thấy "編集する" (sửa). Lưu sẽ thay nội dung tệp đính kèm, địa chỉ giữ nguyên. Dữ liệu có bình luận ghi ai đã sửa, kèm liên kết đến nội dung trước.
-- Với Exment v7.2.0 trở đi, nội dung trước được giữ làm phiên bản cũ của tệp đính kèm ("Version n"): tối đa 10 (`EXMENT_DOCUMENT_VERSION_LIMIT`), cũ nhất bị xóa trước, và bị xóa cùng tệp đính kèm.
+- Với Exment v7.2.1 trở đi, nội dung trước được giữ làm phiên bản cũ của tệp đính kèm ("Version n"): tối đa 10 (`EXMENT_DOCUMENT_VERSION_LIMIT`), cũ nhất bị xóa trước, và bị xóa cùng tệp đính kèm.
 - Với Exment cũ hơn, nội dung trước được giữ thành tệp riêng, chỉ mở từ liên kết trong bình luận, và không bị xóa khi xóa tệp đính kèm.
 - Chỉ sửa được tệp đính kèm (không phải giá trị của cột tệp). Lưu tối đa 50 MB.
 
-## Quản lý tính năng (Exment v7.2.0 trở đi)
+## Quản lý tính năng (Exment v7.2.1 trở đi)
 - Web mail hiện thành một dòng "メール" (`exment_groupware.mail`) trong "Admin Setting" → "[Feature Management](/vi/feature)". Quản trị viên hệ thống bật/tắt và chọn nhóm vai trò được dùng.
 - Trang đã cài plugin từ trước vẫn bật sau khi cập nhật. **Trang cài mới bắt đầu ở trạng thái tắt**, hãy bật "メール" trong Feature Management (khi tắt, trang email trả về 404).
 - Office theo tính năng chia sẻ tệp: khi chia sẻ tệp tắt, "Open in Office" của chia sẻ tệp không mở được.
 
 ## Yêu cầu
 - Exment 7.1 trở lên (đã kiểm tra trên 7.1 và 7.2) và PHP 8.2 trở lên. Web mail và tệp đính kèm của dữ liệu chạy trên cả hai.
-- Mở tệp của chia sẻ tệp cần Exment có chia sẻ tệp (v7.2.0 trở đi). Nếu không có, chỉ phần đó không chạy.
+- Mở tệp của chia sẻ tệp cần Exment có chia sẻ tệp (v7.2.1 trở đi). Nếu không có, chỉ phần đó không chạy.
 - Extension `zip` chỉ cần để cài ibisOffice.
 - Office cần trình duyệt có WebGPU (Chrome, Edge, hoặc Safari 26 trở lên) và trang chạy HTTPS.
 
 ## Cài đặt
-1. Cài plugin: từ Feature Management với Exment v7.2.0 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
+1. Cài plugin: từ Feature Management với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
 2. Để dùng Office, mở trang plugin (`/admin/plugins/exment_groupware`) bằng quản trị viên hệ thống và bấm "ibisOffice 0.8.9 をインストールする" (cài ibisOffice). Bản phát hành của ibisOffice (khoảng 40 MB, giải nén 125 MB) được tải về, kiểm tra SHA-256 cố định, rồi đặt vào `public/vendor/exment_groupware/ibisoffice/`.
 
 Khi có nhiều máy chủ web, hoặc không ghi được vào `public/`, hãy công khai bản đã giải nén ở nơi khác và nhập URL của thư mục có `index.html` vào "ibisOffice の場所（URL）" trong cài đặt của plugin.

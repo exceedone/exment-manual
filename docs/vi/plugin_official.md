@@ -8,7 +8,7 @@ Plugin chính thức là các plugin miễn phí của Exment do Exceed One phá
 | [Groupware](/vi/plugin_groupware) | Web mail, và mở/sửa tệp Office của chia sẻ tệp trên trình duyệt |
 
 ## Cách cài đặt
-### Exment v7.2.0 trở đi
+### Exment v7.2.1 trở đi
 Các plugin chính thức đi kèm Exment. Quản trị viên hệ thống bấm "Use (install)" (dùng / cài đặt) ở mục "[Free official plugins (bundled with Exment)](/vi/feature?id=plugin-chính-thức-miễn-phí-đi-kèm-exment)" của "Admin Setting" → "Feature Management". Trước khi bấm, không cài và không nạp gì.
 
 - Exment 7.2.0 đi kèm Quản lý dự án (ExmentPM) 1.7.1, IT Support (ExmentITSupport) 1.0.6 và Groupware (ExmentGroupware) 0.4.2 (gói exceedone/exment-plugins-release 7.2.1).

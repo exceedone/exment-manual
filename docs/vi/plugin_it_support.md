@@ -30,8 +30,8 @@
 - Màn hình chỉ có tiếng Nhật.
 
 ## Cài đặt
-1. Cài plugin: từ Feature Management với Exment v7.2.0 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
-2. Với Exment v7.2.0 trở đi, bật "ITサポート：受付箱" (IT Support: hộp tiếp nhận) ở "Admin Setting" → "[Feature Management](/vi/feature)" (khi tắt thì không mở được màn hình thiết lập). Có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "ITサポート：お客様の窓口" (IT Support: cổng khách hàng) (chỉ chạy khi hộp tiếp nhận đang bật).
+1. Cài plugin: từ Feature Management với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
+2. Với Exment v7.2.1 trở đi, bật "ITサポート：受付箱" (IT Support: hộp tiếp nhận) ở "Admin Setting" → "[Feature Management](/vi/feature)" (khi tắt thì không mở được màn hình thiết lập). Có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "ITサポート：お客様の窓口" (IT Support: cổng khách hàng) (chỉ chạy khi hộp tiếp nhận đang bật).
    - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng IT Support từ trước khi có Feature Management thì cả hai vẫn bật.
    - Khi tắt "Hộp tiếp nhận", mục menu "ITサポート" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/admin/data/its_ticket`) hoặc từ "Admin Setting" → "Custom Table". Muốn hiện trên menu thì thêm bảng ở "Admin Setting" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
 3. Mở "ITサポート" trên menu (hoặc `/admin/plugins/exment_it_support`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.

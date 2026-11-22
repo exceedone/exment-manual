@@ -8,7 +8,7 @@
 | [Groupware](/ja/plugin_groupware) | Web メールと、ファイル共有の Office ファイルをブラウザーで開く・編集する |
 
 ## 入れ方
-### Exment v7.2.0 以降
+### Exment v7.2.1 以降
 公式プラグインは、Exment と一緒に届いています。システム管理者が「管理者設定」→「機能の管理」の「[無料の公式プラグイン（Exment に同梱）](/ja/feature?id=無料の公式プラグイン（exment-に同梱）)」の欄で、「使う（インストールする）」を押すと入ります。押すまでは、インストールも読み込みもしません。
 
 - Exment 7.2.0 に同梱しているのは、プロジェクト管理（ExmentPM）1.7.1・IT サポート（ExmentITSupport）1.0.6・Groupware（ExmentGroupware）0.4.2 です（パッケージ exceedone/exment-plugins-release 7.2.1）。

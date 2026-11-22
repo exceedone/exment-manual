@@ -1,7 +1,7 @@
 # Studio
 The Studio makes, changes and shows the screens of the site. As with the apps of kintone, placing parts makes the container of the data (a table), its input screen and its list. The screens made can also be used in the phone app (Exment app).
 
-※All that is written here is in Exment v7.2.0.
+※All that is written here is in Exment v7.2.1.
 
 ## Getting started
 - The Studio is off at first. When a system administrator turns "Studio" on in "Admin Setting" > "[Feature Management](/feature)", a "Studio" menu appears under "Admin Setting" (the URL is `/admin/studio`).
