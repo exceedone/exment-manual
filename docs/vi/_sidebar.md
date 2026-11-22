@@ -67,7 +67,7 @@
   * [Public form settings (English)](/publicform)
 
 * 【9. Các chức năng tiêu chuẩn khác】
-  * [Máy chủ tệp](/vi/file_server.md)
+  * [Chia sẻ tệp](/vi/file_server.md)
   * [Template (English)](/template.md)
   * [Backup (English)](/backup.md)
   * [Menu (English)](/menu.md)
