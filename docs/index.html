@@ -32,6 +32,7 @@
 
 <body>
   <nav>
+    <a class="exm-site-link" href="https://exment.net/">← exment.net</a>
     <a href="#/">EN</a>
     <a href="#/ja/">日本語</a>
     <a href="#/vi/">Tiếng Việt</a>
@@ -73,6 +74,23 @@
         scope: '.markdown-section',
         headings: 'h1, h2, h3',
       },
+
+      // the link back to exment.net follows the language of the page
+      plugins: [
+        function (hook) {
+          hook.doneEach(function () {
+            var hash = window.location.hash || '';
+            var site = { ja: ['https://exment.net/', 'exment.net のトップへ'], vi: ['https://exment.net/vi/', 'Về trang chủ exment.net'], en: ['https://exment.net/en/', 'Back to exment.net'] };
+            var lang = hash.indexOf('#/ja') === 0 ? 'ja' : (hash.indexOf('#/vi') === 0 ? 'vi' : 'en');
+            var links = document.querySelectorAll('a.exm-site-link');
+            for (var i = 0; i < links.length; i++) {
+              links[i].href = site[lang][0];
+              links[i].setAttribute('title', site[lang][1]);
+              links[i].setAttribute('target', '_self');
+            }
+          });
+        }
+      ],
 
       requestHeaders: {
         'cache-control': 'no-cache',
