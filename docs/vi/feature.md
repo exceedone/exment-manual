@@ -57,6 +57,30 @@ Màn hình không giữ thêm một bản thiết lập thứ hai, mà hiển th
 
 <!-- Ảnh màn hình: dòng plugin và các dòng tính năng bên trong (img/feature/feature_plugin.png). Sau khi #1861 được merge -->
 
+## Plugin chính thức miễn phí (đi kèm Exment)
+Exment đi kèm các plugin chính thức miễn phí (Quản lý dự án, IT Support và Groupware). Cài từ mục "Free official plugins (bundled with Exment)" trên màn hình Feature Management. Xem [Plugin chính thức](/vi/plugin_official).
+
+- Cho đến khi bấm "Use (install)" (dùng / cài đặt), không cài và không nạp gì (không tạo bảng).
+- Khi bấm, hệ thống kiểm tra rồi cài và bật plugin. Các tính năng chính của plugin cũng được bật. Sau đó plugin cũng hiện ở mục "Plugins" phía trên, nơi chọn người được dùng và menu.
+- Khi có phiên bản mới, sẽ hiện "Version ... is available." (có phiên bản mới). Không tự cài: bấm "Update to this version" (cập nhật lên phiên bản này) để cập nhật (thiết lập, menu và quyền được giữ).
+- Phiên bản trước khi cập nhật được giữ lại: "Back to the previous version (...)" (quay lại phiên bản trước) để trở lại.
+- Plugin đã cài tay từ trước vẫn giữ nguyên (không cài lại). Chỉ khi bản đi kèm mới hơn thì mới thông báo. Sau khi thay bằng bản đi kèm thì không quay lại bản cài tay được.
+- Plugin đi kèm chỉ được cài sau khi kiểm tra chữ ký của Exceed One. Plugin có chữ ký không khớp sẽ không hiện.
+- Ở trang mà nhà cung cấp đổi phiên bản (như SaaS), sẽ hiện "The versions are changed by the provider of this site." và không có nút (`EXMENT_BUNDLED_PLUGINS_UPDATES=false` trong `.env`).
+
+#### Thông báo bản sửa lỗi bảo mật
+Khi phiên bản mới của plugin chính thức đã cài có bản sửa lỗi bảo mật, quản trị viên hệ thống sẽ được báo.
+
+- Trên trang chủ của quản trị viên hệ thống hiện "Update available for an official plugin (...)" (có bản cập nhật). Dòng trong Feature Management có dấu "Security fix" (sửa lỗi bảo mật) và dòng "This version includes a security fix. Press "Update to this version"."
+- Thông báo chuông, và email nếu trang gửi được email, cùng tiêu đề và nội dung, một lần.
+- Người dùng khác không thấy gì. Chỉ cập nhật khi quản trị viên hệ thống bấm "Update to this version".
+- Khi quay lại phiên bản không có bản sửa lỗi bảo mật, hệ thống hỏi lại một lần nữa.
+
+#### Thông báo tính năng mới
+Sau khi cập nhật Exment, nếu có tính năng mới chưa ai quyết định, quản trị viên hệ thống nhận thông báo trên trang chủ và chuông, một lần ("There are new features (...). They are off at first. ..."). Không gửi email. Trang cài mới không hiện thông báo này.
+
+<!-- Ảnh màn hình: mục plugin chính thức miễn phí (img/feature/feature_bundled.png). Sau khi #1867 được merge -->
+
 ## Khi chuyển sang "không dùng"
 - Tính năng không còn trên menu (dòng menu chỉ bị ẩn, không bị xóa).
 - Các trang và API của tính năng không dùng được, kể cả khi mở trực tiếp bằng URL.
