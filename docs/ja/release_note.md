@@ -16,6 +16,7 @@
     - **MCP サーバー**：Claude などの AI から、ユーザーの権限のまま Exment のデータを読めます（`POST {admin}/api/mcp`。テーブルの一覧・データの検索と取得・添付ファイルの一覧・ワークフローの状態。読むだけ）。API と同じく IP の制限と、OAuth のトークンか API キーでのログインが効きます。「機能の管理」の「MCP」で使う役割グループを選びます（初めは使わない）（[#1892](https://github.com/exceedone/exment/pull/1892)）
     - **セキュリティチェック**：「設定：システム」→「セキュリティチェック」で、ファイルの権限・デバッグモード・APP_KEY・https・安全のためのヘッダー・外から見えてはいけないもの・管理者のパスワード・2 段階の認証などを確かめ、直し方を出します。インストールの「システム要件の確認」にも出ます。詳細は[こちら](/ja/security_check)（[#1959](https://github.com/exceedone/exment/pull/1959)・[#1964](https://github.com/exceedone/exment/pull/1964)・[#1968](https://github.com/exceedone/exment/pull/1968)・[#1974](https://github.com/exceedone/exment/pull/1974)）
     - **おすすめの設定**：Exment が安全に変えられる設定（Exment のキャッシュ・Redis・設定のキャッシュ・ファイルの権限など）を、インストールのあとの初期設定の画面と「チューニング」から、チェックを付けて入れられます。詳細は[こちら](/ja/tuning)（[#1956](https://github.com/exceedone/exment/pull/1956)）
+    - **新しいインストールでは、URL に「/admin」が付きません**（例 `http://localhost/data/...`。exment-boilerplate の `ADMIN_ROUTE_PREFIX` の既定が空に）。前の版で入れたサイトは「/admin」のままで、更新してもリンクは変わりません。「/admin」をやめたサイト（`ADMIN_ROUTE_PREFIX=`）では、古い `/admin/...` を開くと同じページへ移ります（GET だけ）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)（[#1944](https://github.com/exceedone/exment/pull/1944)）
     - **メンテナンスモード**：システム管理者が「設定：システム」→「メンテナンス」で切り替えます。メンテナンス中は、システム管理者・始めた人・許可した IP のほかは、メンテナンスの画面になります。始まりと終わりの予定・API・外向けのページ・スケジュールの扱いを選べ、変えるたびに操作ログに残ります。コマンド `php artisan exment:maintenance` もあります（[#1894](https://github.com/exceedone/exment/pull/1894)・[#1896](https://github.com/exceedone/exment/pull/1896)）
     - ファイル共有：画面の URL を、番号でなくフォルダーの道筋（`/admin/file_server/<ワークスペース>/<フォルダー>/…`）にしました。名前を変えたり動かしたりしても、古いリンクは新しい URL へ移ります。［リンクをコピー］のボタンもあります（[#1906](https://github.com/exceedone/exment/pull/1906)）
     - ファイル共有：新規作成で、テキスト・Markdown・CSV のファイルを作り、ブラウザーで編集できます。Word・Excel・PowerPoint の空のファイルも作れます（[#1933](https://github.com/exceedone/exment/pull/1933)）。Office のファイルの PDF は、LibreOffice のほか、変換のコンテナ（Gotenberg）でも作れます
@@ -34,6 +35,7 @@
     - 新しいテーブルを、一覧より先に新規・詳細の画面で開くと、一覧に ID と日付しか出なくなるのを直しました（テンプレートで入れたテーブルなど）。すでにそうなった一覧は、ビューの設定で列を足してください（[#1918](https://github.com/exceedone/exment/pull/1918)）
     - ファイル共有のセキュリティの修正（重要度：低）（[#1884](https://github.com/exceedone/exment/pull/1884)）
     - 機能の管理とメニューの直し：ルートのキャッシュがあるとき・使わない機能のメニュー など（[#1890](https://github.com/exceedone/exment/pull/1890)）
+    - OAuth の許可の画面の［キャンセル］が、「/admin」のないサイト（Exment SaaS など）で動かなかったのを直しました（[#1944](https://github.com/exceedone/exment/pull/1944)）
     - ファイル共有のダウンロードのリンクが、画面の切り替え（pjax）で開いてしまうのを直しました（[#1927](https://github.com/exceedone/exment/pull/1927)）
     - 機能の管理の表で、名前の列の説明を折り返し、ほかの列が見えるようにしました
     - システム管理者だけのお知らせに「システム管理者にだけ出ています」と書くようにしました
