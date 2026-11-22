@@ -9,8 +9,8 @@ In this menu, you can add menu items that transition to "pages prepared by the s
 ※From v7.1.0, "Safety Check", "Login Setting", "API Setting" and "System Performance Log", which the system administrator uses, are shown under "Admin Setting". "LINE Link" is shown in the user menu at the top right, not in the left menu ([LINE Link](/line?id=linking)). When updating from v7.0, a menu is moved only when it is still at the top. A menu you moved yourself stays where it is.
 
 
-### The menu from v7.2.0
-From v7.2.0 the left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/).
+### The menu from v7.2.1
+From v7.2.1 the left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/).
 
 ```
 Dashboard
@@ -111,7 +111,7 @@ Enter the icon to be displayed on the left menu.
 ※ If the menu type is "System Menu", "Plug-in", or "Table Data", it will be automatically filled when "Target" is selected.  
 
 #### Role groups that see it
-(From v7.2.0. Only for the menu type "Parent node".)
+(From v7.2.1. Only for the menu type "Parent node".)
 Show this parent node, with the menus in it, only to the members of the chosen role groups. Empty shows it to everyone, as before (each menu inside still follows its own permission). System administrators always see it.
 For example, show "Requests & approvals" only to the applicants and approvers, or an "Accounting" group only to the accounting staff.
 ※This only changes what is shown; permissions do not change. The tables and screens inside open according to their own permissions.
@@ -136,4 +136,4 @@ If you want to edit the menu, click the "Edit" link in the corresponding line.
 To delete a menu, click the "Delete" link in the corresponding line.
 ![Menu screen](img/menu/menu_delete.png)
 
-> On a site installed before v7.2.0, the **operation log** is not on the menu; add it from the list if you need it. A site newly installed with v7.2.0 or later has it under "Settings: Users & Permissions".  
+> On a site installed before v7.2.1, the **operation log** is not on the menu; add it from the list if you need it. A site newly installed with v7.2.1 or later has it under "Settings: Users & Permissions".  

@@ -65,7 +65,7 @@ The file format is zip.
 As a result, information such as tables, forms, views, and dashboards defined in the template is installed on the system.
 
 ### Bundled template: Request pack
-(From v7.2.0.) A template with approval requests, expense claims, business trip, payment and leave requests, together with an approval workflow. Import "Request pack" from "Install template".
+(From v7.2.1.) A template with approval requests, expense claims, business trip, payment and leave requests, together with an approval workflow. Import "Request pack" from "Install template".
 
 | What it adds | Contents |
 |---|---|
