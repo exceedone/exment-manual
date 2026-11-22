@@ -3,6 +3,7 @@
 
 ## v7.2.0 (2026/11/XX)
 <!-- TODO: the release date -->
+- <span class="red bold">The left menu is grouped by area of work ("Admin Setting" becomes three groups: "Settings: Data & Screens", "Settings: Users & Permissions", "Settings: System"). On an updated site only the menus still where Exment put them move; menus you moved stay.</span> See [here](/menu?id=the-menu-from-v720)
 - <span class="red bold">After the update, "Feature Management" and "Tuning" are added to the menu of "Admin Setting".</span>
 - <span class="red bold">On a site that has never used the Studio, the Studio is turned off.</span>
     - If someone has opened a page of the Studio or the phone app (`/app`) before the update, the Studio stays on and works as before.
@@ -36,6 +37,11 @@
     - Attachments of a record can be replaced. The previous file is kept as an older version; press "Version n" to see the earlier files (up to 10 per attachment; change it with `EXMENT_DOCUMENT_VERSION_LIMIT` in `.env`) ([#1866](https://github.com/exceedone/exment/pull/1866)). Details [here](/data_details?id=replace-and-older-versions-v720-or-later)
     - Dashboard aggregation cache: with a number of seconds in `EXMENT_DASHBOARD_CACHE_SECONDS` in `.env`, the results of the charts of summary views are kept per viewer (default `0` = off). Saving or deleting a record aggregates again ([#1852](https://github.com/exceedone/exment/pull/1852))
     - The number of rows a chart of a list view reads can be limited with `EXMENT_CHART_LIST_MAX_ROWS` in `.env` (default `0`: no limit, as before). Over the limit, it says "use a chart of a summary view" ([#1852](https://github.com/exceedone/exment/pull/1852), [#1877](https://github.com/exceedone/exment/pull/1877)). Details [here](/tuning?id=charts-of-list-views-exment_chart_list_max_rows)
+    - The left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/): Dashboard, Groupware (Documents, Mail), Requests & approvals, Projects, IT support, Master, Settings: Data & Screens, Settings: Users & Permissions, Settings: System. See [here](/menu?id=the-menu-from-v720)
+        - The menus of the official plugins go under their group (Project Management → Projects, IT Support → IT support, Groupware's Mail → Groupware).
+        - A group with nothing to show is not shown (the menus of features turned off in Feature management do not show).
+    - A parent node can have "Role groups that see it": it shows, with its menus, only to their members (and system administrators). See [here](/menu?id=role-groups-that-see-it)
+    - Bundled template "Request pack": approval requests, expense claims, business trip, payment and leave requests, with a submit / approve / send back workflow, applicant and approver role groups and a "Requests & approvals" menu. The approver is chosen when submitting. See [here](/template?id=bundled-template-request-pack)
 1. Improvements
     - Faster pages ([#1852](https://github.com/exceedone/exment/pull/1852))
         - Table classes are built only when they are used (on a site with 62 tables: 62 per request → 2–5, in our test environment).

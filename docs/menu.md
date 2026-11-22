@@ -8,6 +8,27 @@ In this menu, you can add menu items that transition to "pages prepared by the s
 
 ※From v7.1.0, "Safety Check", "Login Setting", "API Setting" and "System Performance Log", which the system administrator uses, are shown under "Admin Setting". "LINE Link" is shown in the user menu at the top right, not in the left menu ([LINE Link](/line?id=linking)). When updating from v7.0, a menu is moved only when it is still at the top. A menu you moved yourself stays where it is.
 
+
+### The menu from v7.2.0
+From v7.2.0 the left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/).
+
+```
+Dashboard
+Groupware ▸ Documents (file server), Mail (Groupware)
+Requests & approvals ▸ Pending tasks, approval requests, expense claims … (bundled template "Request pack")
+Projects ▸ Project Management (official plugin)
+IT support ▸ IT support (official plugin)
+Master ▸ Base Info, Organization, User, Information
+Settings: Data & Screens ▸ Custom Table, Studio, Menu, Workflow, Mail Template, Notify, Cell Style Preset, Template
+Settings: Users & Permissions ▸ LoginUser, Role Group, Login Setting, API Setting, Operation Log
+Settings: System ▸ System Setting, Feature Management, Plugin, Backup, Tuning, Maintenance Mode
+```
+
+- A newly installed site gets this menu.
+- On a site updated from v7.1 or earlier, only the menus still where Exment put them move (the admin settings still in Exment's order, "Manage Master" still third from the top, the file server still at the top). Menus you moved, names you gave and the menus of plugins stay. A site with other menus among the admin settings keeps one "Admin Setting".
+- The official plugins (Project Management, IT Support, Groupware) and the bundled templates put their menus under their group (made when missing). Only a menu at the top moves.
+- A group with nothing to show in it is not shown (the menus of features turned off in [Feature management](/feature) are not shown).
+
 ## Menu management
 Describes how to manage menus.
 
@@ -81,6 +102,13 @@ Enter the name to be displayed on the left menu.
 Enter the icon to be displayed on the left menu.  
 ※ If the menu type is "System Menu", "Plug-in", or "Table Data", it will be automatically filled when "Target" is selected.  
 
+#### Role groups that see it
+(From v7.2.0. Only for the menu type "Parent node".)
+Show this parent node, with the menus in it, only to the members of the chosen role groups. Empty shows it to everyone, as before (each menu inside still follows its own permission). System administrators always see it.
+For example, show "Requests & approvals" only to the applicants and approvers, or an "Accounting" group only to the accounting staff.
+※This only changes what is shown; permissions do not change. The tables and screens inside open according to their own permissions.
+※In an exported template, the role groups are written by their name. A site that imports it gets the role groups of the same name, if it has them.
+
 ### Save
 After filling in the settings, click “Submit”.  
 ※ After saving, if you refresh the browser or access Exment again, the items will be reflected in the left menu.
@@ -100,4 +128,4 @@ If you want to edit the menu, click the "Edit" link in the corresponding line.
 To delete a menu, click the "Delete" link in the corresponding line.
 ![Menu screen](img/menu/menu_delete.png)
 
-> The operation **log list** is not displayed in the menu item by default . If necessary, make settings from the list.  
+> On a site installed before v7.2.0, the **operation log** is not on the menu; add it from the list if you need it. A site newly installed with v7.2.0 or later has it under "Settings: Users & Permissions".  
