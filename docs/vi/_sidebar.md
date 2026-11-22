@@ -23,6 +23,7 @@
   * [Xác thực hai yếu tố](/vi/login_2factor.md)
 
 * 【4. Thiết lập bảng】
+  * [Studio](/vi/studio.md)
   * [Bảng tùy chỉnh](/vi/table.md)
   * [Cột tùy chỉnh](/vi/column.md)
   * [Thiết lập quan hệ (relation)](/vi/relation.md)
