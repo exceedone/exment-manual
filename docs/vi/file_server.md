@@ -62,6 +62,8 @@ Có 4 quyền. Quyền cao hơn làm được mọi việc của quyền thấp 
 
 ※Các tệp html, svg… không hiển thị trên màn hình vì lý do an toàn, chỉ tải xuống được.
 
+※Tệp nhận qua request link thì khi mở không tạo xem trước và không trích chữ. Chỉ tạo khi người có quyền Manage bấm "Make the preview" (tạo xem trước).
+
 <!-- Ảnh màn hình: trang của một tệp (img/file_server/file_server_file.png) -->
 
 ## Liên kết chia sẻ cho người bên ngoài
@@ -70,12 +72,13 @@ Có 4 quyền. Quyền cao hơn làm được mọi việc của quyền thấp 
 | Loại | Nội dung | Ai tạo được |
 | --- | --- | --- |
 | Share link (người bên ngoài xem và tải xuống) | Với thư mục, hiển thị cả nội dung bên trong. Bỏ "Allow the download" (cho phép tải xuống) thì chỉ xem trước. | Người có quyền Edit |
-| Request link (người bên ngoài tải lên) | Người bên ngoài đưa tệp vào thư mục. Họ không thấy tệp của người khác. Tệp cùng tên không bị ghi đè mà thành "tên (2)". | Người có quyền Upload |
+| Request link (người bên ngoài tải lên) | Người bên ngoài đưa tệp vào thư mục. Họ không thấy tệp của người khác. Tệp cùng tên không bị ghi đè mà thành "tên (2)". | Người có quyền Edit (từ 7.2.1; liên kết do người chỉ có quyền Upload tạo trước đây sẽ không mở được) |
 
-- Có thể đặt ngày hết hạn, mật khẩu và số lần được mở. "Take back" (thu hồi) để vô hiệu bất cứ lúc nào.
+- Có thể đặt ngày hết hạn, mật khẩu và số lần được mở. Mật khẩu từ 8 ký tự trở lên (`EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN`). "Take back" (thu hồi) để vô hiệu bất cứ lúc nào.
 - Liên kết không hợp lệ (hết hạn, đã thu hồi, quá số lần…) luôn hiện "The link cannot be opened" (không mở được liên kết).
 - Với người trong công ty, dùng "Copy the internal link" (sao chép liên kết nội bộ): chỉ người có quyền xem tệp mới mở được.
 - Muốn tắt liên kết chia sẻ, ghi `EXMENT_FILE_SERVER_EXTERNAL_SHARE=false` vào `.env`. Muốn bắt buộc có ngày hết hạn, ghi số ngày vào `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`.
+- Liên kết chia sẻ (`/share/...`) dành cho người bên ngoài nên mặc định không áp dụng bộ lọc IP web của cài đặt hệ thống. Muốn chỉ mở được từ trong công ty, ghi `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER=true` vào `.env`. Thiết lập này được đọc khi tạo route: trang dùng `php artisan route:cache` hãy chạy lại sau khi đổi.
 
 ## Cột (metadata)
 Trong cài đặt workspace, tạo các cột cho tệp (như "Khách hàng", "Loại").
@@ -109,16 +112,23 @@ Trong cài đặt workspace, tạo các cột cho tệp (như "Khách hàng", "L
 - **Queue**: ảnh thu nhỏ, xem trước và trích chữ chạy trên queue.
 - **Trích chữ lại**: `php artisan exment:file-server-index` trích chữ của các tệp chưa làm và dựng lại chỉ mục Meilisearch.
 - **Phần mềm khác** (đều không bắt buộc): LibreOffice (xem trước Office), pdftotext (chữ trong PDF), tesseract (OCR), Meilisearch (tìm nhanh).
+- **Chạy LibreOffice không có mạng**: tệp Office có thể đọc URL bên ngoài. Ghi lệnh đặt trước LibreOffice vào `EXMENT_FILE_SERVER_SOFFICE_PREFIX` để chuyển đổi không có mạng (ví dụ `unshare -rn`, `firejail --net=none --quiet`). Hãy kiểm tra trước lệnh đó chạy được trên máy chủ.
+- **Giới hạn tải lên**: tệp lớn được gửi theo từng phần. Mỗi tệp tối đa 2 GB (`EXMENT_FILE_SERVER_MAX_FILE_SIZE`), mỗi người tối đa 20 lượt tải chưa xong (`EXMENT_FILE_SERVER_MAX_UPLOADS`), tổng cộng tối đa 10 GB (`EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES`). Lượt tải chưa xong cũng được tính vào dung lượng của workspace. Lượt nào 60 phút không có gì gửi đến thì không tính, và bị xóa khi người đó bắt đầu lượt mới.
 
 ## Thiết lập chính (.env)
 | Thiết lập | Mặc định | Nội dung |
 | --- | --- | --- |
 | `EXMENT_FILE_SERVER_WORKSPACE_CREATE` | `admin` | Ai được tạo workspace (`admin`, `all`) |
-| `EXMENT_FILE_SERVER_MAX_FILE_SIZE` | `0` | Kích thước tối đa của một tệp (byte; 0 = không giới hạn) |
+| `EXMENT_FILE_SERVER_MAX_FILE_SIZE` | `2147483648` (2 GB) | Kích thước tối đa của một tệp (byte; 0 = không giới hạn; 2 GB từ 7.2.1) |
+| `EXMENT_FILE_SERVER_MAX_UPLOADS` | `20` | Số lượt tải chưa xong của một người |
+| `EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES` | `10737418240` (10 GB) | Tổng byte các lượt tải chưa xong của một người (0 = không giới hạn) |
 | `EXMENT_FILE_SERVER_EXTERNAL_SHARE` | `true` | Có dùng liên kết chia sẻ không |
 | `EXMENT_FILE_SERVER_SHARE_MAX_DAYS` | `0` | Số ngày tối đa của liên kết chia sẻ (0 = cho phép không hết hạn) |
 | `EXMENT_FILE_SERVER_SHARE_PATH` | `share` | Phần đầu URL của liên kết chia sẻ |
+| `EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN` | `8` | Số ký tự ngắn nhất của mật khẩu liên kết chia sẻ |
+| `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER` | `false` | Có áp dụng bộ lọc IP web cho liên kết chia sẻ không |
 | `EXMENT_FILE_SERVER_SOFFICE_PATH` | không có | Vị trí của LibreOffice (soffice) |
+| `EXMENT_FILE_SERVER_SOFFICE_PREFIX` | không có | Lệnh đặt trước LibreOffice (để chạy không có mạng) |
 | `EXMENT_FILE_SERVER_PDFTOTEXT_PATH` | không có | Vị trí của pdftotext |
 | `EXMENT_FILE_SERVER_OCR_PATH` | không có | Vị trí của tesseract |
 | `EXMENT_FILE_SERVER_MEILI` | `false` | Có dùng Meilisearch không |

@@ -62,6 +62,8 @@
 
 ※html・svg などは、安全のため画面には出さず、ダウンロードだけです。
 
+※受け取り用のリンクで社外から届いたファイルは、開いてもプレビューと文字の取り出しをしません。管理の権限がある人が「プレビューを作る」を押したときだけ作ります。
+
 <!-- 画面写真：ファイルの詳細（プレビュー・版の履歴・共有リンク）（img/file_server/file_server_file.png） -->
 
 ## 社外への共有リンク
@@ -70,12 +72,13 @@
 | リンクの種類 | 内容 | 作れる人 |
 | --- | --- | --- |
 | 共有リンク（社外の人が見る・ダウンロード） | フォルダーのときは中のものも見せます。「ダウンロードを許す」を外すと、プレビューだけです。 | 編集の権限がある人 |
-| 受け取り用のリンク（社外からアップロード） | 社外の人がフォルダーにファイルを入れます。ほかの人のファイルは見えません。同じ名前のファイルは上書きせず、「名前 (2)」にします。 | アップロードの権限がある人 |
+| 受け取り用のリンク（社外からアップロード） | 社外の人がフォルダーにファイルを入れます。ほかの人のファイルは見えません。同じ名前のファイルは上書きせず、「名前 (2)」にします。 | 編集の権限がある人（7.2.1 から。前にアップロードの権限だけの人が作ったリンクは開かなくなります） |
 
-- 有効期限・パスワード・開ける回数を付けられます。「取り消す」で、いつでも無効にできます。
+- 有効期限・パスワード・開ける回数を付けられます。パスワードは 8 文字以上です（`EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN`）。「取り消す」で、いつでも無効にできます。
 - 無効なリンク（期限切れ・取り消し済み・回数の上限など）は、どれも「リンクを開けません」と出ます。
 - 社内の人に渡すときは「社内リンクをコピー」を使います。開けるのは、そのファイルを見る権限のある人だけです。
 - 社外への共有リンクを使わせないときは、`.env` に `EXMENT_FILE_SERVER_EXTERNAL_SHARE=false` を書きます。有効期限を必ず付けさせるときは、`EXMENT_FILE_SERVER_SHARE_MAX_DAYS` に日数を書きます。
+- 共有リンク（`/share/...`）は、社外の人に渡すものなので、ふだんはシステム設定の Web の IP フィルターを当てません。社内からだけ開かせたいときは、`.env` に `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER=true` を書きます。ルートを作るときに読む設定なので、`php artisan route:cache` を使っているサイトは、変えたあとにもう一度実行してください。
 
 ## 列（メタデータ）
 ワークスペースの設定で、ファイルに付ける列（「顧客」「種類」など）を作れます。
@@ -109,16 +112,23 @@
 - **キュー**：サムネイル・プレビュー・文字の取り出しは、キューで動きます。
 - **文字の取り出しをやり直す**：`php artisan exment:file-server-index` で、まだのファイルの文字を取り出し、Meilisearch の索引を作り直します。
 - **ほかのソフト**（どれも、なくても動きます）：LibreOffice（Office のプレビュー）・pdftotext（PDF の文字）・tesseract（OCR）・Meilisearch（速い検索）。
+- **LibreOffice をネットワークなしで動かす**：Office のファイルは外の URL を読みにいくことがあります。`EXMENT_FILE_SERVER_SOFFICE_PREFIX` に、LibreOffice の前に付けるコマンドを書くと、ネットワークなしで変換できます（例：`unshare -rn`、`firejail --net=none --quiet`）。サーバーでそのコマンドが使えるか、先に確かめてください。
+- **アップロードの上限**：大きいファイルは分けて送ります。1 つのファイルは 2 GB まで（`EXMENT_FILE_SERVER_MAX_FILE_SIZE`）、1 人が途中にしておけるアップロードは 20 個まで（`EXMENT_FILE_SERVER_MAX_UPLOADS`）、その合計は 10 GB まで（`EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES`）です。途中のアップロードもワークスペースの容量に数えます。60 分なにも届かないものは数えず、その人が次に始めるときに消します。
 
 ## 主な設定（.env）
 | 設定 | 既定 | 内容 |
 | --- | --- | --- |
 | `EXMENT_FILE_SERVER_WORKSPACE_CREATE` | `admin` | ワークスペースを作れる人（`admin`・`all`） |
-| `EXMENT_FILE_SERVER_MAX_FILE_SIZE` | `0` | 1 ファイルの大きさの上限（バイト。0 は上限なし） |
+| `EXMENT_FILE_SERVER_MAX_FILE_SIZE` | `2147483648`（2 GB） | 1 ファイルの大きさの上限（バイト。0 は上限なし。7.2.1 から 2 GB） |
+| `EXMENT_FILE_SERVER_MAX_UPLOADS` | `20` | 1 人が途中にしておけるアップロードの数 |
+| `EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES` | `10737418240`（10 GB） | 1 人の途中のアップロードの合計（バイト。0 は上限なし） |
 | `EXMENT_FILE_SERVER_EXTERNAL_SHARE` | `true` | 社外への共有リンクを使うか |
 | `EXMENT_FILE_SERVER_SHARE_MAX_DAYS` | `0` | 共有リンクの有効期限の上限（日。0 は期限なしも可） |
 | `EXMENT_FILE_SERVER_SHARE_PATH` | `share` | 共有リンクの URL の最初の部分 |
+| `EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN` | `8` | 共有リンクのパスワードの最短の文字数 |
+| `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER` | `false` | 共有リンクにも Web の IP フィルターを当てるか |
 | `EXMENT_FILE_SERVER_SOFFICE_PATH` | なし | LibreOffice（soffice）の場所 |
+| `EXMENT_FILE_SERVER_SOFFICE_PREFIX` | なし | LibreOffice の前に付けるコマンド（ネットワークなしで動かす） |
 | `EXMENT_FILE_SERVER_PDFTOTEXT_PATH` | なし | pdftotext の場所 |
 | `EXMENT_FILE_SERVER_OCR_PATH` | なし | tesseract の場所 |
 | `EXMENT_FILE_SERVER_MEILI` | `false` | Meilisearch で探すか |

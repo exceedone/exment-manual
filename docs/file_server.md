@@ -62,6 +62,8 @@ Images, video, audio, PDF and text are shown on the page. How Office files (docx
 
 ※html, svg and similar files are not shown on the page for safety; they can only be downloaded.
 
+※Files that came in through a request link get no preview and no text extraction when they are opened. They are made only when a user with Manage presses "Make the preview".
+
 <!-- Screenshot: a file (preview, version history, share links) (img/file_server/file_server_file.png) -->
 
 ## Share links for people outside
@@ -70,12 +72,13 @@ Give files and folders to people outside who do not log in, or receive files fro
 | Kind | Content | Who can make it |
 | --- | --- | --- |
 | Share link (people outside see and download) | A folder shows what is in it. Without "Allow the download", it is preview only. | Users with Edit |
-| Request link (people outside upload) | People outside put files in a folder. They cannot see others' files. A file with the same name is not overwritten: it becomes "name (2)". | Users with Upload |
+| Request link (people outside upload) | People outside put files in a folder. They cannot see others' files. A file with the same name is not overwritten: it becomes "name (2)". | Users with Edit (from 7.2.1; links made before by users with Upload only stop opening) |
 
-- A link can have an expiry date, a password and a number of times it can be opened. "Take back" stops it at any time.
+- A link can have an expiry date, a password and a number of times it can be opened. A password has 8 characters or more (`EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN`). "Take back" stops it at any time.
 - An invalid link (expired, revoked, opened too many times and so on) always shows "The link cannot be opened".
 - For people inside, use "Copy the internal link": only those who may see the file can open it.
 - To turn share links off, set `EXMENT_FILE_SERVER_EXTERNAL_SHARE=false` in `.env`. To require an expiry date, set the days in `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`.
+- Share links (`/share/...`) are for people outside, so the web IP filter of the system settings is not applied to them by default. To let them open only from inside, set `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER=true` in `.env`. It is read when the routes are made: a site that uses `php artisan route:cache` runs it again after the change.
 
 ## Columns (metadata)
 In the workspace settings, make columns for the files (as "Customer" or "Kind").
@@ -109,16 +112,23 @@ In "Related data" on the page of a file, link it to records of Exment tables (as
 - **Queue**: thumbnails, previews and text extraction run on the queue.
 - **Extract text again**: `php artisan exment:file-server-index` extracts the text of files not done yet and rebuilds the Meilisearch index.
 - **Other software** (all optional): LibreOffice (Office previews), pdftotext (text of PDF), tesseract (OCR), Meilisearch (faster search).
+- **LibreOffice without the network**: Office files may load URLs from outside. Put a command before LibreOffice in `EXMENT_FILE_SERVER_SOFFICE_PREFIX` to convert without the network (e.g. `unshare -rn`, `firejail --net=none --quiet`). Check first that the command works on the server.
+- **Upload limits**: large files are sent in parts. A file is up to 2 GB (`EXMENT_FILE_SERVER_MAX_FILE_SIZE`), a user may have up to 20 uploads not finished (`EXMENT_FILE_SERVER_MAX_UPLOADS`), up to 10 GB together (`EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES`). Uploads not finished count toward the space of the workspace. One with nothing sent for 60 minutes is not counted, and is removed when the user starts another.
 
 ## Main settings (.env)
 | Setting | Default | Content |
 | --- | --- | --- |
 | `EXMENT_FILE_SERVER_WORKSPACE_CREATE` | `admin` | Who may make workspaces (`admin`, `all`) |
-| `EXMENT_FILE_SERVER_MAX_FILE_SIZE` | `0` | Max size of a file (bytes; 0 = no limit) |
+| `EXMENT_FILE_SERVER_MAX_FILE_SIZE` | `2147483648` (2 GB) | Max size of a file (bytes; 0 = no limit; 2 GB from 7.2.1) |
+| `EXMENT_FILE_SERVER_MAX_UPLOADS` | `20` | Uploads a user may have not finished |
+| `EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES` | `10737418240` (10 GB) | Bytes of a user's uploads not finished, together (0 = no limit) |
 | `EXMENT_FILE_SERVER_EXTERNAL_SHARE` | `true` | Whether share links are used |
 | `EXMENT_FILE_SERVER_SHARE_MAX_DAYS` | `0` | Max days of a share link (0 = links without expiry allowed) |
 | `EXMENT_FILE_SERVER_SHARE_PATH` | `share` | The first part of the URL of a share link |
+| `EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN` | `8` | The shortest password of a share link |
+| `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER` | `false` | Whether share links take the web IP filter too |
 | `EXMENT_FILE_SERVER_SOFFICE_PATH` | none | Where LibreOffice (soffice) is |
+| `EXMENT_FILE_SERVER_SOFFICE_PREFIX` | none | A command put before LibreOffice (to run it without the network) |
 | `EXMENT_FILE_SERVER_PDFTOTEXT_PATH` | none | Where pdftotext is |
 | `EXMENT_FILE_SERVER_OCR_PATH` | none | Where tesseract is |
 | `EXMENT_FILE_SERVER_MEILI` | `false` | Whether Meilisearch is used |
