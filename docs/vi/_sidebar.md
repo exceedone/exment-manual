@@ -9,6 +9,7 @@
   * [Quy trình cài đặt](/vi/quickstart.md)
   * [Thiết lập ban đầu](/vi/first_setting.md)
   * [Thiết lập hệ thống](/vi/system_setting.md)
+  * [Quản lý tính năng](/vi/feature.md)
   * [Basic information (English)](/base_info.md)
   * [Cập nhật phiên bản](/vi/update.md)
   * [Thiết lập bổ sung](/vi/quickstart_more.md)
