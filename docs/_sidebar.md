@@ -65,6 +65,7 @@
   * [Public form settings](/publicform)
  
 * 【9. Other standard functions】
+  * [File server](/file_server)
   * [Template](/template.md)
   * [Backup](/backup.md)
   * [Menu](/menu.md)
