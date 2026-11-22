@@ -36,3 +36,4 @@ for (const file of files) {
   }
 }
 console.log('pages', files.length, 'with errors', bad)
+process.exitCode = bad ? 1 : 0

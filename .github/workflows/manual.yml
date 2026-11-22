@@ -22,6 +22,8 @@ jobs:
           cache: npm
           cache-dependency-path: vitepress/package-lock.json
       - run: npm ci
+      # the pages whose HTML Vue cannot read, with the line (the build only names the first)
+      - run: node prepare.mjs && node check-html.mjs
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
