@@ -49,7 +49,9 @@ The page of a Word, Excel or PowerPoint file of the [file server](/file_server) 
 - It opens the editor in a new tab. **Save** adds a new version of the file (older ones stay in the version history).
 - While the file is open for editing it is **checked out**, so nobody else can change it. It is checked in when the editor is closed. A user who may only view the file, or a file someone else has checked out, opens read-only.
 - A save after someone else saved in between is refused, so nothing is overwritten.
-- When the server has no LibreOffice, the editor is shown read-only in the preview of the file page.
+- When the server has no LibreOffice, the editor is shown read-only in the preview of the file page. **LibreOffice is not needed** (ibisOffice runs in the browser).
+- Close (× at the top right) checks the file in and leaves the editor: a tab opened by "Open in Office" is closed, otherwise the file page comes back (0.4.4 or later). The preview has no Close.
+- **An empty file** (0 bytes, such as Windows makes with New > Word document) opens as a new document of the kind its extension says (docx, xlsx, pptx). Saving makes it a real document under that name (0.4.4 or later; before, it opened as a spreadsheet).
 
 ### Attachments of records
 Word, Excel and PowerPoint files attached to records can also be seen in the browser's Office (as the files of issues, wiki pages and projects of Project Management). This works without the file server.
@@ -68,8 +70,9 @@ Word, Excel and PowerPoint files attached to records can also be seen in the bro
 ## Requirements
 - Exment 7.1 or later (checked on 7.1 and 7.2) and PHP 8.2 or later. The web mail and record attachments work on both.
 - Opening files of the file server needs an Exment with the file server (v7.2.0 or later). Without it, only that part does nothing.
-- The `zip` extension is needed only to install ibisOffice.
+- Installing ibisOffice needs the `zip` extension of PHP and a writable `public/` of the site (about 125 MB).
 - Office needs a browser with WebGPU (Chrome, Edge, or Safari 26 or later) and a site on HTTPS.
+- Neither LibreOffice nor Docker is needed. It works on rental servers such as XServer (the server only hands out the files; Office runs in the browser).
 
 ## Install
 1. Install the plugin: from Feature Management on Exment v7.2.0 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
@@ -78,10 +81,37 @@ Word, Excel and PowerPoint files attached to records can also be seen in the bro
 On a site with several web servers, or where `public/` cannot be written, serve the unpacked release elsewhere and enter the URL of the folder with `index.html` in "ibisOffice の場所（URL）" of the plugin's settings.
 
 ### The web server
-- Send `.wasm` as `application/wasm` (recent nginx and Apache do by default).
-- Compress `.wasm` and `.js` with gzip or Brotli (the wasm is 92 MB; about a quarter compressed). For nginx: `gzip_types application/wasm application/javascript text/javascript;`.
-- The folder carries the version, so the files can be cached long (`Cache-Control: public, max-age=31536000, immutable`).
+The editor is large (the `.wasm` is 92 MB, about 24 MB gzipped). Sent compressed and kept by the browser, it is downloaded only once; otherwise every opening can wait about 10 seconds.
+
+**Apache (rental servers such as XServer included)**
+- From 0.4.4 the installer writes `.gz` copies of the large files and `public/vendor/exment_groupware/ibisoffice/.htaccess`: the `.wasm` type, a year's cache, and the `.gz` copies to browsers that accept gzip (`mod_deflate` when a copy is missing).
+- Every rule sits in an `IfModule`, so a missing module is skipped. Check only that `.htaccess` is allowed there (`AllowOverride All`, which Exment's own `.htaccess` needs as well).
+- An ibisOffice installed by 0.4.3 or older gets the copies and the `.htaccess` when you install it again from the plugin page after updating to 0.4.4.
+
+**nginx**
+nginx does not read `.htaccess`. Add this to the site and reload:
+
+```nginx
+# inside the site's server { }, before location /
+location ^~ /vendor/exment_groupware/ibisoffice/ {
+    gzip_static on;            # the .gz copies written at install
+    gzip on;                   # compress anything without one
+    gzip_types application/wasm text/javascript application/javascript text/css application/json image/svg+xml;
+    types { application/wasm wasm; }
+    expires 1y;
+    add_header Cache-Control "public, max-age=31536000, immutable" always;
+    # add_header here drops the server { } ones: repeat them
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+    try_files $uri =404;
+}
+```
+
+**Any web server**
+- **X-Frame-Options must be `SAMEORIGIN`, not `DENY`.** The editor is an `iframe` of the same site, and with `DENY` the browser refuses it (the screen stays empty). Set a Content-Security-Policy `frame-ancestors` to `'self'` as well.
 - A site with a Content-Security-Policy needs `script-src 'self' 'wasm-unsafe-eval'`.
+- No COOP / COEP headers are needed.
 
 ## The licence of ibisOffice
 ibisOffice is software of ibis inc. under AGPL-3.0-only and a commercial licence. This plugin runs ibisOffice as it is released (not modified) in its own frame, and does not carry it (it is downloaded from the release of ibis inc.). The editor page and the plugin page show "Powered by ibisOffice".
