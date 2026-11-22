@@ -5,7 +5,7 @@ Exment is used by many sites, so a new feature is off at first. Until a system a
 ※This page is available in Exment v7.2.1 or later.
 
 ## The page
-Log in as a system administrator and open "Admin Setting" → "Feature Management" (the URL is `/admin/feature`).  
+Log in as a system administrator and open "Admin Setting" → "Feature Management" (the URL is `/feature`).  
 Only system administrators can open this page.
 
 <!-- Screenshot: the whole Feature Management page (img/feature/feature_index.png). Take it after exment PR #1861 is merged -->

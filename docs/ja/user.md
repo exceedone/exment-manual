@@ -30,11 +30,11 @@ Exmentにログイン出来るようになるまでの流れは、上記のよ�
 左メニューより、「ユーザー」をクリックします。  
 もしくは、以下のURLにアクセスしてください。  
 これにより、ログインユーザー設定画面が表示されます。
-http(s)://(ExmentのURL)/admin/data/user  
+http(s)://(ExmentのURL)/data/user  
 現在システムで登録されているユーザーの一覧が表示されます。
 ![ユーザー画面](img/user/user_grid1.png)
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ### ユーザーの新規追加
 - 「ユーザー」の一覧画面で、ページ右上の［新規］ボタンをクリックします。

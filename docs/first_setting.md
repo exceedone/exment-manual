@@ -3,9 +3,9 @@ After installation, it is the initial setup procedure such as the first administ
 
 ## URL access  
 Access the Exment page.  
-http(s)://(your site URL)/admin  
+http(s)://(your site URL)  
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ## Initial setting screen  
 If the installation has been completed successfully, the Exment initial setting screen will be displayed.  

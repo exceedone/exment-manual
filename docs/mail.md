@@ -5,11 +5,11 @@ Set the subject, body, etc. of the email when sending email from the system.
 ### Page display
 - From the left menu, select "Email template".  
 Or access the following URL.  
-http(s)://(Exment URL)/admin/ mail  
+http(s)://(Exment URL)/ mail  
 This will display the plugin screen.  
 ![Email template screen](img/mail/mail_grid1.png)  
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ### Add new template
 - On the "Email Template" screen, click the "New" button at the top right of the page.

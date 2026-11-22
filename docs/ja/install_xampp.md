@@ -127,7 +127,7 @@ EXMENT_MYSQL_BIN_DIR="C:/xampp/mysql/bin"
 ![XAMPPインストール画面](img/xampp/xampp7.png)
 
 - これにより、今後は以下のURLで、Exmentにアクセス出来るようになります。  
-http://exment.localapp/admin
+http://exment.localapp
 
 ### Exmentインストール
 Exmentの[インストール手順](/ja/quickstart)に従って、Exmentのインストールを行います。  

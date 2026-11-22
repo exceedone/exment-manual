@@ -4,7 +4,7 @@ Studio là chức năng để tạo, sửa và xem tổng quan các màn hình. 
 ※Các chức năng ở đây có đầy đủ từ Exment v7.2.1.
 
 ## Bắt đầu sử dụng
-- Studio ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "Studio" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), menu "Studio" sẽ hiện dưới "Admin Setting" (URL là `/admin/studio`).
+- Studio ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "Studio" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), menu "Studio" sẽ hiện dưới "Admin Setting" (URL là `/studio`).
 - Trong số người được chọn ở Feature Management, Studio mở được cho người có quyền thiết lập bảng, form hoặc view của một bảng bất kỳ, và cho quản trị viên hệ thống.
 
 | Việc | Quyền cần có |
@@ -113,7 +113,7 @@ Màn hình nhập tạo bằng Studio được sửa trên chính màn hình đ�
 <!-- Ảnh màn hình: sửa bằng Studio (img/studio/studio_edit.png) -->
 
 ## Ứng dụng điện thoại (Exment app)
-Mở `/admin/app` bằng trình duyệt trên điện thoại để dùng màn hình của Studio như một ứng dụng. "Thêm vào màn hình chính" để mở như ứng dụng.
+Mở `/app` bằng trình duyệt trên điện thoại để dùng màn hình của Studio như một ứng dụng. "Thêm vào màn hình chính" để mở như ứng dụng.
 
 - **Màn hình**: hiện các màn hình nhập của những bảng bạn dùng được. Mở ra là danh sách; nút "+" ở góc dưới bên phải để thêm dữ liệu.
 - **Ảnh, tệp**: ở mục tệp hoặc ảnh, chụp ảnh ngay tại chỗ. Ảnh được thu nhỏ trên điện thoại trước khi gửi.

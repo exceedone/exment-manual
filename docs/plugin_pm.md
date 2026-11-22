@@ -55,7 +55,7 @@ Download the newest zip from [Releases](https://github.com/exceedone/exment-plug
 - When "ExmentPM" appears in the list below, the upload is done. No tables or menus exist yet.
 
 ### 3. First-time setup
-- As a system administrator, open `/admin/plugins/exment_pm` (on Exment SaaS `/plugins/exment_pm`).
+- As a system administrator, open `/plugins/exment_pm` (on Exment SaaS `/plugins/exment_pm`).
 - The 「初期セットアップ」 (First-time setup) screen opens. Check the list of tables to be made and press 「テーブルを作成する」 (Create the tables).
 
 ![First-time setup](img/plugin_pm/pm_setup.png)
@@ -202,7 +202,7 @@ Each project can ask for a Git repository (Gitea or Forgejo).
 ※On Exment SaaS, also see [On Exment SaaS](/plugin_pm?id=on-exment-saas).
 
 ### Moving to 1.4.0 (if you have PmPortal or ExmentPluginPM)
-In 1.4.0 the internal name became `ExmentPM` and the address `/admin/plugins/exment_pm`. On an Exment that already has PmPortal (1.2.0 or older) or ExmentPluginPM (1.3.0), uploading the zip as it is stops with "UUID exists but the plugin name is wrong". Do the steps in ["Moving to ExmentPM" in the README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行) once. Links and bookmarks to the old address (`/admin/plugins/pm_portal/...`) stop working.
+In 1.4.0 the internal name became `ExmentPM` and the address `/plugins/exment_pm`. On an Exment that already has PmPortal (1.2.0 or older) or ExmentPluginPM (1.3.0), uploading the zip as it is stops with "UUID exists but the plugin name is wrong". Do the steps in ["Moving to ExmentPM" in the README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行) once. Links and bookmarks to the old address (`/plugins/pm_portal/...`) stop working.
 
 ※On Exment SaaS, the operators do it for all sites, so you do not need to do anything.
 
@@ -280,7 +280,7 @@ Check 「⚙ 設定」 > 「データ構造の更新」. If it says 「データ
 Tables with the same names already exist. Enter 「テーブル名の接頭辞」 (a table name prefix) to make them under other names.
 
 ### Old links do not open after 1.4.0
-In 1.4.0 the address changed from `/admin/plugins/pm_portal` to `/admin/plugins/exment_pm` (on Exment SaaS, from `/plugins/pm_portal` to `/plugins/exment_pm`). Links and bookmarks to the old address end in "404 not found". The menu, the bells and newly sent mail use the new address. Links written in issue bodies, comments and wiki pages can be rewritten with `tools/rewrite-old-links.php` in the [README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md).
+In 1.4.0 the address changed from `/plugins/pm_portal` to `/plugins/exment_pm` (on Exment SaaS, from `/plugins/pm_portal` to `/plugins/exment_pm`). Links and bookmarks to the old address end in "404 not found". The menu, the bells and newly sent mail use the new address. Links written in issue bodies, comments and wiki pages can be rewritten with `tools/rewrite-old-links.php` in the [README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md).
 
 ### The plugin has a different name (PmPortal, ExmentPluginPM)
 It is the same plugin. Its name changed from PmPortal (up to 1.2.0) to ExmentPluginPM (1.3.0) and to ExmentPM (from 1.4.0). To bring an Exment that still has an old name to 1.4.0, see [Moving to 1.4.0](/plugin_pm?id=moving-to-140-if-you-have-pmportal-or-exmentpluginpm).

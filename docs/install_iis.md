@@ -331,7 +331,7 @@ Once we know the minimum access rights, we will revise this section accordingly.
     7. Click \[OK\] twice to close the properties
 -->
 
-17. Start your browser (Chrome or Microsoft Edge) and access http://localhost/(virtual directory alias)/admin (for example, http://localhost/exment/admin)  
+17. Start your browser (Chrome or Microsoft Edge) and access http://localhost/(virtual directory alias) (for example, http://localhost/exment; a site with "admin" in `ADMIN_ROUTE_PREFIX` is at http://localhost/exment/admin)  
 The Exment installation page appears.
 > Exment does not support display in Internet Explorer. Use Chrome or Microsoft Edge to access Exment
 

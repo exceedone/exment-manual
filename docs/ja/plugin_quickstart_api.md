@@ -48,12 +48,12 @@ https://www.famkruithof.net/uuid/uuidgen
 - plugin_typeは、apiと記入してください。  
 - uriは、このプラグイン共通のエンドポイントを記入してください。プラグイン管理画面で設定し直すことができます。  
 - routeは、処理毎のエンドポイントとHTTPメソッド、Contoller内でのメソッド名を一覧で定義します。
-    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/admin/api/plugins/(プラグイン共通のエンドポイント)/(指定したuri)」になります。  
+    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/api/plugins/(プラグイン共通のエンドポイント)/(指定したuri)」になります。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
     - function：実行するContoller内のメソッド名です。
     - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「admin/api/plugins/sampleapi/column（メソッド：GET）」。
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ### Pluginファイル作成
 
@@ -146,10 +146,10 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 ### アクセス
 URLを入力し、APIにアクセスを行います。  
 URLは、以下のように設定されます。  
-http(s)://(ExmentのURL)/admin/api/plugins/(プラグイン名)  
+http(s)://(ExmentのURL)/api/plugins/(プラグイン名)  
 
 例：プラグイン名が"sampleapi"の場合  
-http(s)://(ExmentのURL)/admin/api/plugins/sampleapi
+http(s)://(ExmentのURL)/api/plugins/sampleapi
 
 
 ### その他

@@ -74,12 +74,12 @@ https://www.famkruithof.net/uuid/uuidgen
 - route defines a list of URL endpoints to execute, their HTTP methods, and methods in Controller.  
 * Basically, View only displays the list screen, so you do not need to set the route. However, if you want to perform asynchronous request / response by ajax, please implement the definition.  
 
-    - uri: This is a uri for page display. The actual URL will be "http(s)://(Exment URL)/admin/plugins/(URL set on the Plugin management screen)/(specified uri)".
+    - uri: This is a uri for page display. The actual URL will be "http(s)://(Exment URL)/plugins/(URL set on the Plugin management screen)/(specified uri)".
     - method: HTTP method. Please fill in with get, post, put, delete.
     - function: Method in Controller to execute
-    - Example: If the URL set on the Plugin management screen is "youtube_search", the uri specified in config.json is "list", and the specified method is "get", "http(s)://(Exment URL)/admin/plugins/youtube_search/list (method: GET) ".  
+    - Example: If the URL set on the Plugin management screen is "youtube_search", the uri specified in config.json is "list", and the specified method is "get", "http(s)://(Exment URL)/plugins/youtube_search/list (method: GET) ".  
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ### Plugin file creation
 

@@ -30,11 +30,11 @@ Phần này mô tả cách quản lý thông tin của tất cả người dùng
 Nhấp vào "Users" (Người dùng) trên menu bên trái.  
 Hoặc truy cập URL dưới đây.  
 Khi đó, màn hình thiết lập người dùng đăng nhập sẽ được hiển thị.
-http(s)://(URL của Exment)/admin/data/user  
+http(s)://(URL của Exment)/data/user  
 Danh sách người dùng hiện đang được đăng ký trong hệ thống sẽ được hiển thị.
 ![Màn hình người dùng](../img/user/user_grid1.png)
 
-> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
+> Lưu ý: URL là theo thiết lập mặc định không có "/admin" (trang cài mới từ v7.2.1). Nếu `ADMIN_ROUTE_PREFIX` trong `.env` có giá trị (trang cũ là "admin"), hãy thêm giá trị đó sau URL của trang (ví dụ `http(s)://(URL của Exment)/admin/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
 
 ### Thêm mới người dùng
 - Trên màn hình danh sách "Users", nhấp vào nút [New] ở góc trên bên phải của trang.

@@ -5,7 +5,7 @@ Exment được dùng ở rất nhiều trang, nên tính năng mới ban đầu
 ※Màn hình này dùng được từ Exment v7.2.1 trở đi.
 
 ## Màn hình thiết lập
-Đăng nhập bằng quản trị viên hệ thống và mở "Admin Setting" (cài đặt quản trị) → "Feature Management" (quản lý tính năng) (URL là `/admin/feature`).  
+Đăng nhập bằng quản trị viên hệ thống và mở "Admin Setting" (cài đặt quản trị) → "Feature Management" (quản lý tính năng) (URL là `/feature`).  
 Chỉ quản trị viên hệ thống mới mở được màn hình này.
 
 <!-- Ảnh màn hình: toàn bộ màn hình Feature Management (img/feature/feature_index.png). Chụp sau khi exment PR #1861 được merge -->

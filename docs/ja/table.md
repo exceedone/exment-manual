@@ -24,13 +24,13 @@ Exmentでは、情報管理を行うために「カスタムテーブル」を�
 
 #### テーブル名(英数字) ※必須
 - テーブルの名前を表します。(例：user , information , estimate )  
-- 設定した英数字はテーブルを開いた際のURLなどで使用されます。(例：http(s)://(ExmentのURL)/admin/data/user)  
+- 設定した英数字はテーブルを開いた際のURLなどで使用されます。(例：http(s)://(ExmentのURL)/data/user)  
 - 使用できるのは、半角英数字と記号の "-" と "_" です。
 - 他のテーブルで使用しているテーブル名は使用できません。  
 - テーブル名の文字数は30文字以内、テーブル名の先頭は英字を指定してください。  
 - テーブルの新規作成時にのみ設定できます。保存後は変更できません。  
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ![カスタムテーブル画面](img/table/table_detail1.png)
 

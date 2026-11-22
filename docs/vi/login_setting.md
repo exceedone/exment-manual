@@ -16,10 +16,10 @@ Sau khi nhập thông tin người dùng và đăng nhập, người dùng nhậ
 ## Cách quản lý thiết lập đăng nhập
 
 - Quản trị viên hệ thống nhập URL sau.  
-http(s)://(URL của Exment)/admin/login_setting  
+http(s)://(URL của Exment)/login_setting  
 ※ Có thể truy cập sau khi thực hiện "thay đổi thiết lập hệ thống" đã nêu ở trên.
 
-> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
+> Lưu ý: URL là theo thiết lập mặc định không có "/admin" (trang cài mới từ v7.2.1). Nếu `ADMIN_ROUTE_PREFIX` trong `.env` có giá trị (trang cũ là "admin"), hãy thêm giá trị đó sau URL của trang (ví dụ `http(s)://(URL của Exment)/admin/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
 
 - Từ v7.1.0, cũng có thể mở từ "Admin Setting" > "Login Setting" ở menu bên trái.
 - Ở v7.0 trở về trước, theo thiết lập mặc định "Login Setting" không được hiển thị trên menu. Để thêm vào menu, mở trang "Admin Settings" > "Menu", chọn loại menu "System Menu", khi đó mục "Login Setting" sẽ được hiển thị; hãy chọn mục này rồi lưu lại.

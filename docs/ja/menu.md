@@ -47,11 +47,11 @@ ITサポート ▸ ITサポート（公式プラグイン）
 左メニューより、「メニュー」をクリックします。  
 もしくは、以下のURLにアクセスしてください。  
 これにより、メニュー設定画面が表示されます。
-http(s)://(ExmentのURL)/admin/auth/menu  
+http(s)://(ExmentのURL)/auth/menu  
 現在システムで登録されているメニューの一覧が表示されます。
 ![メニュー画面](img/menu/menu_grid1.png)
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ### メニューの新規追加
 「メニュー」の一覧画面で、ページ右の「新規」ボックスに、必要事項を入力します。  
@@ -99,7 +99,7 @@ Exmentで用意しているメニュー項目を追加したい場合に選択�
 
 - メニュー種類が「カスタムURL」の場合：クリック時に遷移するURIを記入してください。  
 ※実際に遷移するページのURLは、以下のようになります。
-http(s)://(ExmentのURL)/admin/(記入したURI)
+http(s)://(ExmentのURL)/(記入したURI)
 ![メニュー画面](img/menu/menu_new8.png)
 
 > v3.0.2未満で初回インストールを行った方で、URIに登録できる文字数上限が50字未満に設定されていました。それ以上の文字数のURIを登録する場合、[こちら](/ja/patch/menu_uri_length)で対応を行ってください。

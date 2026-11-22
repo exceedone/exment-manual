@@ -6,7 +6,7 @@ When using the following functions, set according to the procedure.
 ### List of settings
 
 - [Change / delete "admin" in URL Change / delete](/additional_prefix)  
-"/admin" in URL, which is normally included.
+The value such as "/admin" in front of the URLs (a site newly installed with v7.2.1 or later has none by default).
 
 - [Task Schedule](/additional_task_schedule)  
 This is a setting method for performing automatic processing at a certain time, such as automatic creation of backups and notification of deadlines.  

@@ -32,11 +32,11 @@ Exmentでは、データのバックアップとリストアを行うことが�
 ## 画面
 - 左メニューより、「管理者設定 > バックアップ」を選択します。  
 もしくは、以下のURLにアクセスしてください。  
-http(s)://(ExmentのURL)/admin/backup  
+http(s)://(ExmentのURL)/backup  
 これにより、バックアップ画面が表示されます。
 ![バックアップ画面](img/backup/backup1.png)
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ## バックアップ
 バックアップを行う方法として、「手動」と「自動」の2種類あります。  

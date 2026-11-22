@@ -57,11 +57,11 @@ sudo usermod -aG docker $USER
 
 ### 3. Exment を動かす
 - ファイルは Ubuntu の中（例: `~/exment`）に置き、以下の「Dockerによるインストール手順」を Ubuntu の画面で実行します。C ドライブ（`/mnt/c/...`）に置くと、動作がとても遅くなります。
-- Windows のブラウザーで http://localhost/admin を開きます。
+- Windows のブラウザーで http://localhost を開きます。
 
 ### 注意
 - WSL2 は、しばらく使わないと自動で停止し、Docker のコンテナも停止します。使うときは、Ubuntu を開いて `make mysql-up`（お使いのデータベースに合わせて）を実行してください。
-- Windows の 80 番ポートをほかのソフトが使っている場合は、docker-exment の `.env` の `EXMENT_DOCKER_HTTP_PORTS` を `8080` などに変えてください。そのときは http://localhost:8080/admin で開きます。
+- Windows の 80 番ポートをほかのソフトが使っている場合は、docker-exment の `.env` の `EXMENT_DOCKER_HTTP_PORTS` を `8080` などに変えてください。そのときは http://localhost:8080 で開きます。
 
 ## Dockerによるインストール手順
 
@@ -122,7 +122,7 @@ $ make sqlsrv-up
 
 ### Exment初期設定
 - 以下のサイトにアクセスし、Exmentの初期設定を行ってください。(※Webサーバーのポートを変更した場合、そのポートでアクセスを行ってください)  
-http://localhost/admin
+http://localhost
 
 
 - データベース情報は以下の通りです。(※ポートは内部ポート番号を参照するので、envでポートを変更していても、3306固定になります)

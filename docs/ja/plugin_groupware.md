@@ -6,7 +6,7 @@
 
 - ソースコード・説明：[exceedone/exment-plugins（groupware）](https://github.com/exceedone/exment-plugins/tree/main/groupware)
 - ライセンス：GPL-3.0（Exment と同じ）。ibisOffice は AGPL-3.0-only です（[ibisOffice のライセンス](/ja/plugin_groupware?id=ibisoffice-のライセンス)）。
-- プラグインの一覧に出る名前：Exment Plugin Groupware。内部の名前は `ExmentGroupware`、URL は `/admin/plugins/exment_groupware` です。
+- プラグインの一覧に出る名前：Exment Plugin Groupware。内部の名前は `ExmentGroupware`、URL は `/plugins/exment_groupware` です。
 
 <!-- 画面写真：Web メール（img/plugin_groupware/gw_mail.png）と、Office で開いたファイル（img/plugin_groupware/gw_office.png）。d9 に確かめてもらってから撮る -->
 
@@ -27,13 +27,13 @@ Exment はメールサーバーを持ちません。Outlook と同じように�
 | そのほか | パスワード | どの IMAP・SMTP サーバーでも |
 
 ### Microsoft 365・Google を使うとき
-システム管理者がアプリを一度登録し、プラグインの設定（「管理者設定」→「プラグイン」→「Exment Plugin Groupware」→「設定」）に入れます。設定の画面に、登録するリダイレクト URI（`…/admin/plugins/exment_groupware/mail/oauth/callback`）が出ます。
+システム管理者がアプリを一度登録し、プラグインの設定（「管理者設定」→「プラグイン」→「Exment Plugin Groupware」→「設定」）に入れます。設定の画面に、登録するリダイレクト URI（`…/plugins/exment_groupware/mail/oauth/callback`）が出ます。
 
 - Microsoft：Azure portal の「アプリの登録」で Web アプリを作ります。Office 365 Exchange Online の委任のアクセス許可 `IMAP.AccessAsUser.All`・`SMTP.Send` と、`offline_access openid email profile` が要ります。テナントの管理者が、そのユーザーの SMTP 認証（SMTP AUTH）を許可している必要があります。
 - Google：Google Cloud console で OAuth クライアント ID（ウェブ アプリケーション）を作り、スコープは `https://mail.google.com/` です。社内で使う Google Workspace なら、「内部」のアプリにすれば Google の審査は要りません。
 
 ### 使い方
-1. 左のメニューの「メール」（または `/admin/plugins/exment_groupware/mail`）を開きます。
+1. 左のメニューの「メール」（または `/plugins/exment_groupware/mail`）を開きます。
 2. 「アカウントを追加する」を押し、サービスを選びます。
 3. Xserver・KAGOYA・そのほかは、パスワードを入れます。Microsoft 365・Google は「サインイン」を押して、それぞれの画面でログインします。
 
@@ -76,7 +76,7 @@ Exment はメールサーバーを持ちません。Outlook と同じように�
 
 ## インストール
 1. プラグインを入れます。Exment v7.2.1 以降は「機能の管理」から、それより前は zip のアップロードです。[公式プラグイン](/ja/plugin_official)をご覧ください。
-2. Office を使うときは、システム管理者でプラグインの画面（`/admin/plugins/exment_groupware`）を開き、「ibisOffice 0.8.9 をインストールする」を押します。ibisOffice のリリース（約 40MB、展開すると 125MB）をダウンロードし、決まった SHA-256 と合うかを確かめてから、サイトの `public/vendor/exment_groupware/ibisoffice/` に置きます。
+2. Office を使うときは、システム管理者でプラグインの画面（`/plugins/exment_groupware`）を開き、「ibisOffice 0.8.9 をインストールする」を押します。ibisOffice のリリース（約 40MB、展開すると 125MB）をダウンロードし、決まった SHA-256 と合うかを確かめてから、サイトの `public/vendor/exment_groupware/ibisoffice/` に置きます。
 
 Web サーバーが複数台のときや、`public/` に書き込めないときは、展開したリリースをほかの場所で公開し、プラグインの設定の「ibisOffice の場所（URL）」に、`index.html` のあるフォルダーの URL を入れます。
 

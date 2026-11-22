@@ -24,13 +24,13 @@ Ngoài ra, các bảng được nhập (import) dưới dạng template cũng đ
 
 #### Table name (alphanumeric) (Tên bảng - chữ và số) ※Bắt buộc
 - Là tên của bảng. (Ví dụ: user , information , estimate )  
-- Chuỗi chữ và số đã thiết lập sẽ được dùng trong URL khi mở bảng, v.v. (Ví dụ: http(s)://(URL của Exment)/admin/data/user)  
+- Chuỗi chữ và số đã thiết lập sẽ được dùng trong URL khi mở bảng, v.v. (Ví dụ: http(s)://(URL của Exment)/data/user)  
 - Chỉ có thể sử dụng chữ cái và chữ số nửa chiều rộng (half-width) cùng các ký hiệu "-" và "_".
 - Không thể sử dụng tên bảng đã được dùng cho bảng khác.  
 - Tên bảng không được dài quá 30 ký tự và phải bắt đầu bằng một chữ cái.  
 - Chỉ có thể thiết lập khi tạo mới bảng. Sau khi lưu thì không thể thay đổi.  
 
-> Lưu ý: "admin" trong URL là thiết lập mặc định. Nếu đã đổi hoặc xóa bằng `ADMIN_ROUTE_PREFIX` trong `.env`, hãy thay "admin" bằng giá trị đó (nếu đã xóa thì bỏ "/admin", ví dụ `http(s)://(URL của Exment)/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
+> Lưu ý: URL là theo thiết lập mặc định không có "/admin" (trang cài mới từ v7.2.1). Nếu `ADMIN_ROUTE_PREFIX` trong `.env` có giá trị (trang cũ là "admin"), hãy thêm giá trị đó sau URL của trang (ví dụ `http(s)://(URL của Exment)/admin/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
 
 ![Màn hình bảng tùy chỉnh](../img/table/table_detail1.png)
 

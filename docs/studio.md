@@ -4,7 +4,7 @@ The Studio makes, changes and shows the screens of the site. As with the apps of
 ※All that is written here is in Exment v7.2.1.
 
 ## Getting started
-- The Studio is off at first. When a system administrator turns "Studio" on in "Admin Setting" > "[Feature Management](/feature)", a "Studio" menu appears under "Admin Setting" (the URL is `/admin/studio`).
+- The Studio is off at first. When a system administrator turns "Studio" on in "Admin Setting" > "[Feature Management](/feature)", a "Studio" menu appears under "Admin Setting" (the URL is `/studio`).
 - Of those chosen in Feature Management, the Studio opens for those with the permission to set a table, its forms or its views on any table, and for system administrators.
 
 | To | Permission needed |
@@ -113,7 +113,7 @@ An input screen made in the Studio is changed on the same page it was made on. C
 <!-- Screenshot: changing a screen in the Studio (img/studio/studio_edit.png) -->
 
 ## Phone app (Exment app)
-Open `/admin/app` in the browser of a phone to use the screens of the Studio as a phone app. "Add to Home screen" to open it like an app.
+Open `/app` in the browser of a phone to use the screens of the Studio as a phone app. "Add to Home screen" to open it like an app.
 
 - **Screens**: the input screens of the tables you may use are listed. Opening one shows its list; "+" at the bottom right adds a record.
 - **Photos and files**: in a file or image item, take a photo on the spot. Photos are made smaller on the phone before they are sent.

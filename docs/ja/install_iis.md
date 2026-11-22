@@ -336,7 +336,7 @@ Exment で必要となる PHP ライブラリー管理ツール (Composer) を�
     7. \[OK\] を2回クリックしてプロパティを閉じます
 -->
 
-17.  ブラウザ (Chrome または Microsoft Edge) を起動し、http://localhost/(仮想ディレクトリのエイリアス)/admin にアクセスします (例 http://localhost/exment/admin)  
+17.  ブラウザ (Chrome または Microsoft Edge) を起動し、http://localhost/(仮想ディレクトリのエイリアス) にアクセスします (例 http://localhost/exment。`ADMIN_ROUTE_PREFIX` に「admin」があるサイトは http://localhost/exment/admin)  
     Exment のインストール ページが表示されます。
 > Exment は Internet Explorer での表示に対応していません。Exment へのアクセスには Chrome または Microsoft Edge を利用してください
 

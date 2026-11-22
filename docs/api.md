@@ -11,7 +11,7 @@ Therefore, authentication depends on laravel / passport, but this manual introdu
 
 To use the API in Exment, change "Use API" to YES from the menu "Admin Settings> System Settings".
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ## API authentication method
 1. **OAuth 2.0, Authorization Code Flow(Screen Login Format)** :  
@@ -38,7 +38,7 @@ It can be built in other languages and frameworks.
 
 ##### Exment page settings
 - The system administrator enters the following URL.  
-http(s)://(Exment URL)/admin/api_setting  
+http(s)://(Exment URL)/api_setting  
 ※You can access by performing "Change system settings" described above.  
 
 - From v7.1.0, you can also open it from "Admin Setting" > "API Setting" in the left menu (when "Use API" is YES).
@@ -66,7 +66,7 @@ http(s)://(Exment URL)/admin/api_setting
 - On the Web service side, create an endpoint for calling the Exment authentication screen.
 
 ~~~
-http(s)://(Exment URL)/admin/oauth/authorize'  GET  
+http(s)://(Exment URL)/oauth/authorize'  GET  
 response_type: code
 client_id: (Client ID copied)
 redirect_uri: (Callback URL entered)
@@ -84,14 +84,14 @@ Route::get('/redirect', function () {
         'scope' => 'me',
     ]);
 
-    return redirect('(ExmentのURL)/admin/oauth/authorize?'.$query);
+    return redirect('(ExmentのURL)/oauth/authorize?'.$query);
 }
 ~~~
 
 - After Exment authentication is completed, create an endpoint on the Web service side to obtain an access token.
 
 ~~~
-http(s)://(Exment URL)/admin/oauth/token'  POST  
+http(s)://(Exment URL)/oauth/token'  POST  
 Content-Type: application/json
 
 {
@@ -109,7 +109,7 @@ Content-Type: application/json
 Route::get('/callback', function (Request $request) {
     $http = new GuzzleHttp\Client;
 
-    $response = $http->post('(ExmentのURL)/admin/oauth/token', [
+    $response = $http->post('(ExmentのURL)/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
             'client_id' => '(Client ID copied)',
@@ -153,7 +153,7 @@ It can be built in other languages and frameworks.
 
 ##### Exment page settings
 - The system administrator enters the following URL.  
-http(s)://(Exment URL)/admin/api_setting  
+http(s)://(Exment URL)/api_setting  
 ※You can access by performing "Change system settings" described above.
 
 - From v7.1.0, you can also open it from "Admin Setting" > "API Setting" in the left menu (when "Use API" is YES).
@@ -180,7 +180,7 @@ http(s)://(Exment URL)/admin/api_setting
 - Create a request to obtain an access token at the caller.
 
 ~~~
-http(s)://(Exment URL)/admin/oauth/token'  POST
+http(s)://(Exment URL)/oauth/token'  POST
 Content-Type: application/json
 
 {
@@ -211,7 +211,7 @@ Use this access token to execute the API.
 - For LDAP authentication, POST as follows.
 
 ~~~
-http(s)://(Exment URL)/admin/oauth/token'  POST
+http(s)://(Exment URL)/oauth/token'  POST
 Content-Type: application/json
 
 {
@@ -239,7 +239,7 @@ Therefore, it is not recommended that the system administrator registers the API
 #### Setting method
 
 ##### Exment page settings
-- Display the API application setting screen (http(s)://(Exment URL)/admin/api_setting) in the same way as the other authentication methods, and click [New].  
+- Display the API application setting screen (http(s)://(Exment URL)/api_setting) in the same way as the other authentication methods, and click [New].  
 
 - Select "API Key" for the authentication type, enter the application name, and save.  
 
@@ -249,7 +249,7 @@ Therefore, it is not recommended that the system administrator registers the API
 - Create a request to obtain an access token at the caller.
 
 ~~~
-http(s)://(Exment URL)/admin/oauth/token'  POST
+http(s)://(Exment URL)/oauth/token'  POST
 Content-Type: application/json
 
 {
@@ -275,7 +275,7 @@ Authorization: Bearer (Acquired access token)
 
 Example：
 ~~~  
-http://localhost/admin/api/data/user GET
+http://localhost/api/data/user GET
 Header value：
 Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1Qi......  
@@ -305,12 +305,12 @@ result：
 			"label": "admin"
 		}
 	],
-	"first_page_url": "http://localhost/admin/api/data/user?page=1",
+	"first_page_url": "http://localhost/api/data/user?page=1",
 	"from": 1,
 	"last_page": 1,
-	"last_page_url": "http://localhost/admin/api/data/user?page=1",
+	"last_page_url": "http://localhost/api/data/user?page=1",
 	"next_page_url": null,
-	"path": "http://localhost/admin/api/data/user",
+	"path": "http://localhost/api/data/user",
 	"per_page": 15,
 	"prev_page_url": null,
 	"to": 1,
@@ -318,7 +318,7 @@ result：
 }
 ~~~
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ## Token refresh
 The access token expires after a certain period of time and is invalidated.  
@@ -327,7 +327,7 @@ This is a method to get an access token using a refresh token.
 Execute HTTP POST with the following contents.  
 
 ~~~
-http(s)://(Exment URL)/admin/oauth/token'  POST  
+http(s)://(Exment URL)/oauth/token'  POST  
 Content-Type: application/json
 
 {
@@ -354,10 +354,10 @@ In this section, we will use a tool or a browser to actually authenticate to Exm
 Imagine the flow up to obtaining an access token.  
 
 - Access the following URL.  
-http(s)://(Exment URL)/admin/oauth/authorize?client_id=(Client ID copied)&redirect_uri=(Callback URL entered)&response_type=code&scope=me  
+http(s)://(Exment URL)/oauth/authorize?client_id=(Client ID copied)&redirect_uri=(Callback URL entered)&response_type=code&scope=me  
   
 Example：  
-http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redirect_uri=http%3a%2f%2flocalhost%2fadmin%2fauth%2fcallback&response_type=code&scope=me  
+http://localhost/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redirect_uri=http%3a%2f%2flocalhost%2fauth%2fcallback&response_type=code&scope=me  
 
 
 - This will bring up a simple screen for app authentication.  
@@ -371,7 +371,7 @@ Example：  auth/callback?code=def5020012c32121912561705255XXXXXXXX
 - Execute the following HTTP communication using a tool that can perform POST communication.  
   
 ~~~
-http(s)://(Exment URL)/admin/oauth/token'  POST  
+http(s)://(Exment URL)/oauth/token'  POST  
 grant_type: authorization_code
 client_id: (Client ID copied)
 client_secret: (Client Secret copied)
@@ -381,11 +381,11 @@ code: (The acquired code value)
   
 Example：  
 ~~~
-http://localhost/admin/oauth/token POST
+http://localhost/oauth/token POST
 grant_type: authorization_code
 client_id: 1af52b10-BBBB-CCCC-XXXX-YYYYYYYY
 client_secret: PKh1u3xxxx
-redirect_uri: http://localhost/admin/auth/callback
+redirect_uri: http://localhost/auth/callback
 code: def5020012c32121912561705255XXXXXXXX  
 ~~~
   
@@ -397,7 +397,7 @@ Get access_token from json value of this response.
   
 Example：  
 ~~~
-http://localhost/admin/api/data/user GET
+http://localhost/api/data/user GET
 Header value：
 Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1Qi......  
@@ -427,12 +427,12 @@ result：
 			"label": "admin"
 		}
 	],
-	"first_page_url": "http://localhost/admin/api/data/user?page=1",
+	"first_page_url": "http://localhost/api/data/user?page=1",
 	"from": 1,
 	"last_page": 1,
-	"last_page_url": "http://localhost/admin/api/data/user?page=1",
+	"last_page_url": "http://localhost/api/data/user?page=1",
 	"next_page_url": null,
-	"path": "http://localhost/admin/api/data/user",
+	"path": "http://localhost/api/data/user",
 	"per_page": 15,
 	"prev_page_url": null,
 	"to": 1,

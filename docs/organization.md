@@ -8,11 +8,11 @@ Describes how to manage organization information.
 Click "Organization" from the left menu.  
 Or access the following URL.  
 This will display the user settings screen.  
-http(s)://(URL of Exment)/admin/data/organization  
+http(s)://(URL of Exment)/data/organization  
 A list of organizations currently registered in the system is displayed.  
 ![Organization management screen](img/organization/organization2.png)  
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
   
 ※By [setting](/config#perform-hierarchical-display-on-the-department-list-page) "EXMENT_SHOW_ORGANIZATION_TREE = true", the hierarchy will be displayed.  
 

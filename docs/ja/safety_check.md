@@ -105,10 +105,10 @@ LINEアカウントを連携すると、次回からLINEで受信・回答でき
 左メニューの「管理者設定」→「安否確認管理」をクリックします（v7.0では、左メニューのいちばん上にあります）。以下のURLからも表示できます。
 
 ~~~
-http(s)://(ExmentのURL)/admin/safety_check
+http(s)://(ExmentのURL)/safety_check
 ~~~
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ### 手動・訓練で送信する
 - 「新規送信」の「タイトル」に、安否確認のタイトルを入力します（例：台風15号 安否確認）。
@@ -196,7 +196,7 @@ LINEアカウントを連携しているユーザーには、「無事です」�
 安否回答テーブルは、左メニューに表示されません。以下のURLにアクセスしてください。
 
 ~~~
-http(s)://(ExmentのURL)/admin/data/safety_check_answer
+http(s)://(ExmentのURL)/data/safety_check_answer
 ~~~
 
 ![安否回答の詳細](img/safety_check/safety_check_answer_detail.png)

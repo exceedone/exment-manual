@@ -3,7 +3,7 @@
 
 - Source code and docs: [exceedone/exment-plugins (it-support)](https://github.com/exceedone/exment-plugins/tree/main/it-support)
 - License: GPL-3.0 (the same as Exment)
-- Name in the plugin list: Exment Plugin IT Support（ITサポート）. The internal name is `ExmentITSupport` and the URL is `/admin/plugins/exment_it_support`.
+- Name in the plugin list: Exment Plugin IT Support（ITサポート）. The internal name is `ExmentITSupport` and the URL is `/plugins/exment_it_support`.
 
 <!-- Screenshot: the agent desk (img/plugin_it_support/its_desk.png). Take it after 2b checks the page -->
 
@@ -33,8 +33,8 @@
 1. Install the plugin: from Feature Management on Exment v7.2.1 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
 2. On Exment v7.2.1 or later, turn on "ITサポート：受付箱" (IT Support: desk) in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "ITサポート：お客様の窓口" (IT Support: customer door) too (it works only while the desk is on).
    - On a new site both are off at first. Sites that used IT Support before Feature Management keep both on.
-   - Turning the desk off stops the desk, the portal and the batch, and hides its menu entry. The tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables: by URL (such as `/admin/data/its_ticket`) or from "Admin Setting" > "Custom Table". To show them in the menu, add them in "Admin Setting" > "Menu". To hide them, remove the table permissions in the role groups.
-3. Open "ITサポート" in the menu (or `/admin/plugins/exment_it_support`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
+   - Turning the desk off stops the desk, the portal and the batch, and hides its menu entry. The tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables: by URL (such as `/data/its_ticket`) or from "Admin Setting" > "Custom Table". To show them in the menu, add them in "Admin Setting" > "Menu". To hide them, remove the table permissions in the role groups.
+3. Open "ITサポート" in the menu (or `/plugins/exment_it_support`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
    - The left menu has one entry, "ITサポート", which opens the desk. Tickets (table), knowledge, customers, contacts, IT assets and canned replies open from the bar at the top of the desk; every table (kinds and SLA too) from "テーブル・権限" (tables and permissions) in "設定".
    - The "ITサポート" folder of 1.0.6 and before (the desk and 8 tables) is folded into that one entry the first time the desk is opened after the update to 1.0.7. Menus an administrator added stay.
 4. In "設定" (settings), enter the mailbox for requests (IMAP) and the address of the desk, save, and press "IMAP につながるか試す" (test IMAP). To receive mail, also enter "差出人の確認" (sender check) and "受信サーバーの名前" (the name of the receiving server: the first name in Authentication-Results of received mail). Until then, tickets from mail are marked "possibly spoofed".

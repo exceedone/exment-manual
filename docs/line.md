@@ -61,10 +61,10 @@ Check the following three values, which you will enter in Exment.
 You can also open it from the following URL.
 
 ~~~
-http(s)://(Exment URL)/admin/system?advanced=1
+http(s)://(Exment URL)/system?advanced=1
 ~~~
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 - In "LINE Setting", enter the following items and click [Save].
 
@@ -88,7 +88,7 @@ The LINE webhook notifies Exment of what users do on LINE, such as sending a lin
 The Webhook URL has the following format.
 
 ~~~
-https://(Exment URL)/admin/line/webhook
+https://(Exment URL)/line/webhook
 ~~~
 
 - Turn on "Use webhook".
@@ -109,7 +109,7 @@ You can also open it from the following URL.
 ※From v7.1.0, "LINE Link" is in the user menu at the top right, not in the left menu. It is shown only when the basic ID of the LINE Official Account is set in the [System settings](#system-settings). In v7.0, open it from "LINE Link" at the top of the left menu (the update to v7.1.0 removes that menu when it is still at the top; a menu you moved yourself stays).
 
 ~~~
-http(s)://(Exment URL)/admin/line/link
+http(s)://(Exment URL)/line/link
 ~~~
 
 - Click [Generate QR code]. The QR code for linking is shown.
@@ -147,7 +147,7 @@ If no template is selected in the notification settings, the message is sent as 
 To add it to the left menu, add it in [Menu](/menu) with the menu type "Table".
 
 ~~~
-http(s)://(Exment URL)/admin/data/line_flex_template
+http(s)://(Exment URL)/data/line_flex_template
 ~~~
 
 - Click [New], enter the following items, and save.
@@ -319,7 +319,7 @@ Replies to user operations (such as "LINE account linked successfully!" and "Don
 Open the following URL to show the list.
 
 ~~~
-http(s)://(Exment URL)/admin/data/line_send_log
+http(s)://(Exment URL)/data/line_send_log
 ~~~
 
 ![LINE send log](img/line/line_send_log.png)

@@ -6,11 +6,11 @@ In addition, you can export custom tables created with this system as templates 
 ## Page display
 - Select "Template" from the left menu.  
 Or access the following URL.  
-http(s)://(Exment URL)/admin/ template  
+http(s)://(Exment URL)/ template  
 This will display the template screen.  
 ![Template screen](img/template/template1.png)  
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 
 ## Export

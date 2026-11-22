@@ -127,7 +127,7 @@ Therefore, we strongly recommend settings to prevent these problems from occurri
 ![XAMPP installation screen](img/xampp/xampp7.png)
 
 - As a result, you will be able to access Exment using the URL below.   
-http://exment.localapp/admin
+http://exment.localapp
 
 ### Exment installation
 Install Exment by following the Exment [Installation Instructions](/ja/quickstart).   

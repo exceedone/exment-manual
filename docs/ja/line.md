@@ -61,10 +61,10 @@ Exmentに設定する、以下の3つの値を確認します。
 以下のURLからも表示できます。
 
 ~~~
-http(s)://(ExmentのURL)/admin/system?advanced=1
+http(s)://(ExmentのURL)/system?advanced=1
 ~~~
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 - 「LINE設定」に、以下の項目を入力し、［保存］をクリックします。
 
@@ -88,7 +88,7 @@ LINEのWebhookは、ユーザーが連携コードを送信したり、通知カ
 Webhook URLは、以下の形式です。
 
 ~~~
-https://(ExmentのURL)/admin/line/webhook
+https://(ExmentのURL)/line/webhook
 ~~~
 
 - 「Webhookの利用」をオンにします。
@@ -111,7 +111,7 @@ LINEで通知を受け取るユーザーは、各自でLINEアカウントを連
 ※v7.1.0以降、「LINE連携」は左メニューではなく、右上のユーザーメニューに表示されます。表示されるのは、[システム設定](#システム設定)でLINE公式アカウントのベーシックIDを設定しているときだけです。v7.0では、左メニューのいちばん上の「LINE連携」から開きます（v7.1.0への更新で、いちばん上にあるこのメニューは削除されます。ご自身で移動したメニューはそのまま残ります）。
 
 ~~~
-http(s)://(ExmentのURL)/admin/line/link
+http(s)://(ExmentのURL)/line/link
 ~~~
 
 - ［QRコードを生成］をクリックします。連携用のQRコードが表示されます。
@@ -147,7 +147,7 @@ LINE通知をカード形式（Flex Message）で送信する場合の、カー�
 左のメニューに追加する場合は、[メニュー](/ja/menu)で、メニュー種類「テーブル」を選択して追加してください。
 
 ~~~
-http(s)://(ExmentのURL)/admin/data/line_flex_template
+http(s)://(ExmentのURL)/data/line_flex_template
 ~~~
 
 - ［新規］をクリックし、以下の項目を入力して保存します。
@@ -319,7 +319,7 @@ LINE通知や[安否確認](/ja/safety_check)で送信したメッセージは�
 以下のURLにアクセスすると、一覧を表示できます。
 
 ~~~
-http(s)://(ExmentのURL)/admin/data/line_send_log
+http(s)://(ExmentのURL)/data/line_send_log
 ~~~
 
 ![LINE送信履歴](img/line/line_send_log.png)
