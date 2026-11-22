@@ -83,5 +83,5 @@ As a result, information such as tables, forms, views, and dashboards defined in
 2. It appears in "Pending tasks" of that person, who presses [承認] or [差し戻し].
 3. When it is sent back, the applicant fixes it and presses [再申請].
 
-※The approver is chosen when submitting, not set by a role group (workflow permissions are given to users, organizations, the creator or a column). To have fixed approvers, change who can run "承認" and "差し戻し" in [Workflow](/workflow).
+※The approver is chosen when submitting, not set by a role group (workflow permissions are given to users, organizations, the creator or a column). To have fixed approvers, change who can run "承認" and "差し戻し" in [Workflow](/workflow_setting).
 ※The tables, forms and workflow can be changed like any custom table and workflow. The statuses and actions of the workflow are in Japanese.
