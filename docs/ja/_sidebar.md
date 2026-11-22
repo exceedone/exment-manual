@@ -68,7 +68,7 @@
   * [公開フォーム設定](/ja/publicform)
  
 * 【9. その他標準機能】
-  * [ファイルサーバー](/ja/file_server)
+  * [ファイル共有](/ja/file_server)
   * [テンプレート](/ja/template)
   * [バックアップ・リストア](/ja/backup)
   * [メニュー](/ja/menu)

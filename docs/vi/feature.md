@@ -17,7 +17,7 @@ Các tính năng mới của bản thân Exment. Hiện có 2 tính năng.
 
 | Tên | Nội dung |
 | --- | --- |
-| File server (máy chủ tệp) | Workspace, thư mục, quản lý phiên bản, liên kết chia sẻ… Tắt đi thì tệp cũng không bị xóa. (Chỉ hiện ở các phiên bản có máy chủ tệp) |
+| File server (chia sẻ tệp) | Workspace, thư mục, quản lý phiên bản, liên kết chia sẻ… Tắt đi thì tệp cũng không bị xóa. (Chỉ hiện ở các phiên bản có chia sẻ tệp) |
 | Studio | Danh sách màn hình, tạo màn hình và ứng dụng điện thoại (/app). Dành cho người có quyền thiết lập bảng. |
 
 Với mỗi tính năng, quyết định 3 mục sau.
@@ -121,7 +121,7 @@ EXMENT_FEATURES_LOCKED=file_server,studio
 
 | Khóa | Tính năng |
 | --- | --- |
-| `file_server` | File server (máy chủ tệp) |
+| `file_server` | File server (chia sẻ tệp) |
 | `studio` | Studio (gồm cả ứng dụng điện thoại) |
 
 Tính năng bị khóa sẽ hiện "Not available in this environment" trên màn hình này.
@@ -134,7 +134,7 @@ Việc có dùng được hay không được quyết định từ trên xuống
 1. **Máy chủ**: tính năng ghi trong `EXMENT_FEATURES_LOCKED` không dùng được.
 2. **"Dùng" / "không dùng" của trang**: tính năng "không dùng" thì không ai dùng được.
 3. **Người được dùng**: tất cả người dùng, hoặc người dùng thuộc các nhóm vai trò đã chọn (quản trị viên hệ thống luôn dùng được).
-4. **Thiết lập bên trong tính năng**: quyền của bảng với Studio, quyền của workspace với máy chủ tệp…
+4. **Thiết lập bên trong tính năng**: quyền của bảng với Studio, quyền của workspace với chia sẻ tệp…
 
 ## Dành cho người viết plugin
 Plugin có thể đăng ký tính năng riêng và có một dòng trên màn hình này. Tính năng đã đăng ký ban đầu là "không dùng".

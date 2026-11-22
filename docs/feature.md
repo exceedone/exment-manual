@@ -17,7 +17,7 @@ New features of Exment itself. There are two now.
 
 | Name | Content |
 | --- | --- |
-| File server | Workspaces, folders, versions and share links. Turning it off does not remove the files. (Shown only in versions that have the file server) |
+| File sharing | Workspaces, folders, versions and share links. Turning it off does not remove the files. (Shown only in versions that have File sharing) |
 | Studio | The list of screens, making screens, and the phone app (/app). For those who may set tables. |
 
 For each feature, decide these three.
@@ -103,7 +103,7 @@ Both have a "Back to home" link. From the API, the same message comes back as JS
 Updating Exment keeps what the site used.
 
 - The features the site used before the update are on, and look as before.
-  - File server: the site has at least one workspace
+  - File sharing: the site has at least one workspace
   - Studio: someone has opened the pages of Studio or the phone app (checked in the operation log)
 - A feature that only had a menu and was not used is off.
 - The active flag of the plugins and the permissions of the role groups do not change.
@@ -121,7 +121,7 @@ EXMENT_FEATURES_LOCKED=file_server,studio
 
 | Key | Feature |
 | --- | --- |
-| `file_server` | File server |
+| `file_server` | File sharing |
 | `studio` | Studio (with the phone app) |
 
 A locked feature shows "Not available in this environment" on this page.
@@ -134,7 +134,7 @@ Whether a feature can be used is decided from the top. A lower rule never opens 
 1. **The server**: the features in `EXMENT_FEATURES_LOCKED` cannot be used.
 2. **Use on the site**: no one can use a feature that is off.
 3. **Who may use it**: all users, or the users of the chosen role groups (system administrators always may).
-4. **The settings of the feature itself**: the permissions of the tables for Studio, the permissions of a workspace for the file server, and so on.
+4. **The settings of the feature itself**: the permissions of the tables for Studio, the permissions of a workspace for File sharing, and so on.
 
 ## For plugin developers
 A plugin can register its own features and get a row on this page. A registered feature is off at first.

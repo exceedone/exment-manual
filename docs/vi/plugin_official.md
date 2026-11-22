@@ -5,7 +5,7 @@ Plugin chính thức là các plugin miễn phí của Exment do Exceed One phá
 | --- | --- |
 | [Quản lý dự án](/vi/plugin_pm) | Dự án và công việc (ticket), bảng, biểu đồ Gantt, wiki, tệp |
 | [IT Support](/vi/plugin_it_support) | Help desk: quản lý yêu cầu qua email, biểu mẫu, điện thoại bằng ticket và chia sẻ tiến độ với khách hàng không cần đăng nhập |
-| [Groupware](/vi/plugin_groupware) | Web mail, và mở/sửa tệp Office của máy chủ tệp trên trình duyệt |
+| [Groupware](/vi/plugin_groupware) | Web mail, và mở/sửa tệp Office của chia sẻ tệp trên trình duyệt |
 
 ## Cách cài đặt
 ### Exment v7.2.0 trở đi

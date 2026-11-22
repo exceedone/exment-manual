@@ -43,8 +43,8 @@ A system administrator registers an app once and enters it in the plugin's setti
 - Only public addresses on the mail ports can be used. For a mail server in the company network, the administrator turns on "社内のネットワークのメールサーバーを許可する" (allow mail servers in the company network) in the settings.
 
 ## Office
-### Files of the file server
-The page of a Word, Excel or PowerPoint file of the [file server](/file_server) gets an "Open in Office" button.
+### Files in File sharing
+The page of a Word, Excel or PowerPoint file of the [File sharing](/file_server) gets an "Open in Office" button.
 
 - It opens the editor in a new tab. **Save** adds a new version of the file (older ones stay in the version history).
 - While the file is open for editing it is **checked out**, so nobody else can change it. It is checked in when the editor is closed. A user who may only view the file, or a file someone else has checked out, opens read-only.
@@ -54,7 +54,7 @@ The page of a Word, Excel or PowerPoint file of the [file server](/file_server) 
 - **An empty file** (0 bytes, such as Windows makes with New > Word document) opens as a new document of the kind its extension says (docx, xlsx, pptx). Saving makes it a real document under that name (0.4.4 or later; before, it opened as a spreadsheet).
 
 ### Attachments of records
-Word, Excel and PowerPoint files attached to records can also be seen in the browser's Office (as the files of issues, wiki pages and projects of Project Management). This works without the file server.
+Word, Excel and PowerPoint files attached to records can also be seen in the browser's Office (as the files of issues, wiki pages and projects of Project Management). This works without File sharing.
 
 - Only those who may download the file can see it.
 - Users who may edit the record get "編集する" (Edit). Saving replaces the content of the attachment and keeps its address. A comment on the record says who edited it, with a link to the previous content.
@@ -65,11 +65,11 @@ Word, Excel and PowerPoint files attached to records can also be seen in the bro
 ## Feature Management (Exment v7.2.0 or later)
 - The web mail is one row, "メール" (`exment_groupware.mail`), in "Admin Setting" > "[Feature Management](/feature)". A system administrator turns it on or off and chooses the role groups that may use it.
 - Sites that had the plugin before keep it on after updating. **On a new site it starts off**, so turn on "メール" in Feature Management (while it is off, the mail page returns 404).
-- Office follows the file server feature: when the file server is off, "Open in Office" of the file server does not open.
+- Office follows File sharing feature: when File sharing is off, "Open in Office" of File sharing does not open.
 
 ## Requirements
 - Exment 7.1 or later (checked on 7.1 and 7.2) and PHP 8.2 or later. The web mail and record attachments work on both.
-- Opening files of the file server needs an Exment with the file server (v7.2.0 or later). Without it, only that part does nothing.
+- Opening files of File sharing needs an Exment with File sharing (v7.2.0 or later). Without it, only that part does nothing.
 - Installing ibisOffice needs the `zip` extension of PHP and a writable `public/` of the site (about 125 MB).
 - Office needs a browser with WebGPU (Chrome, Edge, or Safari 26 or later) and a site on HTTPS.
 - Neither LibreOffice nor Docker is needed. It works on rental servers such as XServer (the server only hands out the files; Office runs in the browser).
@@ -118,5 +118,5 @@ ibisOffice is software of ibis inc. under AGPL-3.0-only and a commercial licence
 
 ## Related
 - [Official plugins](/plugin_official)
-- [File server](/file_server)
+- [File sharing](/file_server)
 - [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/groupware/README.md)

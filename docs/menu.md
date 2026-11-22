@@ -14,7 +14,7 @@ From v7.2.1 the left menu is grouped by area of work (parent nodes), in the orde
 
 ```
 Dashboard
-Groupware ▸ Documents (file server), Mail (Groupware)
+Groupware ▸ File sharing, Mail (Groupware)
 Requests & approvals ▸ Pending tasks, approval requests, expense claims … (bundled template "Request pack")
 Projects ▸ Project Management (official plugin)
 IT support ▸ IT support (official plugin)
@@ -25,7 +25,7 @@ Settings: System ▸ System Setting, Feature Management, Plugin, Backup, Tuning,
 ```
 
 - A newly installed site gets this menu.
-- On a site updated from v7.1 or earlier, only the menus still where Exment put them move (the admin settings still in Exment's order, "Manage Master" still third from the top, the file server still at the top). Menus you moved, names you gave and the menus of plugins stay. A site with other menus among the admin settings keeps one "Admin Setting".
+- On a site updated from v7.1 or earlier, only the menus still where Exment put them move (the admin settings still in Exment's order, "Manage Master" still third from the top, File sharing still at the top). Menus you moved, names you gave and the menus of plugins stay. A site with other menus among the admin settings keeps one "Admin Setting".
 - The official plugins (Project Management, IT Support, Groupware) and the bundled templates put their menus under their group (made when missing). Only a menu at the top moves.
 - A group with nothing to show in it is not shown (the menus of features turned off in [Feature management](/feature) are not shown).
 

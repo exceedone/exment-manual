@@ -43,8 +43,8 @@ Quản trị viên hệ thống đăng ký ứng dụng một lần và nhập v
 - Chỉ kết nối được đến địa chỉ công khai trên cổng email. Với máy chủ email trong mạng nội bộ, quản trị viên bật "社内のネットワークのメールサーバーを許可する" trong cài đặt.
 
 ## Office
-### Tệp của máy chủ tệp
-Trang của tệp Word, Excel, PowerPoint trong [máy chủ tệp](/vi/file_server) có nút "Open in Office" (mở bằng Office).
+### Tệp của chia sẻ tệp
+Trang của tệp Word, Excel, PowerPoint trong [chia sẻ tệp](/vi/file_server) có nút "Open in Office" (mở bằng Office).
 
 - Mở trình soạn thảo ở tab mới. **Lưu** sẽ tạo phiên bản mới của tệp (bản cũ còn trong lịch sử phiên bản).
 - Khi mở để sửa, tệp được **check out**, người khác không sửa được. Đóng trình soạn thảo thì check in. Người chỉ có quyền xem, hoặc tệp người khác đang check out, sẽ mở ở chế độ chỉ đọc.
@@ -52,7 +52,7 @@ Trang của tệp Word, Excel, PowerPoint trong [máy chủ tệp](/vi/file_serv
 - Khi máy chủ không có LibreOffice, trình soạn thảo được nhúng chỉ đọc trong phần xem trước.
 
 ### Tệp đính kèm của dữ liệu
-Tệp Word, Excel, PowerPoint đính kèm vào dữ liệu cũng xem được bằng Office trên trình duyệt (như tệp của công việc, wiki, dự án trong Quản lý dự án). Phần này chạy được không cần máy chủ tệp.
+Tệp Word, Excel, PowerPoint đính kèm vào dữ liệu cũng xem được bằng Office trên trình duyệt (như tệp của công việc, wiki, dự án trong Quản lý dự án). Phần này chạy được không cần chia sẻ tệp.
 
 - Chỉ người tải xuống được tệp mới xem được.
 - Người sửa được dữ liệu sẽ thấy "編集する" (sửa). Lưu sẽ thay nội dung tệp đính kèm, địa chỉ giữ nguyên. Dữ liệu có bình luận ghi ai đã sửa, kèm liên kết đến nội dung trước.
@@ -63,11 +63,11 @@ Tệp Word, Excel, PowerPoint đính kèm vào dữ liệu cũng xem được b�
 ## Quản lý tính năng (Exment v7.2.0 trở đi)
 - Web mail hiện thành một dòng "メール" (`exment_groupware.mail`) trong "Admin Setting" → "[Feature Management](/vi/feature)". Quản trị viên hệ thống bật/tắt và chọn nhóm vai trò được dùng.
 - Trang đã cài plugin từ trước vẫn bật sau khi cập nhật. **Trang cài mới bắt đầu ở trạng thái tắt**, hãy bật "メール" trong Feature Management (khi tắt, trang email trả về 404).
-- Office theo tính năng máy chủ tệp: khi máy chủ tệp tắt, "Open in Office" của máy chủ tệp không mở được.
+- Office theo tính năng chia sẻ tệp: khi chia sẻ tệp tắt, "Open in Office" của chia sẻ tệp không mở được.
 
 ## Yêu cầu
 - Exment 7.1 trở lên (đã kiểm tra trên 7.1 và 7.2) và PHP 8.2 trở lên. Web mail và tệp đính kèm của dữ liệu chạy trên cả hai.
-- Mở tệp của máy chủ tệp cần Exment có máy chủ tệp (v7.2.0 trở đi). Nếu không có, chỉ phần đó không chạy.
+- Mở tệp của chia sẻ tệp cần Exment có chia sẻ tệp (v7.2.0 trở đi). Nếu không có, chỉ phần đó không chạy.
 - Extension `zip` chỉ cần để cài ibisOffice.
 - Office cần trình duyệt có WebGPU (Chrome, Edge, hoặc Safari 26 trở lên) và trang chạy HTTPS.
 
@@ -85,5 +85,5 @@ Khi có nhiều máy chủ web, hoặc không ghi được vào `public/`, hãy 
 
 ## Mục liên quan
 - [Plugin chính thức](/vi/plugin_official)
-- [Máy chủ tệp](/vi/file_server)
+- [Chia sẻ tệp](/vi/file_server)
 - [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/groupware/README.md)

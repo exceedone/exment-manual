@@ -7,7 +7,7 @@
 - <span class="red bold">The left menu is grouped by area of work ("Admin Setting" becomes three groups: "Settings: Data & Screens", "Settings: Users & Permissions", "Settings: System"). On an updated site only the menus still where Exment put them move; menus you moved stay.</span> See [here](/menu?id=the-menu-from-v721)
 - How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)
 1. New features
-    - The left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/): Dashboard, Groupware (Documents, Mail), Requests & approvals, Projects, IT support, Master, Settings: Data & Screens, Settings: Users & Permissions, Settings: System. See [here](/menu?id=the-menu-from-v721)
+    - The left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/): Dashboard, Groupware (File sharing, Mail), Requests & approvals, Projects, IT support, Master, Settings: Data & Screens, Settings: Users & Permissions, Settings: System. See [here](/menu?id=the-menu-from-v721)
         - The menus of the official plugins go under their group (Project Management → Projects, IT Support → IT support, Groupware's Mail → Groupware).
         - A group with nothing to show is not shown (the menus of features turned off in Feature management do not show).
         - A site whose menu did not change (arranged by someone, for example) can use [Arrange in the standard order] on the "Menu" screen (with undo). See [here](/menu?id=arrange-in-the-standard-order)
@@ -16,8 +16,8 @@
     - **API keys** of the users: a user makes their own keys and uses them as `Authorization: Bearer exk_...` in place of an OAuth token. A key never has more than its user's permissions. It can be limited to scopes (read only, for example), tables, allowed IPs and an end date (90 days by default, a year at most), and it is shown once when made. Choose the role groups in "Feature Management" → "API keys" (off by default). System administrators see and stop every key ([#1888](https://github.com/exceedone/exment/pull/1888), [#1889](https://github.com/exceedone/exment/pull/1889))
     - **MCP server**: AI such as Claude reads Exment data with the user's own permissions (`POST {admin}/api/mcp`: tables, searching and reading records, the list of attachments, workflow status; read only). As for the API, the IP filter and the login by OAuth token or API key apply. Choose the role groups in "Feature Management" → "MCP" (off by default) ([#1892](https://github.com/exceedone/exment/pull/1892))
     - **Maintenance mode**: system administrators switch it in "Settings: System" → "Maintenance". During it, only system administrators, who started it and allowed IPs get in; the others see the maintenance page. The planned start and end, the API, the outside pages and the schedule can be chosen, and each change is in the operation log. There is also the command `php artisan exment:maintenance` ([#1894](https://github.com/exceedone/exment/pull/1894), [#1896](https://github.com/exceedone/exment/pull/1896))
-    - File server: pages are at their folder paths (`/admin/file_server/<workspace>/<folder>/…`) instead of numbers. Old links move to the new URL after a rename or a move. A [Copy link] button is added ([#1906](https://github.com/exceedone/exment/pull/1906))
-    - File server: make new text, Markdown and CSV files and edit them in the browser, and new empty Word, Excel and PowerPoint files ([#1933](https://github.com/exceedone/exment/pull/1933)). The PDF of an Office file can also be made by a conversion container (Gotenberg), besides LibreOffice
+    - File sharing: pages are at their folder paths (`/admin/file_server/<workspace>/<folder>/…`) instead of numbers. Old links move to the new URL after a rename or a move. A [Copy link] button is added ([#1906](https://github.com/exceedone/exment/pull/1906))
+    - File sharing: make new text, Markdown and CSV files and edit them in the browser, and new empty Word, Excel and PowerPoint files ([#1933](https://github.com/exceedone/exment/pull/1933)). The PDF of an Office file can also be made by a conversion container (Gotenberg), besides LibreOffice
     - Opening a notification opens its record instead of the notification page (marked read), on the plugin's screen when a plugin shows the table. The same for `${value_url}` in mails and "Details" in LINE ([#1905](https://github.com/exceedone/exment/pull/1905))
     - A row of "Feature Management" can show a button for what the feature needs done before it works (from a plugin; for example Groupware's "install ibisOffice") ([#1931](https://github.com/exceedone/exment/pull/1931))
     - The "?" in the header and "Feature Management" open the manual of each feature ([#1910](https://github.com/exceedone/exment/pull/1910))
@@ -29,9 +29,9 @@
     - "Back to the list" on the record detail and edit pages is at the left of the page title
 1. Bug fixes
     - When a new table (from a template, for example) was opened first on its create or detail page, its list showed only the ID and the dates. Fixed; a list that already shows so needs its columns added in the view settings ([#1918](https://github.com/exceedone/exment/pull/1918))
-    - A security fix in the file server (severity: low) ([#1884](https://github.com/exceedone/exment/pull/1884))
+    - A security fix in File sharing (severity: low) ([#1884](https://github.com/exceedone/exment/pull/1884))
     - Fixes of Feature Management and the menu: with a route cache, the menus of features not used, and more ([#1890](https://github.com/exceedone/exment/pull/1890))
-    - Download links of the file server no longer open as a page switch (pjax) ([#1927](https://github.com/exceedone/exment/pull/1927))
+    - Download links of File sharing no longer open as a page switch (pjax) ([#1927](https://github.com/exceedone/exment/pull/1927))
     - In the table of Feature Management, the description in the name column wraps so the other columns stay visible
     - Notices only for system administrators say so
 

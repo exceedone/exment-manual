@@ -5,7 +5,7 @@ The official plugins are free plugins of Exment, made, tested and supported by E
 | --- | --- |
 | [Project Management](/plugin_pm) | Projects and issues (tickets), boards, Gantt charts, wiki and files |
 | [IT Support](/plugin_it_support) | A help desk: requests by mail, a form or phone as tickets, with their progress shared with the customer without login |
-| [Groupware](/plugin_groupware) | Web mail, and opening and editing Office files of the file server in the browser |
+| [Groupware](/plugin_groupware) | Web mail, and opening and editing Office files of File sharing in the browser |
 
 ## Install
 ### Exment v7.2.0 or later

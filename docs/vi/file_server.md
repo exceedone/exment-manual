@@ -1,13 +1,13 @@
-# Máy chủ tệp (File Server)
+# Chia sẻ tệp (File sharing)
 Chia sẻ thư mục và tệp trong workspace của từng nhóm, có phân quyền theo thư mục, quản lý phiên bản, xem trước và thùng rác. Dùng giống như thư viện tài liệu của Box hay SharePoint.  
 Tệp được lưu ở nơi Exment đang lưu tệp (máy cục bộ, S3, Azure, FTP…, theo thiết lập hiện tại).
 
-※Tính năng này dùng được từ Exment v7.2.0 trở đi. <!-- TODO: phiên bản có máy chủ tệp -->
+※Tính năng này dùng được từ Exment v7.2.0 trở đi. <!-- TODO: phiên bản có chia sẻ tệp -->
 
 ## Bắt đầu sử dụng
-Máy chủ tệp ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "File Server" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), mục "File Server" sẽ hiện trên menu bên trái. Người được dùng (nhóm vai trò) cũng được chọn trong Feature Management.
+Chia sẻ tệp ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "File Server" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), mục "File Server" sẽ hiện trên menu bên trái. Người được dùng (nhóm vai trò) cũng được chọn trong Feature Management.
 
-<!-- Ảnh màn hình: trang đầu của máy chủ tệp (img/file_server/file_server_top.png) -->
+<!-- Ảnh màn hình: trang đầu của chia sẻ tệp (img/file_server/file_server_top.png) -->
 
 ## Workspace
 Workspace là nơi một nhóm lưu tệp (tương đương một site trong SharePoint).
@@ -87,7 +87,7 @@ Trong cài đặt workspace, tạo các cột cho tệp (như "Khách hàng", "L
 - Danh sách có thể lọc theo cột (cả "chưa nhập"), sắp xếp và nhóm.
 
 ## Gắn với dữ liệu
-Ở "Related data" (dữ liệu liên quan) trên trang của tệp, gắn tệp với dữ liệu của bảng Exment (như khách hàng). Trang chi tiết của dữ liệu đó sẽ có mục "tệp của máy chủ tệp". Cả hai chỉ hiện những gì người dùng có quyền xem.
+Ở "Related data" (dữ liệu liên quan) trên trang của tệp, gắn tệp với dữ liệu của bảng Exment (như khách hàng). Trang chi tiết của dữ liệu đó sẽ có mục "tệp của chia sẻ tệp". Cả hai chỉ hiện những gì người dùng có quyền xem.
 
 ## Tìm kiếm
 "Search" (tìm kiếm) tìm tệp theo tên, giá trị cột và chữ trong tệp. Chỉ hiện tệp người dùng có quyền xem.

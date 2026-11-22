@@ -5,7 +5,7 @@
 | --- | --- |
 | [プロジェクト管理](/ja/plugin_pm) | プロジェクトと課題（チケット）・ボード・ガントチャート・Wiki・ファイル |
 | [IT サポート](/ja/plugin_it_support) | ヘルプデスク。メール・受付フォーム・電話の依頼をチケットで管理し、進み具合をお客様とログインなしで共有 |
-| [Groupware](/ja/plugin_groupware) | Web メールと、ファイルサーバーの Office ファイルをブラウザーで開く・編集する |
+| [Groupware](/ja/plugin_groupware) | Web メールと、ファイル共有の Office ファイルをブラウザーで開く・編集する |
 
 ## 入れ方
 ### Exment v7.2.0 以降

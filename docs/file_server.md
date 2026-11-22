@@ -1,13 +1,13 @@
-# File server
+# File sharing
 Share folders and files in a workspace per team, with permissions per folder, versions, previews and a trash. It works like a document library of Box or SharePoint.  
 The files are kept where Exment keeps its files (local, S3, Azure, FTP and so on, as set now).
 
-※This feature is available in Exment v7.2.0 or later. <!-- TODO: the version the file server comes in -->
+※This feature is available in Exment v7.2.0 or later. <!-- TODO: the version File sharing comes in -->
 
 ## Getting started
-The file server is off at first. When a system administrator turns "File Server" on in "Admin Setting" > "[Feature Management](/feature)", "File Server" appears in the side menu. Who may use it (role groups) is also chosen in Feature Management.
+File sharing is off at first. When a system administrator turns "File sharing" on in "Admin Setting" > "[Feature Management](/feature)", "File sharing" appears in the side menu. Who may use it (role groups) is also chosen in Feature Management.
 
-<!-- Screenshot: the top of the file server (workspaces, favorites, recent files) (img/file_server/file_server_top.png) -->
+<!-- Screenshot: the top of File sharing (workspaces, favorites, recent files) (img/file_server/file_server_top.png) -->
 
 ## Workspaces
 A workspace is where a team keeps its files (a site in SharePoint).
@@ -89,7 +89,7 @@ In the workspace settings, make columns for the files (as "Customer" or "Kind").
 - The list can be filtered by a column (also "empty"), sorted and grouped.
 
 ## Links to data
-In "Related data" on the page of a file, link it to records of Exment tables (as a customer). The page of the record shows a "File server files" box. Both show only what the user may see.
+In "Related data" on the page of a file, link it to records of Exment tables (as a customer). The page of the record shows a "File sharing files" box. Both show only what the user may see.
 
 ## Search
 "Search" finds files by name, column values and the text in the files. Only files the user may see are shown.
