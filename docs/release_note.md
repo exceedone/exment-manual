@@ -3,6 +3,7 @@
 
 ## v7.2.1 (2026/11/XX)
 <!-- TODO: the release date -->
+- <span class="red bold">v7.2.1 is the first public release of 7.2. It includes everything of v7.2.0 below (v7.2.0 was withdrawn).</span>
 - <span class="red bold">The left menu is grouped by area of work ("Admin Setting" becomes three groups: "Settings: Data & Screens", "Settings: Users & Permissions", "Settings: System"). On an updated site only the menus still where Exment put them move; menus you moved stay.</span> See [here](/menu?id=the-menu-from-v721)
 - How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)
 1. New features
@@ -16,8 +17,9 @@
     - **MCP server**: AI such as Claude reads Exment data with the user's own permissions (`POST {admin}/api/mcp`: tables, searching and reading records, the list of attachments, workflow status; read only). As for the API, the IP filter and the login by OAuth token or API key apply. Choose the role groups in "Feature Management" → "MCP" (off by default) ([#1892](https://github.com/exceedone/exment/pull/1892))
     - **Maintenance mode**: system administrators switch it in "Settings: System" → "Maintenance". During it, only system administrators, who started it and allowed IPs get in; the others see the maintenance page. The planned start and end, the API, the outside pages and the schedule can be chosen, and each change is in the operation log. There is also the command `php artisan exment:maintenance` ([#1894](https://github.com/exceedone/exment/pull/1894), [#1896](https://github.com/exceedone/exment/pull/1896))
     - File server: pages are at their folder paths (`/admin/file_server/<workspace>/<folder>/…`) instead of numbers. Old links move to the new URL after a rename or a move. A [Copy link] button is added ([#1906](https://github.com/exceedone/exment/pull/1906))
-    - File server: make new text, Markdown and CSV files and edit them in the browser. The PDF of an Office file can also be made by a conversion container (Gotenberg), besides LibreOffice
+    - File server: make new text, Markdown and CSV files and edit them in the browser, and new empty Word, Excel and PowerPoint files ([#1933](https://github.com/exceedone/exment/pull/1933)). The PDF of an Office file can also be made by a conversion container (Gotenberg), besides LibreOffice
     - Opening a notification opens its record instead of the notification page (marked read), on the plugin's screen when a plugin shows the table. The same for `${value_url}` in mails and "Details" in LINE ([#1905](https://github.com/exceedone/exment/pull/1905))
+    - A row of "Feature Management" can show a button for what the feature needs done before it works (from a plugin; for example Groupware's "install ibisOffice") ([#1931](https://github.com/exceedone/exment/pull/1931))
     - The "?" in the header and "Feature Management" open the manual of each feature ([#1910](https://github.com/exceedone/exment/pull/1910))
 1. Improvements
     - The checks at the top of the screen (the bell, workflow tasks) are shared by the tabs of a browser and stop in hidden tabs, which lowers the load on the server. The bell's interval is `EXMENT_NOTIFY_NAVBAR_INTERVAL` in `.env` (default 60 seconds, at least 30) ([#1921](https://github.com/exceedone/exment/pull/1921), [#1924](https://github.com/exceedone/exment/pull/1924))
@@ -33,8 +35,8 @@
     - In the table of Feature Management, the description in the name column wraps so the other columns stay visible
     - Notices only for system administrators say so
 
-## v7.2.0 (2026/11/XX)
-<!-- TODO: the release date -->
+## v7.2.0
+- <span class="red bold">v7.2.0 was withdrawn. Everything of this version is in v7.2.1; please use v7.2.1.</span>
 - <span class="red bold">After the update, "Feature Management" and "Tuning" are added to the menu of "Admin Setting".</span>
 - <span class="red bold">On a site that has never used the Studio, the Studio is turned off.</span>
     - If someone has opened a page of the Studio or the phone app (`/app`) before the update, the Studio stays on and works as before.

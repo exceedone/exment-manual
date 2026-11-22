@@ -3,6 +3,7 @@
 
 ## v7.2.1 (2026/11/XX)
 <!-- TODO: リリースの日を書く -->
+- <span class="red bold">v7.2.1 が 7.2 の最初の公開版です。下の v7.2.0 の内容も含みます（v7.2.0 は公開を取り下げました）。</span>
 - <span class="red bold">左のメニューが、仕事の分類ごとの並びになります（「管理者設定」は「設定：データと画面」「設定：ユーザーと権限」「設定：システム」の 3 つに）。更新したサイトでは、Exment が置いたままのメニューだけが動き、ご自身で動かしたメニューはそのままです。</span>詳細は[こちら](/ja/menu?id=v721-からのメニューの並び)
 - 更新方法：`composer update` のあとに `php artisan exment:update` を実行し、ブラウザで Ctrl+F5（スーパーリロード）を押してください。詳細は[こちら](/ja/update)
 1. 機能追加
@@ -16,8 +17,9 @@
     - **MCP サーバー**：Claude などの AI から、ユーザーの権限のまま Exment のデータを読めます（`POST {admin}/api/mcp`。テーブルの一覧・データの検索と取得・添付ファイルの一覧・ワークフローの状態。読むだけ）。API と同じく IP の制限と、OAuth のトークンか API キーでのログインが効きます。「機能の管理」の「MCP」で使う役割グループを選びます（初めは使わない）（[#1892](https://github.com/exceedone/exment/pull/1892)）
     - **メンテナンスモード**：システム管理者が「設定：システム」→「メンテナンス」で切り替えます。メンテナンス中は、システム管理者・始めた人・許可した IP のほかは、メンテナンスの画面になります。始まりと終わりの予定・API・外向けのページ・スケジュールの扱いを選べ、変えるたびに操作ログに残ります。コマンド `php artisan exment:maintenance` もあります（[#1894](https://github.com/exceedone/exment/pull/1894)・[#1896](https://github.com/exceedone/exment/pull/1896)）
     - ファイルサーバー：画面の URL を、番号でなくフォルダーの道筋（`/admin/file_server/<ワークスペース>/<フォルダー>/…`）にしました。名前を変えたり動かしたりしても、古いリンクは新しい URL へ移ります。［リンクをコピー］のボタンもあります（[#1906](https://github.com/exceedone/exment/pull/1906)）
-    - ファイルサーバー：新規作成で、テキスト・Markdown・CSV のファイルを作り、ブラウザーで編集できます。Office のファイルの PDF は、LibreOffice のほか、変換のコンテナ（Gotenberg）でも作れます
+    - ファイルサーバー：新規作成で、テキスト・Markdown・CSV のファイルを作り、ブラウザーで編集できます。Word・Excel・PowerPoint の空のファイルも作れます（[#1933](https://github.com/exceedone/exment/pull/1933)）。Office のファイルの PDF は、LibreOffice のほか、変換のコンテナ（Gotenberg）でも作れます
     - 通知を開くと、通知の画面でなく、対象のデータを開きます（既読になります）。プラグインがそのテーブルを自分の画面で見せるときは、その画面を開きます。メールの `${value_url}` と LINE の「詳細を見る」も同じです（[#1905](https://github.com/exceedone/exment/pull/1905)）
+    - 「機能の管理」の機能の行に、その機能を使う前に要る作業のボタンを出せるようになりました（プラグインから。例：Groupware の「ibisOffice を入れる」）（[#1931](https://github.com/exceedone/exment/pull/1931)）
     - ヘッダーの「？」と「機能の管理」から、その機能のマニュアルを開けます（[#1910](https://github.com/exceedone/exment/pull/1910)）
 1. 機能改善
     - 画面の上のお知らせ（ベル・ワークフローのタスク）の確認を、ブラウザーのタブで 1 つにまとめ、見ていないタブでは止めました。サーバーの負荷が下がります。ベルの間隔は `.env` の `EXMENT_NOTIFY_NAVBAR_INTERVAL` で決められます（初期値 60 秒、30 秒以上）（[#1921](https://github.com/exceedone/exment/pull/1921)・[#1924](https://github.com/exceedone/exment/pull/1924)）
@@ -33,8 +35,8 @@
     - 機能の管理の表で、名前の列の説明を折り返し、ほかの列が見えるようにしました
     - システム管理者だけのお知らせに「システム管理者にだけ出ています」と書くようにしました
 
-## v7.2.0 (2026/11/XX)
-<!-- TODO: リリースの日を書く -->
+## v7.2.0
+- <span class="red bold">v7.2.0 は公開を取り下げました。この版の内容は v7.2.1 に含まれます。v7.2.1 をお使いください。</span>
 - <span class="red bold">更新すると、「管理者設定」に「機能の管理」と「チューニング」のメニューが増えます。</span>
 - <span class="red bold">スタジオは、一度も使っていないサイトでは「使わない」になります。</span>
     - 更新の前に、だれかがスタジオの画面かスマホのアプリ（`/app`）を開いたことがあるサイトでは、「使う」のままで、今までどおり使えます。
