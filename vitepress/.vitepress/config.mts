@@ -26,6 +26,9 @@ const oldUrls = `(function () {
 
 const base = process.env.MANUAL_BASE || '/docs/'
 
+// the way back to the site (exment.net) from the header, in the language of the page
+const backToSite = (link: string) => [{ text: '← exment.net', link, target: '_self' }]
+
 export default defineConfig({
   srcDir: 'src',
   base,
@@ -61,13 +64,14 @@ export default defineConfig({
     root: {
       label: 'English',
       lang: 'en',
-      themeConfig: { sidebar: sidebar['/'] ?? [], outline: { level: [2, 3], label: 'On this page' } },
+      themeConfig: { nav: backToSite('https://exment.net/en/'), sidebar: sidebar['/'] ?? [], outline: { level: [2, 3], label: 'On this page' } },
     },
     ja: {
       label: '日本語',
       lang: 'ja',
       link: '/ja/',
       themeConfig: {
+        nav: backToSite('https://exment.net/'),
         sidebar: sidebar['/ja/'] ?? [],
         outline: { level: [2, 3], label: 'このページの内容' },
         docFooter: { prev: '前のページ', next: '次のページ' },
@@ -81,7 +85,7 @@ export default defineConfig({
       label: 'Tiếng Việt',
       lang: 'vi',
       link: '/vi/',
-      themeConfig: { sidebar: sidebar['/vi/'] ?? [], outline: { level: [2, 3], label: 'Trong trang này' } },
+      themeConfig: { nav: backToSite('https://exment.net/vi/'), sidebar: sidebar['/vi/'] ?? [], outline: { level: [2, 3], label: 'Trong trang này' } },
     },
   },
 })
