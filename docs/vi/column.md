@@ -288,7 +288,7 @@ Khi đặt là YES, các chức năng sau sẽ có hiệu lực.
 
 - Khi người dùng nhập từ khóa vào thanh tìm kiếm ở phía trên trang, cột sẽ trở thành đối tượng tìm kiếm dữ liệu. Vui lòng đặt là YES đối với các cột muốn cho phép tìm kiếm trên màn hình tìm kiếm, chẳng hạn như các loại mã hoặc các loại tên.  
 
-- Có thể thiết lập **<span id="free_word_search_target">Free word search target (đối tượng tìm kiếm từ khóa tự do)**</span>.  
+- Có thể thiết lập <span id="free_word_search_target">**Free word search target (đối tượng tìm kiếm từ khóa tự do)**</span>.  
 Khi đặt là YES, cột sẽ trở thành đối tượng tìm kiếm khi nhập chuỗi ký tự vào thanh tìm kiếm để tìm kiếm.
 
 ※ Nếu thiết lập quá nhiều "chỉ mục tìm kiếm" trong cùng một bảng, hiệu năng có thể giảm khi tạo mới hoặc cập nhật dữ liệu.  
