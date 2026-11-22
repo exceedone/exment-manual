@@ -17,14 +17,16 @@ Plugin quản lý dự án và ticket (công việc) trên chính các bảng c�
 | Chức năng | Nội dung |
 | --- | --- |
 | Dự án | Mỗi dự án có công việc, bảng, biểu đồ Gantt, wiki và tệp riêng. Thành viên gồm quản lý dự án, thành viên và người xem (dùng nhóm vai trò của Exment). |
-| Công việc | Danh sách có lọc và lọc nhanh, cây cha/con, sửa trực tiếp trên danh sách, cập nhật hàng loạt, tệp đính kèm. Nội dung viết bằng Markdown và dán được ảnh. |
+| Công việc | Danh sách có lọc và lọc nhanh, cây cha/con, sửa trực tiếp trên danh sách, cập nhật hàng loạt, tệp đính kèm. Nội dung viết bằng Markdown và dán được ảnh. Sau khi lưu, danh sách và chi tiết được vẽ lại ngay tại chỗ, không tải lại cả trang (từ 1.6.5). |
+| Vai trò trên công việc | Ngoài người phụ trách: người phụ trách phụ, người quản lý, người review, và độ khó (dễ, bình thường, khó). Chi tiết công việc cũng hiện người tạo. Người phụ trách phụ, người quản lý và người review cũng nhận thông báo cập nhật như người phụ trách (từ 1.6.0). |
+| Word, Excel và PowerPoint | 「表示」 (xem) trên tệp của công việc, bình luận, wiki và dự án mở tệp ngay trên màn hình mà không cần tải về. Người có quyền sửa có thể sửa và lưu tại đó (từ 1.7.0 / 1.7.1; cần [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) 0.4.0 trở lên và trình duyệt hỗ trợ WebGPU). Nếu không có, tệp được tải về như trước. |
 | Mốc (milestone) | Công việc theo từng mốc và biểu đồ burndown. |
 | Bảng và biểu đồ Gantt | Hiển thị công việc trên bảng theo trạng thái, hoặc trên biểu đồ Gantt. |
 | Wiki và tệp | Chia sẻ tài liệu của dự án bằng wiki và tệp. |
 | Bình luận | Bình luận trên công việc. Chỉ định người cần báo (mention) hoặc nhờ xác nhận (review). |
 | Đã đọc / chưa đọc | Biết ai đã đọc công việc. Công việc bạn chưa xem được tô màu trong danh sách. |
 | Thông báo | Chuông trên màn hình, và email khi có công việc mới, bình luận, hoặc khi bấm nút "gửi email về công việc này" (gửi bằng thiết lập email của Exment). |
-| Cài đặt | Trong ⚙ 設定 (cài đặt): cài đặt cổng và cập nhật cấu trúc dữ liệu. Quản trị viên hệ thống dùng được "Di chuyển dữ liệu": xuất dự án kèm bình luận, lịch sử và tệp đính kèm ra ZIP rồi nhập vào Exment khác (kiểm tra trước, rồi mới ghi). |
+| Cài đặt | Trong ⚙ 設定 (cài đặt): cài đặt cổng và cập nhật cấu trúc dữ liệu. Quản trị viên hệ thống dùng được "Di chuyển dữ liệu": xuất dự án kèm bình luận, lịch sử và tệp đính kèm ra ZIP rồi nhập vào Exment khác (kiểm tra trước, rồi mới ghi). Công việc được nhập cũng hiện mã, URL và người tạo ở nơi gốc, cùng các thuộc tính tùy chỉnh (từ 1.5.0). |
 
 ## Yêu cầu
 - Exment 7.0 trở lên (PHP 8.2 trở lên)
@@ -267,7 +269,7 @@ Bản cài mới từ 1.4.0 trở về trước tạo thêm một thư mục 「
 「⚙ 設定」 (cài đặt Quản lý dự án) chỉ hiện với quản trị viên hệ thống. Cài đặt của từng dự án nằm ở tab 「設定」 của dự án.
 
 ### Sau khi cập nhật, màn hình hiển thị sai hoặc không thấy chức năng mới
-Kiểm tra 「⚙ 設定」 → 「データ構造の更新」. Nếu hiện 「データ構造の更新が必要です。」, hãy sao lưu cơ sở dữ liệu và bấm 「更新を実行する」. Các màn hình khác như dashboard không báo việc này.
+Kiểm tra 「⚙ 設定」 → 「データ構造の更新」. Nếu hiện 「データ構造の更新が必要です。」, hãy sao lưu cơ sở dữ liệu và bấm 「更新を実行する」. Từ 1.6.4, khi cần cập nhật, quản trị viên cũng thấy 「データ構造の更新があります」 ở phía trên màn hình.
 
 ### Không nhận được email
 - Email không bao giờ tự gửi. Hãy đánh dấu 「メールでも知らせる」, hoặc dùng 「メールで知らせる」.
