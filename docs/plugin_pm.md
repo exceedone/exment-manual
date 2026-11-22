@@ -32,11 +32,13 @@ It manages projects and tickets (issues) on Exment's own tables. It is free.
 - The screens are in Japanese only.
 
 ## Install
+※From Exment v7.2.0, Project Management comes with Exment. No download or upload is needed: press "Use (install)" in "Free official plugins" of "Admin Setting" > "Feature Management", then go on to "[3. First-time setup](/plugin_pm?id=_3-first-time-setup)" below. Right after installing from Feature Management, there is no "Project Management" in the side menu yet (it appears after the first-time setup). See [Official plugins](/plugin_official).
+
 
 ### 1. Download
 Download the newest zip from [Releases](https://github.com/exceedone/exment-plugins/releases) on GitHub. Do not unzip it.
 
-- Latest version (v1.4.1): [ExmentPM-1.4.1.zip](https://github.com/exceedone/exment-plugins/releases/download/ExmentPM-v1.4.1/ExmentPM-1.4.1.zip)
+- The latest version is `ExmentPM-(version).zip` under "ExmentPM-v(version)" in [Releases](https://github.com/exceedone/exment-plugins/releases).
 
 ※Do not use the green "Code → Download ZIP" button: that is the whole repository, and Exment cannot read it.
 
@@ -200,7 +202,7 @@ Each project can ask for a Git repository (Gitea or Forgejo).
 ### Moving to 1.4.0 (if you have PmPortal or ExmentPluginPM)
 In 1.4.0 the internal name became `ExmentPM` and the address `/admin/plugins/exment_pm`. On an Exment that already has PmPortal (1.2.0 or older) or ExmentPluginPM (1.3.0), uploading the zip as it is stops with "UUID exists but the plugin name is wrong". Do the steps in ["Moving to ExmentPM" in the README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行) once. Links and bookmarks to the old address (`/admin/plugins/pm_portal/...`) stop working.
 
-※On Exment SaaS you do not need to do anything (Exceed One does it).
+※On Exment SaaS, the operators do it for all sites, so you do not need to do anything.
 
 ※From v1.2.0, data migration is part of this plugin. If you installed the separate data migration plugin with an older version, you can delete it in "Admin Setting" > "Plugin" after the update.
 
@@ -243,15 +245,13 @@ Use 「データ移行」 (Data migration) in 「⚙ プロジェクト管理の
 ※Organization permissions are not moved. Check the project's 「参加ユーザー」 (Members) on the target.
 
 ## On Exment SaaS
-On Exment SaaS (`*.exments.com`) you do not need the zip. Install it from the "Plugin market".
+On Exment SaaS (`*.exments.com`), no zip download or upload is needed.
 
-1. Log in as a system administrator and open the "Plugin market".
-2. Choose "Exment Plugin PM（プロジェクト管理）" and install it.
-3. Open `/plugins/exment_pm` and do the [first-time setup](/plugin_pm?id=_3-first-time-setup). After that, follow [Getting started](/plugin_pm?id=getting-started).
+1. The system administrator of the tenant presses "Use (install)" for Project Management in "Free official plugins" of "Admin Setting" > "[Feature Management](/feature)". The install and the first-time setup (making the tables) are done automatically.
+2. Open "Project Management" in the side menu (`/plugins/exment_pm`). After that, follow [Getting started](/plugin_pm?id=getting-started).
 
 - The address is `https://(tenant name).exments.com/plugins/exment_pm` (without `/admin`).
-
-!> **Note on updates**: for now, the "Update" button of the plugin market may not update this plugin correctly. Until it is fixed, download the zip of the newer version and upload it in "Admin Setting" > "Plugin" > "Plugin upload". Then check 「データ構造の更新」 as described in [Update](/plugin_pm?id=update).
+- The operators update the plugin to new versions, and run the data structure update at the same time. The tenant administrator does not need to press 「更新を実行する」.
 
 ## FAQ and common pitfalls
 

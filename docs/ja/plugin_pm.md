@@ -30,11 +30,13 @@
 - 画面は日本語だけです。
 
 ## インストール
+※Exment v7.2.0 以降は、プロジェクト管理は Exment と一緒に届いています。ダウンロードとアップロードは要らず、「管理者設定」→「機能の管理」の「無料の公式プラグイン」で「使う（インストールする）」を押します。そのあと「[3. 初期セットアップ](/ja/plugin_pm?id=_3-初期セットアップ)」に進んでください。機能の管理から入れた時点では、左のメニューに「プロジェクト管理」はまだありません（初期セットアップのあとに出ます）。詳細は[公式プラグイン](/ja/plugin_official)をご覧ください。
+
 
 ### 1. ダウンロード
 GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) から、最新の zip をダウンロードします。展開はしません。
 
-- 最新版（v1.4.1）：[ExmentPM-1.4.1.zip](https://github.com/exceedone/exment-plugins/releases/download/ExmentPM-v1.4.1/ExmentPM-1.4.1.zip)
+- 最新版は、[Releases](https://github.com/exceedone/exment-plugins/releases) の「ExmentPM-v（版）」の中の `ExmentPM-（版）.zip` です。
 
 ※緑色の「Code → Download ZIP」のボタンは使わないでください。リポジトリ全体の zip で、Exment では読み込めません。
 
@@ -198,7 +200,7 @@ GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) か�
 ### 1.4.0 にするとき（PmPortal・ExmentPluginPM を入れている場合）
 1.4.0 で内部の名前が `ExmentPM` に、アドレスが `/admin/plugins/exment_pm` に変わりました。すでに PmPortal（1.2.0 まで）か ExmentPluginPM（1.3.0）を入れている Exment では、zip をそのままアップロードすると「UUIDは存在しますが、プラグイン名が正しくありません」と出て止まります。[README の「ExmentPM への移行」](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行)の手順を 1 回だけ行ってください。古いアドレス（`/admin/plugins/pm_portal/...`）へのリンクやブックマークは開けなくなります。
 
-※Exment SaaS では、利用者の作業はありません（エクシード・ワンが行います）。
+※Exment SaaS では、運営側がまとめて行うので、利用者の作業はありません。
 
 ※v1.2.0 から、データ移行の機能はこのプラグインに入りました。以前の版で、データ移行のプラグインを別に入れていた場合は、更新後に「管理者設定」→「プラグイン」で削除してかまいません。
 
@@ -241,15 +243,13 @@ GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) か�
 ※組織の権限は移りません。移行先で、プロジェクトの「参加ユーザー」を確かめてください。
 
 ## Exment SaaS の場合
-Exment SaaS（`*.exments.com`）では、zip のダウンロードは要りません。「プラグインマーケット」から入れます。
+Exment SaaS（`*.exments.com`）では、zip のダウンロードやアップロードは要りません。
 
-1. システム管理者でログインし、「プラグインマーケット」を開きます。
-2. 「Exment Plugin PM（プロジェクト管理）」を選んで、インストールします。
-3. `/plugins/exment_pm` を開いて、[初期セットアップ](/ja/plugin_pm?id=_3-初期セットアップ)を行います。そのあとは、[はじめの設定](/ja/plugin_pm?id=はじめの設定)と同じです。
+1. テナントのシステム管理者が、「管理者設定」→「[機能の管理](/ja/feature)」の「無料の公式プラグイン」で、プロジェクト管理の「使う（インストールする）」を押します。インストールと初期セットアップ（テーブルを作る）まで、自動で行われます。
+2. 左のメニューの「プロジェクト管理」（`/plugins/exment_pm`）を開きます。そのあとは、[はじめの設定](/ja/plugin_pm?id=はじめの設定)と同じです。
 
 - アドレスは `https://（テナント名）.exments.com/plugins/exment_pm` です（`/admin` は付きません）。
-
-!> **更新のときのご注意**：今は、プラグインマーケットの「更新」ボタンで、このプラグインを正しく更新できないことがあります。直るまでは、新しい版の zip をダウンロードして、「管理者設定」→「プラグイン」の「プラグインアップロード」でアップロードしてください。そのあと、[更新](/ja/plugin_pm?id=更新)のとおり「データ構造の更新」を確かめます。
+- 新しい版にするのは運営側です。新しい版にするときに、運営側がデータ構造の更新まで行うので、テナントの管理者が「更新を実行する」を押す必要はありません。
 
 ## よくある質問・つまずきやすい所
 
