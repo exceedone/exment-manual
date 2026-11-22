@@ -66,7 +66,7 @@ function escapeMustache(text) {
 }
 
 // a <script> in a page (docsify runs it; Vue would take it as the code of the page):
-// left out in the trial. Only the cache-busting of the zip link in quickstart_easy uses it.
+// left out. Only the zip link of quickstart_easy used one (bustZip does it now).
 function dropScripts(text) {
   const out = []
   let fenced = false
@@ -90,6 +90,13 @@ function dropScripts(text) {
   return out.join('\n')
 }
 
+// the zip of Exment on the install page: docsify put the time of the visit after it (a <script>,
+// so that a cache does not give an old zip); here the time of the build
+const stamp = new Date().toISOString().replace(/\D/g, '').slice(0, 14)
+function bustZip(text) {
+  return text.replace(/(<a id="link" href="https:\/\/exment\.net\/downloads\/[^"?]+\.zip)"/g, `$1?ver=${stamp}"`)
+}
+
 walk(docs, (path) => {
   const rel = relative(docs, path)
   const base = rel.split(/[\\/]/).pop()
@@ -102,7 +109,7 @@ walk(docs, (path) => {
   }
   mkdirSync(dirname(to), { recursive: true })
   if (path.endsWith('.md')) {
-    writeFileSync(to, escapeMustache(convertLinks(dropScripts(readFileSync(path, 'utf8')))))
+    writeFileSync(to, escapeMustache(convertLinks(bustZip(dropScripts(readFileSync(path, 'utf8'))))))
   } else {
     cpSync(path, to)
   }
@@ -150,6 +157,12 @@ if (existsSync(overlay)) {
   if (existsSync(tasks)) {
     // "what you want to do" comes first in the sidebar
     const t = JSON.parse(readFileSync(tasks, 'utf8'))
+    // Vietnamese: its page when there is one, the English one when not
+    for (const item of t['/vi/']?.items ?? []) {
+      if (existsSync(join(src, 'vi', item.link.replace(/^\//, '') + '.md'))) {
+        item.link = '/vi' + item.link
+      }
+    }
     for (const lang of Object.keys(t)) {
       bars[lang] = [t[lang], ...(bars[lang] || [])]
     }

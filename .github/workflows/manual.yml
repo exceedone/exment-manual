@@ -1,0 +1,30 @@
+# Builds the manual with VitePress (vitepress/) on every pull request and push to master.
+# A link to a page that is not there, or HTML that Vue cannot read, stops it.
+# The built site is kept as an artifact (manual-site) to look at; it is not published from here.
+name: manual
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vitepress
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: vitepress/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manual-site
+          path: vitepress/.vitepress/dist
+          retention-days: 7
