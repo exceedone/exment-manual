@@ -49,7 +49,9 @@ Exment はメールサーバーを持ちません。Outlook と同じように�
 - 押すと、新しいタブでエディターが開きます。**保存**すると、ファイルの新しい版になります（前の版は版の履歴に残ります）。
 - 編集のために開いている間は**チェックアウト**になり、ほかの人は変更できません。エディターを閉じるとチェックインします。見るだけの権限の人や、ほかの人がチェックアウトしているファイルは、読み取り専用で開きます。
 - 間にほかの人が保存していたときは、保存を断るので、上書きで消えることはありません。
-- サーバーに LibreOffice がないときは、ファイルの画面のプレビューの欄に、エディターを読み取り専用で埋め込みます。
+- サーバーに LibreOffice がないときは、ファイルの画面のプレビューの欄に、エディターを読み取り専用で埋め込みます。**LibreOffice は要りません**（ibisOffice はブラウザーの中で動きます）。
+- 右上の閉じる（×）を押すと、チェックインしてエディターを離れます。「Office で開く」で開いたタブは閉じ、そうでなければファイルの画面に戻ります（0.4.4 から）。プレビューには閉じるを出しません。
+- **中身が空のファイル**（0 バイト。Windows の「新規作成 → Word 文書」で作ったものなど）は、名前の拡張子（docx・xlsx・pptx）の種類の新しい文書として開きます。保存すると、その名前の本物の文書になります（0.4.4 から。それより前は表計算として開いていました）。
 
 ### データの添付ファイル
 データに添付した Word・Excel・PowerPoint も、ブラウザーの Office で見られます（プロジェクト管理の課題・Wiki・プロジェクトのファイルなど）。ファイルサーバーがなくても動きます。
@@ -68,8 +70,9 @@ Exment はメールサーバーを持ちません。Outlook と同じように�
 ## 動作要件
 - Exment 7.1 以上（7.1・7.2 で確かめています）と PHP 8.2 以上。Web メールとデータの添付は、どちらでも動きます。
 - ファイルサーバーのファイルを開くには、ファイルサーバーのある Exment（v7.2.0 以降）が要ります。ないときは、その部分だけ動きません。
-- `zip` の拡張は、ibisOffice のインストールにだけ使います。
+- ibisOffice のインストールには、PHP の `zip` の拡張と、書き込めるサイトの `public/`（約 125MB）が要ります。
 - Office を使うには、WebGPU のあるブラウザー（Chrome・Edge、または Safari 26 以降）と、HTTPS のサイトが要ります。
+- LibreOffice や Docker は要りません。XServer などのレンタルサーバーでも動きます（サーバーはファイルを渡すだけで、Office はブラウザーの中で動きます）。
 
 ## インストール
 1. プラグインを入れます。Exment v7.2.0 以降は「機能の管理」から、それより前は zip のアップロードです。[公式プラグイン](/ja/plugin_official)をご覧ください。
@@ -78,10 +81,37 @@ Exment はメールサーバーを持ちません。Outlook と同じように�
 Web サーバーが複数台のときや、`public/` に書き込めないときは、展開したリリースをほかの場所で公開し、プラグインの設定の「ibisOffice の場所（URL）」に、`index.html` のあるフォルダーの URL を入れます。
 
 ### Web サーバーの設定
-- `.wasm` は `application/wasm` で送ります（最近の nginx・Apache は標準でそうなっています）。
-- `.wasm` と `.js` は、gzip か Brotli で圧縮して送ります（wasm は 92MB で、圧縮すると約 4 分の 1）。nginx なら `gzip_types application/wasm application/javascript text/javascript;`。
-- フォルダーに版が入っているので、長くキャッシュできます（`Cache-Control: public, max-age=31536000, immutable`）。
+エディターは大きいので（`.wasm` が 92MB、gzip で約 24MB）、圧縮して送り、ブラウザーに残してもらうと、ダウンロードは最初の 1 回だけになります。そうしないと、開くたびに 10 秒ほど待つことがあります。
+
+**Apache（XServer などのレンタルサーバーも）**
+- 0.4.4 から、インストールのときに、大きいファイルの `.gz` の複製と、`public/vendor/exment_groupware/ibisoffice/.htaccess` を書きます。`.wasm` の種類・1 年のキャッシュ・gzip を受け取れるブラウザーへの `.gz` の複製（複製がないときは `mod_deflate` で圧縮）です。
+- どの設定も `IfModule` の中なので、ないモジュールは飛ばされます。そこで `.htaccess` が使えること（`AllowOverride All`。Exment 自身の `.htaccess` にも要ります）だけ確かめてください。
+- 0.4.3 以前で入れた ibisOffice は、0.4.4 に更新したあと、プラグインの画面でもう一度インストールすると、複製と `.htaccess` ができます。
+
+**nginx**
+nginx は `.htaccess` を読みません。サイトの設定に次を足して、設定を読み直します。
+
+```nginx
+# サイトの server { } の中、location / より前に
+location ^~ /vendor/exment_groupware/ibisoffice/ {
+    gzip_static on;            # インストールのときに書いた .gz の複製を送る
+    gzip on;                   # 複製のないものはその場で圧縮
+    gzip_types application/wasm text/javascript application/javascript text/css application/json image/svg+xml;
+    types { application/wasm wasm; }
+    expires 1y;
+    add_header Cache-Control "public, max-age=31536000, immutable" always;
+    # location の中で add_header を書くと server { } のものが消えるので、もう一度書く
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+    try_files $uri =404;
+}
+```
+
+**どの Web サーバーでも**
+- **X-Frame-Options は `DENY` ではなく `SAMEORIGIN` にします。** エディターは同じサイトの `iframe` なので、`DENY` だとブラウザーが表示を断ります（画面が空のままになります）。Content-Security-Policy の `frame-ancestors` も `'self'` にします。
 - Content-Security-Policy を付けているサイトは、`script-src 'self' 'wasm-unsafe-eval'` が要ります。
+- COOP・COEP のヘッダーは要りません。
 
 ## ibisOffice のライセンス
 ibisOffice は株式会社アイビスのソフトウェアで、AGPL-3.0-only と商用ライセンスのデュアルライセンスです。このプラグインは、ibisOffice をリリースのまま（改変せず）別の枠で動かし、プラグインには含めません（アイビスのリリースからダウンロードします）。エディターの画面とプラグインの画面に「Powered by ibisOffice」を出します。

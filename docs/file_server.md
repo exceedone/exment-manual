@@ -60,6 +60,8 @@ Images, video, audio, PDF and text are shown on the page. How Office files (docx
 | The official plugin "Groupware" | "Open in Office" opens it read-only in the browser's Office (ibisOffice). With LibreOffice too, tabs switch between them. |
 | Neither | Only the text in the file is shown. Download it to see the layout. |
 
+With Groupware's ibisOffice, neither LibreOffice nor Docker is needed, and it works on rental servers. For the setup and the web server settings, see [Groupware](/plugin_groupware?id=the-web-server).
+
 ※html, svg and similar files are not shown on the page for safety; they can only be downloaded.
 
 ※Files that came in through a request link get no preview and no text extraction when they are opened. They are made only when a user with Manage presses "Make the preview".
