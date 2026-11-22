@@ -272,9 +272,9 @@ v4.0.7より見直し。
 ### ダッシュボード
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>ダッシュボード表示</td>
@@ -321,9 +321,9 @@ v4.0.7より見直し。
 ### システム設定
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>API使用</td>
@@ -334,7 +334,6 @@ v4.0.7より見直し。
             <td>サーバー外部通信</td>
             <td>サーバー外部通信の可否を設定します。</td>
             <td>システム管理</td>
-        </tr>
         </tr>
         <tr>
             <td>権限管理</td>
@@ -432,9 +431,9 @@ v4.0.7より見直し。
 ### カスタムテーブル設定
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>カスタムテーブル表示</td>
@@ -541,9 +540,9 @@ v4.0.7より見直し。
 ### カスタム列
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>カスタム列表示</td>
@@ -676,9 +675,9 @@ v4.0.7より見直し。
 ### カスタムフォーム設定
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>カスタムフォーム表示</td>
@@ -689,7 +688,6 @@ v4.0.7より見直し。
             <td>カスタムフォーム新規作成</td>
             <td>カスタムフォームを新規作成します。</td>
             <td>フォーム管理</td>
-        </tr>
         </tr>
         <tr>
             <td>カスタムフォーム編集</td>
@@ -827,9 +825,9 @@ v4.0.7より見直し。
 ### データ登録・編集
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>データ登録フォーム表示</td>
@@ -896,9 +894,9 @@ v4.0.7より見直し。
 ### データ一覧
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>データ一覧表示</td>
@@ -966,9 +964,9 @@ v4.0.7より見直し。
 ### データ詳細
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>データ詳細表示</td>
@@ -994,7 +992,6 @@ v4.0.7より見直し。
             <td>ワークフロー実施</td>
             <td>アクションボタンを押下げし、ワークフローを実行します。</td>
             <td>現在の作業ユーザー</td>
-        </tr>
         </tr>
         <tr>
             <td>添付ファイルアップロード</td>
@@ -1037,9 +1034,9 @@ v4.0.7より見直し。
 ### カスタムビュー
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>カスタムビュー表示</td>
@@ -1050,7 +1047,6 @@ v4.0.7より見直し。
             <td>カスタムビュー新規作成</td>
             <td>カスタムビューを新規作成します。</td>
             <td>システムビュー</td>
-        </tr>
         </tr>
         <tr>
             <td>カスタムビュー編集</td>
@@ -1138,9 +1134,9 @@ v4.0.7より見直し。
 ### データ更新設定
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>データ更新設定新規作成</td>
@@ -1178,9 +1174,9 @@ v4.0.7より見直し。
 ### ワークフロー
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>ワークフロー設定表示</td>
@@ -1262,9 +1258,9 @@ v4.0.7より見直し。
 ### 公開フォーム設定
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>公開フォーム設定表示</td>
@@ -1381,9 +1377,9 @@ v4.0.7より見直し。
 ### テンプレート
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>テンプレート - エクスポート</td>
@@ -1401,9 +1397,9 @@ v4.0.7より見直し。
 ### バックアップ・リストア
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>バックアップ</td>
@@ -1455,9 +1451,9 @@ v4.0.7より見直し。
 ### ユーザー
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>ユーザー表示</td>
@@ -1504,9 +1500,9 @@ v4.0.7より見直し。
 ### 組織
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>組織表示</td>
@@ -1544,9 +1540,9 @@ v4.0.7より見直し。
 ### 役割グループ
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>役割グループ表示</td>
@@ -1579,9 +1575,9 @@ v4.0.7より見直し。
 ### 通知設定
 <table class="Funclist">
         <tr>
-            <th style="width:30%">機能名</td>
-            <th style="width:45%">機能概要</td>
-            <th style="width:25%">権限</td>
+            <th style="width:30%">機能名</th>
+            <th style="width:45%">機能概要</th>
+            <th style="width:25%">権限</th>
         </tr>
         <tr>
             <td>通知設定表示</td>

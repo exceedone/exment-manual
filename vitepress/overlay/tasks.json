@@ -1,0 +1,176 @@
+{
+  "/ja/": {
+    "text": "やりたいことから探す",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "インストールして使い始める",
+        "link": "/ja/quickstart"
+      },
+      {
+        "text": "データを入れる・取り込む",
+        "link": "/ja/data_import_export"
+      },
+      {
+        "text": "一覧・カンバン・グラフで見る",
+        "link": "/ja/view"
+      },
+      {
+        "text": "申請と承認を回す",
+        "link": "/ja/workflow_setting"
+      },
+      {
+        "text": "変わったら知らせる",
+        "link": "/ja/notify"
+      },
+      {
+        "text": "社外の人に入力してもらう",
+        "link": "/ja/publicform"
+      },
+      {
+        "text": "ファイルを共有する",
+        "link": "/ja/file_server"
+      },
+      {
+        "text": "だれが何をできるか決める",
+        "link": "/ja/permission"
+      },
+      {
+        "text": "ログインのしかたを決める",
+        "link": "/ja/login_setting"
+      },
+      {
+        "text": "使う機能を選ぶ",
+        "link": "/ja/feature"
+      },
+      {
+        "text": "ほかのシステムとつなぐ（API）",
+        "link": "/ja/api"
+      },
+      {
+        "text": "バックアップする",
+        "link": "/ja/backup"
+      },
+      {
+        "text": "うまく動かないとき",
+        "link": "/ja/troubleshooting"
+      }
+    ]
+  },
+  "/": {
+    "text": "Find by what you want to do",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Install and start",
+        "link": "/quickstart"
+      },
+      {
+        "text": "Put data in, import it",
+        "link": "/data_import_export"
+      },
+      {
+        "text": "See it as a list, kanban or chart",
+        "link": "/view"
+      },
+      {
+        "text": "Run requests and approvals",
+        "link": "/workflow_setting"
+      },
+      {
+        "text": "Tell people when it changes",
+        "link": "/notify"
+      },
+      {
+        "text": "Let people outside fill a form",
+        "link": "/publicform"
+      },
+      {
+        "text": "Share files",
+        "link": "/file_server"
+      },
+      {
+        "text": "Decide who may do what",
+        "link": "/permission"
+      },
+      {
+        "text": "Decide how users log in",
+        "link": "/login_setting"
+      },
+      {
+        "text": "Choose the features to use",
+        "link": "/feature"
+      },
+      {
+        "text": "Connect other systems (API)",
+        "link": "/api"
+      },
+      {
+        "text": "Back up",
+        "link": "/backup"
+      },
+      {
+        "text": "When it does not work",
+        "link": "/troubleshooting"
+      }
+    ]
+  },
+  "/vi/": {
+    "text": "Tìm theo việc muốn làm",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Cài đặt và bắt đầu",
+        "link": "/quickstart"
+      },
+      {
+        "text": "Nhập dữ liệu",
+        "link": "/data_import_export"
+      },
+      {
+        "text": "Xem dạng danh sách, kanban, biểu đồ",
+        "link": "/view"
+      },
+      {
+        "text": "Gửi yêu cầu và phê duyệt",
+        "link": "/workflow_setting"
+      },
+      {
+        "text": "Báo khi có thay đổi",
+        "link": "/notify"
+      },
+      {
+        "text": "Cho người bên ngoài nhập form",
+        "link": "/publicform"
+      },
+      {
+        "text": "Chia sẻ tệp",
+        "link": "/file_server"
+      },
+      {
+        "text": "Quyết định ai được làm gì",
+        "link": "/permission"
+      },
+      {
+        "text": "Cách đăng nhập",
+        "link": "/login_setting"
+      },
+      {
+        "text": "Chọn chức năng sử dụng",
+        "link": "/feature"
+      },
+      {
+        "text": "Kết nối hệ thống khác (API)",
+        "link": "/api"
+      },
+      {
+        "text": "Sao lưu",
+        "link": "/backup"
+      },
+      {
+        "text": "Khi không chạy đúng",
+        "link": "/troubleshooting"
+      }
+    ]
+  }
+}

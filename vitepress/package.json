@@ -1,0 +1,14 @@
+{
+  "name": "exment-manual-vitepress",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare-src": "node prepare.mjs",
+    "dev": "node prepare.mjs && vitepress dev",
+    "build": "node prepare.mjs && vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "1.6.4"
+  }
+}
