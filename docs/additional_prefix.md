@@ -6,6 +6,8 @@ The value in front of the URLs of Exment (such as "/admin") is set by `ADMIN_ROU
 
 The URLs of this manual are for the default without a value. On a site with "admin" or another value, add it after the URL of the site (e.g. `(Exment URL)/auth/login` → `(Exment URL)/admin/auth/login`).
 
+When installing, you can set it on the last page of the setup, "**Value in front of the URLs**" (empty for none; "admin" for the same as older versions). To change it later, edit `.env` as follows.
+
 ### Change procedure
 
 - In the root directory of Exment, open the ".env" file.
