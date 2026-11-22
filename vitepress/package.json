@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "prepare-src": "node prepare.mjs",
-    "dev": "node prepare.mjs && vitepress dev src",
-    "build": "node prepare.mjs && vitepress build src",
-    "preview": "vitepress preview src"
+    "dev": "node prepare.mjs && vitepress dev",
+    "build": "node prepare.mjs && vitepress build",
+    "preview": "vitepress preview"
   },
   "devDependencies": {
     "vitepress": "1.6.4"
