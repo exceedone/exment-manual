@@ -62,4 +62,26 @@ Please upload the Exment template file you have from the screen.
 The file format is zip.  
 
 - After doing either of the above, click "Submit". This will import the selected or uploaded template into the system.  
-As a result, information such as tables, forms, views, and dashboards defined in the template is installed on the system.  
+As a result, information such as tables, forms, views, and dashboards defined in the template is installed on the system.
+
+### Bundled template: Request pack
+(From v7.2.1.) A template with approval requests, expense claims, business trip, payment and leave requests, together with an approval workflow. Import "Request pack" from "Install template".
+
+| What it adds | Contents |
+|---|---|
+| Tables | Approval request (ringi), expense claim (lines: date, account, paid to, amount, receipt), business trip request, payment request, leave request |
+| Workflow "申請・承認（標準）" | Shared by the five requests. Draft → [申請] → 申請中 → [承認] → 承認済み (no longer editable) / [差し戻し] (comment required) → 差し戻し → [再申請] → 申請中 |
+| Role groups | Applicants (make and edit their own requests), Approvers (see every request) |
+| Menu | Requests & approvals ▸ Pending tasks and the five requests |
+
+#### After importing
+1. In "Role Group", put the staff who make requests in **Applicants** and the people who approve in **Approvers**.
+2. The "Requests & approvals" menu is shown only to the applicants and approvers (and system administrators) ([Role groups that see it](/menu?id=role-groups-that-see-it)). Right after importing nobody is an applicant, so only system administrators see it.
+
+#### From a request to its approval
+1. An applicant makes a request (for example an approval request), saves it and presses [申請], **choosing who approves it**.
+2. It appears in "Pending tasks" of that person, who presses [承認] or [差し戻し].
+3. When it is sent back, the applicant fixes it and presses [再申請].
+
+※The approver is chosen when submitting, not set by a role group (workflow permissions are given to users, organizations, the creator or a column). To have fixed approvers, change who can run "承認" and "差し戻し" in [Workflow](/workflow_setting).
+※The tables, forms and workflow can be changed like any custom table and workflow. The statuses and actions of the workflow are in Japanese.

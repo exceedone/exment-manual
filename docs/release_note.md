@@ -1,6 +1,20 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.1 (2026/11/XX)
+<!-- TODO: the release date -->
+- <span class="red bold">The left menu is grouped by area of work ("Admin Setting" becomes three groups: "Settings: Data & Screens", "Settings: Users & Permissions", "Settings: System"). On an updated site only the menus still where Exment put them move; menus you moved stay.</span> See [here](/menu?id=the-menu-from-v721)
+- How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)
+1. New features
+    - The left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/): Dashboard, Groupware (Documents, Mail), Requests & approvals, Projects, IT support, Master, Settings: Data & Screens, Settings: Users & Permissions, Settings: System. See [here](/menu?id=the-menu-from-v721)
+        - The menus of the official plugins go under their group (Project Management → Projects, IT Support → IT support, Groupware's Mail → Groupware).
+        - A group with nothing to show is not shown (the menus of features turned off in Feature management do not show).
+        - A site whose menu did not change (arranged by someone, for example) can use [Arrange in the standard order] on the "Menu" screen (with undo). See [here](/menu?id=arrange-in-the-standard-order)
+    - A parent node can have "Role groups that see it": it shows, with its menus, only to their members (and system administrators). See [here](/menu?id=role-groups-that-see-it)
+    - Bundled template "Request pack": approval requests, expense claims, business trip, payment and leave requests, with a submit / approve / send back workflow, applicant and approver role groups and a "Requests & approvals" menu. The approver is chosen when submitting. See [here](/template?id=bundled-template-request-pack)
+1. Bug fixes
+    - When a new table (from a template, for example) was opened first on its create or detail page, its list showed only the ID and the dates. Fixed; a list that already shows so needs its columns added in the view settings ([#1918](https://github.com/exceedone/exment/pull/1918))
+
 ## v7.2.0 (2026/11/XX)
 <!-- TODO: the release date -->
 - <span class="red bold">After the update, "Feature Management" and "Tuning" are added to the menu of "Admin Setting".</span>
