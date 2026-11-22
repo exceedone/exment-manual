@@ -13,6 +13,7 @@
   * [Basic information](/base_info.md)
   * [Update](/update.md)
   * [Additional settings](/quickstart_more.md)
+  * [Tuning](/tuning)
   * [(For advanced users) Redundancy](/redundant.md)
   * [Mailsend_setting](/mailsend_setting.md)
 

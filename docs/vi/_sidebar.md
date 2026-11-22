@@ -13,6 +13,7 @@
   * [Basic information (English)](/base_info.md)
   * [Cập nhật phiên bản](/vi/update.md)
   * [Thiết lập bổ sung](/vi/quickstart_more.md)
+  * [Tuning (English)](/tuning.md)
   * [(For advanced users) Redundancy (English)](/redundant.md)
   * [Thiết lập gửi email](/vi/mailsend_setting.md)
 

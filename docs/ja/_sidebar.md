@@ -14,6 +14,7 @@
   * [基本情報](/ja/base_info)
   * [アップデート](/ja/update)
   * [追加設定](/ja/quickstart_more)
+  * [チューニング](/ja/tuning)
   * [(上級者向け)冗長化](/ja/redundant)
   * [メール送信設定](/ja/mailsend_setting)
 
