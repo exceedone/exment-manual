@@ -528,7 +528,7 @@ use Exceedone\Exment\Model\CustomTable;
 // Get the data of id1 in the notification table
 $value = CustomTable::getEloquent('information')->getValueModel(1);
 
-$value->getUrl(); // http://localhost/admin/data/information/1
-$value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/information/1">Welcome to Exment!</a>
+$value->getUrl(); // http://localhost/data/information/1
+$value->getUrl(['tag' => true]); // <a href="http://localhost/data/information/1">Welcome to Exment!</a>
 
 ~~~

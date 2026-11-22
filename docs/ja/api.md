@@ -9,7 +9,7 @@ Exmentでは、[laravel/passport](https://github.com/laravel/passport)を使用�
 ## システム設定変更
 ExmentでAPIを使用するには、メニュー「管理者設定 > システム設定」より、「APIを使用する」をYESに変更してください。
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ## API認証方法
 1. **OAuth 2.0, Authorization Code Flow(画面ログイン形式)**  
@@ -39,7 +39,7 @@ APIアプリの作成時に、APIキーを作成します。その後、認証�
 
 ##### Exmentページ内設定
 - システム管理者が、以下のURLを入力します。  
-http(s)://(ExmentのURL)/admin/api_setting  
+http(s)://(ExmentのURL)/api_setting  
 ※上記で記載の「システム設定変更」を行うことで、アクセスが出来るようになります。
 
 - v7.1.0以降は、左メニューの「管理者設定」→「APIアプリ設定」からも開けます（「APIを使用する」がYESのとき）。
@@ -73,13 +73,13 @@ http(s)://(ExmentのURL)/admin/api_setting
 - Webサービス側で、Exment認証画面を呼び出すためのエンドポイントを作成します。
 
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/authorize'  GET  
+http(s)://(ExmentのURL)/oauth/authorize'  GET  
 response_type: code
 client_id: (コピーしたClient ID)
 redirect_uri: (入力したcallback URL)
 scope: (アクセスを行うためのスコープ。一覧は下記に記載。複数ある場合はスペース区切り)
 
-例： http://localhost/admin/oauth/authorize?response_type=code&client_id=aaaaaaaa-aaaa-aaaa-aaaaaaaa&redirect_uri=http://localhost/callback&scope=me value_read
+例： http://localhost/oauth/authorize?response_type=code&client_id=aaaaaaaa-aaaa-aaaa-aaaaaaaa&redirect_uri=http://localhost/callback&scope=me value_read
 ~~~
 
 - 例：
@@ -93,14 +93,14 @@ Route::get('/redirect', function () {
         'scope' => 'me',
     ]);
 
-    return redirect('(ExmentのURL)/admin/oauth/authorize?'.$query);
+    return redirect('(ExmentのURL)/oauth/authorize?'.$query);
 }
 ~~~
 
 - Exment認証完了後に、アクセストークンを取得するためのエンドポイントを、Webサービス側で作成します。
 
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/token'  POST  
+http(s)://(ExmentのURL)/oauth/token'  POST  
 Content-Type: application/json
 
 {
@@ -118,7 +118,7 @@ Content-Type: application/json
 Route::get('/callback', function (Request $request) {
     $http = new GuzzleHttp\Client;
 
-    $response = $http->post('(ExmentのURL)/admin/oauth/token', [
+    $response = $http->post('(ExmentのURL)/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
             'client_id' => '(コピーしたClient ID)',
@@ -162,7 +162,7 @@ Route::get('/callback', function (Request $request) {
 
 ##### Exmentページ内設定
 - システム管理者が、以下のURLを入力します。  
-http(s)://(ExmentのURL)/admin/api_setting  
+http(s)://(ExmentのURL)/api_setting  
 ※上記で記載の「システム設定変更」を行うことで、アクセスが出来るようになります。
 
 - v7.1.0以降は、左メニューの「管理者設定」→「APIアプリ設定」からも開けます（「APIを使用する」がYESのとき）。
@@ -193,7 +193,7 @@ http(s)://(ExmentのURL)/admin/api_setting
 - アクセストークンを取得するためのリクエストを、呼び出し元で作成します。
 
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/token'  POST
+http(s)://(ExmentのURL)/oauth/token'  POST
 Content-Type: application/json
 
 {
@@ -224,7 +224,7 @@ Content-Type: application/json
 - LDAP認証の場合、以下のようにPOSTを行ってください。
 
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/token'  POST
+http(s)://(ExmentのURL)/oauth/token'  POST
 Content-Type: application/json
 
 {
@@ -283,7 +283,7 @@ APIアプリの作成時に、APIキーを作成します。その後、認証�
 
 ##### Exmentページ内設定
 - システム管理者が、以下のURLを入力します。  
-http(s)://(ExmentのURL)/admin/api_setting  
+http(s)://(ExmentのURL)/api_setting  
 ※上記で記載の「システム設定変更」を行うことで、アクセスが出来るようになります。
 
 - v7.1.0以降は、左メニューの「管理者設定」→「APIアプリ設定」からも開けます（「APIを使用する」がYESのとき）。
@@ -314,7 +314,7 @@ http(s)://(ExmentのURL)/admin/api_setting
 - アクセストークンを取得するためのリクエストを、呼び出し元で作成します。
 
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/token'  POST
+http(s)://(ExmentのURL)/oauth/token'  POST
 Content-Type: application/json
 
 {
@@ -350,7 +350,7 @@ Authorization: Bearer (取得したアクセストークン)
 
 例：
 ~~~  
-http://localhost/admin/api/data/user GET
+http://localhost/api/data/user GET
 ヘッダ値：
 Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1Qi......  
@@ -380,12 +380,12 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 			"label": "admin"
 		}
 	],
-	"first_page_url": "http://localhost/admin/api/data/user?page=1",
+	"first_page_url": "http://localhost/api/data/user?page=1",
 	"from": 1,
 	"last_page": 1,
-	"last_page_url": "http://localhost/admin/api/data/user?page=1",
+	"last_page_url": "http://localhost/api/data/user?page=1",
 	"next_page_url": null,
-	"path": "http://localhost/admin/api/data/user",
+	"path": "http://localhost/api/data/user",
 	"per_page": 15,
 	"prev_page_url": null,
 	"to": 1,
@@ -393,7 +393,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 }
 ~~~
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ## トークンリフレッシュ
 アクセストークンは、一定時間経過後に有効期限が切れ、無効化されます。  
@@ -402,7 +402,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 以下の内容を、HTTP POSTを実行してください。  
 
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/token'  POST  
+http(s)://(ExmentのURL)/oauth/token'  POST  
 Content-Type: application/json
 
 {
@@ -431,10 +431,10 @@ Content-Type: application/json
 - API設定にて、「画面ログイン形式」でアプリを作成します。
 
 - 以下のURLにアクセスを行います。  
-http(s)://(ExmentのURL)/admin/oauth/authorize?client_id=(コピーしたClient ID)&redirect_uri=(入力したcallback URL)&response_type=code&scope=me  
+http(s)://(ExmentのURL)/oauth/authorize?client_id=(コピーしたClient ID)&redirect_uri=(入力したcallback URL)&response_type=code&scope=me  
   
 例：  
-http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redirect_uri=http%3a%2f%2flocalhost%2fadmin%2fauth%2fcallback&response_type=code&scope=me  
+http://localhost/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redirect_uri=http%3a%2f%2flocalhost%2fauth%2fcallback&response_type=code&scope=me  
 
 
 - これにより、アプリ認証のためのシンプルな画面が表示されます。  
@@ -450,7 +450,7 @@ http://localhost/admin/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYY
 - POST通信ができるツールを使用し、以下のHTTP通信を実行します。  
   
 ~~~
-http(s)://(ExmentのURL)/admin/oauth/token'  POST  
+http(s)://(ExmentのURL)/oauth/token'  POST  
 grant_type: authorization_code
 client_id: (コピーしたClient ID)
 client_secret: (コピーしたClient Secret)
@@ -460,11 +460,11 @@ code: (取得したcode値)
   
 例：  
 ~~~
-http://localhost/admin/oauth/token POST
+http://localhost/oauth/token POST
 grant_type: authorization_code
 client_id: 1af52b10-BBBB-CCCC-XXXX-YYYYYYYY
 client_secret: PKh1u3xxxx
-redirect_uri: http://localhost/admin/auth/callback
+redirect_uri: http://localhost/auth/callback
 code: def5020012c32121912561705255XXXXXXXX  
 ~~~
   
@@ -476,7 +476,7 @@ code: def5020012c32121912561705255XXXXXXXX
   
 例：  
 ~~~
-http://localhost/admin/api/data/user GET
+http://localhost/api/data/user GET
 ヘッダ値：
 Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1Qi......  
@@ -505,12 +505,12 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 			"deleted_user_id": null,
 		}
 	],
-	"first_page_url": "http://localhost/admin/api/data/user?page=1",
+	"first_page_url": "http://localhost/api/data/user?page=1",
 	"from": 1,
 	"last_page": 1,
-	"last_page_url": "http://localhost/admin/api/data/user?page=1",
+	"last_page_url": "http://localhost/api/data/user?page=1",
 	"next_page_url": null,
-	"path": "http://localhost/admin/api/data/user",
+	"path": "http://localhost/api/data/user",
 	"per_page": 15,
 	"prev_page_url": null,
 	"to": 1,

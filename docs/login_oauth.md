@@ -28,13 +28,13 @@ Before you can add a provider in the login settings screen, you need to enter a 
 
 - Create an application for Exment with each provider.
 ※The callback URL is as follows:   
-http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback  
+http(s)://(Exment URL)/auth/login/(socialite provider name)/callback  
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
-    - Example 1 For GitHub: http(s)://(Exment URL)/admin/auth/login/github/callback  
-    - Example 2 For Facebook: http(s)://(Exment URL)/admin/auth/login/facebook/callback  
-    - Example 3 For Google: http(s)://(Exment URL)/admin/auth/login/google/callback  
+    - Example 1 For GitHub: http(s)://(Exment URL)/auth/login/github/callback  
+    - Example 2 For Facebook: http(s)://(Exment URL)/auth/login/facebook/callback  
+    - Example 3 For Google: http(s)://(Exment URL)/auth/login/google/callback  
 
 - Run the following command in the Exment root directory:
 
@@ -54,9 +54,9 @@ composer require laravel/socialite=~5.1
 
 - Create an application for Exment with each provider.
 ※The callback URL is as follows:   
-http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback  
+http(s)://(Exment URL)/auth/login/(socialite provider name)/callback  
 
-    - Example: For Office365: http(s)://(Exment URL)/admin/auth/login/graph/callback
+    - Example: For Office365: http(s)://(Exment URL)/auth/login/graph/callback
 
 - Run the following command in the Exment root directory:
 
@@ -193,10 +193,10 @@ Also, create your own provider for avatar acquisition (optional).
 ### (Required) Provider settings/addition
 - Create an application for Exment with each provider.
 ※The callback URL is as follows:   
-http(s)://(Exment URL)/admin/auth/login/(socialite provider name)/callback  
+http(s)://(Exment URL)/auth/login/(socialite provider name)/callback  
 
-    - Example: For Microsoft Graph: http(s)://(Exment URL)/admin/auth/login/graph/callback
-    - Example: For EntraID: http(s)://(Exment URL)/admin/auth/login/microsoft/callback
+    - Example: For Microsoft Graph: http(s)://(Exment URL)/auth/login/graph/callback
+    - Example: For EntraID: http(s)://(Exment URL)/auth/login/microsoft/callback
 
 - Run the following command in the Exment root directory:
 

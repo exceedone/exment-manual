@@ -1,5 +1,5 @@
 # Tuning
-Check the settings that make this site faster. "Admin Setting" > "Tuning" (the URL is `/admin/tuning`) lists the settings that make Exment faster, with their state now.
+Check the settings that make this site faster. "Admin Setting" > "Tuning" (the URL is `/tuning`) lists the settings that make Exment faster, with their state now.
 
 ※This page is available in Exment v7.2.1 or later.  
 ※Only system administrators can see it.

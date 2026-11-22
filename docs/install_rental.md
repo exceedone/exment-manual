@@ -113,7 +113,7 @@ ln -s $HOME/(domain name)/laravel/exment/public $HOME/(domain name)/public_html
 
 - Now you are ready to access Exment.   
 Please follow the [Installation Instructions](/quickstart) to complete the settings.   
-If you want to access ※Exment, please add /admin to the end of the URL.   
+※Exment opens at this URL (v7.2.1 or later). A site with "admin" in `ADMIN_ROUTE_PREFIX` of `.env` (installed with an older version) needs /admin at the end of the URL.   
 
 
 #### Correspondence when upgrading PHP version
@@ -237,7 +237,7 @@ ln -s $HOME/laravel/exment/public $HOME/www/exment
 
 - Now you are ready to access Exment.   
 Please follow the [Installation Instructions](/quickstart) to complete the settings.   
-If you want to access ※Exment, please add /admin to the end of the URL.   
+※Exment opens at this URL (v7.2.1 or later). A site with "admin" in `ADMIN_ROUTE_PREFIX` of `.env` (installed with an older version) needs /admin at the end of the URL.   
 
 
 

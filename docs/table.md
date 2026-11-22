@@ -24,13 +24,13 @@ In addition, tables that are imported as templates are also displayed on the lis
 
 #### Table name (alphanumeric) ※ required
 - Represents the name of the table. (Example: user, information, estimate)
-- The set alphanumeric characters are used in the URL when the table is opened. (Example: http(s)://(Exment URL)/admin/ data / user)
+- The set alphanumeric characters are used in the URL when the table is opened. (Example: http(s)://(Exment URL)/ data / user)
 - Only alphanumeric characters and symbols "-" and "_" can be used.
 - Table names used in other tables cannot be used.
 - The table name can be no longer than 30 characters, and the table name must begin with a letter.
 - This can only be set when creating a new table. Once saved, they cannot be changed.
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ![Custom table screen](img/table/table_detail1.png)
 

@@ -114,7 +114,7 @@ ln -s $HOME/(ドメイン名)/laravel/exment/public $HOME/(ドメイン名)/publ
 
 - これで、Exmentにアクセスするための準備が整います。  
 [インストール手順](/ja/quickstart)に従い、設定を完了してください。  
-※Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。  
+※v7.2.1 以降は、この URL で Exment が開きます。`.env` の `ADMIN_ROUTE_PREFIX` に「admin」があるサイト（前の版で入れたサイト）は、URL の末尾に「/admin」を付けてください。  
 
 
 #### PHPバージョンアップ時の対応
@@ -238,7 +238,7 @@ ln -s $HOME/laravel/exment/public $HOME/www/exment
 
 - これで、Exmentにアクセスするための準備が整います。  
 [インストール手順](/ja/quickstart)に従い、設定を完了してください。  
-※Exmentにアクセスを行いたい場合、URLの末尾に「/admin」を追加してください。  
+※v7.2.1 以降は、この URL で Exment が開きます。`.env` の `ADMIN_ROUTE_PREFIX` に「admin」があるサイト（前の版で入れたサイト）は、URL の末尾に「/admin」を付けてください。  
 
 
 

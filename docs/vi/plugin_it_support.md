@@ -3,7 +3,7 @@
 
 - Mã nguồn và tài liệu: [exceedone/exment-plugins (it-support)](https://github.com/exceedone/exment-plugins/tree/main/it-support)
 - Giấy phép: GPL-3.0 (giống Exment)
-- Tên trong danh sách plugin: Exment Plugin IT Support（ITサポート）. Tên nội bộ `ExmentITSupport`, URL `/admin/plugins/exment_it_support`.
+- Tên trong danh sách plugin: Exment Plugin IT Support（ITサポート）. Tên nội bộ `ExmentITSupport`, URL `/plugins/exment_it_support`.
 
 <!-- Ảnh màn hình: màn hình xử lý của nhân viên (img/plugin_it_support/its_desk.png) -->
 
@@ -33,8 +33,8 @@
 1. Cài plugin: từ Feature Management với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
 2. Với Exment v7.2.1 trở đi, bật "ITサポート：受付箱" (IT Support: hộp tiếp nhận) ở "Admin Setting" → "[Feature Management](/vi/feature)" (khi tắt thì không mở được màn hình thiết lập). Có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "ITサポート：お客様の窓口" (IT Support: cổng khách hàng) (chỉ chạy khi hộp tiếp nhận đang bật).
    - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng IT Support từ trước khi có Feature Management thì cả hai vẫn bật.
-   - Khi tắt "Hộp tiếp nhận", mục menu "ITサポート" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/admin/data/its_ticket`) hoặc từ "Admin Setting" → "Custom Table". Muốn hiện trên menu thì thêm bảng ở "Admin Setting" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
-3. Mở "ITサポート" trên menu (hoặc `/admin/plugins/exment_it_support`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
+   - Khi tắt "Hộp tiếp nhận", mục menu "ITサポート" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/data/its_ticket`) hoặc từ "Admin Setting" → "Custom Table". Muốn hiện trên menu thì thêm bảng ở "Admin Setting" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
+3. Mở "ITサポート" trên menu (hoặc `/plugins/exment_it_support`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
    - Menu bên trái chỉ có 1 mục "ITサポート" (mở hộp tiếp nhận). Bảng ticket, kiến thức, khách hàng, liên hệ, tài sản IT, mẫu trả lời mở từ thanh trên cùng của hộp tiếp nhận; tất cả các bảng (cả loại và SLA) mở từ "テーブル・権限" (bảng và quyền) trong "設定".
    - Thư mục "ITサポート" của 1.0.6 trở về trước (hộp tiếp nhận và 8 bảng) được gộp thành 1 mục khi mở hộp tiếp nhận lần đầu sau khi lên 1.0.7. Menu do quản trị viên tự thêm vẫn giữ nguyên.
 4. Ở "設定" (cài đặt), nhập hộp thư tiếp nhận (IMAP) và địa chỉ của bộ phận hỗ trợ, lưu lại, rồi bấm "IMAP につながるか試す" (thử kết nối IMAP). Nếu nhận email, nhập thêm "差出人の確認" (kiểm tra người gửi) và "受信サーバーの名前" (tên máy chủ nhận: tên đầu tiên trong Authentication-Results). Trước khi nhập, ticket từ email sẽ bị đánh dấu "nghi giả mạo".

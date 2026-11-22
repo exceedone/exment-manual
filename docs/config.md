@@ -372,7 +372,7 @@ The decryption password will be sent separately.
 - Setting key : EXMENT_WORKFLOW_TASK_NAVBAR
 - Default value : true
 - Role : If false, the [pending task](/workflow_task) icon in the upper right corner of the header will be hidden.  
-The pending task list can still be opened from the URL "/admin/workflow_task".
+The pending task list can still be opened from the URL "/workflow_task".
 
 #### Update interval of the pending task icon (seconds)
 - Setting key : EXMENT_WORKFLOW_TASK_NAVBAR_INTERVAL

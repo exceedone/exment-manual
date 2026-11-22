@@ -55,10 +55,10 @@ Click the icon to show up to 5 tasks, the most recently updated first.
 You can also open the screen from the following URL.
 
 ~~~
-http(s)://(Exment URL)/admin/workflow_task
+http(s)://(Exment URL)/workflow_task
 ~~~
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 To add it to the menu on the left, set menu type "Custom URL" and URI "workflow_task" in [Menu](/menu).
 

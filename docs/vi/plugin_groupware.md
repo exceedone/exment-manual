@@ -6,7 +6,7 @@
 
 - Mã nguồn và tài liệu: [exceedone/exment-plugins (groupware)](https://github.com/exceedone/exment-plugins/tree/main/groupware)
 - Giấy phép: GPL-3.0 (giống Exment). ibisOffice là AGPL-3.0-only.
-- Tên trong danh sách plugin: Exment Plugin Groupware. Tên nội bộ `ExmentGroupware`, URL `/admin/plugins/exment_groupware`.
+- Tên trong danh sách plugin: Exment Plugin Groupware. Tên nội bộ `ExmentGroupware`, URL `/plugins/exment_groupware`.
 
 <!-- Ảnh màn hình: web mail (img/plugin_groupware/gw_mail.png) và tệp mở bằng Office (img/plugin_groupware/gw_office.png) -->
 
@@ -27,13 +27,13 @@ Exment không có máy chủ email. Giống Outlook, nó kết nối với máy 
 | Khác | mật khẩu | mọi máy chủ IMAP / SMTP |
 
 ### Microsoft 365 và Google
-Quản trị viên hệ thống đăng ký ứng dụng một lần và nhập vào cài đặt của plugin ("Admin Setting" → "Plugin" → "Exment Plugin Groupware" → cài đặt). Màn hình cài đặt hiện redirect URI cần đăng ký (`…/admin/plugins/exment_groupware/mail/oauth/callback`).
+Quản trị viên hệ thống đăng ký ứng dụng một lần và nhập vào cài đặt của plugin ("Admin Setting" → "Plugin" → "Exment Plugin Groupware" → cài đặt). Màn hình cài đặt hiện redirect URI cần đăng ký (`…/plugins/exment_groupware/mail/oauth/callback`).
 
 - Microsoft: tạo web app ở "App registrations" của Azure portal, với quyền ủy quyền `IMAP.AccessAsUser.All`, `SMTP.Send` của Office 365 Exchange Online và `offline_access openid email profile`. Quản trị viên tenant phải cho phép SMTP AUTH cho người dùng đó.
 - Google: tạo OAuth client ID (web application) trên Google Cloud console, scope `https://mail.google.com/`.
 
 ### Cách dùng
-1. Mở "メール" (email) trên menu bên trái (hoặc `/admin/plugins/exment_groupware/mail`).
+1. Mở "メール" (email) trên menu bên trái (hoặc `/plugins/exment_groupware/mail`).
 2. Bấm "アカウントを追加する" (thêm tài khoản) và chọn dịch vụ.
 3. Với Xserver, KAGOYA và dịch vụ khác, nhập mật khẩu. Với Microsoft 365 và Google, bấm "サインイン" (đăng nhập) và đăng nhập ở trang của họ.
 
@@ -73,7 +73,7 @@ Tệp Word, Excel, PowerPoint đính kèm vào dữ liệu cũng xem được b�
 
 ## Cài đặt
 1. Cài plugin: từ Feature Management với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Xem [Plugin chính thức](/vi/plugin_official).
-2. Để dùng Office, mở trang plugin (`/admin/plugins/exment_groupware`) bằng quản trị viên hệ thống và bấm "ibisOffice 0.8.9 をインストールする" (cài ibisOffice). Bản phát hành của ibisOffice (khoảng 40 MB, giải nén 125 MB) được tải về, kiểm tra SHA-256 cố định, rồi đặt vào `public/vendor/exment_groupware/ibisoffice/`.
+2. Để dùng Office, mở trang plugin (`/plugins/exment_groupware`) bằng quản trị viên hệ thống và bấm "ibisOffice 0.8.9 をインストールする" (cài ibisOffice). Bản phát hành của ibisOffice (khoảng 40 MB, giải nén 125 MB) được tải về, kiểm tra SHA-256 cố định, rồi đặt vào `public/vendor/exment_groupware/ibisoffice/`.
 
 Khi có nhiều máy chủ web, hoặc không ghi được vào `public/`, hãy công khai bản đã giải nén ở nơi khác và nhập URL của thư mục có `index.html` vào "ibisOffice の場所（URL）" trong cài đặt của plugin.
 

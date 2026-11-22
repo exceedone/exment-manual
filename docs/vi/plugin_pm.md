@@ -54,7 +54,7 @@ Tải tệp zip mới nhất từ [Releases](https://github.com/exceedone/exment
 - Khi "ExmentPM" hiện trong danh sách bên dưới là đã tải lên xong. Lúc này chưa có bảng hay menu nào.
 
 ### 3. Thiết lập lần đầu
-- Bằng quản trị viên hệ thống, mở `/admin/plugins/exment_pm` (trên Exment SaaS là `/plugins/exment_pm`).
+- Bằng quản trị viên hệ thống, mở `/plugins/exment_pm` (trên Exment SaaS là `/plugins/exment_pm`).
 - Màn hình 「初期セットアップ」 (thiết lập lần đầu) mở ra. Kiểm tra danh sách bảng sẽ tạo và bấm 「テーブルを作成する」 (tạo bảng).
 
 ![Thiết lập lần đầu](../img/plugin_pm/pm_setup.png)
@@ -201,7 +201,7 @@ Mỗi dự án có thể yêu cầu một repository Git (Gitea hoặc Forgejo).
 ※Trên Exment SaaS, xem thêm [Trên Exment SaaS](/vi/plugin_pm?id=trên-exment-saas).
 
 ### Chuyển lên 1.4.0 (nếu đang có PmPortal hoặc ExmentPluginPM)
-Ở 1.4.0, tên nội bộ thành `ExmentPM` và địa chỉ thành `/admin/plugins/exment_pm`. Với Exment đã có PmPortal (1.2.0 trở về trước) hoặc ExmentPluginPM (1.3.0), tải nguyên tệp zip lên sẽ dừng với lỗi "UUID tồn tại nhưng tên plugin không đúng". Hãy làm một lần các bước trong ["Moving to ExmentPM" của README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行). Liên kết và dấu trang đến địa chỉ cũ (`/admin/plugins/pm_portal/...`) sẽ không mở được nữa.
+Ở 1.4.0, tên nội bộ thành `ExmentPM` và địa chỉ thành `/plugins/exment_pm`. Với Exment đã có PmPortal (1.2.0 trở về trước) hoặc ExmentPluginPM (1.3.0), tải nguyên tệp zip lên sẽ dừng với lỗi "UUID tồn tại nhưng tên plugin không đúng". Hãy làm một lần các bước trong ["Moving to ExmentPM" của README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行). Liên kết và dấu trang đến địa chỉ cũ (`/plugins/pm_portal/...`) sẽ không mở được nữa.
 
 ※Trên Exment SaaS, bên vận hành làm cho tất cả các trang, nên bạn không cần làm gì.
 
@@ -279,7 +279,7 @@ Kiểm tra 「⚙ 設定」 → 「データ構造の更新」. Nếu hiện 「
 Đã có bảng trùng tên. Nhập 「テーブル名の接頭辞」 (tiền tố tên bảng) để tạo với tên khác.
 
 ### Liên kết cũ không mở được sau 1.4.0
-Ở 1.4.0, địa chỉ đổi từ `/admin/plugins/pm_portal` thành `/admin/plugins/exment_pm` (trên Exment SaaS, từ `/plugins/pm_portal` thành `/plugins/exment_pm`). Liên kết và dấu trang đến địa chỉ cũ sẽ báo "404 not found". Menu, chuông và email gửi mới dùng địa chỉ mới. Liên kết đã viết trong nội dung công việc, bình luận và wiki có thể viết lại bằng `tools/rewrite-old-links.php` trong [README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md).
+Ở 1.4.0, địa chỉ đổi từ `/plugins/pm_portal` thành `/plugins/exment_pm` (trên Exment SaaS, từ `/plugins/pm_portal` thành `/plugins/exment_pm`). Liên kết và dấu trang đến địa chỉ cũ sẽ báo "404 not found". Menu, chuông và email gửi mới dùng địa chỉ mới. Liên kết đã viết trong nội dung công việc, bình luận và wiki có thể viết lại bằng `tools/rewrite-old-links.php` trong [README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md).
 
 ### Plugin có tên khác (PmPortal, ExmentPluginPM)
 Đó là cùng một plugin. Tên đã đổi từ PmPortal (đến 1.2.0) sang ExmentPluginPM (1.3.0) và ExmentPM (từ 1.4.0). Để đưa Exment còn tên cũ lên 1.4.0, xem [Chuyển lên 1.4.0](/vi/plugin_pm?id=chuyển-lên-140-nếu-đang-có-pmportal-hoặc-exmentpluginpm).

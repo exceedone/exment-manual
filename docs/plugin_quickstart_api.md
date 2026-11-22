@@ -49,12 +49,12 @@ https://www.famkruithof.net/uuid/uuidgen
 - Enter api for plugin_type.
 - For uri, enter the endpoint common to this plugin. You can reset it on the plugin management screen.
 - route defines the endpoint for each process, HTTP method, and method name in Controller in a list.
-    - uri: This is a uri for page display. The actual URL will be "http(s)://(Exment URL)/admin/api/plugins/(endpoint common to plugins)/(specified uri)".
+    - uri: This is a uri for page display. The actual URL will be "http(s)://(Exment URL)/api/plugins/(endpoint common to plugins)/(specified uri)".
     - method: HTTP method. Please fill in with get, post, put, delete.
     - function: The name of the method in the Controller to execute.
     - Example: If the endpoint common to plugins is "sampleapi", the uri for each process is "column", and the method is "get", "admin/api/plugins/sampleapi/column (method: GET)".
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 
 ### Plugin file creation
@@ -150,10 +150,10 @@ The zip file name should be "(plugin_name) .zip".
 ### access
 Enter the URL to access the API.  
 The URL is set as follows.  
-http(s)://(Exment URL)/admin/api/plugins/(plugin name)  
+http(s)://(Exment URL)/api/plugins/(plugin name)  
 
 Example: When the plugin name is "sampleapi"  
-http(s)://(Exment URL)/admin/api/plugins/sampleapi  
+http(s)://(Exment URL)/api/plugins/sampleapi  
 
 
 ### others

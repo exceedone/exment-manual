@@ -14,6 +14,7 @@ Exmentでは、エンドポイントを変えることによって、Exmentサ�
 ## アクセス確認
 利用者向けサイトは、Exment構築後であってもアクセス出来ます。  
 URL末尾に「/admin」を付与することで管理者サイト(Exment)に、「/」で利用者向けサイトにアクセスします。  
+※利用者向けサイトを「/」に置くには、`.env` の `ADMIN_ROUTE_PREFIX` を「admin」にしてください（v7.2.1 以降の新しいインストールは、標準では Exment が「/」にあるため）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。  
 
 ■エンドポイント「/」
 ![利用者向けサイト構築画面](img/public_site/public_site2.png)

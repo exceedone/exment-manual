@@ -6,7 +6,7 @@
 
 - Source code and docs: [exceedone/exment-plugins (groupware)](https://github.com/exceedone/exment-plugins/tree/main/groupware)
 - License: GPL-3.0 (the same as Exment). ibisOffice is AGPL-3.0-only ([The licence of ibisOffice](/plugin_groupware?id=the-licence-of-ibisoffice)).
-- Name in the plugin list: Exment Plugin Groupware. The internal name is `ExmentGroupware` and the URL is `/admin/plugins/exment_groupware`.
+- Name in the plugin list: Exment Plugin Groupware. The internal name is `ExmentGroupware` and the URL is `/plugins/exment_groupware`.
 
 <!-- Screenshots: web mail (img/plugin_groupware/gw_mail.png) and a file open in Office (img/plugin_groupware/gw_office.png). Take them after d9 checks the page -->
 
@@ -27,13 +27,13 @@ Exment does not run a mail server. Like Outlook, it connects to the server the c
 | Others | password | any IMAP / SMTP server |
 
 ### Microsoft 365 and Google
-A system administrator registers an app once and enters it in the plugin's settings ("Admin Setting" > "Plugin" > "Exment Plugin Groupware" > settings). The settings page shows the redirect URI to register (`…/admin/plugins/exment_groupware/mail/oauth/callback`).
+A system administrator registers an app once and enters it in the plugin's settings ("Admin Setting" > "Plugin" > "Exment Plugin Groupware" > settings). The settings page shows the redirect URI to register (`…/plugins/exment_groupware/mail/oauth/callback`).
 
 - Microsoft: make a web app in "App registrations" of the Azure portal, with the delegated permissions of Office 365 Exchange Online `IMAP.AccessAsUser.All` and `SMTP.Send`, and `offline_access openid email profile`. The tenant administrator must allow SMTP AUTH for the user.
 - Google: make an OAuth client ID (web application) in the Google Cloud console, with the scope `https://mail.google.com/`. For a Google Workspace used inside the company, an "internal" app needs no review by Google.
 
 ### How to use
-1. Open "メール" (Mail) in the side menu (or `/admin/plugins/exment_groupware/mail`).
+1. Open "メール" (Mail) in the side menu (or `/plugins/exment_groupware/mail`).
 2. Press "アカウントを追加する" (add an account) and choose the service.
 3. For Xserver, KAGOYA and others, enter the password. For Microsoft 365 and Google, press "サインイン" (sign in) and log in on their page.
 
@@ -76,7 +76,7 @@ Word, Excel and PowerPoint files attached to records can also be seen in the bro
 
 ## Install
 1. Install the plugin: from Feature Management on Exment v7.2.1 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
-2. To use Office, open the plugin page (`/admin/plugins/exment_groupware`) as a system administrator and press "ibisOffice 0.8.9 をインストールする" (install ibisOffice). The release of ibisOffice (about 40 MB, 125 MB unpacked) is downloaded, checked against its fixed SHA-256 and put in `public/vendor/exment_groupware/ibisoffice/` of the site.
+2. To use Office, open the plugin page (`/plugins/exment_groupware`) as a system administrator and press "ibisOffice 0.8.9 をインストールする" (install ibisOffice). The release of ibisOffice (about 40 MB, 125 MB unpacked) is downloaded, checked against its fixed SHA-256 and put in `public/vendor/exment_groupware/ibisoffice/` of the site.
 
 On a site with several web servers, or where `public/` cannot be written, serve the unpacked release elsewhere and enter the URL of the folder with `index.html` in "ibisOffice の場所（URL）" of the plugin's settings.
 

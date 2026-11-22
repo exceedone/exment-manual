@@ -6,7 +6,7 @@ Nếu sử dụng các chức năng dưới đây, vui lòng thiết lập theo 
 ### Danh sách nội dung thiết lập
 
 - [Thay đổi / xóa "admin" trong URL](/additional_prefix)  
-Thay đổi hoặc xóa phần "/admin" vốn có trong URL theo mặc định.
+Thay đổi hoặc xóa giá trị như "/admin" ở đầu URL (trang cài mới từ v7.2.1 mặc định không có).
 
 - [Lịch chạy tác vụ (task schedule)](/additional_task_schedule)  
 Cách thiết lập khi muốn xử lý tự động vào một thời điểm nhất định, chẳng hạn như tự động tạo bản sao lưu hoặc thông báo thời hạn.

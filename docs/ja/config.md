@@ -374,7 +374,7 @@ manualの場合、「検索フィルター設定」画面で追加した列の�
 - 設定キー : EXMENT_WORKFLOW_TASK_NAVBAR
 - 既定値 : true
 - 役割 : falseの場合、ヘッダー右上の[未処理タスク](/ja/workflow_task)のアイコンが非表示になります。  
-未処理タスク一覧の画面は、URL「/admin/workflow_task」から表示できます。
+未処理タスク一覧の画面は、URL「/workflow_task」から表示できます。
 
 #### 未処理タスクのアイコンの更新間隔(秒)
 - 設定キー : EXMENT_WORKFLOW_TASK_NAVBAR_INTERVAL

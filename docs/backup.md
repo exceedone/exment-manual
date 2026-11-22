@@ -19,11 +19,11 @@ The backup target is as follows.
 ## screen
 - From the left menu, select "Admin Settings> Backup".
 Or access the following URL.  
-http(s)://(Exment URL)/admin/backup  
+http(s)://(Exment URL)/backup  
 This will bring up the backup screen.  
 ![Backup screen](img/backup/backup1.png)
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ## Backup
 There are two types of backup methods: "manual" and "automatic".  

@@ -108,10 +108,10 @@ Link your LINE account to receive and answer via LINE next time.
 Click "Admin Setting" > "Safety Check" in the left menu (in v7.0 it is at the top of the left menu). You can also open it from the following URL.
 
 ~~~
-http(s)://(Exment URL)/admin/safety_check
+http(s)://(Exment URL)/safety_check
 ~~~
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ### Sending manually or as a drill
 - Enter the title of the safety check in "Title" of "Send New" (example: Typhoon No. 15 safety check).
@@ -199,7 +199,7 @@ The answer of each user can be checked in the "Safety Check Answers" table.
 The table is not shown in the left menu. Open the following URL.
 
 ~~~
-http(s)://(Exment URL)/admin/data/safety_check_answer
+http(s)://(Exment URL)/data/safety_check_answer
 ~~~
 
 ![Safety check answer details](img/safety_check/safety_check_answer_detail.png)

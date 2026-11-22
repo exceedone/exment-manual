@@ -28,13 +28,13 @@ Exmentでは、[ログイン設定](/ja/login_setting)により、シングル�
 
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
-http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
+http(s)://(ExmentのURL)/auth/login/(socialiteのprovider名)/callback  
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
-    - 例1 GitHubの場合：http(s)://(ExmentのURL)/admin/auth/login/github/callback  
-    - 例2 Facebookの場合：http(s)://(ExmentのURL)/admin/auth/login/facebook/callback  
-    - 例3 Googleの場合：http(s)://(ExmentのURL)/admin/auth/login/google/callback  
+    - 例1 GitHubの場合：http(s)://(ExmentのURL)/auth/login/github/callback  
+    - 例2 Facebookの場合：http(s)://(ExmentのURL)/auth/login/facebook/callback  
+    - 例3 Googleの場合：http(s)://(ExmentのURL)/auth/login/google/callback  
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
@@ -54,9 +54,9 @@ composer require laravel/socialite=~5.1
 
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
-http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
+http(s)://(ExmentのURL)/auth/login/(socialiteのprovider名)/callback  
 
-    - 例 Office365の場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
+    - 例 Office365の場合：http(s)://(ExmentのURL)/auth/login/graph/callback
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 
@@ -191,9 +191,9 @@ $refresh_token = LoginService::getRefreshToken();
 ### (必須)プロバイダ設定・追加
 - 各プロバイダで、Exment用のアプリケーションを作成します。  
 ※callback URLは以下になります。  
-http(s)://(ExmentのURL)/admin/auth/login/(socialiteのprovider名)/callback  
+http(s)://(ExmentのURL)/auth/login/(socialiteのprovider名)/callback  
 
-    - 例 Microsoft Graphの場合：http(s)://(ExmentのURL)/admin/auth/login/graph/callback
+    - 例 Microsoft Graphの場合：http(s)://(ExmentのURL)/auth/login/graph/callback
 
 - 以下のコマンドを、Exmentのルートディレクトリで実行します。
 

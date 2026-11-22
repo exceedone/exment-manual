@@ -423,9 +423,9 @@ The screens related to Meilisearch are as follows.
 
 |Screen|URL|Contents|
 |---|---|---|
-|System settings|/admin/system|From "Meilisearch (full-text search) settings" in "Advanced settings", set the connection destination, the master key and each flag.|
-|Search Filter Setting|/admin/meili-filter|Set the narrowing-down conditions displayed in the sidebar of the search result page.|
-|Search Dictionary Setting|/admin/meili-dictionary|Set synonyms and stop words.|
+|System settings|/system|From "Meilisearch (full-text search) settings" in "Advanced settings", set the connection destination, the master key and each flag.|
+|Search Filter Setting|/meili-filter|Set the narrowing-down conditions displayed in the sidebar of the search result page.|
+|Search Dictionary Setting|/meili-dictionary|Set synonyms and stop words.|
 
 *"Search Filter Setting" and "Search Dictionary Setting" are not displayed in the menu by default. Access them directly from the URLs above, or add them as system menus in [Menu settings](/menu). These two are offered as choices in the menu settings only when "MEILISEARCH_GLOBAL_SEARCH" is true.
 

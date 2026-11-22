@@ -53,7 +53,7 @@ GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) か�
 - 下の一覧に「ExmentPM」が出れば、アップロードは終わりです。この時点では、まだテーブルもメニューもできていません。
 
 ### 3. 初期セットアップ
-- システム管理者で、`/admin/plugins/exment_pm` を開きます（Exment SaaS では `/plugins/exment_pm`）。
+- システム管理者で、`/plugins/exment_pm` を開きます（Exment SaaS では `/plugins/exment_pm`）。
 - 「初期セットアップ」の画面が出ます。作られるテーブルの一覧を確かめて、「テーブルを作成する」を押します。
 
 ![初期セットアップ](img/plugin_pm/pm_setup.png)
@@ -200,7 +200,7 @@ GitHub の [Releases](https://github.com/exceedone/exment-plugins/releases) か�
 ※Exment SaaS では、[Exment SaaS の場合](/ja/plugin_pm?id=exment-saas-の場合)もご覧ください。
 
 ### 1.4.0 にするとき（PmPortal・ExmentPluginPM を入れている場合）
-1.4.0 で内部の名前が `ExmentPM` に、アドレスが `/admin/plugins/exment_pm` に変わりました。すでに PmPortal（1.2.0 まで）か ExmentPluginPM（1.3.0）を入れている Exment では、zip をそのままアップロードすると「UUIDは存在しますが、プラグイン名が正しくありません」と出て止まります。[README の「ExmentPM への移行」](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行)の手順を 1 回だけ行ってください。古いアドレス（`/admin/plugins/pm_portal/...`）へのリンクやブックマークは開けなくなります。
+1.4.0 で内部の名前が `ExmentPM` に、アドレスが `/plugins/exment_pm` に変わりました。すでに PmPortal（1.2.0 まで）か ExmentPluginPM（1.3.0）を入れている Exment では、zip をそのままアップロードすると「UUIDは存在しますが、プラグイン名が正しくありません」と出て止まります。[README の「ExmentPM への移行」](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行)の手順を 1 回だけ行ってください。古いアドレス（`/plugins/pm_portal/...`）へのリンクやブックマークは開けなくなります。
 
 ※Exment SaaS では、運営側がまとめて行うので、利用者の作業はありません。
 
@@ -278,7 +278,7 @@ Exment SaaS（`*.exments.com`）では、zip のダウンロードやアップ�
 同じ名前のテーブルが、すでにあります。「テーブル名の接頭辞」を入れて、別の名前で作ってください。
 
 ### 1.4.0 にしたら、前のリンクが開けない
-1.4.0 で、アドレスが `/admin/plugins/pm_portal` から `/admin/plugins/exment_pm` に変わりました（Exment SaaS では `/plugins/pm_portal` から `/plugins/exment_pm`）。古いアドレスへのリンクやブックマークは、「404 not found」になります。メニュー・ベル・新しく送るメールは、新しいアドレスになっています。課題の本文・コメント・Wiki に書いたリンクは、[README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md) の `tools/rewrite-old-links.php` で書き換えられます。
+1.4.0 で、アドレスが `/plugins/pm_portal` から `/plugins/exment_pm` に変わりました（Exment SaaS では `/plugins/pm_portal` から `/plugins/exment_pm`）。古いアドレスへのリンクやブックマークは、「404 not found」になります。メニュー・ベル・新しく送るメールは、新しいアドレスになっています。課題の本文・コメント・Wiki に書いたリンクは、[README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md) の `tools/rewrite-old-links.php` で書き換えられます。
 
 ### プラグインの名前が違う（PmPortal・ExmentPluginPM）
 同じプラグインです。名前が、PmPortal（1.2.0 まで）→ ExmentPluginPM（1.3.0）→ ExmentPM（1.4.0 から）と変わりました。古い名前のまま入っている Exment を 1.4.0 にするときは、[1.4.0 にするとき](/ja/plugin_pm?id=_140-にするとき（pmportal・exmentpluginpm-を入れている場合）)をご覧ください。

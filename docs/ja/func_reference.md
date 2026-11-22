@@ -690,8 +690,8 @@ use Exceedone\Exment\Model\CustomTable;
 // お知らせテーブルのid1のデータを取得
 $value = CustomTable::getEloquent('information')->getValueModel(1);
 
-$value->getUrl(); // http://localhost/admin/data/information/1
-$value->getUrl(['tag' => true]); // <a href="http://localhost/admin/data/information/1">Exmentへようこそ！</a>
+$value->getUrl(); // http://localhost/data/information/1
+$value->getUrl(['tag' => true]); // <a href="http://localhost/data/information/1">Exmentへようこそ！</a>
 
 ~~~
 

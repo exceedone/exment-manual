@@ -50,10 +50,10 @@ On the Exment login page, enter the user information in the ID / password field 
 ## Login setting management method
 
 - The system administrator enters the following URL.  
-http(s)://(Exment URL)/admin/login_setting
+http(s)://(Exment URL)/login_setting
 ※You will be able to access by changing the "system settings" described above.  
 
-> Note: "admin" in the URLs is the default setting. If you have changed or removed it with `ADMIN_ROUTE_PREFIX` in `.env`, replace "admin" with that value (if removed, omit "/admin", e.g. `http(s)://(Exment URL)/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 - Alternatively, add "Login Settings" to the menu.  
 Open the "Administrator Settings"> "Menu" page and select the menu type "System Menu". The target "Login Settings" will be displayed.  

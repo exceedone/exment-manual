@@ -72,13 +72,13 @@ v6.x以前をご利用の場合は、「Encore\Admin」に読み替えてくだ�
 https://www.famkruithof.net/uuid/uuidgen
 - plugin_typeは、pageと記入してください。  
 - routeは、実行するURLのエンドポイントと、そのHTTPメソッド、Contoller内のメソッドを一覧で定義します。
-    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/admin/plugins/(プラグイン管理画面で設定したURL)/(指定したuri)」になります。  
+    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/plugins/(プラグイン管理画面で設定したURL)/(指定したuri)」になります。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
     - function：実行するContoller内のメソッド
-    - 例：プラグイン管理画面で設定したURLを「youtube_search」、config.jsonで指定したuriが「list」、指定したmethodが「get」の場合、「http(s)://(ExmentのURL)/admin/plugins/youtube_search/list（メソッド：GET）」。
+    - 例：プラグイン管理画面で設定したURLを「youtube_search」、config.jsonで指定したuriが「list」、指定したmethodが「get」の場合、「http(s)://(ExmentのURL)/plugins/youtube_search/list（メソッド：GET）」。
 - routeには必ず、uriが空（""）となるものを含めてください。メニューからプラグインのページに画面遷移するときに、このエンドポイントにアクセスします。
 
-> ※URL の「admin」は、標準の設定の場合です。`.env` の `ADMIN_ROUTE_PREFIX` で変更・削除している場合は、「admin」をその値に読み替えてください（削除している場合は「/admin」を除きます。例：`http(s)://(ExmentのURL)/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ### Pluginファイル作成
 

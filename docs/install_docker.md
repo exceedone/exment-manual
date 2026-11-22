@@ -57,7 +57,7 @@ sudo usermod -aG docker $USER
 
 ### 3. Run Exment
 - Put the files in Ubuntu (for example `~/exment`) and run the "Installation steps using Docker" below in Ubuntu. Files on the C drive (`/mnt/c/...`) make it very slow.
-- Open http://localhost/admin in the browser on Windows.
+- Open http://localhost in the browser on Windows.
 
 ### Notes
 - WSL2 stops by itself after a while without use, and the Docker containers stop with it. Open Ubuntu and run `make mysql-up` (for your database) when you use it.
@@ -121,7 +121,7 @@ $ make sqlsrv-up
 
 ### Exment initial settings
 - Please access the following site and perform the initial settings of Exment. (※If you have changed the web server port, please access using that port)  
-http://localhost/admin
+http://localhost
 
 
 - Database information is as follows. (※port refers to the internal port number, so even if you change the port in env, it will be fixed at 3306)
