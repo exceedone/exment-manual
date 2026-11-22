@@ -29,6 +29,14 @@ Settings: System ▸ System Setting, Feature Management, Plugin, Backup, Tuning,
 - The official plugins (Project Management, IT Support, Groupware) and the bundled templates put their menus under their group (made when missing). Only a menu at the top moves.
 - A group with nothing to show in it is not shown (the menus of features turned off in [Feature management](/feature) are not shown).
 
+#### Arrange in the standard order
+A site whose menu did not change with the update (a menu someone arranged, or other menus among the admin settings) can get the menu above with [Arrange in the standard order] on the "Menu" screen.
+- It first lists which menus move where; press [Arrange] after checking.
+- Only the menus of Exment and of the official plugins move. Menus you made, table menus and other menus stay where they are, in their order (those that were among the admin settings come at the end of "Settings: System"). No menu is removed.
+- The titles "HOME", "Manage Master" and "Admin Setting" become "Dashboard", "Master" and "Settings: System" only while they are the ones Exment gave.
+- The menu as it was is kept, and [Undo] on the same screen puts it back.
+- Only system administrators can use it.
+
 ## Menu management
 Describes how to manage menus.
 

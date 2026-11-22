@@ -40,6 +40,7 @@
     - The left menu is grouped by area of work (parent nodes), in the order of the [feature map](https://exment.net/en/feature-map/): Dashboard, Groupware (Documents, Mail), Requests & approvals, Projects, IT support, Master, Settings: Data & Screens, Settings: Users & Permissions, Settings: System. See [here](/menu?id=the-menu-from-v720)
         - The menus of the official plugins go under their group (Project Management → Projects, IT Support → IT support, Groupware's Mail → Groupware).
         - A group with nothing to show is not shown (the menus of features turned off in Feature management do not show).
+        - A site whose menu did not change (arranged by someone, for example) can use [Arrange in the standard order] on the "Menu" screen (with undo). See [here](/menu?id=arrange-in-the-standard-order)
     - A parent node can have "Role groups that see it": it shows, with its menus, only to their members (and system administrators). See [here](/menu?id=role-groups-that-see-it)
     - Bundled template "Request pack": approval requests, expense claims, business trip, payment and leave requests, with a submit / approve / send back workflow, applicant and approver role groups and a "Requests & approvals" menu. The approver is chosen when submitting. See [here](/template?id=bundled-template-request-pack)
 1. Improvements
