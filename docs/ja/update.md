@@ -163,3 +163,5 @@ composer update
 # composer update --ignore-platform-reqs
 php artisan exment:update
 ~~~
+
+本番のサイト（`APP_ENV=production`）では、データベースを変える前に確かめる質問が出ます。端末がないとき（スクリプト・cron・CI）は、`php artisan exment:update --force` で実行してください。  

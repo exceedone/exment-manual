@@ -23,6 +23,12 @@ Please check [here](/update) for details.
 php artisan exment:update
 ```
 
+On a production site (`APP_ENV=production`), you are asked before the database is changed. With no terminal (scripts, cron, CI), run `php artisan exment:update --force`.
+
+```
+php artisan exment:update --force
+```
+
 ### Publish css / js files, etc.
 Publish a set of css, js, image files, configuration files, etc. in the package to the default path of laravel.
 
