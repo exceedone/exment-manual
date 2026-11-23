@@ -24,7 +24,7 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 |項目|内容|
 |---|---|
 |Meilisearchサーバー|v1.10以降|
-|PHPライブラリ|「meilisearch/meilisearch-php」(v1.10以降)のインストールが必要です。**このライブラリは、Exmentの必須ライブラリではありません。** インストールされていない場合、Meilisearch関連のコマンドはエラーとなり、リアルタイム同期も無効になります。<br />また、このライブラリは「guzzlehttp/guzzle」と互換性のあるHTTPクライアントを必要とします。|
+|PHPライブラリ|「meilisearch/meilisearch-php」(v1.10以降)のインストールが必要です。かんたんインストールのzipには、含まれています。**このライブラリは、Exmentの必須ライブラリではありません。** インストールされていない場合、Meilisearch関連のコマンドはエラーとなり、リアルタイム同期も無効になります。<br />また、このライブラリは「guzzlehttp/guzzle」と互換性のあるHTTPクライアントを必要とします。|
 |キュー|「QUEUE_CONNECTION」にdatabase(もしくはredis)を設定し、マイグレーションを実行済である必要があります。<br />リアルタイム同期はキューで実行されるため、初期値のsyncのままだと、画面の処理がブロックされます。詳細は[通知処理の遅延実行](/ja/additional_queue)をご確認ください。|
 |カスタムテーブル|カスタムテーブル設定で「検索可能」がYESになっており、かつ「フリーワード検索対象」がYESのカスタム列を持つテーブルのみ、インデックスの作成対象となります。|
 
@@ -37,7 +37,106 @@ Meilisearchを使用する場合、以下の条件を満たす必要がありま
 - Meilisearch自体の詳細は、[Meilisearch公式ドキュメント](https://www.meilisearch.com/docs)をご参照ください。
 
 
-## 設定の流れ
+## かんたんな入れ方
+Exment v7.2.2以降では、スクリプトを1回実行するだけで、下の[手で入れる場合](#手で入れる場合)の手順1〜4をまとめて行うことができます。スクリプトは、何度実行しても問題ありません(すでにあるマスターキーや設定は、そのまま使います)。
+
+### Linuxの場合
+systemdを使用するサーバー(Ubuntu・Debian・RHEL・Amazon Linuxなど。AWSのEC2も含みます)で、Exmentのフォルダに移動し、以下のコマンドを実行します。
+
+```
+cd /var/www/exment
+sudo sh vendor/exceedone/exment/resources/meilisearch/install-meilisearch.sh
+```
+
+スクリプトは、以下を行います。
+
+1. Meilisearchのインストール(「/usr/local/bin/meilisearch」)、実行用のユーザー、新しいマスターキーを書いた「/etc/meilisearch.conf」(rootのみ読み取り可能)、サービス「meilisearch」の登録(127.0.0.1:7700でのみ待ち受けます)
+1. Exmentの設定(「php artisan exment:meili-setup」。内容は[Exmentの設定だけを行う場合](#exmentの設定だけを行う場合)をご確認ください)
+1. キューワーカのサービス「exment-meili-worker」の登録
+1. Webサーバーのユーザーのcrontabへの、スケジューラ(php artisan schedule:run)の追加
+
+必要に応じて、以下のオプションを指定します。
+
+|オプション|内容|
+|---|---|
+|--exment-dir=フォルダ|Exmentのフォルダです。既定値は、現在のフォルダです。|
+|--user=ユーザー|WebサーバーがPHPを実行するユーザーです(www-data・apache・nginxなど)。既定値は、「storage」フォルダの所有者です。|
+|--php=パス|phpコマンドのパスです。Webサーバーと同じバージョンのphpを指定してください(例: --php=/usr/bin/php8.3)。既定値は、PATHにあるphpです。|
+|--version=バージョン|Meilisearchのバージョンです。既定値は「v1.10.3」です。|
+|--index=名前|インデックス名です。既定値は「exment_global」です。|
+|--no-cron|スケジューラをcrontabに追加しません。すでに別の方法でスケジューラを実行している場合に指定します。|
+
+### Windowsの場合
+PowerShellを「管理者として実行」で開き、Exmentのフォルダで以下のコマンドを実行します。
+※「C:\php\php.exe」は、IISで使用しているphpのパスに変更してください。
+
+```
+cd C:\inetpub\exment
+powershell -ExecutionPolicy Bypass -File vendor\exceedone\exment\resources\meilisearch\install-meilisearch.ps1 -Php C:\php\php.exe
+```
+
+スクリプトは、以下を行います。
+
+1. Meilisearchのインストール(「C:\meilisearch」)、新しいマスターキー(「C:\meilisearch\master-key.txt」。AdministratorsとSYSTEMのみ読み取り可能)、NSSMによるサービス「Meilisearch」の登録、インデックスの保存先のWindows Defenderのスキャン対象からの除外
+1. Exmentの設定(「php artisan exment:meili-setup」)
+1. キューワーカのサービス「ExmentMeiliWorker」の登録
+1. タスクスケジューラへの、タスク「ExmentScheduler」(1分ごとにphp artisan schedule:run)の登録
+
+> NSSMは、「-Nssm」でパスを指定するか、PATHもしくは「C:\nssm\nssm.exe」に配置してください。どちらもない場合、wingetがあれば自動でインストールします。
+> そのほかのオプション: 「-ExmentDir」(Exmentのフォルダ)、「-Version」(Meilisearchのバージョン)、「-InstallDir」(Meilisearchのフォルダ)、「-Index」(インデックス名)、「-NoScheduler」(タスクを登録しない)、「-NoDefenderExclusion」(Windows Defenderの設定を変えない)
+
+### Dockerの場合
+[docker-exment](https://github.com/exceedone/docker-exment)をお使いの場合は、「docker-compose.meilisearch.yml」を追加するだけで、Meilisearch・キューワーカ・スケジューラのコンテナが起動します。
+
+- docker-exmentのフォルダの「.env」に、16文字以上のマスターキーを記入します(例: 「openssl rand -hex 16」で生成した値)。
+
+```
+EXMENT_DOCKER_MEILISEARCH_MASTER_KEY=(マスターキー)
+```
+
+- 以下のコマンドを実行し、コンテナを起動したうえで、Exmentの設定を行います。
+
+```
+docker compose -f docker-compose.yml -f docker-compose.mysql.yml -f docker-compose.meilisearch.yml up -d
+docker compose -f docker-compose.yml -f docker-compose.mysql.yml -f docker-compose.meilisearch.yml exec -u www-data php php artisan exment:meili-setup
+```
+
+### Exmentの設定だけを行う場合
+Meilisearchがすでに動いている場合(別のサーバーに用意した場合など)は、Exmentのフォルダで以下のコマンドを実行します。手で入れる場合の「[2. Exmentの設定](#_2-exmentの設定)」を、まとめて行います。
+
+```
+php artisan exment:meili-setup --host=http://127.0.0.1:7700 --key-file=/etc/meilisearch.conf
+```
+
+このコマンドは、以下の順に実行します。途中でエラーになった場合は、エラーの内容を表示して止まります。直したあと、もう一度実行してください。
+
+1. Meilisearchに接続できること、マスターキーが正しいこと、バージョンがv1.10以降であることの確認
+1. 「.env」の設定: 「QUEUE_CONNECTION」がsyncの場合はdatabaseに変更し、「MEILISEARCH_REINDEX_QUEUE=meili-reindex」を追加します
+1. キューのテーブル(jobs・failed_jobs)がない場合の作成と、「php artisan migrate」
+1. システム設定の保存: ホスト・マスターキー・インデックス名・リアルタイム同期(YES)・インデックス定期修復(YES)・修復実行時刻
+1. インデックスの作成。完了したら、グローバル検索をYESにします
+1. 接続状態の確認(「php artisan exment:meili-health --failed」)と、動いているキューワーカの再起動の指示(「php artisan queue:restart」)
+
+|オプション|内容|
+|---|---|
+|--host=URL|Meilisearchの接続先です。既定値は、現在の設定値(「http://127.0.0.1:7700」)です。|
+|--key-file=ファイル|マスターキーを書いたファイルです。「MEILI_MASTER_KEY=」の行があるファイル(「/etc/meilisearch.conf」など)か、キーだけを書いたファイルを指定します。|
+|--key=キー|マスターキーです。コマンドラインに書いたキーは、ほかのユーザーからも見える場合があるため、「--key-file」か、環境変数「MEILI_MASTER_KEY」の使用をおすすめします。|
+|--index=名前|インデックス名です。既定値は、現在の設定値(「exment_global」)です。|
+|--repair-at=HH:MM|インデックス定期修復の時刻です。既定値は、現在の設定値(「03:00」)です。|
+|--skip-env|「.env」を変更しません。表示された内容を、ご自身で記入してください。|
+|--skip-index|設定の保存だけを行い、インデックスを作成しません。グローバル検索はNOのままになります。|
+
+> マスターキーは、「--key-file」・環境変数「MEILI_MASTER_KEY」・「--key」・システム設定に保存済みの値の順に探し、どれもない場合は入力を求めます。
+> このコマンドは、キューワーカとスケジューラを登録しません。手で入れる場合の「[3. キューワーカの登録](#_3-キューワーカの登録)」「[4. スケジューラの設定](#_4-スケジューラの設定)」を行ってください。
+
+### AWS・レンタルサーバーの場合
+- **AWS(EC2)・Azureの仮想マシンなど**: Linux・Windowsのサーバーと同じく、上のスクリプトを使用できます。セキュリティグループなどで、ポート7700を外部に公開しないでください。
+- **レンタルサーバー(Xserverなど)**: 常時実行するプログラムを動かせないため、Meilisearchをレンタルサーバーの中で動かすことはできません。Meilisearchは、常時実行できる別のサーバー(AWSのEC2など)に置き、Exmentのサーバーからのみ接続できるように設定します。そのうえで、Exmentのフォルダで「php artisan exment:meili-setup --host=(Meilisearchの接続先)」を実行してください。キューワーカは常時実行できないため、cronで1分ごとに実行します。詳細は[通知処理の遅延実行](/ja/additional_queue)をご確認ください。
+
+
+## 手で入れる場合
+スクリプトを使わずに設定する場合や、設定の内容を確認する場合の手順です。以下の順に設定を行います。
 以下の順に設定を行います。
 
 1. Meilisearchサーバーのインストール
@@ -206,6 +305,7 @@ Add-MpPreference -ExclusionPath "C:\meilisearch\data.ms"
 
 ## 2. Exmentの設定
 Meilisearchサーバーの準備ができましたら、Exment側の設定を行います。  
+※この手順は、「php artisan exment:meili-setup」でまとめて行うこともできます。詳細は[Exmentの設定だけを行う場合](#exmentの設定だけを行う場合)をご確認ください。  
 以下の手順は、Linux・Windowsで共通です。
 
 ### ライブラリのインストール
