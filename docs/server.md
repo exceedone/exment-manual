@@ -105,6 +105,7 @@ Please check the link below for the construction method.
     - MySQL 8.0 or higher
     - MariaDB 10.11 or higher
     - SQL Server 13.0.0 or higher
+- PHP's gd extension built with FreeType (`imagettftext` available): used for the 2D barcode label PDF. Without it, making the label PDF fails with an error. See [2D Barcode settings](/2d_barcode) for how to check and install it.
 
 ### Operation check browser
 - Google Chrome

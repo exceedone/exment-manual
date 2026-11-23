@@ -121,6 +121,7 @@ Exmentのデータベースエンジンには、以下のいずれかが必要�
     - MySQL 8.0以上
     - MariaDB 10.11以上
     - SQL Server 13.0.0以上
+- PHP の gd 拡張（FreeType 付き。`imagettftext` が使えること）：二次元バーコードのラベルの PDF に使います。ないと、ラベルの PDF を作るときにエラーになります。確かめ方と入れ方は[二次元バーコード設定](/ja/2d_barcode)をご覧ください。
 
 ### 動作確認ブラウザ
 - Google Chrome

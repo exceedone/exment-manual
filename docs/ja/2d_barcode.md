@@ -4,6 +4,16 @@
 ## 二次元バーコード機能の概要
 二次元バーコード機能の概要については、[こちら](https://exment.net/release_v6-1-0/)の公式サイトの投稿をご覧ください。
 
+### 必要な PHP の拡張（ラベルの PDF）
+二次元バーコードのラベルの PDF を作るには、PHP の gd 拡張が FreeType 付き（`imagettftext` が使える）で入っている必要があります。入っていないと、ラベルの PDF を作るときにエラーになります。
+
+- docker-exment をお使いの場合：docker-exment を更新し（2026-11-23 の PR #23 以降）、php のイメージを作り直してください（`docker compose build php` のあと `docker compose up -d`）。
+- ほかのサーバーの場合：FreeType 付きの gd を入れてください（ふつうは、ディストリビューションの php-gd パッケージに含まれています）。使えるかどうかは、次のコマンドで確かめられます。`bool(true)` と出れば使えます。
+
+```
+php -r 'var_dump(function_exists("imagettftext"));'
+```
+
 ## ページ表示
 - カスタムテーブル一覧で、設定を行うテーブルにチェックを入れて、右上の「テーブル詳細設定」をクリックします。  
 ![2D barcode page](img/2d_barcode/barcode1.png)
