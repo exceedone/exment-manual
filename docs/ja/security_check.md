@@ -28,6 +28,33 @@
 | システム管理者のパスワード | 初めに入れたままのパスワードや、ユーザーコードと同じパスワードは使いません。右上のユーザーメニューの「設定」で変えます |
 | 2 段階の認証 | パスワードのほかに、メールや認証アプリのコードでログインを確かめます（[ログイン設定](/ja/login_setting)） |
 
+### 安全のためのヘッダーの設定例
+Web サーバーに、次の行を足します。足したら Web サーバーを読み込み直して（Apache の .htaccess はそのままで効きます）、この画面でもう一度確かめてください。
+
+~~~
+# nginx（server { } の中）
+add_header X-Frame-Options "SAMEORIGIN" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+# https のときだけ
+add_header Strict-Transport-Security "max-age=31536000" always;
+~~~
+
+~~~
+# Apache（Exment の public/.htaccess の先頭、または Apache の設定。mod_headers が要ります）
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # https のときだけ
+    Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+~~~
+
+- Strict-Transport-Security は、https で使うサイトだけに付けます。付けると、ブラウザーはそのサイトを 1 年間 https でしか開きません。
+- nginx で、`location { }` の中にも `add_header` があるときは、その `location` の中にも同じ行を書きます（中に書くと、外の `add_header` は使われません）。
+- レンタルサーバー（Xserver など）では、.htaccess に書きます。
+
 ### 「確かめられませんでした」と出るとき
 安全のためのヘッダーと、外から見えてはいけないものは、サーバーから自分のサイトに問い合わせて確かめます。サーバーから自分のサイトに届かない環境（Docker の中・ファイアウォールの内側など）では確かめられません。そのときは、画面に出るアドレスを、サーバーの外のパソコンのブラウザーで開いて確かめてください。
 

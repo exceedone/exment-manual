@@ -23,7 +23,12 @@ After that, the Exment system will execute the task at a fixed time.
 
 ~~~
 * * * * * cd /(Exment root directory) && php artisan schedule:run >> /dev/null 2>&1
+
+# Xserver (the same PHP version as the control panel, by its full path; PHP 8.3 here)
+* * * * * cd /(Exment root directory) && nice -n 15 /usr/bin/php8.3 artisan schedule:run >> /dev/null 2>&1
 ~~~
+
+> **On a rental server (Xserver, etc.)**: `php` in cron can be the server's default PHP, not the one chosen on the control panel. Write the full path of the same PHP version as the control panel ([rental server](/install_rental)).
 
 ### Setup steps(Windows)
 - Execute the following command and copy the path where the php.exe file is located.  

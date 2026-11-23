@@ -28,6 +28,33 @@ At the install too, the "System requirements" page lists the server items that s
 | Password of system administrators | Do not keep the first password, or a password equal to the user code. Change it in "Settings" of the user menu at the top right |
 | Two-step authentication | Confirm a login with a code from mail or an authenticator app, besides the password ([Login setting](/login_setting)) |
 
+### Examples of the security headers
+Add these lines to the web server. Then reload the web server (an Apache .htaccess works as it is), and check again on this page.
+
+~~~
+# nginx (in server { })
+add_header X-Frame-Options "SAMEORIGIN" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+# only with https
+add_header Strict-Transport-Security "max-age=31536000" always;
+~~~
+
+~~~
+# Apache (at the top of public/.htaccess of Exment, or in the Apache config; needs mod_headers)
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # only with https
+    Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+~~~
+
+- Add Strict-Transport-Security only to a site used with https. With it, browsers open the site only with https for one year.
+- In nginx, when a `location { }` has its own `add_header`, write the same lines in that `location` too (with `add_header` inside, the outer ones are not used).
+- On a rental server (Xserver, etc.), write them in .htaccess.
+
 ### When it says "could not check"
 The security headers and what must not be seen from outside are checked by the server asking its own site. Where the server cannot reach its own site (inside Docker, behind a firewall, etc.), they cannot be checked. Open the addresses shown on the page in a browser on a computer outside the server instead.
 
