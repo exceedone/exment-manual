@@ -11,7 +11,7 @@ The official plugins are free plugins of Exment, made, tested and supported by E
 ### Exment v7.2.1 or later
 The official plugins come with Exment. A system administrator presses "Use (install)" in "[Free official plugins (bundled with Exment)](/feature?id=free-official-plugins-bundled-with-exment)" of "Admin Setting" > "Feature Management". Nothing is installed or loaded until then.
 
-- Exment 7.2.1 comes with Project Management (ExmentPM) 1.7.15, IT Support (ExmentITSupport) 1.0.9 and Groupware (ExmentGroupware) 0.4.7 (package exceedone/exment-plugins-release).
+- Exment 7.2.1 comes with Project Management (ExmentPM) 1.7.15, IT Support (ExmentITSupport) 1.0.9 and Groupware (ExmentGroupware) 0.4.7 (package exceedone/exment-plugins-release 7.2.14).
 - A bundled plugin is installed only after its signature by Exceed One is checked.
 - A newer version is only shown. "Update to this version" updates it, and "Back to the previous version (...)" puts it back.
 - When a newer version includes a security fix, the system administrators are told. See [Feature Management](/feature?id=notices-of-security-fixes).

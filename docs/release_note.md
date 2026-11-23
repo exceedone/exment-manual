@@ -1,8 +1,7 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
-## v7.2.1 (2026/11/XX)
-<!-- TODO: the release date -->
+## v7.2.1 (2026/11/23)
 - <span class="red bold">v7.2.1 is the first public release of 7.2. It includes everything of v7.2.0 below (v7.2.0 was withdrawn).</span>
 - <span class="red bold">The left menu is grouped by area of work ("Admin Setting" becomes three groups: "Settings: Data & Screens", "Settings: Users & Permissions", "Settings: System"). On an updated site only the menus still where Exment put them move; menus you moved stay.</span> See [here](/menu?id=the-menu-from-v721)
 - How to update: run `composer update`, then `php artisan exment:update`, and press Ctrl+F5 (super reload) in the browser. Details [here](/update)

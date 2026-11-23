@@ -11,7 +11,7 @@
 ### Exment v7.2.1 以降
 公式プラグインは、Exment と一緒に届いています。システム管理者が「管理者設定」→「機能の管理」の「[無料の公式プラグイン（Exment に同梱）](/ja/feature?id=無料の公式プラグイン（exment-に同梱）)」の欄で、「使う（インストールする）」を押すと入ります。押すまでは、インストールも読み込みもしません。
 
-- Exment 7.2.1 に同梱しているのは、プロジェクト管理（ExmentPM）1.7.15・IT サポート（ExmentITSupport）1.0.9・Groupware（ExmentGroupware）0.4.7 です（パッケージ exceedone/exment-plugins-release）。
+- Exment 7.2.1 に同梱しているのは、プロジェクト管理（ExmentPM）1.7.15・IT サポート（ExmentITSupport）1.0.9・Groupware（ExmentGroupware）0.4.7 です（パッケージ exceedone/exment-plugins-release 7.2.14）。
 - 同梱のプラグインは、エクシード・ワンの署名を確かめてから入れます。
 - 新しいバージョンがあるときは、お知らせだけします。「このバージョンに更新する」で更新し、「前のバージョン（○○）に戻す」で戻せます。
 - セキュリティの修正が入った新しいバージョンがあるときは、システム管理者に知らせます。詳細は[機能の管理](/ja/feature?id=セキュリティの修正のお知らせ)をご覧ください。
