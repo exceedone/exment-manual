@@ -13,12 +13,13 @@ Only system administrators can open this page.
 The page has two parts: "Features of Exment" at the top and "Plugins" below.
 
 ## Features of Exment
-New features of Exment itself. There are two now.
+New features of Exment itself:
 
 | Name | Content |
 | --- | --- |
 | File sharing | Workspaces, folders, versions and share links. Turning it off does not remove the files. (Shown only in versions that have File sharing) |
 | Studio | The list of screens, making screens, and the phone app (/app). For those who may set tables. |
+| Data maintenance | Tidy the data of a table at once (for now: delete the attachments at once). For those who may set tables. (v7.3.0 and later) [Data maintenance](/data_maintenance) |
 
 For each feature, decide these three.
 
