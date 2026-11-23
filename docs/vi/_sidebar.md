@@ -52,6 +52,7 @@
 * 【6. Người dùng / Tổ chức / Nhóm vai trò】
   * [Permission (English)](/permission)
   * [Người dùng / Người dùng đăng nhập](/vi/user.md)
+  * [Ngôn ngữ và múi giờ của từng người dùng](/vi/user_locale.md)
   * [Tổ chức](/vi/organization.md)
   * [Nhóm vai trò / Thiết lập quyền](/vi/role_group.md)
   * [Multiuser (English)](/multiuser)

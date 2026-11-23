@@ -57,6 +57,7 @@
 * 【6. ユーザー・組織・役割グループ】
   * [役割・権限の概要](/ja/permission)
   * [ユーザー・ログインユーザー](/ja/user)
+  * [ユーザーごとの言語とタイムゾーン](/ja/user_locale)
   * [組織](/ja/organization)
   * [役割グループ・権限設定](/ja/role_group)
   * [外部ポータルサイト向け設定](/ja/multiuser)

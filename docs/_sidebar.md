@@ -56,6 +56,7 @@
 * 【6. User / organization / role group】
   * [Permission](/permission)
   * [User / Login user](/user.md)
+  * [Language and time zone of each user](/user_locale.md)
   * [Organization](/organization.md)
   * [Role group / Authority setting](/role_group.md)
   * [Multiuser](/multiuser)
