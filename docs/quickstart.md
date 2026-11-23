@@ -41,7 +41,8 @@ After the server construction is completed, set the application of Exment.
 
 ### zip Download / Extract
 - Download the zip file from the following URL.
-[Exment zip file](https://exment.net/downloads/ja/exment.zip)
+[Exment zip file (latest)](https://exment.net/downloads/en/exment.zip)  
+The latest version is now **v7.2.1** (released 2026/11/23, PHP 8.2 or later). The zip of each version, with its date, SHA-256 and supported PHP, is on the [download page](https://exment.net/en/download/), where you can also check that a download is not broken.
 
 - Extract the zip file to a PHP executable path.
 Example 1 (XAMPP Windows): C:\xampp\local\exment  
