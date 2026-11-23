@@ -78,8 +78,10 @@ Give files and folders to people outside who do not log in, or receive files fro
 
 - A link can have an expiry date, a password and a number of times it can be opened. A password has 8 characters or more (`EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN`). "Take back" stops it at any time.
 - An invalid link (expired, revoked, opened too many times and so on) always shows "The link cannot be opened".
+- A new share link ends in 30 days by default, and in 90 days at most (`EXMENT_FILE_SERVER_SHARE_DEFAULT_DAYS`, `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`; 0 = no default, no limit). Older links without an end are marked "No end" in the link list.
+- The address of a share link is shown only to the user who made it and to the users with Manage on the file or folder.
 - For people inside, use "Copy the internal link": only those who may see the file can open it.
-- To turn share links off, set `EXMENT_FILE_SERVER_EXTERNAL_SHARE=false` in `.env`. To require an expiry date, set the days in `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`.
+- To turn share links off, set `EXMENT_FILE_SERVER_EXTERNAL_SHARE=false` in `.env`. The longest period can be changed with `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`.
 - Share links (`/share/...`) are for people outside, so the web IP filter of the system settings is not applied to them by default. To let them open only from inside, set `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER=true` in `.env`. It is read when the routes are made: a site that uses `php artisan route:cache` runs it again after the change.
 
 ## Columns (metadata)
@@ -102,12 +104,23 @@ In "Related data" on the page of a file, link it to records of Exment tables (as
 | Feature | Content |
 | --- | --- |
 | Approval | With "approval needed" in the "Rules" of a folder, files put there are "Waiting for approval". Until then only the uploader and the managers see them. A user with Manage chooses "Approve" or "Send back". |
-| Legal hold | On a workspace, folder or file, nothing can be deleted, and older versions stay. |
-| Retention | With days set in the workspace settings, a file cannot be deleted for those days. |
-| Who may download | Users below the chosen permission see previews only. |
+| Legal hold | On a workspace, folder or file, nothing can be deleted, and older versions stay. Only system administrators can set or clear it (users with Manage see it only). |
+| Retention | With days set in the workspace settings, a file cannot be deleted for those days. Only system administrators can set or clear it (users with Manage see it only). |
+| Who may download | Users below the chosen permission can only view (see "View only" below). |
 | Watermark | The name of the viewer and the time are shown over the preview. |
 | Audit log | Views, downloads, uploads, deletions, permission changes, share links and more are logged, and can be exported to CSV. |
 | Follow, comments | When a followed workspace, folder or file changes, a bell notice and mail are sent. `@user code` in a comment notifies that user. |
+
+### View only
+For users below "Who may download" of the workspace, and for share links without "Allow download", files are shown like this.
+
+| File | How it is shown |
+| --- | --- |
+| Images | As a smaller copy. |
+| Office, PDF | Through the converted PDF, when there is one. |
+| Text, video, audio | Not shown. |
+
+Each view is written to the audit log.
 
 ## Server
 - **Daily job**: files kept in the trash past their days are deleted by `php artisan exment:file-server-purge` (daily at 3:30). Set up the [task schedule](/additional_task_schedule).
@@ -125,7 +138,8 @@ In "Related data" on the page of a file, link it to records of Exment tables (as
 | `EXMENT_FILE_SERVER_MAX_UPLOADS` | `20` | Uploads a user may have not finished |
 | `EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES` | `10737418240` (10 GB) | Bytes of a user's uploads not finished, together (0 = no limit) |
 | `EXMENT_FILE_SERVER_EXTERNAL_SHARE` | `true` | Whether share links are used |
-| `EXMENT_FILE_SERVER_SHARE_MAX_DAYS` | `0` | Max days of a share link (0 = links without expiry allowed) |
+| `EXMENT_FILE_SERVER_SHARE_DEFAULT_DAYS` | `30` | Default days of a new share link (0 = no default) |
+| `EXMENT_FILE_SERVER_SHARE_MAX_DAYS` | `90` | Max days of a share link (0 = no limit, links without an end allowed) |
 | `EXMENT_FILE_SERVER_SHARE_PATH` | `share` | The first part of the URL of a share link |
 | `EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN` | `8` | The shortest password of a share link |
 | `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER` | `false` | Whether share links take the web IP filter too |
