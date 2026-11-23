@@ -12,7 +12,7 @@ There are two ways to copy. Both use what this setting says: which column is cop
 | [Copy button of the data details page](#copy-button-of-the-data-details-page) | The data details page of the copy-from data | Pressing it **makes** the data in the copy-to table. |
 | [Copy from button of the create form](#copy-from-button-of-the-create-form) | The create form of the copy-to table | Find and pick the copy-from data, and its values are put in the form. **Nothing is saved until you save.** |
 
-Note: the "Copy from" button is in Exment v7.3.0 and later.  
+Note: the "Copy from" button is in Exment v7.2.2 and later.  
 Note: those who may make this setting are the users with the "Table settings" permission of the copy-from table (system administrators included).
 
 ## Opening the settings
@@ -45,7 +45,7 @@ The icon and the HTML class of the "Copy" button of the data details page.
 
 - ##### Button on the create form
 When on, the create form of the copy-to table has a "Copy from" button ([Copy from button of the create form](#copy-from-button-of-the-create-form)). Off at first.  
-Note: v7.3.0 and later.
+Note: v7.2.2 and later.
 
 - ##### Brackets of the button on the create form
 What the brackets of the "Copy from" button say. Shown only when "Button on the create form" is on.
@@ -59,7 +59,7 @@ What the brackets of the "Copy from" button say. Shown only when "Button on the 
 - ##### Label of the button on the create form
 The text in the brackets. For example "Last year" makes "Copy from (Last year)". Shown only when "Label" is chosen for the brackets.
 
-Note: these two are in v7.3.0 and later.
+Note: these two are in v7.2.2 and later.
 
 - ##### Child table setting
 With the "Copy" button of the data details page, the data of the child tables is copied too. Make the data copy setting between the child tables (one with no input dialog settings) first.  
@@ -86,7 +86,7 @@ For tables with the same columns, pairing one by one is work. With "Pair the col
 - Columns whose names differ are not paired: add them by hand if needed. You can change or remove the pairs that were put in.
 - The editing page of an existing setting does not have this button.
 
-Note: v7.3.0 and later.
+Note: v7.2.2 and later.
 
 #### When the column types differ
 A pair of different column types (for example text → integer) can be chosen, but the value is copied as it is. A value that does not fit is an error of the input check when saving. In a select column, a value the copy-to column has no option for is left unselected.
@@ -118,7 +118,7 @@ With "Button on the create form" on, the create form of the **copy-to table** ha
 - The name of the button is chosen with "Brackets of the button on the create form" (auto, copy-from table name, label).
 - Only the users who may see the data of the copy-from table get the button. The dialog shows only the data they may see.
 
-Note: v7.3.0 and later.
+Note: v7.2.2 and later.
 
 ## Copying in the same table
 The copy-to table may be the same table. To copy data in the same table without a setting, "Duplicate as new" of the right-click menu of a row of the data list does it too ([Data list](/data_grid)).
