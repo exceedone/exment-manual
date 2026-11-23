@@ -24,7 +24,7 @@ When using Meilisearch, the following conditions must be satisfied.
 |Item|Contents|
 |---|---|
 |Meilisearch server|v1.10 or later|
-|PHP library|It is necessary to install "meilisearch/meilisearch-php" (v1.10 or later). **This library is not a required library of Exment.** If it is not installed, the commands related to Meilisearch will result in an error, and the realtime sync will also be disabled.<br />Also, this library requires an HTTP client compatible with "guzzlehttp/guzzle".|
+|PHP library|It is necessary to install "meilisearch/meilisearch-php" (v1.10 or later). The zip of the easy installation includes it. **This library is not a required library of Exment.** If it is not installed, the commands related to Meilisearch will result in an error, and the realtime sync will also be disabled.<br />Also, this library requires an HTTP client compatible with "guzzlehttp/guzzle".|
 |Queue|It is necessary to set "database" (or redis) to "QUEUE_CONNECTION" and to have executed the migration.<br />Since the realtime sync is executed by the queue, if it remains the default value "sync", the process on the screen will be blocked. For details, please check [Delayed execution of notification processing](/additional_queue).|
 |Custom table|Only tables whose "Search Enabled" is YES in the custom table settings, and which have a custom column whose "Freeword Search Target" is YES, become the target of index creation.|
 
@@ -37,7 +37,106 @@ When using Meilisearch, the following conditions must be satisfied.
 - For details on Meilisearch itself, see the [official documentation](https://www.meilisearch.com/docs).
 
 
-## Flow of the settings
+## The easy way
+From Exment v7.2.2, one script does steps 1 to 4 of [Installing by hand](#installing-by-hand) below. You can run it again at any time (the master key and the settings that are already there are kept).
+
+### For Linux
+On a server with systemd (Ubuntu, Debian, RHEL, Amazon Linux and others, including AWS EC2), go to the folder of Exment and run:
+
+```
+cd /var/www/exment
+sudo sh vendor/exceedone/exment/resources/meilisearch/install-meilisearch.sh
+```
+
+The script does the following.
+
+1. Installs Meilisearch ("/usr/local/bin/meilisearch"), the user that runs it, "/etc/meilisearch.conf" with a new master key (readable by root only), and the service "meilisearch" (listening on 127.0.0.1:7700 only)
+1. Sets up Exment ("php artisan exment:meili-setup"; see [Setting up only Exment](#setting-up-only-exment))
+1. Registers the queue worker as the service "exment-meili-worker"
+1. Adds the scheduler (php artisan schedule:run) to the crontab of the web server user
+
+Options, when needed:
+
+|Option|Description|
+|---|---|
+|--exment-dir=folder|The folder of Exment. Default: the current folder.|
+|--user=user|The user the web server runs PHP as (www-data, apache, nginx...). Default: the owner of the "storage" folder.|
+|--php=path|The php command. Give the same version as the web server (e.g. --php=/usr/bin/php8.3). Default: php in PATH.|
+|--version=version|The Meilisearch version. Default: "v1.10.3".|
+|--index=name|The index name. Default: "exment_global".|
+|--no-cron|Does not add the scheduler to the crontab. Use it when the scheduler already runs in another way.|
+
+### For Windows
+Open PowerShell with "Run as administrator" and run the following in the folder of Exment.
+*Change "C:\php\php.exe" to the php that IIS uses.
+
+```
+cd C:\inetpub\exment
+powershell -ExecutionPolicy Bypass -File vendor\exceedone\exment\resources\meilisearch\install-meilisearch.ps1 -Php C:\php\php.exe
+```
+
+The script does the following.
+
+1. Installs Meilisearch ("C:\meilisearch"), a new master key ("C:\meilisearch\master-key.txt", readable by Administrators and SYSTEM only), the service "Meilisearch" with NSSM, and excludes the index folder from Windows Defender scans
+1. Sets up Exment ("php artisan exment:meili-setup")
+1. Registers the queue worker as the service "ExmentMeiliWorker"
+1. Registers the task "ExmentScheduler" (php artisan schedule:run every minute) in the Task Scheduler
+
+> For NSSM, give its path with "-Nssm", or put it in PATH or at "C:\nssm\nssm.exe". If neither is there and winget is, the script installs it.
+> Other options: "-ExmentDir" (the folder of Exment), "-Version" (the Meilisearch version), "-InstallDir" (the folder of Meilisearch), "-Index" (the index name), "-NoScheduler" (does not register the task), "-NoDefenderExclusion" (does not change Windows Defender)
+
+### For Docker
+With [docker-exment](https://github.com/exceedone/docker-exment), add "docker-compose.meilisearch.yml" and the containers of Meilisearch, the queue worker and the scheduler start.
+
+- Write a master key of 16 characters or more in the ".env" of the docker-exment folder (e.g. the output of "openssl rand -hex 16").
+
+```
+EXMENT_DOCKER_MEILISEARCH_MASTER_KEY=(master key)
+```
+
+- Start the containers and set up Exment:
+
+```
+docker compose -f docker-compose.yml -f docker-compose.mysql.yml -f docker-compose.meilisearch.yml up -d
+docker compose -f docker-compose.yml -f docker-compose.mysql.yml -f docker-compose.meilisearch.yml exec -u www-data php php artisan exment:meili-setup
+```
+
+### Setting up only Exment
+When Meilisearch already runs (for example on another server), run the following in the folder of Exment. It does all of "[2. Exment settings](#_2-exment-settings)" of Installing by hand.
+
+```
+php artisan exment:meili-setup --host=http://127.0.0.1:7700 --key-file=/etc/meilisearch.conf
+```
+
+The command does the following, in order. If a step fails, it shows the error and stops: fix it and run the command again.
+
+1. Checks that Meilisearch answers, that the master key is right and that the version is v1.10 or later
+1. ".env": changes "QUEUE_CONNECTION" from sync to database, and adds "MEILISEARCH_REINDEX_QUEUE=meili-reindex"
+1. Creates the queue tables (jobs, failed_jobs) when they are missing, and runs "php artisan migrate"
+1. Saves the system settings: host, master key, index name, real-time sync (YES), periodic index repair (YES), repair time
+1. Builds the index. When it is done, turns global search to YES
+1. Checks the connection ("php artisan exment:meili-health --failed") and asks the running queue workers to restart ("php artisan queue:restart")
+
+|Option|Description|
+|---|---|
+|--host=URL|Where Meilisearch is. Default: the current setting ("http://127.0.0.1:7700").|
+|--key-file=file|A file with the master key: a file with a "MEILI_MASTER_KEY=" line (such as "/etc/meilisearch.conf"), or a file with the key alone.|
+|--key=key|The master key. Other users may see a key written on the command line, so "--key-file" or the environment variable "MEILI_MASTER_KEY" is recommended.|
+|--index=name|The index name. Default: the current setting ("exment_global").|
+|--repair-at=HH:MM|The time of the periodic index repair. Default: the current setting ("03:00").|
+|--skip-env|Does not change ".env". Write what it shows yourself.|
+|--skip-index|Only saves the settings, and does not build the index. Global search stays NO.|
+
+> The master key is looked for in "--key-file", the environment variable "MEILI_MASTER_KEY", "--key" and the value saved in the system settings, in this order. If there is none, the command asks for it.
+> The command does not register the queue worker or the scheduler. Do "[3. Register the queue worker](#_3-register-the-queue-worker)" and "[4. Set the scheduler](#_4-set-the-scheduler)" of Installing by hand.
+
+### For AWS and rental servers
+- **AWS (EC2), Azure virtual machines and others**: use the scripts above, as for any Linux or Windows server. Do not open port 7700 to the outside in the security group or elsewhere.
+- **Rental servers (Xserver and others)**: programs that keep running are not allowed, so Meilisearch cannot run on the rental server. Put Meilisearch on another server that can keep it running (such as AWS EC2), reachable only from the server of Exment. Then run "php artisan exment:meili-setup --host=(where Meilisearch is)" in the folder of Exment. The queue worker cannot keep running either, so run it from cron every minute. For details, see [Delayed execution of notifications](/additional_queue).
+
+
+## Installing by hand
+The steps without the scripts, or to see what the settings are. Configure in the following order.
 Perform the settings in the following order.
 
 1. Install the Meilisearch server
@@ -206,6 +305,7 @@ Add-MpPreference -ExclusionPath "C:\meilisearch\data.ms"
 
 ## 2. Exment settings
 Once the Meilisearch server is ready, configure the Exment side.  
+*"php artisan exment:meili-setup" can do all of this step. See [Setting up only Exment](#setting-up-only-exment).  
 The following steps are common to Linux and Windows.
 
 ### Install the library
