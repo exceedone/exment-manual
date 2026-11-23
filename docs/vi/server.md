@@ -121,6 +121,9 @@ Sau khi xây dựng môi trường xong, hãy cài đặt ứng dụng Exment th
     - MySQL 8.0 trở lên
     - MariaDB 10.11 trở lên
     - SQL Server 13.0.0 trở lên
+- Phần mở rộng gd của PHP có FreeType (dùng được `imagettftext`): dùng để tạo PDF nhãn mã vạch 2 chiều. Nếu không có, việc tạo PDF nhãn sẽ báo lỗi.
+    - docker-exment: cập nhật docker-exment (từ PR #23, 2026-11-23) và build lại image php (`docker compose build php`, sau đó `docker compose up -d`).
+    - Máy chủ khác: cài gd có FreeType (gói php-gd của bản phân phối thường đã có). Kiểm tra bằng `php -r 'var_dump(function_exists("imagettftext"));'`; nếu hiện `bool(true)` là dùng được.
 
 ### Trình duyệt đã kiểm tra hoạt động
 - Google Chrome

@@ -4,6 +4,16 @@ Configure the 2D barcode settings for the table.
 ## Overview of the 2D Barcode Functionality
 For an overview of the 2D barcode functionality, please refer to the [official website post](https://exment.net/release_v6-1-0/).
 
+### Required PHP extension (label PDF)
+To make the 2D barcode label PDF, PHP's gd extension must be built with FreeType (`imagettftext` must be available). Without it, making the label PDF fails with an error.
+
+- docker-exment: update docker-exment (since PR #23, 2026-11-23) and rebuild the php image (`docker compose build php`, then `docker compose up -d`).
+- Other servers: install gd with FreeType (the php-gd package of the distribution usually has it). Check it with the command below; `bool(true)` means it is available.
+
+```
+php -r 'var_dump(function_exists("imagettftext"));'
+```
+
 ## Page display
 - In the custom table list, check the table you want to configure and click "Table details settings" in the upper right corner.  
 ![2D barcode page](img/2d_barcode/barcode1.png)
