@@ -47,9 +47,19 @@ The icon and the HTML class of the "Copy" button of the data details page.
 When on, the create form of the copy-to table has a "Copy from" button ([Copy from button of the create form](#copy-from-button-of-the-create-form)). Off at first.  
 Note: v7.3.0 and later.
 
+- ##### Brackets of the button on the create form
+What the brackets of the "Copy from" button say. Shown only when "Button on the create form" is on.
+
+| Choice | Name of the button |
+|---|---|
+| Auto (at first) | "Copy from". "Copy from (copy-from table name)" when two or more settings put this button on the same table |
+| Copy-from table name | Always "Copy from (copy-from table name)" |
+| Label | "Copy from (Label of the button on the create form)" |
+
 - ##### Label of the button on the create form
-The text in the brackets of the "Copy from" button. For example "Last year" makes "Copy from (Last year)". Empty: "Copy from". Shown only when "Button on the create form" is on.  
-Note: v7.3.0 and later.
+The text in the brackets. For example "Last year" makes "Copy from (Last year)". Shown only when "Label" is chosen for the brackets.
+
+Note: these two are in v7.3.0 and later.
 
 - ##### Child table setting
 With the "Copy" button of the data details page, the data of the child tables is copied too. Make the data copy setting between the child tables (one with no input dialog settings) first.  
@@ -105,8 +115,7 @@ With "Button on the create form" on, the create form of the **copy-to table** ha
 1. Change what you need, and save. **Nothing is saved until you save.**
 
 - File, image and auto number columns are not copied (the same as "Duplicate as new").
-- With a "Label of the button on the create form", the button is "Copy from (the label)".
-- With no label, when two or more settings put the button on the same table, the buttons are "Copy from (copy-from table name)".
+- The name of the button is chosen with "Brackets of the button on the create form" (auto, copy-from table name, label).
 - Only the users who may see the data of the copy-from table get the button. The dialog shows only the data they may see.
 
 Note: v7.3.0 and later.
