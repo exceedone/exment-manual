@@ -8,7 +8,7 @@ Exment is used by many sites, so a new feature is off at first. Until a system a
 Log in as a system administrator and open "Admin Setting" → "Feature Management" (the URL is `/feature`).  
 Only system administrators can open this page.
 
-<!-- Screenshot: the whole Feature Management page (img/feature/feature_index.png). Take it after exment PR #1861 is merged -->
+![Feature Management (Japanese screen)](ja/img/feature/feature1.png)
 
 The page has two parts: "Features of Exment" at the top and "Plugins" below.
 

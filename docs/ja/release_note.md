@@ -1,8 +1,7 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
-## v7.2.1 (2026/11/XX)
-<!-- TODO: リリースの日を書く -->
+## v7.2.1 (2026/11/23)
 - <span class="red bold">v7.2.1 が 7.2 の最初の公開版です。下の v7.2.0 の内容も含みます（v7.2.0 は公開を取り下げました）。</span>
 - <span class="red bold">左のメニューが、仕事の分類ごとの並びになります（「管理者設定」は「設定：データと画面」「設定：ユーザーと権限」「設定：システム」の 3 つに）。更新したサイトでは、Exment が置いたままのメニューだけが動き、ご自身で動かしたメニューはそのままです。</span>詳細は[こちら](/ja/menu?id=v721-からのメニューの並び)
 - 更新方法：`composer update` のあとに `php artisan exment:update` を実行し、ブラウザで Ctrl+F5（スーパーリロード）を押してください。詳細は[こちら](/ja/update)
@@ -15,6 +14,8 @@
     - 同梱テンプレート「申請パック」：稟議・経費精算・出張申請・支払い申請・休暇申請と、申請 → 承認・差し戻しのワークフロー、申請者・承認者の役割グループ、「申請・承認」のメニュー。承認する人は申請のときに選びます。詳細は[こちら](/ja/template?id=同梱テンプレート「申請パック」)
     - ユーザーごとの **API キー**：ユーザーが自分で API キーを作り、OAuth のトークンの代わりに `Authorization: Bearer exk_...` で使えます。キーはそのユーザーの権限を超えません。読むだけなどの範囲・テーブル・許可する IP・期限（初めは 90 日、最長 1 年）を決められ、キーは作ったときに 1 回だけ表示されます。「機能の管理」の「API キー」で使う役割グループを選びます（初めは使わない）。システム管理者は、すべてのキーを見て止められます（[#1888](https://github.com/exceedone/exment/pull/1888)・[#1889](https://github.com/exceedone/exment/pull/1889)）
     - **MCP サーバー**：Claude などの AI から、ユーザーの権限のまま Exment のデータを読めます（`POST {admin}/api/mcp`。テーブルの一覧・データの検索と取得・添付ファイルの一覧・ワークフローの状態。読むだけ）。API と同じく IP の制限と、OAuth のトークンか API キーでのログインが効きます。「機能の管理」の「MCP」で使う役割グループを選びます（初めは使わない）（[#1892](https://github.com/exceedone/exment/pull/1892)）
+    - **セキュリティチェック**：「設定：システム」→「セキュリティチェック」で、ファイルの権限・デバッグモード・APP_KEY・https・安全のためのヘッダー・外から見えてはいけないもの・管理者のパスワード・2 段階の認証などを確かめ、直し方を出します。インストールの「システム要件の確認」にも出ます。詳細は[こちら](/ja/security_check)（[#1959](https://github.com/exceedone/exment/pull/1959)・[#1964](https://github.com/exceedone/exment/pull/1964)・[#1968](https://github.com/exceedone/exment/pull/1968)・[#1974](https://github.com/exceedone/exment/pull/1974)）
+    - **おすすめの設定**：Exment が安全に変えられる設定（Exment のキャッシュ・Redis・設定のキャッシュ・ファイルの権限など）を、インストールのあとの初期設定の画面と「チューニング」から、チェックを付けて入れられます。詳細は[こちら](/ja/tuning)（[#1956](https://github.com/exceedone/exment/pull/1956)）
     - **メンテナンスモード**：システム管理者が「設定：システム」→「メンテナンス」で切り替えます。メンテナンス中は、システム管理者・始めた人・許可した IP のほかは、メンテナンスの画面になります。始まりと終わりの予定・API・外向けのページ・スケジュールの扱いを選べ、変えるたびに操作ログに残ります。コマンド `php artisan exment:maintenance` もあります（[#1894](https://github.com/exceedone/exment/pull/1894)・[#1896](https://github.com/exceedone/exment/pull/1896)）
     - ファイル共有：画面の URL を、番号でなくフォルダーの道筋（`/admin/file_server/<ワークスペース>/<フォルダー>/…`）にしました。名前を変えたり動かしたりしても、古いリンクは新しい URL へ移ります。［リンクをコピー］のボタンもあります（[#1906](https://github.com/exceedone/exment/pull/1906)）
     - ファイル共有：新規作成で、テキスト・Markdown・CSV のファイルを作り、ブラウザーで編集できます。Word・Excel・PowerPoint の空のファイルも作れます（[#1933](https://github.com/exceedone/exment/pull/1933)）。Office のファイルの PDF は、LibreOffice のほか、変換のコンテナ（Gotenberg）でも作れます
@@ -27,6 +28,8 @@
     - 安否確認を「機能の管理」で使う・使わないを選べるようにしました。地震の見張りの間隔を設定で決められます（初めは 5 分）（[#1900](https://github.com/exceedone/exment/pull/1900)・[#1919](https://github.com/exceedone/exment/pull/1919)）
     - システム設定の詳細を項目ごとの箱に分け、移動のボタンを上に残すようにしました
     - データの詳細・編集の「一覧に戻る」を、ページのタイトルの左にしました
+    - チューニングの検索インデックスの確認と、カンバンのビューを速くしました（カードのない列は問い合わせない）（[#1966](https://github.com/exceedone/exment/pull/1966)・[#1970](https://github.com/exceedone/exment/pull/1970)）
+    - ファイル共有：コピー・新しい版・元に戻したあとも、プレビューの状態を引き継ぎます（[#1972](https://github.com/exceedone/exment/pull/1972)）
 1. 不具合修正
     - 新しいテーブルを、一覧より先に新規・詳細の画面で開くと、一覧に ID と日付しか出なくなるのを直しました（テンプレートで入れたテーブルなど）。すでにそうなった一覧は、ビューの設定で列を足してください（[#1918](https://github.com/exceedone/exment/pull/1918)）
     - ファイル共有のセキュリティの修正（重要度：低）（[#1884](https://github.com/exceedone/exment/pull/1884)）

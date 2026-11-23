@@ -15,6 +15,8 @@
   * [アップデート](/ja/update)
   * [追加設定](/ja/quickstart_more)
   * [チューニング](/ja/tuning)
+  * [セキュリティチェック](/ja/security_check)
+  * [メンテナンスモード](/ja/maintenance)
   * [(上級者向け)冗長化](/ja/redundant)
   * [メール送信設定](/ja/mailsend_setting)
 
@@ -81,6 +83,8 @@
 
 * 【10. 機能拡張】
   * [API設定](/ja/api)
+  * [API キー](/ja/api_key)
+  * [MCP サーバー（AI から使う）](/ja/mcp)
   * [プラグイン](/ja/plugin)
     * [公式プラグイン](/ja/plugin_official)
       * [プロジェクト管理](/ja/plugin_pm)

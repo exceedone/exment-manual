@@ -14,6 +14,8 @@
   * [Update](/update.md)
   * [Additional settings](/quickstart_more.md)
   * [Tuning](/tuning)
+  * [Security check](/security_check)
+  * [Maintenance mode](/maintenance)
   * [(For advanced users) Redundancy](/redundant.md)
   * [Mailsend_setting](/mailsend_setting.md)
 
@@ -80,6 +82,8 @@
 
 * 【10. Function extension】
   * [API setting](/api.md)
+  * [API keys](/api_key)
+  * [MCP server (use from AI)](/mcp)
   * [Plugin](/plugin.md)
     * [Official plugins](/plugin_official)
       * [Project Management](/plugin_pm)
