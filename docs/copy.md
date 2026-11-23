@@ -47,6 +47,10 @@ The icon and the HTML class of the "Copy" button of the data details page.
 When on, the create form of the copy-to table has a "Copy from" button ([Copy from button of the create form](#copy-from-button-of-the-create-form)). Off at first.  
 Note: v7.3.0 and later.
 
+- ##### Label of the button on the create form
+The text in the brackets of the "Copy from" button. For example "Last year" makes "Copy from (Last year)". Empty: "Copy from". Shown only when "Button on the create form" is on.  
+Note: v7.3.0 and later.
+
 - ##### Child table setting
 With the "Copy" button of the data details page, the data of the child tables is copied too. Make the data copy setting between the child tables (one with no input dialog settings) first.  
 Note: the "Copy from" button of the create form does not copy child tables.
@@ -101,7 +105,8 @@ With "Button on the create form" on, the create form of the **copy-to table** ha
 1. Change what you need, and save. **Nothing is saved until you save.**
 
 - File, image and auto number columns are not copied (the same as "Duplicate as new").
-- When two or more settings put the button on the same table, the buttons are "Copy from (copy-from table name)".
+- With a "Label of the button on the create form", the button is "Copy from (the label)".
+- With no label, when two or more settings put the button on the same table, the buttons are "Copy from (copy-from table name)".
 - Only the users who may see the data of the copy-from table get the button. The dialog shows only the data they may see.
 
 Note: v7.3.0 and later.
