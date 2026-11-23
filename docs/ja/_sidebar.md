@@ -83,6 +83,8 @@
 
 * 【10. 機能拡張】
   * [API設定](/ja/api)
+  * [API キー](/ja/api_key)
+  * [MCP サーバー（AI から使う）](/ja/mcp)
   * [プラグイン](/ja/plugin)
     * [公式プラグイン](/ja/plugin_official)
       * [プロジェクト管理](/ja/plugin_pm)

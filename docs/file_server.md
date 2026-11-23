@@ -7,7 +7,7 @@ The files are kept where Exment keeps its files (local, S3, Azure, FTP and so on
 ## Getting started
 File sharing is off at first. When a system administrator turns "File sharing" on in "Admin Setting" > "[Feature Management](/feature)", "File sharing" appears in the side menu. Who may use it (role groups) is also chosen in Feature Management.
 
-<!-- Screenshot: the top of File sharing (workspaces, favorites, recent files) (img/file_server/file_server_top.png) -->
+![A workspace (Japanese screen)](ja/img/file_server/file_server_workspace.png)
 
 ## Workspaces
 A workspace is where a team keeps its files (a site in SharePoint).
@@ -31,7 +31,7 @@ The top shows the workspaces you can open, "Favorites", "Files changed lately" a
 - A file or folder can be renamed, moved, copied, downloaded (several as a ZIP), deleted and added to favorites.
 - Deleted items go to the "Trash", where they can be restored ("Restore") or deleted for good ("Delete for good").
 
-<!-- Screenshot: inside a folder (file list, toolbar) (img/file_server/file_server_folder.png) -->
+![Inside a folder (Japanese screen)](ja/img/file_server/file_server_folder.png)
 
 ## Permissions
 There are four permissions. A higher one can do all that the lower ones can.
@@ -66,7 +66,7 @@ With Groupware's ibisOffice, neither LibreOffice nor Docker is needed, and it wo
 
 ※Files that came in through a request link get no preview and no text extraction when they are opened. They are made only when a user with Manage presses "Make the preview".
 
-<!-- Screenshot: a file (preview, version history, share links) (img/file_server/file_server_file.png) -->
+![A file (Japanese screen)](ja/img/file_server/file_server_file.png)
 
 ## Share links for people outside
 Give files and folders to people outside who do not log in, or receive files from them. Make links in "Share links for people outside" on the page of a file.
