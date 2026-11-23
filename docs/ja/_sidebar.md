@@ -37,6 +37,7 @@
   * [ガントチャートビュー](/ja/view_gantt)
   * [表示プリセット](/ja/cell_style_preset)
   * [データ更新設定](/ja/operation)
+  * [データコピー設定](/ja/copy)
   * [二次元バーコード設定](/ja/2d_barcode)
   * [JANバーコード設定](/ja/jancode)
 
