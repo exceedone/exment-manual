@@ -76,8 +76,10 @@ Có 4 quyền. Quyền cao hơn làm được mọi việc của quyền thấp 
 
 - Có thể đặt ngày hết hạn, mật khẩu và số lần được mở. Mật khẩu từ 8 ký tự trở lên (`EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN`). "Take back" (thu hồi) để vô hiệu bất cứ lúc nào.
 - Liên kết không hợp lệ (hết hạn, đã thu hồi, quá số lần…) luôn hiện "The link cannot be opened" (không mở được liên kết).
+- Liên kết chia sẻ mới mặc định hết hạn sau 30 ngày, tối đa 90 ngày (`EXMENT_FILE_SERVER_SHARE_DEFAULT_DAYS`, `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`; 0 = không mặc định, không giới hạn). Các liên kết cũ không có hạn được đánh dấu "No end" (không hạn) trong danh sách liên kết.
+- Địa chỉ của liên kết chia sẻ chỉ hiển thị cho người tạo liên kết và người có quyền Manage với tệp hoặc thư mục đó.
 - Với người trong công ty, dùng "Copy the internal link" (sao chép liên kết nội bộ): chỉ người có quyền xem tệp mới mở được.
-- Muốn tắt liên kết chia sẻ, ghi `EXMENT_FILE_SERVER_EXTERNAL_SHARE=false` vào `.env`. Muốn bắt buộc có ngày hết hạn, ghi số ngày vào `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`.
+- Muốn tắt liên kết chia sẻ, ghi `EXMENT_FILE_SERVER_EXTERNAL_SHARE=false` vào `.env`. Thời hạn tối đa đổi được bằng `EXMENT_FILE_SERVER_SHARE_MAX_DAYS`.
 - Liên kết chia sẻ (`/share/...`) dành cho người bên ngoài nên mặc định không áp dụng bộ lọc IP web của cài đặt hệ thống. Muốn chỉ mở được từ trong công ty, ghi `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER=true` vào `.env`. Thiết lập này được đọc khi tạo route: trang dùng `php artisan route:cache` hãy chạy lại sau khi đổi.
 
 ## Cột (metadata)
@@ -100,12 +102,23 @@ Trong cài đặt workspace, tạo các cột cho tệp (như "Khách hàng", "L
 | Tính năng | Nội dung |
 | --- | --- |
 | Phê duyệt | Đặt "cần phê duyệt" trong "Rules" (quy tắc) của thư mục thì tệp đưa vào sẽ ở "Waiting for approval" (chờ phê duyệt). Đến khi được duyệt, chỉ người tải lên và người quản lý thấy được. Người có quyền Manage chọn "Approve" (duyệt) hoặc "Send back" (trả lại). |
-| Legal hold (lưu giữ pháp lý) | Gắn cho workspace, thư mục hoặc tệp thì không xóa được, phiên bản cũ cũng được giữ. |
-| Thời hạn lưu giữ | Đặt số ngày trong cài đặt workspace thì tệp không xóa được trong số ngày đó. |
-| Người được tải xuống | Người có quyền thấp hơn mức đã chọn chỉ xem trước được. |
+| Legal hold (lưu giữ pháp lý) | Gắn cho workspace, thư mục hoặc tệp thì không xóa được, phiên bản cũ cũng được giữ. Chỉ quản trị viên hệ thống mới gắn hoặc gỡ được (người có quyền Manage chỉ xem). |
+| Thời hạn lưu giữ | Đặt số ngày trong cài đặt workspace thì tệp không xóa được trong số ngày đó. Chỉ quản trị viên hệ thống mới đặt hoặc gỡ được (người có quyền Manage chỉ xem). |
+| Người được tải xuống | Người có quyền thấp hơn mức đã chọn chỉ xem được (xem "Chỉ xem" bên dưới). |
 | Watermark | Hiển thị tên người xem và thời gian lên bản xem trước. |
 | Audit log (nhật ký thao tác) | Ghi lại xem, tải xuống, tải lên, xóa, đổi quyền, liên kết chia sẻ…; xuất được CSV. |
 | Follow (theo dõi), bình luận | Khi workspace, thư mục hoặc tệp đang theo dõi thay đổi, sẽ có thông báo chuông và email. `@mã người dùng` trong bình luận sẽ báo cho người đó. |
+
+### Chỉ xem
+Với người có quyền thấp hơn "Who may download" của workspace, và với liên kết chia sẻ không bật "Allow download", tệp được hiển thị như sau.
+
+| Tệp | Cách hiển thị |
+| --- | --- |
+| Hình ảnh | Bản thu nhỏ. |
+| Office, PDF | Qua bản PDF đã chuyển đổi, nếu có. |
+| Văn bản, video, âm thanh | Không hiển thị. |
+
+Mỗi lần xem đều được ghi vào audit log.
 
 ## Máy chủ
 - **Việc hằng ngày**: tệp trong thùng rác quá số ngày được xóa bằng `php artisan exment:file-server-purge` (3:30 mỗi ngày). Hãy thiết lập [lịch tác vụ (English)](/additional_task_schedule).
@@ -123,7 +136,8 @@ Trong cài đặt workspace, tạo các cột cho tệp (như "Khách hàng", "L
 | `EXMENT_FILE_SERVER_MAX_UPLOADS` | `20` | Số lượt tải chưa xong của một người |
 | `EXMENT_FILE_SERVER_MAX_UPLOAD_BYTES` | `10737418240` (10 GB) | Tổng byte các lượt tải chưa xong của một người (0 = không giới hạn) |
 | `EXMENT_FILE_SERVER_EXTERNAL_SHARE` | `true` | Có dùng liên kết chia sẻ không |
-| `EXMENT_FILE_SERVER_SHARE_MAX_DAYS` | `0` | Số ngày tối đa của liên kết chia sẻ (0 = cho phép không hết hạn) |
+| `EXMENT_FILE_SERVER_SHARE_DEFAULT_DAYS` | `30` | Số ngày mặc định của liên kết chia sẻ mới (0 = không mặc định) |
+| `EXMENT_FILE_SERVER_SHARE_MAX_DAYS` | `90` | Số ngày tối đa của liên kết chia sẻ (0 = không giới hạn, cho phép không hết hạn) |
 | `EXMENT_FILE_SERVER_SHARE_PATH` | `share` | Phần đầu URL của liên kết chia sẻ |
 | `EXMENT_FILE_SERVER_SHARE_PASSWORD_MIN` | `8` | Số ký tự ngắn nhất của mật khẩu liên kết chia sẻ |
 | `EXMENT_FILE_SERVER_SHARE_WEB_IP_FILTER` | `false` | Có áp dụng bộ lọc IP web cho liên kết chia sẻ không |
