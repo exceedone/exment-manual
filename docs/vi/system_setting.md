@@ -155,6 +155,14 @@ Chọn một trong các giá trị "5", "10", "20".
 - Có thể thiết lập nội dung hiển thị trong phần thông tin người dùng ở header. Nếu để trống, nội dung này sẽ không được hiển thị.
 - Có thể chọn từ các cột tùy chỉnh của bảng người dùng và ngày giờ tạo.
 
+#### Ngôn ngữ người dùng có thể chọn
+- Các ngôn ngữ người dùng có thể chọn ở menu góc trên bên phải, màn hình đăng nhập và thiết lập người dùng đăng nhập (từ v7.2.4). Để trống thì chọn được tất cả ngôn ngữ đã cài. Ngôn ngữ của trang luôn chọn được.
+- Xem [Ngôn ngữ và múi giờ của từng người dùng](/vi/user_locale.md).
+
+#### Dùng ngôn ngữ của trình duyệt khi người dùng chưa chọn
+- Khi YES, người dùng chưa chọn ngôn ngữ sẽ thấy màn hình bằng ngôn ngữ của trình duyệt (trong các ngôn ngữ có thể chọn). Khi NO, bằng ngôn ngữ của trang (từ v7.2.4).
+- Mặc định là YES. Để mọi người vẫn dùng ngôn ngữ của trang, hãy đặt NO.
+
 ## Thiết lập tổ chức
 Thiết lập việc có bao gồm tổ chức trong phạm vi của từng thiết lập hay không.
 ![Màn hình thiết lập tổ chức](../img/system_setting/system_setting_organization.png)

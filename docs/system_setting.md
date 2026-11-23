@@ -161,6 +161,14 @@ Select one of "5", "10", and "20".
 - You can set the content to be displayed in the user information in the header. If left blank, it will be hidden.
 - You can select from custom columns and created date in the user table..
 
+#### Languages the users can choose
+- The languages the users can choose in the menu at the top right, on the login page and in their login user settings (v7.2.4 or later). When empty, all the installed languages. The language of the site can always be chosen.
+- See [Language and time zone of each user](/user_locale.md).
+
+#### Use the browser's language when a user has not chosen one
+- When YES, a user who has not chosen a language sees the pages in the language of the browser (among the languages the users can choose). When NO, in the language of the site (v7.2.4 or later).
+- The default is YES. To keep the site language for everyone, set it to NO.
+
 ## Organization settings
 Set whether to include the organization in the range of each setting.
 ![Organization setting screen](img/system_setting/system_setting_organization.png)
