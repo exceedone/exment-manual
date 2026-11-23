@@ -117,6 +117,30 @@ ln -s $HOME/(ドメイン名)/laravel/exment/public $HOME/(ドメイン名)/publ
 ※v7.2.1 以降は、この URL で Exment が開きます。`.env` の `ADMIN_ROUTE_PREFIX` に「admin」があるサイト（前の版で入れたサイト）は、URL の末尾に「/admin」を付けてください。  
 
 
+#### コマンドと cron で使う PHP
+Xserver では、Web（管理画面の「PHP Ver.切替」で選んだ PHP）と、SSH や cron で `php` と打ったときの PHP が<span class="red bold">違います</span>。
+
+- SSH で `php` と打つと、`~/bin/php`（上でリンクした PHP）が動きます。リンクしていないときは、サーバーの標準の PHP（古い版のことがあります）が動きます。
+- cron は `~/.bashrc` を読みません。`php` だけだとサーバーの標準の PHP（8.0 など）が動き、Exment は動きません。
+
+そのため、artisan のコマンドと cron は、**管理画面と同じ版の PHP を、フルパスで**動かしてください。
+
+- 例（PHP 8.3 のとき）：`/usr/bin/php8.3`、または上の `find` で見つけた `/opt/php-8.3.x/bin/php`
+- 管理画面で PHP の版を変えたら、`~/bin/php` のリンクと、cron のパスも同じ版に変えます。
+
+[タスクスケジュール](/ja/additional_task_schedule)は、Xserver の管理画面の「Cron設定」で、次のように設定します（`(サーバーID)` と `(ドメイン名)` は自分のものに）。
+
+~~~
+* * * * * cd /home/(サーバーID)/(ドメイン名)/laravel/exment && nice -n 15 /usr/bin/php8.3 artisan schedule:run >> /dev/null 2>&1
+~~~
+
+キュー（[通知処理の遅延実行](/ja/additional_queue)）は、レンタルサーバーでは常に動くワーカーを置けません。`.env` の `QUEUE_CONNECTION` は `sync`（インストールしたときの値）のままにしてください。`database` にするときは、cron で毎分、たまったジョブを片付けます。
+
+~~~
+* * * * * cd /home/(サーバーID)/(ドメイン名)/laravel/exment && nice -n 15 /usr/bin/php8.3 artisan queue:work --stop-when-empty --max-time=50 >> /dev/null 2>&1
+~~~
+
+
 #### PHPバージョンアップ時の対応
 PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  

@@ -151,6 +151,8 @@ ExmentUpdateWindows.bat
 実際: `composer update --ignore-platform-reqs`  
 → このコマンドはSodiumのチェックを無視し、Composerのアップデートを直接実行します。  
 
+- レンタルサーバー（Xserver など）では、SSH の `php` が、管理画面で選んだ PHP と違う版のことがあります。`php --version` で、管理画面と同じ版か確かめてください。違うときは、`~/bin/php` をその版にリンクするか、`/usr/bin/php8.3 artisan exment:update` のようにフルパスで動かします（[レンタルサーバー](/ja/install_rental)）。  
+
 - コマンドラインで、以下のコマンドを実行します。  
 ※リリース直後だと、最新バージョンが検知されない場合があります。その場合、10～20分ほど経過後、再度下記コマンドを実行してください。  
 

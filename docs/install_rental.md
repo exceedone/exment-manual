@@ -116,6 +116,30 @@ Please follow the [Installation Instructions](/quickstart) to complete the setti
 ※Exment opens at this URL (v7.2.1 or later). A site with "admin" in `ADMIN_ROUTE_PREFIX` of `.env` (installed with an older version) needs /admin at the end of the URL.   
 
 
+#### PHP for commands and cron
+On Xserver, the PHP for the web (chosen in "PHP Ver. switch" on the control panel) and the PHP you get by typing `php` over SSH or in cron <span class="red bold">are different</span>.
+
+- Over SSH, `php` runs `~/bin/php` (the PHP linked above). Without the link, it runs the server's default PHP, which can be old.
+- cron does not read `~/.bashrc`. With only `php`, the server's default PHP (8.0, for example) runs, and Exment does not work.
+
+So run artisan commands and cron with **the same PHP version as the control panel, by its full path**.
+
+- Example (PHP 8.3): `/usr/bin/php8.3`, or `/opt/php-8.3.x/bin/php` found by `find` above
+- When you change the PHP version on the control panel, change the `~/bin/php` link and the cron path to the same version.
+
+Set the [task schedule](/additional_task_schedule) in "Cron settings" on the Xserver control panel like this (use your own `(server ID)` and `(domain)`).
+
+~~~
+* * * * * cd /home/(server ID)/(domain)/laravel/exment && nice -n 15 /usr/bin/php8.3 artisan schedule:run >> /dev/null 2>&1
+~~~
+
+For the queue ([delayed notifications](/additional_queue)), a rental server cannot keep a worker running. Keep `QUEUE_CONNECTION` in `.env` as `sync` (the value set at installation). If you use `database`, let cron clear the waiting jobs every minute.
+
+~~~
+* * * * * cd /home/(server ID)/(domain)/laravel/exment && nice -n 15 /usr/bin/php8.3 artisan queue:work --stop-when-empty --max-time=50 >> /dev/null 2>&1
+~~~
+
+
 #### Correspondence when upgrading PHP version
 If you want to change the PHP version, please update it by following the steps below.   
 ※Exment will not be accessible while the version is being upgraded.   

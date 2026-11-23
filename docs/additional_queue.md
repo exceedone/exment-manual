@@ -51,6 +51,15 @@ Please note that when you execute this command, it keeps running until you stop 
 php artisan queue:listen
 ```
 
+### When a worker cannot keep running (rental servers, etc.)
+On a rental server, where a worker cannot keep running, let cron clear the waiting jobs every minute (`--stop-when-empty` ends when no jobs are left, and `--max-time=50` ends before the next cron). Write php by the full path of the same version as the web.
+
+```
+* * * * * cd /(Exment root directory) && nice -n 15 /usr/bin/php8.3 artisan queue:work --stop-when-empty --max-time=50 >> /dev/null 2>&1
+```
+
+If you cannot do that either, keep `QUEUE_CONNECTION=sync` (the value set at installation).
+
 ## When updating the system
 Since the queue worker is a long-lived process, it will not reflect changes in the code unless it is restarted. Therefore, the simplest way to deploy an application that uses queue workers is to restart the workers during the deployment process. By executing the queue:restart command, all workers can be restarted gracefully.
 

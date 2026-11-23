@@ -25,12 +25,14 @@ crontab -e
 # 通常のLinux
 * * * * * cd /(Exmentのルートディレクトリ) && php artisan schedule:run >> /dev/null 2>&1
 
-# XServer(PHPバージョンによってパスは異なる。下記はPHP8.2の場合)
-* * * * * cd /(Exmentのルートディレクトリ) && /usr/bin/php8.2 artisan schedule:run >> /dev/null 2>&1
+# Xserver(管理画面で選んだ PHP と同じ版を、フルパスで。下記は PHP 8.3 の場合)
+* * * * * cd /(Exmentのルートディレクトリ) && nice -n 15 /usr/bin/php8.3 artisan schedule:run >> /dev/null 2>&1
 
 # さくらインターネット
 * * * * * cd /(Exmentのルートディレクトリ); php artisan schedule:run >> /dev/null 2>&1
 ~~~
+
+> **レンタルサーバー（Xserver など）では**：cron の `php` は、管理画面で選んだ PHP と違う、サーバーの標準の PHP になることがあります。管理画面と同じ版の PHP を、フルパスで書いてください（[レンタルサーバー](/ja/install_rental)）。
 
 ### 設定手順(Windows)
 - 以下のコマンドを実行し、php.exeファイルがあるパスをコピーします。  

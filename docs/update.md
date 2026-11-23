@@ -142,6 +142,8 @@ Perform a data backup. For more information [backup](/backup) Please confirm.
   Actually: `composer update --ignore-platform-reqs`  
   → This command ignores the Sodium check and directly executes the Composer update.  
 
+- On a rental server (Xserver, etc.), `php` over SSH can be a different version from the PHP chosen on the control panel. Check with `php --version` that it is the same version. If not, link `~/bin/php` to that version, or run it by the full path, like `/usr/bin/php8.3 artisan exment:update` ([rental server](/install_rental)).  
+
 - In the command line, execute the following command.  
   ※Immediately after the release, the latest version might not be detected. In that case, wait for about 10-20 minutes and then run the command again.  
 
