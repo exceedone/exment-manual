@@ -27,6 +27,9 @@ The settings Exment can change safely can be checked and set from this page. Onl
 
 - Pressing "Apply the checked settings" lists them for a confirmation first. What was done goes to the operation log, and the last result (set / already set / failed, with the reason) is shown below.
 - **At the setup too**: the initialize page after the install shows the same settings, checked. Unchecked ones are not applied.
+
+  ![Recommended settings at the setup (Japanese screen)](ja/img/tuning/tuning_setup.png)
+
 - php.ini, PHP-FPM, OPcache, cron and the queue are not changed; see the items below and ask the server administrator.
 - With `EXMENT_TUNING_SERVER_ACTIONS=false` in `.env`, neither this box nor the settings at the setup are offered.
 
