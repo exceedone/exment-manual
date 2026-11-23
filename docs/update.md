@@ -152,3 +152,5 @@ composer update
 # composer update --ignore-platform-reqs
 php artisan exment:update
 ~~~
+
+On a production site (`APP_ENV=production`), you are asked before the database is changed. With no terminal (scripts, cron, CI), run `php artisan exment:update --force`.  

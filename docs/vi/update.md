@@ -161,3 +161,5 @@ composer update
 # composer update --ignore-platform-reqs
 php artisan exment:update
 ~~~
+
+Trên site production (`APP_ENV=production`), sẽ có câu hỏi xác nhận trước khi thay đổi cơ sở dữ liệu. Khi không có terminal (script, cron, CI), hãy chạy `php artisan exment:update --force`.  

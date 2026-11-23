@@ -23,6 +23,12 @@ Exmentを手動でアップデートするためのコマンドです。
 php artisan exment:update
 ```
 
+本番のサイト（`APP_ENV=production`）では、データベースを変える前に確かめる質問が出ます。端末がないとき（スクリプト・cron・CI）は、`php artisan exment:update --force` で実行してください。
+
+```
+php artisan exment:update --force
+```
+
 ### css・jsファイルなど発行
 パッケージ内のcss、js、画像ファイルや、設定ファイルなどの一式を、laravelの既定のパスへ発行します。
 
