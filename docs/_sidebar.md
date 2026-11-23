@@ -36,6 +36,7 @@
   * [Gantt chart view](/view_gantt.md)
   * [Cell style presets](/cell_style_preset.md)
   * [Operation](/operation)
+  * [Data copy settings](/copy)
   * [2D Barcode settings](/2d_barcode.md)
   * [JAN Barcode Settings](/jancode.md)
 
