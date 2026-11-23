@@ -46,6 +46,7 @@
   * [Data details](/data_details.md)  
   * [Data registration](/data_form.md)
   * [Deleted data](/deleted_data)
+  * [Data maintenance](/data_maintenance)
   * [Data import / export](/data_import_export.md)
   * [Data cmd import / export](/data_cmd_import_export)
   * [Data bulk insert](/data_bulk_insert)
