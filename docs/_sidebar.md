@@ -87,6 +87,7 @@
 * 【10. Function extension】
   * [API setting](/api.md)
   * [API keys](/api_key)
+  * [API rate limit raises](/api_rate_raise)
   * [MCP server (use from AI)](/mcp)
   * [Plugin](/plugin.md)
     * [Official plugins](/plugin_official)
