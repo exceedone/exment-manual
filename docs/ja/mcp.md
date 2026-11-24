@@ -14,6 +14,34 @@ Claude などの AI から、ユーザーの権限のまま Exment のデータ�
 claude mcp add --transport http exment https://(ExmentのURL)/api/mcp --header "Authorization: Bearer exk_xxxxxxxx"
 ~~~
 
+### 画面から設定する（v7.2.6 以降）
+「[API キー](/ja/api_key)」の画面に「AI で使う（MCP）」の欄があります。
+
+1. キーを作るときに、「できること」で **「MCP 用」** を選びます。MCP のツールが読む範囲（`table_read`・`value_read`・`workflow_read`）だけを持つキーになります。
+2. 作った直後の画面に、**そのキーが入った設定**が出ます。Claude Code の 1 行と、Claude Desktop の `claude_desktop_config.json` に貼る内容です。キーと同じく、**このときだけ**表示します。ほかのときは、キーのかわりに `exk_...` と出します。
+3. このサイトで MCP を使っていない（または自分は使えない）ときは、その旨を出します。
+
+Claude Desktop の例（Node.js の `npx` で [mcp-remote](https://www.npmjs.com/package/mcp-remote) を使います）：
+~~~
+{
+    "mcpServers": {
+        "exment": {
+            "command": "npx",
+            "args": ["-y", "mcp-remote", "https://(ExmentのURL)/api/mcp", "--header", "Authorization:${EXMENT_AUTH}"],
+            "env": { "EXMENT_AUTH": "Bearer exk_xxxxxxxx" }
+        }
+    }
+}
+~~~
+
+### システム管理者：API 設定の画面（v7.2.6 以降）
+「[API設定](/ja/api)」の画面の上に「MCP サーバー」の欄があります。
+
+- MCP がオンかオフか（オフのときは「[機能の管理](/ja/feature)」へのリンク。API を使っていないときもオフです）
+- MCP サーバーのアドレス
+- ツールの一覧と、それぞれに要る範囲（スコープ）
+- 最近 30 日に使った人（最後に使った日時・呼び出しの数。操作ログのメソッド `MCP` から）
+
 ## 使えるツール
 | ツール | 内容 |
 |---|---|
