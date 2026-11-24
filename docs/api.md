@@ -462,6 +462,10 @@ For example, you cannot retrieve information for tables for which you do not hav
 | workflow_read | You can get workflow information. |
 | workflow_execute | You can execute the workflow. |
 | log | You can get operation log. |
+| user_org_read | You can get the users of organizations (v7.2.6 or later). See [here](/api_members) |
+| user_org_write | You can get, add and remove the users of organizations (v7.2.6 or later) |
+| role_group_read | You can get role groups with their users and organizations (v7.2.6 or later) |
+| role_group_write | You can get, add and remove the users and organizations of role groups (v7.2.6 or later) |
 | plugin | You can use the API added as a plugin.  |
 
 ※When specifying multiple scopes, set them in parameters separated by spaces.  
