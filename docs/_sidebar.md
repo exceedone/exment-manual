@@ -113,6 +113,7 @@
   
 * 【11. Reference】
   * [Release notes](/release_note.md)
+  * [Support policy (maintained versions)](/support_policy.md)
   * [Parameter variables](/params.md)
   * [API reference](https://exment.net/reference/webapi.html)
   * [Function reference](/func_reference.md)

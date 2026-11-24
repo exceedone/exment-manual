@@ -113,6 +113,7 @@
   
 * 【11. リファレンス】
   * [リリースノート](/ja/release_note)
+  * [サポートの期間（保守中の版）](/ja/support_policy)
   * [パラメータ変数](/ja/params)
   * [APIリファレンス](https://exment.net/reference/ja/webapi.html)
   * [関数リファレンス](/ja/func_reference)
