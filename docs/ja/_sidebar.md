@@ -88,6 +88,7 @@
 * 【10. 機能拡張】
   * [API設定](/ja/api)
   * [API キー](/ja/api_key)
+  * [API の上限の一時的な引き上げ](/ja/api_rate_raise)
   * [MCP サーバー（AI から使う）](/ja/mcp)
   * [プラグイン](/ja/plugin)
     * [公式プラグイン](/ja/plugin_official)
