@@ -123,10 +123,11 @@ Display a descriptive text on the form. HTML is not available.
 
 - ##### HTML:  
 Display HTML on the form.  
-\* Scripts can also be used. <span class="red">(If you enter the script tag, the script will be executed when the page is drawn, so please be careful.)</span>
+\* For safety, `<script>` and `<iframe>` tags and the `id` attribute are not output (v6.2.15 and later). To run a script on the screen, use a [script plugin](/plugin_quickstart_script).  
 
 - ##### Extended HTML：
-In addition to HTML, you can use a string in the format specified by the [parameter](/params). When drawing the page, you can create HTML by replacing it with the value of the saved data.
+In addition to HTML, you can use a string in the format specified by the [parameter](/params). When drawing the page, you can create HTML by replacing it with the value of the saved data.  
+\* As with "HTML", `<script>` and `<iframe>` tags and the `id` attribute are not output (v6.2.15 and later).  
 Example：
 ```
 <h4>ID：${id}、Company Code：${value:company_code}</h4>
