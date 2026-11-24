@@ -80,6 +80,7 @@
   * [Dashboard](/dashboard.md)
   * [Mail template](/mail.md)
   * [Notification](/notify.md)
+    * [Teams personal chat](/notify_teams.md)
   * [LINE integration](/line.md)
   * [Safety check](/safety_check.md)
   * [Log](/logs)
