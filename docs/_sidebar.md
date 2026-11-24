@@ -15,6 +15,7 @@
   * [Additional settings](/quickstart_more.md)
   * [Tuning](/tuning)
   * [Security check](/security_check)
+  * [Scheduled jobs](/scheduled_jobs)
   * [Maintenance mode](/maintenance)
   * [(For advanced users) Redundancy](/redundant.md)
   * [Mailsend_setting](/mailsend_setting.md)
