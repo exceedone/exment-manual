@@ -33,6 +33,8 @@ A job that failed 3 times in a row is shown in red, and the system administrator
 ## Run now
 "Run now" starts the job at once, in the background. A job that is running cannot be started again.
 
+But for a job without overlap protection (the hourly `exment:schedule` and plugin batches), the scheduled run does not wait for "Run now": pressing it just before the job is due (such as on the hour) may run the two at the same time. Do not press it close to the time the job runs.
+
 The button is disabled (with the reason) in these cases; cron still runs the jobs:
 - servers where PHP cannot start commands (no `proc_open`, as on some shared hosts)
 - demo mode
