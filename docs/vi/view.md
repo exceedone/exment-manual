@@ -207,10 +207,10 @@ Chỉ định các cột sẽ hiển thị dưới dạng lựa chọn trong ph�
 Cột sẽ hiển thị trong "Filter".  
 
 ##### Nút [↓]  
-Di chuyển mục hiển thị trong "Filter" lên trên.  
+Di chuyển mục hiển thị trong "Filter" xuống dưới.  
 
 ##### Nút [↑]  
-Di chuyển mục hiển thị trong "Filter" xuống dưới.  
+Di chuyển mục hiển thị trong "Filter" lên trên.  
 
 ##### Nút [Delete]  
 Xóa mục hiển thị trong "Filter" của view.  

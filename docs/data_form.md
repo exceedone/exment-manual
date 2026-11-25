@@ -17,8 +17,8 @@ Switches to the data list screen.
 Switch to the screen for browsing data.  
 
 - "Delete" button:   
-Deletes thedisplayed data.   
-※The displayed data cannot be deleted.
+Deletes the displayed data.  
+※Deleted data can be restored from [Deleted data](/deleted_data).
 
 - Form item：  
 Change the value of the data.  

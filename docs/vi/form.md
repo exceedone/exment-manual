@@ -123,10 +123,11 @@ Hiển thị văn bản giải thích trên form. Không thể sử dụng HTML.
 
 - ##### HTML:
 Hiển thị HTML trên form.  
-※ Cũng có thể sử dụng script. <span class="red">(Nếu nhập thẻ script, script sẽ được thực thi khi màn hình được hiển thị, vì vậy vui lòng hết sức lưu ý)</span>
+※ Vì an toàn, thẻ `<script>`, `<iframe>` và thuộc tính `id` không được xuất ra (từ v6.2.15). Để chạy script trên màn hình, hãy dùng [plugin script (English)](/plugin_quickstart_script).  
 
 - ##### Extended HTML (HTML mở rộng):
 Ngoài HTML, có thể sử dụng chuỗi ký tự theo định dạng được chỉ định trong [tham số](/params). Khi màn hình được hiển thị, các chuỗi này được thay thế bằng giá trị của dữ liệu đã lưu để tạo HTML.  
+※ Giống như "HTML", thẻ `<script>`, `<iframe>` và thuộc tính `id` không được xuất ra (từ v6.2.15).  
 Ví dụ:
 ```
 <h4>ID: ${id}, Mã công ty: ${value:company_code}</h4>
