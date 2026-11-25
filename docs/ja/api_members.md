@@ -47,6 +47,9 @@ POST /admin/api/organization/2/users
 
 `user` と `organization` は、どちらか片方だけでもかまいません。
 
+## MCP から読む
+AI からは、MCP サーバーのツール（`list_organization_users`・`list_user_organizations`・`list_role_groups`・`get_role_group`）で読めます。足す・外すツールはありません。詳細は[こちら](/ja/mcp)
+
 ## エラー
 | HTTP | 中身 |
 |---|---|

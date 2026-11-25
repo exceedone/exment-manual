@@ -39,6 +39,9 @@ Adding and removing answer the list after the change. A user who is in already i
 
 `user` or `organization` alone is fine.
 
+## Reading from MCP
+An AI can read them with the tools of the MCP server (`list_organization_users`, `list_user_organizations`, `list_role_groups`, `get_role_group`). There is no tool to add or remove members. See [MCP](/mcp)
+
 ## Errors
 | HTTP | What |
 |---|---|
