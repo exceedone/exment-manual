@@ -1,6 +1,55 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.6 (2026/11/xx)
+- How to update: the usual update. exment-admin-core 1.0.6 or later is required; the usual update installs it. See [here](/update)
+- The HTML editor is now TinyMCE 8. The usual update puts the new files in place, so there is nothing more to do. A plugin that uses `$(...).tinymce()` (`jquery.tinymce.min.js`) has to use `tinymce.init()` instead (the TinyMCE 5 plugins paste, hr, textcolor and others are gone too) ([#2133](https://github.com/exceedone/exment/pull/2133))
+1. New features
+    - **"← Back" button** at the left of the header of every page. Going back to a data list brings back its view, filter, sort, page and page size (also "Back to list" and after saving) ([#2141](https://github.com/exceedone/exment/pull/2141))
+    - **MCP tools for members**: four read-only MCP tools for the users of an organization, the organizations of a user, and the list and content of role groups. The API also reads and writes organization users and role group members. Feature Management → `api_members` (off by default) ([#2135](https://github.com/exceedone/exment/pull/2135), [#2150](https://github.com/exceedone/exment/pull/2150))
+    - **MCP guide on the API key pages**: a "For MCP" choice of scopes when making a key, and the settings to paste into Claude Code and Claude Desktop. The API settings page shows MCP on / off, the tools and their scopes, and who used it recently. See [here](/mcp) ([#2129](https://github.com/exceedone/exment/pull/2129))
+    - **The notification bell**: read notifications stay, greyed, for 7 days (20 at most); "Read all" from the bell ([#2116](https://github.com/exceedone/exment/pull/2116))
+    - **Notifications to a person's Teams chat** through a Teams workflow. Feature Management → "Teams notifications (personal chat)" (off by default). See [here](/notify_teams) ([#2126](https://github.com/exceedone/exment/pull/2126), [#2190](https://github.com/exceedone/exment/pull/2190))
+    - **SSO avatars**: an SSO (OAuth) login takes the avatar from the IdP ([#2145](https://github.com/exceedone/exment/pull/2145), [#1593](https://github.com/exceedone/exment/issues/1593))
+    - **Scheduled jobs page** in "Settings: System": the jobs run by cron, their runs, whether cron is running, and "Run now". Turned on in Feature Management (off by default). See [here](/scheduled_jobs) ([#2088](https://github.com/exceedone/exment/pull/2088), [#2103](https://github.com/exceedone/exment/pull/2103))
+    - **Temporary raises of the API rate limit**: a system administrator lets a user or an API client make more requests per minute until a time. Feature Management → `api_rate_raise` (off by default) ([#2108](https://github.com/exceedone/exment/pull/2108))
+    - Form setting "Check the required columns not on this form" (off by default) ([#2122](https://github.com/exceedone/exment/pull/2122))
+    - The 2-step verification mails can show the time, IP and browser of the login (country and region with a CDN setting) ([#2122](https://github.com/exceedone/exment/pull/2122))
+    - Some 7.3 items: notifies in templates and packs, the sales, asset and HR packs, and deleting the attachments of a table at once in data maintenance (off by default) ([#2091](https://github.com/exceedone/exment/pull/2091))
+1. Improvements
+    - **Faster API and MCP** (about 11% for system administrators, about 7% for other users). `route:cache` works with plugin routes ([#2147](https://github.com/exceedone/exment/pull/2147))
+    - **Data copy calculates the formula columns** (the input dialog, "copy from a record", and the sums and counts of copied children) ([#2146](https://github.com/exceedone/exment/pull/2146), [#1649](https://github.com/exceedone/exment/issues/1649))
+    - Dashboard: boxes are read when they come near the screen, 3 at a time ([#2114](https://github.com/exceedone/exment/pull/2114))
+    - Gantt: with a parent column, every level is under its parent, indented, and can be folded ([#2124](https://github.com/exceedone/exment/pull/2124))
+    - The left menu and the page headers in the language of the user (the ones Exment made, while their names are unchanged) ([#2079](https://github.com/exceedone/exment/pull/2079), [#2086](https://github.com/exceedone/exment/pull/2086), [#2099](https://github.com/exceedone/exment/pull/2099), [#2101](https://github.com/exceedone/exment/pull/2101), [#2110](https://github.com/exceedone/exment/pull/2110))
+    - Security check: the support end of the PHP and database versions, and an APP_KEY that is still the one of the download zip ([#2112](https://github.com/exceedone/exment/pull/2112), [#2118](https://github.com/exceedone/exment/pull/2118))
+    - Exment logo and icon on the login pages (when the site has no logo), and `lang` on the login and install pages ([#2084](https://github.com/exceedone/exment/pull/2084), [#2097](https://github.com/exceedone/exment/pull/2097))
+    - The condition value of a checkbox Yes/No column is a switch ([#2091](https://github.com/exceedone/exment/pull/2091), [#1978](https://github.com/exceedone/exment/issues/1978))
+1. Fixes
+    - **Operations on edit-locked tables**: when a table disables editing on screen, the buttons of the data update settings on the detail page are shown and run, as on v4 (only the "Edit" button stops). With "Show the buttons on data locked by the workflow" on, they run too ([#2176](https://github.com/exceedone/exment/pull/2176), [#2171](https://github.com/exceedone/exment/issues/2171))
+    - **Views, cell styles and Kanban** ([#2169](https://github.com/exceedone/exment/pull/2169))
+        - "Save a view with this condition" of a Kanban board makes a system view where user views are not used ([#2151](https://github.com/exceedone/exment/issues/2151))
+        - A cell style preset on a system column (ID, created user, ...) is applied in the list ([#2152](https://github.com/exceedone/exment/issues/2152))
+        - The preview of a "plain" preset is the same as the list ([#2153](https://github.com/exceedone/exment/issues/2153))
+        - The avatar color follows the colors per value ([#2154](https://github.com/exceedone/exment/issues/2154))
+        - The border of "fill the whole cell" is no longer drawn over a pinned column ([#2155](https://github.com/exceedone/exment/issues/2155))
+    - **Issues reported on GitHub** ([#2176](https://github.com/exceedone/exment/pull/2176))
+        - The "?" of the LINE link and the flow designer opens their manual pages ([#2156](https://github.com/exceedone/exment/issues/2156))
+        - The columns made by the safety check and the LINE link are system columns (they cannot be deleted) ([#2160](https://github.com/exceedone/exment/issues/2160))
+        - "Step 3" is gone from the help of a new flow design ([#2161](https://github.com/exceedone/exment/issues/2161))
+        - The filter chips show the names of the created / updated user, the work user and the status ([#2162](https://github.com/exceedone/exment/issues/2162))
+        - The colored labels of a Kanban card show every value of a multiple column ([#2164](https://github.com/exceedone/exment/issues/2164))
+        - The ◆ (deadline) column of the Gantt is chosen by the column name or its label ([#2165](https://github.com/exceedone/exment/issues/2165))
+        - File and image columns cannot be chosen in the filters of dashboards and charts ([#2166](https://github.com/exceedone/exment/issues/2166))
+        - A slow double click on a cell no longer opens the inline edit ([#2167](https://github.com/exceedone/exment/issues/2167))
+        - Image columns cannot be used for "Group" and "Filter in this page" of a data list ([#2168](https://github.com/exceedone/exment/issues/2168))
+    - `EXMENT_REVISION_COUNT` in `.env` sets the revision count of new tables ([#2089](https://github.com/exceedone/exment/pull/2089))
+    - Reinstalling a plugin keeps it on or off ([#2089](https://github.com/exceedone/exment/pull/2089))
+    - The error page answers with the HTTP status of the error (404, 403); a missing plugin page shows Exment's error page (404) ([#2081](https://github.com/exceedone/exment/pull/2081), [#2101](https://github.com/exceedone/exment/pull/2101))
+    - IDs could become 0 where the database returns them as strings ([#2131](https://github.com/exceedone/exment/pull/2131))
+1. Security hardening
+    - Security hardening
+
 ## v7.2.5 (2026/11/25)
 - How to update: the usual update. See [here](/update)
 1. Bug fixes
