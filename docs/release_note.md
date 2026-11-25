@@ -1,6 +1,62 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.5 (2026/11/25)
+- How to update: the usual update. See [here](/update)
+1. Bug fixes
+    - Menus with the same order are listed in the order they were made (the order could change between page loads)
+    - When the URI of a plugin is changed, it is checked in lower case and a wrong value is answered with a clear message
+    - `exment:checklang` reads Exment's own Japanese language file as the base
+1. Security hardening
+    - The update always passes the path of composer as one argument
+    - The URL check of webhooks and avatars also refuses multicast addresses
+
+## v7.2.4 (2026/11/23)
+- <span class="red bold">From this version, users who have not chosen a language see Exment in their browser's language.</span> To keep the site language for everyone, turn off System → Advanced → "Use the browser's language when a user has not chosen one".
+- How to update: `composer update exceedone/exment`, then `php artisan exment:update` (with no terminal: `php artisan exment:update --force`). See [here](/update)
+1. New features
+    - **Language and time zone of each user**: a user chooses the language (top-right user menu, user settings, login page) and the time zone (user settings). Order: the user's setting → the language chosen on the login page → the browser's language → the site language. Administrators can limit the languages. Mails and notifications use the recipient's language and time zone. See [here](/user_locale)
+    - Times are shown and entered in the user's time zone (lists, details, forms, filters such as "today", calendar, Gantt, Kanban, comments, histories, notifications, operation logs). The database keeps the site time zone; date-only values are never converted; the API stays in the site time zone
+    - **New UI languages**: Vietnamese, Simplified Chinese, Korean, German and Spanish (machine translated; corrections are welcome)
+1. Improvements
+    - Faster dashboard, Kanban and left menu
+    - Extension points so that add-ons and hosted editions can extend Exment without changing its files (system settings, menus, table pages, forms, list tools, help links, permissions)
+1. Fixes
+    - Restore from a backup (migrations, read-only folders, .env keys, exit code)
+    - Plugins on a cloud disk; `EXMENT_PLUGIN_UPLOAD_ENABLED` to turn plugin upload off
+    - MySQL TLS (CA), the route cache with an empty URL prefix, and other small fixes
+1. Security hardening
+    - More checks in the API, file viewing, the trash restore, template deletion, avatar URLs and command paths
+
+## v7.2.3 (2026/11/23)
+- How to update: `composer update exceedone/exment`, then `php artisan exment:update`. See [here](/update)
+1. Improvements
+    - Faster forms and Kanban on sites with many organizations: the organization tree is read once (250 organizations: a create or edit form about 1.0 s → 0.6 s, SQL about 300 → 50-60)
+    - Exment's cache (`EXMENT_USE_CACHE`) works with several servers; clearing it clears only Exment's own entries (login attempt counters and queue signals are kept)
+    - New command `php artisan exment:cache-clear` (needed only after changing the database outside Exment)
+- Sites with the cache off (the default) see no change from the cache work. A row `cache_generation` is added to the systems table
+
+## v7.2.2 (2026/11/23)
+- <span class="red bold">This version contains a security fix. We strongly recommend updating.</span>
+- How to update: `composer update exceedone/exment exceedone/exment-admin-core`, then `php artisan exment:update`. See [here](/update)
+1. Vulnerability fix
+    - GHSA-2gm6-xjf3-cqmm: on an installed site, the web installer could be reached while the site could not reach its database
+1. Security hardening
+    - File sharing: share link tokens are stored hashed; a share link checks the maker's download right each time; new share links end in 30 days by default (at most 90)
+    - File sharing: only system administrators set or clear the legal hold and the retention
+    - The Tuning page's config cache button and `exment:update` write the config cache with mode 0640
+    - Security check: new items (PHP display_errors, logs, sessions and cache readable by others)
+1. Improvements
+    - Faster Kanban; less work per cell in lists
+    - JS and CSS URLs change with every update, so Ctrl+F5 is no longer needed
+    - `exment:update --force` for scripts and cron; the config cache is rebuilt after an update when the site had one
+    - Installer: works on production settings and with an empty APP_KEY; APP_ENV=production and .env 0640 at the end
+    - Feature Management: install a downloaded official plugin after checking its signature
+    - Create form: copy the values of another record (#1828)
+    - `php artisan exment:meili-setup`: set up Meilisearch in one command
+- Whether a site is installed is decided from `EXMENT_INITIALIZE` in .env or the file `storage/app/.exment_installed`. Nothing has to be done after updating
+- If you cannot update at once, block the installer in the web server: nginx `location ~ ^/(admin/)?install(/|$) { return 404; }`, Apache `RedirectMatch 404 ^/(admin/)?install(/|$)`
+
 ## v7.2.1 (2026/11/23)
 - <span class="red bold">v7.2.1 is the first public release of 7.2. It includes everything of v7.2.0 below (v7.2.0 was withdrawn).</span>
 - <span class="red bold">The left menu is grouped by area of work ("Admin Setting" becomes three groups: "Settings: Data & Screens", "Settings: Users & Permissions", "Settings: System"). On an updated site only the menus still where Exment put them move; menus you moved stay.</span> See [here](/menu?id=the-menu-from-v721)
@@ -16,6 +72,7 @@
     - **MCP server**: AI such as Claude reads Exment data with the user's own permissions (`POST {admin}/api/mcp`: tables, searching and reading records, the list of attachments, workflow status; read only). As for the API, the IP filter and the login by OAuth token or API key apply. Choose the role groups in "Feature Management" → "MCP" (off by default) ([#1892](https://github.com/exceedone/exment/pull/1892))
     - **Security check**: "Settings: System" > "Security Check" checks file permissions, debug mode, APP_KEY, https, security headers, what must not be seen from outside, administrator passwords, two-step authentication and more, with how to fix them. The install's "System requirements" page shows it too. See [here](/security_check) ([#1959](https://github.com/exceedone/exment/pull/1959), [#1964](https://github.com/exceedone/exment/pull/1964), [#1968](https://github.com/exceedone/exment/pull/1968), [#1974](https://github.com/exceedone/exment/pull/1974))
     - **Recommended settings**: the settings Exment can change safely (Exment cache, Redis, config cache, file permissions, etc.) can be checked and applied on the initialize page after the install and on "Tuning". See [here](/tuning) ([#1956](https://github.com/exceedone/exment/pull/1956))
+    - **No "/admin" in the URLs of a new install** (e.g. `http://localhost/data/...`; the default of `ADMIN_ROUTE_PREFIX` in exment-boilerplate is empty). A site installed with an older version keeps "/admin", and an update does not change its links. On a site that drops "/admin" (`ADMIN_ROUTE_PREFIX=`), opening an old `/admin/...` goes to the same page (GET only). See [Change / delete "admin" included in URL](/additional_prefix) ([#1944](https://github.com/exceedone/exment/pull/1944))
     - **Maintenance mode**: system administrators switch it in "Settings: System" → "Maintenance". During it, only system administrators, who started it and allowed IPs get in; the others see the maintenance page. The planned start and end, the API, the outside pages and the schedule can be chosen, and each change is in the operation log. There is also the command `php artisan exment:maintenance` ([#1894](https://github.com/exceedone/exment/pull/1894), [#1896](https://github.com/exceedone/exment/pull/1896))
     - File sharing: pages are at their folder paths (`/admin/file_server/<workspace>/<folder>/…`) instead of numbers. Old links move to the new URL after a rename or a move. A [Copy link] button is added ([#1906](https://github.com/exceedone/exment/pull/1906))
     - File sharing: make new text, Markdown and CSV files and edit them in the browser, and new empty Word, Excel and PowerPoint files ([#1933](https://github.com/exceedone/exment/pull/1933)). The PDF of an Office file can also be made by a conversion container (Gotenberg), besides LibreOffice
@@ -34,6 +91,7 @@
     - When a new table (from a template, for example) was opened first on its create or detail page, its list showed only the ID and the dates. Fixed; a list that already shows so needs its columns added in the view settings ([#1918](https://github.com/exceedone/exment/pull/1918))
     - A security fix in File sharing (severity: low) ([#1884](https://github.com/exceedone/exment/pull/1884))
     - Fixes of Feature Management and the menu: with a route cache, the menus of features not used, and more ([#1890](https://github.com/exceedone/exment/pull/1890))
+    - [Cancel] on the OAuth authorization page did not work on a site without "/admin" (such as Exment SaaS) ([#1944](https://github.com/exceedone/exment/pull/1944))
     - Download links of File sharing no longer open as a page switch (pjax) ([#1927](https://github.com/exceedone/exment/pull/1927))
     - In the table of Feature Management, the description in the name column wraps so the other columns stay visible
     - Notices only for system administrators say so
