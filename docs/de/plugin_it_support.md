@@ -41,6 +41,95 @@
 5. Nehmen Sie die Bearbeiter in die Rollengruppe „ITサポート 担当者“ (IT-Support Bearbeiter) auf. Kunden, die sich anmelden, kommen in „ITサポート お客様“ (IT-Support Kunden) und werden über „Exment のユーザー“ (Exment-Benutzer) bei „お客様の担当者“ (Kontakt des Kunden) verknüpft.
 6. Teilen Sie den Kunden die URL des Kundenzugangs mit (`https://Ihr Exment/support`).
 
+## Bedienung
+
+### Der Eingangskorb
+Öffnen Sie im Menü „ITサポート“. Dann erscheint der Eingangskorb („受付箱“). Die Seite hat drei Spalten.
+
+| Spalte | Inhalt |
+| --- | --- |
+| Links | Die Arten des Eingangskorbs mit Anzahl: 対応が必要 (Handlung nötig), 自分の担当 (meine Tickets), 担当者なし (ohne Bearbeiter), お客様から返事 (Antwort vom Kunden), SLA 注意・超過 (SLA bald fällig oder überschritten), お客様の返事待ち (Warten auf den Kunden), 保留 (zurückgestellt), 監視・エラー (Überwachung und Fehler), 解決 (gelöst), 完了 (abgeschlossen), すべて (alle). Darunter steht, ob der E-Mail-Empfang ein- oder ausgeschaltet ist und wann die automatischen Abläufe zuletzt gelaufen sind |
+| Mitte | Die Liste der Tickets. Sie können in Betreff, Text, Austausch, E-Mail und Nummer suchen. Sie können filtern (Status, Priorität, Bearbeiter, Kunde, Art, Tags) und die Reihenfolge wählen (nächste Frist zuerst, nach Priorität, neueste zuerst, älteste zuerst, nach Aktualisierung). Wenn Sie mehrere Tickets wählen, ändern Sie Status, Priorität und Bearbeiter auf einmal |
+| Rechts | Die Unterhaltung des gewählten Tickets und das Antwortfeld. Rechts daneben stehen die Felder (Status, Priorität, Bearbeiter, Art, Kunde, Tags, „お客様に見せる“ (dem Kunden zeigen), „開くときに確認のコード“ (Bestätigungscode zum Öffnen)), das SLA, der Kunde, der Link für den Kunden, die Wissensdatenbank, die Dateien, andere Tickets desselben Kunden und das Zusammenführen |
+
+| Taste | Was sie tut |
+| --- | --- |
+| `J` / `K` | Nächstes / vorheriges Ticket |
+| `/` | Suchen |
+| `R` | Dem Kunden antworten |
+| `N` | Interne Notiz |
+| `Ctrl` + `Enter` | Senden |
+| `A` | Selbst übernehmen |
+| `E` | Lösen |
+| `\` | Rechte Spalte öffnen oder schließen |
+| `?` | Liste der Tastenkürzel |
+| `Esc` | Schließen oder die Eingabe verlassen |
+
+Anrufe, Besuche und Dinge, die intern auffallen, tragen Sie über „チケット“ (Ticket) im Menü oben ein (wenn Sie „受付のメール“ (Eingangsbestätigung) wählen, erhält der Kunde die Nummer und den Link).
+
+### Der Ablauf eines Tickets
+Es gibt diese 6 Status.
+
+新規 (neu) → 対応中 (in Bearbeitung) → お客様の返事待ち (Warten auf den Kunden) ／ 保留（社内） (zurückgestellt, intern) → 解決 (gelöst) → 完了 (abgeschlossen)
+
+- Tickets aus E-Mail und Anfrageformular beginnen als „新規“. Wenn ein Bearbeiter dem Kunden antwortet, wird daraus „対応中“. Tickets, die ein Bearbeiter einträgt, beginnen gleich als „対応中“.
+- Mit „送ったあとの状態“ (Status nach dem Senden) im Antwortfeld ändern Sie den Status beim Senden (zum Beispiel „お客様の返事待ち“, wenn Sie dem Kunden eine Frage stellen).
+- Wenn der Kunde zu einem Ticket mit „お客様の返事待ち“, „解決“ oder „完了“ schreibt, geht es zurück auf „対応中“. Schreibt er mehr als 14 Tage nach dem Abschluss, wird ein neues Ticket angelegt, das auf das alte verweist.
+- Wenn bei „お客様の返事待ち“ keine Antwort kommt, wird 3 Tage nach der letzten Antwort eine Erinnerung per E-Mail gesendet. Nach 7 Tagen wird das Ticket „解決“.
+- „解決“ geht auch mit der Taste `E`, mit dem Status in der rechten Spalte und mit „解決しました“ (gelöst) auf der Seite des Links für den Kunden. Beim Lösen wird der Kunde nach der Zufriedenheit gefragt (5 Stufen).
+- 7 Tage nach „解決“ wird das Ticket „完了“.
+- Die Zahl der Tage ändern Sie unter „設定“ (Einstellungen) bei „自動で進める“ (automatisch weiterschalten) (0 schaltet den Schritt aus).
+
+### Antworten und interne Notizen
+- „お客様へ返信“ (dem Kunden antworten) im Antwortfeld kommt beim Kunden per E-Mail an. Vor den Betreff wird die Ticketnummer gesetzt (zum Beispiel `[SUP-00012]`), und der Link zum Fortschritt ist enthalten. Sie können auch CC eintragen.
+- „社内メモ“ (interne Notiz) sieht der Kunde nicht. Es wird auch keine E-Mail gesendet.
+- Zu jeder Antwort können Sie die Arbeitszeit (Minuten) eintragen. Sie wird je Kunde addiert und mit der Vertragszeit verglichen.
+- Wenn der Kunde direkt auf die E-Mail antwortet, landet die Antwort im selben Ticket. Erkannt wird das an der Nummer im Betreff oder daran, auf welche E-Mail geantwortet wird (Message-ID). Der zitierte Teil wird entfernt. Wenn die Antwort nicht von der anfragenden Person, einer Person in CC oder einer Person derselben Firma stammt, kommt sie nicht in dasselbe Ticket.
+- Wenn ein anderer Bearbeiter gerade eine Antwort auf dasselbe Ticket schreibt, wird das auf der Seite angezeigt.
+
+### Zuständigkeit
+- Wählen Sie die Person unter „担当者“ (Bearbeiter) in der rechten Spalte. Mit der Taste `A` übernehmen Sie das Ticket selbst. Wenn Sie zu einem Ticket ohne Bearbeiter eine Antwort oder eine interne Notiz senden, werden Sie zum Bearbeiter.
+- Für die automatische Zuweisung wählen Sie unter „設定“ bei „担当者の決め方“ (Art der Zuweisung).
+    - 種類ごとの「最初の担当者」 (erster Bearbeiter der Art, Standard): die Person, die bei der Art des Tickets eingetragen ist.
+    - 種類で決まらなければ、対応中が少ない人 (sonst die Person mit den wenigsten offenen Tickets): in der Rollengruppe „ITサポート 担当者“ die Person mit den wenigsten nicht beendeten Tickets.
+    - 自動では決めない (nicht automatisch zuweisen)
+
+### Fristen (SLA)
+- Jedes Ticket erhält „最初の返事の期限“ (Frist für die erste Antwort) und „解決の期限“ (Frist für die Lösung). Die Richtwerte legen Sie in der Tabelle „SLA“ je Priorität fest (緊急 dringend, 高 hoch, 中 normal, 低 niedrig). Die erste Antwort in Minuten, die Lösung in Stunden.
+- Wenn für einen Kunden kein SLA festgelegt ist, gilt das SLA mit „標準にする“ (als Standard verwenden). Die Einrichtung legt „標準“ (Standard, nur Geschäftszeiten zählen) und „プレミアム（24 時間）“ (Premium, 24 Stunden) an.
+- Ein SLA mit „営業時間だけで数える“ (nur Geschäftszeiten zählen) zählt nur die Geschäftstage, Geschäftszeiten und Feiertage aus „営業時間（SLA の時計）“ (Geschäftszeiten, die Uhr des SLA) unter „設定“. Die japanischen Feiertage für dieses und das nächste Jahr werden bei der Einrichtung eingetragen. Feiertage um den Jahreswechsel und Ähnliches tragen Sie selbst ein.
+- Solange das Ticket auf „お客様の返事待ち“ steht, steht die Uhr still. Die Frist für die Lösung verschiebt sich um diese Zeit nach hinten.
+- Wenn nur noch wenig Zeit bleibt (weniger als ein Viertel der ganzen Zeit oder weniger als 30 Minuten) und wenn die Frist überschritten ist, wird der Bearbeiter über die Glocke und per E-Mail benachrichtigt. Gibt es keinen Bearbeiter, werden alle Bearbeiter benachrichtigt.
+
+### Textbausteine und Wissensdatenbank
+- Wählen Sie im Antwortfeld unter „定型文…“ (Textbausteine) einen Eintrag. Er wird in den Text eingefügt. `{name}` (Name des Kunden), `{ticket_no}`, `{subject}` und `{link}` werden durch die Werte des Tickets ersetzt. Wenn bei einem Textbaustein ein Status festgelegt ist, ändert sich auch „送ったあとの状態“. Textbausteine fügen Sie über „定型文“ im Menü oben hinzu.
+- Unter „ナレッジ“ (Wissensdatenbank) in der rechten Spalte erscheinen Artikel, die zum Betreff passen. Sie können auch suchen. Ein Klick fügt bei veröffentlichten Artikeln Titel und Link in die Antwort ein, bei anderen den Text.
+- Mit „このチケットからナレッジを作る“ (aus diesem Ticket einen Artikel anlegen) entsteht ein Entwurf für einen Artikel.
+
+### Die Seite der Kunden
+Der Kundenzugang ist `https://Ihr Exment/support` (wenn „ITサポート：お客様の窓口“ und „使う“ (verwenden) unter „設定“ bei „お客様の窓口（ログインなし）“ (Kundenzugang ohne Anmeldung) beide eingeschaltet sind).
+
+| URL | Inhalt |
+| --- | --- |
+| `/support` | Startseite des Zugangs. In der FAQ suchen, eine Anfrage stellen, die eigenen Anfragen ansehen |
+| `/support/request` | Anfrageformular (ohne Anmeldung). Name, E-Mail-Adresse, Betreff und Inhalt sind Pflicht. Bis zu 5 Dateien (je bis 10MB) |
+| `/support/faq` | Die veröffentlichte Wissensdatenbank (FAQ) |
+| `/support/mine` | Die eigenen Anfragen ansehen. Nach Eingabe der E-Mail-Adresse kommt ein Link zur Liste der Anfragen per E-Mail (7 Tage gültig) |
+| `/support/t/…` | Die Seite eines Tickets. Sie wird über den Link in der E-Mail geöffnet |
+
+- Auf der Seite des Tickets sieht der Kunde, wie weit es ist (受付 eingegangen, 対応中, 解決, 完了), und den Austausch (interne Notizen erscheinen nicht). Er kann Antworten und Dateien senden und auf „解決しました“ klicken.
+- 30 Tage nach dem Abschluss des Tickets lässt sich der Link nicht mehr öffnen („リンクの期限“ (Ablauf des Links) unter „設定“).
+- Ein Ticket, bei dem in der rechten Spalte „開くときに確認のコード“ eingeschaltet ist, öffnet sich nur mit dem 6-stelligen Code, der an die eingetragene Adresse gesendet wird.
+- Wenn ein Kunde, der sich anmeldet (Rollengruppe „ITサポート お客様“), „ITサポート“ öffnet, sieht er die Liste seiner Anfragen (`/plugins/exment_it_support/my`). Kontakte des Kunden mit „お客様の管理者“ (Administrator des Kunden) sehen alle Anfragen der Firma.
+
+### E-Mail-Empfang
+- Schalten Sie unter „設定“ bei „メールで受け付ける（IMAP）“ (per E-Mail annehmen) „受信する“ (empfangen) ein und tragen Sie IMAP-Server, Port und Verschlüsselung (SSL/TLS oder STARTTLS), Benutzername, Passwort und Ordner ein. Das Passwort wird verschlüsselt gespeichert.
+- Empfangen wird alle 5 Minuten (bis zu 50 E-Mails auf einmal). Mit „いますぐ受信する“ (jetzt empfangen) geht es auch sofort. Gelesen werden ungelesene E-Mails, die danach als gelesen markiert werden.
+- E-Mails in ISO-2022-JP und Shift_JIS sowie Anhänge (bis zu 20 je E-Mail) werden übernommen.
+- Eine neue E-Mail wird ein Ticket mit „新規“, und der Kunde erhält eine Eingangsbestätigung (Nummer und Link). „Re:“ und Ähnliches wird aus dem Betreff entfernt. Wenn im Text Wörter wie „至急“, „緊急“ oder „止まって“ (dringend, steht still) stehen, wird die Priorität „高“ (hoch).
+- Wenn die Adresse des Absenders bei einem eingetragenen Kontakt steht, wird es ein Ticket dieses Kunden. Sonst wird es ein Ticket des Kunden, dessen „メールのドメイン“ (E-Mail-Domain) zur Domain der Adresse passt, und es wird ein Kontakt angelegt. Bei unbekannten Absendern wählen Sie mit „知らない差出人“ (unbekannte Absender), ob ein Ticket (ohne Kunde) angelegt oder die E-Mail nicht übernommen wird.
+- Zur Behandlung von Antworten per E-Mail und zu E-Mails mit Verdacht auf gefälschten Absender lesen Sie oben „Antworten und interne Notizen“ und unten „Regeln für die Sicherheit“.
+
 ## Tickets aus Überwachung und Fehlerprotokollen anlegen
 Ein Überwachungssystem kann über die API Tickets anlegen. Der Schlüssel steht auf der Einstellungsseite.
 

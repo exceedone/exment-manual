@@ -191,6 +191,67 @@ Each project can ask for a Git repository (Gitea or Forgejo).
 
 ![Git repository](img/plugin_pm/pm_git.png)
 
+## How to use
+This section describes the screens of 1.7.17. A project has the tabs 「ホーム」 (home), 「ボード」 (board), 「課題」 (issues), 「ガントチャート」 (Gantt chart), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (files) and 「設定」 (settings). The wiki, files, charts (Gantt chart and burndown) and parent/child issues can be turned off in the project's 「設定」 > 「利用する機能」 (features). Turning one off only hides the tab; no data is deleted.
+
+### Issues
+**The list (the 「課題」 tab)**
+- The top row filters by status: 「すべて」 (all), 「完了以外」 (not done) and each status of the project, with counts.
+- The quick filters below it narrow the list to 期限切れ (overdue), 今日・明日 (today and tomorrow), 自分が作成 (created by me), ウォッチ中 (watching), 未読 (unread) and 確認待ち (waiting for review).
+- You can also filter by keyword, assignee, type, milestone, category, read or unread, priority and 「自分の課題」 (my issues). 「検索条件を保存」 (save the conditions) opens the list with the same conditions next time; 「保存した条件」 (saved conditions) keeps named sets.
+- 「CSV」 downloads all the filtered issues.
+- Select rows to change them together (「一括更新」 bulk update). You can also edit in the list itself.
+- Issues done 30 days ago or more are hidden from the list (archive). 「表示する」 (show) shows them.
+
+**Creating an issue**
+- Use 「課題の追加」 (add issue) at the top. The issue key is the project key and a number (for example `WEB-1`).
+
+**Body, comments and attachments**
+- The body and comments are written in the project's 「テキスト整形のルール」 (formatting rule): Markdown (the default) or Backlog記法 (Backlog notation). There are buttons for headings, bold, lists, checklists, tables, links and more, and 「プレビュー」 (preview).
+- An image pasted with `Ctrl+V` is attached as it is. Attach files by dropping them or with 「ファイルを添付」 (attach file).
+- Write a comment from 「コメントを追加」 (add comment) at the foot of the issue screen. With the comment you can also change fields with 「状態を変更」 (change status) and 「課題を変更」 (change issue). `Ctrl+Enter` posts it.
+- Type `@` to pick a member, `#` an issue and `~` an attachment.
+- 「コメント・変更履歴」 (comments and history) can be switched to 「コメントのみ」 (comments only).
+
+### Parent and child issues
+- In the issue editor, press 「親課題を設定」 (set parent) and search by key or subject. 「子課題を追加」 (add child issue) on the issue screen also makes one.
+- A parent shows a 「子課題」 (child issues) box with how many are done. The list's 「ツリー」 (tree) shows them as parent and children too.
+- The parent must be an issue of the same project.
+- In 1.7.17, there is one level only. A child issue cannot be the parent of another issue, and an issue that has children cannot become a child.
+- An issue with children cannot be deleted or moved to another project. Remove the children's parent first.
+- When 「親子課題」 (parent/child issues) is turned off for the project, no parent can be set.
+
+### Board, Gantt chart, milestones and burndown
+- **Board**: the issues in one column per status. Drag a card to change its status. The columns come from the project's list of statuses. It uses Exment's [kanban view](/view_kanban).
+- **Gantt chart**: a bar from the start date to the due date, colored by status, with the progress rate, grouped by milestone. It uses Exment's [Gantt chart view](/view_gantt).
+- The board and the Gantt chart use the views of the issue table made by the first-time setup (「カンバン（状態別）」 and 「ガントチャート」). If a view is deleted, the tab shows how to make one.
+- **Milestones**: make them in the project's 「設定」 > 「マイルストーン」 and set them on issues. 「ホーム」 shows the days left for each milestone.
+- **Burndown**: choose a milestone to see the number of open issues as a plan line, an actual line and a forecast, and whether the current pace meets the due date. It is not shown when no issue has a milestone. Issues in a status with 「完了扱い」 (counts as done) count as done.
+
+### Notifications
+- For the bell and mail, see "5. Notifications" above. The bell comes by itself; mail is sent with 「メールでも知らせる」 or 「メールで知らせる」.
+- 1.7.17 does not send issue notifications to Teams. Exment's own "[Notifications to a person's Teams chat](/notify_teams)" (Exment 7.2.6 or later) is not used by Project Management either.
+
+### Files and wiki
+- **Files**: the attachments of the issues, the wiki and the project in one list (name, updated by, updated on, location). Files dropped here are saved as attachments of the project.
+- Word, Excel and PowerPoint files open with 「表示」 (view) when [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) is installed (see the table in "What it does").
+- **Wiki**: make the project's pages with 「追加」 (add). A page with a parent page is shown under it in the tree on the left. Pages have 「編集」 (edit), 「履歴」 (history) and 「添付」 (attachments), and can have tags.
+
+### Importing from Backlog (ExmentPMBacklog)
+A separate plugin, "Exment Plugin PM Backlog 連携" (`ExmentPMBacklog`, 0.2.0), takes the issues of a Backlog project into a Project Management project at a set interval. Backlog is the master, and it is one way, from Backlog to Exment (changes made in Exment are overwritten by Backlog's content).
+
+- Requirements: Project Management (ExmentPM) 1.7.7 or later. Running at a set interval needs the [task schedule](/additional_task_schedule).
+- Install: upload the zip in "ExmentPMBacklog-v(version)" of [Releases](https://github.com/exceedone/exment-plugins/releases) in "Admin Setting" > "Plugins".
+- Where to start: `/plugins/exment_pm_backlog` (「Backlog 連携」). Only system administrators can use it.
+    1. In 「つながりを追加」 (add a connection), enter the URL of the Backlog space, the API key, the project key, the Exment project to import into, and the interval (5 minutes or more, 30 at first). The API key is stored encrypted and is not shown on the screen.
+    2. In 「割り付け」 (mapping), match Backlog's statuses, types, priorities, categories, milestones, resolutions and users to Exment's. 「読み直して、足りない状態・種別・カテゴリー・マイルストーンを作る」 (reload and make the missing statuses, types, categories and milestones) is also there. Users are matched by email address; choose the others on the screen.
+    3. Try 「今すぐ同期」 (sync now; up to 100 issues at a time), and if it is right, turn on 「決まった間隔で自動に取り込む」 (import automatically at the interval).
+- What is imported: issues (subject, details, status, type, priority, category, milestone, assignee, start date, due date, estimated and actual hours, resolution, parent issue, custom attributes), comments, and attachments (up to 20 MB). The created and updated times and the creator are Backlog's. Backlog's creator and so on are also kept in the issue's 「移行元」 (source).
+- The import sends no notifications.
+- An assignee who is not in Exment, or not a member of the project, is left empty, and the name is kept in 「移行元の担当者」 (source assignee).
+- An issue deleted in Backlog is not deleted from Exment; a comment is left on it.
+- System administrators get a bell when the sync starts failing and when it works again.
+
 ## Update
 - Download the zip of the newer version and upload it the same way as the install. The plugin is replaced; your data stays.
 - As a system administrator, open 「⚙ 設定」 in Project Management and look at 「データ構造の更新」 (Update data structure). When an update is needed, administrators see 「データ構造の更新があります」 at the top of the screen (from 1.6.4); it opens the settings.
