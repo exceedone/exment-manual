@@ -17,7 +17,7 @@ Chuyển sang màn hình xem dữ liệu.
 
 ##### Nút [Delete]
 Xóa dữ liệu đang hiển thị.  
-※ Không thể xóa dữ liệu đang hiển thị.
+※ Dữ liệu đã xóa có thể khôi phục từ [Deleted data (English)](/deleted_data).
 
 ##### Các mục của form  
 Thay đổi giá trị của dữ liệu.  

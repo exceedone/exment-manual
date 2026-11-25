@@ -192,10 +192,10 @@ Specify the columns to be displayed as options in the "Filter" displayed at the 
 The column to be displayed in the "Filter."
 
 ##### [↓] Button  
-Moves the filter item up in the display.
+Moves the filter item down in the display.
 
 ##### [↑] Button  
-Moves the filter item down in the display.
+Moves the filter item up in the display.
 
 ##### [Delete] Button  
 Deletes the filter item display from the view.
