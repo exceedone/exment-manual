@@ -1,8 +1,10 @@
 # LINE integration
 Connect Exment with your company's LINE Official Account.  
-Users can receive Exment notifications on LINE, and execute workflow actions from the buttons of the notification cards they receive on LINE.  
-For the function that checks the safety of employees by LINE and email, see [Safety check](/safety_check).  
-※ LINE integration is available from v7.0.0.
+Users can receive Exment notifications on LINE, and execute workflow actions (such as an approval) from the buttons of the notification cards they receive on LINE.  
+This page explains the settings to connect them and how to make notifications.
+
+- For the function that checks the safety of employees by LINE and email, see [Safety check](/safety_check).
+- LINE integration is available from v7.0.0.
 
 ![Notification card received on LINE](img/line/line_flex_approve_card.png)
 
@@ -13,6 +15,8 @@ For the function that checks the safety of employees by LINE and email, see [Saf
 - **LINE send log** : Every message sent by a LINE notification or a safety check is recorded, whether it succeeded or failed.
 
 ## Setup flow
+Set up in this order. Only step 5 is done by each user who receives notifications.
+
 | Step | What to do | Who |
 | --- | --- | --- |
 | 1 | [Prepare the LINE Official Account](/line?id=preparing-the-line-official-account) | Administrator |
@@ -24,23 +28,24 @@ For the function that checks the safety of employees by LINE and email, see [Saf
 | 7 | [Set up notifications](/line?id=setting-up-line-notifications) | Administrator |
 
 ## Requirements
-- A LINE Official Account with the Messaging API enabled is required. Messages from Exment are sent from this account.
+- A LINE Official Account with the Messaging API (the way a program sends and receives LINE messages) enabled is required. Messages from Exment are sent from this account.
 - The LINE platform must be able to access the Exment Webhook URL. Publish Exment at an "https://" URL that can be accessed from the internet and has a valid SSL certificate.
 - To use notifications triggered by "The Passage of Time", you need to set up the [task schedule](/additional_task_schedule).
 
-> A LINE Official Account has a monthly limit on the number of messages it can send, depending on its pricing plan. Each notification sent from Exment counts as one message per recipient. Replies to user operations (such as "LINE account linked successfully!") are not counted.  
+> A LINE Official Account has a monthly limit on the number of messages it can send, depending on its pricing plan.  
+Each notification sent from Exment counts as one message per recipient. Replies to user operations (such as "LINE account linked successfully!") are not counted.  
 For details, see the pricing plans of LINE Official Account.
 
 ## Preparing the LINE Official Account
 
 ### Enabling the Messaging API
-- Create a LINE Official Account in [LINE Official Account Manager](https://manager.line.biz). You can also use an existing account.
-- Enable the Messaging API in "Settings" > "Messaging API". When you select (or create) a provider, a Messaging API channel is created for the LINE Official Account.
+1. Create a LINE Official Account in [LINE Official Account Manager](https://manager.line.biz). You can also use an existing account.
+2. Enable the Messaging API in "Settings" > "Messaging API". When you select (or create) a provider, a Messaging API channel is created for the LINE Official Account.
 
 ![Messaging API](img/line/line_oa_messaging_api.png)
 
 ### Checking the channel information
-Check the following three values, which you will enter in Exment.
+Check the following three values, which you will enter in Exment, and write them down.
 
 | Value | Where to find it | Used for |
 | --- | --- | --- |
@@ -57,16 +62,22 @@ Check the following three values, which you will enter in Exment.
 ![Response settings](img/line/line_oa_response_settings.png)
 
 ## System settings
-- Click "Admin Setting" > "System Setting" in the left menu, and switch to [Detail Setting] with the button at the top right.  
+Enter the three values in Exment.
+
+**(1) Open the detail setting of the system setting**
+
+Click "Admin Setting" > "System Setting" in the left menu, and switch to [Detail Setting] with the button at the top right.  
 You can also open it from the following URL.
 
 ~~~
 http(s)://(Exment URL)/system?advanced=1
 ~~~
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URL is for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/system?advanced=1`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
-- In "LINE Setting", enter the following items and click [Save].
+**(2) Fill in "LINE Setting"**
+
+In "LINE Setting", enter the following items and click [Save].
 
 | Item | Description |
 | --- | --- |
@@ -77,44 +88,54 @@ http(s)://(Exment URL)/system?advanced=1
 
 ![LINE Setting](img/line/line_system_setting.png)
 
-※ After saving, the channel access token and the channel secret are masked.  
-※ These values can also be set in the ".env" file. See [Setting values](/line?id=setting-values) for details. The values saved on the system settings screen take priority.
+- After saving, the channel access token and the channel secret are masked.
+- These values can also be set in the ".env" file. When a value is in both, the value saved on the system settings screen takes priority. See [Setting values](/line?id=setting-values) for details.
 
 ## Webhook settings
-The LINE webhook notifies Exment of what users do on LINE, such as sending a link code or pressing a button on a notification card.
+A webhook is how LINE tells Exment what happened on LINE. When a user sends a link code or presses a button on a notification card, the content is sent to Exment.
 
-- Select the channel in the LINE Developers Console and open the "Messaging API" tab.
-- Click [Edit] for "Webhook URL", paste the Webhook URL shown in "LINE Setting" of the system settings, and click [Update].  
+1. Select the channel in the LINE Developers Console and open the "Messaging API" tab.
+2. Click [Edit] for "Webhook URL", paste the Webhook URL shown in "LINE Setting" of the system settings, and click [Update].
+3. Turn on "Use webhook".
+4. Click [Verify] and check that "Success" is shown.
+
 The Webhook URL has the following format.
 
 ~~~
 https://(Exment URL)/line/webhook
 ~~~
 
-- Turn on "Use webhook".
-- Click [Verify] and check that "Success" is shown.
-
-※ The Webhook URL can also be set in "Settings" > "Messaging API" of LINE Official Account Manager.  
-※ Only a URL that starts with "https://" and has a valid SSL certificate can be registered as the Webhook URL.  
-※ The Exment [IP filter settings](/additional_ip_filter) are not applied to the Webhook URL. If you restrict access with a firewall or the like, allow access from the LINE platform.
+- The Webhook URL can also be set in "Settings" > "Messaging API" of LINE Official Account Manager.
+- Only a URL that starts with "https://" and has a valid SSL certificate can be registered as the Webhook URL.
+- The Exment [IP filter settings](/additional_ip_filter) are not applied to the Webhook URL. If you restrict access with a firewall or the like, allow access from the LINE platform.
 
 ## Linking a LINE account
 Each user who receives notifications on LINE links their own LINE account.  
-**LINE notifications are not sent to users who have not linked their LINE account.** Ask your users to link their accounts before you start using LINE notifications.
+**LINE notifications are not sent to users who have not linked their LINE account**. Ask your users to link their accounts before you start using LINE notifications.
 
 ### Linking
-- Log in to Exment, open the user menu at the top right (your name) and click [LINE Link].  
-You can also open it from the following URL.
+**(1) Open the "LINE Link" screen**
 
-※From v7.1.0, "LINE Link" is in the user menu at the top right, not in the left menu. It is shown only when the basic ID of the LINE Official Account is set in the [System settings](#system-settings). In v7.0, open it from "LINE Link" at the top of the left menu (the update to v7.1.0 removes that menu when it is still at the top; a menu you moved yourself stays).
+Log in to Exment, open the user menu at the top right (your name) and click [LINE Link].
+
+![LINE Link in the user menu](ja/img/common/user_menu_line.png)
+
+You can also open it from the following URL.
 
 ~~~
 http(s)://(Exment URL)/line/link
 ~~~
 
-- Click [Generate QR code]. The QR code for linking is shown.
+- From v7.1.0, "LINE Link" is in the user menu at the top right, not in the left menu. It is shown only when the basic ID of the LINE Official Account is set in the [System settings](#system-settings).
+- In v7.0, open it from "LINE Link" at the top of the left menu (the update to v7.1.0 removes that menu when it is still at the top; a menu you moved yourself stays).
+
+**(2) Show the QR code**
+
+Click [Generate QR code]. The QR code for linking is shown.
 
 ![Generating the QR code](img/line/line_link_qr.png)
+
+**(3) Scan it with the LINE app and send**
 
 - Scan the QR code with the LINE app on your smartphone.  
 The chat with the LINE Official Account opens, with "LINK (link code)" already entered.  
@@ -124,13 +145,17 @@ The chat with the LINE Official Account opens, with "LINK (link code)" already e
 
 ![Link completed](img/line/line_link_chat.png)
 
-- When you reopen the "LINE Link" screen, "LINE account linked" is shown.
+**(4) Check that the link is made**
+
+When you reopen the "LINE Link" screen, "LINE account linked" is shown.
 
 ![Linked](img/line/line_link_done.png)
 
-※ By default, a link code is valid for 10 minutes. If it has expired, click [Generate QR code] again.  
-※ A LINE account can be linked to only one user. If a LINE account that is already linked sends a link code, "This LINE account is already linked to an account. To change it, please unlink it on the web first." is replied. However, if the user that the LINE account is linked to has been deleted, the old link is removed automatically and the LINE account can be linked to another user.  
-※ By default, up to 5 wrong link codes can be sent. If 5 wrong codes are sent within 10 minutes (by default) of the first wrong code, linking is blocked until those 10 minutes have passed. While linking is blocked, even a correct link code gets the reply "The link code is invalid or has expired. Please check and try again.".
+**When linking does not work**
+
+- **The time limit of the link code**: by default, a link code is valid for 10 minutes. If it has expired, click [Generate QR code] again.
+- **A LINE account can be linked to only one user**. If a LINE account that is already linked sends a link code, "This LINE account is already linked to an account. To change it, please unlink it on the web first." is replied. However, if the user that the LINE account is linked to has been deleted, the old link is removed automatically and the LINE account can be linked to another user.
+- **The number of wrong codes**: by default, up to 5 wrong link codes can be sent. If 5 wrong codes are sent within 10 minutes (by default) of the first wrong code, linking is blocked until those 10 minutes have passed. While linking is blocked, even a correct link code gets the reply "The link code is invalid or has expired. Please check and try again.".
 
 ### Unlinking
 On the "LINE Link" screen, click [Unlink].  
@@ -138,19 +163,23 @@ If you change your smartphone or LINE account, unlink and then link again.
 
 ## LINE Flex templates
 A LINE Flex template defines the content of the card (Flex Message) sent by a LINE notification.  
-If no template is selected in the notification settings, the message is sent as text.
+If no template is selected in the notification settings, the message is sent as text (no template is needed).
 
 > The "LINE Flexテンプレート" (LINE Flex template) and "LINE送信履歴" (LINE send log) tables are created with Japanese table and column names, regardless of the language setting. This page shows the English meaning in parentheses.
 
 ### Creating a template
-- Open the data list of the "LINE Flexテンプレート" (LINE Flex template) table from the following URL.  
+**(1) Open the list**
+
+Open the data list of the "LINE Flexテンプレート" (LINE Flex template) table from the following URL.  
 To add it to the left menu, add it in [Menu](/menu) with the menu type "Table".
 
 ~~~
 http(s)://(Exment URL)/data/line_flex_template
 ~~~
 
-- Click [New], enter the following items, and save.
+**(2) Make a template**
+
+Click [New], enter the following items, and save.
 
 | Item | Description |
 | --- | --- |
@@ -160,11 +189,11 @@ http(s)://(Exment URL)/data/line_flex_template
 | 本文項目 (Body items) | The items shown in the body of the card. Enter one item per line, in the format "Label = value". |
 | 説明 (Description) | A description of the template. It is not shown on LINE. |
 
-※ When you create a new template, "タイトル" and "本文項目" are filled with initial values for workflow notifications (status, action name, and so on). Change them when you use the template for other notifications, such as notifications on data creation or update.  
-※ The "安否確認" (Safety Check) template (Flex key "safety_check") is created automatically when the [safety check](/safety_check) is installed. Do not select it in "LINE Flex template" of the notification settings, and do not edit or delete it.
+- When you create a new template, "タイトル" and "本文項目" are filled with initial values for workflow notifications (status, action name, and so on). Change them when you use the template for other notifications, such as notifications on data creation or update.
+- The "Safety Check" template (Flex key "safety_check") is created automatically when the [safety check](/safety_check) is installed. Do not select it in "LINE Flex template" of the notification settings. Also, do not edit or delete it.
 
 ### Writing the body items
-Enter the label on the left of "=" and the value on the right. Variables can be used in the value.  
+Write one item per line. Enter the label on the left of "=" and the value on the right. Variables can be used in the value.  
 The following is an example of a card for an overtime request.
 
 ~~~
@@ -204,7 +233,7 @@ Buttons are added to the card automatically. You do not set them in the template
 
 | Button | When it is shown |
 | --- | --- |
-| Workflow actions (such as "Approve" and "Reject") | When all of the following conditions are met.<br />- The data has a workflow, and the recipient has an action they can execute<br />- The recipient has not executed the action yet<br />- The "Comment" of the action is not "Required"<br />- No next work user needs to be selected after the action (the next status has no action whose executable user is "Selected by the user who executed the previous action") ※ This condition is checked only for actions whose "Condition to advance to next status" is 1 (the status advances when one user executes the action). For other actions, see [Workflow settings](/line?id=workflow-settings). |
+| Workflow actions (such as "Approve" and "Reject") | When all of the following conditions are met.<br />- The data has a workflow, and the recipient has an action they can execute<br />- The recipient has not executed the action yet<br />- The "Comment" of the action is not "Required"<br />- No next work user needs to be selected after the action (the next status has no action whose "Work User" is "Selected by the user who executed the previous action") ※ This condition is checked only for actions whose "Condition to advance to next status" is 1 (the status advances when one user executes the action). For other actions, see [Workflow settings](/line?id=workflow-settings). |
 | View details | When the Exment URL starts with "https://". Opens the data details page. |
 
 For details, see [Executing workflow actions from LINE](/line?id=executing-workflow-actions-from-line).
@@ -222,11 +251,12 @@ For how to open the notification settings screen, see [Notification](/notify?id=
 - When a message is sent as text, it is created from the subject and body of the "Notify Mail Template".
 - When "Specified organization" is selected, the message is sent to all users who belong to the organization.
 - Among the notify targets, users who have not linked their LINE account are skipped. This is not an error, and nothing is recorded in the [LINE send log](/line?id=line-send-log).
-- LINE notifications are sent right after the processing that triggers them, such as saving data. They do not use a queue, and messages that failed are not sent again automatically. Check the result in the [LINE send log](/line?id=line-send-log).
+- LINE notifications are sent right after the processing that triggers them, such as saving data. They do not use the [delayed execution of notifications](/additional_queue) (the queue).
+- Messages that failed are not sent again automatically. Check the result in the [LINE send log](/line?id=line-send-log).
 
 ### Example 1: Notify when data is created or updated
 - Notify Trigger: "Data Create/Update"
-- Notify condition: check "Created" and "Updated"
+- Notify Trigger Setting: check "Created" and "Updated"
 - Notify Action: "LINE"
 - Notify Target: the "Person in charge" user column (shown as "Custom Column" with the column name)
 - LINE Flex template: the template you created
@@ -252,7 +282,7 @@ The message is sent to the users of the organization who have linked their LINE 
 - Notify Target Date Column: the date column to use as the base (example: planned completion date)
 - Notification date: "1"
 - Before and After Notification: "Before"
-- Notification time: the hour at which the notification is sent (0 to 23)
+- Notification Time: the hour at which the notification is sent (0 to 23)
 - Notify Action: "LINE"
 
 ![Notification by the passage of time](img/line/line_notify_time.png)
@@ -261,61 +291,79 @@ At the specified time, a card like the following arrives.
 
 ![Reminder card](img/line/line_flex_reminder.png)
 
-※ To run notifications triggered by "The Passage of Time", you need to set up the [task schedule](/additional_task_schedule). The notification is executed at minute 00 of the specified hour.  
-※ To run the notification immediately to check your settings, execute the following command. The notification is executed regardless of the notification time.
+- To run notifications triggered by "The Passage of Time", you need to set up the [task schedule](/additional_task_schedule). The notification is executed at minute 00 of the hour set in "Notification Time".
+- To run the notification immediately to check your settings, execute the following command. The notification is executed regardless of the notification time.
 
 ~~~
 php artisan exment:notify --name=(notify name (alphanumeric))
 ~~~
 
-※ To prevent the same reminder from being sent twice, for example when the command is executed repeatedly, set "LINE_DEDUPE_MINUTES". See [Setting values](/line?id=setting-values) for details.
+- To prevent the same reminder from being sent twice, for example when the command is executed repeatedly, set "LINE_DEDUPE_MINUTES". See [Setting values](/line?id=setting-values) for details.
 
 ## Executing workflow actions from LINE
 You can execute a workflow action from the buttons of a notification card received on LINE.  
 This section uses the example of an approver approving an overtime request on LINE. For how to set up workflows, see [Workflow settings](/workflow_setting).
 
-### Workflow settings
-In "Action settings" of the workflow settings, set the actions executed from LINE as follows.
+There are three things to do.
 
-- Executable user: the users who execute the action (example: the "Approver" column of the table, set with "Set in advance")
+1. Set the workflow actions so that they can be executed from LINE ([Workflow settings](/line?id=workflow-settings))
+2. Set up a LINE notification to the approver ("Notification settings" below)
+3. Press the button of the card that arrives ("Approving from LINE" below)
+
+### Workflow settings
+In "Action Setting" of the workflow settings, set the actions executed from LINE as follows.
+
+- Work User: the users who execute the action (example: the "Approver" column of the table, set with "Set in advance")
 - Comment: "Nullable" or "Not Use"
 
 ![Action settings](img/line/line_workflow_action.png)
 
-※ No button is shown on the LINE card for an action whose "Comment" is "Required". A comment must be entered, so execute the action on the Exment screen.  
-※ When the next status has an action whose executable user is "Selected by the user who executed the previous action", the next work users must be selected, so execute the action on the Exment screen.  
-In this case, no button is shown on the LINE card for an action whose "Condition to advance to next status" is 1.  
-The button is shown for an action that needs two or more users to execute it ("Condition to advance to next status" is 2 or more, or "All user execute"). Executions that do not advance the status (for example, the 1st and 2nd of 3 approvals) can be done from LINE. When the button is pressed for the execution that advances the status (for example, the 3rd approval), the action is not executed, and "This action requires selecting the next work users. Please process it on the web." is replied.
+**Actions that cannot be executed from LINE**
+
+Execute the following actions on the Exment screen.
+
+- **An action whose "Comment" is "Required"**: no button is shown on the LINE card, because a comment must be entered.
+- **An action after which the next work users must be selected** (the next status has an action whose "Work User" is "Selected by the user who executed the previous action"): what happens depends on the "Condition to advance to next status".
+
+| "Condition to advance to next status" | The LINE card |
+| --- | --- |
+| 1 (one user executes) | No button is shown. |
+| 2 or more, or "All user execute" | The button is shown. Executions that do not advance the status (for example, the 1st and 2nd of 3 approvals) can be done from LINE. When the button is pressed for the execution that advances the status (for example, the 3rd approval), the action is not executed, and "This action requires selecting the next work users. Please process it on the web." is replied. |
 
 ### Notification settings
-Set up a notification that sends a LINE notification to the approver. Be sure to select a "LINE Flex template". No button is shown when the message is sent as text.
+Set up a notification that sends a LINE notification to the approver. **Be sure to select a "LINE Flex template"**. No button is shown when the message is sent as text.
 
-- **To notify when the data is created** : In the notification settings of the table, set "Data Create/Update" as the trigger, "Created" as the notify condition, the "Approver" column as the notify target, and "LINE" as the notify action.
+- **To notify when the data is created** : In the notification settings of the table, set "Data Create/Update" as the trigger, "Created" in "Notify Trigger Setting", the "Approver" column as the notify target, and "LINE" as the notify action.
 - **To notify the next work user when an action is executed** : In the notification settings of the workflow, set "LINE" as the notify action and "Next Work User" as the notify target.
 
 ### Approving from LINE
-- The applicant selects the approver and creates the overtime request data.
+**(1)** The applicant selects the approver and creates the overtime request data.
 
 ![Creating the request data](img/line/line_ot_create.png)
 
-- A card with "Approve" and "Reject" buttons arrives on the approver's LINE.  
-Press a button to execute the action. A reply such as "Done: 承認" arrives.
+**(2)** A card with "Approve" and "Reject" buttons arrives on the approver's LINE.  
+Press a button to execute the action. A reply such as "Done: Approve" arrives.
 
 ![Approving from LINE](img/line/line_approve_reply.png)
 
-- The status of the data is updated in Exment.
+**(3)** The status of the data is updated in Exment.
 
 ![Status after approval](img/line/line_status_approved.png)
 
-※ The action is executed as the user who linked the LINE account. When a button is pressed, Exment checks again whether the user can execute the action.  
-※ If the action cannot be executed, for example because another user has already processed the data or the user has already executed the same action, "This action is unavailable or has already been processed." is replied.  
-※ If the next work users must be selected, "This action requires selecting the next work users. Please process it on the web." is replied. Execute the action on the Exment screen.  
-※ If the "Comment" of the action was changed to "Required" after the card was sent, "This action requires a comment. Please process it on the web." is replied.  
-※ Users who are not set up as login users cannot execute actions from LINE. "This account has not activated login." is replied.
+The action is executed as the user who linked the LINE account. When a button is pressed, Exment checks again whether the user can execute the action.
+
+When the action cannot be executed, one of these replies arrives.
+
+| Reply | Reason |
+| --- | --- |
+| "This action is unavailable or has already been processed." | The action cannot be executed, for example because another user has already processed the data or the user has already executed the same action. |
+| "This action requires selecting the next work users. Please process it on the web." | The next work users must be selected. Execute the action on the Exment screen. |
+| "This action requires a comment. Please process it on the web." | The "Comment" of the action was changed to "Required" after the card was sent. |
+| "This account has not activated login." | Users who are not set up as login users cannot execute actions from LINE. |
 
 ## LINE send log
 Every message sent by a LINE notification or a [safety check](/safety_check) is recorded in the "LINE送信履歴" (LINE send log) table, whether it succeeded or failed.  
-Replies to user operations (such as "LINE account linked successfully!" and "Done: 承認") are not recorded.  
+Replies to user operations (such as "LINE account linked successfully!" and "Done: Approve") are not recorded.  
 Open the following URL to show the list.
 
 ~~~
@@ -336,8 +384,8 @@ http(s)://(Exment URL)/data/line_send_log
 | 送信結果 (Result) | "success" or "failed". |
 | エラー内容 (Error) | The reason when sending failed (example: "HTTP 400 ..."). |
 
-※ Messages are not sent to users who have not linked their LINE account, so nothing is recorded for them. When a notification does not arrive, check the LINE account link first.  
-※ The columns shown on the list can be changed with [custom views](/view).
+- Messages are not sent to users who have not linked their LINE account, so nothing is recorded for them. When a notification does not arrive, check the LINE account link first.
+- The columns shown on the list can be changed with [custom views](/view).
 
 ## Setting values
 The following settings can be changed in the ".env" file. See the [list of set values](/config?id=line-integration) for details.
@@ -368,6 +416,6 @@ The following settings can be changed in the ".env" file. See the [list of set v
 | "Invalid command." is replied | A user who has linked their LINE account sent a message other than a link code | This is not an error. Exment does not respond to messages other than link codes. For additional responses to a safety check, see [Safety check](/safety_check?id=answering-on-line). |
 | A LINE notification does not arrive, and nothing is recorded in the LINE send log | The notified user has not linked their LINE account | Ask the user to [link their LINE account](/line?id=linking-a-line-account). |
 | The result in the LINE send log is "failed" | - The channel access token is wrong or no longer valid<br />- The user has blocked the LINE Official Account<br />- The monthly message limit has been reached | Check the "エラー内容" (Error) column. If you reissued the channel access token, enter it again in the system settings. |
-| The "Approve" and "Reject" buttons are not shown on the card | - The "Comment" of the action is "Required"<br />- The "Condition to advance to next status" of the action is 1, and the next work users must be selected after the action (the next status has an action whose executable user is "Selected by the user who executed the previous action")<br />- The recipient cannot execute the action, or has already executed it<br />- The data has already been processed<br />- No LINE Flex template is selected | See [Executing workflow actions from LINE](/line?id=executing-workflow-actions-from-line). |
+| The "Approve" and "Reject" buttons are not shown on the card | - The "Comment" of the action is "Required"<br />- The "Condition to advance to next status" of the action is 1, and the next work users must be selected after the action (the next status has an action whose "Work User" is "Selected by the user who executed the previous action")<br />- The recipient cannot execute the action, or has already executed it<br />- The data has already been processed<br />- No LINE Flex template is selected | See [Executing workflow actions from LINE](/line?id=executing-workflow-actions-from-line). |
 | A LINE notification triggered by "The Passage of Time" is not sent | - The task schedule is not running<br />- The notification time does not match the server time<br />- It was skipped because of "LINE_DEDUPE_MINUTES" | Check the [task schedule](/additional_task_schedule). You can also run the notification with "php artisan exment:notify" to check. |
 | The "View details" button is not shown | The Exment URL does not start with "https://" | Run Exment at an "https://" URL. |

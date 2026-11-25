@@ -1,69 +1,75 @@
 # Dashboard
-This screen is displayed when you log in to Exment or when you click "HOME" or "site name displayed in the upper left".  
-By freely customizing the display method, information managed by Exment can be displayed in various formats.  
+The dashboard is the screen shown when you log in to Exment, or when you click "HOME" or "the site name shown at the top left".  
+You can freely arrange data lists, charts, calendars and so on, so that the information managed in Exment can be seen at a glance.
+
+This page has the following contents.
+
+| What you want to do | Where to look |
+|---|---|
+| Create a dashboard | Creating a new dashboard, Dashboard settings |
+| Put lists, charts and so on on the dashboard | Select items to display |
+| Decide what is shown on the horizontal and vertical axes of a chart | Chart settings details |
+| Show it to other users and organizations | Sharing the dashboard |
+| Filter, switch charts and sort on the screen | Using the dashboard |
+  
 ### Dashboard display example
 ![Dashboard screen](img/dashboard/dashboard_sample.png)
 
 ## Creating a new dashboard
-- Click "Create New Dashboard" at the top right of the dashboard screen.  
-
+1. Click "Create New Dashboard" at the top right of the dashboard screen.
 ![Dashboard screen](img/dashboard/dashboard_grid1.png)
-  
-- Set the necessary items on the dashboard.  
 
+2. Set the necessary items. For the meaning of the items, see "Dashboard settings" below.  
 ![Dashboard screen](img/dashboard/dashboard_grid2.png)
 
 
 ## Dashboard settings
 #### Dashboard name (alphanumeric)
-Indicates the name of the dashboard.
+The name of the dashboard.  
 It cannot be changed after saving.
 
 #### Dashboard display name
-The name to display on the screen when selecting a dashboard.  
-Japanese settings are available and can be changed after saving.  
+The name shown on the screen when a dashboard is selected.  
+Japanese can also be used. It can be changed after saving.
 
 #### Dashboard type
-Select either "System Dashboard" or "User Dashboard".  
+Select either "System Dashboard" or "User Dashboard".
 
-"System Dashboard":  
-Only the system administrator can make settings.  
-The dashboard will be available to all users.  
-  
-"User Dashboard":  
-Dashboard settings that can be set by anyone other than the system administrator.  
-The dashboard will only be available to the user who created it.    
+- <span class="heading_smaller_than_h5">"System Dashboard"</span>  
+Only system administrators can set it. All users can use this dashboard.  
 
-※"System Dashboard" cannot be changed to "User Dashboard" later.  
+- <span class="heading_smaller_than_h5">"User Dashboard"</span>  
+Users other than system administrators can also set it. Only the user who created it can use this dashboard.    
 
-**"User Dashboard" created by the system administrator** can be changed to "System Dashboard" later.  
-※By setting [Disable User Dashboard](/config.md?id=user-dashboard-disabled),general users cannot create dashboards.
+Note: a "System Dashboard" cannot be changed to a "User Dashboard" later.  
+**A "User Dashboard" created by a system administrator** can be changed to a "System Dashboard" later.  
+Note: when [User dashboard disabled](/config?id=user-dashboard-disabled) is set, general users can no longer create dashboards.
 
 
 #### default
 Select either "YES" or "NO".  
-If you have created multiple dashboards, the dashboard displayed when you open the dashboard will be the dashboard set to "YES".  
-※By selecting from the list, the dashboard set to "NO" can also be displayed.  
-※"Default" can be set to "YES" only for one dashboard.  
-If "YES" is specified for two or more dashboards, the dashboard will be changed to "NO" except for the dashboard that was last set to "YES".
+When there are several dashboards, the dashboard shown first when the dashboard is opened is the one set to "YES".  
+Note: a dashboard set to "NO" can also be shown by selecting it from the list.  
+Note: "Default" can be "YES" for only one dashboard.  
+When "YES" is set for two or more dashboards, all except the one set to "YES" last change to "NO".
 
 #### Select number of columns
-Select the number of columns to display in each row of the dashboard.  
-Up to 4 columns can be displayed per line. 
-※The number of columns and the display area per one are inversely proportional.  
+Select the number of columns shown in each row of the dashboard.  
+Up to 4 columns can be shown in one row.  
+Note: when the number of columns increases, the display area of each one becomes smaller.
 
 #### Dashboard Row (n) Max Height(px)
-The max height, in pixels, of the items displayed on that row. It can be set for each row.  
-If the content of an item is higher than this value, the item scrolls.  
-Enter an integer from 150 to 3000. If empty, it is 400px.
+The maximum height, in pixels, of the items shown in that row. It can be set for each row.  
+When the contents of an item exceed this height, the item scrolls inside.  
+Enter an integer from 150 to 3000. When empty, it is 400px.
 
 ### Example of displaying four columns in one line
 ![Dashboard screen](img/dashboard/dashboard_grid3.png)  
 
 ## Dashboard filter settings
-In the dashboard settings, a "filter bar" can be shown at the top of the dashboard to filter all charts at once.  
+A "filter bar" that filters all charts at once can be shown at the top of the dashboard.  
 Instead of creating a view for every condition (region, product, sales rep...), one dashboard lets you switch the condition and see the results.  
-※See [Filtering with the filter bar](#filtering-with-the-filter-bar) for how to use it.
+Note: See [Filtering with the filter bar](#filtering-with-the-filter-bar) for how to use it.
 
 ![Dashboard screen](img/dashboard/dashboard_filterbar_setting.png)
 
@@ -84,21 +90,20 @@ Set the items shown on the filter bar, one per row. Add rows with "New".
 > Only charts whose table has **a column with the same name as the filter item** are filtered.  
 > Other charts show "Not affected by filters".
 
-> For a smooth experience on large tables, enable "Index Enabled" in [custom column settings](/column.md?id=search-index) for the columns used as filter items.
+> For a smooth experience on large tables, enable "Index Enabled" in [custom column settings](/column?id=search-index) for the columns used as filter items.
 
-> When a dashboard is exported / imported with a [template](/template.md), its filter bar settings (target boxes included) are carried over as they are.
+> When a dashboard is exported / imported with a [template](/template), its filter bar settings (target boxes included) are carried over as they are.
 
 # Select items to display
-You can select the item you want to display from these four types,
-"Data List", "System", "Chart", "Calendar" in the upper right "New" of each column of the created dashboard.  
-※If a [plugin (dashboard)](/plugin_quickstart_dashboard) is installed, "Plugin" can also be selected.
+Select the item you want to display from [New] at the top right of each column of the created dashboard. There are four types of items: "Data List", "System", "Chart" and "Calendar".  
+Note: If a [plugin (dashboard)](/plugin_quickstart_dashboard) is installed, "Plugin" can also be selected.
 
 ![Dashboard screen](img/dashboard/dashboard_grid4.png)  
 
-Next, set the specific display contents for each item.
+After this, set what is displayed for each item.
 
 ## List of data
-A data list can be displayed on the dashboard by specifying any table or view from the information managed by Exment.
+Select a table and a view, and the list of that data is displayed on the dashboard.
 
 ### Display example of data list
 ![Dashboard screen](img/dashboard/dashboard_detalist1.png)
@@ -113,15 +118,15 @@ Enter the name of the item to be displayed on the screen.
 Select how many data to display at one time.  
 
 #### Target table
-Select the target to be displayed from the created tables in [Custom table settings](/table.md).
+Select the target to be displayed from the created tables in [Custom table settings](/table).
 
 #### Target view
-Select the target to be displayed from [View](/view.md) in the selected target table.  
-※Calendar views, kanban views, Gantt chart views and filter views cannot be selected. For a system dashboard, only system views can be selected.  
+Select the target to be displayed from [View](/view) in the selected target table.  
+Note: Calendar views, kanban views, Gantt chart views and filter views cannot be selected. For a system dashboard, only system views can be selected.  
 
 ## system
-You can display system-related information on the dashboard.  
-※ Currently, you can display "Guidelines," "List of latest Exment information," "Editor," "HTML," "Notifications list," and "2D/JAN barcode"
+Displays information about the system on the dashboard.  
+Note: currently, "Guidelines", "Exment Latest News List", "Editor", "HTML", "Notify list" and "2D/JAN Barcode" can be displayed.
 
 ### System settings
 ![Dashboard screen](img/dashboard/dashboard_system2.png)
@@ -157,7 +162,7 @@ The display name of the "2D/JAN Barcode Scan" button can be customized in the `.
 ## chart
 Data managed by Exment views (normal views, all-data views, summary views, etc.) can be displayed on the dashboard as one of 18 chart types, including bar, line and pie charts.  
 A displayed chart can be filtered, switched to another chart type and sorted on screen (see [Using the dashboard](#using-the-dashboard)).  
-※See [Chart settings details](#chart-settings-details) for details.
+Note: See [Chart settings details](#chart-settings-details) for details.
 
 ### Bar graph display example
 
@@ -282,21 +287,21 @@ To use a multi-series chart, the summary view must be grouped by two or more col
 </div>
 
 #### Target table
-Select the target to be displayed from the created tables in [Custom table settings](/table.md).  
-※Tables you have permission to view are shown as options.
+Select the target to be displayed from the created tables in [Custom table settings](/table).  
+Note: Tables you have permission to view are shown as options.
 
 #### Target view
 Select the target to be displayed from the views (List views, All data views, Summary views, etc.) in the selected target table.  
-※Calendar views, kanban views, Gantt chart views and filter views cannot be selected. For a system dashboard, only system views can be selected.  
-※To use a multi-series chart, select a summary view.  
+Note: Calendar views, kanban views, Gantt chart views and filter views cannot be selected. For a system dashboard, only system views can be selected.  
+Note: To use a multi-series chart, select a summary view.  
 
 #### X-axis item
 Select the X axis (horizontal axis) to be displayed as a graph.  
-※See [Chart settings details](#chart-settings-details) for details.  
+Note: See [Chart settings details](#chart-settings-details) for details.  
 
 #### Y-axis items
 Select the Y axis (vertical axis) to be displayed as a graph.  
-※See [Chart settings details](#chart-settings-details) for details.  
+Note: See [Chart settings details](#chart-settings-details) for details.  
 
 #### Series column (multi-series)
 
@@ -322,12 +327,11 @@ If no columns are selected, the **Filter** button is not displayed.
 
 The selected options are applied to the chart.
 
-※ **Show axis label**, **Show axis name**, and **Start at zero** are available only for Bar and Line charts.
+Note: **Show axis label**, **Show axis name**, and **Start at zero** are available only for Bar and Line charts.
 
 ## Calendar
-Data managed by Exment's calendar view can be displayed on the dashboard in any of two types of display formats,
-"monthly" and "list".
->The displayed text can be changed in [Heading display column setting](/table.md?id=heading-display-column-setting).
+Displays the data of a calendar view of Exment on the dashboard. The display format can be chosen from two types: "Monthly" and "List".
+>The displayed text can be changed in [Heading display column setting](/table?id=heading-display-column-setting).
 
 ### Monthly display example
 ![Dashboard screen](img/dashboard/dashboard_calendar1.png)  
@@ -342,12 +346,11 @@ Data managed by Exment's calendar view can be displayed on the dashboard in any 
 Enter the name of the item to be displayed on the screen.
 
 #### Calendar type
-"Monthly" "List"  
-Select the calendar you want to display from these two types.  
+Select the calendar you want to display from the two types "Monthly" and "List".
 
 #### Target table
-Select the target to be displayed from the created tables in [Custom table settings](/table.md).
-※Only the tables for which the calendar view is set are displayed as options.
+Select the target to be displayed from the created tables in [Custom table settings](/table).
+Note: Only the tables for which the calendar view is set are displayed as options.
 
 #### Target view
 Select the target to be displayed from the calendar views in the selected target table.  
@@ -364,19 +367,19 @@ The following 2 kinds of choices are shown for the X axis. Select one of them.
 - The "Data heading" item.  
 ![Dashboard screen](img/dashboard/setting_x1.png)  
 
-When selected, the [heading display column setting of the custom table](/table.md?id=heading-display-column-setting) is shown on the X axis.  
+When selected, the [heading display column setting of the custom table](/table?id=heading-display-column-setting) is shown on the X axis.  
 
 ![Dashboard screen](img/dashboard/setting_x2.png)  
 
 
-- The items shown in ["Display column selection" of the custom view settings](/view.md?id=display-column-selection). When selected, the values of the selected column are shown on the X axis.  
+- The items shown in ["Display column selection" of the custom view settings](/view?id=display-column-selection). When selected, the values of the selected column are shown on the X axis.  
 ![Dashboard screen](img/dashboard/setting_x4.png)  
 
 
 #### Y-axis items
 Only the following choice is shown for the Y axis.
 
-- Among the items shown in ["Display column selection" of the custom view settings](/view.md?id=display-column-selection), the columns of the following types. When selected, the values of the selected column are shown on the Y axis.
+- Among the items shown in ["Display column selection" of the custom view settings](/view?id=display-column-selection), the columns of the following types. When selected, the values of the selected column are shown on the Y axis.
     - Integer
     - Decimal
     - Currency
@@ -389,14 +392,14 @@ Only the following choice is shown for the X axis.
 - The "Data heading" item.  
 ![Dashboard screen](img/dashboard/setting_x1.png)  
 
-When selected, the values set in ["Group column selection" of the custom view settings](/view.md?id=group-column-selection) are shown on the X axis.  
+When selected, the values set in ["Group column selection" of the custom view settings](/view?id=group-column-selection) are shown on the X axis.  
 ![Dashboard screen](img/dashboard/setting_x5.png)  
 ![Dashboard screen](img/dashboard/setting_x6.png)  
 
 #### Y-axis items
 The following 2 kinds of choices are shown for the Y axis. Select one of them.
 
-- Among the items shown in ["Group column selection" of the custom view settings](/view.md?id=group-column-selection), the columns of the following types. When selected, the values of the selected column are shown on the Y axis.
+- Among the items shown in ["Group column selection" of the custom view settings](/view?id=group-column-selection), the columns of the following types. When selected, the values of the selected column are shown on the Y axis.
     - Integer
     - Decimal
     - Currency
@@ -406,7 +409,7 @@ The following 2 kinds of choices are shown for the Y axis. Select one of them.
 ![Dashboard screen](img/dashboard/setting_x8.png)  
 
 
-- The items shown in ["Calculation column selection" of the custom view settings](/view.md?id=calculation-column-selection). When selected, the values of the selected column are shown on the Y axis.
+- The items shown in ["Calculation column selection" of the custom view settings](/view?id=calculation-column-selection). When selected, the values of the selected column are shown on the Y axis.
 
 ![Dashboard screen](img/dashboard/setting_x7.png)  
 
@@ -414,17 +417,17 @@ The following 2 kinds of choices are shown for the Y axis. Select one of them.
 
 ## Sharing the dashboard
 Share a dashboard you created with other users and organizations.  
-※Only "User Dashboard" can be shared. ("System Dashboard" is open to all users from the start.)  
+Note: Only "User Dashboard" can be shared. ("System Dashboard" is open to all users from the start.)  
 
 #### How to share
-- Click the "Share" button shown on the dashboard settings screen.  
-※This button is not shown when creating a new dashboard.
+1. Click the "Share" button on the dashboard settings screen.  
+Note: This button is not shown when creating a new dashboard.
 ![Data screen](img/dashboard/dashboard_share1.png)  
 
-- The dashboard sharing dialog is displayed.
+2. The dashboard sharing dialog is displayed.
 ![Data screen](img/dashboard/dashboard_share2.png)  
 
-- Add the users or organizations to share with, and click "Send" to complete the sharing.  
+3. Add the users or organizations to share with, and click "Submit". The dashboard is now shared.  
 ![Data screen](img/dashboard/dashboard_share3.png)  
 
 # Using the dashboard
@@ -448,7 +451,7 @@ When [dashboard filter settings](#dashboard-filter-settings) are configured, a f
 
 Selecting a value in the filter bar applies the corresponding condition to every chart targeted by that filter.
 
-※The filter bar is not shown to users who do not have view permission on the filter source table.
+Note: The filter bar is not shown to users who do not have view permission on the filter source table.
 
 ![Dashboard screen](img/dashboard/dashboard_filterbar_item.png)
 

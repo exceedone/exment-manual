@@ -1,14 +1,15 @@
 # Plugin (import)
-You can implement your own import process for custom tables.  
-We recommend using this plug-in when importing files output by the existing system into Exment.
+This plugin implements your own import process into custom data.
+We recommend it when you bring files output by an existing system, for example, into Exment.
 
-![import plugin example](img/plugin/plugin_import2.png)   
+![Import plugin example](img/plugin/plugin_import2.png)   
 
 
 ## How to make
-The creation procedure is described as an example of the "Import quotation (Excel) into contract table and contract item table" plug-in.  
-※ Information on the contract table is described in the header part of the quote, and information on the contract details table is described in the item part.  
-※ As a prerequisite, knowledge of PHP and the framework [Laravel](http://laravel.jp/), library [PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) for operating Excel with PHP is required.
+The steps are explained with an example: a plugin that "imports a quotation (Excel) into the contract table and the contract details table".
+
+- The header part of the quotation has the information of the contract table, and the details part has the information of the contract details table.
+- As a prerequisite, you need to know PHP, the framework [Laravel](http://laravel.com/) and [PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet), a library for handling Excel with PHP.
 
 ### Create config.json
 - Create the following config.json file.  
@@ -28,19 +29,18 @@ The creation procedure is described as an example of the "Import quotation (Exce
 }
 ~~~
 
-- plugin_name: The plugin name. Please fill in alphanumeric characters.
-- uuid: 32 characters + hyphen, total of 36 characters. Used to make the plugin unique.  
-Please create from the following URL etc. 
+- plugin_name : the plugin name. Enter it in single-byte alphanumeric characters.
+- uuid : a string that tells plugins apart. It is 32 characters plus hyphens, 36 characters in total. Make sure it is not the same value as another plugin's.  
+You can make one at the following URL, for example.  
 https://www.famkruithof.net/uuid/uuidgen
-- plugin_type: Please write import.
-- target_tables: Enter the name of the table to be imported.
+- plugin_type : enter import.  
+- target_tables : enter the name of the table to import into.  
 
-※ Target_tables can be changed later on the screen.  
-If you specify more than one, a plug-in selection field will be displayed in the import dialog of each table.
+Note: target_tables can be changed later on the screen. When several are specified, the plugin selection field is shown in the import dialog of each table.  
 
 
 ### PHP file creation
-- Create the following PHP file. The name should be "Plugin.php".
+- Create a PHP file like the one below. The name should be "Plugin.php".
 
 ~~~ php
 <?php
@@ -83,7 +83,7 @@ class Plugin extends PluginImportBase{
             if (!isset($product_version_code)) break;
             // Load product version table with product version code
             $product_version = getModelName('product_version')
-                ::where('value->product_version_code、, $product_version_code)->first();
+                ::where('value->product_version_code', $product_version_code)->first();
             //  If the product version table could not be obtained, skip to the next line
             if (!isset($product_version)) continue;
             //  Edit contract line data from line and product version table
@@ -112,12 +112,12 @@ class Plugin extends PluginImportBase{
     
 }
 ~~~
-- namespace should be **App \ Plugins \ (plugin name).**
+- The namespace should be **App\Plugins\\(plugin name in Pascal case)**. [Click here for details](/plugin_quickstart?id=plugin-name-namespace)
 
-- The Plugin class must extend the class PluginImportBase.
+- The Plugin class must extend the class PluginImportBase.  
 
 ### Compress to zip
-Compress the above two files into a zip with the minimum configuration.  
+Compress the above two files, as the minimum configuration, into a zip.  
 - PluginImportContract.zip
     - config.json
     - Plugin.php
@@ -125,14 +125,16 @@ Compress the above two files into a zip with the minimum configuration.
 
 ### Upload
 Upload the plugin.  
-※ Please refer to the [plug-in](/plugin) for how to upload.    
+Note: see [Plugin](/plugin) for how to upload.  
 
 
 ### How to perform the import
-When you open the import dialog on the target_tables screen registered in the plugin management screen, the import plugin selection field is displayed.  
-When you select the registered plug-in and press the send button, the import process will be executed with the contents of the execute function of Plugin.php.  
+1. Open the import dialog on the screen of the target_tables registered on the plugin management screen. The import plugin selection field is shown.
+2. Select the registered plugin and press the submit button. The import runs with the contents of the execute function of Plugin.php.
 ![Import dialog](img/plugin/plugin_import1.png)  
 
 
 ### Sample plugin
-[Contract Data Import Plugin](https://github.com/exment-git/plugin-sample/tree/main/import/PluginImportContract)
+Note: to use this sample plugin, add the "Template for product sales companies" in the template settings.
+[Contract data import plugin](https://github.com/exment-git/plugin-sample/tree/main/import/PluginImportContract)  
+[Import file of the contract data](https://exment.net/downloads/sample/plugin/PluginImportContract/contract_sample.xlsx)  

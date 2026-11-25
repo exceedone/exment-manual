@@ -1,5 +1,6 @@
 # Settings when using a reverse proxy
-This page describes the steps to follow when a reverse proxy is used in the Exment server setup.  
+These are the settings for when a reverse proxy (a server that receives the Web requests first and passes them to the Web server) is placed in front of the Exment server.  
+There are two parts: the settings on the Exment side and the settings on the reverse proxy server side.
 
 > These steps were partially revised in v3.7.2.
 
@@ -13,7 +14,7 @@ In particular, the following configuration is sometimes used.
 ![Reverse proxy](img/quickstart/reverse_proxy1.png)
 
 
-These are the additional setup steps for the reverse proxy server and for Exment that are required when building this kind of reverse proxy configuration.  
+The additional settings of the reverse proxy server and of Exment that are needed for such a configuration are written below.  
 
 
 
@@ -32,7 +33,7 @@ ADMIN_HTTPS=true
 ADMIN_USE_APP_URL=true
 
 # IP addresses of the reverse proxy servers to trust as proxies. If multiple IP addresses are expected, separate them with commas
-# ※If the IP address is not fixed, or if nothing other than the reverse proxy server can access the Web server due to zone settings, you can also specify "*"
+# * If the IP address is not fixed, or if nothing other than the reverse proxy server can access the Web server due to zone settings, you can also specify "*"
 ADMIN_TRUST_PROXY_IPS=172.0.1.1,172.0.1.2
 #ADMIN_TRUST_PROXY_IPS=*
 
@@ -40,15 +41,15 @@ ADMIN_TRUST_PROXY_IPS=172.0.1.1,172.0.1.2
 ADMIN_TRUST_PROXY_HEADERS=HEADER_X_FORWARDED_AWS_ELB
 ~~~
 
-- If you use [SAML authentication](/login_sso?id=saml), set "Use Proxy" to YES in "Option Setting".
+- If you use [SAML authentication](/login_saml), set "Use Proxy" to YES in "Option Setting".
 ![Reverse proxy](img/quickstart/reverse_proxy2.png)
 
 
 ### Setup steps - Reverse proxy server
 
-- When the reverse proxy server (load balancer, Nginx, etc.) forwards requests to the Web server, the following header values must be added.  
-Please check whether these header values are added.  
-※The values below are headers that carry the access information up to the reverse proxy server, and are processed on the Web server side.  
+- When the reverse proxy server (load balancer, Nginx, etc.) forwards requests to the Web server, the following headers must be added.  
+Please check that the headers are added.  
+Note: These headers carry the access information up to the reverse proxy server. The Web server reads and uses them.  
     - X-Forwarded-Host : Host name of the reverse proxy server
     - X-Forwarded-For : IP address of the client
     - X-Forwarded-Proto : http or https
@@ -65,7 +66,7 @@ Please check whether these header values are added.
     }
 ```
 
-- ※To output the request values and header values for verification, add the following to ".env" in the root folder. They are output to storage/logs/laravel.log.
+- * To output the request values and header values for verification, add the following to ".env" in the root folder. They are output to storage/logs/laravel.log.
 
 ```
 EXMENT_DEBUG_MODE_REQUEST=1

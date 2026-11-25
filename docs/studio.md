@@ -1,7 +1,7 @@
 # Studio
 The Studio makes, changes and shows the screens of the site. As with the apps of kintone, placing parts makes the container of the data (a table), its input screen and its list. The screens made can also be used in the phone app (Exment app).
 
-※All that is written here is in Exment v7.2.1.
+Note: the features written here are all in Exment v7.2.1.
 
 ## Getting started
 - The Studio is off at first. When a system administrator turns "Studio" on in "Admin Setting" > "[Feature Management](/feature)", a "Studio" menu appears under "Admin Setting" (the URL is `/studio`).
@@ -61,7 +61,7 @@ Before saving, the page says what will be made (as "Saving makes the app "..." (
 Choose for each row "1 column", "2 columns", "2 columns (wide left)", "2 columns (wide right)", "3 columns" or "4 columns" to place items side by side. On a phone they stand one under another. Up to 50 rows can be made.
 
 ### Shown when
-Each item can be shown or hidden by the value of another item ("is", "is not", "is empty", "is not empty"; "Always shown" for none). For example, show "Reason" only when the status is "On hold". A required item cannot have a condition.
+Each item can be shown or hidden by the value of another item ("is", "is not", "is empty", "is not empty"). For example, show "Reason" only when the status is "On hold". A required item cannot have a condition.
 
 ### Details (child tables)
 Make details entered in many rows for one record, as the products in an order. Each detail makes a child table, shown as a table under the input screen. Up to 5 details can be made. Calculations and selects from other tables can be used in details too.
@@ -70,7 +70,7 @@ Make details entered in many rows for one record, as the products in an order. E
 In a calculation part, write other number items (Integer, Decimal, Currency, Calculation) in `[ ]`.
 
 - Example: `[Quantity] * [Unit price]`
-- The total of a detail: `合計[detail name.item]` (as `合計[Order details.Amount]`)
+- The total of a detail: `SUM[detail name.item]` (as `SUM[Order details.Amount]`)
 - Only items, numbers and `+ - * / ( )` can be used.
 
 ### Buttons
@@ -101,7 +101,7 @@ In "Make a new app", the screens to look at the data can be made together, in "M
 <!-- Screenshot: "Made with the app" (img/studio/studio_bundle.png) -->
 
 ## Change in the Studio
-An input screen made in the Studio is changed on the same page it was made on. Click the name of the input screen on the list. Those with the permission to set the forms of the table can change it.
+An input screen made in the Studio (and a form of an existing table) is changed on the same page as when it was made. Click the name of the input screen on the list. Those with the permission to set the forms of the table can change it.
 
 - Move or take off items, add or remove conditions, rename the screen and add buttons.
 - An item taken off the screen stays in the table with its data.

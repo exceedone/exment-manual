@@ -1,90 +1,99 @@
 # Environment construction with XAMPP
-XAMPP is recommended when building an environment with PHP, Apache, and MySQL as a development environment from the beginning.  
-In addition, this manual introduces the case of Mac.  
-
-- For other inquiries, please feel free to [contact us](https://exment.net/inquiry) for free.  
+How to build an environment that runs Exment on a Mac with XAMPP.  
+XAMPP is software that installs PHP, Apache and MySQL together. We recommend it when you build a development environment from the beginning.
 
 ## Important point
-- **Please use XAMPP installation only for development and verification. We recommend that you do not use it as a production environment.** 
+- **Please use an XAMPP installation only for development and verification. We recommend that you do not use it as a production environment.** 
 
 ## Installation procedure
+Go in this order.
+
+1. Install XAMPP and start Apache and MySQL
+2. Make the mysql command usable (environment variables)
+3. Create a database
+4. Make a URL for Exment (subdomain settings)
+5. Install Exment
 
 ### XAMPP installation procedure
-- Access the following site and download XAMPP.  
+1. Download XAMPP from the following site.  
 [XAMPP Download](https://www.apachefriends.org/jp/download.html)  
 
-- From XAMPP for OS X, select PHP 8.2 and download it.  
+2. From "XAMPP for OS X", select the one with "PHP8.2" and download it.  
 
 ![XAMPP installation screen](img/xampp_mac/xampp_mac1.png)
 
-- After that, proceed with the installation of XAMPP.  
+3. Proceed with the installation of XAMPP.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac2.png)
 
-- On the XAMPP component selection screen, check both and press Next.  
+4. On the screen for selecting the XAMPP components, check both and press Next.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac3.png)
 
-- Follow other screens and press Next to complete the installation.  
-- After the installation is completed, there is an application called manager-osx in XAMPP (Other) of LaunchPad, so you can start XAMPP from there.  
+5. Follow the screens and press Next to finish the installation.
+
+6. After the installation, there is an app called manager-osx in XAMPP (Other) of LaunchPad. You can start XAMPP from there.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac4.png)
 
-- After launching XAMPP, click on Manage Servers.  
+7. After starting XAMPP, click Manage Servers.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac5.png)
 
-- Click the Start button of MySQL or Apache, and set Status to Runnig.  
+8. Click the Start button of MySQL and of Apache, so that Status becomes Running.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac6.png)
 
 
 #### 【Important point】
-- When the OS is restarted, it is necessary to start the XAMPP control panel again and restart Apache.  
+- After you restart the OS, you need to start the XAMPP control panel again and start Apache again.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac8.png)
 
 ### Add environment variable
-- When executing mysql from the terminal, add Path to the terminal configuration file .bash_profile.  
+To run mysql from the terminal, add the Path to .bash_profile, the setting file of the terminal.
 
-- Edit .bash_profile by passing the following command to pass the path.  
+1. Open .bash_profile with the following command.
+
 ~~~
 vi .bash_profile
 ~~~
 
-- On the opened screen, press i on the keyboard to enter the input mode (INSERT is displayed at the lower left), and then enter the Path as follows.  
+2. On the screen that opens, press i on the keyboard to enter the input mode (INSERT is shown at the lower left). Then enter the Path as follows.
+
 ~~~
 export PATH="/Applications/XAMPP/xamppfiles/bin:$PATH"
 ~~~
 ![XAMPP installation screen](img/xampp_mac/mysql_mac1.png)
 
-- To save and close the settings, press Esc on your keyboard, then enter: wq.  
+3. To save and close, press Esc on the keyboard, then type :wq.  
 ![XAMPP installation screen](img/xampp_mac/mysql_mac2.png)
 
-- Finally, run .bash_profile with the following command and pass it through the path.  
+4. Finally, load .bash_profile with the following command, so that the Path takes effect.
+
 ~~~
 source ~/.bash_profile
 ~~~
 
 #### Create database
-- After starting the XAMPP control panel, access the phpMyadmin by entering the following URL in a web browser.
+1. After starting the XAMPP control panel, open the following URL in a web browser to access phpMyadmin.
 
 http://localhost/phpmyadmin/index.php  
 
 
-- Click "New" on the left menu.
-![MySQL環境変数](img/xampp_mac/phpmyadmin1.png)
+2. Click "New" in the left menu.  
+![MySQL environment variables](img/xampp_mac/phpmyadmin1.png)
 
-- In the "Create database" line, enter any database name in alphanumeric characters and click "Create".
-![MySQL環境変数](img/xampp_mac/phpmyadmin2.png)
-This completes the database creation.
+3. In the "Create database" row, enter any database name in alphanumeric characters and click "Create".  
+![MySQL environment variables](img/xampp_mac/phpmyadmin2.png)
+
+The database is now created.
 
 ### Subdomain settings
-Under normal settings, you can use Exment by placing the Exment project file in the "/ Applications / XAMPP / htdocs" folder. However, there is a big problem, for example, when accessing the URL of [http: //localhost/exment/.env](http://localhost/exment/.env), the configuration file including the database information is displayed on the screen.  
-Therefore, we strongly recommend that you avoid these issues.  
-Please set according to the following procedure.  
+With the usual settings, you can use Exment by putting the Exment project files in the "/Applications/XAMPP/htdocs" folder.  
+But as it is, there is a big problem: for example, opening the URL [http://localhost/exment/.env](http://localhost/exment/.env) shows the setting file, which contains the database information, on the screen.  
+So we strongly recommend the settings that prevent this problem. Set them with the steps below.
 
-- Create a folder "local" in the folder "/ Applications / XAMPP".  
+1. Create the folder "local" in the folder "/Applications/XAMPP".  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac9.png)
 
-- Open "/Applications/XAMPP/xamppfiles/etc/extra/httpd-xampp.conf".  
+2. Open "/Applications/XAMPP/xamppfiles/etc/extra/httpd-xampp.conf".
 
-- Add the following description at the end of the line.  
-**※"/Public" is required at the end of DocumentRoot**  
+3. Add the following to the end of the file. **※DocumentRoot must have "/public" at the end**  
 
 ~~~
 <VirtualHost *:80>
@@ -104,8 +113,7 @@ Please set according to the following procedure.
 </Directory>  
 ~~~
 
-- Edit "/Applications/XAMPP/xamppfiles/etc/httpd.conf".  
-After that, perform a character string search to find the following description.  
+4. Open "/Applications/XAMPP/xamppfiles/etc/httpd.conf" and search the text for the following lines.
 
 ~~~
 User daemon
@@ -113,43 +121,43 @@ Group daemon
 </IfModule>
 ~~~
 
-Modify this description as follows.  
+Change these lines as follows.
 
 ~~~
-User (Mac login user name)
+User (your Mac login user name)
 Group daemon
 </IfModule>
 ~~~
 
 
-- Open "/ etc / hosts" and edit it.  
-In a terminal, enter the following command:  
-※ You will be asked for a password. Enter the password of the login user.
+5. Edit "/etc/hosts".  
+Enter the following command in the terminal.  
+※You are asked for a password. Enter the password of the login user.
 
 ~~~
 sudo vi /etc/hosts
 ~~~
 
-Edit the hosts file. Add the following items.  
+Add the following items to the hosts file.
 
 ~~~
 127.0.0.1       localhost
 127.0.0.1       exment.localapp
 ~~~
 
-- Restart Apache in the XAMPP control panel.  
+6. Restart Apache in the XAMPP control panel.  
 ![XAMPP installation screen](img/xampp_mac/xampp_mac8.png)
 
 ### Exment installation
-Install Exment according to the Exment [installation procedure](/quickstart).  
-Exment is usually installed in the "/ Applications / XAMPP / local" folder.  
-Here, it is assumed that the installation was performed in the "/ Applications / XAMPP / local / exment" folder.  
+Install Exment by following the Exment [installation steps](/quickstart).  
+Exment is normally installed in the "/Applications/XAMPP/local" folder.  
+Here, we assume that it was installed in the "/Applications/XAMPP/local/exment" folder.  
 
-- In the future installation of Exment, there is a screen to fill in the database settings, please enter as follows.  
-    - Database type: MariaDB
-    - Host name: 127.0.0.1
+- During the installation, there is a screen for entering the database settings. Enter them as follows.
+    - Database Type: MariaDB
+    - Host Name: 127.0.0.1
     - Port: 3306
-    - Database: (Database name created above)
-    - User name: root
+    - Database: (the database name created above)
+    - User Name: root
     - Password: (blank)
 

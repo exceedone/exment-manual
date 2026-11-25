@@ -1,179 +1,248 @@
 # Backup and Restore
-Exment data can be backed up and restored.
+How to take a "backup", which saves the data of Exment, and how to "restore", which brings the data back from a saved backup.
+
+| What you want to do | Where to look |
+|---|---|
+| Take a backup right now | Perform manual backup |
+| Take backups automatically at a fixed time, such as every day | Automatic backup execution |
+| Bring the data back from a backup | Restore |
+| Do it by command | (Advanced) Command backup, (Advanced) Restore by command |
 
 ## Overview
-Exment allows you to backup and restore your data.  
-For example, you can do the following:  
+Backup and restore are used in cases such as the following.
 
-- Before making large data updates, make backups in advance and restore them if anything goes wrong.
-- Keep a backup every day to guard against unexpected failures.
-- Migrate all data from one environment to another. (Be sure to check the operation before implementation.)
+- Take a backup before a large data update, and go back when it does not go well.
+- Take a backup every day to prepare for unexpected trouble.
+- Move all data from the current environment to another environment. (Be sure to check that it works before doing it.)
 
-The backup target is as follows.
+The following are backed up.
 - Database
-- Plugin file
-- Attachments
-- logfile
-- setting file 
+- Plugin files
+- Attached files
+- Log files
+- Config files
+
+## Caution
+- When you move to another environment, it may not complete correctly, depending on the environment.  
+In particular, when you move to another OS (Windows or Linux), another kind of database (MySQL or MariaDB) or another version of the database, it may not complete correctly for various reasons.  
+Be sure to check beforehand.
+
+- As a check beforehand, we mainly recommend the following.
+    - Do the move in a development environment or the like as the destination.
+    - Try the move at the stage where only the table definitions have been created.
+    - Use the same kind and the same version of database.
+
+- <span class="red">At present, automatic backup and restore are not supported on SQL Server.  </span>
+Please back up and restore by hand with the steps of [Backup and restore (SQL Server)](/backup_sqlserver).
 
 ## screen
-- From the left menu, select "Admin Settings> Backup".
-Or access the following URL.  
-http(s)://(Exment URL)/backup  
-This will bring up the backup screen.  
+- Select "Admin Setting > Backup" in the left menu.  
+Or open the following URL.  
+http(s)://(URL of Exment)/backup  
+The backup screen is displayed.
 ![Backup screen](img/backup/backup1.png)
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URL is for the default setting without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (a site installed with an older version has "admin"), add that value after the URL of the site (e.g. `http(s)://(URL of Exment)/admin/backup`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ## Backup
-There are two types of backup methods: "manual" and "automatic".  
+There are two ways to back up: "manual" and "automatic".
 
 ### Perform manual backup
-This is the procedure to perform backup manually.  
-You can perform backup at any time.    
+The steps to take a backup by hand whenever you like.
 
-- Click the "Backup" button at the top right of the page.    
+- Click the [Backup] button at the top right of the page.  
 ![Backup screen](img/backup/backup2.png)  
 
-- A confirmation dialog is displayed. Click "Confirm" and wait.  
-**※Backups are very time consuming. Please wait without operation.**
+- A confirmation dialog is displayed. Click [Confirm] and wait.  
+**Note: a backup takes a very long time. Wait without operating.**
 ![Backup screen](img/backup/backup3.png)  
 
-- When complete, a message is displayed.  
-After that, a file with the creation date and time of execution is created in the backup list.  
+- When it is completed, a message is displayed.  
+A file whose creation date and time is the time of execution appears in the backup list.
 ![Backup screen](img/backup/backup4.png)  
 ![Backup screen](img/backup/backup5.png)  
 
-- The created backup file can be downloaded.  
-Click the "Download" link in the backup row.  
+- The backup file that was made can be downloaded.  
+Click the [Download] link in the row of the backup.  
 ![Backup screen](img/backup/backup6.png)  
 
+- The file name of the backup that was made can be changed.  
+Click the [Edit File Name] link in the row of the backup.  
+Note: a name that contains half-width kana or symbols cannot be set.
+![Backup screen](img/backup/backup9.png)  
+- After entering the file name, click the [Submit] button.
+![Backup screen](img/backup/backup10.png)  
+
+- When it is completed, a message is displayed, and the file name in the backup list changes.
+![Backup screen](img/backup/backup11.png)  
+
+![Backup screen](img/backup/backup12.png)  
 
 ### Automatic backup execution
-Exment allows you to automatically back up at a fixed time.  
-By making regular backups, it is possible to restore data in the event of a major data update error.  
-**※It is necessary to set [Task Schedule](/additional_task_schedule) in advance.**
+Backups can be taken automatically at a fixed time.  
+When backups are taken regularly, the data can be restored even when, for example, it was updated in a badly wrong way.  
+**Note: the [task schedule](/additional_task_schedule) must be set beforehand.**
 
-    
-As an example, it is a method of setting "backup for seven generations" at "3:00 at night", "every other day".  
+As an example, here is how to set backups "at 3 at night", "every day", keeping "7 generations of backups".
 
-- Select "YES" for "Auto Backup" from "Backup Settings".
+- In "Backup Setting", set "Auto Backup" to "YES".
 ![Backup screen](img/backup/backup7.png)  
 
 - Change the option settings.
 ![Backup screen](img/backup/backup8.png)  
 
-- Then, click the "Save" button at the bottom of the page.  
+- Then click the [Save] button at the bottom of the page.
 
-### (Advanced) Command backup
-Backup by command is also possible. Execute the following command in the root directory of the project.
+<h3 id="backup_command"><a href="#/backup?id=backup_command" data-id="backup_command" class="anchor"><span>(Advanced) Command backup</span></a></h3>
+
+You can also back up by command. Run the following command in the root directory of the project.
 
 ~~~
 php artisan exment:backup
 ~~~
 
-- If "--target=" is not specified, all targets (database, plugin files, attachment files, log files and config files) are backed up.
-- To back up only some targets, specify the following keys in "--target=", separated by commas.
-    - database : Database
-    - plugin : Plugin File
-    - attachment : Attachment File
-    - log : Log File
-    - config : Config File
+- When "--target=" is not given, all targets (database, plugin files, attached files, log files, config files) are backed up.
+- To narrow down the targets, give the following keys to "--target=", separated by commas.
+    - database : database
+    - plugin : plugin files
+    - attachment : attached files
+    - log : log files
+    - config : config files
 
 ~~~
-# Example: back up only the database and the attachment files
+# Example: back up only the database and the attached files
 php artisan exment:backup --target=database,attachment
 ~~~
 
 
 ## Restore
-There are two ways to restore (restore) data: "Select from backup list" and "Upload".  
+There are two ways to restore the data: "select from the backup list" and "upload".
 
 ### Notes on Restoration
-- If the version of Exment at the time of backup and the version of Exment currently installed are different, it is necessary to update the database after restoration.  
-Example： Version at the time of backup: v1.1.6 Current version: v1.2.0 → Database needs to be updated.
-In this case, execute the following command after restoration.
+- When the version of Exment at the time of the backup differs from the version of Exment installed now, the database must be brought up to date after the restore.  
+Example:
+    - Version at the time of the backup: v1.1.6
+    - Current version: v1.2.0  
+    → The database must be brought up to date
+    
+In that case, run the following command after the restore.
 
 ~~~
 php artisan exment:update
 ~~~
 
-- After restoration, you will be automatically signed out.  
-Log in with the user ID and password that were backed up.
+- After the restore, you are signed out automatically. Log in with the ID and password of a user that was backed up.
+
+- From v4.1.0, Exment is in maintenance mode while a restore is running.  
+When the restore ends, maintenance mode is released automatically. If maintenance mode is not released for some reason, release it with the steps of [Canceling maintenance mode](/troubleshooting?id=canceling-maintenance-mode).
 
 
 ### Select from backup list
-This is a method of restoring data by selecting a file to be backed up from a list of backups performed in the past.  
+The way to restore the data by selecting the file to restore from the list of backups taken in the past.
 
-- From the backup list, click the "Restore" link.  
+- In the backup list, click the [Restore] link.  
 ![Backup screen](img/backup/restore1.png)  
 
-- A confirmation dialog is displayed. Click "Confirm" and wait.  
-**※Restore is very time consuming. Please wait without operation.**
+- A confirmation dialog is displayed. Click [Confirm] and wait.  
+**Note: a restore takes a very long time. Wait without operating.**
 ![Backup screen](img/backup/restore2.png)  
 
-- When the completion message is displayed, the environment will be restored to the state at the time of backup.  
-You will be automatically redirected to the login page.  
+- When the completion message is displayed, the environment is back to the time of the backup.  
+You are moved to the login page automatically.  
 ![Backup screen](img/backup/restore3.png)  
 
 ### Upload
-This is a method to upload a locally stored backup to Exment and restore the data.  
-**※If the size of the uploaded file is too large, it may not complete successfully.**  
-In that case, please refer to the following menu "If the file size is too large to upload".    
+The way to restore the data by uploading a backup saved at hand (locally) to Exment.  
+**Note: when the uploaded file is too large, it may not complete correctly.** In that case, see [When uploading is not possible due to large capacity](#when-uploading-is-not-possible-due-to-large-capacity) below.
 
-- Click the "Restore" button at the top right of the page.  
+- Click the [Restore] button at the top right of the page.  
 ![Backup screen](img/backup/restore4.png)  
 
-- A file upload dialog will be displayed. Select the locally downloaded backup file and click "Send".  
+- A file upload dialog is displayed. Select the backup file downloaded locally and click "Submit".  
 ![Backup screen](img/backup/restore5.png)  
 
-- Click the "Send" button and wait.  
-**※Restore is very time consuming. Please wait without operation.**
+- After clicking the "Submit" button, wait.  
+**Note: a restore takes a very long time. Wait without operating.**
 
-- When the completion message is displayed, the environment will be restored to the state at the time of backup.  
+- When the completion message is displayed, the environment is back to the time of the backup.
 ![Backup screen](img/backup/restore6.png)  
 
 
 
 ### When uploading is not possible due to large capacity
-When restoring using the "Upload" method, if the size of the backup file is too large, the restoration may fail.  
-In such a case, perform restoration according to the following procedure.  
+When you restore by "upload", the restore may fail if the backup file is too large.  
+In that case, restore with one of the following steps.
 
-- Place the downloaded backup file in the following path on the server:  
+
+#### (1) Change the upload limit
+
+- Change the upload size limit with the steps of [Changing PHP settings](/additional_php_ini).
+
+#### (2) Put the backup file directly on the server
+
+- Put the downloaded backup file in the following path on the server.
 
 ~~~
-(Project root directory)/storage/app/backup/list
+(root directory of the project)/storage/app/backup/list
 ~~~
 
-- Reload Backup screen.  
+- Reload the backup screen.
 
-- The placed backup file has been added to the backup list. Restore from "Select from backup list" in the above menu.  
+- The backup file you put there has been added to the backup list. Restore with the steps of "Select from backup list" above.
 
-### (Advanced) Restore by command
-Restoration by command is also possible. Execute the following command in the root directory of the project.
+
+### When an error is shown on the backup screen or by the command
+A message like the following may be shown on the backup screen or by the command.
+
+![Backup screen](img/backup/backup_error.png)  
+
+When this error appears, the settings needed for backup and restore may not have been made on the server.  
+Check [Troubleshooting](/troubleshooting?id=backup-restore-fails) and change the server settings.
+
+
+### When you initialize custom data and so on after a restore
+After a restore, you can refresh the saved custom data and so on of Exment and create the data from scratch.  
+For details, see [Refreshing custom data](/refresh_data).
+
+
+### When you use SQL Server
+When you use SQL Server, Exment does not currently support backup and restore from the screen. You need to do the work by hand.  
+For details, see [Backup and restore (SQL Server)](/backup_sqlserver).
+
+
+
+<h3 id="restore_command"><a href="#/backup?id=restore_command" data-id="restore_command" class="anchor"><span>(Advanced) Restore by command</span></a></h3>
+
+You can also restore by command.
+
+- Put the downloaded backup file in the following path on the server.
+
+~~~
+(root directory of the project)/storage/app/backup/list
+~~~
+
+- Run the following command in the root directory of the project.
 
 ~~~
 php artisan exment:restore (zip file name)
 ~~~
 
-- If the zip file name is omitted, the backup list is displayed. Select the file to restore.
-- A confirmation message is displayed before the restore starts. To run without the confirmation message, specify "--yes".
+- When the zip file name is omitted, the backup list is shown. Select the file to restore.
+- A confirmation message is shown before execution. To run without the confirmation message, give "--yes".
 
 ~~~
 # Example: restore without the confirmation message
 php artisan exment:restore (zip file name) --yes
 ~~~
 
+<h3 id="change_backup_target"><a href="#/backup?id=change_backup_target" data-id="change_backup_target" class="anchor"><span>(For advanced users) Change backup destination</span></a></h3>
 
-### (For advanced users) Change backup destination
-Normally, backup files are located on a web server.  
-However, there may be requests to place the backup files in a different location.  
-If you put it in another location, you can download a backup file from another location and restore Exment if the web server goes down for some reason and can't start.  
-  
-※The setting procedure has been moved to [here](/additional_file_saveplace).  
+Usually, the backup files are put inside the web server.  
+The backup files can also be put in another place. When they are in another place, even if the web server breaks down and cannot start, you can download the backup files from that place and restore Exment.
+
+Note: the setting steps have moved to [Changing the file save place](/additional_file_saveplace).
 
 
 ### Notes
-- Depending on the server, the above backup destination change may not be possible.  
-
-Especially in the case of a rental server, **There may be restrictions on FTP etc. depending on the setting of the provider.** Please note.
+- On some servers, the backup destination cannot be changed.  
+Especially on rental servers, **FTP and so on may be restricted by the settings of the provider**. Please understand this beforehand.

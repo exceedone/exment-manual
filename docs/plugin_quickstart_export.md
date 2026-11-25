@@ -1,236 +1,241 @@
 # Plugin (export)
-It can be used if you want to implement your own custom data list export.  
-Please use it when exporting a file in the original format or when implementing a special conversion process.
+This plugin implements your own export of the custom data list.
+Use it when you export a file in your own format, or when you do a special conversion.
 
 > This feature was added in v3.2.0.
 
 ## About output format
-The output format is Excel and other formats are also available.  
-※In the case of Excel format, the processing is more optimized.
+You can output in Excel and also in other formats.
+Note: for the Excel format, the processing is more optimized.
 
 
 ## Creation method (normal)
-Here, as an example, we will create a plug-in that outputs a list of notification information in csv format without a header.  
-※As a prerequisite, knowledge of PHP and framework [Laravel] (http://laravel.jp/) is required.
+Here, as an example, we make a plugin that outputs a list of the information data in csv format without a header.  
+Note: as a prerequisite, you need to know PHP and the framework [Laravel](http://laravel.com/).
 
 ### Create config.json
-- Create the following config.json file.
+- Create the following config.json file.  
 
 ~~~ json
 {
     "plugin_name": "ExportTestCsv",
     "uuid": "1e7881d0-324f-11e9-b56e-0800200c9a33",
     "plugin_view_name": "ExportTestCsv",
-    "description": "Export CSV test.",,
+    "description": "Export CSV test.",
     "author": "Kajitori",
     "version": "0.0.1",
     "plugin_type": "export",
     "target_tables": "information",
-    "label": "Notification information output",
+    "label": "Information output",
     "icon": "fa-question",
-    "export_description": "List output of notification information in original csv format."
+    "export_description": "Outputs a list of the information data in an original csv format."
 }
 ~~~
 
-- plugin_name: The plugin name. Please enter in half-width alphanumeric characters.
-- uuid: A total of 36 characters, 32 strings + hyphens. Used to make the plugin unique.  
-Please create from the following URL.  
+- plugin_name : the plugin name. Enter it in single-byte alphanumeric characters.
+- uuid : a string that tells plugins apart. It is 32 characters plus hyphens, 36 characters in total. Make sure it is not the same value as another plugin's.  
+You can make one at the following URL, for example.  
 https://www.famkruithof.net/uuid/uuidgen
-- Plug-in_type: Enter export.
-- target_tables: Enter the name of the table to be exported. If there are more than one, enter them separated by commas.
-- label: The title to be displayed in the export dialog.
-- icon: The icon to be displayed in the export dialog.
-- export_description: The description to be displayed in the export dialog.
+- plugin_type : enter export.  
+- target_tables : enter the name of the table to export. If there are several, separate them with commas.  
+- label : the title shown in the export dialog.
+- icon : the icon shown in the export dialog.    
+- export_description : the description shown in the export dialog.
 
-※Target_tables, label, icon, export_description can be changed later on the screen.
+Note: target_tables, label, icon and export_description can be changed later on the screen.
 
 
 ### PHP file creation
-- Create a PHP file like the one below. Name it "Plugin.php".
+- Create a PHP file like the one below. The name should be "Plugin.php".
 
 ~~~ php
-<? php
-namespace App \ Plugins \ ExportTestCsv;
+<?php
+namespace App\Plugins\ExportTestCsv;
 
-use Exceedone \ Exment \ Services \ Plugin \ PluginExportBase;
+use Exceedone\Exment\Services\Plugin\PluginExportBase;
 
 class Plugin extends PluginExportBase
 {
-    / **
+    /**
      * execute
-     * /
-    public function execute ()
+     */
+    public function execute() 
     {
-        // * Get a temporary tmp file with the method "$ this-> getTmpFullPath ()"
-        // * After execution, the temporary tmp file will be deleted automatically.
-        $ tmp = $ this-> getTmpFullPath ();
+        // * Get a temporary tmp file with the method "$this->getTmpFullPath()"
+        // * After the run, the temporary tmp file is deleted automatically.
+        $tmp = $this->getTmpFullPath();
 
 
-        ///// Original implementation process --- From here
-        // open csv file
-        $ fp = fopen ($ tmp,'w');
+        ///// Your own implementation --- from here
+        // Open the csv file
+        $fp = fopen($tmp, 'w');
 
-        // Get data list for all system columns / custom columns (array)
-        $ data = $ this-> getData ();
+        // Get the data list with all system columns and custom columns (array)
+        $data = $this->getData();
 
-        // Get data list in view format (array)
-        // $ data = $ this-> getViewData ();
+        // Get the data list in the view format (array)
+        // $data = $this->getViewData();
 
-        // Get data list with Collection of CustomValue
-        // $ data = $ this-> getRecords ();
+        // Get the data list as a Collection of CustomValue
+        // $data = $this->getRecords();
 
-        foreach ($ data as $ fields) {
-            fputcsv ($ fp, $ fields);
+        foreach ($data as $fields) {
+            fputcsv($fp, $fields);
         }
 
-        fclose ($ fp);
-        ///// Original implementation process --- So far
+        fclose($fp);
+        ///// Your own implementation --- to here
 
 
-        // return the string string in $ tmp
-        return $ tmp;
+        // Return the string of $tmp
+        return $tmp;
     }
 
-    / **
+    /**
      * Get download file name.
      * Get the file name
      *
      * @return string
-     * /
-    public function getFileName (): string {
+     */
+    public function getFileName() : string {
         return "test.csv";
     }
 }
 
 ~~~
-- The namespace should be ** App \ Plugins \\ (Pascal case of plugin name) **. [Click here for details](/plugin_quickstart#plugin-name-namespace)
+- The namespace should be **App\Plugins\\(plugin name in Pascal case)**. [Click here for details](/plugin_quickstart?id=plugin-name-namespace)
 
-- The Plugin class must inherit from the class PluginExportBase.
+- The Plugin class must extend the class PluginExportBase.  
 
 ### Compress to zip
-Compress the above two files into a zip with the minimum configuration.
+Compress the above two files, as the minimum configuration, into a zip.  
 - ExportTestCsv.zip
     - config.json
     - Plugin.php
 
 
 ### upload
-Upload the plugin.
-※Please refer to [Plug-in](/plugin) for the upload method.
+Upload the plugin.  
+Note: see [Plugin](/plugin) for how to upload.  
 
 
 ### How to execute the export
-- On the target_tables screen registered on the plugin management screen, click the "Import / Export" button to display the selection field for the uploaded plugin.
+- On the screen of the target_tables registered on the plugin management screen, click the "Import/Export" button. The selection field of the uploaded plugin is shown.  
 
-![Export Dialog](img/plugin/plugin_export1.png)
+![Export dialog](img/plugin/plugin_export1.png)  
 
-- When you click the "Export" button of the registered plug-in, the export process will be executed with the contents of the execute function of Plugin.php.
+- Click the "Export" button of the registered plugin. The export runs with the contents of the execute function of Plugin.php.  
 
 
 
 
 ## Creation method (Excel)
-When outputting in Excel format, it is basically implemented by the same procedure, but it can be implemented more conveniently when creating a PHP file.
-※Procedures other than "PHP file creation" are the same as the implementation in "Creation method (normal)".
-※The library [PhpSpreadsheet] (https://github.com/PHPOffice/PhpSpreadsheet) for operating Excel with PHP is used.
+The basic steps are the same when you output in Excel format. Only the PHP file can be written in a more convenient way.
+Note: the steps other than "PHP file creation" are the same as in "Creation method (normal)".
+Note: it uses [PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet), a library for handling Excel with PHP. 
   
-Here, as an example, the procedure for exporting the notification information is described according to the sample template file below.
+Here, as an example, we describe the steps to export the information data to fit the sample template file below.  
 
-![Export Dialog](img/plugin/plugin_export2.png)
+![Export dialog](img/plugin/plugin_export2.png)  
 
 
 
 ### PHP file creation
-- Create a PHP file like the one below. Name it "Plugin.php".
+- Create a PHP file like the one below. The name should be "Plugin.php".
 
 ~~~ php
-<? php
-namespace App \ Plugins \ ExportTestExcel;
+<?php
+namespace App\Plugins\ExportTestExcel;
 
-// Change to PluginExportExcel
-use Exceedone \ Exment \ Services \ Plugin \ PluginExportExcel;
+// Changed to PluginExportExcel
+use Exceedone\Exment\Services\Plugin\PluginExportExcel;
 
-// change extends to PluginExportExcel
+// extends changed to PluginExportExcel
 class Plugin extends PluginExportExcel
 {
-    / **
+    /**
      * execute
-     * /
-    public function execute () {
+     */
+    public function execute() {
         // Load the template file and initialize PhpSpreadsheet
-        $ spreadsheet = $ this-> initializeExcel ('template.xlsx');
-        // * When creating a new file without using a template file
-        // $ spreadsheet = $ this-> initializeExcel ();
+        $spreadsheet = $this->initializeExcel('template.xlsx');
+        // * To create a new file without using a template file
+        // $spreadsheet = $this->initializeExcel();
 
-        // Get data list for all system columns / custom columns (array)
-        // $ data = $ this-> getData ();
+        // Get the data list with all system columns and custom columns (array)
+        // $data = $this->getData();
 
-        // Get data list in view format (array)
-        // $ data = $ this-> getViewData ();
+        // Get the data list in the view format (array)
+        // $data = $this->getViewData();
 
-        // Get data list with Collection of CustomValue
-        $ data = $ this-> getRecords ();
+        // Get the data list as a Collection of CustomValue
+        $data = $this->getRecords();
 
 
-        ///// Original implementation process --- From here
-        $ sheet = $ spreadsheet-> getActiveSheet ();
-        $ column = 3;
-        foreach ($ data as $ record) {
+        ///// Your own implementation --- from here
+        $sheet = $spreadsheet->getActiveSheet();
+        $column = 3;
+        foreach($data as $record){
 
-            // Loop and set the data
-            $ sheet-> setCellValue ("A {$ column}", $ record-> id); // ID
-            $ sheet-> setCellValue ("B {$ column}", $ record-> getValue ('title', true)); // Title
-            $ sheet-> setCellValue ("C {$ column}", $ record-> getValue ('priority', true)); // Importance
-            $ sheet-> setCellValue ("D {$ column}", $ record-> updated_at); // Updated date and time
+            // Loop over the data and set it
+            $sheet->setCellValue("A{$column}", $record->id); // ID
+            $sheet->setCellValue("B{$column}", $record->getValue('title', true)); // Title
+            $sheet->setCellValue("C{$column}", $record->getValue('priority', true)); // Priority
+            $sheet->setCellValue("D{$column}", $record->updated_at); // Updated date and time
 
-            $ column ++;
+            $column++;
         }
     
-        // Frame setting
-        $ laserRow = $ column --1;
-        $ sheet-> getStyle ("A2: D {$ laserRow}")-> applyFromArray ([[
+        // Set the borders
+        $laseRow = $column - 1;
+        $sheet->getStyle("A2:D{$laseRow}")->applyFromArray([
             'borders' => [
-                'outside' => [
-                    'borderStyle' => \ PhpOffice \ PhpSpreadsheet \ Style \ Border :: BORDER_THIN
-                ],,
-                'inside' => [
-                    'borderStyle' => \ PhpOffice \ PhpSpreadsheet \ Style \ Border :: BORDER_HAIR
-                ],,
-            ],,
+                'outside'=>[
+                    'borderStyle'=>\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN
+                ],
+                'inside'=>[
+                    'borderStyle'=>\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_HAIR
+                ],
+            ],
         ]);
         
-        // Print range setting
-        $ sheet-> ge
-        tPageSetup ()-> setPrintArea ("A1: D {$ laserRow}");
-         ///// Original implementation process --- So far
+        // Set the print area
+        $sheet->getPageSetup()->setPrintArea("A1:D{$laseRow}");
+        ///// Your own implementation --- to here
 
 
-         // Save the created file in a tmp file and return the file path
-         // (Save as a separate file from the template)
-         return $ this-> getExcelResult ($ spreadsheet);
-     }
+        // Save the created file to a tmp file and return its file path
+        // (saved as a file separate from the template)
+        return $this->getExcelResult($spreadsheet);
+    }
 
-     / **
-      * Get download file name.
-      *
-      * @return string
-      * /
-     public function getFileName (): string {
-         return "test.xlsx";
-     }
+    /**
+     * Get download file name.
+     *
+     * @return string
+     */
+    public function getFileName() : string {
+        return "test.xlsx";
+    }
 }
 
 ~~~
 
 ### Compress to zip
-Compress the file into a zip with the minimum configuration.
+Compress the files, as the minimum configuration, into a zip.  
 - ExportTestExcel.zip
-     - config.json
-     - Plugin.php
-     - template.xlsx (if you include a template file)
+    - config.json
+    - Plugin.php
+    - template.xlsx (when you include a template file)
 
+### Other restrictions
+- PhpSpreadSheet 1.22.0, the latest version as of February 25, 2022, does not support the following. Please do not include them in the template.  
+    - Inserted shapes
+    - Charts
+    - Tables made with "Format as Table"
 
+- If the output file does not contain the images, see "Image output fails in document output using Excel as a template" in [Troubleshooting](/troubleshooting).
 
 ## Sample plugin
-- [Export CSV output](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestCsv)
-- [Export Excel Output](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestExcel)
+- [Export with CSV output](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestCsv)
+- [Export with Excel output](https://github.com/exment-git/plugin-sample/tree/main/export/ExportTestExcel)

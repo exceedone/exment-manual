@@ -6,7 +6,7 @@ Creates and edits the statuses and actions of a workflow directly on the flow ch
 
 ## What the flow designer is
 
-In [workflow settings](/workflow_setting.md) the statuses are entered in the step 1 table and the actions in the step 2 table.  
+In [workflow settings](/workflow_setting) the statuses are entered in the step 1 table and the actions in the step 2 table.  
 Tables alone make some things hard to see:
 
 - which status leads to which
@@ -46,7 +46,7 @@ Click [Create with designer] at the top right of the workflow list.
 | --- | --- |
 | Back to list | Returns to the workflow list |
 | 1. Status name / 2. Action name | Go to the table screens (step 1 / step 2) |
-| Setting Complete | Completes the workflow setting. It sits after "2. Action Name" and is not shown once the setting is completed. See [Workflow settings](/workflow_setting.md) |
+| Setting Complete | Completes the workflow setting. It sits after "2. Action Name" and is not shown once the setting is completed. See [Workflow settings](/workflow_setting) |
 | 3. Notify Setting / 4. Usage settings | Available once the setting is completed |
 | (workflow name) | The workflow being edited |
 | No problem / N item(s) to check | The result of the input check. Click it to read the details |
@@ -141,6 +141,8 @@ The right of the toolbar always carries the result of the input check.
 
 Clicking it lists the problems; clicking one jumps to where it is.
 
+The main checks are as follows.
+
 | Message | Meaning |
 | --- | --- |
 | The workflow name is empty. It cannot be saved as is. | A name is required before saving |
@@ -160,7 +162,7 @@ Clicking it lists the problems; clicking one jumps to where it is.
 | Executable user is not set on action "...". It cannot be saved as is. | Say who may run it |
 | The number of people in "Condition to advance to next status" on action "..." must be a number from 0 to 10. | Fix the number of people |
 
-Messages about the user setting of an action are also shown when "Special Action" is combined with "Select the user who executed the previous action", when the first action uses that option or anything other than "Set in advance", and when it is mixed with other settings in the same status.
+Messages about the user setting of an action are also shown when "Special action" is combined with "Selected by the user who executed the previous action", when the first action uses that option or anything other than "Set in advance", and when it is mixed with other settings in the same status.
 
 "No action reaches ..." and "... has no outgoing action…" are warnings and do not stop saving. The other messages stop the save.
 
@@ -237,7 +239,7 @@ Saving from the flow designer does not remove them; they appear in the chart as 
 
 ## See also
 
-- [Workflow settings](/workflow_setting.md)
-- [Workflow setting example](/workflow_example.md)
-- [Workflow implementation](/workflow_execution.md)
-- [Kanban view](/view_kanban.md)
+- [Workflow settings](/workflow_setting)
+- [Workflow setting example](/workflow_example)
+- [Workflow implementation](/workflow_execution)
+- [Kanban view](/view_kanban)

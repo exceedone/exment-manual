@@ -1,11 +1,18 @@
 # Plugin reference (CRUD page)
-It is a list of functions and properties unique to each plugin.  
-※ For the reference of custom tables, custom columns, and custom data, please refer to [here](/func_reference).  
-※ This reference is only for CRUD pages. For the reference of other plugin types, please refer to [here](/plugin_reference).  
-※ This mainly describes items that plugin developers define. Items that are used by the system and that plugin developers should not change are omitted.  
-※ Functions marked with "★" almost always need to be defined. Functions marked with "☆" need to be defined depending on the case.  
-※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
+This page is for people who develop plugins (CRUD pages).  
+It lists the functions and properties you can use in the class of a CRUD page.
+
+**What the marks on the functions mean**
+
+| Mark | Meaning |
+| ---- | ---- |
+| ★ | Almost always needs to be defined |
+| ☆ | Needs to be defined depending on the case |
+
+- This page is only for CRUD pages. For the other plugin types, see the [Plugin reference](/plugin_reference).
+- For the functions of custom tables, custom columns and custom data, see the [function reference](/func_reference).
+- This page mainly lists the items that plugin developers define. Items that are used by the system and that developers should not change are omitted.
+- The classes of the admin library are written with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin"). If you are using v6.x or lower, read them as "Encore\Admin". See [Update procedure v7.0.0](/update/v7_0_0) for details.
 
 ## PluginCrudBase
 An abstract class for plugins (CRUD pages). When developing a CRUD page plugin, inherit this class.  
@@ -72,7 +79,7 @@ None
 
 #### getAuthType
 Returns the authentication type string for the CRUD page.  
-※ Separately from the Exment login, you can set up authentication for accessing this CRUD page. Set the authentication type according to the type of service you want to access.
+Note: Separately from the Exment login, you can set up authentication for accessing this CRUD page. Set the authentication type according to the type of service you want to access.
 
 
 ##### Authentication type
@@ -149,7 +156,7 @@ None
 A function that retrieves the data list in paginated form.  
 Return the retrieved data as \Illuminate\Pagination\LengthAwarePaginator.  
 Each element of the list should be an associative array, and the keys of that associative array should be the same as the keys set in getFieldDefinitions.  
-※ Implement this function when the function enablePaginate returns true.
+Note: Implement this function when the function enablePaginate returns true.
 
 
 ##### argument
@@ -183,7 +190,7 @@ Each element of the list should be an associative array, and the keys of that as
 
         $query = [
             'per_page' => $options['per_page'] ?? 20,
-            'page' => $options['page'] ?? 20
+            'page' => $options['page'] ?? 1
         ];
 
         if(array_has($options, 'query')){
@@ -224,7 +231,7 @@ Each element of the list should be an associative array, and the keys of that as
 A function that retrieves the data list.  
 Return the retrieved data as a Collection.  
 Each element of the list should be an associative array, and the keys of that associative array should be the same as the keys set in getFieldDefinitions.  
-※ Implement this function when the function enablePaginate returns false.
+Note: Implement this function when the function enablePaginate returns false.
 
 
 ##### argument
@@ -244,7 +251,7 @@ Each element of the list should be an associative array, and the keys of that as
 ``` php
     /**
      * (3) Get data list
-     * Get data paginate
+     * Get data list
      *
      * @return Collection
      */
@@ -668,7 +675,7 @@ None
 ``` php
     /**
      * Callback tools. If add event, definition.
-     * ※ In this example: displays a WordPress list button and switches the WordPress site from which data is retrieved
+     * In this example: displays a WordPress list button and switches the WordPress site from which data is retrieved
      *
      * @param $tools
      * @return void
@@ -781,8 +788,8 @@ None
 
 #### setForm
 Define this function when you want to create your own data input form on the CREATE (data creation) page or the EDIT (data edit) page.  
-※ The notation basically follows the way fields are added in [forms](https://github.com/exceedone/exment-admin-core/blob/master/docs/en/model-form-fields.md) of the admin library "exment-admin-core" (the same as the original [laravel-admin forms](https://laravel-admin.org/docs/en/model-form-fields)). For the input methods, please refer to that page.  
-※ If this function is not defined (or returns null), the columns that have "create" (on the CREATE page) or "edit" (on the EDIT page) defined in the function getFieldDefinitions are displayed as single-line text fields.
+Note: The notation basically follows the way fields are added in [forms](https://github.com/exceedone/exment-admin-core/blob/master/docs/en/model-form-fields.md) of the admin library "exment-admin-core" (the same as the original [laravel-admin forms](https://laravel-admin.org/docs/en/model-form-fields)). For the input methods, please refer to that page.  
+Note: If this function is not defined (or returns null), the columns that have "create" (on the CREATE page) or "edit" (on the EDIT page) defined in the function getFieldDefinitions are displayed as single-line text fields.
 
 
 ##### argument
@@ -848,8 +855,8 @@ A function for defining validation before data is saved on the CREATE (data crea
 
 ##### Example
 ``` php
-    // ※ Example 1. How to add validation to the form in the setForm function.
-    // ※ For convenience, this example is shown under the validate function, but in this case, do not define the validate function.
+    // Example 1. How to add validation to the form in the setForm function.
+    // For convenience, this example is shown under the validate function, but in this case, do not define the validate function.
     /**
      * set form info
      *
@@ -874,7 +881,7 @@ A function for defining validation before data is saved on the CREATE (data crea
     }
 
 
-    // ※ Example 2. How to use Laravel validation.
+    // Example 2. How to use Laravel validation.
     /**
      * Validate form
      *
@@ -903,7 +910,7 @@ A function for defining validation before data is saved on the CREATE (data crea
     }
     
 
-    // ※ Example 3. How to validate individually.
+    // Example 3. How to validate individually.
     // If there are errors, return an array whose keys are the field names and whose values are the error messages.
     /**
      * Validate form

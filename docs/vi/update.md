@@ -13,7 +13,7 @@ Về những thay đổi của từng phiên bản, vui lòng xem [release note]
 - Trong tệp: `version` của `exceedone/exment` trong `composer.lock`
 
 ## 2. Sao lưu
-Hãy sao lưu dữ liệu trước khi cập nhật. Chi tiết vui lòng xem [Sao lưu](/backup).
+Hãy sao lưu dữ liệu trước khi cập nhật. Chi tiết vui lòng xem [Sao lưu](/vi/backup).
 
 - Đăng nhập Exment bằng tài khoản quản trị, mở "Admin Setting" → "Backup" ở menu bên trái.
 - Bấm nút [Backup] ở góc trên bên phải. Bản sao lưu dữ liệu và tệp đính kèm sẽ được tạo.
@@ -39,7 +39,7 @@ Có 3 cách. Cả 3 đều làm cùng các việc (sao lưu → lấy chương t
 |---|---|
 | **A. Batch cập nhật (khuyến nghị)** | Muốn chỉ chạy một tệp trên máy chủ |
 | **B. Bằng lệnh** | Muốn tự chạy từng bước |
-| **C. Cập nhật tự động** | Muốn tự động lên bản mới mỗi ngày ([cập nhật tự động](/ja/update_auto), tiếng Nhật) |
+| **C. Cập nhật tự động** | Muốn tự động lên bản mới mỗi ngày ([cập nhật tự động](/vi/update_auto)) |
 
 #### A. Batch cập nhật (khuyến nghị)
 **(1) Tải batch (chỉ lần đầu)**
@@ -112,10 +112,10 @@ php artisan exment:update
 **Với máy chủ thuê (Xserver, v.v.)**
 
 - Trên Xserver, hãy chạy `composer update --ignore-platform-reqs` thay cho `composer update`, vì Xserver mặc định không có extension Sodium của PHP (nếu thật sự cần cài, hãy liên hệ bộ phận hỗ trợ của Xserver).
-- `php` khi dùng SSH có thể khác phiên bản với PHP đã chọn trên màn hình quản lý máy chủ. Hãy kiểm tra bằng `php --version`. Nếu khác, hãy liên kết `~/bin/php` tới phiên bản đó, hoặc chạy bằng đường dẫn đầy đủ như `/usr/bin/php8.3 artisan exment:update` ([máy chủ thuê](/install_rental)).
+- `php` khi dùng SSH có thể khác phiên bản với PHP đã chọn trên màn hình quản lý máy chủ. Hãy kiểm tra bằng `php --version`. Nếu khác, hãy liên kết `~/bin/php` tới phiên bản đó, hoặc chạy bằng đường dẫn đầy đủ như `/usr/bin/php8.3 artisan exment:update` ([máy chủ thuê](/vi/install_rental)).
 
 #### C. Cập nhật tự động
-Mỗi ngày kiểm tra xem có phiên bản mới không, nếu có thì chạy batch cập nhật. Cách cài đặt vui lòng xem [cập nhật tự động](/ja/update_auto) (tiếng Nhật).
+Mỗi ngày kiểm tra xem có phiên bản mới không, nếu có thì chạy batch cập nhật. Cách cài đặt vui lòng xem [cập nhật tự động](/vi/update_auto).
 
 - Cập nhật tự động chỉ lên được trong phạm vi của cập nhật thông thường. **Không vượt qua phiên bản major, ví dụ từ v6 lên v7**. Xem "[Số phiên bản và phạm vi cập nhật](/vi/update?id=Số-phiên-bản-và-phạm-vi-cập-nhật)" ở dưới.
 
@@ -136,7 +136,7 @@ Vui lòng xem trang của mọi mốc nằm giữa phiên bản hiện tại và
 ## 4. Kiểm tra sau khi cập nhật
 - Nhấn **Ctrl+F5** trên trình duyệt để tải lại màn hình.
 - Kiểm tra ở "System Setting" → "System version information" xem đã là phiên bản mới chưa.
-- Nếu xảy ra lỗi, vui lòng xem [Xử lý sự cố](/troubleshooting).
+- Nếu xảy ra lỗi, vui lòng xem [Xử lý sự cố](/vi/troubleshooting).
 
 ## Số phiên bản và phạm vi cập nhật
 Số phiên bản của Exment là "major . minor . patch" (ví dụ v7.1.0). Số nào tăng sẽ quyết định cách cập nhật.
@@ -153,4 +153,4 @@ Số phiên bản của Exment là "major . minor . patch" (ví dụ v7.1.0). S�
 - Nếu vẫn dùng v6 và để cập nhật tự động chạy, nó sẽ thấy "có phiên bản mới hơn (v7)" và chạy batch cập nhật mỗi ngày (phiên bản vẫn là v6.x mới nhất). Hãy nâng lên v7, hoặc tắt cập nhật tự động cho đến khi nâng.
 
 ## Khác
-- Cài bản phát triển, quay về phiên bản cũ, hoặc tạm thời thay chương trình: [bản phát triển và phiên bản cũ](/ja/update_tmp) (tiếng Nhật)
+- Cài bản phát triển, quay về phiên bản cũ, hoặc tạm thời thay chương trình: [bản phát triển và phiên bản cũ](/vi/update_tmp)

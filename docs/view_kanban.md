@@ -18,9 +18,9 @@ The Exment kanban view can:
 
 ## Adding the view
 
-1. Open the custom view setting screen (see [Custom views](/view.md)).
+1. Open the custom view setting screen (see [Custom views](/view)).
 2. Click [New] at the top right.
-3. Choose "Create kanban view" in the dialog.
+3. Choose "Kanban view new creation" in the dialog.
 
 ![New view dialog](img/view_kanban/kanban_new.png)
 
@@ -29,6 +29,7 @@ The Exment kanban view can:
 ![Basic setting](img/view_kanban/kanban_setting_basic.png)
 
 #### How the board columns are made
+Choose where the vertical columns of the board are made from.
 
 | Option | Content |
 | --- | --- |
@@ -47,7 +48,7 @@ Drawn in bold as the title of the card.
 When set, the record label is shown as a link at the top of the card. When left empty, the record label is the title.
 
 #### Column for the assignee
-Drawn with an avatar at the foot of the card; cards with no value show "Unassigned".  
+The column that holds the assignee. It is drawn with an avatar at the foot of the card; cards with no value show "Unassigned".  
 Also used by the "Unassigned" figure on the summary bar, the "Unassigned only" filter and "Bulk assign".
 
 Leave it empty and the avatar, the "Unassigned" figure, the "Unassigned only" filter, "Bulk assign", changing the assignee from the card and "Auto assign" are all hidden.
@@ -70,7 +71,7 @@ What to put inside the card. With nothing set, the card shows only its title.
 | Item | Content |
 | --- | --- |
 | Target column | The column to show |
-| Display name | A different label for the card |
+| Alias display name | Enter it to change the name shown on the card |
 | Position | Where on the card it goes |
 | Style | How it is drawn |
 | Icon | A Font Awesome class name (e.g. fa-phone) |
@@ -99,11 +100,11 @@ The per-value colours always come from the column. The preset decides the
 shape only, which is what lets one preset fit every column.
 
 Use the pencil button to create or edit a preset - see
-[Cell appearance presets](/cell_style_preset.md).
+[Cell style presets](/cell_style_preset).
 
-> A card row that is not a column - the workflow status, a system column, the
-> parent record - takes a preset too, but not per-value colours: those are a
-> column's own setting.
+> An item that is not a column - the workflow status, the created date and so on - can be shown
+> in the same look too when a preset is picked. But the per-value colours are a
+> column's own setting, so they do not apply to these items.
 
 ### Icon
 A Font Awesome class name (e.g. `fa-phone`). It wins over an icon carried by the preset.  
@@ -123,7 +124,7 @@ An image column drawn as a cover at the top of the card. Records with no image a
 "Fill (overflow is cropped)" fills the frame and cuts off what does not fit. "Fit whole image (letterboxed)" shows the whole image and leaves margins.
 
 #### Column for the colored labels
-A choice column drawn as colored labels at the top of the card. Multi-select columns can be used, and every value is drawn.  
+A choice column drawn as colored labels at the top of the card. Multi-select columns can be used too.  
 The column is also added to the filter panel while "Columns shown in the filter panel" is left empty.
 
 #### Label display
@@ -140,7 +141,7 @@ Draws a progress bar under the card title.
 #### Column the elapsed days are counted from / Age colour steps
 The date the elapsed days are counted from (the day a request came in, for instance). The left edge of the card changes colour as the days pass.  
 Write three days in ascending order, separated by commas:  
-`1,2,3` - yellow after 1 day, orange after 2, red after 3.  
+`1,2,3` - yellow at 1 day, orange at 2 days, red at 3 days or more.  
 `3,7,14` - for longer stages.  
 `1,2,3` when not changed.
 
@@ -167,7 +168,7 @@ The number of cards that may sit in a column at the same time. A column over its
 
 | Item | Content |
 | --- | --- |
-| Target column | The column the limit applies to |
+| Target column | The column the limit applies to (picked from the table's choices) |
 | Limit | How many cards may sit there (1 - 999, 5 when a row is added) |
 
 #### Count the WIP limit in (number column)
@@ -179,7 +180,7 @@ Integer, decimal and currency columns only.
 
 | Option | What happens |
 | --- | --- |
-| Allow it (red header only) | The move goes through; only the header turns red. |
+| Allow it (red header only) | As before. The move goes through; only the header turns red. |
 | Ask first | A confirmation is shown; OK moves the card. |
 | Do not allow it | A full column greys out while dragging and refuses the card. |
 
@@ -212,7 +213,7 @@ Their records are not loaded either, which alone makes a large table much faster
 
 | Item | Content |
 | --- | --- |
-| Column the "Mine" button reads | Which column decides whether a card is "mine". The assignee column when left empty. |
+| Column the "Mine" button reads | Which column the [My cards] button on the toolbar reads to decide whether a card is "mine". The "Column for the assignee" when left empty. |
 | Column used by auto assign | The column auto assign judges by (an assignment group, say). The person who handles that value most often is recommended for unassigned cards (see "Auto assign" below). |
 | Columns shown in the filter panel | The columns the filter panel offers, in the order you pick them. When left empty, the panel offers every column the board reads. |
 | Show the summary bar (KPI) | Draws a bar of figures above the board. |
@@ -231,7 +232,7 @@ With both set to NO, a click goes to the record's detail screen.
 
 #### Cards loaded per column
 How many cards each column loads first (0 - 500, 0 in a new view).  
-0 (empty) loads up to "Max display count" over the whole board, as before.  
+0 (empty) loads up to "Max display count" over the whole board.  
 Something like 50 loads 50 per column and puts a [Load more] button under each one.
 
 Counts, totals, average age and the summary bar are read from the database, not from the cards loaded, so they stay correct.  
@@ -280,10 +281,10 @@ Up to six figures are shown. Each one appears only when the setting it reads is 
 | Overdue | "Column for the deadline (SLA timer)" is set |
 | Avg. elapsed days | "Column the elapsed days are counted from" is set |
 | Blocked | "Values treated as blocked" is set |
-| Done | Values are treated as done (on a workflow board, the statuses marked completed) |
+| Done | "Values treated as done" is set (on a workflow board, the statuses marked completed) |
 
 Where the board loads a column at a time, "Blocked" can read like "≥8": at least that many.  
-To narrow the board down, use the "Overdue only" / "Unassigned only" checkboxes in the filter panel.
+To narrow the board down, use the checkboxes of [Filter], such as "Overdue only" and "Unassigned only".
 
 #### Column header
 
@@ -321,7 +322,7 @@ On a workflow board, the confirmation screen of the workflow action opens instea
 - Checkboxes that narrow the board. Each one appears only when it can work:
   - "Overdue only" - "Column for the deadline (SLA timer)" is set
   - "Unassigned only" - "Column for the assignee" is set
-  - "Assigned to me only" - the column set in "Column the "Mine" button reads" (the column used by the [My cards] button) holds users, so the board can tell who you are
+  - "Assigned to me only" - the column set in "Column the "Mine" button reads" is a user column, so the board can tell who you are
   - "Blocked only" - "Values treated as blocked" is set
   - "Expedite only" - "Values treated as expedite" is set
 - [Reset] clears the panel
@@ -384,7 +385,7 @@ On an approval process this shows how many requests - and how much money - are w
 
 ## For large tables
 
-Once a table holds several thousand records:
+For a table that holds more than several thousand records, the following settings are recommended.
 
 1. **Set "Cards loaded per column" to about 50.**  
    Each column loads a little at a time and [Load more] fetches the rest. Counts and totals are still read from the database, so they stay correct.
@@ -395,7 +396,7 @@ Once a table holds several thousand records:
 
 ## See also
 
-- [Custom views](/view.md)
-- [Data list tools](/data_grid_tools.md)
-- [Workflow settings](/workflow_setting.md)
-- [Flow designer](/workflow_design.md)
+- [Custom views](/view)
+- [Data list tools](/data_grid_tools)
+- [Workflow settings](/workflow_setting)
+- [Flow designer](/workflow_design)

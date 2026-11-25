@@ -1,11 +1,11 @@
 # Scheduled jobs
 The jobs that the cron of the server (`php artisan schedule:run`) runs at set times. Open it from "Settings: System" → "Scheduled Jobs" (URL `/scheduled_jobs`).
 
-* This page is available in Exment v7.2.6 or later.  
-* Only system administrators can see this page.
+Note: this screen is available in Exment v7.2.6 or later.  
+Note: only system administrators can see this screen.
 
 ## Turn it on
-In [Feature management](/feature), set "Scheduled jobs" to used. It starts off; while it is off, the page cannot be opened (404).
+In [Feature Management](/feature), set "Scheduled jobs" to "Use". It is off at first. While it is off, the page cannot be opened (404).
 
 The runs are kept only while the feature is used.
 

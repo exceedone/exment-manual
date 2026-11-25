@@ -1,83 +1,87 @@
 # Refresh custom data
-You can refresh Exment's custom data.  
-It can be used for the following purposes.  
+How to delete the registered custom data all together (refresh it) with a command.  
+Only the data is deleted; the settings (table definitions, system settings and so on) stay. Use it in cases like these.
 
-- After verifying the environment, I want to delete all registered data and perform verification again.  
-- After migrating from the test environment to the production environment, delete all the data in the production environment and start operation.
+- After verifying an environment, you want to delete all the registered data and verify again.
+- After moving from the test environment to the production environment, you want to delete all the data of the production environment and start operation.
 
-There is a command to refresh the data in all custom tables at once, and a command to refresh only the data in the specified table.  
+There are two commands.
+
+| What you want to do | Command | Where to look |
+|---|---|---|
+| Delete the data of all custom tables at once | `php artisan exment:refreshdata` | "Data for all tables" |
+| Delete only the data of the specified tables | `php artisan exment:refreshtable` | "Data in the specified custom table" |
+
+For both commands, we recommend taking a backup of the data before you run them.
 
 ## Data for all tables
-Refresh the data for all tables.  
-By executing the command, all the following data will be deleted, and the id serial number will also be from 1.
+All tables are the target.  
+When you run the command, all of the "data to be deleted" below is deleted. The id serial numbers also start from 1 again.
 
 
 ### Data to be deleted (including internal tables)
 - Access log
 - Email address verification table
 - Notification bar data
-- Change log
-- For workflow work users
+- Update history
+- Target work users of workflows
 - Workflow execution status
-- Sharing custom data
-- n:n relation data (organization-excluding users)
-- Custom data (excluding users, organizations, notification templates)
-- Custom data attachments (excluding users, organizations and notification templates)
+- Sharing of custom data
+- n:n relation data (except organization-user)
+- Custom data (except users, organizations and notification templates)
+- Attached files of custom data (except users, organizations and notification templates)
 
 ### Data not deleted
-- System setting
-- Custom table settings
+- System settings
+- Setting values of custom tables
 - Workflow settings
-- Other system related settings
+- Other system-related setting values
 - Login information
-- User information, organization information, notification template data
-- Organization-User Affiliation Information
+- Data of user information, organization information and notification templates
+- Organization-user membership information
 
 ### Execution method
-- Execute the following command.
+- <span class="red bold">※We recommend backing up the data before you run this command.</span>
+- Run the following command.
 
 ~~~
 php artisan exment:refreshdata
 ~~~
 
-- <span class="red bold">* It is recommended to back up the data before executing this command.</span>
-
 
 ## Data in the specified custom table
-Refreshes the data for the specified custom table.  
-Not all are deleted at once, but the deletion method and deletion contents are controlled depending on the situation.  
-\* User, organization, and notification template data cannot be refreshed.
+The specified custom tables are the target.  
+Not everything is deleted at once: how it is deleted depends on the kind of data (the three below).  
+※The data of users, organizations and notification templates cannot be refreshed.
 
 ### Data that deletes all and the id serial number becomes 1.
-- Data in the specified custom table
-- Data in a child custom table if the specified custom table is set to a 1: n parent relation
-- If the specified custom table is set to the parent / child relation of n: n, the relation data information of n:n.   
-\* The data itself in the relation destination custom table is not deleted.  
+- The data in the specified custom table
+- If the specified custom table is the parent side of a 1:n relation, the data in the custom table on the child side
+- If the specified custom table is the parent side or the child side of an n:n relation, the n:n relation data information. ※The data itself in the custom table at the other end of the relation is not deleted.
 
 ### Delete only the data related to the table to be deleted (including the internal table)
 - Notification bar data
-- Change log
-- For workflow work users
+- Update history
+- Target work users of workflows
 - Workflow execution status
-- Sharing custom data
-- Custom data attachments, comments
+- Sharing of custom data
+- Attached files and comments of custom data
 
 ### Updated to empty value
-- If the table to be deleted is included in the custom column "Select (from table)" of another custom table, the referenced value will be empty for the data in that custom table. I will update it all at once.
+- If the table to be deleted is used in a custom column "Select (From Table)" of another custom table, the data in that custom table is updated all at once so that the referenced value becomes empty.
 
 
 ### Execution method
 
-- Execute the following command.
+- <span class="red bold">※We recommend backing up the data before you run this command.</span>
+- Run the following command.
 
 ~~~
-php artisan exment:refreshtable {table name. If there are multiple, enclose them in "" and separate them with commas.}
+php artisan exment:refreshtable {table name. For several, enclose them in "" and separate them with commas}
 
-# Ex：Execute for one table
+# Example: run for one table
 php artisan exment:refreshtable information
 
-# Ex：Execute for multiple tables
+# Example: run for several tables
 php artisan exment:refreshtable "table1,table2,table3"
 ~~~
-
-- <span class="red bold">\* It is recommended to back up the data before executing this command.</span>

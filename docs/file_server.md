@@ -2,7 +2,7 @@
 Share folders and files in a workspace per team, with permissions per folder, versions, previews and a trash. It works like a document library of Box or SharePoint.  
 The files are kept where Exment keeps its files (local, S3, Azure, FTP and so on, as set now).
 
-※This feature is available in Exment v7.2.1 or later. <!-- TODO: the version File sharing comes in -->
+Note: This feature is available in Exment v7.2.1 or later. <!-- TODO: the version File sharing comes in -->
 
 ## Getting started
 File sharing is off at first. When a system administrator turns "File sharing" on in "Admin Setting" > "[Feature Management](/feature)", "File sharing" appears in the side menu. Who may use it (role groups) is also chosen in Feature Management.
@@ -62,9 +62,9 @@ Images, video, audio, PDF and text are shown on the page. How Office files (docx
 
 With Groupware's ibisOffice, neither LibreOffice nor Docker is needed, and it works on rental servers. For the setup and the web server settings, see [Groupware](/plugin_groupware?id=the-web-server).
 
-※html, svg and similar files are not shown on the page for safety; they can only be downloaded.
+Note: html, svg and similar files are not shown on the page for safety; they can only be downloaded.
 
-※Files that came in through a request link get no preview and no text extraction when they are opened. They are made only when a user with Manage presses "Make the preview".
+Note: Files that came in through a request link get no preview and no text extraction when they are opened. They are made only when a user with Manage presses "Make the preview".
 
 ![A file (Japanese screen)](ja/img/file_server/file_server_file.png)
 

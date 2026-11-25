@@ -1,33 +1,33 @@
 # (For advanced users) Delayed execution of notification processing
-Exment normally executes all processes synchronously, but some processes can be executed with a delay (queue execution).  
-As a result, the processing time on the screen can be shortened, and time-consuming processes can be executed later.  
+This setting runs the sending of notifications later, apart from the operation on the screen.  
+Exment normally runs every process on the spot (synchronous execution). With this setting, some processes can run later (delayed execution, queue execution). The waiting time on the screen gets shorter.
 
-Currently, the following processes support delayed execution.
+Currently, the following processes can run later.
 
 - Sending mail
 - Sending to Slack
 - Sending to Microsoft Teams
 
 ## Notes
-- In the delayed execution of processes, jobs are held in a queue, and the processes are executed in a process separate from the screen.  
-- In order to execute the jobs held in the queue, it is necessary to execute a queue worker from the command. This worker needs to keep running, and **if the worker stops, the processes will not be executed.**  
-Therefore, please pay close attention, such as monitoring the queue worker.
-- Since the processes are executed with a delay, it is not possible to catch "whether the notification succeeded" or "whether it failed" at the timing when the execution of the notification is called from the screen.  
-Therefore, even if the notification has actually failed, the message "The notification has been executed!" may be displayed.
-- For details on queue processing, please refer to the [Laravel manual](https://laravel.com/docs/queues).
+- In delayed execution, processes (jobs) are kept in a waiting line called a "queue" and run in a process separate from the screen.
+- To run the jobs in the queue, start a "queue worker" (the program that runs the jobs) by a command. The worker must keep running. **If the worker stops, the processes are not run**.  
+Please be careful, for example by monitoring whether the worker is running.
+- At the time a notification is run from the screen, it is not known whether the notification succeeded or failed.  
+Therefore, even if the notification has actually failed, the message "The notification has been executed!" may be shown.
+- For details on queues, see the [Laravel manual](https://laravel.com/docs/queues).
 
 
 ## Setting procedure
-- Set the queue driver. Here, the database is used. (Depending on the settings, Redis and so on can also be used)
+Set the queue driver (the place where the jobs are kept). Here, the database is used. (Depending on the settings, Redis and others can also be used)
 
-- Open the .env and write the following settings.
+**(1) Open .env and write the following setting.**
 
 ```
 #Queue driver. The value set in the Exment installation steps is sync (synchronous processing)
 QUEUE_CONNECTION=database
 ```
 
-- Execute the following commands. The tables for holding the queue information are created.
+**(2) Run the following commands.** They create the tables that hold the queue information.
 
 ```
 php artisan queue:table
@@ -35,24 +35,27 @@ php artisan queue:failed-table
 php artisan exment:update
 ```
 
-> The "jobs" and "failed_jobs" tables may already be created by the migrations included when the Laravel project was created. Check the "database/migrations" folder and proceed as follows.
-> - If there is a file containing "create_jobs_table" (projects created with Laravel 11 or later): both tables are created by the standard migrations, so do not execute "queue:table" and "queue:failed-table", and execute only "php artisan exment:update".
-> - If there is only a file containing "create_failed_jobs_table": execute "queue:table" and "php artisan exment:update".
-> - If there is neither: execute all three commands above.
+> The "jobs" and "failed_jobs" tables may already be created by the migrations made when the Laravel project was created. Look in the "database/migrations" folder and run the commands as follows.
 >
-> If "Migration already exists." is displayed, that migration already exists, so ignore the error and proceed to the next command.
+> | In the "database/migrations" folder | Commands to run |
+> | ---- | ---- |
+> | There is a file containing "create_jobs_table" (a project created with Laravel 11 or later) | Only "php artisan exment:update" (both tables are created by the standard migrations, so do not run "queue:table" and "queue:failed-table") |
+> | There is only a file containing "create_failed_jobs_table" | "queue:table" and "php artisan exment:update" |
+> | There is neither | All three commands above |
+>
+> If "Migration already exists." is shown, that migration already exists. Ignore the error and go on to the next command.
 
-- Execute the following command.  
-Please note that when you execute this command, it keeps running until you stop it or close the terminal.
-
-> In order to keep the queue:listen process running permanently in the background, you need to use a process monitor such as [Supervisor](https://laravel.com/docs/queues#supervisor-configuration), so that the queue worker keeps running without stopping.
+**(3) Run the following command.** The worker starts.  
+This command keeps running until you stop it or close the terminal.
 
 ```
 php artisan queue:listen
 ```
 
+> To keep queue:listen running in the background all the time, you need a process monitor (something that watches whether the worker has stopped) such as [Supervisor](https://laravel.com/docs/queues#supervisor-configuration).
+
 ### When a worker cannot keep running (rental servers, etc.)
-On a rental server, where a worker cannot keep running, let cron clear the waiting jobs every minute (`--stop-when-empty` ends when no jobs are left, and `--max-time=50` ends before the next cron). Write php by the full path of the same version as the web.
+On a rental server or the like, where a worker cannot keep running, let cron clear the waiting jobs every minute (`--stop-when-empty` ends when no jobs are left, and `--max-time=50` ends before the next cron). Write php by the full path of the same version as the web.
 
 ```
 * * * * * cd /(Exment root directory) && nice -n 15 /usr/bin/php8.3 artisan queue:work --stop-when-empty --max-time=50 >> /dev/null 2>&1
@@ -61,7 +64,8 @@ On a rental server, where a worker cannot keep running, let cron clear the waiti
 If you cannot do that either, keep `QUEUE_CONNECTION=sync` (the value set at installation).
 
 ## When updating the system
-Since the queue worker is a long-lived process, it will not reflect changes in the code unless it is restarted. Therefore, the simplest way to deploy an application that uses queue workers is to restart the workers during the deployment process. By executing the queue:restart command, all workers can be restarted gracefully.
+The queue worker is a process that keeps running for a long time. Unless it is restarted, the new code is not used.  
+So restart the workers when you update the system. The queue:restart command restarts all workers gracefully.
 
 ```
 php artisan queue:restart

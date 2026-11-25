@@ -1,48 +1,48 @@
 # Thiết lập bổ sung
-Sau khi thực hiện [quy trình cài đặt](/vi/quickstart.md), bạn đã có thể chạy Exment.  
-Tuy nhiên, để sử dụng một số chức năng, có thể cần thực hiện thêm các thiết lập bổ sung.  
-Nếu sử dụng các chức năng dưới đây, vui lòng thiết lập theo hướng dẫn tương ứng.  
+Làm xong [các bước cài đặt](/vi/quickstart.md) là Exment chạy được.  
+Tuy nhiên, để dùng một số chức năng thì cần thiết lập thêm.  
+Từ danh sách dưới đây, hãy mở trang của chức năng muốn dùng rồi thiết lập theo các bước.  
 
 ### Danh sách nội dung thiết lập
 
-- [Thay đổi / xóa "admin" trong URL](/additional_prefix)  
-Thay đổi hoặc xóa giá trị như "/admin" ở đầu URL (trang cài mới từ v7.2.1 mặc định không có).
+- [Thay đổi / xóa "admin" trong URL](/vi/additional_prefix)  
+Thay đổi hoặc bỏ giá trị như "/admin" đặt ở đầu URL (với cài đặt mới từ v7.2.1 trở đi, mặc định không có).
 
-- [Lịch chạy tác vụ (task schedule)](/additional_task_schedule)  
-Cách thiết lập khi muốn xử lý tự động vào một thời điểm nhất định, chẳng hạn như tự động tạo bản sao lưu hoặc thông báo thời hạn.
+- [Lịch chạy tác vụ (task schedule)](/vi/additional_task_schedule)  
+Thiết lập để tự động chạy xử lý vào giờ đã định, như tự động tạo bản sao lưu hay thông báo thời hạn.
 
-- [Tắt giao tiếp từ máy chủ ra bên ngoài](/additional_disable_outside_api)  
-Cách thiết lập khi muốn dừng việc giao tiếp từ máy chủ đến máy chủ bên ngoài, chẳng hạn như việc lấy thông tin cập nhật của Exment.
+- [Tắt giao tiếp từ máy chủ ra bên ngoài](/vi/additional_disable_outside_api)  
+Thiết lập để dừng việc giao tiếp từ máy chủ đến máy chủ bên ngoài, như việc lấy thông tin cập nhật của Exment.
 
-- [Bật cache](/additional_cache)  
-Lưu vào cache các dữ liệu master như bảng tùy chỉnh, cột, view, workflow. Tùy theo môi trường, tốc độ xử lý có thể được cải thiện.
+- [Bật cache](/vi/additional_cache)  
+Lưu vào cache các dữ liệu master như bảng tùy chỉnh, cột, view, workflow. Tùy theo môi trường, tốc độ có thể nhanh hơn.
 
-- [Thay đổi nơi lưu tệp](/additional_file_saveplace)  
-Quy trình thay đổi nơi lưu tệp từ máy chủ cục bộ sang FTP, AWS S3, v.v.
+- [Thay đổi nơi lưu tệp](/vi/additional_file_saveplace)  
+Các bước đổi nơi lưu tệp từ máy chủ cục bộ sang FTP, AWS S3, v.v.
 
-- [Thay đổi giá trị thiết lập PHP](/additional_php_ini)  
-Quy trình thay đổi kích thước tải lên của tệp đính kèm, dung lượng bộ nhớ PHP được sử dụng và thời gian timeout.
+- [Thay đổi giá trị thiết lập PHP](/vi/additional_php_ini)  
+Các bước đổi kích thước tải lên của tệp đính kèm, lượng bộ nhớ PHP dùng và thời gian timeout.
 
-- [Bộ lọc IP](/additional_ip_filter)  
-Có thể giới hạn các request đến trang web cũng như việc thực thi API theo địa chỉ IP.
+- [Bộ lọc IP](/vi/additional_ip_filter)  
+Giới hạn được, theo địa chỉ IP, các request đến trang Web và việc chạy API.
 
-- [Khi xảy ra lỗi 429 với API](/additional_429_too_many)  
-Cách xử lý khi xảy ra lỗi 429 Too Many Requests lúc thực thi API.
+- [Khi xảy ra lỗi 429 với API](/vi/additional_429_too_many)  
+Cách xử lý khi hiện 429 Too Many Requests lúc chạy API.
 
-- [Thêm cột label trong API lấy dữ liệu](/additional_api_label)  
-Có thể thêm cột "label" khi lấy danh sách dữ liệu, hoặc khi tạo mới / cập nhật dữ liệu.
+- [Thêm cột label trong API lấy dữ liệu](/vi/additional_api_label)  
+Thêm được cột "label" vào kết quả khi lấy danh sách dữ liệu, hoặc khi tạo mới, cập nhật dữ liệu.
 
-- [Thêm tùy chọn riêng cho thiết lập "Available characters" của loại cột "One-line text"](/additional_available_characters)  
-Có thể thêm các tùy chọn sử dụng được trong thiết lập "Available characters" (ký tự được phép sử dụng) của loại cột tùy chỉnh "One-line text" (văn bản một dòng).
+- [Thêm tùy chọn riêng cho thiết lập "Ký tự được phép" của loại cột "Văn bản một dòng"](/vi/additional_available_characters)  
+Thêm được các tùy chọn dùng được trong thiết lập "Ký tự được phép" của loại cột tùy chỉnh "Văn bản một dòng".
 
-- [Thực thi trễ xử lý thông báo](/additional_queue)  
-Có thể thực thi trễ (thực thi qua hàng đợi - queue) một số xử lý như thông báo.
+- [Thực thi trễ xử lý thông báo](/vi/additional_queue)  
+Cho một số xử lý, như thông báo, chạy sau (chạy qua queue).
 
-- [Thiết lập reverse proxy](/additional_reverse_proxy)  
-Thiết lập bổ sung khi xây dựng môi trường với reverse proxy.
+- [Thiết lập reverse proxy](/vi/additional_reverse_proxy)  
+Thiết lập thêm cần có ở môi trường dùng reverse proxy.
 
-- [Sử dụng công cụ tìm kiếm toàn văn (Meilisearch)](/additional_meilisearch)  
-Cách thiết lập để sử dụng công cụ tìm kiếm toàn văn "Meilisearch" nhằm tìm kiếm với tốc độ cao trong môi trường lưu giữ lượng dữ liệu lớn.
+- [Sử dụng công cụ tìm kiếm toàn văn (Meilisearch)](/vi/additional_meilisearch)  
+Thiết lập để tìm kiếm nhanh bằng công cụ tìm kiếm toàn văn "Meilisearch" ở môi trường có nhiều dữ liệu.
 
-- [Chế độ chuyên gia (expert mode)](/additional_expert)  
-Quy trình để hiển thị các mục thiết lập linh hoạt hơn.
+- [Chế độ chuyên gia (expert mode)](/vi/additional_expert)  
+Các bước để hiện các mục thiết lập chi tiết hơn trên màn hình.

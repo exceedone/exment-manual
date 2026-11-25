@@ -39,7 +39,7 @@ There are three ways. All of them do the same things (backup → get the new pro
 |---|---|
 | **A. The update batch (recommended)** | You want to run one file on the server |
 | **B. By commands** | You want to run each step yourself |
-| **C. The auto update** | You want new versions installed every day by themselves ([auto update](/ja/update_auto), Japanese) |
+| **C. The auto update** | You want new versions installed every day by themselves ([auto update](/update_auto)) |
 
 #### A. The update batch (recommended)
 **(1) Download the batch (the first time only)**
@@ -115,7 +115,7 @@ php artisan exment:update
 - `php` over SSH can be a different version from the PHP chosen on the control panel. Check with `php --version` that it is the same version. If not, link `~/bin/php` to that version, or run it by the full path, like `/usr/bin/php8.3 artisan exment:update` ([rental server](/install_rental)).
 
 #### C. The auto update
-Every day it checks for a new version and, when there is one, runs the update batch. See [auto update](/ja/update_auto) (Japanese) for how to set it up.
+Every day it checks for a new version and, when there is one, runs the update batch. See [auto update](/update_auto) for how to set it up.
 
 - The auto update only goes as far as the usual update. **It does not cross a major version, such as v6 to v7**. See "[Version numbers and how far an update goes](/update?id=Version-numbers-and-how-far-an-update-goes)" below.
 
@@ -162,4 +162,4 @@ An Exment version is "major . minor . patch" (for example v7.1.0). Which number 
 - If you stay on v6 with the auto update running, it sees that "a newer version (v7) exists" and runs the update batch every day (the version stays the newest v6.x). Update to v7, or stop the auto update until you do.
 
 ## Others
-- Installing a development version, going back to an older version, or replacing the program for a while: [development and older versions](/ja/update_tmp) (Japanese)
+- Installing a development version, going back to an older version, or replacing the program for a while: [development and older versions](/update_tmp)

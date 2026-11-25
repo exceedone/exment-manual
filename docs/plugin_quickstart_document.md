@@ -1,9 +1,10 @@
 # Plugin (document output)
-You can create your own document materials such as quotes and reports.  
-The template that is the basis of the document is in Excel format, and the output is also output in Excel format.  
-※ At present, the output in PDF format has technical issues and we are studying the corresponding policy.
+This plugin outputs your own documents, such as quotations and forms.
+The template they are based on is made in Excel format. The output file is also in Excel format.
 
-![document output sample](img/plugin/plugin_document1.png)   
+![Document output example](img/plugin/plugin_document1.png)   
+
+> For output in PDF format, see [Document output (Docurain)](/plugin_quickstart_docurain).
 
 ## How to make
 
@@ -19,7 +20,7 @@ The template that is the basis of the document is in Excel format, and the outpu
     "author": "(Your Name)",
     "version": "1.0.0",
     "plugin_type": "document",
-    "filename": "Estimate _ $ {ymdhms}",
+    "filename": "Estimate_${ymdhms}",
     "target_tables": "estimate",
     "label": "Estimate output",
     "icon": "fa-files-o",
@@ -27,131 +28,225 @@ The template that is the basis of the document is in Excel format, and the outpu
 }
 ~~~
 
-- plugin_name should be written in alphanumeric characters.
-- uuid is a character string of 32 characters + hyphen, totaling 36 characters. Used to make the plugin unique.  
-Please create from the following URL etc.  
+- Enter plugin_name in single-byte alphanumeric characters.
+- uuid is a string that tells plugins apart. It is 32 characters plus hyphens, 36 characters in total. Make sure it is not the same value as another plugin's.  
+You can make one at the following URL, for example.  
 https://www.famkruithof.net/uuid/uuidgen
-- For plugin_type, enter document.
-- file_name is the file name for output. You can use [parameter variables](/params).
-- target_tables is the table to be output. If there is more than one, enter them separated by commas.  
-※ Can be changed later on the plug-in setting screen.
-- label is the label of the button for document output.  
-※ Can be changed later on the plug-in setting screen.
-- icon is the icon of the button for document output.  
-※ Can be changed later on the plug-in setting screen.
-- button_class is the button class for document output.  
-※ Can be changed later on the plug-in setting screen.
+- Enter document for plugin_type.  
+- file_name is the file name used for the output. You can use [parameter variables](/params).
+- target_tables is the table(s) to output from. If there are several, separate them with commas.
+- label is the label of the button for the document output.
+- icon is the icon of the button for the document output.
+- button_class is the class of the button for the document output.
+
+Note: target_tables, label, icon and button_class can be changed later on the plugin setting screen.
 
 
 ### Create template Excel file
-Create a template file that will be the basis of the document.  
+Create the template file that the document is based on.  
 The template file is in Excel format (xlsx). The output file is also in Excel format (xlsx).  
-※ The file name of the template Excel file should be "document.xlsx".  
-※ For the template file parameters, see "Template Excel File Parameters" below.  
+Note: name the template Excel file "document.xlsx".  
+Note: for the parameters written in the template file, see "Parameters" below.
 
 #### Parameters
-Parameter to be set in the Excel file of the template.  
-By inputting a variable in a specific format into an Excel cell, the parameters registered in the system are output when the document is output.  
-
+These are the parameters set in the Excel file of the template.
+When you enter a variable of a fixed form in an Excel cell, the value registered in the system is output at the time of the document output.
 ##### basic rule
-- Fill in Excel cells with the rule of **$ {variable name}.**  
-Example: "$ {year}" "$ {month}" "$ {value: estimate_code}"  
+- Enter it in an Excel cell by the rule "**${variable name}**".  
+Example: "${year}" "${month}" "${value:estimate_code}"  
 ![Parameters](img/plugin/plugin_document_params.png)  
 
-- Multiple parameters can be set in the same cell.
+- Several parameters can be set in the same cell.  
 
-- Functions can be set in Excel.  
-※ Some functions may not work properly. Be sure to check the operation.
+- Functions can be set in the Excel file. Note: some functions may not work properly. Be sure to check that they work.  
 
-- See the following pages for the parameter variables that can be set.  
+- For the parameter variables that can be set, see the following page.  
 [Parameter variables](/params)
 
 
 ##### List output method of child table data
-Depending on the type of document, it is necessary to output data to the child table list of the target data.  
-Example: "Estimate" to register the estimate date and customer information and "Estimate details" to register the list of products.  
+For some kinds of document, the data of the child table of the target data must be output as a list.
+Example: "Estimate", where the estimate date and the customer information are registered, and "Estimate details", where the list of the estimated products is registered  
 ![Child table](img/plugin/plugin_document_children.png)  
-to be quoted Describe the method to output the data list in this table.  
+The steps to output the list of data into this table are as follows.
 
-- Set the following parameters in the first row and first column of the output table.  
- **$ {Loop: (table name of child table): start}**  
-Example: $ {loop: estimate_detail: start}
+1. Set the following parameter in the first column of the first row of the table to output.
+**"${loop:(table name of the child table):start}"**  
+Example: ${loop:estimate_detail:start}  
 ![Child table_Parameters1](img/plugin/plugin_document_loop1.png)  
 
-- Set the following parameters for each column of the items you want to output in the second row of the output table.  
- **$ {Loop-item: (table name of child table) :( column name of child table)}**  
-Example: $ {loop-item: estimate_detail: product_detail_name}  
+2. In the second row of the table to output, set the following parameter in each column of the items you want to output.
+**"${loop-item:(table name of the child table):(column name of the child table)}"**  
+Example: ${loop-item:estimate_detail:product_detail_name}  
 ![Child table_Parameters2](img/plugin/plugin_document_loop2.png)  
 
-- Set the following parameters in the first column of the last row of the output table.  
- **$ {Loop: (table name of child table): end}**  
-Example: $ {loop: estimate_detail: end}  
+3. Set the following parameter in the first column of the last row of the table to output.
+**"${loop:(table name of the child table):end}"**  
+Example: ${loop:estimate_detail:end}  
 ![Child table_Parameters3](img/plugin/plugin_document_loop3.png)  
 
 
+##### Other restrictions
+- PhpSpreadSheet 1.22.0, the latest version as of February 25, 2022, does not support the following. Please do not include them in the template.  
+    - Inserted shapes
+    - Charts
+    - Tables made with "Format as Table"
+
+- If the output file does not contain the images, see "Image output fails in document output using Excel as a template" in [Troubleshooting](/troubleshooting).
+
 ### Create PHP file (optional)
-- Create the following PHP file. The name should be "Plugin.php".  
+- For a normal document output, it is enough to prepare document.xlsx with the parameter variables set.
+Create a PHP file only when you want to process the data in a special way, or to output data from outside Exment. The name is "Plugin.php".
+**Note: if no special processing is needed, this Plugin.php file is not needed.**
 
 ~~~ php
 <?php
-namespace App\Plugins\PluginDemoDocument; // (PluginDemoDocument:plugin name)
+namespace App\Plugins\PluginDemoDocument; // (PluginDemoDocument: plugin name)
 
+use Exceedone\Exment\Model\Define;
+use Exceedone\Exment\Model\System;
 use Exceedone\Exment\Services\Plugin\PluginDocumentBase;
+
 class Plugin extends PluginDocumentBase
 {
-    protected function executing(){
-        // function to execute before document creation
-        // Example:
-        \Log::debug('Before estimation output');
-        
+    /**
+     * The function called before the variables of the document are replaced
+     *
+     * @param SpreadSheet $spreadsheet
+     * @return void
+     */
+    protected function called($spreadsheet)
+    {
+        // Put your own processing here to run it before the variables of the document are replaced
     }
 
-    protected function executed(){
-        // Function to execute after document creation
-        // Example:
-        \Log::debug('After performing estimation output');
+    /**
+     * The function called after the variables of the document are replaced
+     *
+     * @param SpreadSheet $spreadsheet
+     * @return void
+     */
+    protected function saving($spreadsheet)
+    {
+        // Select the first sheet
+        $sheet = $spreadsheet->getSheet(0);
+        // Set the site name in cell B1
+        $sheet->setCellValue('B1', System::site_name());
+
+        // Get the Exment news
+        $items = $this->getItems();
+
+        foreach ($items as $idx => $item) {
+            // Output from the 4th row
+            $row = $idx + 4;
+            // Output the date to cell A?
+            $date = \Carbon\Carbon::parse(array_get($item, 'date'))->format(config('admin.date_format'));
+            $sheet->setCellValue("A$row", $date);
+            // Output the link to cell B?
+            $link = array_get($item, 'link');
+            $sheet->setCellValue("B$row", $link);
+            // Output the title to cell C?
+            $title = array_get($item, 'title.rendered');
+            $sheet->setCellValue("C$row", $title);
+        }
+    }
+
+    /**
+     * Get the Exment news from the API
+     *
+     * @return array exment news items array
+     */
+    protected function getItems()
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', Define::EXMENT_NEWS_API_URL, [
+            'http_errors' => false,
+            'query' => $this->getQuery(),
+            'timeout' => 3, // Response timeout
+            'connect_timeout' => 3, // Connection timeout
+        ]);
+
+        $contents = $response->getBody()->getContents();
+        if ($response->getStatusCode() != 200) {
+            return [];
+        }
+        return json_decode_ex($contents, true);
+    }
+
+    /**
+     * The query conditions passed to the API
+     *
+     * @return array query string array
+     */
+    protected function getQuery()
+    {
+        $request = request();
+
+        // get querystring
+        $query = [
+            'categories' => 6,
+            'per_page' => System::datalist_pager_count() ?? 5,
+            'page' => $request->get('page') ?? 1,
+        ];
+
+        return $query;
+    }
+
+    /**
+    * (For v3.4.3) Decides whether the button is shown on the screen. The default is true
+    * 
+    * @return bool true: render, false: do not render
+    */
+    public function enableRender(){
+        // Show the button when the value of the custom column "view_flg" is "1"
+        return $this->custom_value->getValue('view_flg')  == 1;
     }
 }
 
 ~~~
 
-- namespace should be **App \ Plugins (plugin name).**
+- The namespace should be **App\Plugins\\(plugin name in Pascal case)**. [Click here for details](/plugin_quickstart?id=plugin-name-namespace)
 
-- These functions are executed before executing document output and after executing document output.  
-If you want to perform some processing before output, create this Plugin.php file and add processing.  
-(Example: Add the estimated date and time, add the invoice number)  
-**※ If there is no particular process you want to call before and after executing the document output, this Plugin.php file is not required.**
+- Your own processing goes in the following two functions. The spreadsheet is passed to these functions as an argument. You can access this spreadsheet and set values in cells.  
+Note: for how to use the spreadsheet in detail, see the [PhpSpreadsheet documentation](https://phpspreadsheet.readthedocs.io/en/latest/).
+    - To process before the parameter variables are replaced: implement the "called" method.
+    - To process after the parameter variables are replaced: implement the "saving" method.
 
-- The Plugin class inherits from the class PluginDocumentBase.  
-PluginDocumentBase has properties such as the custom table $ custom_table and table value $ custom_value of the caller, and when the execute function is called, the value is assigned to the property.  
-See the [plugin reference](plugin_reference.md) for details on the properties.  
+- The Plugin class extends the class PluginDocumentBase.  
+PluginDocumentBase has properties such as the custom table that called it, $custom_table, and the table value, $custom_value.  
+The values are assigned to these properties when the execute function is called.  
+For details of the properties, see the [Plugin reference](/plugin_reference).  
+
+- (For v3.4.3) To control whether the button is shown or hidden by the registered data, implement the method "enableRender".  
+Return true to show the button and false to hide it. (The default is true.)
 
 
 ### Compress to zip
-Compress the above file into a zip with the minimum configuration.  
-The zip file name should be "(plugin_name) .zip".  
+Compress the above files, as the minimum configuration, into a zip.  
+The zip file name should be "(plugin_name).zip".  
 - PluginDemoDocument.zip
     - config.json
     - document.xlsx
-    - Plugin.php(optional)
-    - (Other required PHP files, image files, etc.)
+    - Plugin.php (optional)
+    - (Other necessary PHP files, image files, etc.)
 
 
 ### Upload
 Upload the plugin.  
-※ Please refer to the [plug-in](/plugin) for how to upload.  
+Note: see [Plugin](/plugin) for how to upload.  
 
 
 ### Execute document output
-If all settings are completed successfully, a button will be displayed on the data display screen.  
+When all the settings are done correctly, a button is shown on the data details screen.
 ![Document output_button](img/plugin/plugin_document_button.png)  
   
-By clicking the button, a list will be displayed in "Attachments".  
-![Document output_attached file](img/plugin/plugin_document_list.png) 
+When you click the button, the file is listed in "Attachment File".
+![Document output_attachment](img/plugin/plugin_document_list.png) 
 
 ### Sample plugin
 [User information output](https://github.com/exment-git/plugin-sample/tree/main/document/document_demo_user)  
-※ The "User information output" button is displayed on the user information screen.
+Note: the "User information output" button is shown on the user information screen.  
+
 ### Product plugin
 [Invoice PDF output](https://github.com/exment-git/plugin-product/tree/main/document/PluginInvoiceDocument)  
-※ Output the invoice in EXCEL format using the template. Also convert the EXCEL file to PDF.
+Note: it outputs the invoice in EXCEL format with a template. It also converts the EXCEL file to PDF.

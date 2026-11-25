@@ -1,8 +1,8 @@
 # Tuning
 Check the settings that make this site faster. "Settings: System" > "Tuning" (the URL is `/tuning`) lists the settings that make Exment faster, with their state now.
 
-※This page is available in Exment v7.2.1 or later.  
-※Only system administrators can see it.
+Note: this screen is available in Exment v7.2.1 or later.  
+Note: only system administrators can see this screen.
 
 ![Tuning (Japanese screen)](ja/img/tuning/tuning1.png)
 
@@ -25,7 +25,7 @@ The settings Exment can change safely can be checked and set from this page. Onl
 | Make the config cache | `config:cache` (permission 640), after the settings that write `.env` |
 | Permissions of the secret files | `.env` and the config cache 640 (only when the PHP user owns them) |
 
-- Pressing "Apply the checked settings" lists them for a confirmation first. What was done goes to the operation log, and the last result (set / already set / failed, with the reason) is shown below.
+- Pressing "Make the checked settings" lists them for a confirmation first. What was done goes to the operation log, and the last result (set / already set / failed, with the reason) is shown below.
 - **At the setup too**: the initialize page after the install shows the same settings, checked. Unchecked ones are not applied.
 
   ![Recommended settings at the setup (Japanese screen)](ja/img/tuning/tuning_setup.png)

@@ -16,13 +16,13 @@ Plugin quản lý dự án và ticket (công việc) trên chính các bảng c�
 
 | Chức năng | Nội dung |
 | --- | --- |
-| Dự án | Mỗi dự án có công việc, bảng, biểu đồ Gantt, wiki và tệp riêng. Thành viên gồm quản lý dự án, thành viên và người xem (dùng nhóm vai trò của Exment). |
+| Dự án | Mỗi dự án có công việc, bảng, biểu đồ Gantt, wiki và tệp riêng. Thành viên có 3 loại: quản lý dự án, thành viên và người xem (dùng nhóm vai trò của Exment). |
 | Công việc | Danh sách có lọc và lọc nhanh, cây cha/con, sửa trực tiếp trên danh sách, cập nhật hàng loạt, tệp đính kèm. Nội dung viết bằng Markdown và dán được ảnh. Sau khi lưu, danh sách và chi tiết được vẽ lại ngay tại chỗ, không tải lại cả trang (từ 1.6.5). |
 | Vai trò trên công việc | Ngoài người phụ trách: người phụ trách phụ, người quản lý, người review, và độ khó (dễ, bình thường, khó). Chi tiết công việc cũng hiện người tạo. Người phụ trách phụ, người quản lý và người review cũng nhận thông báo cập nhật như người phụ trách (từ 1.6.0). |
-| Word, Excel và PowerPoint | 「表示」 (xem) trên tệp của công việc, bình luận, wiki và dự án mở tệp ngay trên màn hình mà không cần tải về. Người có quyền sửa có thể sửa và lưu tại đó (từ 1.7.0 / 1.7.1; cần [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) 0.4.0 trở lên và trình duyệt hỗ trợ WebGPU). Nếu không có, tệp được tải về như trước. |
 | Mốc (milestone) | Công việc theo từng mốc và biểu đồ burndown. |
 | Bảng và biểu đồ Gantt | Hiển thị công việc trên bảng theo trạng thái, hoặc trên biểu đồ Gantt. |
 | Wiki và tệp | Chia sẻ tài liệu của dự án bằng wiki và tệp. |
+| Word, Excel và PowerPoint | 「表示」 (xem) trên tệp của công việc, bình luận, wiki và dự án mở tệp ngay trên màn hình mà không cần tải về. Người có quyền sửa có thể sửa và lưu tại đó (từ 1.7.0 / 1.7.1; cần [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) 0.4.0 trở lên và trình duyệt hỗ trợ WebGPU). Nếu không có, tệp được tải về như trước. |
 | Bình luận | Bình luận trên công việc. Chỉ định người cần báo (mention) hoặc nhờ xác nhận (review). |
 | Đã đọc / chưa đọc | Biết ai đã đọc công việc. Công việc bạn chưa xem được tô màu trong danh sách. |
 | Thông báo | Chuông trên màn hình, và email khi có công việc mới, bình luận, hoặc khi bấm nút "gửi email về công việc này" (gửi bằng thiết lập email của Exment). |
@@ -34,7 +34,8 @@ Plugin quản lý dự án và ticket (công việc) trên chính các bảng c�
 - Màn hình chỉ có tiếng Nhật.
 
 ## Cài đặt
-※Từ Exment v7.2.1, Quản lý dự án đi kèm Exment. Không cần tải xuống hay tải lên: bấm "Use (install)" (dùng / cài đặt) ở "Free official plugins" của "Admin Setting" → "Feature Management", rồi chuyển sang "[3. Thiết lập lần đầu](/vi/plugin_pm?id=_3-thiết-lập-lần-đầu)" bên dưới. Ngay sau khi cài từ Feature Management, menu bên trái chưa có "Quản lý dự án" (sẽ hiện sau khi thiết lập lần đầu). Xem [Plugin chính thức](/vi/plugin_official).
+※Từ Exment v7.2.1, Quản lý dự án đi kèm Exment. Không cần tải xuống hay tải lên: bấm "Sử dụng (cài đặt)" ở "Plugin chính thức miễn phí" của "Cài đặt quản trị" → "Quản lý tính năng", rồi chuyển sang "[3. Thiết lập lần đầu](/vi/plugin_pm?id=_3-thiết-lập-lần-đầu)". Ngay sau khi cài từ Quản lý tính năng, menu bên trái chưa có 「プロジェクト管理」 (sẽ hiện sau khi thiết lập lần đầu). Chi tiết vui lòng xem [Plugin chính thức](/vi/plugin_official).
+
 
 ### 1. Tải xuống
 Tải tệp zip mới nhất từ [Releases](https://github.com/exceedone/exment-plugins/releases) trên GitHub. Không giải nén.
@@ -47,14 +48,14 @@ Tải tệp zip mới nhất từ [Releases](https://github.com/exceedone/exment
 
 ### 2. Tải lên
 - Đăng nhập Exment bằng quản trị viên hệ thống.
-- Mở "Admin Setting" → "Plugin", chọn tệp zip đã tải ở "Plugin upload" (tải plugin lên) và bấm "Upload". Chi tiết xem [Plugin (English)](/plugin?id=plugin-upload).
+- Mở "Cài đặt quản trị" → "Plugin", chọn tệp zip đã tải ở "Tải lên plugin" và bấm "Tải lên". Chi tiết vui lòng xem [Plugin](/vi/plugin?id=tải-lên-plugin).
 
 ![Tải plugin lên](../img/plugin_pm/pm_upload.png)
 
 - Khi "ExmentPM" hiện trong danh sách bên dưới là đã tải lên xong. Lúc này chưa có bảng hay menu nào.
 
 ### 3. Thiết lập lần đầu
-- Bằng quản trị viên hệ thống, mở `/plugins/exment_pm` (trên Exment SaaS là `/plugins/exment_pm`).
+- Bằng quản trị viên hệ thống, mở `/plugins/exment_pm` (với site có "/admin" trong URL là `/admin/plugins/exment_pm`).
 - Màn hình 「初期セットアップ」 (thiết lập lần đầu) mở ra. Kiểm tra danh sách bảng sẽ tạo và bấm 「テーブルを作成する」 (tạo bảng).
 
 ![Thiết lập lần đầu](../img/plugin_pm/pm_setup.png)
@@ -82,9 +83,9 @@ Lần đầu, hãy thiết lập theo thứ tự sau:
 ### 1. Đưa người dùng vào nhóm vai trò
 Mọi người dùng Quản lý dự án phải thuộc một trong các nhóm vai trò của nó. Người không thuộc nhóm nào sẽ không thấy menu 「プロジェクト管理」, và khi mở sẽ hiện 「権限がありません。」 (không có quyền). Quản trị viên hệ thống không cần bước này.
 
-Ở "Admin Setting" → "Role group", thêm người dùng hoặc tổ chức vào các nhóm mà thiết lập đã tạo. Chi tiết xem [Nhóm vai trò](/vi/role_group).
+Ở "Cài đặt quản trị" → "Nhóm vai trò", thêm người dùng hoặc tổ chức vào các nhóm mà thiết lập đã tạo. Chi tiết xem [Nhóm vai trò](/vi/role_group).
 
-| Nhóm vai trò | Tên | Quyền |
+| Nhóm vai trò | Tên (chữ và số) | Quyền |
 | --- | --- | --- |
 | プロジェクト管理者グループ (quản trị dự án) | `pm_admin_group` | Xem và sửa mọi dự án và công việc. Sửa được cả danh sách trạng thái, loại, mức ưu tiên… |
 | プロジェクトメンバーグループ (thành viên dự án) | `pm_member_group` | Thêm và sửa công việc trong các dự án mình tham gia. |
@@ -166,7 +167,7 @@ Email không bao giờ tự gửi. Gửi bằng một trong các cách sau:
 
 - Email được gửi bằng thiết lập email của Exment. Hãy thiết lập [Thiết lập gửi email](/vi/mailsend_setting) trước.
 - Người dùng không có địa chỉ email thì không nhận email.
-- Thông báo chuông 「課題の登録・更新通知」 xem được ở màn hình [thông báo (English)](/notify) của Exment.
+- Thông báo chuông 「課題の登録・更新通知」 xem được ở màn hình [thiết lập thông báo](/vi/notify) của Exment.
 
 ### 6. AI và Git (chỉ khi dùng)
 Cả hai ban đầu đều tắt. Quản lý dự án vẫn hoạt động tốt khi không dùng.
@@ -174,7 +175,7 @@ Cả hai ban đầu đều tắt. Quản lý dự án vẫn hoạt động tốt
 **AI tự điền**  
 Biểu mẫu công việc có nút 「AI で自動入力」 (điền bằng AI). Nút này điền 「種別」 (loại), 「カテゴリー」 (danh mục) và 「優先度」 (mức ưu tiên) đang trống bằng AI. Người dùng kiểm tra và sửa được trước khi lưu.
 - AI là TypeSafe, một dịch vụ bên ngoài. Tiêu đề và nội dung công việc được gửi đến máy chủ của TypeSafe. Địa chỉ email và số điện thoại được che trước khi gửi.
-- Quản trị viên hệ thống nhập API key ở "Admin Setting" → "Plugin" → cài đặt của "Exment Plugin PM", mục 「AI 自動入力（TypeSafe）」 (nếu có biến môi trường máy chủ `TYPESAFE_KEY` thì dùng biến đó trước).
+- Quản trị viên hệ thống nhập API key ở "Cài đặt quản trị" → "Plugin" → màn hình cài đặt của "Exment Plugin PM", mục 「AI 自動入力（TypeSafe）」 (nếu có biến môi trường máy chủ `TYPESAFE_KEY` thì dùng biến đó trước).
 - Ở 「設定」 của dự án → 「AI 自動入力」, đánh dấu 「AI 自動入力を使う」 (dùng AI tự điền) và lưu. 「接続テスト」 (thử kết nối) để kiểm tra.
 - Bật 「担当者も自動入力する」 (điền cả người phụ trách) thì người phụ trách đang trống cũng được điền. Người phụ trách được chọn theo quy tắc, không phải AI: người phụ trách mặc định của danh mục, nếu không thì thành viên đang có ít công việc mở nhất.
 
@@ -192,7 +193,7 @@ Mỗi dự án có thể yêu cầu một repository Git (Gitea hoặc Forgejo).
 
 ## Cập nhật
 - Tải tệp zip phiên bản mới và tải lên giống như khi cài. Plugin được thay thế; dữ liệu vẫn giữ nguyên.
-- Bằng quản trị viên hệ thống, mở 「⚙ 設定」 của Quản lý dự án và xem 「データ構造の更新」 (cập nhật cấu trúc dữ liệu).
+- Bằng quản trị viên hệ thống, mở 「⚙ 設定」 của Quản lý dự án và xem 「データ構造の更新」 (cập nhật cấu trúc dữ liệu). Khi cần cập nhật, chỉ riêng quản trị viên thấy 「データ構造の更新があります」 (có cập nhật cấu trúc dữ liệu) ở phía trên màn hình (từ 1.6.4). Bấm vào thì màn hình cài đặt mở ra.
     - 「すでに最新の構造です。」 (đã mới nhất): không cần làm gì.
     - 「データ構造の更新が必要です。」 (cần cập nhật): sao lưu cơ sở dữ liệu, rồi bấm 「更新を実行する」 (chạy cập nhật). Cập nhật này không hoàn tác được.
 
@@ -201,11 +202,11 @@ Mỗi dự án có thể yêu cầu một repository Git (Gitea hoặc Forgejo).
 ※Trên Exment SaaS, xem thêm [Trên Exment SaaS](/vi/plugin_pm?id=trên-exment-saas).
 
 ### Chuyển lên 1.4.0 (nếu đang có PmPortal hoặc ExmentPluginPM)
-Ở 1.4.0, tên nội bộ thành `ExmentPM` và địa chỉ thành `/plugins/exment_pm`. Với Exment đã có PmPortal (1.2.0 trở về trước) hoặc ExmentPluginPM (1.3.0), tải nguyên tệp zip lên sẽ dừng với lỗi "UUID tồn tại nhưng tên plugin không đúng". Hãy làm một lần các bước trong ["Moving to ExmentPM" của README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行). Liên kết và dấu trang đến địa chỉ cũ (`/plugins/pm_portal/...`) sẽ không mở được nữa.
+Ở 1.4.0, tên nội bộ thành `ExmentPM` và địa chỉ thành `/plugins/exment_pm`. Với Exment đã có PmPortal (1.2.0 trở về trước) hoặc ExmentPluginPM (1.3.0), tải nguyên tệp zip lên sẽ dừng với thông báo "UUID đã tồn tại nhưng tên plugin không đúng". Hãy làm đúng 1 lần các bước trong ["Chuyển sang ExmentPM" (Moving to ExmentPM) của README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md#moving-to-exmentpm-from-pmportal-or-exmentpluginpm--exmentpm-への移行). Liên kết và dấu trang đến địa chỉ cũ (`/plugins/pm_portal/...`) sẽ không mở được nữa.
 
 ※Trên Exment SaaS, bên vận hành làm cho tất cả các trang, nên bạn không cần làm gì.
 
-※Từ v1.2.0, chức năng di chuyển dữ liệu nằm trong plugin này. Nếu trước đây đã cài riêng plugin di chuyển dữ liệu, có thể xóa nó ở "Admin Setting" → "Plugin" sau khi cập nhật.
+※Từ v1.2.0, chức năng di chuyển dữ liệu nằm trong plugin này. Nếu trước đây đã cài riêng plugin di chuyển dữ liệu, có thể xóa nó ở "Cài đặt quản trị" → "Plugin" sau khi cập nhật.
 
 ## Di chuyển từ Exment khác
 Có thể chuyển dự án kèm công việc, wiki, bình luận, lịch sử và tệp đính kèm sang Exment khác.  
@@ -248,8 +249,8 @@ Dùng 「データ移行」 (di chuyển dữ liệu) trong 「⚙ プロジェ�
 ## Trên Exment SaaS
 Trên Exment SaaS (`*.exments.com`), không cần tải xuống hay tải lên tệp zip.
 
-1. Quản trị viên hệ thống của tenant bấm "Use (install)" (dùng / cài đặt) cho Quản lý dự án ở "Free official plugins" của "Admin Setting" → "[Feature Management](/vi/feature)". Việc cài đặt và thiết lập lần đầu (tạo bảng) được làm tự động.
-2. Mở "プロジェクト管理" trên menu bên trái (`/plugins/exment_pm`). Sau đó làm theo [Bắt đầu sử dụng](/vi/plugin_pm?id=bắt-đầu-sử-dụng).
+1. Quản trị viên hệ thống của tenant bấm "Sử dụng (cài đặt)" của Quản lý dự án ở "Plugin chính thức miễn phí" của "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)". Việc cài đặt và thiết lập lần đầu (tạo bảng) được làm tự động.
+2. Mở 「プロジェクト管理」 trên menu bên trái (`/plugins/exment_pm`). Sau đó làm theo [Bắt đầu sử dụng](/vi/plugin_pm?id=bắt-đầu-sử-dụng).
 
 - Địa chỉ là `https://(tên tenant).exments.com/plugins/exment_pm` (không có `/admin`).
 - Bên vận hành cập nhật plugin lên phiên bản mới, và chạy luôn cập nhật cấu trúc dữ liệu. Quản trị viên tenant không cần bấm 「更新を実行する」.
@@ -257,7 +258,7 @@ Trên Exment SaaS (`*.exments.com`), không cần tải xuống hay tải lên t
 ## Câu hỏi thường gặp và lỗi hay gặp
 
 ### Menu không có 「プロジェクト管理」, hoặc hiện 「権限がありません。」 (không có quyền)
-Người dùng chưa thuộc nhóm vai trò của Quản lý dự án. Quản trị viên hệ thống hãy thêm người dùng vào nhóm quản trị dự án, thành viên dự án hoặc người xem dự án ở "Admin Setting" → "Role group" ([Đưa người dùng vào nhóm vai trò](/vi/plugin_pm?id=_1-Đưa-người-dùng-vào-nhóm-vai-trò)).
+Người dùng chưa thuộc nhóm vai trò của Quản lý dự án. Quản trị viên hệ thống hãy thêm người dùng vào nhóm quản trị dự án, thành viên dự án hoặc người xem dự án ở "Cài đặt quản trị" → "Nhóm vai trò" ([Đưa người dùng vào nhóm vai trò](/vi/plugin_pm?id=_1-đưa-người-dùng-vào-nhóm-vai-trò)).
 
 ### Mở được màn hình nhưng không thấy dự án
 Người dùng chưa có trong 「参加ユーザー」 (thành viên) của dự án. Quản lý dự án hoặc quản trị viên hệ thống hãy thêm ở 「設定」 → 「参加ユーザー」 và lưu.
@@ -279,15 +280,14 @@ Kiểm tra 「⚙ 設定」 → 「データ構造の更新」. Nếu hiện 「
 Đã có bảng trùng tên. Nhập 「テーブル名の接頭辞」 (tiền tố tên bảng) để tạo với tên khác.
 
 ### Liên kết cũ không mở được sau 1.4.0
-Ở 1.4.0, địa chỉ đổi từ `/plugins/pm_portal` thành `/plugins/exment_pm` (trên Exment SaaS, từ `/plugins/pm_portal` thành `/plugins/exment_pm`). Liên kết và dấu trang đến địa chỉ cũ sẽ báo "404 not found". Menu, chuông và email gửi mới dùng địa chỉ mới. Liên kết đã viết trong nội dung công việc, bình luận và wiki có thể viết lại bằng `tools/rewrite-old-links.php` trong [README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md).
+Ở 1.4.0, địa chỉ đổi từ `/plugins/pm_portal` thành `/plugins/exment_pm` (với site có "/admin" trong URL, từ `/admin/plugins/pm_portal` thành `/admin/plugins/exment_pm`). Liên kết và dấu trang đến địa chỉ cũ sẽ báo "404 not found". Menu, chuông và email gửi mới dùng địa chỉ mới. Liên kết đã viết trong nội dung công việc, bình luận và wiki có thể viết lại bằng `tools/rewrite-old-links.php` trong [README](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md).
 
 ### Plugin có tên khác (PmPortal, ExmentPluginPM)
-Đó là cùng một plugin. Tên đã đổi từ PmPortal (đến 1.2.0) sang ExmentPluginPM (1.3.0) và ExmentPM (từ 1.4.0). Để đưa Exment còn tên cũ lên 1.4.0, xem [Chuyển lên 1.4.0](/vi/plugin_pm?id=chuyển-lên-140-nếu-đang-có-pmportal-hoặc-exmentpluginpm).
+Đó là cùng một plugin. Tên đã đổi từ PmPortal (đến 1.2.0) sang ExmentPluginPM (1.3.0) và ExmentPM (từ 1.4.0). Để đưa Exment còn tên cũ lên 1.4.0, xem [Chuyển lên 1.4.0](/vi/plugin_pm?id=Chuyển-lên-1.4.0-nếu-đang-có-PmPortal-hoặc-ExmentPluginPM).
 
 ## Xem thêm
-- [Plugin chính thức](/vi/plugin_official)
-- [Plugin (English)](/plugin)
+- [Plugin](/vi/plugin)
 - [Nhóm vai trò](/vi/role_group)
 - [Thiết lập gửi email](/vi/mailsend_setting)
-- [Thông báo (English)](/notify)
+- [Thông báo](/vi/notify)
 - [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/project-management/README.md)

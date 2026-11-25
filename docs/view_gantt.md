@@ -20,7 +20,7 @@ The gantt chart is read only. A bar cannot be dragged on the chart to change its
 
 ## Adding the view
 
-1. Open the custom view setting screen (see [Custom views](/view.md)).
+1. Open the custom view setting screen (see [Custom views](/view)).
 2. Click [New] at the top right.
 3. Choose "Gantt chart view new creation" in the dialog.
 
@@ -29,7 +29,7 @@ The gantt chart is read only. A bar cannot be dragged on the chart to change its
 "Gantt chart view new creation" is not offered when the table has no "Date" or "Date and Time" column at all.
 
 #### View display name, view permissions, default, Use View Infobox
-The setting items are the same as [View settings](/view.md?id=view-settings).
+The setting items are the same as [View settings](/view?id=view-settings).
 
 ## Basic Setting
 
@@ -46,7 +46,7 @@ A record whose end date is before today and whose progress is under 100 is treat
 #### Bar color (select column)
 Colors the bars by the values of this column. A legend of the values and their colors is shown above the chart.  
 Only "Select (From Static Value)" and "Select (Save Value and Label)" columns can be chosen. For a multi-select column, the first value decides the color.  
-The colors are the column's own "Color per value" (including a [cell style preset](/cell_style_preset.md) set on the column), used as they are. A value without a color gets one automatically, by the order of the choices.  
+The colors are the column's own "Color per value" (including a [cell style preset](/cell_style_preset) set on the column), used as they are. A value without a color gets one automatically, by the order of the choices.  
 Leave it empty and every bar is blue.
 
 #### Progress column (0-100)
@@ -90,7 +90,7 @@ When more records match the view filter, "The number of records exceeds the limi
 
 ## Sort data and View Filter
 
-The setting items are the same as "Data Sorting" and "Data display conditions" in [View settings](/view.md?id=view-settings).  
+The setting items are the same as "Data Sorting" and "Data display conditions" in [View settings](/view?id=view-settings).  
 "Data display conditions" narrows down the records drawn on the chart.
 
 Whatever the sort setting, the rows on the chart are drawn by start date, earliest first, within each group (records with no start date last). The sort setting decides which records are drawn when they are more than "Max records".
@@ -158,12 +158,12 @@ Clicking a bar, or the record label on the left side of a row, goes to the recor
 
 - The gantt chart is read only. Bars cannot be dragged, and nothing can be edited on the chart.
 - Only records the logged-in user may view are shown.
-- The [Preview] button on the view setting screen shows the chart before saving (see [Custom views](/view.md?id=preview)).
-- Gantt chart views cannot be chosen in the "List of data" and "chart" boxes of a dashboard (see [Dashboard](/dashboard.md)).
+- The [Preview] button on the view setting screen shows the chart before saving (see [Custom views](/view?id=preview)).
+- Gantt chart views cannot be chosen in the "List of data" and "chart" boxes of a dashboard (see [Dashboard](/dashboard)).
 
 ## See also
 
-- [Custom views](/view.md)
-- [Kanban view](/view_kanban.md)
-- [Cell style presets](/cell_style_preset.md)
-- [List of data](/data_grid.md)
+- [Custom views](/view)
+- [Kanban view](/view_kanban)
+- [Cell style presets](/cell_style_preset)
+- [List of data](/data_grid)

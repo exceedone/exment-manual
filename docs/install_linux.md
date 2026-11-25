@@ -1,9 +1,16 @@
 # Environment construction using Linux
-This page describes the steps to build Exment on Linux.   
-This is a completely new installation procedure, including the installation of the web server.
+These are the steps to put Exment on a Linux server.  
+They start from installing the web server and build everything from nothing.
+
+The overall flow is as follows.
+
+1. (If necessary) Prepare MySQL and Redis
+2. Put PHP, Apache and composer on the web server
+3. Place the Exment files and set the permissions
+4. Do the initial installation of Exment in the browser
 
 ## Environment
-This page is constructed with the following contents.   
+The steps on this page were made with the following environment.  
 - Red Hat Enterprise Linux release 8.6
 - Apache 2.4.37
 - PHP 8.2.x
@@ -11,28 +18,28 @@ This page is constructed with the following contents.
 
 ## Important point
 
-- Depending on your environment and version, you may not be able to set up correctly using this procedure. note that.
+- Depending on your environment and versions, you may not be able to set up as written in these steps. Please understand.
 
-- This procedure only describes the steps to run Exment on Linux.   
-General IT knowledge such as SSH, database creation, Linux commands, etc. is not included. note that.   
+- This page only describes the steps to run Exment on Linux.  
+General IT knowledge such as SSH, creating a database and Linux commands is not written. Please understand.  
 
-- **This procedure assumes that you are running with an administrator account. If executed by a user who is not an administrator account, add "sudo" to the beginning**
+- **These steps assume that you run them with an administrator account. If a user who is not an administrator runs them, add "sudo" to the beginning of the commands**.
 
-- If an error occurs during installation, please refer to [Troubleshooting](/troubleshooting).
+- If an error occurs during installation, see [Troubleshooting](/troubleshooting).
 
 
 ## Installation instructions using Linux
 
 ### MySQL (optional)
-The settings can be set as desired. These are the steps to install MySQL assuming you are building a separate MySQL server.   
-※No MySQL server-side steps are required when using external services, such as when using the AWS RDS service.   
-※Moved to [here](/install_mysql).
+Do this only if you need it. These are the steps to install MySQL when you build a separate MySQL server.  
+Note: when you use an external service such as AWS RDS, the steps on the MySQL server side are not needed.  
+Note: the steps have moved to the [MySQL installation procedure](/install_mysql) page.
 
 ### Redis (optional)
-※Moved to [here](/additional_session_cache_driver).
+Note: the steps have moved to the [Driver change of session cache](/additional_session_cache_driver) page.
 
 ### Web server
-- As a preliminary preparation, upgrade the current packages and install the required libraries.   
+- First, bring the current packages up to date and install the required libraries.  
 
 ~~~
 dnf -y upgrade
@@ -40,40 +47,40 @@ dnf install -y wget firewalld unzip git
 ~~~
 
 
-- Install the Remi repository configuration package and the EPEL required to use it.
+- Install the configuration package of the Remi repository and the EPEL needed to use it.
 
 ~~~
 dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm  
 dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 ~~~
 
-- Switch active repository for php packages.
+- Switch the repository used for the php packages.
 
 ~~~
 dnf module reset php -y
 dnf module enable php:remi-8.2 -y
 ~~~
 
-- Check the list of PHP packages currently in use & available.   
+- Check the list of the PHP packages in use now and the ones available.  
 It is OK if remi-8.2 has [e].
 
 ~~~
 dnf module list php
 ~~~
 
-- Install php and related libraries.
+- Install php and the related libraries.
 
 ~~~
 dnf install php php-cli php-common php-mbstring php-mysqli php-dom php-gd php-zip php-sodium -y
 ~~~
 
-- Make sure your PHP version is 8.2.   
+- Check that the PHP version is 8.2.  
 
 ~~~
 php -v
 ~~~
 
-- Configure Apache startup settings.
+- Set Apache to start.
 
 ~~~
 systemctl enable httpd.service
@@ -81,8 +88,8 @@ systemctl start httpd.service
 service httpd start
 ~~~
 
-- Configure firewall settings.   
-※Please change the settings according to your desired security settings.
+- Set the firewall.  
+Note: change the settings according to the security you need.
 
 ~~~
 systemctl start firewalld
@@ -92,18 +99,18 @@ firewall-cmd --add-service=https --zone=public --permanent
 systemctl reload firewalld
 ~~~
 
-- Disable SELinux if necessary.   
-※Please change the settings according to your desired security settings.
+- If necessary, disable SELinux.  
+Note: change the settings according to the security you need.
 
 ~~~
 vi /etc/selinux/config
-# Correct SELINUX=disabled
+# Change to SELINUX=disabled
 
 setenforce 0
 service httpd restart
 ~~~
 
-- Install composer.   
+- Install composer.  
 
 ~~~
 cd ~
@@ -113,14 +120,14 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ~~~
 
-- Make the necessary descriptions and edits in php.ini.   
-In particular, if you want to change memory usage, timeout time, etc. in [PHP Setting Value Change](/additional_php_ini), please change this setting.
+- Edit php.ini as you need.  
+In particular, edit this file when you change the memory amount, the timeout time and so on described in [PHP setting value change](/additional_php_ini).
 
 ~~~
 vi /etc/php.ini
 ~~~
 
-- Fix httpd.conf.
+- Edit httpd.conf.
 
 ~~~
 vi /etc/httpd/conf/httpd.conf
@@ -143,33 +150,33 @@ vi /etc/httpd/conf/httpd.conf
 service httpd restart
 ~~~
 
-- (Recommended) Add the logged-in user to the apache group. By configuring this setting, logged-in users can freely edit files in the exment folder. After SSH reconnection, the group will be reflected.   
-※ Below, if the login user is ec2-user
+- (Recommended) Add the login user to the apache group. Then the login user can freely edit the files in the exment folder. The group takes effect after you reconnect by SSH.  
+Note: the line below is for when the login user is "ec2-user".
 
 ~~~
 usermod -aG apache ec2-user
 ~~~
 
 - **(Only if MySQL is not installed on the same server)**  
-Even if you do not install MySQL on the same server, you must install a mysql client so that you can run mysql commands.   
-※If you want to install MySQL on the same server, skip this step.
+Even when MySQL is not installed on the same server, the mysql client must be installed so that the mysql command can be run.  
+Note: if you install MySQL on the same server, skip this step.
 
 ~~~
-rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el7-2.noarch.rpm
+rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el8-2.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
-# Execute this to check if mysql-community-client exists
+# Run this to check whether mysql-community-client exists
 dnf search mysql-community-client
-# If you get a message like Error: Unable to find a match: mysql-community-client with the above command, please execute the command below first.
+# If the command above shows a message that it does not exist, such as "Error: Unable to find a match: mysql-community-client", run the following command first
 dnf -y module disable mysql
 
-# install mysql-community-client
+# Install mysql-community-client
 dnf -y install mysql-community-client
 ~~~
 
 
-- Place the Exment on the server. Download the latest Exment file and extract it.   
-※This is an easy installation procedure. For manual installation, please refer to [here](/quickstart_manual) for location.
+- Place Exment on the server. Download the latest Exment file and extract it.  
+Note: these are the steps of the easy installation. For a manual installation, place it by following the [manual installation](/quickstart_manual) page.
 
 ~~~
 cd /var/www
@@ -179,24 +186,24 @@ rm exment.zip -f
 cd exment
 ~~~
 
-- Set file permissions. Run the following command:
+- Set the file permissions. Run the following commands.
 
 ~~~
-# add minimum privileges
+# Add the minimum permissions
 chmod 0775 /var/www/exment
 chown -R apache:apache /var/www/exment
 
-# Execute the following command to grant user/group permissions for the folder. Perform 1 or 2   
-# ※ If you do not have enough privileges, please execute with strong privileges such as by adding sudo.
-# 1. For easy installation
+# Run the following command to give the user and group permissions of the folders. Do 1 or 2
+# Note: if the permissions are not enough, run it with stronger permissions, for example by adding sudo
+# 1. For the easy installation
 php artisan exment:setup-dir --easy=1
-# 2. For manual installation
+# 2. For a manual installation
 php artisan exment:setup-dir
 ~~~
 
-- Enter the IP address of the web server you created in your PC's browser to complete the initial installation of Exment.
+- In the browser of your own PC, open the IP address of the web server you made and finish the initial installation of Exment.
 
-- ※If you installed using the easy installation, once the initial installation is complete, run the following command to restore the permissions required only during installation.
+- Note: if you installed by the easy installation, run the following command when the initial installation is finished. It puts back the permissions that are needed only during installation.
 
 ~~~
 php artisan exment:setup-dir --easy_clear=1

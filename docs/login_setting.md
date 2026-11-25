@@ -1,78 +1,77 @@
 # Login settings
-Make various login settings when logging in to Exment.
+This page decides the rules for logging in to Exment. You can set the rules of passwords (the password policy) and two-factor authentication.  
+How to reset a password by a command is also on this page.
 
-> Please check [here](/login_sso) for settings and explanations related to SSO.
+> For the settings and explanations of SSO, see [here](/login_sso).
 
 
 ## Two-step certification
-Exment supports two-step authentication.  
-After entering your user information and logging in, you will be able to access the Exment by entering the code sent by email or the Google Authenticator.  
-※2-step authentication can be used when the login method is "Standard" or "LDAP".  
+Exment supports two-factor authentication.  
+After you enter your user information and log in, you enter the code that arrived by email or the code shown in Google Authenticator, and then you can use Exment.  
+Note: two-factor authentication can be used when the login method is "Standard" or "LDAP".
 
-- [Two-step authentication system setting](/login_2factor_setting)
-- [Login (2-step authentication)](/login_2factor)
+- [Two-factor authentication system settings](/login_2factor_setting)
+- [Login (two-factor authentication)](/login_2factor)
+
 
 ## Login setting management method
 
-- The system administrator enters the following URL.
-http(s)://(Exment URL)/login_setting
-* You will be able to access by changing the "system settings" described above.
+- The system administrator opens the following URL.  
+http(s)://(Exment URL)/login_setting  
+Note: you can access it after doing the "system setting change" described above.
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (a site installed with an older version has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
-- From v7.1.0, you can also open it from "Admin Setting" > "Login Setting" in the left menu.
-- In v7.0 and earlier, "Login Setting" is not displayed in the menu by default. To add it, open the "Admin Setting" > "Menu" page and select the menu type "System Menu". The target "Login Setting" will be displayed. Select it and save it.
+- From v7.1.0, you can also open it from "Admin Setting" → "Login Setting" in the left menu.
+- In v7.0 and earlier, "Login Setting" is not in the menu at first. To add it to the menu, open the "Admin Setting" > "Menu" page and select the menu type "System Menu". "Login Setting" appears as a target; select it and save.
 
-![Login setting list](img/login/login_setting4.png)
+![Login setting list](img/login/login_setting4.png)  
 
-- To manage 2-step authentication, follow the procedure on the following page to make the settings.
+- Set up two-factor authentication by the steps of the following page.
 
-    - [Two-step authentication system setting](/login_2factor_setting)
+    - [Two-factor authentication system settings](/login_2factor_setting)
 
 
 ### Password policy settings
-Set rules related to login passwords.
+Decide the rules about login passwords.   
 
-![Password policy setting screen](img/system_setting/system_setting_password.png)
+![Password policy setting screen](img/system_setting/system_setting_password.png)  
 
 #### Complex password
-- If the setting is YES, you need to set a password of 12 characters or more including 3 or more character types (half-width uppercase letters, half-width lowercase letters, half-width numbers, half-width symbols).
+- When YES, a password must have 12 characters or more and contain three or more types of characters (half-width uppercase letters, half-width lowercase letters, half-width numbers, half-width symbols).
 - The initial value is "NO".
 
 #### Effective days
-- If you log in for the first time after the specified number of days, you will be directed to the password change screen.  
-Please change your password and then log in again.  
-- If you set the number of valid days to "0", the password will never expire.  
-- The initial value is "0".  
+- At the first login after the set number of days has passed, the password change screen appears. Change your password and then log in again.
+- When the number of days is "0", the password never expires.
+- The initial value is "0".
 
 #### Have the password changed when logging in for the first time
-- If set to YES, the screen for changing the password will be displayed when the user logs in for the first time.  
-- This will be valid for users who have newly registered or reset their password after setting this setting to YES.  
-- The setting will not be reflected to users who newly registered before setting this setting to YES.  
-- The initial value is "NO".  
+- When YES, the screen for changing the password appears when a user logs in for the first time.
+- It applies to users newly added, and users whose password was reset, after this setting was set to YES.
+- Users who were newly added and so on before it was set to YES are not covered.
+- The initial value is "NO".
 
 #### Number of password history records
-- Restrict the reuse of recently used passwords.  
-If the new password is compared with the password for the latest to the number of history records and they are the same, an error will occur.  
-- If the number of history records is set to "0", it will not be compared.  
-- The initial value is "0".  
+- Stops recently used passwords from being used again. When the new password is the same as one of the passwords in the latest history records, it is an error.
+- When the number of history records is "0", the passwords are not compared.
+- The initial value is "0".
 
 #### Note
 
-- <span class = "small"> "Complex password" and "Password history" are applied when the user sets the password by himself / herself on the user setting screen or password reset screen.  
-Not applicable if set by the system administrator. </span>
+- <span class="small">"Complex Password" and "Number of Password History" are used when users decide their password themselves, on the user setting screen, the password reset screen and so on. They do not apply when a system administrator decides the password.</span>
 
 
 ### Other
-- If you update from less than v3.3.0 to v3.3.0 or higher and log in with a provider that includes "dot (.)" In the user code, an error may occur.  
-In that case, take the following actions.  
-    - Transit to the edit screen of the "User Code" column in "Custom Column Settings" of the "User" table.  
-    - In the "Available characters" option, check "Dot" and save.  
+- After an update from a version lower than v3.3.0 to v3.3.0 or higher, logging in with a provider whose user code contains a "dot (.)" can end in an error.  
+In that case, fix it as follows.
+    - In "Column Detail Setting" of the "User" table, open the edit screen of the "User Code" column.
+    - In the "Available Characters" option, check "Dot" and save.
 
 
-- In the default operation, even if you close the browser while logged in, you will remain logged in until a certain period of time (120 minutes) elapses.  
-In v3.6.0 or later, if you want to automatically log out when you close the browser while logged in, open the ".env" file and add as follows.  
-※For details on how to edit the configuration file, refer to [here](/config).
+- With the first settings, even if you close the browser while logged in, you stay logged in until a certain time (120 minutes) has passed.  
+From v3.6.0, you can have users logged out automatically when the browser is closed. Open the ".env" file and add the following.  
+Note: see [Setting value list](/config) for how to edit the setting file.
 
 ~~~
 EXMENT_SESSION_EXPIRE_ON_CLOSE=true
@@ -82,15 +81,15 @@ EXMENT_SESSION_EXPIRE_ON_CLOSE=true
 
 
 ## Password reset command
-Password reset can be performed by command.
+You can reset the password of a user by a command.
 
-- The system administrator executes the following command on the console.  
+- The system administrator runs the following command on the console.
 
 ~~~
 php artisan exment:resetpassword --email=foobar@test.com --password=P@ssw0rd!
 ~~~
 
-- By executing the above command, set the password "P@ssw0rd!" To the user whose email address is "foobar@test.com".  
+- This command sets the password "P@ssw0rd!" for the user whose email address is "foobar@test.com".
 
 
 ### Command arguments
@@ -100,52 +99,50 @@ exment:resetpassword {--id=} {--email=} {--user_code=} {--password=} {--random=0
 ```
 
 #### Arguments: User specified
-※One of the following arguments is required. If more than one of the following arguments is selected, the search will be performed in the order of priority of id> email> user_code.  
+Note: one of the following arguments is required. When several are given, the user is looked up in the priority order id > email > user_code.
 
-- ##### id  
+- ##### id
 The login ID of the target user.
 
-- ##### email  
+- ##### email
 The email address of the target user.
 
-- ##### user_code  
+- ##### user_code
 The user code of the target user.
 
 
 #### Arguments: Password
-※Specify either "password" or "random = 1".  
-If both are entered, the "password" argument takes precedence.  
+Note: give either "password" or "random=1". When both are given, "password" takes priority.
 
 - ##### password  
-Specify the password character string to be changed.
+Give the string of the new password.
 
 - ##### random  
-Specify 1 to randomly create the password string.  
-0 if not specified.
+Give 1 to make the password at random. 0 if not given.
 
 #### Arguments: Optional
 
-- ##### send
-If you want to send the changed password by e-mail to the target user, specify 1. 0 if not specified.
+- ##### send  
+Give 1 to send the new password to the target user by email. 0 if not given.
 
 - ##### reset_first_login  
-After changing the password, the screen for changing the password will be displayed when the user logs in for the first time. 0 if not specified.  
-※Regardless of this option specified, if "Change password at first login" is set to YES in the login settings, the screen for changing the password will be displayed when the user logs in for the first time.
+After the password is changed, the screen for changing the password appears when the user logs in for the first time. 0 if not given.  
+Note: even without this option, if "Change Password at First Login" is YES in the login settings, the screen for changing the password appears when the user logs in for the first time.
 
 ### Notices
-- If "random = 1" is specified in the argument and "send = 1" is not specified, the changed password will be displayed on the console after the password is reset.
+- When "random=1" is given and "send=1" is not, the new password is shown on the console after the reset.
 
 
 ### Command execution example
 
 ~~~
-# Example: Reset by specifying password for user with id1
+# Example: reset for the user with id 1, giving the password
 php artisan exment:resetpassword --id=1 --password=P@ssw0rd!
 
-# Example: Set a random password for the user with user code "user1" and send an email
+# Example: set a random password for the user with user code "user1" and send an email
 php artisan exment:resetpassword --user_code=user1 --random=1 --send=1
 
-#Example: Set a random password for the user with email address "foobar@test.com"
+# Example: set a random password for the user with email address "foobar@test.com"
 php artisan exment:resetpassword --email=foobar@test.com --random=1
-I have reset my password. New password: XXXXXXXXXX #The changed password is output to the console
+Executed password reset. A new password is : XXXXXXXXXX #The new password is shown on the console
 ~~~

@@ -1,7 +1,14 @@
 # (For advanced users) Using the full-text search engine (Meilisearch)
-Exment normally searches against the database, but you can use the full-text search engine "[Meilisearch](https://www.meilisearch.com/)".  
-As a result, searches can be performed at high speed even in an environment that holds a large amount of data.  
-*This function is available in Exment v7.0.0 or later.  
+This setting makes the search of Exment faster with the full-text search engine "[Meilisearch](https://www.meilisearch.com/)".  
+Exment normally searches the database. With Meilisearch, searches are fast even in an environment with a very large amount of data.  
+*This function is available in Exment v7.0.0 or later.
+
+There are two ways to install it.
+
+| Way | When it suits |
+|---|---|
+| [The easy way](#the-easy-way) | Exment v7.2.2 or later. You want to install it by running a script once |
+| [Installing by hand](#installing-by-hand) | You want to set it up without the scripts. You want to see what the settings are |
 
 You can use the following functions.
 
@@ -15,11 +22,11 @@ You can use the following functions.
 
 ![Search result page using Meilisearch](img/meilisearch/meilisearch_search1.png)  
 
-> For the standard search specifications of Exment, please check [Search](/search).
+> For how the normal search of Exment works, see [Search](/search).
 
 
 ## Operating conditions
-When using Meilisearch, the following conditions must be satisfied.
+To use Meilisearch, the following conditions must be satisfied.
 
 |Item|Contents|
 |---|---|
@@ -30,15 +37,31 @@ When using Meilisearch, the following conditions must be satisfied.
 
 
 ## Notes
-- Meilisearch and the queue worker must keep running at all times. If Meilisearch stops, the search screen switches to the standard search using the database (while narrowing-down conditions are applied, no search results are displayed, and the sort order is not applied). If the queue worker stops, updates are no longer reflected in the index. Steps 1 and 3 register both as services that restart automatically.
-- The index is held separately from the database, so the two can drift apart. Step 4 sets up the daily automatic repair.
-- <span class="red">*When "EXMENT_SEARCH_DOCUMENT" is true, Meilisearch is not used on the search screen</span>, even if "MEILISEARCH_GLOBAL_SEARCH" is true, because attachment file names are not indexed. The input completion of "Select (select from the list of values of another table)" is not affected.
-- <span class="red">*Do not publish Meilisearch to the Internet.</span> Allow connections only from the Exment server or the internal network, and keep the master key secret.
-- For details on Meilisearch itself, see the [official documentation](https://www.meilisearch.com/docs).
+- <span class="red">*Do not publish Meilisearch to the Internet.</span> Set it so that it can be connected to only from the same server as Exment or from the internal network. Keep the master key strictly, so that other people do not learn it.
+- **Meilisearch and the queue worker must be kept running all the time**. Steps 1 and 3 register both as services that restart automatically. When one of them stops, the following happens.
+
+|What stopped|What happens|
+|---|---|
+|Meilisearch|The search screen switches to the normal search using the database (while narrowing-down conditions are applied, no search results are displayed, and the sort order is not applied).|
+|Queue worker|Updates are not reflected in the index.|
+
+- The index of Meilisearch (the data for searching) is held separately from the database of Exment. So differences can appear between the two. Step 4 sets up the automatic repair once a day.
+- <span class="red">*When "EXMENT_SEARCH_DOCUMENT" is true, Meilisearch is not used on the search screen.</span> The file names of attachments are not put in the index, so even if "MEILISEARCH_GLOBAL_SEARCH" is true, the search screen searches using the database. The input completion of the custom column "Select (select from the list of values of another table)" is not affected.
+- For details on Meilisearch itself, see the [official Meilisearch documentation](https://www.meilisearch.com/docs).
 
 
 ## The easy way
-From Exment v7.2.2, one script does steps 1 to 4 of [Installing by hand](#installing-by-hand) below. You can run it again at any time (the master key and the settings that are already there are kept).
+From Exment v7.2.2, running a script once does steps 1 to 4 of [Installing by hand](#installing-by-hand) below all together. The script can be run any number of times without a problem (the master key and the settings that are already there are used as they are).
+
+See the part that fits your environment.
+
+|Environment|Where to look|
+|---|---|
+|A Linux server (including EC2 of AWS and the like)|"For Linux" below|
+|A Windows server|"For Windows" below|
+|docker-exment|"For Docker" below|
+|Meilisearch already runs (for example, prepared on another server)|[Setting up only Exment](#setting-up-only-exment)|
+|AWS, Azure, rental servers|"For AWS and rental servers" below|
 
 ### For Linux
 On a server with systemd (Ubuntu, Debian, RHEL, Amazon Linux and others, including AWS EC2), go to the folder of Exment and run:
@@ -136,8 +159,7 @@ The command does the following, in order. If a step fails, it shows the error an
 
 
 ## Installing by hand
-The steps without the scripts, or to see what the settings are. Configure in the following order.
-Perform the settings in the following order.
+These are the steps for setting it up without the scripts, or for seeing what the settings are. Set in the following order.
 
 1. Install the Meilisearch server
 1. Exment settings
@@ -355,7 +377,7 @@ php artisan config:clear
 ```
 
 ### System settings
-- Log in to Exment as a system administrator, open the menu "Admin Settings > System Settings", and switch to "Advanced settings".
+- Log in to Exment as a system administrator, open the menu "Admin Setting > System Setting", and switch to "Detail Setting".
 - In "Meilisearch (full-text search) settings", set the following items and save.  
 ![Meilisearch (full-text search) settings in System settings](img/meilisearch/meilisearch_system1.png)  
 
@@ -490,7 +512,7 @@ The items of "Meilisearch (full-text search) settings" can also be set in the ".
 |Repair time (HH:MM)|MEILISEARCH_REPAIR_AT|
 |Search filter columns|MEILISEARCH_FILTER_MODE ("Auto + Custom" is override, "Custom only" is manual)|
 
-<span class="red">*The "Advanced settings" screen of System settings writes all of the above items to the database every time it is saved, even the items you did not change. After that, the values saved on the screen take priority, and the values in the ".env" are ignored for those items.</span>  
+<span class="red">*The "Detail Setting" screen of System settings writes all of the above items to the database every time it is saved, even the items you did not change. After that, the values saved on the screen take priority, and the values in the ".env" are ignored for those items.</span>  
 When you manage these items in the ".env", keep the following in mind.
 
 - "Enable Global Search via Meilisearch", "Real-time index sync", "Scheduled index repair" and "Search filter columns" cannot be saved empty. Once the screen has been saved, these four items always use the value on the screen, so change them on the screen.
@@ -519,11 +541,11 @@ When handling data of a language such as Japanese, the setting of "MEILISEARCH_L
 
 ## Administration screens
 The screens related to Meilisearch are as follows.  
-*The "admin" part of the URL differs depending on the setting of "ADMIN_ROUTE_PREFIX". For details, please check [Change / delete "admin" included in the URL](/additional_prefix).
+*The value in front of the URLs (such as "admin") differs depending on the setting of "ADMIN_ROUTE_PREFIX". For details, please check [Change / delete "admin" included in the URL](/additional_prefix).
 
 |Screen|URL|Contents|
 |---|---|---|
-|System settings|/system|From "Meilisearch (full-text search) settings" in "Advanced settings", set the connection destination, the master key and each flag.|
+|System Setting|/system|From "Meilisearch (full-text search) settings" in "Detail Setting", set the connection destination, the master key and each flag.|
 |Search Filter Setting|/meili-filter|Set the narrowing-down conditions displayed in the sidebar of the search result page.|
 |Search Dictionary Setting|/meili-dictionary|Set synonyms and stop words.|
 
@@ -633,7 +655,7 @@ php artisan exment:meili-settings --show
 
 ## When updating the system or changing the settings
 Since the queue worker is a long-lived process, it will not reflect changes in the code or the settings unless it is restarted.  
-When you have updated Exment, or when you have changed the settings of Meilisearch (the setting values starting with "MEILISEARCH_" in the ".env", or "Meilisearch (full-text search) settings" in "System Settings (Advanced settings)"), execute the following command and restart the queue worker.
+When you have updated Exment, or when you have changed the settings of Meilisearch (the setting values starting with "MEILISEARCH_" in the ".env", or "Meilisearch (full-text search) settings" in "System Setting (Detail Setting)"), execute the following command and restart the queue worker.
 
 - For Linux
 
@@ -651,8 +673,8 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 ## If it does not work properly
 |Symptom|Possible cause|
 |---|---|
-|The contents are not reflected even though you changed the ".env"|The value saved in "Admin Settings > System Settings (Advanced settings)" takes priority. Please check the settings on the screen.|
-|The queue worker does not start|The tables for the queue (jobs and failed_jobs) have not been created. Please refer to "Execute the commands" in "2. Exment settings" and create the tables.|
+|The contents are not reflected even though you changed the ".env"|The value saved in "Admin Setting > System Setting (Detail Setting)" takes priority. Please check the settings on the screen.|
+|The queue worker does not start|The tables for the queue (jobs and failed_jobs) have not been created. Please refer to "Create the tables" in "2. Exment settings" and create the tables.|
 |The search results do not change even after updating data|"MEILISEARCH_REALTIME_SYNC" is false, or the queue worker has stopped. Please check the status of the service, and the failed jobs with "php artisan exment:meili-health --failed".|
 |The search results do not change even after changing the column settings|The process of recreating the index has not been completed. Please check whether "gave up after 3 attempts" is output to the log, and execute "php artisan exment:meili-index".|
 |"reindex ... skipped: the queue connection is 'sync'" is output to the log|Since "QUEUE_CONNECTION" is sync, the process was given up. Please execute "php artisan exment:meili-index", or change the queue to database or redis and execute the queue worker.|
@@ -661,7 +683,7 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |There is a difference in the data after an import or a bulk deletion, or a table whose "Search Enabled" was changed to NO is still displayed in the search results|Documents are missing from, or remain in, the index. Please execute "php artisan exment:meili-reconcile" without specifying "--table".|
 |The automatic repair is not executed|The setting of the scheduler has not been performed, or "MEILISEARCH_REPAIR_ENABLED" is false.|
 |The Meilisearch service repeats starting and stopping (Linux)|"WorkingDirectory=/var/lib/meilisearch" is not described in the service configuration file.|
-|"Meilisearch index '(index name)' belongs to another Exment installation" is output by a command or to the log|The configured index is used by another Exment as its owner. This occurs when another Exment uses the same index name on the same Meilisearch server, or when "APP_KEY" in the ".env" has been changed. In this state, the "exment:meili-index" and "exment:meili-reconcile" commands result in an error, and data updates are not reflected in the index. Searches are performed using the database.<br />Change "Index name" in "System Settings (Advanced settings)" to a name not used by any other Exment and save it, then execute "php artisan exment:meili-index" and restart the queue worker. If the cause is a change of "APP_KEY", restoring the original "APP_KEY" value also solves it.|
+|"Meilisearch index '(index name)' belongs to another Exment installation" is output by a command or to the log|The configured index is used by another Exment as its owner. This occurs when another Exment uses the same index name on the same Meilisearch server, or when "APP_KEY" in the ".env" has been changed. In this state, the "exment:meili-index" and "exment:meili-reconcile" commands result in an error, and data updates are not reflected in the index. Searches are performed using the database.<br />Change "Index name" in "System Setting (Detail Setting)" to a name not used by any other Exment and save it, then execute "php artisan exment:meili-index" and restart the queue worker. If the cause is a change of "APP_KEY", restoring the original "APP_KEY" value also solves it.|
 
 - For Linux, you can check the error contents of Meilisearch with the following command.
 

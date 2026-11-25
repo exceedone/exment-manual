@@ -1,13 +1,14 @@
 # Thiết lập đăng nhập
-Trang này hướng dẫn các thiết lập liên quan đến việc đăng nhập vào Exment.
+Đây là trang đặt các quy tắc khi đăng nhập vào Exment. Bạn thiết lập được quy tắc của mật khẩu (chính sách mật khẩu) và xác thực hai yếu tố.  
+Cách đặt lại mật khẩu bằng lệnh cũng có ở trang này.
 
-> Về thiết lập và giải thích liên quan đến SSO, vui lòng xem [tại đây](/vi/login_sso).
+> Thiết lập và giải thích về SSO vui lòng xem [tại đây](/vi/login_sso).
 
 
 ## Xác thực hai yếu tố
 Exment hỗ trợ xác thực hai yếu tố.  
-Sau khi nhập thông tin người dùng và đăng nhập, người dùng nhập mã được gửi qua email hoặc mã do Google Authenticator cấp để có thể truy cập Exment.  
-※ Xác thực hai yếu tố có thể sử dụng khi phương thức đăng nhập là "Standard" (tiêu chuẩn) hoặc "LDAP".
+Sau khi nhập thông tin người dùng và đăng nhập, bạn nhập mã nhận qua email hoặc mã hiện trên Google Authenticator thì dùng được Exment.  
+※Xác thực hai yếu tố dùng được khi phương thức đăng nhập là "tiêu chuẩn" hoặc "LDAP".
 
 - [Xác thực hai yếu tố - Thiết lập hệ thống](/vi/login_2factor_setting)
 - [Đăng nhập (xác thực hai yếu tố)](/vi/login_2factor)
@@ -15,62 +16,62 @@ Sau khi nhập thông tin người dùng và đăng nhập, người dùng nhậ
 
 ## Cách quản lý thiết lập đăng nhập
 
-- Quản trị viên hệ thống nhập URL sau.  
+- Quản trị viên hệ thống mở URL sau.  
 http(s)://(URL của Exment)/login_setting  
-※ Có thể truy cập sau khi thực hiện "thay đổi thiết lập hệ thống" đã nêu ở trên.
+※Truy cập được sau khi làm việc "thay đổi thiết lập hệ thống" đã ghi ở trên.
 
-> Lưu ý: URL là theo thiết lập mặc định không có "/admin" (trang cài mới từ v7.2.1). Nếu `ADMIN_ROUTE_PREFIX` trong `.env` có giá trị (trang cũ là "admin"), hãy thêm giá trị đó sau URL của trang (ví dụ `http(s)://(URL của Exment)/admin/oauth/token`). Chi tiết xem [Change / delete "admin" included in URL](/additional_prefix).
+> ※URL này là của thiết lập tiêu chuẩn không có "/admin" (trang cài mới từ v7.2.1 trở đi). Nếu `ADMIN_ROUTE_PREFIX` trong `.env` có giá trị (trang cài ở phiên bản trước là "admin"), hãy thêm giá trị đó vào sau URL của trang (ví dụ: `http(s)://(URL của Exment)/admin/oauth/token`). Chi tiết vui lòng xem [Thay đổi hoặc xóa "admin" trong URL](/vi/additional_prefix).
 
-- Từ v7.1.0, cũng có thể mở từ "Admin Setting" > "Login Setting" ở menu bên trái.
-- Ở v7.0 trở về trước, theo thiết lập mặc định "Login Setting" không được hiển thị trên menu. Để thêm vào menu, mở trang "Admin Settings" > "Menu", chọn loại menu "System Menu", khi đó mục "Login Setting" sẽ được hiển thị; hãy chọn mục này rồi lưu lại.
+- Từ v7.1.0 trở đi, cũng mở được từ "Cài đặt quản trị" → "Cài đặt đăng nhập" ở menu bên trái.
+- Ở v7.0 trở về trước, lúc đầu "Cài đặt đăng nhập" không hiện trên menu. Để thêm vào menu, mở trang "Cài đặt quản trị" > "Menu" rồi chọn loại menu "Menu hệ thống". "Cài đặt đăng nhập" sẽ hiện ở mục đối tượng, hãy chọn rồi lưu.
 
 ![Danh sách thiết lập đăng nhập](../img/login/login_setting4.png)  
 
-- Để quản lý xác thực hai yếu tố, hãy thiết lập theo quy trình ở trang dưới đây.
+- Thiết lập xác thực hai yếu tố được làm theo các bước ở trang sau.
 
     - [Xác thực hai yếu tố - Thiết lập hệ thống](/vi/login_2factor_setting)
 
 
 ### Thiết lập chính sách mật khẩu
-Thiết lập các quy tắc liên quan đến mật khẩu đăng nhập.   
+Đặt các quy tắc về mật khẩu đăng nhập.   
 
 ![Màn hình thiết lập chính sách mật khẩu](../img/system_setting/system_setting_password.png)  
 
 #### Mật khẩu phức tạp
-- Khi thiết lập là YES, cần đặt mật khẩu từ 12 ký tự trở lên và bao gồm ít nhất 3 loại ký tự (chữ hoa, chữ thường, chữ số, ký hiệu; tất cả đều là ký tự nửa chiều rộng (half-width)).
+- Đặt thành YES thì mật khẩu phải có từ 12 ký tự trở lên và gồm ít nhất 3 loại ký tự (chữ hoa, chữ thường, chữ số, ký hiệu; đều là ký tự half-width).
 - Giá trị ban đầu là "NO".
 
 #### Số ngày hiệu lực
-- Khi người dùng đăng nhập lần đầu sau khi đã quá số ngày chỉ định, hệ thống sẽ chuyển đến màn hình đổi mật khẩu. Hãy đổi mật khẩu rồi đăng nhập lại.
-- Nếu đặt số ngày hiệu lực là "0", mật khẩu sẽ không có thời hạn.
+- Khi đăng nhập lần đầu sau khi đã qua số ngày đã đặt, màn hình đổi mật khẩu hiện ra. Hãy đổi mật khẩu rồi đăng nhập lại.
+- Nếu đặt số ngày hiệu lực là "0", mật khẩu không có thời hạn.
 - Giá trị ban đầu là "0".
 
 #### Yêu cầu đổi mật khẩu khi đăng nhập lần đầu
-- Khi đặt là YES, màn hình yêu cầu đổi mật khẩu sẽ được hiển thị khi người dùng đăng nhập lần đầu tiên.
-- Thiết lập này có hiệu lực đối với những người dùng được đăng ký mới hoặc được đặt lại mật khẩu sau khi thiết lập này được đặt là YES.
-- Thiết lập này không được áp dụng cho những người dùng đã được đăng ký mới, v.v. trước khi thiết lập được đặt là YES.
+- Đặt thành YES thì khi người dùng đăng nhập lần đầu, màn hình đổi mật khẩu hiện ra.
+- Đối tượng là người dùng được đăng ký mới và người dùng được đặt lại mật khẩu sau khi thiết lập này thành YES.
+- Người dùng đã được đăng ký mới, v.v. trước khi đặt thành YES thì không thuộc đối tượng.
 - Giá trị ban đầu là "NO".
 
 #### Số lượng mật khẩu lưu trong lịch sử
-- Hạn chế việc dùng lại các mật khẩu đã sử dụng gần đây. Hệ thống so sánh mật khẩu mới với các mật khẩu gần nhất, theo số lượng lưu trong lịch sử; nếu trùng thì báo lỗi.
-- Nếu đặt số lượng là "0", hệ thống sẽ không so sánh.
+- Không cho dùng lại mật khẩu đã dùng gần đây. Khi mật khẩu mới trùng với một trong các mật khẩu gần nhất, theo số lượng lưu trong lịch sử, thì báo lỗi.
+- Nếu đặt số lượng là "0", hệ thống không so sánh.
 - Giá trị ban đầu là "0".
 
 #### Lưu ý
 
-- <span class="small">"Mật khẩu phức tạp" và "Số lượng mật khẩu lưu trong lịch sử" được áp dụng khi người dùng tự đặt mật khẩu của mình, chẳng hạn trên màn hình thiết lập người dùng hoặc màn hình đặt lại mật khẩu. Trường hợp quản trị viên hệ thống đặt mật khẩu thì không áp dụng.</span>
+- <span class="small">"Mật khẩu phức tạp" và "Số lượng lịch sử mật khẩu" được dùng khi người dùng tự đặt mật khẩu của mình, như trên màn hình thiết lập người dùng hay màn hình đặt lại mật khẩu. Khi quản trị viên hệ thống đặt thì không áp dụng.</span>
 
 
 ### Khác
-- Trường hợp cập nhật từ phiên bản thấp hơn v3.3.0 lên v3.3.0 trở lên, khi đăng nhập bằng provider có mã người dùng (user code) chứa "dấu chấm (.)", có thể xảy ra lỗi.  
-Khi đó, hãy xử lý như sau.
-    - Tại "Custom Column Settings" (thiết lập cột tùy chỉnh) của bảng "User", chuyển đến màn hình chỉnh sửa cột "User Code".
-    - Tại tùy chọn "Available characters" (ký tự được phép sử dụng), đánh dấu chọn "Dot" (dấu chấm) rồi lưu.
+- Khi đã cập nhật từ phiên bản thấp hơn v3.3.0 lên v3.3.0 trở lên, nếu đăng nhập bằng provider có mã người dùng chứa "dấu chấm (.)" thì có thể bị lỗi.  
+Khi đó, hãy sửa như sau.
+    - Ở "Cài đặt cột tùy chỉnh" của bảng "Người dùng", mở màn hình chỉnh sửa cột "Mã người dùng".
+    - Ở tùy chọn "Ký tự được phép", đánh dấu ""." (dấu chấm)" rồi lưu.
 
 
-- Theo mặc định, ngay cả khi đóng trình duyệt trong trạng thái đang đăng nhập, trạng thái đăng nhập vẫn được duy trì cho đến khi hết một khoảng thời gian nhất định (120 phút).  
-Từ v3.6.0 trở đi, nếu muốn tự động đăng xuất khi đóng trình duyệt trong trạng thái đang đăng nhập, hãy mở tệp ".env" và thêm dòng sau.  
-※ Về cách chỉnh sửa tệp thiết lập, vui lòng xem chi tiết [tại đây](/config).
+- Với thiết lập lúc đầu, dù đóng trình duyệt khi đang đăng nhập, trạng thái đăng nhập vẫn tiếp tục cho đến khi qua một khoảng thời gian nhất định (120 phút).  
+Từ v3.6.0 trở đi, bạn đặt được để tự động đăng xuất khi đóng trình duyệt. Hãy mở tệp ".env" rồi thêm như sau.  
+※Cách sửa tệp thiết lập vui lòng xem [Danh sách giá trị thiết lập](/vi/config).
 
 ~~~
 EXMENT_SESSION_EXPIRE_ON_CLOSE=true
@@ -80,7 +81,7 @@ EXMENT_SESSION_EXPIRE_ON_CLOSE=true
 
 
 ## Lệnh đặt lại mật khẩu
-Có thể đặt lại mật khẩu bằng lệnh.
+Bạn đặt lại được mật khẩu của người dùng bằng lệnh.
 
 - Quản trị viên hệ thống chạy lệnh sau trên console.
 
@@ -88,7 +89,7 @@ Có thể đặt lại mật khẩu bằng lệnh.
 php artisan exment:resetpassword --email=foobar@test.com --password=P@ssw0rd!
 ~~~
 
-- Khi chạy lệnh trên, mật khẩu "P@ssw0rd!" sẽ được đặt cho người dùng có địa chỉ email "foobar@test.com".
+- Lệnh này đặt mật khẩu "P@ssw0rd!" cho người dùng có địa chỉ email "foobar@test.com".
 
 
 ### Tham số của lệnh
@@ -98,38 +99,38 @@ exment:resetpassword {--id=} {--email=} {--user_code=} {--password=} {--random=0
 ```
 
 #### Tham số: chỉ định người dùng
-※ Bắt buộc phải có một trong các tham số dưới đây. Nếu chỉ định nhiều tham số trong số này, hệ thống sẽ tìm kiếm theo thứ tự ưu tiên id > email > user_code.
+※Bắt buộc có một trong các tham số sau. Khi chỉ định nhiều tham số, hệ thống tìm theo thứ tự ưu tiên id > email > user_code.
 
 - ##### id
-ID đăng nhập của người dùng cần đặt lại mật khẩu.
+ID đăng nhập của người dùng đối tượng.
 
 - ##### email
-Địa chỉ email của người dùng cần đặt lại mật khẩu.
+Địa chỉ email của người dùng đối tượng.
 
 - ##### user_code
-Mã người dùng (user code) của người dùng cần đặt lại mật khẩu.
+Mã người dùng của người dùng đối tượng.
 
 
 #### Tham số: mật khẩu
-※ Hãy chỉ định "password" hoặc "random=1". Nếu nhập cả hai, tham số "password" sẽ được ưu tiên.
+※Hãy chỉ định "password" hoặc "random=1". Khi chỉ định cả hai, "password" được ưu tiên.
 
 - ##### password  
 Chỉ định chuỗi mật khẩu mới.
 
 - ##### random  
-Chỉ định 1 nếu muốn tạo chuỗi mật khẩu ngẫu nhiên. Nếu không chỉ định, giá trị là 0.
+Chỉ định 1 khi muốn tạo mật khẩu ngẫu nhiên. Nếu không chỉ định, giá trị là 0.
 
 #### Tham số: tùy chọn
 
 - ##### send  
-Chỉ định 1 nếu muốn gửi mật khẩu sau khi thay đổi cho người dùng đó qua email. Nếu không chỉ định, giá trị là 0.
+Chỉ định 1 khi muốn gửi mật khẩu mới cho người dùng đối tượng bằng email. Nếu không chỉ định, giá trị là 0.
 
 - ##### reset_first_login  
-Sau khi đổi mật khẩu, màn hình yêu cầu đổi mật khẩu sẽ được hiển thị khi người dùng đăng nhập lần đầu tiên. Nếu không chỉ định, giá trị là 0.  
-※ Bất kể tùy chọn này được chỉ định thế nào, nếu trong thiết lập đăng nhập, mục "Yêu cầu đổi mật khẩu khi đăng nhập lần đầu" được đặt là YES thì màn hình yêu cầu đổi mật khẩu vẫn được hiển thị khi người dùng đăng nhập lần đầu tiên.
+Sau khi đổi mật khẩu, khi người dùng đăng nhập lần đầu, màn hình đổi mật khẩu hiện ra. Nếu không chỉ định, giá trị là 0.  
+※Dù không chỉ định tùy chọn này, nếu trong thiết lập đăng nhập, "Yêu cầu đổi mật khẩu khi đăng nhập lần đầu" là YES thì khi người dùng đăng nhập lần đầu, màn hình đổi mật khẩu vẫn hiện ra.
 
 ### Ghi chú đặc biệt
-- Nếu chỉ định "random=1" trong tham số mà không chỉ định "send=1", mật khẩu sau khi thay đổi sẽ được hiển thị trên console sau khi đặt lại mật khẩu.
+- Khi chỉ định "random=1" mà không chỉ định "send=1", sau khi đặt lại, mật khẩu mới được hiện trên console.
 
 
 ### Ví dụ chạy lệnh
@@ -143,5 +144,5 @@ php artisan exment:resetpassword --user_code=user1 --random=1 --send=1
 
 # Ví dụ: đặt mật khẩu ngẫu nhiên cho người dùng có địa chỉ email "foobar@test.com"
 php artisan exment:resetpassword --email=foobar@test.com --random=1
-パスワードをリセットしました。新しいパスワード：XXXXXXXXXX # Mật khẩu sau khi thay đổi được xuất ra console (thông báo: "Đã đặt lại mật khẩu. Mật khẩu mới: ...")
+Đã đặt lại mật khẩu. Mật khẩu mới: XXXXXXXXXX #Mật khẩu sau khi đổi được xuất ra console
 ~~~

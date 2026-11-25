@@ -1,84 +1,86 @@
 # List of data
-- List the data of each table stored in Exment.  
-- What you see in the list is the data you created or the ones to which you have been assigned permissions.  
-- By registering the authority to edit and view all data to users and organizations, all data will be displayed regardless of the above conditions. Please refer to [roles / permissions](/permission.md) for details on permissions.
+This page explains the screen that shows the data saved in a table as a list.
+
+- The list shows the data you created and the data you have been given permission for.  
+- When the "permission to edit and view all data" is registered for a user or an organization, all data is shown, regardless of the condition above. For details on permissions, see [Roles and authorities](/permission).
 
 ## Functions list
 ![Data screen](img/data/data_grid1.png)  
 
-The data list also lets you switch the columns on screen, pin columns, group rows and edit cells in place. See [Data list tools](/data_grid_tools.md) for details.
+Note: the data list also lets you switch the columns shown, pin columns, group rows, edit in place and so on. See [Data list tools](/data_grid_tools) for details.
 
-- Auto refresh:  
-The last of the five tool icons at the top right. Reloads the list at the interval you choose (off, 30 seconds, 1 minute, 5 minutes). See [Data list tools](/data_grid_tools.md).
+##### Auto refresh  
+The rightmost of the five tool icons at the top right. It reloads the list at the interval you choose (Off, 30 seconds, 1 minute, 5 minutes). See [Data list tools](/data_grid_tools) for details.
 
-- Filter:  
-Filters the contents of the currently displayed data list. See below for details.
+##### Filter  
+Narrows down the data list now shown. See "filter" below for details.
 
-- View:  
-The view button for the currently displayed custom table. See below for details.  
+##### View  
+The view button of the custom table now shown. See "The view" below for details.  
 
-- Import / Export:  
-This button is used to export or import the data of the currently displayed custom table. Please refer to [Data Import / Export](/data_import_export.md) for details.  
+##### Import / Export  
+The button to export the data of the custom table now shown, or to import data. See [Data import / export](/data_import_export) for details.
 
-- List:  
-Data list.  
-Line items to be displayed are narrowed down by the user's authority, view refinement settings, and list screen filter settings.  
-The columns to be displayed are changed according to the column settings of the view.  
+##### List  
+The data list.  
+The rows shown are narrowed down by the user's permissions, the filter setting of the view, and the filter setting of the list screen.  
+The columns shown change with the column setting of the view.  
 
-- Batch update: Updates：  
-Updates the data contents in a batch at the selected multiple lines.  
-In [Batch update setting](/mass_update.md), it is necessary to set the target column and update value for batch update.
+##### Batch update  
+Updates the data of several selected rows in one go.  
+The columns to update and the update values must be set beforehand in the [Batch update settings](/mass_update).
 
 
 ## detail of function
 
 ### filter
-Filters the contents of the currently displayed data list.  
+Narrows down the data list now shown.  
 ![Data screen](img/data/data_grid_filter1.png)  
-Filtered items are displayed by clicking the "Filter" button.  
+Click the [Filter] button to show the items for narrowing down.  
 
-- The items that can be narrowed down are decided as follows.  
-  - When the view has its own filter items ("Specifying 'Filter' Items in the View" in [Custom views](/view.md)), exactly those items.  
-  - Otherwise: the system items (ID, created and updated date and so on) except the ones checked in "Hide filter in data list" of [System settings](/system_setting.md); the parent table of a child table; the workflow status when the table has a workflow; the comment when comments are on; and the columns where "Search index" is ON in custom column settings.  
-[Click here for custom column setting manual](/column.md)
+- The items that can be used for narrowing down are decided as follows.  
+  - When the view specifies "Filter" items ("Specifying "Filter" Items in the View" in [Custom views](/view)), only those items.  
+  - When it does not: the system items (ID, created date, updated date and so on; except the ones checked in "Disable Grid Filter" of the [System setting](/system_setting)), the parent table of a child table, the workflow status of a table that has a workflow, the comment when comments are used, and the columns where "Index Enabled" (search index) is ON in the custom column setting.
+[The manual of the custom column setting is here](/column)
 
-- For each item, enter a keyword and click "Search" to narrow down and display the corresponding line.    
+- Enter a keyword in each item and click the [Search] button: only the matching rows are shown.  
 
-- If you want to reset the filters, click the "Reset" button.  
+- To put the filter back, click the [Reset] button.
 
-- When a user other than the administrator narrows down, the data is narrowed down by the filter function from the data to which the user has authority. Unauthorized data is not filtered.  
+- When a user other than an administrator narrows down, the data is narrowed down from the data that user has permission for. Data without permission is not a target of the filter.  
 
-- In addition to the refinement condition of the displayed view, refinement is performed by the filter function.  
+- The filter is applied in addition to the narrowing conditions of the view shown.
 
-- For text-type columns, whether the keyword matches the start of the value (prefix match) or any part of it (partial match) follows "Data search method" in [System settings](/system_setting.md?id=data-search-method). The initial value is prefix match.  
+- For text-type columns, whether the entered keyword matches the beginning of the value (forward match) or a part of it (partial match) follows "Data search method" in the [System setting](/system_setting?id=data-search-method). The initial value is forward match.
 
+>Among the items shown as choices, the words of an item that has a relation setting can be changed in the [Heading display column setting](/table?id=heading-display-column-setting).
 
 ### The view
-A button for the view of the currently displayed custom table.  
-For the button name, the name of the currently displayed view is displayed.  
-Click the button to display the view menu.  
+The view button of the custom table now shown.  
+The button shows the name of the view now shown.  
+Click it to show the view menu.
 ![Data screen](img/data/data_grid_view1.png ':size=284')  
 
-- System view:  
-A list of views registered in the system is displayed.  
-Click an item to switch to that view.  
+##### System View  
+The list of the views registered in the system is shown.  
+Click an item to switch to that view.
 
-- Settings-Change current view settings:  
-Change the settings of the currently displayed view.  
-Clicking an item switches the display to the setting change screen for that view.  
-※ Items are displayed only for users who have table administrator authority.  
+##### Setting - Edit Current View Setting  
+Changes the setting of the view now shown.  
+Click the item to switch to the screen for changing the setting of that view.  
+Note: this item is shown only to users who have the administrator permission of the table.  
 
-- Settings-New View:  
-Create a new view.  
-The display switches to the new view creation screen by clicking the item.  
-※ Items are displayed only for users who have table administrator authority.  
+##### Setting - Create View  
+Makes a new view.  
+Click the item to switch to the screen for creating a new view.  
+Note: this item is shown only to users who have the administrator permission of the table.  
 
 ### Bulk update
-Updates the contents of the selected multiple data at once.  
-When you make a selection with the check box to the left of each line, the number of selected lines and the icon of ▼ are displayed at the upper left.  
+Updates several selected records in one go.  
+When you select rows with the checkbox at the left of each row, the number of selected rows and a ▼ icon are shown at the top left.
 ![Data screen](img/data/data_grid_mass_update1.png)  
 
-- If you click the ▼ icon, batch deletion and created batch update settings are displayed as options.
+- Click the ▼ icon: batch deletion and the batch update settings already made are shown as choices.  
 
-- When you click the option of the content you want to update, a message confirming the execution of the batch update is displayed. Click the confirmation button. The data of the column specified in [Batch update setting](/mass_update.md) is registered with the update value.
+- Click the choice of what you want to update: a message asks whether the batch update may be run. Click the confirmation button. The columns specified in the [Batch update settings](/mass_update) change to the update values.
 ![Data screen](img/data/data_grid_mass_update2.png)  

@@ -65,7 +65,7 @@ Word, Excel and PowerPoint files attached to records can also be seen in the bro
 ## Feature Management (Exment v7.2.1 or later)
 - The web mail is one row, "メール" (`exment_groupware.mail`), in "Admin Setting" > "[Feature Management](/feature)". A system administrator turns it on or off and chooses the role groups that may use it.
 - Sites that had the plugin before keep it on after updating. **On a new site it starts off**, so turn on "メール" in Feature Management (while it is off, the mail page returns 404).
-- Office follows File sharing feature: when File sharing is off, "Open in Office" of File sharing does not open.
+- Office follows the File sharing feature: when File sharing is off, "Open in Office" of File sharing does not open.
 
 ## Requirements
 - Exment 7.1 or later (checked on 7.1 and 7.2) and PHP 8.2 or later. The web mail and record attachments work on both.
@@ -109,7 +109,7 @@ location ^~ /vendor/exment_groupware/ibisoffice/ {
 ```
 
 **Any web server**
-- **X-Frame-Options must be `SAMEORIGIN`, not `DENY`.** The editor is an `iframe` of the same site, and with `DENY` the browser refuses it (the screen stays empty). Set a Content-Security-Policy `frame-ancestors` to `'self'` as well.
+- **X-Frame-Options must be `SAMEORIGIN`, not `DENY`**. The editor is an `iframe` of the same site, and with `DENY` the browser refuses it (the screen stays empty). Set a Content-Security-Policy `frame-ancestors` to `'self'` as well.
 - A site with a Content-Security-Policy needs `script-src 'self' 'wasm-unsafe-eval'`.
 - No COOP / COEP headers are needed.
 

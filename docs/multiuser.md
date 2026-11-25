@@ -1,103 +1,106 @@
 # Settings for external portal sites (when building a system where users from multiple organizations log in)  
-This is recommended when you want to set ** "Display only the organization to which the logged-in user belongs and the users who belong to it" ** when displaying the user / organization on the data list screen or edit screen.
+This setting makes the places where users and organizations are selected or displayed **"show only the organizations the login user belongs to, and the users who belong to them"**.  
+It is recommended when people from different companies log in to one Exment (for example, a portal site for outside users).
+
+The setting itself is only one item of the System Setting. If you want to know the steps first, see "[Setting method](/multiuser?id=setting-method)" below.
 
 ## Background
 Originally, Exment was mainly intended for the following uses.
 
-- Information sharing within companies and organizations
-- Information sharing between group companies
-- Publish REST API and possess data as a Web database
+- Sharing information inside a company or an organization
+- Sharing information between group companies
+- Publishing a REST API and keeping data as a web database
 
-For these purposes, "which user is using the system" and "which organization / company is registered in the system" do not matter. Rather, it should be viewable.
+For these uses, it is not a big problem if people can see who is using the system and which organizations and companies are registered. Rather, it is natural that they can see it.
 
 ![Role / Authority](img/user/multi_user7.png)
 
-However, when considering the following uses, ** "getting information about other users" ** can be a problem.
+However, for the following uses, **"being able to get the information of other users"** can be a problem.
 
-- Exment accounts are assigned to completely different companies that are not between group companies, and data is managed with a single Web database.
-- Exment account is issued on an individual basis and a system is built as a portal site.  
+- Exment accounts are issued to completely different companies that are not group companies, and the data is managed in one web database.
+- Exment accounts are issued to individuals, and the system is built as a portal site.
 
-When considering such uses, it may sometimes be a problem to be able to browse and acquire user information, company / organization information other than the company to which each user belongs. ** **
+For such uses, **being able to view and get the user information and the company / organization information outside each user's own company can sometimes be a problem.**
   
 ![Role / Authority](img/user/multi_user8.png)
 
-As an example, suppose you configure the following Exment.
+As an example, suppose Exment is configured as follows.
 
-- In a certain Exment environment, the person in charge of vendor companies A, B, and C can log in.
-- The person in charge of each vendor has the authority to "edit the data in charge" in the table "product information" and inputs the product information in charge of the company.
-- In the table "Product Information", there is a custom column "Person in charge". In the "Person in charge" column, set the person in charge of the product in-house.  
+- In one Exment environment, the persons in charge at vendor companies A, B and C can log in.
+- The person in charge at each vendor has the "Edit Personnel Data" permission on the table "Product information", and enters the information of the products the company is in charge of.
+- The table "Product information" has a custom column "Person in charge". The company's person in charge of the product is set in the "Person in charge" column.
 
-However, with such a setting, under normal settings, the person in charge of all vendor companies A, B, and C is displayed in the custom column "person in charge" candidate of the table "product information".  I will end up.  
-This is because if you set the Users column in Exment, the choices would show all authorized users under normal settings.
+With the usual settings, **the candidates of the custom column "Person in charge" of the table "Product information" show the persons in charge of all of vendor companies A, B and C.**  
+This is because, with the usual settings, a "User" column of Exment shows all users with permission as its options.
   
-![Multiple user screen](img/user/multi_user1.png)
+![Multiple user screen](img/user/multi_user1.png)  
   
-In this way, you may want to achieve ** "Display only the organization or user to which that user belongs to the logged-in user of each organization" **.  
+So there are cases where you want **"the login users of each organization to see only the organizations and users that the user belongs to"**.
   
-This chapter describes the procedure for making the following settings.
-- Make it impossible to display only the organization to which the logged-in user belongs.
-- And make it impossible to display only users who belong to those organizations.
+This page explains the steps to do the following two things.
+- Make the organizations other than those the login user belongs to impossible to display.
+- Also make the users other than those who belong to these organizations impossible to display.
 
 
 ## Setting method
-- Transit to the system setting screen and click the "Detailed settings" button at the top right of the screen.
+1. Go to the System Setting screen and click the "Detail Setting" button at the top right of the screen.
+2. Change the "User Organization Filter" item in "Organization Setting" to a suitable setting.
 
-- Change the "User / Organization Filter" item in "Organization Settings" to the appropriate settings.
+![Multiple user screen](img/user/multi_user2.png)  
 
-![Multiple user screen](img/user/multi_user2.png)
-
-- The choice of settings depends on whether the "Use Organization Settings" setting for that Exment is YES.
+The settings you can choose depend on whether the "use organizations" setting of that Exment is YES.
 
 ### Setting value (for setting using organization)
+With any of the settings, the login user can get only "the organizations that can be got" and "the users who belong to those organizations" (except for "Not filter").
+
 #### Do not narrow down
-- This is the default value. We do not narrow down the organization or users by logged-in users.
+- This is the default ("Not filter" on the screen). Organizations and users are not narrowed down by the login user.
 
 #### The organization to which the logged-in user belongs and the organization of the parent-child hierarchy. And their affiliated users
-- Login users can only get information about the organization to which they belong and the organization information of their parent-child hierarchy.
-- You can only get information about users who belong to those organizations.
+- The login user can get only the information of the organizations the user belongs to and of their parent and child organizations.
+- The login user can get only the information of the users who belong to those organizations.
 
 #### The organization to which the logged-in user belongs and the organization of the parent hierarchy. And their affiliated users
-- Login users can only get information about the organization to which they belong and the organization of their parent hierarchy.
-- You can only get information about users who belong to those organizations.
+- The login user can get only the information of the organizations the user belongs to and of their parent organizations.
+- The login user can get only the information of the users who belong to those organizations.
 
 #### The organization to which the logged-in user belongs and the organization of the child hierarchy. And their affiliated users
-- Login users can only get information about the organization to which they belong and the organization information of their child hierarchy.
-- You can only get information about users who belong to those organizations.
+- The login user can get only the information of the organizations the user belongs to and of their child organizations.
+- The login user can get only the information of the users who belong to those organizations.
 
 #### The organization to which the logged-in user belongs. And their affiliated users
-- Login users can only get information about the organization to which they belong.
-- You can only get information about users who belong to those organizations.
+- The login user can get only the information of the organizations the user belongs to.
+- The login user can get only the information of the users who belong to those organizations.
 
 
 ### Setting value (when the setting does not use the organization)
 #### Do not narrow down
-- This is the default value. Users are not narrowed down by logged-in users.
+- This is the default ("Not filter" on the screen). Users are not narrowed down by the login user.
 
 #### Login users only
-- User information other than the logged-in user cannot be obtained.
+- The information of users other than the login user cannot be got ("Only login user" on the screen).
 
 
 ## Specifications when this setting is made
-When making this setting, the specifications are as follows.
+With this setting, the screens change as follows.
 
-- On the data edit screen, the options for the custom column "Organization" are narrowed down to only the organizations that the logged-in user can get.
-In addition, the selection of the custom column "User" on the data edit screen is narrowed down to only the users that can be acquired by the logged-in user.
+- **Data edit screen**: the options of a custom column "Organization" become only the organizations the login user can get.  
+The options of a custom column "User" also become only the users the login user can get.
 
-![Multiple user screen](img/user/multi_user3.png)
+![Multiple user screen](img/user/multi_user3.png)  
 
-- When viewing data, if a user / organization that cannot be acquired by the logged-in user is set in a specific column, the link of the user / organization that is originally set is displayed, but instead, "(View permission)" Is missing) ”text is displayed.  
-<span class = "red">※This is not a function that makes it impossible to view the target data itself.  
-This function hides only users / organizations.  
-If this data is displayed, it is possible that the data is shared with users other than the target user / organization, so [Data permission settings](/permission#_3-data-unit) Please check.</span>
+- **Viewing data**: when a column holds a user or organization that the login user cannot get, a text saying that you have no permission to view it is displayed instead of the link of the user or organization.  
+<span class="red">Note: this is not a function that makes the data itself impossible to view. It only stops the user or organization from being displayed.  
+When this text appears, the data may be shared with users or organizations that are not the intended target. Check the [permission settings of the data](/permission?id=_3-data-unit).</span>
 
-![Multiple user screen](img/user/multi_user4.png)
+![Multiple user screen](img/user/multi_user4.png)  
 
-- On the data sharing screen, the options are narrowed down to only the organizations / users that the logged-in user can acquire.
+- **Data sharing screen**: the options become only the organizations and users the login user can get.
 
-![Multiple user screen](img/user/multi_user5.png)
+![Multiple user screen](img/user/multi_user5.png)  
 
-- Only the following users can get all organizations / users regardless of the organization to which they belong.
-    - System Administrator
-    - Login user who has the authority of "Get all users / organizations" in [Role group setting](/role_group)
+- Only the following users can get all organizations and users, regardless of the organizations they belong to.
+    - System administrators
+    - Login users who have the "Get All User and Org" permission in the [role group setting](/role_group)
 
-![Multiple user screen](img/user/multi_user6.png)
+![Multiple user screen](img/user/multi_user6.png)  

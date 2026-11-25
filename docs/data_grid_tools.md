@@ -1,6 +1,6 @@
 # Data list tools
 
-The display and in-place editing features available on the [list of data](/data_grid.md) screen.  
+The display and in-place editing features available on the [list of data](/data_grid) screen.  
 Nothing has to be configured - they are there as soon as a data list is opened.
 
 ![Data list](img/data_grid_tools/grid_overview.png)
@@ -61,7 +61,7 @@ Groups the rows of the current page by the value of one column.
 
 > **Why it says "this page only"**  
 > Grouping rearranges the rows already loaded on the page.  
-> To summarise across all of the data, build an [aggregate view](/view.md) instead.
+> To summarise across all of the data, make a [summary view](/view) instead.
 
 ### Density
 
@@ -78,7 +78,8 @@ Changes the row height and whether text wraps inside a cell.
 
 ### Auto refresh
 
-Reloads the list every so often, so a screen left open during shared work (a support queue, for instance) keeps showing the current state.
+Reloads the list automatically at a fixed interval.  
+In work that several people handle at the same time (a support queue, for instance), a screen left open keeps showing the current state.
 
 ![Auto refresh](img/data_grid_tools/grid_refresh.png ':size=147')
 
@@ -87,7 +88,7 @@ The setting is dropped when the tab is closed.
 
 ## Working inside the table
 
-※From v7.1.0, when the screen design is "Modern", the action column (show / edit / delete) is shown right after the checkbox (on the left of the table). In "Classic" it stays at the right end.
+Note: From v7.1.0, when the screen design is "Modern", the action column (show / edit / delete) is shown right after the checkbox (on the left of the table). In "Classic" it stays at the right end.
 
 ### Inline editing (double click)
 
@@ -96,6 +97,8 @@ Double click a cell to change its value in place. Cells that can be edited show 
 ![Inline editing](img/data_grid_tools/grid_inline_edit.png)
 
 Choosing (or typing) a value saves it and repaints the cell.
+
+The column types that can be edited are as follows.
 
 | Column type | Editor |
 | --- | --- |
@@ -117,6 +120,8 @@ The save obeys what the record's edit page obeys: the form's column settings, th
 
 Turn on [Excel mode] in the toolbar to select and edit cells with the keyboard, like in Excel (from v7.1.0). It is off by default. On / off is stored in the browser.
 
+![Excel-like editing](ja/img/data_grid_tools/grid_keyboard.png)
+
 | Operation | Content |
 | --- | --- |
 | Click | Selects the cell (the data is not opened) |
@@ -127,8 +132,8 @@ Turn on [Excel mode] in the toolbar to select and edit cells with the keyboard, 
 | Enter, Tab while editing | Save and move to the next cell |
 | Esc while editing | Cancel the edit and put the old value back |
 
-※When it is off, nothing changes (a click opens the data, a double click or the pencil edits a cell).  
-※Which cells can be edited and how they are saved (validation, permissions, workflow and so on) are the same as [Inline editing](#inline-editing-double-click). Only how an edit starts and ends is different.
+Note: When it is off, nothing changes (a click opens the data, a double click or the pencil edits a cell).  
+Note: Which cells can be edited and how they are saved (validation, permissions, workflow and so on) are the same as [Inline editing](#inline-editing-double-click). Only how an edit starts and ends is different.
 
 ### Right click menu
 
@@ -174,18 +179,20 @@ Ticking the checkboxes on the left changes the row colour and brings up a bar at
 | Batch delete | Deletes the ticked rows |
 | Clear selection | Unticks everything |
 
-Which buttons appear depends on the permission and on the [operation setting](/operation.md).
+Which buttons appear depends on the permission and on the [data update settings](/operation).
 
 #### Run workflow
 On a table with a workflow, you can run a workflow action on the ticked records at once (from v7.1.0).  
 Click [Run Workflow] in the batch menu of the list or in the bulk bar at the bottom.
 
+![Run workflow](ja/img/data_grid_tools/grid_workflow_bulk.png)
+
 - The actions you can run on the ticked records are listed with counts, such as "Approve (8 / 10 selected)". Choose an action, enter a comment or the next work users if needed, and click [Run].
 - Each record is checked like the action button of its page (the user can see it, the action can be run at its status, it has not been run already) and run one by one. Records that cannot be run are skipped; at the end, the number of records run and skipped (with the reasons) is shown.
 - Notifications, plugins and steps with several approvers work as when running one record. Up to 500 records can be run at a time.
 
-※It is shown to users who can run an action on the data, even without the edit permission. It cannot be used in the trash.  
-※For workflows, see [Workflow implementation](/workflow_execution).
+Note: It is shown to users who can run an action on the data, even without the edit permission. It cannot be used in the trash.  
+Note: For workflows, see [Workflow implementation](/workflow_execution).
 
 #### Bulk edit
 
@@ -215,7 +222,7 @@ When [Filter] is used, the conditions in force are drawn as chips above the tabl
 - It says how many rows are hidden.
 - [Clear filter] brings them back.
 
-> "Filter within this page" only looks at the rows on the current page. To filter across pages, use the [Filter] panel or the [view's display condition](/view.md).
+> "Filter within this page" only looks at the rows on the current page. To filter across pages, use the [Filter] panel or the [view's display condition](/view).
 
 ## About permissions
 
@@ -227,7 +234,7 @@ These features use the existing permissions.
 
 ## See also
 
-- [List of data](/data_grid.md)
-- [Custom views](/view.md)
-- [Cell style presets](/cell_style_preset.md)
-- [Operation](/operation.md)
+- [List of data](/data_grid)
+- [Custom views](/view)
+- [Cell style presets](/cell_style_preset)
+- [Data update settings](/operation)

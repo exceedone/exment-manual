@@ -1,31 +1,39 @@
 # Two-factor authentication system settings
-Exment supports two-step verification.  
-This section describes how to configure Exment on the system administration side.  
+Exment supports two-factor authentication (logging in by entering one more code after the password).  
+This page gives the steps of the settings with which a system administrator makes two-factor authentication usable.
+
+The steps are as follows.
+
+1. (Only when you use Google Authenticator) Install the library
+2. Add a setting to the ".env" file
+3. On the login setting screen, make the mail settings and save
+4. Set "Use Two-Step Authentication" to YES and choose the method
+5. Receive the authentication code, enter it and save
 
 ## Two-factor authentication method
-Currently, the following two-step authentication methods are supported.  
+The two-factor authentication methods that can be used now are the following two.  
 
-- E-mail: After logging in with your ID / password, an e-mail with the authentication code will be sent to the registered e-mail address.  
-Enter the verification code in the form to complete the login.  
+##### Email
+After you log in with the ID and password, an email with an authentication code arrives at the registered email address.  
+Enter that authentication code on the screen, and the login is finished.
 
-- Google Authenticator: After login with ID / Password, two-factor authentication is performed using Google Authenticator.  
+##### Google Authenticator
+After you log in with the ID and password, two-factor authentication is done with Google Authenticator.
 
 ## Assumptions
-- Two-step authentication in Exment is not set by individual login users, but is set by the entire system.  
-For example, if the two-step authentication method is selected as "Google authentication system", all users will perform two-step authentication using the Google authentication system.  
+- Two-factor authentication of Exment is set for the whole system, not for each user.  
 
-- When performing two-factor authentication with Exment, it is essential that the system be able to send e-mail.  
-This is the same even when the type of two-step verification is set to "Google Authenticator".  
+- To use two-factor authentication, the system must be able to send emails. This is the same when "Google 2-Step Verification" is chosen as the method.
 
-- If you set two-step authentication and set the authentication method to "Google Authenticator", when the user logs in for the first time, the e-mail for registering Google Authenticator to the registered e-mail address Send.    
+- When the method is "Google 2-Step Verification", an email for registering Google Authenticator is sent to the registered email address when a user logs in for the first time.  
 ![System setting screen](img/login/login_2factor5.png)  
-By clicking the link of the sent e-mail address, each user can set up 2-step verification.  
-By performing the setting once, the initial setting will not be performed for the second and subsequent times, and it will be a method that only inputs the authentication code from the Google authentication system.  
+By pressing the link in the email, users can set up two-factor authentication themselves.  
+Once it is set up, from the second time on they only enter the authentication code shown in Google Authenticator.  
 
 ## Setting method
-This is how to set up two-factor authentication.
+The steps to set up two-factor authentication.
 
-- If the authentication method to use is "Google Authenticator", execute the following command from the root folder of the project.  
+- When the method you use is "Google 2-Step Verification", run the following command in the root folder of the project.
 
 ~~~
 composer require pragmarx/google2fa
@@ -33,51 +41,56 @@ composer require pragmarx/google2fa
 
 > Since v7.0.0, simplesoftwareio/simple-qrcode is installed automatically as a dependency of Exment, so you do not need to add it.
 
-- Open the ".env" file from the root folder of the project, and add as follows.  
-※ how to edit the configuration file, for more information click [here](/config) Please refer to.
+- Open the ".env" file in the root folder of the project and add the following.  
+Note: see [Setting value list](/config) for how to edit the setting file.
 
 ~~~
 EXMENT_LOGIN_USE_2FACTOR=true
 ~~~
 
-- It will transition to the system setting screen with the administrator account.  
+- Open the login setting screen with an administrator account.
 
-- First, configure the email settings. Enter the settings for sending email. See [System Mail Settings](/system_setting#system-mail-settings) for details.  
-After completing the settings, click “Submit” once to save.  
+- First, make the mail settings. Enter the setting values for sending email. See [System mail settings](/system_setting?id=system-mail-settings) for details.  
+After entering them, press [Submit] once to save.  
 
-- After that, "2 step authentication" is displayed at the bottom of the system setting screen.  
+- After that, show "Two-Step Authentication" in the lower part of the login setting screen.  
 ![System setting screen](img/login/login_2factor1.png)  
 
-- Set the "Use two-factor authentication" item to "YES".  
-By setting to YES, the remaining setting items will be displayed.  
+- Set "Use Two-Step Authentication" to "YES".  
+When it is YES, the remaining setting items appear.  
 ![System setting screen](img/login/login_2factor2.png)  
 
-- In the "Default authentication method" item, select "Email" or "Google Authenticator" for the method used for two-step authentication.  
+- In "Default Authentication", choose the method used for two-factor authentication ("E-Mail Authentication" or "Google 2-Step Verification").  
 
-- Click the "Send Authentication Code" button to send an authentication code to use the two-step verification to the currently logged in account.  
-Enter the authentication code in the sent e-mail in the "Authentication code" field.  
+- Press the [Authentication code transmission] button, and an authentication code is sent to the account you are logged in with now.  
+Enter the authentication code written in the email in the "Authentication Code" item.
 ![System setting screen](img/login/login_2factor3.png)  
 ![System setting screen](img/login/login_2factor4.png)  
 
-※When clicking the "Send Authentication Code" button, an error like the image below may occur.  
-This error occurs when updating from a version lower than v1.4.0.  
-In that case, follow [these steps](/update/v1_4) to import the email template.  
+Note: when you press the [Authentication code transmission] button, an error like the image below can appear.  
+This error appears after an update from a version lower than v1.4.0.  
+In that case, import the notification template by following [these steps](/update/v1_4).  
 ![System setting screen](img/login/login_2factor_error.png)  
 
-※In addition, an error like the image below may occur.  
-Occurs when the e-mail transmission settings are not performed properly. In that case, make the correct settings according to the [system mail settings](/system_setting#system-mail-settings).  
+Note: an email sending error can also appear.  
+It appears when the email sending settings are not correct.
+In that case, see [System mail settings](/system_setting?id=system-mail-settings) and correct the settings.
 ![System setting screen](img/login/login_2factor_error2.png)  
 
-- Then click "Send" to save the settings.
+- Finally, press [Submit] to save the settings.
+
 
 ## Disable setting
-If you want to forcibly disable 2-step verification for any reason, please do the following settings.
+If, for some reason, you want to turn two-factor authentication off by force, make the following setting.
 
-- Open the ".env" file from the project folder and add as follows.  
-※ how to edit the configuration file, for more information [click here](/config) Please refer to.  
+- Open the ".env" file in the folder of the project and add the following.  
+Note: see [Setting value list](/config) for how to edit the setting file.
 
 ~~~
 EXMENT_LOGIN_USE_2FACTOR=false
 ~~~
 
-By performing this setting, even if you set "Use two-factor authentication" on the screen, two-factor authentication will be disabled.
+With this setting, two-factor authentication is off even when "Use Two-Step Authentication" is set on the screen.
+  
+  
+[←Back to Login settings](/login_setting)

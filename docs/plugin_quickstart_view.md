@@ -1,43 +1,46 @@
 ## Plugin(View)
-You can create and add new designs and unique features to Exment's custom data list screen.  
-Please use it when you want to use a completely different function from the standard View, List / Aggregation / Calendar View.   
+This plugin adds a view with its own design and functions to the list screen of custom data.  
+Use it when you want something completely different from the standard views (list, aggregation and calendar views).
 
 ![View plugin example](img/plugin/plugin_view1.png)
 
-
 ## Introduction
-The Exment Plugin page was developed using the PHP framework [Laravel](http://laravel.com/) and the admin library [exment-admin-core](https://github.com/exceedone/exment-admin-core) (based on laravel-admin / open-admin; laravel-admin in v6.x or earlier). increase...  
-When developing a page, we recommend that you develop it especially if you have knowledge of Laravel.
+An Exment plugin page is developed with these two.
+
+- The PHP framework [Laravel](http://laravel.com/)
+- The admin library [exment-admin-core](https://github.com/exceedone/exment-admin-core) (a library based on laravel-admin / open-admin; laravel-admin in v6.x or earlier)
+
+We especially recommend that someone who knows Laravel does the development.
 
 
 ## Custom View Main specifications
-- You can display your own functions and screens on the custom data list screen.
-- View settings can be freely added by the Plugin developer. As with any standard View, you can individually configure View-specific settings on the View Settings screen.
-- Like other standard views, you can create multiple views, so even with the same view, for example, "View A displays all data" and "View B displays only data with a valid flag of YES". You can make settings such as.
+- You can show your own functions and screens on the list screen of custom data.
+- The plugin developer can freely add setting items for the view. Like a standard view, the added items are set for each view on the view setting screen.
+- Like a standard view, you can make more than one view. Even with the same plugin, each view can have different settings, such as "View A shows all data" and "View B shows only the data whose valid flag is YES".
 
 
 ## Difference between page and view
-One way to create your own page is [Plugin(page)](/plugin_quickstart_page).  
-The main differences between Plugin (page) and Plugin (View) are as follows.  
+Besides this Plugin (View), there is another way to make your own screen: [Plugin (Page)](/plugin_quickstart_page).  
+The main differences between the two are as follows.
 
 #### Plugin(Page)
-- Basically, it creates a completely independent page without being tied to a specific table.  
-- When you install the Plugin, you will be able to access the screen unique to the Plugin.  
-- Since it is not tied to a specific table, you can join multiple tables and conversely create a page that is completely unrelated to Exment's custom data.   
+- Basically, it makes a completely independent page that is not tied to a specific table.
+- Once the plugin is installed, the plugin's own screen can be opened.
+- Because it is not tied to a specific table, you can also make a page that joins several tables, or a page that has nothing to do with Exment's custom data.
 
 #### Plugin(View)
-- The created Plugin screen is displayed on the list screen of a specific table.
-- Similar to the standard View, List / Aggregation / Calendar View, the administrator or user can add a View to display the Plugin's own screen.
-- You can join multiple tables or, conversely, create a page that is completely unrelated to the Exment's custom data, but basically it will display the screens related to the data in the selected table.
+- The screen of the plugin is shown on the list screen of a specific table.
+- Like the standard views (list, aggregation and calendar views), the plugin's own screen is shown when an administrator or a user adds a view.
+- Basically, it shows a screen related to the data of the selected table. You can also make a screen that joins several tables, or a screen that has nothing to do with Exment's custom data.
 
 
 
 ## How to make
 
 ### Sample
-Here, as a sample, create the following page.  
-- Display a simple Kanban View that creates a Kanban task for each category.
-- The column corresponding to "Category" can be selected as appropriate in the View settings. This allows multiple tables to use the same Plugin.
+Here, as a sample, we make the following page.
+- It shows a simple Kanban view that lines up tasks by category.
+- The column used as the "category" can be selected in the view settings. This way the same plugin can be used with several tables.
 
 
 ### Create config.json
@@ -66,20 +69,21 @@ Here, as a sample, create the following page.
 
 ~~~
 
-- Enter plugin_name in single-byte alphanumerical characters.
-- uuid is a string of 32 characters + hyphen, for a total of 36 characters. Used to make the Plugin unique.
-Please create from the following URL.  
-https://www.famkruithof.net/uuid/uuidgen  
+- Enter plugin_name in single-byte alphanumeric characters.
+- uuid is a string that tells plugins apart. It is 32 characters plus hyphens, 36 characters in total. Make sure it is not the same value as another plugin's.  
+You can make one at the following URL, for example.  
+https://www.famkruithof.net/uuid/uuidgen
 - Enter view for plugin_type.  
-- route defines a list of URL endpoints to execute, their HTTP methods, and methods in Controller.  
-* Basically, View only displays the list screen, so you do not need to set the route. However, if you want to perform asynchronous request / response by ajax, please implement the definition.  
+- route defines a list of the URL endpoints to run, their HTTP methods and the methods in the Controller.
+Note: a view basically only shows the list screen, so the route setting is not needed. Define it only when you make asynchronous requests and responses with ajax.
 
-    - uri: This is a uri for page display. The actual URL will be "http(s)://(Exment URL)/plugins/(URL set on the Plugin management screen)/(specified uri)".
-    - method: HTTP method. Please fill in with get, post, put, delete.
-    - function: Method in Controller to execute
-    - Example: If the URL set on the Plugin management screen is "youtube_search", the uri specified in config.json is "list", and the specified method is "get", "http(s)://(Exment URL)/plugins/youtube_search/list (method: GET) ".  
+    - uri: the uri for showing the page. The actual URL is "http(s)://(Exment URL)/plugins/(URL of the plugin)/(specified uri)". The "URL of the plugin" is plugin_name in snake case (or, when config.json has "uri", that value).  
+    - method: the HTTP method. Enter get, post, put or delete.
+    - function: the method in the Controller to run
+    - Example: when plugin_name is "KanbanView", the uri specified in config.json is "update" and the specified method is "post", it is "http(s)://(Exment URL)/plugins/kanban_view/update (method: POST)".
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default setting without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (a site installed with an earlier version has "admin"), add that value after the URL of the site (e.g. `http(s)://(Exment URL)/admin/plugins/kanban_view/update`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+
 
 ### Plugin file creation
 
@@ -95,24 +99,25 @@ namespace App\Plugins\KanbanView;
 use Exceedone\Exment\Services\Plugin\PluginViewBase;
 use Exceedone\Exment\Enums\ColumnType;
 use Exceedone\Exment\Model\CustomColumn;
+use Exceedone\Exment\Model\CustomTable;
 
 class Plugin extends PluginViewBase
 {
-    // (3) Comment out if you want to add Plugin-specific settings
+    // (5) Uncomment to add plugin-specific settings
     // protected $useCustomOption = true;
 
     /**
-     * (2) Method when displaying a list. "grid" fixed
+     * (2) The method for showing the list. Fixed to "grid"
      */
     public function grid()
     {
         $values = $this->values();
-        // (5) Call View
+        // (6) Call the view
         return $this->pluginView('sample', ['values' => $values]);
     }
 
     /**
-     * (2) This Plugin's own endpoint
+     * (3) This plugin's own endpoint
      */
     public function update(){
         $value = request()->get('value');
@@ -127,7 +132,7 @@ class Plugin extends PluginViewBase
     }
 
     /**
-     * (3) Options to display on the View settings screen
+     * (4) Options shown on the view setting screen
      * Set view option form for setting
      *
      * @param Form $form
@@ -137,10 +142,10 @@ class Plugin extends PluginViewBase
     {
         // When adding your own settings
         $form->embeds('custom_options', 'Detail settings', function($form){
-            $form->select('category', 'category column')
+            $form->select('category', 'Category column')
                 ->options($this->custom_table->getFilteredTypeColumns([ColumnType::SELECT, ColumnType::SELECT_VALTEXT])->pluck('column_view_name', 'id'))
                 ->required()
-                ->help('Please select a category column. Corresponds to the Kanban board. Custom column types "Choice" and "Choice (value, heading)" are displayed as candidates.');
+                ->help('Please select a category column. It corresponds to the boards of the Kanban. Columns of the custom column types "Select (From Static Value)" and "Select (Save Value and Label)" are shown as candidates.');
         });
 
         // When setting the filter (narrowing down)
@@ -152,7 +157,7 @@ class Plugin extends PluginViewBase
     
     
     /**
-     * (4) Options to set on the Plugin edit screen. Set common to all views
+     * (5) Options set on the plugin edit screen. Common to all views
      *
      * @param [type] $form
      * @return void
@@ -165,18 +170,18 @@ class Plugin extends PluginViewBase
     }
 
     
-    // Below, the processing required for Kanban View ----------------------------------------------------
+    // Below, the processing needed for the Kanban view ----------------------------------------------------
 
     protected function values(){
         $query = $this->custom_table->getValueQuery();
 
-        // Perform data filtering
+        // Filter the data
         $this->custom_view->filterModel($query);
 
-        // Sort data
+        // Sort the data
         $this->custom_view->sortModel($query);
 
-        // Get value
+        // Get the values
         $items = collect();
         $query->chunk(1000, function($values) use(&$items){
             $items = $items->merge($values);
@@ -230,47 +235,50 @@ class Plugin extends PluginViewBase
 }
 ~~~
 
-- (1) The namespace should be **App\Plugins\\(Pascal case of Plugin name)**. [Click here for details](/plugin_quickstart#plugin-name-namespace)  
-Also, set the class name to "Plugin" and inherit PluginViewBase.
+- (1) The namespace should be **App\Plugins\\(plugin name in Pascal case)**. [Click here for details](/plugin_quickstart?id=plugin-name-namespace)  
+Also, name the class "Plugin" and extend PluginViewBase.
 
-- (2) The public method name when the list screen is displayed is fixed to grid.
+- (2) The name of the public method that shows the list screen is fixed to "grid".
 
-- (3) In addition, when creating an additional endpoint, describe the public method name in the class with the name described in function of config.json.  
+- (3) When you make other endpoints, give the public method in the class the name written in function of config.json.
 
-- (4) The function "public function setViewOptionForm (&$form)" is an item displayed on the View setting screen.  
-Since this setting can be set individually for each View, it is possible to make settings such as "Display all data in ViewA" and "Display only data with the valid flag YES in View B" even in the same View. increase.  
+- (4) The function "public function setViewOptionForm($form)" defines the items shown on the view setting screen.
+This setting is made for each view. So even with the same plugin, the settings can differ, such as "View A shows all data" and "View B shows only the data whose valid flag is YES".
   
-    There are two types, "Filter condition" and "Sort setting", which are prepared by Plugin's own setting and Exment standard function.  
-    * To get the set value, use the function "$ this->custom_view->getCustomOption('parameter name')".  
-    * Also, when using the column settings used in View, which is a standard function of Exment, describe as follows.  
+    There are two kinds of items: the plugin's own settings, and the "Filter" and "Sort" settings that Exment provides as standard.
+    Note: get a set value with the function "$this->custom_view->getCustomOption('parameter name')".
+    Note: to use the column settings that the standard views of Exment use, write as follows.
 
-- (5) The function "public function setCustomOptionForm (&$form)" is an item displayed on the Plugin setting screen.  
-This setting is commonly used for all views.  
+    ~~~ php
+    $this->setColumnFields($form);
+    ~~~
 
-    * To use custom settings, add "protected $ useCustomOption = true;".
-    * To get the set value, use the function "$ this->plugin->getCustomOption('parameter name')".
+- (5) The function "public function setCustomOptionForm(&$form)" defines the items shown on the plugin setting screen.
+This setting is common to all views.
 
-- (6) When using View, use the function "$this->pluginView".  
+    Note: to use custom settings, add "protected $useCustomOption = true;".
+    Note: get a set value with the function "$this->plugin->getCustomOption('parameter name')".
 
-- (7) If you want to get the endpoint of the Plugin, use the function "$this->getRouteUri('endpoint name')".
-    * If you want to get the full URL path, use admin_url ($this->getRouteUri('endpoint name')).
+- (6) To use a view (a blade file), use the function "$this->pluginView".
+
+- (7) To get an endpoint of the plugin, use the function "$this->getRouteUri('endpoint name')".
+Note: to get the full path of the URL, use admin_url($this->getRouteUri('endpoint name')).
 
 
 #### (Optional) About View
-When separating Views, save the blade file under the folder "resources/views".  
+When you put the display part of the screen (the view) in a separate file, save the blade file under the folder "resources/views".
 
 #### (Optional) About css, js and other static files
-- Please place the css file in the folder "public/css".
-- Place the js file in the folder "public/js".
-- Place other files (image files, etc.) in the folder "public/assets".
-* In this sample, js/css for creating Kanban View is created.  
+- Put css files in the folder "public/css".  
+- Put js files in the folder "public/js".  
+- Put other files (image files, etc.) in the folder "public/assets".  
+Note: this sample has js and css for making the Kanban view.  
 
 
 ### Compress to zip
-Compress the above two files into a zip with the minimum configuration.  
-The zip file name should be "(plugin_name) .zip".  
-- TestPluginView.zip
+Compress the above two files, as the minimum configuration, into a zip.  
+The zip file name should be "(plugin_name).zip".  
+- KanbanView.zip
     - config.json
     - Plugin.php
     - (Other necessary PHP files, image files, etc.)
-
