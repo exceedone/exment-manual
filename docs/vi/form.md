@@ -133,7 +133,6 @@ Ví dụ:
 <h4>ID: ${id}, Mã công ty: ${value:company_code}</h4>
 ```
 ※ Giá trị của cột chỉ được thay thế tại thời điểm màn hình được hiển thị. Vui lòng lưu ý rằng dù chỉnh sửa giá trị của cột đối tượng trên màn hình chỉnh sửa dữ liệu, giá trị này cũng không thay đổi theo.  
-※ Cũng có thể sử dụng script. <span class="red">(Nếu nhập thẻ script, script sẽ được thực thi khi màn hình được hiển thị, vì vậy vui lòng hết sức lưu ý)</span>
 
 - ##### Image (Hình ảnh):
 Hiển thị hình ảnh trên form.

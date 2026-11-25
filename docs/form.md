@@ -133,7 +133,6 @@ Example：
 <h4>ID：${id}、Company Code：${value:company_code}</h4>
 ```
 \* Column values ​​are replaced only when drawing on the screen. Please note that even if you edit the value of the target column on the data edit screen, the value will not be changed in conjunction with it.  
-\* Scripts can also be used. <span class="red">(If you enter the script tag, the script will be executed when the page is drawn, so please be careful.)</span>
 
 - ##### Image：
 Display the image on the form.
