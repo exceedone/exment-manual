@@ -7,7 +7,7 @@
 
 ~~~
  Illuminate\Database\QueryException  : SQLSTATE[42000]: Syntax error or access
- violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: a lter table `users` add unique `users_email_unique`(`email`))
+ violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table `users` add unique `users_email_unique`(`email`))
 ~~~
 
 - 原因：MySQLのバージョンが5.7.7未満のときに発生します。

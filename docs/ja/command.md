@@ -174,6 +174,7 @@ php artisan exment:restore (zipファイル名)
 ## バッチ・スケジュール
 ### プラグインバッチ実行
 Exmentに登録しているバッチを実行します。  
+実行するプラグインは、プラグインのID(下の例の「1」)、「--name=(プラグイン名)」、「--uuid=(プラグインのuuid)」のいずれかで指定します。  
 詳細は[こちら](/ja/plugin_quickstart_batch)をご確認ください。
 
 ```

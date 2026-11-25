@@ -541,7 +541,7 @@ Meilisearchでは、検索を行う前に、文章を単語に分割する処理
 
 ## 管理画面
 Meilisearchに関連する画面は、以下のとおりです。  
-※URLの「admin」の部分は、「ADMIN_ROUTE_PREFIX」の設定により異なります。詳細は[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご確認ください。
+※URLの頭に付ける値(「admin」など)は、「ADMIN_ROUTE_PREFIX」の設定により異なります。詳細は[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご確認ください。
 
 |画面|URL|内容|
 |---|---|---|
@@ -674,7 +674,7 @@ C:\nssm\nssm.exe restart ExmentMeiliWorker
 |症状|考えられる原因|
 |---|---|
 |「.env」を修正しても反映されない|「管理者設定 > システム設定(詳細設定)」で保存した値が優先されています。画面上の設定をご確認ください。|
-|キューワーカが起動しない|キュー用のテーブル(jobs・failed_jobs)が作成されていません。「2. Exmentの設定」の「コマンドの実行」を参照し、テーブルを作成してください。|
+|キューワーカが起動しない|キュー用のテーブル(jobs・failed_jobs)が作成されていません。「2. Exmentの設定」の「テーブルの作成」を参照し、テーブルを作成してください。|
 |データを更新しても検索結果が変わらない|「MEILISEARCH_REALTIME_SYNC」がfalseになっているか、キューワーカが停止しています。サービスの状態と、「php artisan exment:meili-health --failed」で失敗したジョブをご確認ください。|
 |列の設定を変更しても検索結果が変わらない|インデックスを作成しなおす処理が、完了していません。ログに「gave up after 3 attempts」が出力されていないかを確認し、「php artisan exment:meili-index」を実行してください。|
 |ログに「reindex ... skipped: the queue connection is 'sync'」と出力される|「QUEUE_CONNECTION」がsyncのため、処理が中止されています。「php artisan exment:meili-index」を実行するか、キューをdatabase・redisに変更し、キューワーカを実行してください。|

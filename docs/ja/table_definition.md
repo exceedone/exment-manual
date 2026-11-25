@@ -110,8 +110,8 @@ Exment が使うデータベースのテーブルの定義です。開発する�
 | freeword_search| 検索インデックス列のみ| 1：フリーワード検索対象| 
 | unique| 共通| 1：ユニーク(一意)| 
 | init_only| 共通| 1：1度のみ入力| 
-| placeholder| 共通| 1：プレースホルダー| 
-| help| 共通| 1：ヘルプ| 
+| placeholder| 共通| プレースホルダー| 
+| help| 共通| ヘルプ| 
 | min_width| 共通| 列幅(最小値)| 
 | max_width| 共通| 列幅(最大値)| 
 | default| 共通(ファイル・画像は除く)| 初期値| 
@@ -959,13 +959,13 @@ SSO認証や2段階認証などの拡張ログイン設定を管理するテー�
 | saml_option_proxy_vars| SAML| 1：リバースプロキシなどを使用している| 
 | ldap_name| LDAP| LDAP名(英数字)| 
 | ldap_hosts| LDAP| ホスト名| 
-| ldap_port| LDAP| ホスト名| 
+| ldap_port| LDAP| ポート番号| 
 | ldap_base_dn| LDAP| 基本DN(識別名)| 
 | ldap_search_key| LDAP| ユーザー検索属性| 
 | ldap_account_prefix| LDAP| ログインコード接頭辞| 
 | ldap_account_suffix| LDAP| ログインコード接尾辞| 
 | ldap_use_ssl| LDAP| 1：SSLを使用する| 
-| ldap_use_tls| LDAP| 1：TSLを使用する| 
+| ldap_use_tls| LDAP| 1：TLSを使用する| 
 | mapping_column_XX| 共通| マッピング設定(XX部分はユーザーテーブルのフィールド名)| 
 | mapping_user_column| 共通| アカウント検索列| 
 | sso_jit| 共通| 1：ユーザー新規作成| 
@@ -1270,7 +1270,7 @@ SSO認証や2段階認証などの拡張ログイン設定を管理するテー�
 #### 各種オプション設定
 | キー | プラグインの種類 | コメント | 
 |---|---|---|
-| target_tables| ボタン、イベント、トリガー、ドキュメント、インポート、エクスポート、バリエーション、ビュー| 対象テーブル名(英数字)| 
+| target_tables| ボタン、イベント、トリガー、ドキュメント、インポート、エクスポート、バリデーション、ビュー| 対象テーブル名(英数字)| 
 | event_triggers| ボタン、イベント、トリガー| 実施トリガー| 
 | icon| ページ、ビュー、ボタン、トリガー、ドキュメント、エクスポート| ボタンのアイコン| 
 | label| ページ、ビュー、ボタン、トリガー、ドキュメント、エクスポート| ボタンのラベル| 
@@ -1334,8 +1334,7 @@ SSO認証や2段階認証などの拡張ログイン設定を管理するテー�
 | complete_link_url| 回答確認・完了設定| 完了リンク先URL| 
 | complete_link_text| 回答確認・完了設定| 完了リンク先テキスト| 
 | use_notify_complete_user| 回答確認・完了設定| 1：完了通知を一般ユーザーに行う| 
-| use_notify_complete_admin| 回答確認・完了設定| 完了テキスト| 
-| use_notify_error| 回答確認・完了設定| 完了テキスト| 
+| use_notify_complete_admin| 回答確認・完了設定| 1：完了通知を管理者に行う| 
 | error_title| エラー設定| エラータイトル| 
 | error_text| エラー設定| エラーテキスト| 
 | error_link_url| エラー設定| エラーリンク先URL| 
@@ -1366,7 +1365,7 @@ SSO認証や2段階認証などの拡張ログイン設定を管理するテー�
 | updated_at| NULL| YES| timestamp| | | 更新日時|
 | deleted_at| NULL| YES| timestamp| | | 削除日時|
 | create_user_id| NULL| YES| int(11)| | | 作成ユーザーID|
-| delete_user_id| NULL| YES| int(11)| | | 更新ユーザーID|
+| delete_user_id| NULL| YES| int(11)| | | 削除ユーザーID|
 
 ### INDEX情報
 | INDEX名 | INDEX列 | UNIQUE |コメント | 
@@ -1535,7 +1534,7 @@ SSO認証や2段階認証などの拡張ログイン設定を管理するテー�
 #### 各種オプション設定
 | キー | コメント | 
 |---|---|
-| work_target_type| 1：次の作業ユーザーに編集権限を付与する| 
+| work_target_type| 作業ユーザーの指定方法(action_select：前アクションの実行ユーザーが選択、fix：事前に設定、get_by_userinfo：実行ユーザー情報から取得)| 
 | comment_type| コメントタイプ(required：必須、nullable：任意、not_use：使用しない)| 
 | flow_next_type| 次のステータスへ進む条件(some：X人以上実行、all：全員実行)| 
 | flow_next_count| 次のステータスへ進むのに必要な人数| 

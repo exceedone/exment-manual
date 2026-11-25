@@ -48,7 +48,7 @@ Web サーバーやデータベースサーバーをまだ用意していない�
 
 - 次のリンクから、zip ファイルをダウンロードします。  
 <a id="link" href="https://exment.net/downloads/ja/exment.zip" target="_blank">[Exment zipファイル（最新版）]</a>  
-今の最新版は **v7.2.1**（2026/11/23 公開・PHP 8.2 以上）です。版ごとの zip・公開日・SHA-256・対応する PHP は、[ダウンロードのページ](https://exment.net/download/)にあります（ダウンロードしたファイルが壊れていないかも、そこで確かめられます）。            
+今の最新版は **v7.2.4**（2026/11/24 公開・PHP 8.2 以上）です。版ごとの zip・公開日・SHA-256・対応する PHP は、[ダウンロードのページ](https://exment.net/download/)にあります（ダウンロードしたファイルが壊れていないかも、そこで確かめられます）。            
   
 - どうしても PHP7.4 を使うときは、次のリンクからダウンロードしてください。この版は、サポート・お問い合わせ・Github issue などの対象外です。また、予告なく削除することがあります。  
 <a href="https://exment.net/downloads/ja/exment_v4_4_2.zip" target="_blank">[Exment zipファイル（PHP 7.4 で動く最後の版：v4.4.2）]</a>

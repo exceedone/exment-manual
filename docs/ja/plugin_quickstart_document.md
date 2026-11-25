@@ -215,7 +215,7 @@ class Plugin extends PluginDocumentBase
 - Pluginクラスは、クラスPluginDocumentBaseを継承しています。  
 PluginDocumentBaseは、呼び出し元のカスタムテーブル$custom_table、テーブル値$custom_valueなどのプロパティを所有しており、  
 execute関数が呼び出された時点で、そのプロパティに値が代入されます。  
-プロパティの詳細については、[プラグインリファレンス](plugin_reference.md)をご参照ください。  
+プロパティの詳細については、[プラグインリファレンス](/ja/plugin_reference)をご参照ください。  
 
 - (v3.4.3対応) 登録しているデータを用いて、ボタンの表示・非表示を制御したい場合、メソッド"enableRender"を実装します。  
 ボタンを表示する場合はtrueを、非表示にしたい場合はfalseを返却してください。(デフォルトはtrueです。)

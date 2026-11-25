@@ -13,7 +13,7 @@ http(s)://(ExmentのURL)/data/mail_template
 これにより、通知テンプレート画面が表示されます。  
 ![通知テンプレート画面](img/mail/mail_grid1.png)  
 
-> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/data/mail_template`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ### テンプレートの新規追加
 1. 「通知テンプレート」画面で、ページ右上の［新規］ボタンをクリックします。
@@ -32,7 +32,7 @@ http(s)://(ExmentのURL)/data/mail_template
 ![通知テンプレート画面](img/mail/mail_edit.png)
 
 ### 削除
-列の削除を行いたい場合、該当する行の［削除］リンクをクリックしてください。  
+テンプレートの削除を行いたい場合、該当する行の［削除］リンクをクリックしてください。  
 ![通知テンプレート画面](img/mail/mail_delete.png)
 **<span style="color: red; ">※ただし、通知画面で設定済のテンプレートは削除できません。</span>**
 

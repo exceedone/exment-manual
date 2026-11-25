@@ -58,7 +58,7 @@
 http(s)://(ExmentのURL)/workflow_task
 ~~~
 
-> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/workflow_task`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 左のメニューに追加する場合は、[メニュー](/ja/menu)で、メニュー種類「カスタムURL」、URIに「workflow_task」を設定してください。
 

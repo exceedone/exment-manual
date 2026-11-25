@@ -77,12 +77,12 @@ https://www.famkruithof.net/uuid/uuidgen
 - routeには、実行するURLのエンドポイントと、そのHTTPメソッド、Controller内のメソッドを一覧で定義します。
 ※ビューは、基本的に一覧画面を表示するだけなので、routeの設定は不要です。ajaxで非同期のリクエスト・レスポンスを行うときだけ、定義してください。
 
-    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/plugins/(プラグイン管理画面で設定したURL)/(指定したuri)」になります。  
+    - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/plugins/(プラグインのURL)/(指定したuri)」になります。「プラグインのURL」は、plugin_nameをスネークケースにしたものです（config.jsonに「uri」を書いた場合は、その値）。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
     - function：実行するController内のメソッド
-    - 例：プラグイン管理画面で設定したURLを「youtube_search」、config.jsonで指定したuriが「list」、指定したmethodが「get」の場合、「http(s)://(ExmentのURL)/plugins/youtube_search/list（メソッド：GET）」。
+    - 例：plugin_nameが「KanbanView」、config.jsonで指定したuriが「update」、指定したmethodが「post」の場合、「http(s)://(ExmentのURL)/plugins/kanban_view/update（メソッド：POST）」。
 
-> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/plugins/kanban_view/update`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 
 ### Pluginファイル作成
@@ -99,10 +99,11 @@ namespace App\Plugins\KanbanView;
 use Exceedone\Exment\Services\Plugin\PluginViewBase;
 use Exceedone\Exment\Enums\ColumnType;
 use Exceedone\Exment\Model\CustomColumn;
+use Exceedone\Exment\Model\CustomTable;
 
 class Plugin extends PluginViewBase
 {
-    // (3) プラグイン独自の設定を追加する場合はコメントアウト
+    // (5) プラグイン独自の設定を追加する場合はコメントアウト
     // protected $useCustomOption = true;
 
     /**
@@ -111,12 +112,12 @@ class Plugin extends PluginViewBase
     public function grid()
     {
         $values = $this->values();
-        // (5) ビューを呼び出し
+        // (6) ビューを呼び出し
         return $this->pluginView('sample', ['values' => $values]);
     }
 
     /**
-     * (2) このプラグイン独自のエンドポイント
+     * (3) このプラグイン独自のエンドポイント
      */
     public function update(){
         $value = request()->get('value');
@@ -131,7 +132,7 @@ class Plugin extends PluginViewBase
     }
 
     /**
-     * (3) ビュー設定画面で表示するオプション
+     * (4) ビュー設定画面で表示するオプション
      * Set view option form for setting
      *
      * @param Form $form
@@ -156,7 +157,7 @@ class Plugin extends PluginViewBase
     
     
     /**
-     * (4) プラグインの編集画面で設定するオプション。全ビュー共通で設定する
+     * (5) プラグインの編集画面で設定するオプション。全ビュー共通で設定する
      *
      * @param [type] $form
      * @return void
@@ -241,12 +242,16 @@ class Plugin extends PluginViewBase
 
 - (3) そのほかに追加のエンドポイントを作る場合、クラス内のpublicメソッド名は、config.jsonのfunctionに書いた名前にしてください。
 
-- (4) 関数"public function setViewOptionForm(&$form)"で、ビューの設定画面に表示する項目を定義します。
+- (4) 関数"public function setViewOptionForm($form)"で、ビューの設定画面に表示する項目を定義します。
 この設定はビューごとに行えるので、同じプラグインのビューでも、「ビューAでは、全データを表示する」「ビューBでは、有効フラグがYESのデータのみ表示する」のように設定を変えられます。
   
     項目には、プラグイン独自の設定と、Exment標準機能で用意している「フィルター条件」「並べ替え設定」の2種類があります。
     ※設定した値は、関数「$this->custom_view->getCustomOption('パラメータ名')」で取得します。
     ※また、Exmentの標準機能のビューで使用している列設定を使用する場合、以下のように記述してください。
+
+    ~~~ php
+    $this->setColumnFields($form);
+    ~~~
 
 - (5) 関数"public function setCustomOptionForm(&$form)"で、プラグインの設定画面に表示する項目を定義します。
 すべてのビューで共通の設定です。
@@ -273,7 +278,7 @@ class Plugin extends PluginViewBase
 ### zipに圧縮
 上記2ファイルを最小構成として、zipに圧縮します。  
 zipファイル名は、「(plugin_name).zip」にしてください。  
-- TestPluginView.zip
+- KanbanView.zip
     - config.json
     - Plugin.php
     - (その他、必要なPHPファイル、画像ファイルなど)

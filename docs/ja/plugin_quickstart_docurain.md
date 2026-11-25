@@ -45,7 +45,7 @@ Exmentの開発・運用会社である株式会社カジトリは、Docurainの
 5. 解凍したフォルダ内の「documents」フォルダ内に、帳票の元となるExcelファイルを配置します。
 複数の帳票をDocurainで作成する場合、複数のExcelファイルをdocumentsに配置してください。
 ※フォルダパスは、「(プロジェクトルートフォルダ)/storage/app/plugins/Docurain/documents」になります。
-※帳票の作成方法は、以下の「帳票作成方法」をご確認ください。
+※帳票の作成方法は、以下の「テンプレートExcelファイル作成」をご確認ください。
 
 ![Docurain](img/docurain/docurain_setting5.png)  
 ![Docurain](img/docurain/docurain_setting6.png)  

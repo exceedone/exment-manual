@@ -6,7 +6,7 @@ Exment は、ふつうはすべての処理をその場で実行します（同�
 
 - メール送信
 - Slack送信
-- Microsoft送信
+- Microsoft Teams送信
 
 ## 注意点
 - 遅延実行では、処理（ジョブ）を「キュー」という順番待ちの場所にためておき、画面とは別のプロセスで実行します。
@@ -14,7 +14,7 @@ Exment は、ふつうはすべての処理をその場で実行します（同�
 ワーカが動いているかを監視するなど、十分にご注意ください。
 - 画面から通知を実行した時点では、通知が成功したか失敗したかが分かりません。  
 そのため、実際には通知が失敗していても、「通知が実行されました！」というメッセージが出ることがあります。
-- キューのくわしい説明は、[Laravelマニュアル](https://readouble.com/laravel/10.x/ja/queues.html)をご覧ください。
+- キューのくわしい説明は、[Laravelマニュアル](https://readouble.com/laravel/12.x/ja/queues.html)をご覧ください。
 
 
 ## 設定手順
@@ -52,7 +52,7 @@ php artisan exment:update
 php artisan queue:listen
 ```
 
-> queue:listen をバックグラウンドでずっと動かし続けるには、[Supervisor](https://readouble.com/laravel/10.x/ja/queues.html#supervisor-configuration)のようなプロセスモニタ（ワーカが止まっていないかを見張るしくみ）が必要です。
+> queue:listen をバックグラウンドでずっと動かし続けるには、[Supervisor](https://readouble.com/laravel/12.x/ja/queues.html#supervisor-configuration)のようなプロセスモニタ（ワーカが止まっていないかを見張るしくみ）が必要です。
 
 ### ワーカーを動かし続けられないとき（レンタルサーバーなど）
 レンタルサーバーなどで、ワーカーを動かし続けられないときは、cron で毎分、たまったジョブを片付けます（`--stop-when-empty` でジョブがなくなったら終わり、`--max-time=50` で次の cron までに終わります）。php は、Web と同じ版をフルパスで書いてください。

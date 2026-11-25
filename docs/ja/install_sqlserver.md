@@ -138,7 +138,7 @@ extension_dir => C:\xampp\php\ext => C:\xampp\php\ext
 
 
 2. 次のサイトから、PHP から Microsoft SQL Server につなぐためのドライバーをダウンロードします。  
-[https://docs.microsoft.com/ja-jp/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver15]
+https://docs.microsoft.com/ja-jp/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver15
 
 3. ダウンロードした EXE ファイルを実行します。次のようなダイアログが出ます。  
 ![SQL Server インストール](img/database/sqlserver2.png)
@@ -153,8 +153,8 @@ extension_dir => C:\xampp\php\ext => C:\xampp\php\ext
 ※ファイル名は、コメントの内容に合わせて変えてください。
 
 ```
-extension=php_pdo_sqlsrv_72_ts_x64.dll
-# "72"部分：利用しているPHPのバージョン。PHP7.3を使用していれば73
+extension=php_pdo_sqlsrv_82_ts_x64.dll
+# "82"部分：利用しているPHPのバージョン。PHP8.3を使用していれば83
 # "ts"部分：コマンド「php -i | find "Thread Safety"」を実施時に、「enabled」と出れば「ts」を、「disabled」と出れば「nts」を記入
 # "x64"部分：コマンド「php -v」を実施時に、1行目に「x64」が含まれていれば「x64」を、そうでなければ「x86」を記入
 ```

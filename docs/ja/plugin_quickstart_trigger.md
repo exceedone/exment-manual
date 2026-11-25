@@ -38,7 +38,7 @@
     "author": "(Your Name)",
     "version": "1.0.0",
     "plugin_type": "trigger",
-    "event_triggers": "loaded,loading",
+    "event_triggers": "loaded,loading"
 
 }
 ~~~

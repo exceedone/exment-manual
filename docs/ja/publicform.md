@@ -75,7 +75,7 @@ composer require arcanedev/no-captcha=^10.1
     - ならびに、その公開フォームでアクセスするテーブルの、閲覧権限も追加します。  
 
 - 例：「お問い合わせ」テーブルの公開フォームを設定予定で、お問い合わせテーブルでは、「製品」「カテゴリ」テーブルのすべてのデータを参照している場合：  
-    - 「お問い合わせ」テーブルの「公開フォーム管理」「担当者データの編集」権限
+    - 「お問い合わせ」テーブルの「公開フォーム管理」「担当データの編集」権限
     - 「製品」「カテゴリ」テーブルの「全データの閲覧」権限
 
 ![カスタムフォーム画面](img/form/authority.png)
@@ -252,7 +252,7 @@ YESにすると、エラーが発生した場合に、管理者に通知を行�
 - ##### カスタムJavascript
 使用したいJavascriptを直接記入してください。  
 ※&lt;script&gt;タグは不要です。Javascriptの中身のみ記入してください。  
-※Javasciptは、以下のjquery内に追加されます。
+※Javascriptは、以下のjquery内に追加されます。
 
 ``` javascript
 <script data-exec-on-popstate>
@@ -398,7 +398,7 @@ http://localhost/publicform/ab3d55e4-1afc-d1de-ac1b-bc64c51d4d7d?value.title=問
 しかし、IDは連番なので、フォームを公開した相手が、URLのパラメータを書きかえて、ほかの値を簡単に推測できてしまいます。  
 これらの列の初期値を、IDではなくsuuid(20桁のランダム文字列)で指定させたいときは、次のように設定してください。  
 
-- [Exment設定値一覧]で、「公開フォームの『初期値をURLから設定』で、IDではなくsuuidのみ許容する」の設定を実施します。  
+- [Exment設定値一覧](/ja/config)で、「公開フォームの『初期値をURLから設定』で、IDではなくsuuidのみ許容する」の設定を実施します。  
 
 ``` .env
 EXMENT_PUBLICFORM_URLPARAM_SUUID=true

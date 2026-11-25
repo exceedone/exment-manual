@@ -63,7 +63,7 @@ which composer
 # /home/xxx/usr/local/bin/composer
 ```
 
-ダウンロードしたExmentUpdateLinux.sh(または、ExmentUpdateLinuxSakura.sh、ExmentUpdateLinuxXServer.sh)を編集します。  
+ダウンロードしたExmentUpdateLinux.sh(または、ExmentUpdateLinuxSakura.sh、ExmentUpdateLinuxXserver.sh)を編集します。  
 ファイルの中の composer_path の値を、「which composer」の結果に変えます。
 
 ```
@@ -101,7 +101,7 @@ echo $HOME
 # /home/xxx
 ```
 
-- そのあと、ダウンロードしたExmentUpdateLinuxXServer.shを編集します。  
+- そのあと、ダウンロードしたExmentUpdateLinuxXserver.shを編集します。  
 home_path の値を、「echo $HOME」の結果に変えます。
 
 ```
@@ -150,7 +150,7 @@ home_path='/home/xxx'
 3. 「全般」タブで、次のように設定します。（「名前」は任意の名称です）  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_windows1.png)
 
-4. 「トリガー」タブをクリックします。2つのトリガーを作成します。  
+4. 「トリガー」タブをクリックします。トリガーを作成します。  
     (1)「新規」ボタンをクリックします。  
     そのあと、次のように入力します。  
     - タスクの開始：スケジュールに従う

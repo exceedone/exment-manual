@@ -225,7 +225,7 @@ sudo amazon-linux-extras install -y php8.2
 sudo yum -y install php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64 php-sodium.x86_64 php-dom.x86_64
 ~~~
 
-- PHP のバージョンが 8.X になっていること、PHP8.0 のトピックが disabled、PHP8.2 のトピックが enabled になっていることを確かめます。
+- PHP のバージョンが 8.2.X になっていること、PHP8.0 のトピックが disabled、PHP8.2 のトピックが enabled になっていることを確かめます。
 
 ~~~
 php -v

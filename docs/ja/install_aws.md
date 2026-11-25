@@ -164,7 +164,7 @@ MySQL をサーバーにインストールする方法は、[MySQLインスト�
 - インスタンス識別子 : 任意 (例 : exment-db)
 - DB インスタンスクラス : 任意 (例 : db.t2.micro)
 - ユーザー名、パスワード : 各自に設定
-- Virtual Private Cloud : 先ほど作成したVP
+- Virtual Private Cloud : 先ほど作成したVPC
 - 追加の接続設定
     - VPC セキュリティグループ : セキュリティグループ-MySQL
     - アベイラビリティーゾーン : 指定なし
@@ -334,7 +334,7 @@ composer require predis/predis
 
 # すでにある設定値の変更
 CACHE_STORE=redis #キャッシュの保存先を変更する場合。redisに書き換え
-SESSION_DRIVER=redis #キャッシュの保存先を変更する場合。redisに書き換え
+SESSION_DRIVER=redis #セッションの保存先を変更する場合。redisに書き換え
 REDIS_CLIENT=predis #上記でインストールした「predis」を使用してRedisに接続する
 REDIS_HOST=127.0.0.1 #redisのホスト名
 REDIS_PASSWORD=XXXXXX #redisのパスワード、設定した場合のみ記述

@@ -92,7 +92,7 @@ http(s)://(ExmentのURL)/api_setting
 - Webサービス側で、Exment認証画面を呼び出すためのエンドポイントを作成します。
 
 ~~~
-http(s)://(ExmentのURL)/oauth/authorize'  GET  
+http(s)://(ExmentのURL)/oauth/authorize  GET  
 response_type: code
 client_id: (コピーしたClient ID)
 redirect_uri: (入力したcallback URL)
@@ -119,7 +119,7 @@ Route::get('/redirect', function () {
 - Exment認証完了後に、アクセストークンを取得するためのエンドポイントを、Webサービス側で作成します。
 
 ~~~
-http(s)://(ExmentのURL)/oauth/token'  POST  
+http(s)://(ExmentのURL)/oauth/token  POST  
 Content-Type: application/json
 
 {
@@ -212,7 +212,7 @@ http(s)://(ExmentのURL)/api_setting
 - アクセストークンを取得するためのリクエストを、呼び出し元で作成します。
 
 ~~~
-http(s)://(ExmentのURL)/oauth/token'  POST
+http(s)://(ExmentのURL)/oauth/token  POST
 Content-Type: application/json
 
 {
@@ -243,7 +243,7 @@ Content-Type: application/json
 - LDAP認証の場合、以下のようにPOSTを行ってください。
 
 ~~~
-http(s)://(ExmentのURL)/oauth/token'  POST
+http(s)://(ExmentのURL)/oauth/token  POST
 Content-Type: application/json
 
 {
@@ -333,7 +333,7 @@ http(s)://(ExmentのURL)/api_setting
 - アクセストークンを取得するためのリクエストを、呼び出し元で作成します。
 
 ~~~
-http(s)://(ExmentのURL)/oauth/token'  POST
+http(s)://(ExmentのURL)/oauth/token  POST
 Content-Type: application/json
 
 {
@@ -395,8 +395,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 			"deleted_at": null,
 			"created_user_id": null,
 			"updated_user_id": null,
-			"deleted_user_id": null,
-			"label": "admin"
+			"deleted_user_id": null
 		}
 	],
 	"first_page_url": "http://localhost/api/data/user?page=1",
@@ -420,7 +419,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 以下の内容で、HTTP POSTを実行してください。    
 
 ~~~
-http(s)://(ExmentのURL)/oauth/token'  POST  
+http(s)://(ExmentのURL)/oauth/token  POST  
 Content-Type: application/json
 
 {
@@ -468,7 +467,7 @@ http://localhost/oauth/authorize?client_id=1af52b10-BBBB-CCCC-XXXX-YYYYYYYY&redi
 - POST通信ができるツールを使用し、以下のHTTP通信を実行します。  
   
 ~~~
-http(s)://(ExmentのURL)/oauth/token'  POST  
+http(s)://(ExmentのURL)/oauth/token  POST  
 grant_type: authorization_code
 client_id: (コピーしたClient ID)
 client_secret: (コピーしたClient Secret)
@@ -520,7 +519,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 			"deleted_at": null,
 			"created_user_id": null,
 			"updated_user_id": null,
-			"deleted_user_id": null,
+			"deleted_user_id": null
 		}
 	],
 	"first_page_url": "http://localhost/api/data/user?page=1",
