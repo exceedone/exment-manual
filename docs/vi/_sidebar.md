@@ -106,6 +106,7 @@
 
 * 【11. Tài liệu tham khảo】
   * [Release notes (English)](/release_note.md)
+  * [Thời hạn hỗ trợ (phiên bản đang bảo trì)](/vi/support_policy)
   * [Parameter variables (English)](/params.md)
   * [API reference (English)](https://exment.net/reference/webapi.html)
   * [Function reference (English)](/func_reference.md)
