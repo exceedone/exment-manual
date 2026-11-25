@@ -16,7 +16,7 @@ The steps until you use it are as follows.
 
 ## How the safety check works
 - Each time a safety check is sent, one data record is created in "Safety Check Events".
-- At the same time, one data record of "Safety Check Answers" is created for every user, with the answer status "not_answered" (not answered yet).
+- At the same time, one data record of "Safety Check Answers" is created for every user (from v7.3.0, every [recipient](#choosing-who-receives-it-v7-3-0-and-later)), with the answer status "not_answered" (not answered yet).
 - The safety check is sent to each user as follows. Users who receive both LINE and email can answer from either of them.
 
 | Method | Sent to | How to answer |
@@ -79,6 +79,21 @@ The following items are created.
 
 ※ For the numeric items other than "Manual Resend Interval (minutes)", if 0 or an empty value is saved, the initial value is used.
 
+### Choosing who receives it (v7.3.0 and later)
+By default, a safety check is sent to all users. You can choose who receives it with the following three items.
+
+| Item | Description |
+| --- | --- |
+| Target Organizations | Multiple selection. Sends only to users who belong to the selected organizations, including their child organizations (up to the organization depth setting). Not shown when organizations are not used. |
+| Target View | Select a shared view of the user table (a summary view cannot be selected). Sends only to users that match the conditions of the view. |
+| Excluded Users | Multiple selection. The selected users never receive it (e.g. users who have left, external users). |
+
+- The recipients are all users who match both the organizations and the view, minus the excluded users. An item that is not set does not narrow the recipients.
+- The same rule is used for manual or drill sending, resending, and automatic sending on an earthquake (exment:safetywatch).
+- Users who are not recipients get no answer data. They are not counted as "not answered".
+- If the selected organizations or the view have been deleted, that condition is skipped and a log is written, so that nobody is left out by mistake.
+- A user removed from the recipients after a send is not sent a resend. Their earlier answer data stays.
+
 ## Mail settings
 
 ### Answer link
@@ -127,12 +142,13 @@ http(s)://(Exment URL)/safety_check
 ### Sending manually or as a drill
 1. Enter the title of the safety check in "Title" of "Send New" (example: Typhoon No. 15 safety check).
 2. Select "Manual" or "Drill" in "Trigger Type".
-3. Click [Send]. "Started sending the safety check." is shown, and an "Open" safety check is added to the list.
-4. The safety check is sent after the screen is shown. When the sending is finished, "Sent Count" and "Target Count" on the list are updated. Reload the screen to check them.
+3. (v7.3.0 and later) "Recipients: N users" is shown before sending. The "Recipient settings" link opens the settings screen.
+4. Click [Send]. "Started sending the safety check." is shown, and an "Open" safety check is added to the list.
+5. The safety check is sent after the screen is shown. When the sending is finished, "Sent Count" and "Target Count" on the list are updated. Reload the screen to check them.
 
 ![Send New](img/safety_check/safety_check_send.png)
 
-- **A drill is also sent to all users**. Its LINE messages are also counted toward the message limit.
+- **A drill is also sent to all users (from v7.3.0, to the recipients)**. Its LINE messages are also counted toward the message limit.
 - **Do not click [Send] repeatedly**. A new safety check cannot be sent until the previous sending executed by the same user is finished (up to 10 minutes). If "A send is already in progress. Please wait a moment and refresh the page." is shown, the previous safety check is still being sent. Wait a moment and refresh the page.
 - When there are many users, sending may take time.
 
