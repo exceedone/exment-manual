@@ -1,79 +1,83 @@
 # Data update settings
-A specific trigger such as "click a button" or "create new data" updates the data saved in Exment in a batch.  
-As an example, it can be used for the following purposes.  
+A setting that rewrites the values of data in one go at a trigger you decide, such as "when a button is clicked" or "when data is newly created".  
+For example, it can be used like this.  
 
-- Display the "Finish" button on the data details screen of the table "Task Information" and click the button to complete the value of the custom column "Status".  
-- When updating data, the value of the custom column "person in charge" is automatically set for the logged-in user.  
+- Show a "Done" button on the data details screen of the table "Task information"; clicking it sets the value of the custom column "Status" to done.
+- When data is updated, the value of the custom column "Person in charge" is automatically set to the logged-in user.
 
+The flow of the setting is as follows.
 
-> This function was implemented as "Batch data update" in v3.5.0 and below. The function has been expanded from v3.5.0.  
+1. Open the data update setting screen ("Setting screen")
+2. From [New], decide when (the update timing), which column, and what value, and save ("New addition", "Details of entry items")
+3. The update is done at the timing you decided ("Update execution")
 
-If you want to update more complicated conditions or more complicated contents, implement [Plug-in (button)](/plugin_quickstart_button) or [Plug-in (event)](/plugin_quickstart_event). Please give me.
+> This function was called "Batch data update" before v3.5.0. From v3.5.0, the function was extended.  
+To update with more complex conditions or contents, make a [plugin (button)](/plugin_quickstart_button) or a [plugin (event)](/plugin_quickstart_event).
 
 
 ## Update timing type
 
 - ##### When check is selected on the list screen
 
-![Data screen](img/operation/operation1.png)
+![Data screen](img/operation/operation1.png)  
 
-A button will be added to the data list screen.  
-By checking the check box on the list screen and clicking the button, the checked data will be updated with the set contents.  
+A button is added to the data list screen.  
+Check the checkboxes on the list screen and click the button: the checked data is updated with the set contents.
 
 - ##### When the button on the data details screen is pressed
 
-![Data screen](img/operation/operation2.png)
+![Data screen](img/operation/operation2.png)  
 
-A button is displayed on the data details screen.  
-By clicking the button, the data will be updated with the set contents.  
+A button is shown on the data details screen.  
+Click the button to update the data with the set contents.
 
 - ##### When creating new data
-When the user creates new data on the screen, API, import, etc., the data is updated with the set contents.  
+When a user newly creates data on the screen, by API, by import and so on, the data is updated with the set contents.
 
 - ##### When updating data
-When the user updates the data by screen, API, import, etc., the data is additionally updated with the set contents.  
+When a user updates data on the screen, by API, by import and so on, the data is additionally updated with the set contents.
 
 
 
 ## Setting screen
-- In the custom table list, check one of the tables you want to set, and click "Detailed table settings" in the upper right.  
+1. In the custom table list, check one table you want to set, and click "Table Detail Setting" at the top right.  
 
-![Data screen](img/operation/operation3.png)
-
-
-- Alternatively, after selecting the table you want to set from the menu, click "Detailed table settings" in the upper right corner as well.  
-※It is necessary to set in advance to display the corresponding table in the menu.  
-
-![Data screen](img/operation/operation4.png)
+![Data screen](img/operation/operation3.png)  
 
 
-- After that, the data update settings of the checked custom table will be displayed.  
+- Or choose the table you want to set from the menu, and click "Table Detail Setting" at the top right in the same way.  
+Note: the table must be shown in the menu beforehand.  
 
-![Data screen](img/operation/operation5.png)
+![Data screen](img/operation/operation4.png)  
 
 
-- The data update setting screen is displayed.
+2. Then open the "Multi Update Setting" (data update setting) of that custom table.
 
-![Data screen](img/operation/operation6.png)
+![Data screen](img/operation/operation5.png)  
+
+
+3. The data update setting screen is shown.
+
+![Data screen](img/operation/operation6.png)  
 
 
 
 ## New addition
-- On the "Data Update Settings" screen, click the [New] button at the top right of the page.
+1. On the data update setting screen, click the [New] button at the top right of the page.
 
-- The new addition screen for data update settings will be displayed. Enter the required information.
+2. The screen for adding a new data update setting is shown. Enter the necessary items.
 
-![Data screen](img/operation/operation7.png)
+![Data screen](img/operation/operation7.png)  
 
 
 ## Save
-After entering the settings, click [Send].
+After entering the settings, click [Submit].
 
 ## Edit
-If you want to edit the data update settings, click the [Edit] link in the corresponding line.
+To edit a data update setting, click the [Edit] link of that row.  
 
 ## Delete
-If you want to delete the data update settings, click the [Delete] link in the corresponding line.
+To delete a data update setting, click the [Delete] link of that row.  
 
 
 ## Details of entry items
@@ -81,93 +85,96 @@ If you want to delete the data update settings, click the [Delete] link in the c
 
 ### basic configuration
 
-![Data screen](img/operation/operation8.png)
+![Data screen](img/operation/operation8.png)  
 
 - ##### Process name
 The name of this data update setting.
 
 - ##### Update timing
-Set the timing to set this data update.  
-Please check the "update timing" at the top of this page and make the settings.  
+Choose when the data is updated.  
+See "Update timing type" near the top of this page and choose.
 
 - ##### Button label
-Set the wording to be displayed on the buttons on the screen.  
-※Displayed only when "Update timing" is "When the check on the list screen is selected" or "When the button on the data details screen is pressed".
+The words shown on the button on the screen.  
+Note: shown only when "Update timing" is "Pressing button on the list page" or "Pressing the button on the data details".
 
 - ##### Button icon
-Set the icon to be displayed on the button on the screen.  
-※Displayed only when "Update timing" is "When the button on the data details screen is pressed".
+The icon shown on the button on the screen.  
+Note: shown only when "Update timing" is "Pressing the button on the data details".
 
 - ##### Button HTML class
-Please set the HTML class to be added to the button on the screen.  
-※Displayed only when "Update timing" is "When the button on the data details screen is pressed".
+The HTML class added to the button on the screen.  
+Note: shown only when "Update timing" is "Pressing the button on the data details".
 
 - ##### Show Button for Data Locked by Workflow
-Normally, the button is not shown on the data details screen of a data whose workflow status does not allow editing.  
-If set to YES, the button is also shown for such data. The default is NO.  
-The button is shown only to the users who have the permission to edit the data.  
-※Displayed only when "Update timing" is "When the button on the data details screen is pressed".
+Usually, the button is not shown on the data details screen for data whose workflow status is "data cannot be edited".  
+With YES, the button is shown for such data too. The default is NO.  
+The button is shown only to users who have permission to edit that data.  
+Note: shown only when "Update timing" is "Pressing the button on the data details".
 
 - ##### Active flag
-If you want to temporarily disable the data update settings or temporarily save the settings that are being created, please set the "Active flag" to NO.  
+To stop a data update setting for a while, or to save a half-made setting for now, set "Active Flg" to NO.  
 
 
 ### Update column setting
 
-![Data screen](img/operation/operation9.png)
+![Data screen](img/operation/operation9.png)  
 
 
-Set the target column for data update and the update value.
+Set the columns to update and the update values.  
 
 - ##### Target column
-Select the column to be updated.
+Select the column to update.  
 
 - ##### Update type
-If the custom column type of the target column is "Date", "Time", "Date and time", "User", or "Affiliation", one of "Fixed value" and "System value" is displayed.  
-Otherwise, you will only have a "fixed value" option.  
+When the custom column type of the target column is "Date", "Time", "Date and Time", "User" or "Organization", you can choose "Fixed Value" or "System Value".  
+Otherwise, there is only "Fixed Value".
 
 - ##### Update value
-    - If "Fixed value" was selected as the update type, enter the value you want to update.  
-    - If the custom column type of the target column is "Date", "Time", "Date and time", and "System value" is selected as the update type, "Execution date and time" is displayed as a choice.  
-    - If the custom column type of the target column is "User" and "System Value" is selected as the update type, "Login User" and "Created user" are displayed as a choice.  
-    - If the custom column type of the target column is "Organization" and "System Value" is selected as the update type, "Affiliation Organization" is displayed as a choice.  
+    - When the update type is "Fixed Value", enter the value you want to set.
+    - When the update type is "System Value", the following choices are shown, depending on the custom column type of the target column.
+
+| Custom column type of the target column | Choices |
+|---|---|
+| "Date", "Time", "Date and Time" | "Execute Datetime" |
+| "User" | "Login User", "Created user" |
+| "Organization" | "Berong Organizations" (the organizations the user belongs to) |
 
 
 ### Update conditions
 
-![Data screen](img/operation/operation10.png)
+![Data screen](img/operation/operation10.png)  
 
-Specify the conditions for the data that can execute the registered update settings. You can execute the set update settings only when the conditions are met.  
-※If you have not set any conditions, you can update all the data.
+Specify the conditions of the data on which this update setting can be run. The update can be run only when the conditions are met.  
+Note: when no condition is set, the update can be run on all data.  
 
 
 ### Input dialog settings
 
 ![Data screen](img/operation/operation11.png)  
 
-A dialog will be displayed when the update is executed, and you can manually enter the update value for the target column.  
-※This can be selected only when "Update timing" is "When the check on the list screen is selected" or "When the button on the data details screen is pressed".
-
+A dialog is shown when the update is run, so that the update value of the target column can be entered by hand.  
+Note: this can be selected only when "Update timing" is "Pressing button on the list page" or "Pressing the button on the data details".
 
 
 ## Update execution
-When the setting is completed, the update process will be executed at the timing set in the setting item "Update timing".  
+When the setting is finished, the update is done at the timing decided in the setting item "Update timing".  
 
 ### Updates
-- Updates the data value to the value set in the setting item "Update column setting".  
-However, if "System Value" is selected as the update type, update as follows.  
+- The values of the data are set to the values decided in the setting item "Update column setting".  
+However, when the update type is "System Value", the values are as follows.  
 
-    - If the update value is "execution date and time", set the execution date and time when the update process was executed.
-    - If the update value is "Login user", set the ID of the login user who performed the update process.
-    - If the update value is "Created user", set the ID of the user who created the data.
-    - If the update value is "Affiliated organization", set the ID of the organization to which the logged-in user who performed the update process belongs.  
-    ※If the logged-in user belongs to multiple organizations and the column to be updated is not set to "Allow multiple selection", the first organization will be saved in the target data.  
+    - When the update value is "Execute Datetime", the date and time when the update was run is set
+    - When the update value is "Login User", the ID of the logged-in user who ran the update is set
+    - When the update value is "Created user", the ID of the user who created the data is set
+    - When the update value is "Berong Organizations", the ID of the organization the logged-in user who ran the update belongs to is set  
+    Note: when the logged-in user belongs to several organizations and the column to update is not set to "Approval Multiple Select" (allow multiple selection), the first organization is saved in the data.
 
-- If the target table column is selected in the setting item "Input dialog setting", the dialog for inputting the update value is displayed.  
+- When a target table column is selected in the setting item "Input dialog settings", a dialog for entering the update value is shown.  
 
 ![Data screen](img/operation/operation12.png)  
+
     
 ### Update conditions
-- Data that does not meet the conditions set in "Update conditions" cannot be updated.  
-- If "Update timing" is "When check is selected on the list screen", an error will be displayed if you check the data that does not meet the conditions and click the update button.  
-In that case, other data that meets the conditions will not be updated either.
+- The update cannot be run on data that does not meet the conditions set in "Update conditions".  
+- When "Update timing" is "Pressing button on the list page" and you check data that does not meet the conditions and click the update button, an error is shown. In that case, the other data that did meet the conditions is not updated either.

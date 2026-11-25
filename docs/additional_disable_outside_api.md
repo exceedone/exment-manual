@@ -1,20 +1,19 @@
 # Server external communication off
-In Exment, communication may be performed from the Exment server to other servers.  
-Specifically, it is executed for the following purposes.  
-- Communicates with the package system and obtains the latest version information to determine if the Exment has the latest version.  
+This setting stops communication from the Exment server to other servers.  
+Use it in an environment that does not communicate with other servers, such as a completely on-premises environment.
 
-However, there may be cases where communication to other servers is not performed, such as when building in a completely on-premises environment.  
-Describe the settings in that case.  
+Exment may communicate with other servers for the following purposes.
+
+- To find out whether a newer version of Exment exists, it communicates with the package system and gets the latest version information.
+- To show the "Exment new arrival information list" on the dashboard, it communicates with the official Exment site (exment.net) and gets the news.
 
 ### Setup steps 
 > This procedure has been changed from v1.3.0.
 
-- From the left menu, transition to the "system settings" screen.  
-
-- From the list, set the "Perform external server communication" item to NO.    
+1. From the left menu, open the "System Setting" screen.
+2. In the list, set the "Perform server external communication" item to NO.  
 ![Server external communication off](img/quickstart/outside_api.png)
-
-- Save and complete the settings.
+3. Save. The setting is now complete.
 
 
 [←Back to list of additional settings](/quickstart_more)

@@ -1,18 +1,26 @@
 # (For advanced users, beta version) Environment construction with AWS - Redundant configuration
-This page describes the steps to build Exment on Amazon Linux2.   
-This is a completely new installation procedure, including the installation of the web server.   
-Additionally, **this procedure uses a redundant web server configuration**  
-※For information on how to build a simple one-machine environment, please check [here](/install_aws_single).
+These are the steps to put Exment on Amazon Linux2 of AWS.  
+They start from installing the web server and build everything from nothing.  
+These steps are for **a configuration with redundant web servers (several web servers)**.  
+Note: for a simple configuration with one server, see [Environment construction with AWS - single configuration](/install_aws_single).
+
+The overall flow is as follows.
+
+1. Create the network (VPC, subnets, internet gateway, route table, security groups)
+2. Create the storage places (AWS S3, MySQL, Redis)
+3. Create the EC2 instances and put Exment on web server A
+4. Create web server B from the AMI of web server A
+5. Create the load balancer (Amazon Elastic Load Balancing)
 
 ## Environment
-This page is constructed with the following configuration.
+The steps on this page were made with the following configuration.
 - VPC
-- Subnet
+- Subnets
     - Public A
     - Public B
-- Loot table
+- Route table
 - Internet gateway
-- security group
+- Security groups
 - Amazon S3
 - Amazon RDS
     - MySQL 8.4.x
@@ -26,7 +34,7 @@ This page is constructed with the following configuration.
     - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
     - Apache 2.4.41
     - PHP 8.2.x
-- Amazon Linux2-Springboard
+- Amazon Linux2-springboard
     - amzn2-ami-hvm-2.0.20191116.0-x86_64-gp2
 - Amazon Elastic Load Balancing
     - Application Load Balancer
@@ -34,196 +42,197 @@ This page is constructed with the following configuration.
 
 ## Important point
 
-- Depending on your environment and version, you may not be able to set up correctly using this procedure. note that.
+- Depending on your environment and versions, you may not be able to set up as written in these steps. Please understand.
 
-- This procedure only describes the steps to run Exment on Linux.   
-Regarding AWS, general IT knowledge such as SSH, database creation, Linux commands, etc. is not described. note that.   
+- This page only describes the steps to run Exment on Linux.  
+General IT knowledge such as AWS, SSH, creating a database and Linux commands is not written. Please understand.
 
-- **This procedure assumes that you are running with an administrator account. If executed by a user who is not an administrator account, add "sudo" to the beginning**
+- **These steps assume that you run them with an administrator account. If a user who is not an administrator runs them, add "sudo" to the beginning of the commands**.
 
-- If an error occurs during installation, please refer to [Troubleshooting](/troubleshooting).
+- If an error occurs during installation, see [Troubleshooting](/troubleshooting).
 
-- This procedure can be found in [AWS Tutorial](https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html#setting-file-permissions- It is created based on 2).
+- These steps are based on the [AWS tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html#setting-file-permissions-2).
 
 ## Procedure
 
 ### VPC
 Create a VPC with the following settings.
 
-- Name: Any (example: exment-vpc)
-- IPv4 CIDR block: XXX.XXX.0.0/16 (Example: 172.32.0.0/16)
-- IPv6 CIDR block: None
-- Tenancy: Default
-- If DNS resolution and DNS hostname are disabled, enable them respectively.
+- Name : any (example : exment-vpc)
+- IPv4 CIDR block : XXX.XXX.0.0/16 (example : 172.32.0.0/16)
+- IPv6 CIDR block : none
+- Tenancy : default
+- If DNS resolution and DNS hostnames are disabled, change each to "Enabled"
 
 ### Subnet
-Create a subnet with the following settings.
+Create the subnets with the following settings.
 
 #### Public subnet A
-- Name: Any (example: exment-subnet-public1)
-- VPC: VPC created above
-- Availability zone: ap-northeast-1a
-- IPv4 CIDR block: XXX.XXX.1.0/24 (Example: 172.32.1.0/24)
+- Name : any (example : exment-subnet-public1)
+- VPC : the VPC created above
+- Availability Zone : ap-northeast-1a
+- IPv4 CIDR block : XXX.XXX.1.0/24 (example : 172.32.1.0/24)
 
 #### Public subnet B
-- Name: Any (example: exment-subnet-public2)
-- VPC: VPC created above
-- Availability zone: ap-northeast-1c
-- IPv4 CIDR block: XXX.XXX.2.0/24 (Example: 172.32.2.0/24)
+- Name : any (example : exment-subnet-public2)
+- VPC : the VPC created above
+- Availability Zone : ap-northeast-1c
+- IPv4 CIDR block : XXX.XXX.2.0/24 (example : 172.32.2.0/24)
 
 
 ### Internet Gateway
-- Name: Any (example: exment-igw)
-- After creation, attach to the VPC created earlier
+- Name : any (example : exment-igw)
+- After creating it, attach it to the VPC created earlier
 
 ### Loot table
-- A route table is automatically created in the VPC you created earlier.   
-You can edit the Name. (Example: exment-rt)
+- A route table has been created automatically in the VPC you made earlier.  
+You can edit its Name. (example : exment-rt)
 
-- Select the route table and add the following from the route tab at the bottom of the page.
-    - Destination: 0.0.0.0/0
-    - Target: Internet Gateway (Internet gateway created above)
+- Select that route table and, in "Routes" of the tabs at the bottom of the page, add the following.
+    - Destination : 0.0.0.0/0
+    - Target : Internet Gateway (the internet gateway created above)
 
-- Add public subnet A and public subnet B from the subnet association tab at the bottom of the page.
+- In "Subnet associations" of the tabs at the bottom of the page, add public subnet A and public subnet B.
 
 
 ### Security Group
-Create a security group with the following settings.
+Create the security groups with the following settings.
 
 #### Security Group - SSH
-- Name: Any (example: exment-sg-ssh)
-- Description: Any (example: exment-sg-ssh)
-- VPC: VPC created above
+- Name : any (example : exment-sg-ssh)
+- Description : any (example : exment-sg-ssh)
+- VPC : the VPC created above
 
-■Add inbound rules after creation
-- Type: SSH
-- Port: 22
-- Source: IP address for SSH connection
-- VPC: VPC created above
+After creating it, add an inbound rule
+- Type : SSH
+- Port : 22
+- Source : the IP address that connects by SSH
+- VPC : the VPC created above
 
 #### Security Group - SSH Private
-- Name: Any (example: exment-sg-ssh-private)
-- Description: Optional (e.g. exment-sg-ssh-private)
-- VPC: VPC created above
+- Name : any (example : exment-sg-ssh-private)
+- Description : any (example : exment-sg-ssh-private)
+- VPC : the VPC created above
 
-■Add inbound rules after creation
-- Type: SSH
-- Port: 22
-- Source:  (Security group - SSH group ID)
-- VPC: VPC created above
+After creating it, add an inbound rule
+- Type : SSH
+- Port : 22
+- Source :  (the group ID of "Security Group - SSH")
+- VPC : the VPC created above
 
 #### Security Group-Web
-- Name: Any (example: exment-sg-web)
-- Description: Optional (Example: exment-sg-web)
+- Name : any (example : exment-sg-web)
+- Description : any (example : exment-sg-web)
 
-■Add inbound rules after creation
-- Type: HTTP
-- Port: 80
-- Source: 0.0.0.0/0, ::/0
+After creating it, add an inbound rule
+- Type : HTTP
+- Port : 80
+- Source : 0.0.0.0/0, ::/0
 
 #### Security Group - MySQL
-- Name: Any (example: exment-sg-mysql)
-- Description: Any (example: exment-sg-mysql)
+- Name : any (example : exment-sg-mysql)
+- Description : any (example : exment-sg-mysql)
 
-■Add inbound rules after creation
-- Type: MYSQL/Aurora
-- Port: 3306
-- Source: (Security Group-Web Group ID)
+After creating it, add an inbound rule
+- Type : MYSQL/Aurora
+- Port : 3306
+- Source : (the group ID of "Security Group-Web")
 
 #### Security Group - Redis
-- Name: Any (example: exment-sg-redis)
-- Description: Any (example: exment-sg-redis)
+- Name : any (example : exment-sg-redis)
+- Description : any (example : exment-sg-redis)
 
-■Add inbound rules after creation
-- Type: Custom TCP Rule
-- Port: 6379
-- Source: (Security Group-Web Group ID)
+After creating it, add an inbound rule
+- Type : Custom TCP Rule
+- Port : 6379
+- Source : (the group ID of "Security Group-Web")
 
 
 ### AWS S3
-- Create AWS S3 bucket and IAM.   
-※Reference: [Super easy! Steps to use S3 with Laravel](https://qiita.com/tiwu_official/items/ecb115a92ebfebf6a92f)  
-Please create IAM for S3 at the above URL and create a bucket  
-※Create four types of buckets: attachments, backup files, plugin templates.
+- Create the AWS S3 buckets and the IAM.  
+Note: reference: [Super easy! Steps to use S3 with Laravel](https://qiita.com/tiwu_official/items/ecb115a92ebfebf6a92f) (Japanese)  
+Do "Create the IAM for S3" and "Create the bucket" of the URL above.  
+Note: create four kinds of buckets: "for attachments", "for backup files", "for plugins" and "for templates".
 
 
 ### MySQL
-> This manual describes the MySQL creation settings using Amazon RDS, but you can also create instances individually, install MySQL, and access it from each web server.   
-For information on how to install MySQL on a server, please check [here](/install_mysql).
+> This section describes the settings for creating MySQL with Amazon RDS. You can also build it by creating a separate instance, installing MySQL on it and connecting from each web server.  
+For how to install MySQL on a server, see the [MySQL installation procedure](/install_mysql).
 
-- Engine: MySQL
-- Version: 8.4.x
-- Instance identifier: any (example: exment-db)
-- DB instance class: any (e.g. db.t2.micro)
-- Username and password: set individually
-- Virtual Private Cloud: VP created earlier
-- Additional connection settings
-    - VPC Security Group: Security Group-MySQL
-    - Availability Zone: Not specified
+- Engine : MySQL
+- Version : 8.0.x
+- Instance identifier : any (example : exment-db)
+- DB instance class : any (example : db.t2.micro)
+- User name, password : set your own
+- Virtual Private Cloud : the VPC created earlier
+- Additional connectivity configuration
+    - VPC security group : Security Group - MySQL
+    - Availability Zone : no preference
 
 
 ### Redis
-> This manual describes Redis creation settings using ElastiCache, but it can also be constructed by creating instances individually, installing Redis, and accessing from each web server.   
-※How to install Redis on the server has been moved to [here](/additional_session_cache_driver).
+> This section describes the settings for creating Redis with ElastiCache. You can also build it by creating a separate instance, installing Redis on it and connecting from each web server.  
+Note: how to install Redis on a server has moved to the [Driver change of session cache](/additional_session_cache_driver) page.
 
-- Cluster engine: Redis
-- Name: Any (Example: exment-redis)
-- Engine version compatibility: 5.0.5
-- Port: 6379
-- Node type: Any (e.g. cache.t2.micro)
-- Subnet group: Create new
-    - Name: Any (example: exment-redis-subnet)
-    - VPC: The VPC you created earlier
-    - Subnet: enter all information
-- Security Group: Security Group-Redis
+- Cluster engine : Redis
+- Name : any (example : exment-redis)
+- Engine version compatibility : 5.0.5
+- Port : 6379
+- Node type : any (example : cache.t2.micro)
+- Subnet group : create new
+    - Name : any (example : exment-redis-subnet)
+    - VPC : the VPC created earlier
+    - Subnets : enter all the information
+- Security group : Security Group - Redis
 
 
 ### EC2
-Create two types of EC2 instances. (One springboard server, one web server. The second web server will be cloned later)
+Create two kinds of EC2 instances. (A springboard server and one web server. The second web server is copied later)  
+The springboard server is the server you connect to first when you connect to a web server by SSH.
 
 #### Springboard server
-- AMI: Amazon Linux 2 AMI x86
-- Instance size: Any (Example: t2.nano)
-- Number of instances: 1
-- Network: VPC created earlier
-- Subnet: Any
-- Auto-assign public IP: Enabled
-- Tag: Key-Name, Value-Optional (Example: exment-step)
-- Security Group: Security Group-SSH
+- AMI : Amazon Linux 2 AMI x86
+- Instance size : any (example : t2.nano)
+- Number of instances : 1
+- Network : the VPC created earlier
+- Subnet : any
+- Auto-assign public IP : Enable
+- Tag : key - Name, value - any (example : exment-step)
+- Security group : Security Group - SSH
 
 #### Web server
-- AMI: Amazon Linux 2 AMI x86
-- Instance size: Any (e.g. t2.micro)
-- Number of instances: 1
-- Network: VPC created earlier
-- Subnet: Public subnet A
-- Auto-assign public IP: Enabled
-- Tag: Key-Name, Value-Optional (Example: exment-web1)
-- Security Group: Security Group-SSH Private, Security Group-Web
+- AMI : Amazon Linux 2 AMI x86
+- Instance size : any (example : t2.micro)
+- Number of instances : 1
+- Network : the VPC created earlier
+- Subnet : public subnet A
+- Auto-assign public IP : Enable
+- Tag : key - Name, value - any (example : exment-web1)
+- Security group : Security Group - SSH Private, Security Group-Web
 
 
 ### Web server-A
 
 #### Connect to web server-A
-- Connect to the **Basement Server** via SSH.
+- Connect to the **springboard server** by SSH.
 
-- Transfer the key required to connect to the EC2 instance (here named exment_key.pem) to the bastion server.
+- Send the key needed to connect to the EC2 instance (here, "exment_key.pem") to the springboard server.
 
-- Run the following command to change the SSH key permissions.
+- Run the following command to change the permissions of the SSH key.
 
 ~~~
 chmod 700 exment_key.pem
 ~~~
 
-- Execute the following command to establish an SSH connection to Web server A.
+- Run the following command to connect to web server A by SSH.
 
 ~~~
-ssh -i ~/exment_key.pem ec2-user@(web server A's private IP address)
+ssh -i ~/exment_key.pem ec2-user@(private IP address of web server A)
 ~~~
 
 #### Web server settings
 
-- Execute the following command to update the package, install the required software, etc.
+- Run the following commands to bring the packages up to date and install the required software.
 
 ~~~
 sudo yum -y update
@@ -232,14 +241,14 @@ sudo yum install -y httpd mysql
 sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64 php-sodium.x86_64 php-dom.x86_64
 ~~~
 
-- Execute the following command to start Apache and configure automatic startup settings.
+- Run the following commands to start Apache and set it to start automatically.
 
 ~~~
 sudo systemctl start httpd
 sudo systemctl enable httpd
 ~~~
 
-- Create swap space.
+- Create swap space (disk space used when memory is not enough).
 
 ~~~
 sudo dd if=/dev/zero of=/swapfile bs=1M count=1024
@@ -250,14 +259,14 @@ sudo swapon /swapfile
 
 - Install composer.
 ~~~
-cd~
+cd ~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 sudo mv composer.phar /usr/local/bin/composer
 ~~~
 
-- Fix httpd.conf.
+- Edit httpd.conf.
 
 ~~~
 sudo vi /etc/httpd/conf/httpd.conf
@@ -279,15 +288,15 @@ sudo vi /etc/httpd/conf/httpd.conf
 sudo systemctl restart httpd
 ~~~
 
-- Set file permissions. Run the following command:
+- Set the file permissions. Run the following command.
 
 ~~~
-# Add ec2-user user to apache group
+# Add the ec2-user user to the apache group
 sudo usermod -a -G apache ec2-user
 ~~~
 
-- Place the Exment on the server. Download the latest Exment file and extract it.   
-※This is an easy installation procedure. For manual installation, please refer to [here](/quickstart_manual) for location.
+- Place Exment on the server. Download the latest Exment file and extract it.  
+Note: these are the steps of the easy installation. For a manual installation, place it by following the [manual installation](/quickstart_manual) page.
 
 ~~~
 cd /var/www
@@ -297,21 +306,21 @@ sudo rm exment.zip -f
 cd exment
 ~~~
 
-- Set file permissions. Run the following command:
+- Set the file permissions. Run the following commands.
 
 ~~~
-# add minimum privileges
+# Add the minimum permissions
 sudo chmod 0775 /var/www/exment
 sudo chown -R ec2-user:apache /var/www/exment
 
-# Execute the following command to grant folder permissions. Perform 1 or 2
-# 1. For easy installation
+# Run the following command to give the permissions of the folders. Do 1 or 2
+# 1. For the easy installation
 sudo php artisan exment:setup-dir --easy=1
-# 2. For manual installation
+# 2. For a manual installation
 sudo php artisan exment:setup-dir
 ~~~
 
-- Execute the following command to connect to Redis and AWS S3.
+- Run the following commands to connect to Redis and AWS S3.
 
 ~~~
 cd /var/www/exment
@@ -323,16 +332,16 @@ composer require predis/predis
 
 ~~~
 
-# Change existing settings
-CACHE_STORE=redis #When changing the cache storage location. Rewrite to redis
-SESSION_DRIVER=redis #When changing the cache storage location. Rewrite to redis
-REDIS_CLIENT=predis #connect to Redis with "predis" installed above
+# Change the existing setting values
+CACHE_STORE=redis #To change where the cache is saved. Rewrite to redis
+SESSION_DRIVER=redis #To change where the session is saved. Rewrite to redis
+REDIS_CLIENT=predis #Connect to Redis with "predis" installed above
 REDIS_HOST=127.0.0.1 #redis host name
-REDIS_PASSWORD=XXXXXX #redis password, enter only if set
-REDIS_PORT=6379 #redis port number, write only if it is not 6379
+REDIS_PASSWORD=XXXXXX #redis password, write it only if one is set
+REDIS_PORT=6379 #redis port number, write it only if it is not 6379
 
 
-# Add new setting value
+# Add new setting values
 EXMENT_DRIVER_EXMENT=s3
 EXMENT_DRIVER_BACKUP=s3
 EXMENT_DRIVER_TEMPLATE=s3
@@ -340,25 +349,25 @@ EXMENT_DRIVER_PLUGIN=s3
 AWS_ACCESS_KEY_ID=(S3 access key)
 AWS_SECRET_ACCESS_KEY=(S3 secret access key)
 AWS_DEFAULT_REGION=(S3 region. Example: ap-northeast-1)
-AWS_BUCKET_EXMENT=(AWS S3 bucket used for attachment)
-AWS_BUCKET_BACKUP=(AWS S3 bucket used for backup)
-AWS_BUCKET_TEMPLATE=(AWS S3 bucket used in template)
-AWS_BUCKET_PLUGIN=(AWS S3 bucket used by plugin)
+AWS_BUCKET_EXMENT=(AWS S3 bucket used for attachments)
+AWS_BUCKET_BACKUP=(AWS S3 bucket used for backups)
+AWS_BUCKET_TEMPLATE=(AWS S3 bucket used for templates)
+AWS_BUCKET_PLUGIN=(AWS S3 bucket used for plugins)
 
-# When using HTTPS for the load balancer and HTTP for communication between ELB and EC2
+# When the load balancer uses HTTPS and the communication between ELB and EC2 uses HTTP
 ADMIN_HTTPS=true
 ~~~
 
-- Enter the IP address of the web server you created in your PC's browser to complete the initial installation of Exment.
+- In the browser of your own PC, open the IP address of the web server you made and finish the initial installation of Exment.
 
-- ※If you installed using the easy installation, once the initial installation is complete, run the following command to restore the permissions required only during installation.
+- Note: if you installed by the easy installation, run the following command when the initial installation is finished. It puts back the permissions that are needed only during installation.
 
 ~~~
 php artisan exment:setup-dir --easy_clear=1
 ~~~
 
 #### When changing web server settings
-- After updating Exment, updating the PHP file, or changing the setting value, execute the following command.
+- When you have updated Exment, updated PHP files or changed setting values, run the following command.
 
 ~~~
 sudo systemctl restart php-fpm
@@ -367,45 +376,45 @@ sudo systemctl restart php-fpm
 
 #### Web server AMI settings
 
-Create a web server AMI for future web server redundancy.
+Create an AMI (a server image) of the web server, for example for making the web servers redundant.
 
-- In the EC2 menu of the AWS Console, click Actions → Images → Create Image.
+- In the EC2 menu of the AWS Console, click "Actions" → "Image" → "Create image".
 
-- Enter the image name etc. (e.g. exment-ami) and create the image.
+- Enter the image name and so on (example : exment-ami) and create the image.
 
-- After a few minutes, the image you set earlier will be created from AMI on the left menu.
+- After a few minutes, the image you just made is in "AMIs" of the left menu.
 
 
 #### Create web server B from AMI
-- Select the image created above from AMI on the left menu and click the launch button.
+- In "AMIs" of the left menu, select the image made above and click the "Launch" button.
 
 Create a web server with the following settings.
-  - Instance size: Any (Example: t2.micro)
-  - Number of instances: 1
-  - Network: VPC created earlier
-  - Subnet: Public subnet B
-  - Auto-assign public IP: Enabled
-  - tag: key-Name, value-any (example: exment-web2)
-  - Security Group: Security Group-SSH Private, Security Group-Web
+  - Instance size : any (example : t2.micro)
+  - Number of instances : 1
+  - Network : the VPC created earlier
+  - Subnet : public subnet B
+  - Auto-assign public IP : Enable
+  - Tag : key - Name, value - any (example : exment-web2)
+  - Security group : Security Group - SSH Private, Security Group-Web
 
 
 ### Amazon Elastic Load Balancing
-- Load balancer type: Application Load Balancer
-- Name: Any (Example: exment-alb)
-- Listener: HTTP or HTTPS
-- VPC: Created VPC
-- Availability Zone: Select all
-- Security Group: Security Group-Web
-- Target group: any (example: exment-alb-tg)
-- Target group instance: Select the two types of web servers you created and add them to registered.
+- Load balancer type : Application Load Balancer
+- Name : any (example : exment-alb)
+- Listener : HTTP or HTTPS
+- VPC : the VPC you created
+- Availability Zones : select all
+- Security group : Security Group-Web
+- Target group : any (example : exment-alb-tg)
+- Target group instances : select the two web servers you created and add them to "Registered"
 
-After completing the settings, you will be able to access the web server via the load balancer's DNS.
+When the settings are done, the web servers can be accessed through the DNS of the load balancer.
 
 
 ### Others
-If reverse proxy settings have been configured using Amazon Elastic Load Balancing, please check the following steps and configure them.   
+If Amazon Elastic Load Balancing is set up as a reverse proxy, set it by following the steps on the following page.  
 [Settings when using a reverse proxy](/additional_reverse_proxy)
 
 
 ## Correspondence when upgrading PHP version
-Moved to [here](/install_aws_single).
+This has moved to ["Correspondence when upgrading PHP version" of Environment construction with AWS - single configuration](/install_aws_single?id=correspondence-when-upgrading-php-version).

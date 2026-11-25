@@ -1,76 +1,89 @@
 # Server settings
-- To use Exment, first you need to set up the web server and database.
-Follow the procedure below to make the settings depending on your environment.
+This page puts together the settings of the web server and the database that you prepare before installing Exment.  
+Follow the steps that fit your environment.
 
-- <span class="red bold">* Currently, we are very sorry, but we are not accepting individual inquiries regarding the installation procedure or server construction. If you would like individual support, please request paid support.</span>
+On this page you do the following four things.
 
-- In addition, we do not currently have manuals for environments other than the following. Please note.
+1. Prepare a web server ("Web server" below)
+2. Install composer ("Introduced composer" below)
+3. Prepare a database ("Database" below)
+4. Install the Exment application ("Installing the application" below)
+
+The required versions of PHP and the database are in "Operating environment" below.
+
+- <span class="red bold">Note: we do not accept individual inquiries about the installation steps or about building a server. If you need individual help, please use the paid support.</span>  
+- We do not have manuals for environments that are not in the list below. Thank you for your understanding.
 
 ## Web server
-This is the procedure for building a web server. Follow one of the steps below to build a web server.  
-※XAMPP is recommended when building an environment with PHP, Apache, and MySQL from the beginning as a development environment.
+Prepare a web server by one of the following steps.  
+Note: when you build an environment with PHP, Apache and MySQL from scratch for development, we recommend XAMPP.  
 
 - [XAMPP construction (development / verification environment) Windows](/install_xampp)  
-→ First of all, if you want to install Exment on your personal computer (Windows version)
+→ When you first want to try Exment on your own computer (Windows version)
 
 - [XAMPP construction (development / verification environment) Mac](/install_xampp_mac)  
-→ First of all, if you want to install Exment on your PC (Mac version)
+→ When you first want to try Exment on your own computer (Mac version)
 
 - [Rental server construction](/install_rental)  
-→ If you want to publish the Exment and easily access it from other members or smartphones
+→ When you want to publish Exment and use it easily from other members and from smartphones
 
 - [Build on Linux](/install_centos_stream)  
-→ Procedure for installing Exment on Linux (CentOS Stream)
- ※For those who built it on CentOS 8, please refer to [here](/install_linux)
+→ The steps to install Exment on Linux (CentOS Stream)  
+ Note: if you built it on CentOS 8, see [here](/install_linux)
 
 - [Build on IIS](/install_iis)  
-→ Procedure when building Exment on IIS
+→ The steps to install Exment on IIS
 
-- [Build on AWS](/install_aws)  
-→ Procedure when building Exment on AWS
+- [Build on AWS - single server](/install_aws_single)  
+→ The steps to install Exment on AWS with a single server
+
+- [Build on AWS - redundant](/install_aws)  
+→ The steps to install Exment on AWS in a redundant configuration
 
 - [Build with Docker](/install_docker)  
-→ Procedure when building Exment with Docker
+→ The steps to run Exment with Docker
+
+
 
 ### File permission settings
 
-Of the Exment project folders, the following folders and files require write permission for the user running the web server (apache, www-data, etc.).  
+Of the Exment project folders, the following folders and files need write permission for the user that runs the web server (apache, www-data, etc.).  
 
-| type | File / folder name | Required functions |
+| Type | File / folder name | Features that need it |
 | ---- | ---- | ---- |
-| folder | storage | Full function |
-| folder | bootstrap/cache | Full function |
-| file | .env | Easy installation and restore |
-| folder | config | Easy installation and restore |
-| folder | app | Easy installation |
-| folder | public | Easy installation |
-| folder | resources | Easy installation |
+| Folder | storage | All features |
+| Folder | bootstrap/cache | All features |
+| File | .env | Easy installation, restore |
+| Folder | config | Easy installation, restore |
+| Folder | app | Easy installation |
+| Folder | public | Easy installation |
+| Folder | resources | Easy installation |
 
-<span class="small">* Easy installation authority is required only at the time of installation. If you want to set the permission more strictly, delete the write permission of the folder after executing the simple installation.</span>
-
+- The permissions for the easy installation are needed only at the time of the installation. If you want stricter permissions, remove the write permission of the folders after the easy installation.
 
 #### Automatic generation of initial folders
-- The initial folder structure can also be generated automatically with the following command.  
-    - --user=(User name. If not specified, an input prompt is displayed after execution)
-    - --group=(Group name. If not specified, an input prompt is displayed after execution)
-    - --easy=(1 when installing Exment with easy installation. The default is 0)
-    - --easy_clear=(1 when you want to return the folder permissions to the appropriate ones after easy installation. The default is 0)
+- The folder structure needed at first can also be made automatically with the following command.  
+    - --user=(User name. If not given, an input prompt appears after you run the command)
+    - --group=(Group name. If not given, an input prompt appears after you run the command)
+    - --easy=(1 when you install Exment with the easy installation. The default is 0)
+    - --easy_clear=(1 when you want to return the folder permissions to the proper ones after the easy installation. The default is 0)
 
 ```
 php artisan exment:setup-dir {--user=} {--group=} {--easy=0} {--easy_clear=0}
 
-# For manual installation
+# For the manual installation
 php artisan exment:setup-dir
-# For easy installation
+# For the easy installation
 php artisan exment:setup-dir --easy=1
-# To return the folder permissions to the original ones after easy installation is completed
+# To return the folder permissions to the original ones after the easy installation is finished
 php artisan exment:setup-dir --easy_clear=1
 ```
 
 
+
 ## Introduced composer
-Exment requires composer to be installed on the web server. composer is used to install the packages required for Exment and to update Exment.  
-Please refer to the following URL for the installation method.  
+To use Exment, composer must be installed on the web server. composer is used to install the packages that Exment needs and to update Exment.  
+See the following pages for how to install it.  
 - [Official site](https://getcomposer.org/download/)
 - [Windows version commentary site](https://weblabo.oscasierra.net/php-composer-windows-install/)
 - [Linux version commentary site](https://weblabo.oscasierra.net/php-composer-centos-install/)
@@ -78,118 +91,136 @@ Please refer to the following URL for the installation method.
 
 
 ## Database
-Exment's database engine requires one of the following:
+The database of Exment must be one of the following.
 
 - MySQL 8.0 or higher
 - MariaDB 10.11 or higher
-- SQL Server 13.0.0 or higher (Currently, automatic backup / restore is not supported)
+- SQL Server 13.0.0 or higher (the automatic backup and restore are not supported at present)
 
 ### Database environment construction
-- If you have not set up the database server yet, please build the database server.
-Please check the link below for the construction method.  
-\* Not required if already installed.
+- If you have not prepared a database server yet, prepare it first.  
+See the following pages for the steps.  
+Note: not needed if you already have one.  
 
-     - [MySQL](/install_mysql)
-     - [SQL Server](/install_sqlserver)
+    - [MySQL](/install_mysql)
+    - [SQL Server](/install_sqlserver)
 
 ### Create database
 
-- Create a database for Exment with each database engine.
+- Create a database for Exment in the database you use.  
+
+
+## Installing the application
+When the environment is ready, install the Exment application by one of the following two ways.
+
+1. **Easy installation**  
+→ You install by following the guidance shown on the web screen. See [Easy installation](/quickstart_easy) for the steps.
+
+1. **Manual installation**  
+→ You install by hand, with commands. See [Manual installation](/quickstart_manual) for the steps.
+
 
 ## Operating environment
 ### server
-- PHP 8.2 or higher (`^8.2.0`. Exment 7.0.0 uses Laravel 12, which requires PHP 8.2 or higher)
-- Laravel 12.X (Laravel version changed to 12.X from Exment 7.0.0)
-- ※ For Exment v6.x: PHP 8.2, Laravel 10.X.
-- Database: One of the following
+- PHP 8.2 or higher (`^8.2.0`. Exment 7.0.0 needs PHP 8.2 or higher, to match the requirements of Laravel 12, which it uses)
+- Laravel 12.X (from Exment 7.0.0, the Laravel version changed to 12.X)
+- Note: Exment v6.x uses PHP 8.2 and Laravel 10.X.
+- Database: one of the following
     - MySQL 8.0 or higher
     - MariaDB 10.11 or higher
     - SQL Server 13.0.0 or higher
-- PHP's gd extension built with FreeType (`imagettftext` available): used for the 2D barcode label PDF. Without it, making the label PDF fails with an error. See [2D Barcode settings](/2d_barcode) for how to check and install it.
+- The gd extension of PHP (with FreeType; `imagettftext` must be usable): used for the PDF of 2D barcode labels. Without it, making the label PDF ends in an error. See [2D Barcode settings](/2d_barcode) for how to check and install it.
 
 ### Operation check browser
 - Google Chrome
 - Microsoft Edge
 
+
 ### Recommended settings
-- Maximum PHP memory allowance: 512MB
-- Maximum file upload: 10MB
-- Timeout time: 180 seconds
+
+- Maximum PHP memory: 512MB
+- Maximum file upload size: 10MB
+- Timeout: 180 seconds
+
 
 ## Check system requirements
-You can check system requirements and server settings from the screen or commands.
 
-![install page settings](img/quickstart/setting_windows4.png)  
+You can check on the screen or by a command whether the server meets the requirements of Exment and whether the setting values are enough.  
+
+![Installation screen_Settings](img/quickstart/setting_windows4.png)  
 
 
 ### Confirmation method
-You can check the system requirements, etc. by the following methods.
+You can check in one of the following ways.
 
-- Installation page for [easy installation](/quickstart)
-- After installation, [system setting page](/system_setting)
-- command. Details below
+- The installation screen of the [easy installation](/quickstart_easy)
+- After the installation, the [System Setting screen](/system_setting)
+- A command ("Execute from command" below)
 
 ### Confirmation item details
 
 #### Memory usage limit
-The upper limit of memory usage allocated to run PHP.  
-Please check [here](/additional_php_ini) for how to change the settings.
+The upper limit of the memory that can be used to run PHP.    
+See [Changing PHP settings](/additional_php_ini) for how to change it.
+
+#### Maximum number of POST at one time
+The upper limit of the number of POST parameters that PHP can receive at one time. Some screens send many items when saving, so we recommend changing this limit.  
+See [Changing PHP settings](/additional_php_ini) for how to change it.
 
 #### File upload size limit
-The maximum file size for uploading files. The size you need depends on the requirements of the files you want to manage.  
-Please check [here](/additional_php_ini) for how to change the settings.
+The upper limit of the size of a file that can be uploaded. The size you need depends on the files you want to manage.  
+See [Changing PHP settings](/additional_php_ini) for how to change it.
 
 #### Timeout time
-The number of seconds to wait for processing and time out. If this time is short, it may exceed this time for time-consuming processes such as backup and import.   
-Please check [here](/additional_php_ini) for how to change the settings.
+The number of seconds to wait for a process before it times out. If it is short, processes that take time, such as backup and import, can go over this time.  
+See [Changing PHP settings](/additional_php_ini) for how to change it.
 
 #### File permissions
-Check the file permissions required to run Exment.  
-Please check [here](#file-permission-settings) for more information.
+Checks whether the file permissions needed to run Exment are there.  
+See [File permission settings](/server?id=file-permission-settings) above for details.
 
 
 #### Composer installation
-Check if the Composer used to update the Exment is installed on your web server.  
-\* A warning may be displayed even though composer is actually installed. This is because the composer path is not passed by the user who runs the web server, or the authority is insufficient.  
-If composer is successfully installed and can be run by the user who actually performs the update, ignore this warning.  
-\* In order to pass through the composer, please verify [here](/troubleshooting#to-pass-the-composer-path) "To pass the composer path".
+Checks whether Composer, which is used to update Exment, is installed on the web server.  
+Note: a warning can appear although composer is installed. The reasons are, for example, that the path of composer is not set for the user that runs the web server, or that the permissions are not enough.  
+If composer is installed correctly and the user who actually updates can run it, ignore this warning.  
+Note: to set the path of composer, try "To pass the composer path" in [Troubleshooting](/troubleshooting).
 
 
 
 #### Backup / Restore
-Confirm that the server settings for executing backup / restore are complete.   
-\* If you made an error, please check [here](/troubleshooting) the "fail to backup and restore".  
-\* If you are using SQL Server, you will always be warned. Manual backup or restore is required. Please check [here](/backup_sqlserver) for the procedure.  
-
+Checks whether the server is set up for backup and restore.  
+Note: if you get an error, see "Backup and restore fail" in [Troubleshooting](/troubleshooting).  
+Note: if you use SQL Server, this is always a warning. You need to back up and restore by hand. See [Backup and restore of SQL Server](/backup_sqlserver) for the steps.
 
 
 ### Result display
 #### Normal
-It is displayed with a green check.
+A green check appears.
 
-![インストール画面_設定](img/quickstart/setting_require1.png)  
+![Installation screen_Settings](img/quickstart/setting_require1.png)  
 
-Click the row to see the details.
+Press the row to see the details.
 
-![インストール画面_設定](img/quickstart/setting_require2.png)  
+![Installation screen_Settings](img/quickstart/setting_require2.png)  
 
 #### Warning
-A yellow warning mark is displayed. The setting method is recommended, or some points need to be noted in operation.
+A yellow warning mark appears. It is an item we recommend setting, or an item with a point to take care of when you use it.
 
-![インストール画面_設定](img/quickstart/setting_require3.png)  
+![Installation screen_Settings](img/quickstart/setting_require3.png)  
 
 #### Error
-A red cross mark is displayed. It is necessary to change the settings.
+A red cross mark appears. You need to change the settings.
 
-![インストール画面_設定](img/quickstart/setting_require4.png)  
+![Installation screen_Settings](img/quickstart/setting_require4.png)  
 
 
 ### Execute from command
 
-You can also check the system requirements from the following command.
+You can also check the system requirements with the following command.
 
 ```
 php artisan exment:checkrequire
 ```
 
-[←Installation-Return to Overview](/quickstart)
+[←Back to the installation overview](/quickstart)

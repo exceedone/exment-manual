@@ -1,45 +1,52 @@
 # 2D Barcode settings
-Configure the 2D barcode settings for the table.
+This page explains the screen that decides, for each table, how the 2D barcode label looks and what happens when a barcode is read.
+
+The flow until you can use it is as follows.
+
+1. Open the 2D barcode setting screen
+2. Set and save
+3. Press the "Activate" button
+4. Make the PDF of 2D barcodes from the data list
 
 ## Overview of the 2D Barcode Functionality
-For an overview of the 2D barcode functionality, please refer to the [official website post](https://exment.net/release_v6-1-0/).
+For an overview of the 2D barcode function, see the [official website post](https://exment.net/release_v6-1-0/).
 
 ### Required PHP extension (label PDF)
-To make the 2D barcode label PDF, PHP's gd extension must be built with FreeType (`imagettftext` must be available). Without it, making the label PDF fails with an error.
+To make the 2D barcode label PDF, PHP's gd extension must be installed with FreeType (`imagettftext` must be available). Without it, making the label PDF gives an error.
 
-- docker-exment: update docker-exment (since PR #23, 2026-11-23) and rebuild the php image (`docker compose build php`, then `docker compose up -d`).
-- Other servers: install gd with FreeType (the php-gd package of the distribution usually has it). Check it with the command below; `bool(true)` means it is available.
+- If you use docker-exment: update docker-exment (PR #23 of 2026-11-23 or later) and rebuild the php image (`docker compose build php`, then `docker compose up -d`).
+- On other servers: install gd with FreeType (it is usually in the php-gd package of the distribution). You can check whether it is available with the command below. If it prints `bool(true)`, it is available.
 
 ```
 php -r 'var_dump(function_exists("imagettftext"));'
 ```
 
 ## Page display
-- In the custom table list, check the table you want to configure and click "Table details settings" in the upper right corner.  
+- In the custom table list, check the table to set and click "Table Detail Setting" at the top right.  
 ![2D barcode page](img/2d_barcode/barcode1.png)
 
-> ※ It is also possible to transition directly from the data list screen or data registration screen of the target custom table. In that case, please click "Table details settings" in the upper right corner.  
+> Note: you can also go there directly from the data list screen or the data registration screen of that custom table. In that case too, click "Table Detail Setting" at the top right.  
 ![2D barcode page](img/2d_barcode/barcode12.png)
 
-- On the displayed table details settings screen, click the 2D barcode settings icon to display the 2D barcode settings.  
+- On the Table Detail Setting screen, click the icon of the 2D Barcode Setting to show the 2D barcode setting screen.  
 ![2D barcode page](img/2d_barcode/barcode2.png)
 
 ## 2D Barcode setting items
 ![2D barcode page](img/2d_barcode/barcode3.png)
 
 ### Supplementary information for 2D barcodes
-Set the information displayed on the right side of the 2D barcode.
+Set the information shown on the right side of the 2D barcode.
 
 - #### Title
-Enter the fixed wording that will be displayed on the right side of the 2D barcode.  
+Enter the fixed words shown on the right side of the 2D barcode.
 
 - #### Represents column
-Sets the specified column of custom data to the right of the 2D barcode.    
-You can choose an ID column or an auto-number column (must be unique and required).
+Select the column of the custom data shown on the right side of the 2D barcode.   
+You can select the ID column or an auto-number column (it must be unique and required).
 
 ### 2D barcode layout size
-Set the layout size of the 2D barcode.  
-Please refer to the table below.
+Set the layout size of the 2D barcode. 
+See the table below.
 
 | Case | Cell width | Cell height | Margin right | Margin top | Column per page | Row per page | Column spacing | Row spacing |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -57,45 +64,46 @@ Please refer to the table below.
 ![2D barcode page](img/2d_barcode/barcode4.png)
 
 ### 2D barcode reading
-Sets information for reading two-dimensional barcodes. 
+Set what happens when a 2D barcode is read. 
 
 - #### Form after reading 2D barcode
-Set up the registration form after reading the 2D barcode.  
-You can select from custom forms registered in the target table. 
+Select the registration form opened after a 2D barcode is read.  
+You can select from the custom forms registered for that table. 
 
 - #### Actions after data registration  
-Set the display screen after data registration.  
-You can select the TOP screen, list screen, details screen, edit screen, or camera startup screen.
+Select the screen shown after the data is registered.  
+You can select from the TOP screen, the list screen, the details screen, the edit screen and the camera screen.
 
-After setting, click the "Save" button.
+After setting, click the "Save" button.  
 
 ### Enable 2D barcode settings  
-- In order to expose the 2D barcode function of the target table, it must be "enabled". Once saved, click the "Activate" button at the top right of the page.
+- To make the 2D barcode function usable on that table, you need to "Activate" it. Save once, then click the "Activate" button at the top right of the page.
 
 ![2D barcode page](img/2d_barcode/barcode5.png)
 
 ## Create a new 2D barcode
-- After enabling the 2D barcode function, the "Create new 2D barcode" button will be displayed in the data list of the target table.  
-You can change the display name of the "2D barcode" on the "Create new 2D barcode" button by changing "EXMENT_TEXT_QR_BUTTON_JA/EN" in the .env file.
+- When the 2D barcode function is activated, the "Create a new 2D barcode" button is shown in the data list of that table.  
+The "2D barcode" part of the button name can be changed with "EXMENT_TEXT_QR_BUTTON_JA/EN" in the .env file.  
+
 ![2D barcode page](img/2d_barcode/barcode6.png)
 
-- Click "Create new 2D barcode" to display the new 2D barcode creation screen.
+- Click "Create a new 2D barcode" to show the screen for creating new 2D barcodes.
 ![2D barcode page](img/2d_barcode/barcode7.png)
-
-- If you enter the number of 2D barcodes and save, data will be created with the entered number and the 2D barcodes will also be output as PDF.
+- Enter the number of 2D barcodes and save: that many records are created, and the PDF of the 2D barcodes is output too.
 ![2D barcode page](img/2d_barcode/barcode8.png)
 
 ## 2D barcode download
-- After enabling the 2D barcode function, a "2D barcode download" button will be displayed in the data list of the target table.  
-You can change the display name of the "2D barcode" on the "2D barcode download" button by changing "EXMENT_TEXT_QR_BUTTON_JA/EN" in the .env file.
+- When the 2D barcode function is activated, the "2D barcode download" button is shown in the data list of that table.  
+The "2D barcode" part of the button name can be changed with "EXMENT_TEXT_QR_BUTTON_JA/EN" in the .env file.
 ![2D barcode page](img/2d_barcode/barcode9.png)
 
-- Select the target data and click "Download 2D barcode" to output the 2D barcode of the selected data as a PDF.
+- Select data and click "2D barcode download": the 2D barcodes of the selected data are output as a PDF.
+
 ![2D barcode page](img/2d_barcode/barcode10.png)
 
 ![2D barcode page](img/2d_barcode/barcode11.png)
 
 ## Launching the camera screen from Exment
-- From the Exment dashboard, you can launch the camera screen to read 2D barcodes.
+- From the Exment dashboard, you can launch the camera screen for reading 2D barcodes.
 
-- For instructions on how to add the item "2D barcode reading" to the Exment dashboard, please see [here](/dashboard#_2djan-barcode).
+- For how to add the item "2D/JAN Barcode" to the dashboard, see [Dashboard](/dashboard).

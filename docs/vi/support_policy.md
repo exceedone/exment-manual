@@ -9,7 +9,7 @@ Thông thường hãy dùng bản mới nhất. Bảng dưới cho biết mỗi 
 | 7.1 | 7.1.3 | 8.2 – 8.4 | 12 | như trên | Chỉ bảo mật | 2027-03-31 |
 | 7.0 | 7.0.6 | 8.2 – 8.4 | 12 | như trên | Chỉ bảo mật | 2027-03-31 |
 | 6.2 | 6.2.19 | 8.2 | 10 | như trên | Chỉ bảo mật | 2027-03-31 |
-| Bản cuối chạy trên PHP 7.4 | 4.4.2 | 7.3 – 7.4 | — | — | Không sửa | Đã kết thúc |
+| Bản cuối chạy trên PHP 7.4 | 4.4.3 | 7.3 – 7.4 | — | — | Không sửa | Đã kết thúc |
 
 - Dải PHP lấy từ `composer.json` của từng phiên bản (`^8.2.0`) và dải mà màn hình cài đặt kiểm tra (v7: từ 8.2 đến dưới 8.5; 6.2: từ 8.2 đến dưới 8.3).
 - Phiên bản cơ sở dữ liệu: xem [Yêu cầu máy chủ](/vi/server).
@@ -18,9 +18,9 @@ Thông thường hãy dùng bản mới nhất. Bảng dưới cho biết mỗi 
 
 | Dòng | Hướng dẫn cập nhật | Ghi chú phát hành |
 |---|---|---|
-| 7.2 | [Cập nhật](/vi/update) | [Release notes (English)](/release_note.md) |
+| 7.2 | [Cập nhật](/vi/update) | [Release notes (English)](/release_note) |
 | 7.1, 7.0 | [Cập nhật](/vi/update) (cập nhật thông thường sẽ lên 7.2) | [v7.1.3](https://github.com/exceedone/exment/releases/tag/v7.1.3), [v7.0.6](https://github.com/exceedone/exment/releases/tag/v7.0.6) |
-| 6.2 | [Update to v7.0.0 (English)](/update/v7_0_0.md) (cần cập nhật thủ công) | [v6.2.19](https://github.com/exceedone/exment/releases/tag/v6.2.19) |
+| 6.2 | [Update to v7.0.0 (English)](/update/v7_0_0) (cần cập nhật thủ công) | [v6.2.19](https://github.com/exceedone/exment/releases/tag/v6.2.19) |
 
 ## Hỗ trợ của framework và PHP
 - <span class="red bold">Laravel 10 đã ngừng sửa lỗi bảo mật từ ngày 4/2/2025.</span> 6.2 chạy trên framework không còn được hỗ trợ. Hãy nâng cấp lên v7 sớm nhất có thể.

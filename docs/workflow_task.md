@@ -23,13 +23,13 @@ Data that meets all of the following conditions is shown as a task.
 - The logged-in user, or an organization the logged-in user belongs to, is a work user of the current status
 - The data details page shows the logged-in user a button of an action they can execute
   - Data that does not meet the conditions of the action settings is not shown
-  - For an action whose "Condition to go to next status" is two or more people, the data is not shown once the logged-in user has executed the action
+  - For an action whose "Condition to advance to next status" is two or more people, the data is not shown once the logged-in user has executed the action
   - A special action does not make a task
 - The logged-in user has permission to view the data
 
-※ Only the tasks of the logged-in user are shown. Even a system administrator does not see the tasks of other users.  
-※ Data at the start status (for example, data that has not been applied for yet) is shown as a task to the users who can execute the first action (for example, "Apply").  
-※ Even after the "End date" of a workflow has passed, data already in progress is shown as a task until it is completed.
+Note: Only the tasks of the logged-in user are shown. Even a system administrator does not see the tasks of other users.  
+Note: Data at the start status (for example, data that has not been applied for yet) is shown as a task to the users who can execute the first action (for example, "Apply").  
+Note: Even after the "End date" of a workflow has passed, data already in progress is shown as a task until it is completed.
 
 ## Opening the screen
 
@@ -47,8 +47,8 @@ Click the icon to show up to 5 tasks, the most recently updated first.
 - Click "Pending tasks" at the bottom to open the list screen
 - When there is no task, "You have no pending tasks." is shown
 
-※ The number on the icon is updated automatically every 5 minutes. When you operate on the pending task list or the icon (open a task, mark tasks as read, remove tasks from the list, and so on), it is updated immediately. Other changes, such as actions executed by other users, are reflected at a following automatic update. The interval can be changed in the [settings](/config?id=workflow).  
-※ When the number of unread tasks increases, the icon shakes to let you know.
+Note: The number on the icon is updated automatically every 5 minutes. When you operate on the pending task list or the icon (open a task, mark tasks as read, remove tasks from the list, and so on), it is updated immediately. Other changes, such as actions executed by other users, are reflected at a following automatic update. The interval can be changed in the [settings](/config?id=workflow).  
+Note: When the number of unread tasks increases, the icon shakes to let you know.
 
 ### From the URL
 
@@ -58,7 +58,7 @@ You can also open the screen from the following URL.
 http(s)://(Exment URL)/workflow_task
 ~~~
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (a site installed with an older version has "admin"), add that value after the URL of the site (e.g. `http(s)://(Exment URL)/admin/workflow_task`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 To add it to the menu on the left, set menu type "Custom URL" and URI "workflow_task" in [Menu](/menu).
 
@@ -114,7 +114,7 @@ The counts are shown to the right of the list title.
 
 ![Menu](img/workflow_task/wt_menu.png)
 
-※ While the list is narrowed down, only the tasks that match the conditions are marked.
+Note: While the list is narrowed down, only the tasks that match the conditions are marked.
 
 ## Narrowing down tasks
 
@@ -169,11 +169,11 @@ You can also show them from the "N removed" link next to the counts.
 - A task put back on the list becomes "Unread".
 - To return to the normal list, select "Cancel" from ▼.
 
-※ Data that has already been processed and is no longer a task of the logged-in user is not shown under "Removed" either.
+Note: Data that has already been processed and is no longer a task of the logged-in user is not shown under "Removed" either.
 
 ## Notifying the other members of the organization
 
-When one member of an organization executes an action whose "Executable user" is that organization and the status changes, the other members of the organization are notified by an [in-system alert](/notify).  
+When one member of an organization executes an action whose "Executable user" is that organization and the status changes, the other members of the organization are notified by an [in-system alert](/notify?id=in-system-alert).  
 The members can tell that somebody has already handled the task assigned to their organization, and nobody checks the same task twice.
 
 - Subject: A workflow assigned to your organization has been processed
@@ -183,7 +183,7 @@ The notification is sent under the following conditions.
 
 - The notification goes to the members of the organizations that are work users of the action and who can view the data of the table. The user who executed the action is not notified.
 - When the work users are users only, no notification is sent.
-- For an action whose "Condition to go to next status" is two or more people, the notification is sent only when the status changes (when the last person executes the action).
+- For an action whose "Condition to advance to next status" is two or more people, the notification is sent only when the status changes (when the last person executes the action).
 - When the organization function is not used, no notification is sent.
 - This notification is sent separately from the notification settings of the workflow. To stop it, set "EXMENT_SAME_ORG_WORKFLOW_NOTIFY" to false in the [settings](/config?id=workflow).
 

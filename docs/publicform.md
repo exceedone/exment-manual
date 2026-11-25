@@ -1,427 +1,440 @@
 # Public form settings
-Set up a public form that allows general users (users who are not logged in) to enter data.  
-  
-In order to use the normal [Data Form Screen](/data_form.md), it is necessary to prepare a user in advance and enter the ID and password to log in. The public form allows anyone to enter data without logging in.
-This allows you to create questionnaires, inquiry forms, application forms, etc., share the URL, and make it widely available to the outside world.  
+This page explains how to set up a "public form", where people who are not logged in (general users) can enter data.  
+You can make questionnaires, inquiry forms, application forms and so on, share the URL, and open them widely to the outside.
+
+- The normal [data form screen](/data_form) needs users prepared beforehand, who log in with an ID and password.
+- With a public form, anyone can enter data without logging in.
 
 ## About public form setting specifications
 
-<span class="red bold">The data entered from the public form settings will be registered as the create user / update user by the user who registered the public form settings.</span>  
-In addition, on the data entry screen, options of other tables may be dynamically acquired or searched, but the role / authority at that time is also treated as the user who registered the public form settings.  
+<span class="red bold">For the data entered from a public form, the user who registered the public form setting is recorded as the created user and the updated user.</span>  
+The roles and permissions used on the data entry screen when options of other tables are got or searched are also those of the user who registered the public form setting.
   
-Therefore, system administrators should avoid registering public forms.  
-It is recommended to set a new user or role group by following the procedure of "<a href="#/publicform?id=role_user"> User or Role group for setting public form </a>" below. We will   
+For this reason, avoid having a system administrator register a public form.  
+We recommend setting a new user and role group with the steps of "<a href="#/publicform?id=role_user">User or Role group to set public form</a>" below.
   
-In addition, the following tables are not subject to public form settings.  
-- Master tables such as "user" and "organization"
-- Tables that are set to "Only one data can be registered" in the table settings
+Also, the following tables cannot be the target of a public form.
+- Master tables such as "User" and "Organization"
+- Tables set to "Save Only One Record" in the table setting
 
 
 ## Setting flow
-Follow the steps below to set up the public form.
+Set in the following order. For the detailed steps, see "Setup steps" below.
 
-1. Execute the command. (When using Google reCAPTCHA)
-
-2. Enable public form settings on the system settings page.
-
-3. Make [Custom form settings](/form) and set information such as items and headings to be displayed on the form.
-
-4. Register the user / role group for which you want to set the public form.
-
-5. Log in as the above user, set the public form, and set various designs, confirmation screens, Google Analytics, etc.
-
-6. When you activate the public form, the URL will be published.
+1. Run the command. (Only when you use Google reCAPTCHA)
+2. On the System Setting screen, make public forms usable.
+3. In the [custom form settings](/form), set the items, headings and so on shown on the form.
+4. Register the user and role group that do the public form settings.
+5. Log in as that user and do the public form settings (design, confirmation screen, Google Analytics and so on).
+6. Activate the public form. A URL is issued.
 
 ## Setup steps
 
 ### 1. Command execution
-Run only if you use Google reCAPTCHA on your public form.  
-Execute the following command in the root folder of the project, according to your Exment version.  
-※ From v7.0.0, "google/recaptcha" is used as the Google reCAPTCHA library. In Exment v6.x or earlier, "arcanedev/no-captcha" is used.  
+Run this only when you use Google reCAPTCHA (a mechanism that prevents sending by robots) on the public form.  
+In the root folder of the project, run the command that matches your Exment version.  
+Note: from v7.0.0, "google/recaptcha" is used as the Google reCAPTCHA library. Exment v6.x or earlier uses "arcanedev/no-captcha".
 
-- Exment v7.0.0 or later
+- For Exment v7.0.0 or later
 
 ```
 composer require google/recaptcha=^1.3.1
 ```
 
-- Exment v6.x or earlier
+- For Exment v6.x or earlier
 
 ```
 composer require arcanedev/no-captcha=^10.1
 ```
 
 ### 2. System setting page
-- Go to "STEP2 Advanced Settings" on the [System setting page](/system_setting) and set "Use Public Form" to YES.  
-* The default is NO. This is to let you explicitly choose to use the public form.  
+- Go to "STEP2 Detail Setting" of the [System Setting screen](/system_setting) and set "Use public form" to YES.  
+Note: the default is NO. This is so that you choose explicitly to use public forms.
 
-![System setting page](img/form/system1.png)
+![Custom form screen](img/form/system1.png)
 
-- If you want to use Google reCAPTCHA, please set the item of "Google reCAPTCHA" to V2 or V3.  
-After selecting, the site key and secret key items of Google reCAPTCHA will be displayed, so set the value copied from [Google reCAPTCHA management page](http://www.google.com/recaptcha/admin).  
-* After setting, select whether to use Google reCAPTCHA on each public form setting page.  
-* When V3 is selected, the score threshold can be changed with the [setting value](/config?id=score-threshold-of-google-recaptcha-v3) (default 0.5).
+- When you use Google reCAPTCHA, set the "Google reCAPTCHA" item to V2 or V3.  
+When you select it, the items for the site key and the secret key are shown. Set the values copied from the [Google reCAPTCHA admin page](http://www.google.com/recaptcha/admin).  
+Note: after this setting, you select on each public form setting screen whether to use Google reCAPTCHA.  
+Note: when V3 is selected, the score threshold can be changed with the [config](/config?id=score-threshold-of-google-recaptcha-v3) (default 0.5).
 
-![System setting page](img/form/system2.png)
+![Custom form screen](img/form/system2.png)
 
 
 ### 3. Custom form settings
-- Make [Custom form settings](/form) and set information such as items and headings to be displayed on the form. This procedure is basically the same as normal form settings.  
-* There is no problem even if this setting is performed by a user other than the public form setting user such as an administrator.  
+- In the [custom form settings](/form), set the items, headings and so on shown on the form. The steps are basically the same as the normal form settings.  
+Note: this setting may be done by someone other than the public form setting user, such as an administrator.
 
 <h3 id="role_user"><a href="#/publicform#role_user" data-id="role_user" class="anchor"><span>4. User or Role group to set public form</span></a></h3>
-Register the user or role group for which you want to set the public form.  
-The data submitted from the public form will be treated as registered / updated by this user.
+Register the user and role group that do the public form settings.  
+The data sent from the public form is treated as registered and updated by this user.
 
-- Create a new [Role Group](/role_group).
-    - Add the "Publish Form Management" permission.
-	- Add edit permission to the table for which you want to set the public form.
-    - Also, add the view permission of the table accessed by the public form.  
+- Create a new [role group](/role_group).
+    - Add the "Public Form Management" permission.
+	- Add the edit permission for the table for which you want to set the public form.
+    - Also add the view permission for the tables accessed by that public form.
 
-- Ex：If you plan to set up a public form for the "Inquiry" table, and the inquiry table refers to all the data in the "Product" and "Category" tables：  
-    - "Public form management" "Edit contact data" permission of "Inquiry" table
-    - "View all data" permission in the "Product" and "Category" tables
+- Example: you plan to set a public form for the "Inquiry" table, and the Inquiry table refers to all data of the "Product" and "Category" tables:
+    - The "Public Form Management" and "Edit Personnel Data" permissions of the "Inquiry" table
+    - The "View All Data" permission of the "Product" and "Category" tables
 
-![Role group setting](img/form/authority.png)
+![Custom form screen](img/form/authority.png)
 
-- Add a user to manage the public form.
+- Add the user who manages the public form.
     - For the role group, select the role group created above.
 
-- Please log in as the user created above, display the public form setting screen, and register the public form.
+- Log in as the user created above, open the public form setting screen, and register the public form.
 
 
 ### 5. Public form settings
 
-- In the custom table list, check one of the tables you want to set, and click "Table Detail Setting" in the upper right.  
-![Custom Table Settings](img/form/form_grid3.png)
-> * It is also possible to transition directly from the data list screen or data registration screen of the target custom table. In that case as well, click "Table Detail Setting" in the upper right.  
-![Custom Table List](img/form/form_grid4.png)
-- On the displayed table advanced settings page, click the form settings icon.
-![Table Detail Setting](img/form/form_grid5.png)
+- In the custom table list, check one table you want to set, and click "Table Detail Setting" at the top right.  
+![Custom form screen](img/form/form_grid3.png)
+> Note: you can also open it from the data list screen or the data registration screen of the target custom table. In that case too, click "Table Detail Setting" at the top right.  
+![Custom form screen](img/form/form_grid4.png)
+- On the table detail setting screen that is displayed, click the form setting icon.
+![Custom form screen](img/form/form_grid5.png)
 
-- A "Public Form Settings" box has been added at the bottom of the form list screen.  
-Click the "+ New" button in the upper right corner of this box.
+- Toward the bottom of the form list screen, there is a "Public Form Settings" box.  
+Click the "+ New" button at the top right of this box.
 
-![Public Form Settings](img/form/add_public_form.png)
+![Custom form screen](img/form/add_public_form.png)
 
-- Transit to the public form setting screen. Please set the required items.
+- The public form setting screen opens. Set the necessary items. The settings are as follows.
 
 #### Settings - Basic setting
-![Basic setting form](img/form/public_form_basic_setting.png)
+![Custom form screen](img/form/public_form_basic_setting.png)
 
 - ##### Target Form
-Select the form you want to set as the public form. Select the form created in "Custom Form Settings" above.
+Select the form to set as the public form. Select the form created in "Custom form settings" above.
 
 - ##### Public form display name
-Enter the display name to be displayed on the list page, etc.
+Enter the display name shown on the list screen and so on.
 
 - ##### Publication expiration date
-If you want to set a deadline for publishing the form, enter the start date and time and the end date and time.  
-※You can also enter only "Start date and time" or "End date and time". If neither is entered, it will always be valid.  
-※If it is outside the publication expiration date, you will not be able to use this publication form.
+To decide the period during which the form is public, enter the start date and time and the end date and time.  
+Note: you can also enter only the "start date and time" or only the "end date and time". When neither is entered, the form is always valid.  
+Note: outside the publication period, this public form cannot be used.
 
 
 #### Settings - Design settings
-![Design setting form](img/form/public_form_set_with.png)
+![Custom form screen](img/form/public_form_set_with.png)
 
-Set design elements such as whether to use the header / footer, logo image and wording, and background color of the form.  
+Set the design elements, such as whether to use the header and footer, the logo image and texts, and the background color of the form.
 
 
 #### Settings - Answer confirmation / Completion setting
-Set whether to use the "answer confirmation screen" and "completion screen" that are displayed when the user completes the form, and set the title and wording.
+The settings of the "answer confirmation screen" and the "completion screen" shown after the user finishes entering the form. Decide whether to use them, and their titles and texts.
 
-![Answer Completion setting form](img/form/public_form_answer_confirmation_setting.png)
+![Custom form screen](img/form/public_form_answer_confirmation_setting.png)
 
 - ##### Use answer confirmation
-If YES, the user screen transition will be as follows.
+When YES, the screens of the user move as follows.
 
 ```
-Input page → Confirmation Page → Completion Page (Data registration)
+Input screen → Confirmation screen → Completion screen (data registration)
 ```
 
-* If NO, the user's screen transition will be as follows.
+Note: when NO, the screens of the user move as follows.
 
 ```
-Input page → Completion Page (Data registration)
+Input screen → Completion screen (data registration)
 ```
 
 - ##### Confirmation Title
-Please enter the title of the answer confirmation page.
+Enter the title text of the answer confirmation screen.
 
 - ##### Confirmation Text
-Enter the text / HTML to be displayed at the top of the confirmation page.  
-* [Parameter](/params) can be used. The script cannot be executed.
+Enter the text / HTML shown at the top of the confirmation screen.  
+Note: [parameters](/params) can be used. Scripts cannot be executed.
 
 
 
 - ##### Completion Title
-Please enter the title of the completion page.
+Enter the title text of the completion screen.
 
 - ##### Completion Text
-Enter the text / HTML to be displayed at the top of the completion page.  
-* [Parameter](/params) can be used. The script cannot be executed.
+Enter the text / HTML shown at the top of the completion screen.  
+Note: [parameters](/params) can be used. Scripts cannot be executed.
 
 - ##### Completion link URL
-You can display the link on the completion page. If you want to transition to another screen after inputting, enter the URL of the transition destination.  
-* If you do not enter the "completion link destination text", the entered URL will be displayed as the link text as it is.
+A link can be shown on the completion screen. To move to another screen after the entry, enter the URL of the destination.  
+Note: when "Completion link text" is not entered, the entered URL is shown as the text of the link as it is.
 
 - ##### Completion link Text
-You can display the link on the completion page. If you want to move to another page after inputting, enter the wording to be displayed on the page as a link.  
+A link can be shown on the completion screen. To move to another screen after the entry, enter the text shown on the screen as the link.
 
 
 #### Completion Notification (general user)
-After registration is complete, you can send an email to the general user who entered the data.  
-This is a notification for general users who are not logged in to the system, so the only notification method is email.  
-In addition, the notification destination is only the e-mail address entered by the general user.  
-* In order to use this function, the column type: Email column is required in the custom table.
+After the registration is finished, an email can be sent to the general user who entered the data.
+
+- Because this is a notification for general users who are not logged in, the only notification method is sending email.
+- The notification target is only the email address the general user wrote.
+- To use this function, the custom table needs a column of the column type Email.
 
 - ##### Notify general users of completion
-If set to YES, the completion notification will be enabled. 
+When YES, the completion notification is enabled.
 
 - ##### Notification Template
-Select the notification template to send to general users. You need to create a new template in [Notification Template Settings](/mail) in advance.  
-* [Variables (parameters)](/params) can be used for notification. By using variables, registered data, system name, user input value, etc. can be added to the subject / body.  
+Select the notification template sent to general users. You need to create a new template beforehand in the [notification template settings](/mail).  
+Note: [variables (parameters)](/params) can be used in the notification. With variables, you can add the registered data, the system name, the values the user entered and so on to the subject and body.
 
 - ##### Notification Target
-Select a custom column that has the email address you want to be notified about.  
-Ex: If there is a "Reply to email address" column in the input field, you can select this column as the notification target and a notification will be sent to that email address after the data entry is completed.  
+Select the custom column that holds the email address to notify.  
+Example: when the input items include a "Reply email address" column, select this column as the notification target, and the notification is sent to that email address after the data entry is completed.
 
 
 #### Completion notification (administrator)
-You can send a notification to the administrator after completing the data entry.  
-* Although "Administrator" is entered, it is possible to notify the administrator, users registered in Exment, Slack, etc.
+After the data entry is finished, a notification can be sent to the administrator.  
+Note: it says "administrator", but besides administrators you can also notify users registered in Exment, Slack and so on.
 
 - ##### Notify administrator of completion
-If set to YES, the completion notification will be enabled. 
+When YES, the completion notification is enabled.
 
 - ##### Notification Template
-Select a notification template to send to your administrator. You need to create a new template in [Notification Template Settings](/mail) in advance.  
-* [Variables (parameters)](/params) can be used for notification. By using variables, registered data, system name, user input value, etc. can be added to the subject / body.  
+Select the notification template sent to the administrator. You need to create a new template beforehand in the [notification template settings](/mail).  
+Note: [variables (parameters)](/params) can be used in the notification. With variables, you can add the registered data, the system name, the values the user entered and so on to the subject and body.
 
 - ##### Notification Target
-Please select the notification target.  
-* Please check [Notification Action Settings](/notify#notification-action-settings) for the items to be notified and the setting method.
+Select the notification target.  
+Note: for the items of the notification target and how to set them, see [Notification action settings](/notify?id=notification-action-settings).
 
 
 
 
 #### Settings - Error Settings
-Controls when an error occurs.
+Controls what happens when an error occurs.
 
-![Error Setting Form](img/form/public_form_error_setting.png)
+![Custom form screen](img/form/public_form_error_setting.png)
 
 
 - ##### Error Title
-Please enter the wording of the title of the error page.
+Enter the title text of the error screen.
 
 - ##### Error Text
-Enter the text / HTML to be displayed at the top of the error screen page.  
+Enter the text / HTML shown at the top of the error screen.
 
 - ##### Error link URL
-You can display a link on the error page. If you want to transition to another page when an error occurs, enter the URL of the transition destination.  
-* If "Error link destination text" is not entered, the entered URL will be displayed as the link text as it is.
+A link can be shown on the error screen. To move to another screen when an error occurs, enter the URL of the destination.  
+Note: when "Error link text" is not entered, the entered URL is shown as the text of the link as it is.
 
 - ##### Error link Text
-You can display a link on the error page. If you want to display a link to another page when an error occurs, enter the wording to be displayed on the page.  
+A link can be shown on the error screen. To show a link to another screen when an error occurs, enter the text shown on the screen.
 
 #### Error Notification
-You can notify the administrator when an error occurs.  
-* Although "Administrator" is entered, it is possible to notify the administrator, users registered in Exment, Slack, etc.
+When an error occurs, the administrator can be notified.  
+Note: it says "administrator", but besides administrators you can also notify users registered in Exment, Slack and so on.
 
 - ##### Notify Error
-If set to YES, the administrator will be notified when an error occurs.
+When YES, the administrator is notified when an error occurs.
 
 - ##### Notification Template
-Select the template to send to the administrator. You need to create a new template in [Notification Template Settings](/mail) in advance.  
-* [Variables (parameters)](/params) can be used for notification. By using variables, registered data, system name, user input value, error content, etc. can be added to the subject / body.  
+Select the template sent to the administrator. You need to create a new template beforehand in the [notification template settings](/mail).  
+Note: [variables (parameters)](/params) can be used in the notification. With variables, you can add the registered data, the system name, the values the user entered, the error contents and so on to the subject and body.
 
 - ##### Notification Target
-Please select the notification target.  
-* Please check [Notification Action Settings](/notify#notification-action-settings) for the items to be notified and the setting method.
+Select the notification target.  
+Note: for the items of the notification target and how to set them, see [Notification action settings](/notify?id=notification-action-settings).
 
 
 #### CSS / Javascript
-You can add your own CSS as well as Javascript.
+You can add your own CSS and Javascript.
 
-![CSS Javascript Setting Form](img/form/public_form_css_javascript.png)
+![Custom form screen](img/form/public_form_css_javascript.png)
 
 - ##### Custom CSS
-Please enter the CSS you want to use directly.  
-*&lt;style&gt; tag is not required. Please fill in only the contents of css.
+Write the CSS you want to use directly.  
+Note: the &lt;style&gt; tag is not needed. Write only the contents of the css.
 
 - ##### Plugin (CSS)
-If you want the installed plugin (CSS) to be reflected in the public form, please select the name of the plugin.
+To apply an installed plugin (CSS) to the public form too, select the name of the plugin.
 
 - ##### Custom Javascript
-Please enter the Javascript you want to use directly.  
-* &lt;script&gt; tag is not required. Please fill in only the contents of Javascript.  
-* Javascipt is added in the following jquery.
+Write the Javascript you want to use directly.  
+Note: the &lt;script&gt; tag is not needed. Write only the contents of the Javascript.  
+Note: the Javascript is added inside the following jquery.
 
 ``` javascript
 <script data-exec-on-popstate>
     $(function () {
-        (Added code)
+        (the added code)
     });
 </script>
 ```
 
 - ##### Plugin (Javascript)
-If you want to reflect the installed plugin (Javascript) in the public form, please select the name of the plugin.
+To apply an installed plugin (Javascript) to the public form too, select the name of the plugin.
 
 
 
 #### Settings - Option Setting
-Set other options.
+Other option settings.
 
-![Option Setting Form](img/form/public_form_option_setting.png)
+![Custom form screen](img/form/public_form_option_setting.png)
 
 - ##### Make the initial value settable from the URL
-By setting YES, the value of the query string of the URL can be set as the initial value of the form. For details, please see [here](#set-the-initial-value-from-the-url).
+When YES, the values of the query string of the URL can be used as the initial values of the form. For details, see [Set the initial value from the URL](#set-the-initial-value-from-the-url).
 
 - ##### Google Analytics
-If you want to set Google Analytics on the form, please enter the Google Analytics tag starting with "UA-" or "G-".
+To set Google Analytics on the form, enter the Google Analytics tag that starts with "UA-" or "G-".
 
 - ##### Use Google reCAPTCHA
-If you use Google reCAPTCHA, please set it to YES.  
-* It is valid only when you have entered the Google reCaptcha key on the system setting page.
+To use Google reCAPTCHA, set YES.  
+Note: it is effective only when the Google reCAPTCHA keys have been entered on the System Setting screen.
 
 
 #### Preview
-- You can display a preview of the public form based on the settings you have made.  
-* You can preview even if you have not saved the form.  
+- You can show a preview of the public form with the current settings.  
+Note: you can preview even when the form has not been saved.
 
-- By clicking the "Preview" button at the top right of the screen, the preview screen of the public form will be displayed in a separate window.  
-* A separate window will be displayed using javascript. Depending on your browser settings, pop-ups may be blocked. In that case, unblock and click the button again.
+- Click the "Preview" button at the top right of the screen. The preview screen of the public form is shown in another window.  
+Note: the other window is opened by javascript. Depending on the browser settings, the pop-up is blocked. In that case, unblock it and click the button again.
 
-![Public Preview Form](img/form/public_form_preview.png)
+![Custom form screen](img/form/public_form_preview.png)
 
 #### Activate Public Form
-- The form must be "enabled" in order to be open to the general public. After saving once, open the edit screen again and click the "Activate" button at the top right of the page.  
+- To open the form to general users, you need to "activate" it. Save once, open the edit screen again, and click the "Activate" button at the top right of the page.
 
-![Public Form Activate](img/form/public_form_activation_button.png)
+![Custom form screen](img/form/public_form_activation_button.png)
 
-![Public Form Activate](img/form/public_form_activation_confirmation.png)
+![Custom form screen](img/form/public_form_activation_confirmation.png)
 
 
-- If the form you publish contains references to other tables, the average user will read the data from those tables.  
-The following confirmation message will be displayed, so please check carefully whether there is a problem with the table you are accessing.  
+- When the form to publish refers to other tables, general users can read the data of those tables.  
+A confirmation message like the following is shown. Check carefully that there is no problem with the tables accessed.
 
-![Public Form Dialog](img/form/public_form_dialog.png)
+![Custom form screen](img/form/public_form_dialog.png)
 
-- "Access to other tables" mainly includes the following.
-    - If the public form has items such as column types "choices (select from a list of values ​​in other tables)" and "user", data is displayed and searched as choice candidates.
-    - When the public form is a child table of 1: n, the data of the parent table is displayed / searched as an option.
+- "Access to other tables" mainly means the following.
+    - When the public form has items of the column types "Select (from the list of values in another table)", "User" and so on, the data is shown and searched as option candidates.
+    - When the public form is of a 1:n child table, the data of the parent table is shown and searched as options.
 
 
 
 
 #### After Activation, Display URL etc.
-- By activating the public form, the following items will be added to the basic settings.
+- When the public form is activated, the following items are added to the basic setting.
 
 - ##### Public Form URL
-The URL of the public form is displayed. Please copy this URL and share it with general users by e-mail or your own webpage.  
-* Click the item to copy the URL.
+The URL of the public form is shown. Copy this URL and share it with general users by email, on your own site and so on.  
+Note: click the item to copy the URL.
 
 - ##### Execution User
-The user who registered the public form. All data registration and browsing using this public form will be performed with the authority of the user.  
-* Even if another user updates the public form settings, the execution user does not change. If you want to change it, please login as another user and create a new public form setting.
+The user who registered the public form. All registration and reference of data from this public form are done with the permissions of this user.  
+Note: even when another user updates the public form setting, the execution user does not change. To change it, log in as another user and create a new public form setting.
 
 
 
 ### 6. Use Public Form
-- When you access the URL you copied above, you will see the public form.  
-![Publif Form Page](img/form/public_form_page.png)
+- When you open the URL copied above, the public form is shown.  
+![Custom form screen](img/form/public_form_page.png)
 
-- If you haven't "enabled" the public form settings, it's out of validity, or the URL is incorrect, you'll see the following error.  
+- When the public form setting is not "activated", when it is outside the valid period, or when the URL is wrong, the following error is shown.
 
-![Publif Form Error Page](img/form/public_form_error.png)
+![Custom form screen](img/form/public_form_error.png)
 
 ### 7. Use Template
-By using the template, you can create a new public form by inheriting the settings of the public form that you have already created.
->The following items require manual settings.<br />"Header logo"<br />"Google analytics"<br />"Use Google reCAPTCHA"
+With a template, you can create a new public form that takes over the setting values of a public form already made.
+>The following items must be set by hand.<br />- Header Logo<br />- Google analytics<br />- Use Google reCAPTCHA
 
 #### Export
-By clicking [Template - Export] displayed on the public form setting screen, the open public form will be exported as a template.
+Click [Template: Export] on the public form setting screen. The open public form is exported as a template.
 
-![Public Form Export](img/form/public_form_export.png)
+![Custom form screen](img/form/public_form_export.png)
 
 #### Created from template
 Click [+ Created from template] in the public form settings of the custom form setting screen.
 
-![Public Form Import](img/form/public_form_import.png)
+![Custom form screen](img/form/public_form_import.png)
 
 ##### Target Form
-When creating a public form using a template, select the target form.
+Select the form that is the target when the public form is created from the template.
 
 ##### Public Form Display Name
-Enter the display name of the public form to be created.
+Enter the display name of the public form to create.
 
 ##### Upload
-Select the template you want to use to create the public form.
+Select the template used to create the public form.
 
-![Public Form Import](img/form/public_form_import2.png)
+![Custom form screen](img/form/public_form_import2.png)
 
 
 ## Other Detailed Settings
 
 ### Set the initial value from the URL
-- If the setting "Enable initial value to be set from URL" is set to YES, the initial value of the item can be entered in the URL for accessing the public form.  
-If you know the initial value of the person with whom you share the URL, such as the company name or category, you can reduce the input burden by including it in the URL in advance.
+- When the setting "Make the initial value settable from the URL" is YES, the initial values of items can be written in the URL of the public form.  
+When you know values that fit the person you share the URL with, such as the company name or the category, putting them in the URL beforehand reduces the effort of entry.
 
 #### Grant method
-Set the query string as shown below.
+Set a query string like the following.
 
 ```
-http://(Public Form URL)?value.(Custom Column Name)=(Initial value)
+http://(URL up to the public form)?value.(custom column name)=(initial value)
 
-When setting for multiple columns, connect the second and subsequent values ​​with &.
-http://(Public Form URL)?value.(Custom Column Name)=(Initial value)&value.(Custom Column Name)=(Initial value)
+To set several columns, join the second and later values with &.
+http://(URL up to the public form)?value.(custom column name)=(initial value)&value.(custom column name)=(initial value)
 
 
-# Example
+# Examples
 http://localhost/publicform/c4f31330-7a75-11eb-a8b0-279816836d79?value.title=Hello
 
-http://localhost/publicform/c4f31330-7a75-11eb-a8b0-279816836d79?value.client_name=Corp%20ABC&value.category=Install
+http://localhost/publicform/c4f31330-7a75-11eb-a8b0-279816836d79?value.client_name=ABC Inc.&value.category=Initial setup
 ```
 
-- Ex：If you have the following form  
+- Example: suppose there is a form like the following
 
-![Public Form Initialize](img/form/public_form_key.png)
+![Custom form screen](img/form/public_form_key.png)
 
-- By adding the following query string to the URL of this form, the initial value will be set when the form is opened.
+- When the following query string is added to the URL of this form, the initial values are set when the form is opened.
 
 ```
-http://localhost/publicform/ab3d55e4-1afc-d1de-ac1b-bc64c51d4d7d?value.name=Inquiries&value.zip01=123&value.zip02=0001
+http://localhost/publicform/ab3d55e4-1afc-d1de-ac1b-bc64c51d4d7d?value.title=About an inquiry&value.body=This is the body.
 ```
 
-![Public Form Initialize](img/form/public_form_query_result.png)
+![Custom form screen](img/form/public_form_query_result.png)
 
+#### When you want the initial values of the custom columns "Select (from another table)", "User" and "Organization" to be settable only by suuid (a random string of 20 characters)
+The initial values of the custom columns "Select (from another table)", "User" and "Organization" (below, simply "Select (from another table)") are usually given by ID (a sequential integer).  
+However, because IDs are sequential, the person the form is opened to can rewrite the parameter of the URL and easily guess other values.  
+When you want the initial values of these columns given by suuid (a random string of 20 characters) instead of ID, set as follows.
+
+- In the [list of Exment config values](/config), do the setting "Allow only suuid, not ID, for 'Set the initial value from the URL' of public forms".
+
+``` .env
+EXMENT_PUBLICFORM_URLPARAM_SUUID=true
+```
+
+- With this setting, only suuid is allowed for the initial values of "Select (from another table)" columns.
+
+- You can check the suuid in the following ways.
+    - Select "System ID(20-length)" in "Select view columns" of a view
+    - Export the data
 
 ### Change "publicform" included in URL
-- This is the procedure to change the character string of "publicform" included in the URL of the public form.  
-* This character string is the same for all public forms. It cannot be changed for each form.
+- The steps to change the string "publicform" included in the URL of public forms.  
+Note: this string is the same for all public forms. It cannot be changed for each form.
 
 #### Change procedure
 
-- To change it, execute [Change setting value](/config).
+- The change is done by [changing the config](/config).
 
-- Open the ".env" file in the Exment root directory.
+- Open the ".env" file in the root directory of Exment.
 
-- Add the following values.
+- Add the following value.
 
 ~~~
-### When changing "publicform" to another name
+### To change "publicform" to another name
 EXMENT_PUBLICFORM_ROUTE_PREFIX=afiewqbfwehghwb
 # http://localhost/afiewqbfwehghwb/(UUID) becomes the URL of the public form
 ~~~
 
-* Please note that all the information in this manual is based on the premise of "publicform".
+Note: this manual is written throughout on the assumption of "publicform".
 
 
 ### Specifications specific to public forms
-In addition, it is a specification peculiar to the public form.  
+Other specifications specific to public forms.
 
-- The "Search" button displayed in the custom columns "Select Table (select from the list of values ​​in other tables)", "User", "Organization", etc. is not displayed in the public form.  
+- The "Search" button shown for the custom columns "Select (from the list of values in another table)", "User", "Organization" and so on is not shown on a public form.
 
-- The notification of the execution trigger "New data creation" that can be registered in "Notification settings" of the detailed table settings is not executed in the public form.  
-This is because there are individual "general user" and "administrator" notifications in the public form settings, and they should not be executed at the same time.  
+- The notification with the trigger "new data creation", which can be registered in "Notification Setting" of the table detail setting, is not sent from a public form.  
+This is because the public form settings have separate notifications "for general users" and "for administrators", and the notification should not be sent twice.

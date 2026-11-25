@@ -3,17 +3,15 @@ For the custom column type "One-Line Text", the "Available Characters" setting s
 
 ![Available Characters](img/quickstart/available_characters1.png)
 
-This page describes the steps to add your own items in addition to these.
+This page explains the steps to add your own items here (for example "ひらがな" (hiragana) and "カタカナ" (katakana)).
 
 ### Setup steps 
 
-- From the project root folder, open the "app/Exment" folder.
-
-- Then open the "bootstrap.php" file that has been created there.
+**(1)** Open the "app/Exment" folder in the project root folder, and open the "bootstrap.php" file in it.
 
 > If the "app/Exment/bootstrap.php" file does not exist, create the folder and the PHP file manually.
 
-- Add code like the following.
+**(2)** Add code like the following, and save the file.
 
 ``` php
 \Exceedone\Exment\Model\CustomColumn::customAvailableCharacters([
@@ -30,12 +28,12 @@ This page describes the steps to add your own items in addition to these.
 ]);
 ```
 
-- This adds options to the Available Characters choices.
+**(3)** The options you added are shown in "Available Characters".
 
 ![Available Characters](img/quickstart/available_characters2.png)
 
 
-- Save the file, and the setup is complete.
+The setup is now complete.
 
 
 [←Back to list of additional settings](/quickstart_more)

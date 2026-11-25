@@ -1,49 +1,53 @@
 # Cột tùy chỉnh
-Trang này hướng dẫn cách thiết lập "cột tùy chỉnh", tức là các cột của bảng tùy chỉnh.  
+Đây là trang để tạo, sửa và xóa các cột của bảng tùy chỉnh ("cột tùy chỉnh"). Cột là từng mục của dữ liệu, như "tên khách hàng", "mã bưu chính", "địa chỉ".  
+
+- Cách tạo cột: vui lòng xem theo thứ tự "Màn hình thiết lập" → "Thêm cột mới" → "Lưu" ở dưới.
+- Có những loại cột nào: vui lòng xem "Loại cột" ở dưới.
+- Giải thích về từng mục: vui lòng xem "Chi tiết các mục nhập (chung)" và "Giải thích chi tiết các mục nhập (theo loại cột)" ở dưới.  
 
 ## Màn hình thiết lập
-- Trên danh sách bảng tùy chỉnh, đánh dấu chọn một bảng cần thiết lập, rồi nhấp vào "Detailed table settings" (thiết lập chi tiết bảng) ở phía trên bên phải.  
+- Ở danh sách bảng tùy chỉnh, đánh dấu 1 bảng muốn thiết lập rồi bấm "Cài đặt chi tiết bảng" ở góc trên bên phải.  
 ![Màn hình cột tùy chỉnh](../ja/img/column/column_grid4.png)
-- Hoặc chọn bảng cần thiết lập từ menu, sau đó cũng nhấp vào "Detailed table settings" ở phía trên bên phải.  
-※ Cần thiết lập trước để bảng đó được hiển thị trên menu.  
+- Hoặc, sau khi chọn bảng muốn thiết lập từ menu, cũng bấm "Cài đặt chi tiết bảng" ở góc trên bên phải.  
+※Trước đó, cần thiết lập để bảng đó hiện trên menu.  
 ![Màn hình cột tùy chỉnh](../ja/img/column/column_grid5.png)
-- Trên màn hình thiết lập chi tiết bảng vừa hiển thị, nhấp vào biểu tượng cột tùy chỉnh.
+- Trên màn hình cài đặt chi tiết bảng hiện ra, bấm biểu tượng cột tùy chỉnh.
 ![Màn hình cột tùy chỉnh](../ja/img/column/column_grid6.png)
 
-- Danh sách các cột của bảng tùy chỉnh đã chọn sẽ được hiển thị.  
+- Vậy là danh sách các cột của bảng tùy chỉnh đó hiện ra.  
 ![Màn hình cột tùy chỉnh](../img/column/column_grid3.png)
 
 ## Thêm cột mới
-- Trên màn hình "Custom column setting" (thiết lập cột tùy chỉnh), nhấp vào nút [New] ở phía trên bên phải trang.
+- Trên màn hình "Cài đặt cột tùy chỉnh", bấm nút [Tạo mới] ở góc trên bên phải của trang.
 
-- Màn hình thêm mới cột tùy chỉnh sẽ hiển thị, hãy nhập các thông tin cần thiết.
+- Màn hình thêm mới cột tùy chỉnh hiện ra, hãy nhập các mục cần thiết.
 ![Màn hình cột tùy chỉnh](../img/column/column_new1.png)
 
 ## Lưu
-Sau khi nhập các thiết lập, vui lòng nhấp vào [Submit].
+Nhập thiết lập xong, hãy bấm [Gửi].
 
 ## Chỉnh sửa
-Nếu muốn chỉnh sửa một cột, vui lòng nhấp vào liên kết [Edit] ở dòng tương ứng.  
+Khi muốn sửa cột, hãy bấm liên kết [Chỉnh sửa] ở dòng đó.  
 ![Màn hình cột tùy chỉnh](../img/column/column_edit.png)
 
 ## Xóa
-Nếu muốn xóa một cột, vui lòng nhấp vào liên kết [Delete] ở dòng tương ứng.  
+Khi muốn xóa cột, hãy bấm liên kết [Xóa] ở dòng đó.  
 ![Màn hình cột tùy chỉnh](../img/column/column_delete.png)
-**<span style="color: red; ">※ Tuy nhiên, không thể xóa các cột do hệ thống cài đặt sẵn.</span>**
+**<span style="color: red; ">※Tuy nhiên, không xóa được các cột do hệ thống cài đặt sẵn.</span>**
 
 
 ## Chi tiết các mục nhập (chung)
-- Column name (alphanumeric) (tên cột, chữ và số): Tên của cột được sử dụng trong hệ thống. Nhập bằng chữ cái, chữ số, hoặc "-", "\_". Chỉ có thể thiết lập một lần và không thể thay đổi.  
-**※ Không thể sử dụng các tên sau đây.**  
+- Tên cột (chữ và số): tên của cột dùng trong hệ thống. Nhập bằng chữ cái, chữ số, hoặc "-", "\_". Chỉ đặt được 1 lần và không đổi được.  
+**※Không dùng được các tên sau.**  
 id,suuid,parent_id,parent_type,created_at,updated_at,deleted_at,created_user,updated_user,deleted_user
 
 ### Column display name (Tên hiển thị của cột)
-Tên của cột được hiển thị trên màn hình.
+Tên của cột hiện trên màn hình.
 
 ## Loại cột
-Loại của cột cần thiết lập. Nội dung đăng ký ở mục này sẽ được áp dụng cho form khi đăng ký dữ liệu.
+Loại của cột. Loại chọn ở đây quyết định dạng của ô nhập khi đăng ký dữ liệu.
 
-> Về chi tiết đặc tả hệ thống của từng loại cột tùy chỉnh, vui lòng xem [Tài liệu tham chiếu cột tùy chỉnh](/column_reference).
+> Chi tiết đặc tả hệ thống của từng loại cột tùy chỉnh vui lòng xem [Tài liệu tham khảo cột tùy chỉnh](/vi/column_reference).
 
 #### One line text (Văn bản một dòng)
 Văn bản một dòng (ô nhập văn bản - text box).  
@@ -64,7 +68,7 @@ Trường nhập cho phép nhập địa chỉ email.
 Trường nhập chỉ cho phép nhập số nguyên. Ngoài ra, khi đăng ký dữ liệu, các nút [+] [-] được hiển thị ở hai bên trái phải của mục, có thể nhấp để tăng hoặc giảm giá trị.  
 ![Màn hình view tùy chỉnh](../ja/img/column/column_type6.png)
 #### Decimal (Số thập phân)
-Trường nhập chỉ cho phép nhập số thập phân. Khi đặt hiển thị phần trăm thành YES, dữ liệu sẽ được hiển thị kèm ký hiệu %.  
+Trường nhập chỉ cho phép nhập số thập phân. Khi đặt "Hiển thị dạng phần trăm" là YES, dữ liệu được hiện kèm ký hiệu %.  
 ![Màn hình view tùy chỉnh](../ja/img/column/column_type7.png)
 #### Currency (Tiền tệ)
 Trường nhập cho phép nhập số tiền. Có thể chọn định dạng hiển thị từ 4 loại (￥, 円, ＄, €).
@@ -98,6 +102,7 @@ Tạo các giá trị như UUID hoặc chuỗi ký tự ngẫu nhiên khi tạo 
 ![Màn hình view tùy chỉnh](../ja/img/column/column_type17.png ':size=479')
 #### Image (Hình ảnh)
 Trường nhập dùng để tải hình ảnh lên.  
+※Trên màn hình danh sách dữ liệu và màn hình chi tiết dữ liệu, hình ảnh hiện kèm liên kết. Liên kết (thẻ a) có class "image-link", nên với [plugin (script)](/vi/plugin_quickstart_script) và [plugin (style)](/vi/plugin_quickstart_style), bạn đổi được cách xử lý và hình thức chỉ riêng cho liên kết của hình ảnh.
 ![Màn hình view tùy chỉnh](../ja/img/column/column_type18.png)
 #### File (Tệp)
 Trường nhập dùng để tải tệp lên.  
@@ -111,198 +116,198 @@ Lựa chọn dùng để chọn tổ chức của hệ thống.
 
 ## Chi tiết các mục nhập (chung)
 - ##### Column name (alphanumeric) (Tên cột, chữ và số)
-Tên của cột được sử dụng trong hệ thống. Nhập bằng chữ cái, chữ số, hoặc "-", "_". Chỉ có thể thiết lập một lần và không thể thay đổi.  
-**※ Không thể sử dụng các tên sau đây.**  
+Tên của cột dùng trong hệ thống. Nhập bằng chữ cái, chữ số, hoặc "-", "_". Chỉ đặt được 1 lần và không đổi được.  
+**※Không dùng được các tên sau.**  
 id,suuid,parent_id,parent_type,created_at,updated_at,deleted_at,created_user,updated_user,deleted_user
 
 - ##### Column display name (Tên hiển thị của cột)
-Tên của cột được hiển thị trên màn hình.
+Tên của cột hiện trên màn hình.
 
 - ##### Column type (Loại cột)
 Chọn loại cột dùng để đăng ký dữ liệu từ [danh sách loại cột](/vi/column?id=loại-cột).
 
 - ##### Required (Bắt buộc)
-Chọn xem trường này có phải là mục bắt buộc hay không. Nếu đặt là YES, trường này sẽ là mục bắt buộc trên màn hình nhập dữ liệu và lỗi sẽ được hiển thị nếu không nhập.  
+Chọn có đặt cột này là bắt buộc hay không. Đặt thành YES thì nó là mục bắt buộc trên màn hình nhập dữ liệu, và nếu không nhập thì lỗi hiện ra.  
 
 - ##### Index Enabled (Chỉ mục tìm kiếm)
-Vui lòng tham khảo mục "[Chỉ mục tìm kiếm](/vi/column?id=chỉ-mục-tìm-kiếm)" bên dưới.  
+Vui lòng xem mục "[Chỉ mục tìm kiếm](/vi/column?id=chỉ-mục-tìm-kiếm)" ở dưới.  
 
 - ##### Free word search target (Đối tượng tìm kiếm từ khóa tự do)
-Được hiển thị khi chỉ mục tìm kiếm là YES.  
-Vui lòng tham khảo mục "[Đối tượng tìm kiếm từ khóa tự do](/vi/column?id=free_word_search_target)" bên dưới.  
+Hiện ra khi "Chỉ mục tìm kiếm" là YES.  
+Vui lòng xem mục "[Đối tượng tìm kiếm tự do](/vi/column?id=free_word_search_target)" ở dưới.  
 
 - ##### Unique (Duy nhất)
-Nếu đặt là YES, khi đăng ký dữ liệu sẽ không thể đăng ký giá trị trùng với dữ liệu khác. Nếu muốn ngăn việc đăng ký trùng theo một tổ hợp giá trị của nhiều cột, vui lòng tham khảo [thiết lập khóa duy nhất kết hợp](/vi/table).  
+Đặt thành YES thì khi đăng ký dữ liệu, không đăng ký được giá trị giống với dữ liệu khác. Khi muốn ngăn trùng lặp theo tổ hợp của nhiều cột, vui lòng xem [Thiết lập khóa duy nhất kết hợp](/vi/table.md?id=thiết-lập-khóa-duy-nhất-kết-hợp).  
 
 - ##### Enter once only (Chỉ nhập một lần)
-Nếu đặt là YES, cột này chỉ có thể nhập dữ liệu khi đăng ký mới. Khi chỉnh sửa dữ liệu, cột chỉ được hiển thị (không thể sửa).
+Đặt thành YES thì cột chỉ nhập được khi đăng ký mới. Khi chỉnh sửa dữ liệu, cột chỉ được hiển thị.
 
 - ##### Initial value (Giá trị ban đầu)
-Giá trị được nhập sẵn vào mục của form làm giá trị ban đầu.  
+Giá trị được đặt sẵn trong ô nhập ngay từ đầu.  
 
 - ##### Placeholder
-Chuỗi ký tự được đăng ký làm placeholder (văn bản gợi ý) cho mục của form.  
+Chuỗi ký tự hiện bằng chữ nhạt khi ô nhập đang trống (placeholder).  
 
 - ##### Help (Trợ giúp)
-Nội dung được hiển thị dưới mục của form dưới dạng thông tin hướng dẫn.
+Nội dung hiện dưới ô nhập làm phần giải thích.
 
 - ##### Display order (Thứ tự hiển thị)
 Chỉ định thứ tự hiển thị trên màn hình danh sách cột tùy chỉnh.
 
 - ##### Add to default form view (Thêm vào form và view mặc định)
-Nếu là YES, cột sẽ được thêm vào form và view mặc định khi tạo mới. Chỉ có thể thiết lập khi tạo mới cột. Khi cập nhật, vui lòng thay đổi lần lượt từ [màn hình form](/vi/form) và [màn hình view](/vi/view).
+Đặt thành YES thì khi tạo cột mới, cột đó cũng được thêm vào form và view mặc định. Chỉ đặt được khi tạo cột mới. Khi muốn đổi về sau, hãy đổi từ [màn hình form](/vi/form.md) và [màn hình view](/vi/view.md).
 
 - ##### Add to heading columns (Thêm vào cột tiêu đề)
-Có thể thêm cột tùy chỉnh đang tạo vào các cột tiêu đề.  
-※ Thiết lập này chỉ hiển thị khi tạo mới cột tùy chỉnh. Khi cập nhật thiết lập, vui lòng thay đổi từ [thiết lập cột hiển thị tiêu đề](/vi/table).
+Bạn thêm được cột tùy chỉnh đang tạo vào các cột tiêu đề.  
+※Thiết lập này chỉ hiện khi tạo cột tùy chỉnh mới. Khi muốn đổi về sau, hãy đổi ở [Thiết lập cột hiển thị tiêu đề](/vi/table.md?id=thiết-lập-cột-hiển-thị-tiêu-đề).
 
 - ##### Cell appearance (Hiển thị ô)
-Thiết lập cách hiển thị giá trị của cột này trên danh sách dữ liệu (màu sắc, tag, badge, v.v.).  
-Chọn từ "display preset" (mẫu hiển thị có sẵn). Để biết chi tiết, vui lòng tham khảo [Cell style presets](/cell_style_preset.md).
+Đặt xem trên danh sách dữ liệu, giá trị của cột này hiện với hình thức nào (màu, tag, badge, v.v.).  
+Chọn từ "Mẫu hiển thị có sẵn". Chi tiết vui lòng xem [Mẫu hiển thị ô](/vi/cell_style_preset.md).
 
 ## Giải thích chi tiết các mục nhập (theo loại cột)
 - ##### Maximum number of characters (Số ký tự tối đa) (One line text, Multiline text)
-Số ký tự tối đa có thể nhập vào mục của form. Nếu vượt quá sẽ phát sinh lỗi.  
+Giới hạn số ký tự nhập được. Vượt quá thì có lỗi.  
 
 - ##### Usable characters (Ký tự được phép sử dụng) (One line text)
-Các loại ký tự được đánh dấu chọn sẽ có thể nhập vào mục của form.
-Nếu không đánh dấu chọn loại nào, tất cả các loại ký tự đều có thể nhập.
+Chỉ những loại ký tự được đánh dấu mới nhập được.
+Khi không đánh dấu loại nào, nhập được tất cả các loại ký tự.
 ![Màn hình cột tùy chỉnh](../ja/img/column/available_characters.png)
 
 - ##### Suggest input (Gợi ý khi nhập) (One line text)
-Từ các giá trị dữ liệu đã đăng ký trong cùng cột tùy chỉnh, những giá trị khớp với nội dung đang nhập sẽ được hiển thị làm gợi ý.
+Trong các giá trị đã đăng ký ở cùng cột tùy chỉnh, những giá trị hợp với nội dung đang nhập được hiện làm gợi ý nhập.
 ![Màn hình cột tùy chỉnh](../img/column/suggest.png)
 
 - ##### Regular expression (Biểu thức chính quy) (One line text)
-Có thể kiểm tra tính hợp lệ của nội dung nhập bằng biểu thức chính quy. Để biết chi tiết, vui lòng xem [Biểu thức chính quy](/vi/column?id=biểu-thức-chính-quy).
+Bạn kiểm tra được nội dung đã nhập bằng biểu thức chính quy (cách viết quy tắc về thứ tự của các ký tự). Chi tiết vui lòng xem [Biểu thức chính quy](/vi/column?id=biểu-thức-chính-quy).
 
 - ##### Minimum value (Giá trị nhỏ nhất) (Integer, Decimal)
-Giá trị nhỏ nhất có thể nhập vào mục của form. Nếu gửi giá trị nhỏ hơn giá trị này, lỗi sẽ phát sinh. Nếu để trống, hệ thống không kiểm tra giá trị nhỏ nhất.  
+Giá trị nhỏ nhất nhập được. Gửi giá trị nhỏ hơn thì có lỗi. Khi để trống, hệ thống không kiểm tra giá trị nhỏ nhất.  
 
 - ##### Maximum value (Giá trị lớn nhất) (Integer, Decimal)
-Giá trị lớn nhất có thể nhập vào mục của form. Nếu gửi giá trị lớn hơn giá trị này, lỗi sẽ phát sinh. Nếu để trống, hệ thống không kiểm tra giá trị lớn nhất.  
+Giá trị lớn nhất nhập được. Gửi giá trị lớn hơn thì có lỗi. Khi để trống, hệ thống không kiểm tra giá trị lớn nhất.  
 
 - ##### Calculation formula (Công thức tính) (Integer, Decimal, Currency)
-Để biết chi tiết, vui lòng xem [tại đây](/vi/column?id=công-thức-tính).
+Chi tiết vui lòng xem mục [Công thức tính](/vi/column?id=công-thức-tính) ở dưới.
 
 - ##### Choices (Lựa chọn) (Choice, Choice (Register value / heading))
-Đăng ký các lựa chọn sẽ được hiển thị làm ứng viên trong mục của form. Đăng ký nhiều lựa chọn bằng cách xuống dòng, mỗi dòng một lựa chọn.  
-Nếu đã chọn loại cột "Choice (Register value / heading)", dấu phẩy được dùng làm ký tự phân tách cột: cột thứ nhất là giá trị, cột thứ hai là tiêu đề.  
+Đăng ký các lựa chọn sẽ hiện ra để chọn ở ô nhập. Đăng ký mỗi dòng 1 lựa chọn, cách nhau bằng xuống dòng.  
+Khi loại cột là "Lựa chọn (lưu giá trị và nhãn)", hãy cách nhau bằng dấu phẩy, viết giá trị ở cột thứ 1 và tiêu đề ở cột thứ 2.  
 ![Màn hình cột tùy chỉnh](../img/column/column_select_valtext1.png)
 ↓  
 ![Màn hình cột tùy chỉnh](../img/column/column_select_valtext2.png)  
-Khi lưu dữ liệu trên form, giá trị của cột thứ nhất sẽ được lưu vào cơ sở dữ liệu.  
+Khi lưu dữ liệu trên form, giá trị của cột thứ 1 được lưu vào cơ sở dữ liệu.  
 
 - ##### <span id="radio_buttom"> Display as radio buttons / checkboxes (Hiển thị dạng radio button / checkbox) (YES/NO, Choice, Choice (Register value / heading))</span>
-<span style="text-decoration: underline">Với cột Choice hoặc Choice (Register value / heading) mà thiết lập chọn nhiều là NO</span>, có thể hiển thị trên form dưới dạng radio button.
+<span style="text-decoration: underline">Với cột "Lựa chọn (giá trị cố định)", "Lựa chọn (lưu giá trị và nhãn)" mà chọn nhiều là NO</span>, bạn cho hiện được trên form ở dạng radio button.
 ![Màn hình cột tùy chỉnh](../ja/img/column/radio_buttons.png) 
 
-<span style="text-decoration: underline">Với cột YES/NO</span>, hoặc <span style="text-decoration: underline">với cột Choice, Choice (Register value / heading) mà thiết lập chọn nhiều là YES</span>, có thể hiển thị trên form dưới dạng checkbox.
+<span style="text-decoration: underline">Với cột YES/NO</span>, hoặc <span style="text-decoration: underline">với cột "Lựa chọn (giá trị cố định)", "Lựa chọn (lưu giá trị và nhãn)" mà chọn nhiều là YES</span>, bạn cho hiện được trên form ở dạng checkbox.
 ![Màn hình cột tùy chỉnh](../ja/img/column/checkbox.png)
 
 - ##### Allow free input (Cho phép nhập tự do) (Choice)
-Khi đặt là YES, người dùng có thể tự nhập và đăng ký lựa chọn chưa được đăng ký trong thiết lập cột.  
+Đặt thành YES thì cả lựa chọn chưa đăng ký trong thiết lập cột cũng nhập tự do và đăng ký được.  
 
 ![Màn hình cột tùy chỉnh](../ja/img/column/free_input.gif)
 
->Nếu [Display as radio buttons / checkboxes](/vi/column?id=radio_buttom) đang được đặt là YES thì không thể sử dụng thiết lập này.
+>Khi [Hiển thị dạng nút radio / hộp kiểm](/vi/column?id=radio_buttom) đang là YES thì không dùng được thiết lập này.
 
 - ##### Initial value type (Loại giá trị ban đầu) (Date, Time, Date and time, User)
-Có thể thiết lập loại giá trị ban đầu khi đăng ký mới dữ liệu.  
-・Với cột Date, Time, Date and time, có thể thiết lập [Specified date and time] (ngày giờ chỉ định) hoặc [Date and time of data entry] (ngày giờ thực hiện nhập dữ liệu) làm giá trị ban đầu.  
-・Với cột User, có thể thiết lập [Specified user] (người dùng chỉ định) hoặc [Login user] (người dùng đăng nhập) làm giá trị ban đầu.
+Bạn đặt được loại của giá trị ban đầu khi đăng ký mới dữ liệu.  
+・Với cột Ngày, Giờ, Ngày và giờ, đặt được [Ngày giờ chỉ định] hoặc [ngày giờ nhập dữ liệu] làm giá trị ban đầu.  
+・Với cột Người dùng, đặt được [người dùng chỉ định] hoặc [Người dùng đăng nhập] làm giá trị ban đầu.
 
 - ##### Target table (Bảng đối tượng) (Choice (select from a list of values in another table))
-Chỉ định bảng sẽ được hiển thị làm ứng viên lựa chọn trong mục của form.  
+Đặt bảng có dữ liệu sẽ hiện ra làm lựa chọn.  
 
->Nội dung hiển thị trong danh sách lựa chọn có thể thay đổi tại [thiết lập cột hiển thị tiêu đề](/vi/table).
+>Câu chữ hiện trong danh sách làm lựa chọn đổi được ở [Thiết lập cột hiển thị tiêu đề](/vi/table?id=thiết-lập-cột-hiển-thị-tiêu-đề).
 
 - ##### Search choices each time (Tìm kiếm lựa chọn mỗi lần nhập) (Choice (select from a list of values in another table), User, Organization)
-Thông thường, các lựa chọn trên màn hình chỉnh sửa dữ liệu sẽ hiển thị toàn bộ ứng viên dưới dạng danh sách ngay khi tải màn hình.  
+Thông thường, lựa chọn trên màn hình chỉnh sửa dữ liệu hiện toàn bộ các mục để chọn thành danh sách khi tải màn hình.  
 
 ![Màn hình cột tùy chỉnh](../ja/img/column/select_table_1.png)
 
-Khi đặt thiết lập này là YES, ban đầu hệ thống không tải các lựa chọn mà sẽ tìm kiếm dữ liệu theo giá trị người dùng nhập và thu hẹp các ứng viên.  
+Khi đặt thiết lập này là YES, lúc đầu hệ thống không tải các lựa chọn, mà tìm dữ liệu theo giá trị người dùng nhập rồi thu hẹp các mục để chọn.  
 
 ![Màn hình cột tùy chỉnh](../ja/img/column/select_table_2.png)
 
-Khi nhập chuỗi ký tự vào trường nhập, hệ thống sẽ tìm kiếm dữ liệu trên máy chủ và hiển thị kết quả làm ứng viên.
+Khi nhập chuỗi ký tự vào ô nhập, máy chủ tìm dữ liệu và hiện kết quả làm các mục để chọn.
 
 ![Màn hình cột tùy chỉnh](../ja/img/column/select_table_3.png)
 
-> Bất kể thiết lập này, nếu tổng số dữ liệu từ 100 bản ghi trở lên, hệ thống sẽ áp dụng cách thu hẹp ứng viên nói trên để cải thiện hiệu năng.  
-Ngoài ra, giá trị giới hạn này có thể thay đổi bằng [giá trị cấu hình](/config).  
+> Dù thiết lập này thế nào, khi tổng số dữ liệu từ 100 trở lên, hệ thống dùng cách thu hẹp các mục để chọn để tăng hiệu năng.  
+Giá trị giới hạn này đổi được bằng [giá trị thiết lập](/vi/config).  
 
 
 - ##### Numbering type (Loại đánh số) (Automatic numbering)
-Chọn loại đánh số được thực hiện khi đăng ký dữ liệu.
+Chọn loại đánh số khi đăng ký dữ liệu.
 - <span class="heading_smaller_than_h5">Format (Định dạng)</span>  
-Đăng ký số theo định dạng do người dùng chỉ định.
+Đăng ký số theo định dạng do người dùng đặt.
 - <span class="heading_smaller_than_h5">Random (license code) (Ngẫu nhiên - mã giấy phép)  </span>  
 Đăng ký chuỗi ký tự ngẫu nhiên gồm 25 ký tự (5 ký tự × 5).
 - <span class="heading_smaller_than_h5">Random (UUID) (Ngẫu nhiên - UUID)</span>  
 Đăng ký chuỗi ký tự ngẫu nhiên gồm tổng cộng 32 ký tự.
 
 - ##### Number of digits (Số chữ số) (Automatic numbering)
-Số chữ số được đăng ký làm dữ liệu khi đánh số tự động. Phần còn thiếu sẽ được điền bằng số 0.  
+Số chữ số được đăng ký làm dữ liệu khi đánh số tự động. Phần thiếu được điền bằng số 0.  
 
 - ##### Show users / organizations without permission (Hiển thị cả người dùng, tổ chức không có quyền) (User, Organization)
-Thiết lập chỉ hiển thị những người dùng, tổ chức có quyền truy cập vào bảng, hay hiển thị tất cả người dùng, tổ chức.
+Đặt xem chỉ hiện những người dùng, tổ chức có quyền truy cập bảng, hay hiện tất cả người dùng, tổ chức.
 
 - ##### Show an "assign to me" button (Hiển thị nút "Assign to me") (User)
-Nếu đặt là YES, nút [Assign to me] (tôi phụ trách) sẽ được hiển thị bên cạnh cột này trên màn hình đăng ký và chỉnh sửa dữ liệu. Khi nhấp vào nút, người dùng đang đăng nhập sẽ được chọn.  
-※ Nếu "Allow multiple selections" là YES, người dùng đang đăng nhập sẽ được thêm vào danh sách người dùng đã chọn.
+Đặt thành YES thì trên màn hình đăng ký và chỉnh sửa dữ liệu, nút [Tôi phụ trách] hiện bên cạnh cột này. Khi bấm nút, người dùng đang đăng nhập được chọn.  
+※Khi "Cho phép chọn nhiều" là YES, người dùng đang đăng nhập được thêm vào những người dùng đã chọn.
 
 - ##### Accept images pasted from the clipboard (Chấp nhận dán từ clipboard) (Image, File)
-Nếu đặt là YES, hình ảnh (ảnh chụp màn hình, v.v.) được dán bằng Ctrl+V trên màn hình đăng ký và chỉnh sửa dữ liệu sẽ được thêm vào làm tệp của cột này. Tên tệp sẽ là "paste-(năm tháng ngày)-(giờ phút giây)-(số thứ tự)".  
-※ Nếu "Allow multiple selections" là YES, hình ảnh sẽ được thêm vào các tệp đã chọn. Nếu là NO, tệp đã chọn sẽ được thay bằng hình ảnh vừa dán.  
-※ Nếu dán bên trong trình soạn thảo văn bản, hình ảnh sẽ được đưa vào nội dung văn bản như trước đây. Ngoài ra, nếu dán văn bản vào ô nhập văn bản thì sẽ không được thêm làm tệp.  
-※ Nếu trên màn hình có nhiều cột đặt thiết lập này là YES, hình ảnh sẽ được thêm vào cột đầu tiên.
+Đặt thành YES thì trên màn hình đăng ký và chỉnh sửa dữ liệu, hình ảnh (ảnh chụp màn hình, v.v.) dán bằng Ctrl+V được thêm làm tệp của cột này. Tên tệp là "paste-(năm tháng ngày)-(giờ phút giây)-(số thứ tự)".  
+※Khi "Cho phép chọn nhiều" là YES, hình ảnh được thêm vào các tệp đã chọn. Khi là NO, tệp đã chọn được thay bằng hình ảnh vừa dán.  
+※Khi dán trong trình soạn thảo văn bản, hình ảnh vào nội dung văn bản như trước nay. Ngoài ra, khi dán văn bản vào ô nhập văn bản thì không được thêm làm tệp.  
+※Khi trên màn hình có nhiều cột đặt thiết lập này là YES, hình ảnh được thêm vào cột đầu tiên.
 
 - ##### Allow multiple selections (Cho phép chọn nhiều)
-Vui lòng đặt là YES nếu muốn chọn nhiều mục đối với hình ảnh, tệp và các mục dạng lựa chọn.  
+Hãy đặt YES khi muốn chọn được nhiều cái ở các mục hình ảnh, tệp và các mục thuộc loại lựa chọn.  
 
 ## Quy tắc định dạng đánh số tự động
-Nếu đặt loại cột là "Automatic numbering" và loại đánh số (Numbering type) là "Format", có thể đăng ký số tự động theo quy tắc riêng của người dùng.  
+Khi đặt loại cột là "Đánh số tự động" và loại đánh số tự động là "Định dạng", bạn cho gắn số tự động theo quy tắc tự đặt.  
 
-Về các biến tham số có thể thiết lập, vui lòng xem trang sau.  
-[Biến tham số](/params)
+Các biến tham số đặt được vui lòng xem ở trang sau.  
+[Biến tham số](/vi/params)
 
 ## Chỉ mục tìm kiếm
-"Chỉ mục tìm kiếm" là chức năng được thiết lập sẵn trong cơ sở dữ liệu nhằm cải thiện hiệu năng tìm kiếm dữ liệu. "Chỉ mục" còn được gọi là "index".  
-Trong Exment, một số chức năng chỉ có hiệu lực khi chỉ mục tìm kiếm này được đặt là YES.
+"Chỉ mục tìm kiếm" là thứ được đặt sẵn trong cơ sở dữ liệu để tìm dữ liệu nhanh hơn. "Chỉ mục" còn gọi là "index".  
+Trong Exment, một số chức năng chỉ dùng được ở cột có "Chỉ mục tìm kiếm" là YES.
 ![Chỉ mục tìm kiếm](../img/column/column_index.png)    
 
-Khi đặt là YES, các chức năng sau sẽ có hiệu lực.  
-- Cột được hiển thị trong "Target column" (cột đối tượng) của thiết lập "Display condition" (điều kiện hiển thị) trong [view tùy chỉnh](/vi/view)  
+Khi đặt YES, các chức năng sau có hiệu lực.  
+- Cột hiện ở "Cột đích" của thiết lập "Điều kiện hiển thị" trong [view tùy chỉnh](/vi/view)  
 ![View tùy chỉnh - điều kiện hiển thị](../img/column/custom_view_filter.png)    
 
-- Cột được hiển thị trong "Target column" của thiết lập "Sort" (sắp xếp) trong [view tùy chỉnh](/vi/view)  
+- Cột hiện ở "Cột đích" của thiết lập "Sắp xếp" trong [view tùy chỉnh](/vi/view)  
 ![View tùy chỉnh - sắp xếp](../img/column/custom_view_sort.png)    
 
-- Cột được hiển thị trong các mục của thiết lập "Filter" (bộ lọc) trong [danh sách dữ liệu](/vi/data_grid)  
+- Cột hiện trong các mục của thiết lập "Bộ lọc" ở [danh sách dữ liệu](/vi/data_grid)  
 ![Dữ liệu - bộ lọc](../img/column/data_filter.png)    
 
-- Biểu tượng "Sort" (sắp xếp) được hiển thị trong [danh sách dữ liệu](/vi/data_grid)
+- Biểu tượng để sắp xếp hiện ở [danh sách dữ liệu](/vi/data_grid)
 ![Dữ liệu - sắp xếp](../img/column/data_sort.png)    
 
-- Khi người dùng nhập từ khóa vào thanh tìm kiếm ở phía trên trang, cột sẽ trở thành đối tượng tìm kiếm dữ liệu. Vui lòng đặt là YES đối với các cột muốn cho phép tìm kiếm trên màn hình tìm kiếm, chẳng hạn như các loại mã hoặc các loại tên.  
+- Khi người dùng nhập từ khóa vào thanh tìm kiếm ở phía trên trang, cột là đối tượng tìm kiếm dữ liệu. Với cột muốn cho tìm trên màn hình tìm kiếm, như các loại mã và các loại tên, hãy đặt YES.  
 
-- Có thể thiết lập <span id="free_word_search_target">**Free word search target (đối tượng tìm kiếm từ khóa tự do)**</span>.  
-Khi đặt là YES, cột sẽ trở thành đối tượng tìm kiếm khi nhập chuỗi ký tự vào thanh tìm kiếm để tìm kiếm.
+- Bạn đặt được <span id="free_word_search_target">**Đối tượng tìm kiếm tự do**</span>.  
+Đặt thành YES thì cột là đối tượng tìm kiếm khi nhập chuỗi ký tự vào thanh tìm kiếm để tìm.
 
-※ Nếu thiết lập quá nhiều "chỉ mục tìm kiếm" trong cùng một bảng, hiệu năng có thể giảm khi tạo mới hoặc cập nhật dữ liệu.  
-Số "chỉ mục tìm kiếm" có thể thiết lập trong cùng một bảng được khuyến nghị là tối đa 10 và giới hạn tối đa là 20.  
-※ Ngoài ra, giới hạn số chỉ mục tìm kiếm có thể thay đổi bằng [giá trị cấu hình](/config.md?id=number-of-search-indexes).
+※Khi đặt rất nhiều "Chỉ mục tìm kiếm" trong 1 bảng, việc tạo mới và cập nhật dữ liệu có thể chậm đi.  
+Số "Chỉ mục tìm kiếm" đặt được trong 1 bảng được khuyến nghị đến 10, và tối đa là 20.  
+※Giới hạn số chỉ mục tìm kiếm đổi được bằng [giá trị thiết lập](/vi/config).
 
 
 ## Sử dụng làm nhãn
-> Từ v1.3.0, cách thiết lập này đã được chuyển sang [thiết lập mở rộng của bảng tùy chỉnh](/vi/table).
+> Ở v1.3.0, cách thiết lập này đã được đổi sang [thiết lập mở rộng của bảng tùy chỉnh](/vi/table?id=thiết-lập-cột-hiển-thị-tiêu-đề).
 
 ## Biểu thức chính quy
-> Thiết lập này chỉ được hiển thị khi đã bật [Expert mode (chế độ chuyên gia)](/additional_expert).
+> Thiết lập này chỉ hiện khi đã bật [chế độ chuyên gia (expert mode)](/vi/additional_expert).
 
-Nếu loại cột tùy chỉnh là "One line text", có thể kiểm tra tính hợp lệ bằng biểu thức chính quy.  
+Khi loại cột tùy chỉnh là "Văn bản một dòng", bạn kiểm tra được nội dung nhập bằng biểu thức chính quy.  
 
 ![Biểu thức chính quy](../img/column/column_regex1.png)  
 
@@ -323,38 +328,38 @@ Nếu loại cột tùy chỉnh là "One line text", có thể kiểm tra tính 
 
 
 #### Khác
-- Nếu đã thiết lập biểu thức chính quy, "Usable characters" sẽ không có hiệu lực.  
-- Việc kiểm tra biểu thức chính quy sử dụng hàm của PHP. Khi tìm kiếm các mẫu biểu thức chính quy, vui lòng tìm dựa trên biểu thức chính quy của PHP.  
+- Khi đã đặt biểu thức chính quy, "Ký tự được phép" không có hiệu lực.  
+- Việc kiểm tra biểu thức chính quy dùng hàm của PHP. Khi tìm ví dụ về biểu thức chính quy, hãy tìm theo biểu thức chính quy của PHP.  
 - Không cần thêm "/" ở đầu và cuối, cũng như "u" ở cuối biểu thức.  
-- Nội dung của biểu thức chính quy không thuộc phạm vi hỗ trợ giải đáp. Mong quý vị thông cảm.
+- Nội dung của biểu thức chính quy nằm ngoài phạm vi nhận câu hỏi. Mong bạn thông cảm.
 
 
 
 ## Công thức tính
-Nếu loại cột tùy chỉnh là "Integer", "Decimal" hoặc "Currency", có thể thiết lập công thức tính.  
-Khi nhập các mục trên màn hình nhập dữ liệu, giá trị sẽ được tính tự động theo công thức đã thiết lập.  
+Khi loại cột tùy chỉnh là "Số nguyên", "Số thập phân" hoặc "Tiền tệ", bạn đặt được công thức tính.  
+Khi nhập các mục trên màn hình nhập dữ liệu, giá trị được tính tự động theo công thức đã đặt.  
 
 ### Cách thiết lập
-- Nếu loại cột tùy chỉnh là "Integer", "Decimal" hoặc "Currency", mục "Calculation formula" sẽ được hiển thị, hãy nhấp vào mục này.  
+- Khi loại cột tùy chỉnh là "Số nguyên", "Số thập phân" hoặc "Tiền tệ", mục "Công thức tính" hiện ra, hãy bấm vào.  
 ![Công thức tính](../ja/img/column/calc1.png)    
 
-- Hộp thoại nhập công thức tính sẽ hiển thị.  
+- Hộp thoại dành cho công thức tính hiện ra.  
 ![Công thức tính](../ja/img/column/calc2.png)  
 
-- Vui lòng nhập công thức tính. Có thể nhập công thức bằng cách nhấp vào các nút ở cột bên phải hoặc nhập trực tiếp bằng tay.
-※ Các biến có thể nhập sẽ được trình bày ở phần sau.
+- Hãy nhập công thức tính. Công thức được nhập bằng cách bấm các nút ở cột bên phải, hoặc nhập bằng tay.
+※Các biến nhập được sẽ nói ở phần sau.
 ![Công thức tính](../ja/img/column/calc3.png)  
 
-- Sau khi nhập xong, vui lòng nhấp vào nút "Validate formula" (kiểm tra công thức) để xác nhận nội dung nhập.
+- Nhập xong, hãy bấm nút "Kiểm tra công thức" để xác nhận nội dung nhập.
 ![Công thức tính](../ja/img/column/calc4.png)  
 
-- ※ Nếu công thức đã nhập có sai sót, lỗi sẽ được hiển thị và không thể thiết lập.
+- ※Nếu công thức đã nhập có chỗ sai, lỗi hiện ra và không đặt được.
 ![Công thức tính](../ja/img/column/calc5.png)  
 
-- Sau khi nhập công thức hợp lệ, nhấp vào nút "Setting" (thiết lập) để đóng hộp thoại và công thức sẽ được thiết lập.
+- Sau khi nhập công thức đúng, bấm nút thiết lập thì hộp thoại đóng lại và công thức được đặt.
 ![Công thức tính](../ja/img/column/calc6.png)  
 
-- Sau khi thiết lập, công thức tính sẽ được thực thi trên màn hình nhập dữ liệu. (Ví dụ dưới đây thiết lập cột 3 = cột 1 × cột 2)
+- Sau khi đặt, công thức tính được chạy trên màn hình nhập dữ liệu. (Ví dụ dưới đây đặt cột 1 × cột 2 cho cột 3)
 ![Công thức tính](../ja/img/column/calc7.gif)  
 
 
@@ -362,13 +367,13 @@ Khi nhập các mục trên màn hình nhập dữ liệu, giá trị sẽ đư�
 
 #### Các toán tử thông thường
 - +, -, *, /  
-※ Vui lòng nhập bằng ký tự nửa độ rộng (half-width). Lưu ý phép nhân không phải là "×" và phép chia không phải là "÷".
+※Hãy nhập bằng ký tự half-width. Lưu ý phép nhân không phải là "×" và phép chia không phải là "÷".
 
 - Dấu ngoặc đơn ()
 
 
 #### Biến
-※ Về cơ bản, nên đăng ký biến bằng các nút được bố trí ở cột bên phải của hộp thoại "Calculation formula".
+※Chúng tôi khuyên bạn đưa biến vào bằng các nút ở cột bên phải của hộp thoại "Công thức tính".
 
 - Giá trị của cột khác
 - Giá trị cột của bảng được tham chiếu
@@ -380,7 +385,7 @@ Khi nhập các mục trên màn hình nhập dữ liệu, giá trị sẽ đư�
 | Mục | Ví dụ | Giải thích |
 | ---- | ---- | ---- |
 | ${value:(tên cột)} | ${value:mitsumori_zeigaku} | Giá trị của cột khác trong cùng bảng sẽ được thiết lập.<br />(Ví dụ: với bảng chi tiết báo giá, nếu nhập số tiền báo giá ${value:mitsumori_zeigaku} thì giá trị đang được nhập ở mục "Số tiền báo giá" sẽ được thiết lập)  |
-| ${select_table:(tên cột).(tên cột của bảng được tham chiếu)} | ${select_table:client.client_shikiri} | Đối với cột trong cùng bảng có loại cột là "Choice (select from a list of values in another table)", "User" hoặc "Organization", giá trị của cột được tham chiếu sẽ được thiết lập.<br />(Ví dụ: bảng "Thông tin hợp đồng (contract)" có cột "Khách hàng (client)" tham chiếu đến bảng "Thông tin khách hàng (client)"; nếu thiết lập ${select_table:client.client_shikiri} thì giá trị đang được nhập ở cột giá bán sỉ cho khách hàng (client_shikiri) của bảng "Thông tin khách hàng (client)" sẽ được thiết lập)  |
+| ${select_table:(tên cột).(tên cột của bảng được tham chiếu)} | ${select_table:client.client_shikiri} | Với cột trong cùng bảng có loại cột là "Lựa chọn (từ bảng khác)", "Người dùng" hoặc "Tổ chức", giá trị của cột được tham chiếu sẽ được thiết lập.<br />(Ví dụ: bảng "Thông tin hợp đồng (contract)" có cột "Khách hàng (client)" tham chiếu đến bảng "Thông tin khách hàng (client)"; nếu thiết lập ${select_table:client.client_shikiri} thì giá trị đang được nhập ở cột giá bán sỉ cho khách hàng (client_shikiri) của bảng "Thông tin khách hàng (client)" sẽ được thiết lập)  |
 | ${parent:(tên cột)} | ${parent:mitsumori_value} | Giá trị của bảng cha sẽ được thiết lập.<br />(Ví dụ: bảng báo giá và bảng chi tiết báo giá có quan hệ 1:n; đối với cột của bảng chi tiết báo giá, nếu nhập số tiền báo giá của cột bảng cha ${parent:mitsumori_value} thì giá trị của cột "Số tiền báo giá" đang được nhập trong dữ liệu cha sẽ được thiết lập)  |
 | ${sum:(tên bảng con).(tên cột của bảng con)} | ${sum:mitsumori_detail.mitsumori_zeigaku} | Khi đã thiết lập quan hệ 1:n và form cho phép nhập đồng thời dữ liệu cha và con, tổng giá trị của cột được chỉ định trong bảng con sẽ được thiết lập.<br />(Ví dụ: bảng báo giá và bảng chi tiết báo giá có quan hệ 1:n; đối với cột của bảng báo giá, nếu nhập số tiền chi tiết báo giá của cột bảng con ${sum:mitsumori_detail:mitsumori_zeigaku} thì tổng các giá trị đang được nhập ở "Số tiền báo giá" của toàn bộ dữ liệu con sẽ được thiết lập)  |
 | ${count:(tên bảng con)} | ${count:mitsumori_detail} | Khi đã thiết lập quan hệ 1:n và form cho phép nhập đồng thời dữ liệu cha và con, số bản ghi của bảng con sẽ được thiết lập.<br />(Ví dụ: nếu bảng báo giá và bảng chi tiết báo giá có quan hệ 1:n thì số bản ghi của bảng con sẽ được thiết lập)  |
@@ -388,23 +393,23 @@ Khi nhập các mục trên màn hình nhập dữ liệu, giá trị sẽ đư�
 
 
 ### Trường hợp công thức bị tham chiếu vòng
-Nếu thiết lập như dưới đây, công thức tính sẽ được thực hiện lặp lại vô hạn.    
+Nếu đặt như sau, việc tính toán sẽ không bao giờ kết thúc.    
 
 - Cột calc1: công thức tính "${value:calc2} + 2"
 - Cột calc2: công thức tính "${value:calc1} + 2"
 
-"Nhập giá trị vào cột calc1" → "Đưa giá trị calc1 + 2 vào cột calc2" → "Đưa giá trị calc2 + 2 vào cột calc1" → "Đưa giá trị calc1 + 2 vào cột calc2"... và việc tính toán sẽ không bao giờ kết thúc.  
+Sẽ thành "Nhập giá trị vào cột calc1" → "Đưa giá trị calc1 + 2 vào cột calc2" → "Đưa giá trị calc2 + 2 vào cột calc1" → "Đưa giá trị calc1 + 2 vào cột calc2"..., và việc tính toán không xong.  
 
-Khi đã thiết lập công thức tính như vậy, nếu nhập giá trị trên màn hình nhập dữ liệu, cảnh báo như dưới đây sẽ được hiển thị.  
-Trong trường hợp này, vui lòng xem lại thiết lập công thức tính.
+Khi đang đặt công thức tính như vậy mà nhập giá trị trên màn hình nhập dữ liệu, cảnh báo như sau hiện ra.  
+Khi đó, hãy xem lại thiết lập của công thức tính.
 ![Công thức tính](../ja/img/column/calc8.png)  
 
 
 ### Trường hợp phát sinh phép chia cho 0
-Tùy theo công thức tính, phép chia cho 0 có thể phát sinh.  
-Trong trường hợp đó, mục kết quả sẽ được để trống.
+Tùy theo công thức tính, có thể xảy ra phép chia cho 0.  
+Khi đó, mục kết quả để trống.
 
 
 ### Khác
-Logic công thức tính chỉ hỗ trợ khi nhập dữ liệu trên màn hình.  
-Hiện tại, chức năng này chưa hỗ trợ việc đăng ký dữ liệu bằng các chức năng như API hoặc plugin. Mong quý vị thông cảm.
+Logic của công thức tính hỗ trợ việc nhập dữ liệu trên màn hình.  
+Hiện nay, nó chưa hỗ trợ việc đăng ký dữ liệu bằng các chức năng như API và plugin. Mong bạn thông cảm.

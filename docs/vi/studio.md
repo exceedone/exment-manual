@@ -1,131 +1,132 @@
 # Studio
-Studio là chức năng để tạo, sửa và xem tổng quan các màn hình. Giống như ứng dụng của kintone, chỉ cần đặt các thành phần là tạo được nơi chứa dữ liệu (bảng), màn hình nhập và danh sách. Màn hình đã tạo cũng dùng được trên ứng dụng điện thoại (Exment app).
+Studio là chức năng để tạo, sửa và xem gộp các màn hình. Giống như ứng dụng của kintone, chỉ cần xếp các thành phần là bạn tạo được nơi chứa dữ liệu (bảng), màn hình nhập liệu và danh sách. Màn hình đã tạo cũng dùng được trên ứng dụng điện thoại (ứng dụng Exment).
 
-※Các chức năng ở đây có đầy đủ từ Exment v7.2.1.
+※Các chức năng ghi ở đây có đủ ở Exment v7.2.1.
 
 ## Bắt đầu sử dụng
-- Studio ban đầu ở trạng thái "không dùng". Khi quản trị viên hệ thống bật "Studio" trong "Admin Setting" (cài đặt quản trị) → "[Feature Management](/vi/feature)" (quản lý tính năng), menu "Studio" sẽ hiện dưới "Admin Setting" (URL là `/studio`).
-- Trong số người được chọn ở Feature Management, Studio mở được cho người có quyền thiết lập bảng, form hoặc view của một bảng bất kỳ, và cho quản trị viên hệ thống.
+- Studio lúc đầu là "không sử dụng". Khi quản trị viên hệ thống chuyển "Studio" sang "Sử dụng" ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)", menu "Studio" hiện ra dưới "Cài đặt quản trị" (URL là `/studio`).
+- Người mở được Studio là, trong số những người được chọn ở Quản lý tính năng, người có quyền thiết lập bảng, form hoặc view ở một bảng nào đó, và quản trị viên hệ thống.
 
-| Việc | Quyền cần có |
+| Việc làm được | Quyền cần có |
 | --- | --- |
-| Tạo ứng dụng (bảng) mới | Quyền hệ thống "Table" |
-| Thêm màn hình vào bảng, sửa bằng Studio | Quyền thiết lập form của bảng đó |
-| Tạo nút, thêm mục (cột) mới khi sửa | Quyền thiết lập bảng đó |
+| Tạo ứng dụng (bảng) mới | Quyền "Bảng" của hệ thống |
+| Thêm màn hình vào bảng đang có, sửa bằng Studio | Quyền thiết lập form của bảng đó |
+| Tạo nút, thêm mục (cột) mới ở màn hình sửa | Quyền thiết lập của bảng đó |
 
-<!-- Ảnh màn hình: danh sách màn hình của Studio (img/studio/studio_index.png) -->
+<!-- Ảnh màn hình: danh sách màn hình của Studio (img/studio/studio_index.png). Chụp sau khi aa kiểm tra -->
 
 ## Danh sách màn hình
-Mở Studio sẽ thấy các màn hình của trang trên một màn hình.
+Khi mở Studio, bạn xem gộp được các màn hình của trang trên 1 màn hình.
 
 | Mục | Nội dung |
 | --- | --- |
-| Screens of the tables (màn hình của bảng) | Theo từng bảng: màn hình nhập (form) và danh sách (view), với "Open" (mở), "Edit" (sửa), "Copy" (sao chép), cùng liên kết đến thiết lập cột và thiết lập bảng. Lọc theo tên bảng/màn hình ở phía trên. |
-| Dashboards | Dashboard của hệ thống và của người dùng. |
-| Plugin pages (trang plugin) | Các plugin dạng trang. |
-| Table relation diagram (sơ đồ quan hệ bảng) | Quan hệ 1-nhiều, nhiều-nhiều và các cột chọn từ bảng khác, dưới dạng sơ đồ. |
+| Màn hình của các bảng | Với từng bảng, màn hình nhập liệu (form) và danh sách (view) được xếp ra. Có "Mở", "Chỉnh sửa", "Sao chép" và liên kết đến "Cài đặt cột", "Cài đặt bảng". Ở ô phía trên, bạn lọc được theo tên bảng và tên màn hình. |
+| Bảng điều khiển (màn hình tổng hợp) | Dashboard của hệ thống và dashboard của người dùng. |
+| Trang plugin | Các plugin dạng trang. |
+| Sơ đồ quan hệ bảng | Bạn xem được bằng sơ đồ các quan hệ cha - con (1:n), n:n và các cột chọn từ bảng khác. |
 
-- Nhấn tên màn hình nhập (hoặc biểu tượng bút chì) để mở ở [Sửa bằng Studio](/vi/studio?id=sửa-bằng-studio). Màn hình thiết lập form như trước mở bằng biểu tượng bánh răng ("Open in the form settings").
-- Chỉ hiện các bảng bạn thiết lập được và các màn hình bạn thiết lập được trong đó.
+- Khi bấm tên của màn hình nhập liệu (và biểu tượng bút chì), màn hình [Sửa bằng Studio](/vi/studio?id=sửa-bằng-studio) mở ra. Màn hình thiết lập form như trước nay mở được từ biểu tượng bánh răng ("Mở trong cài đặt biểu mẫu").
+- Danh sách chỉ hiện các bảng bạn thiết lập được và các màn hình thiết lập được trong đó.
 
 ## Tạo ứng dụng / màn hình mới
-Nhấn "New app or screen" (ứng dụng / màn hình mới) trên danh sách. Có 3 cách.
+Bấm "Ứng dụng hoặc màn hình mới" trên danh sách. Có 3 cách tạo.
 
-| Cách | Nội dung |
+| Cách tạo | Nội dung |
 | --- | --- |
-| Make a new app (tạo ứng dụng mới) | Đặt các thành phần sẽ tạo bảng và cột, màn hình nhập và danh sách. Nếu chọn, tạo luôn kanban, lịch, biểu đồ và dashboard ([Tạo thành ứng dụng một lần](/vi/studio?id=tạo-thành-ứng-dụng-một-lần)). |
-| Add a screen to a table (thêm màn hình vào bảng) | Không tạo bảng. Đặt các cột có sẵn để chỉ tạo màn hình nhập (form). |
-| Make from Excel or CSV (tạo từ Excel/CSV) | Đọc tệp Excel (.xlsx) hoặc CSV: dòng 1 là tên mục, từ dòng 2 là dữ liệu; hệ thống đoán loại thành phần và đặt sẵn. Sửa chỗ sai rồi lưu. Chọn "Take the data in too" (nhập cả dữ liệu) để nhập luôn dữ liệu (tối đa 1.000 dòng, tệp tối đa 10 MB). |
+| Tạo ứng dụng mới | Khi xếp các thành phần, bảng và cột, màn hình nhập liệu và danh sách được tạo. Nếu chọn, kanban, lịch, biểu đồ và dashboard cũng được tạo cùng lúc ([Tạo thành ứng dụng một lần](/vi/studio?id=tạo-thành-ứng-dụng-một-lần)). |
+| Thêm màn hình vào bảng | Không tạo bảng. Xếp các cột đang có để chỉ tạo màn hình nhập liệu (form). |
+| Tạo từ Excel hoặc CSV | Khi đọc tệp Excel (.xlsx) hoặc CSV, hệ thống coi dòng 1 là tên mục, từ dòng 2 là dữ liệu, rồi đoán thành phần và xếp sẵn. Chỗ nào khác thì sửa rồi mới lưu. Khi chọn "Nhập cả dữ liệu", dữ liệu cũng được đưa vào cùng (tối đa 1.000 dòng, tệp tối đa 10MB). |
 
-Trước khi lưu, màn hình cho biết sẽ tạo gì. Sau khi lưu, có thể nhập dữ liệu ngay trên màn hình mới.
+Trước khi lưu, màn hình cho biết cái gì sẽ được tạo (ví dụ "Khi lưu, ứng dụng "..." (bảng, màn hình nhập liệu và danh sách) sẽ được tạo."). Khi lưu xong, bạn nhập được dữ liệu trên màn hình đã tạo.
 
-<!-- Ảnh màn hình: tạo ứng dụng mới (img/studio/studio_create.png) -->
+<!-- Ảnh màn hình: màn hình tạo ứng dụng mới (thành phần, màn hình nhập liệu, xem trước) (img/studio/studio_create.png) -->
 
 ### Thành phần
 | Thành phần | Nội dung |
 | --- | --- |
-| One-Line Text, Multiple-Line Text, URL, Email | Chữ. |
-| Integer, Decimal, Currency | Số. |
-| Calculation (tính toán) | Tính từ các mục số khác (xem "Tính toán" bên dưới). |
-| Date, Date and Time, Time | Ngày và giờ. |
-| Select (From Static Value), YES/NO | Chọn từ giá trị cố định. Mỗi lựa chọn viết một dòng. |
-| Select (From Table) | Chọn dữ liệu của bảng khác. Đặt "Table to select from" (bảng để chọn). |
-| User, Organization | Chọn người dùng hoặc tổ chức của Exment. |
-| Auto Number (đánh số tự động) | Khi lưu, tự gán số kèm ngày (ví dụ 20261121-0001). |
-| File, Image | Đính kèm tệp hoặc ảnh. |
+| Văn bản một dòng, Văn bản nhiều dòng, URL, Email | Nhập chữ. |
+| Số nguyên, Số thập phân, Tiền tệ | Nhập số. |
+| Tính toán | Tính từ các mục số khác (mục "Tính toán" ở dưới). |
+| Ngày, Ngày và giờ, Giờ | Nhập ngày và giờ. |
+| Lựa chọn, YES/NO | Chọn trong các giá trị đã định. Các lựa chọn được viết mỗi dòng một cái. |
+| Lựa chọn (từ bảng khác) | Chọn dữ liệu của bảng khác. Bạn đặt "Bảng để chọn dữ liệu". |
+| Người dùng, Tổ chức | Chọn người dùng hoặc tổ chức của Exment. |
+| Đánh số tự động | Khi lưu, ngày và số (ví dụ: 20261121-0001) được gắn tự động. |
+| Tệp, Hình ảnh | Đính kèm tệp hoặc hình ảnh. |
 
-- Nhấn thành phần để thêm vào cuối, hoặc kéo đến chỗ muốn đặt. Tối đa 100 mục.
-- Với mỗi mục, đặt tên mục, tên cột (chữ và số) và có bắt buộc hay không.
+- Bấm vào thành phần thì nó được thêm vào cuối, kéo thì đặt được vào chỗ bạn muốn. Đặt được tối đa 100 mục.
+- Với từng mục, bạn đặt tên mục, tên cột (chữ và số) và có bắt buộc hay không.
 
 ### Hàng và cột
-Chọn cho mỗi hàng 1 cột, 2 cột, 2 cột (trái rộng hơn), 2 cột (phải rộng hơn), 3 cột hoặc 4 cột để đặt các mục cạnh nhau. Trên điện thoại, các mục xếp dọc. Tối đa 50 hàng.
+Với từng hàng, khi chọn "1 cột", "2 cột", "2 cột (bên trái rộng)", "2 cột (bên phải rộng)", "3 cột", "4 cột", bạn xếp được các mục nằm ngang. Trên điện thoại, các mục xếp dọc. Tạo được tối đa 50 hàng.
 
 ### Điều kiện hiển thị
-Mỗi mục có thể hiện hoặc ẩn theo giá trị của mục khác ("is" bằng, "is not" khác, "is empty" trống, "is not empty" không trống; "Always shown" là luôn hiện). Ví dụ, chỉ hiện "Lý do" khi trạng thái là "Tạm dừng". Mục bắt buộc không đặt được điều kiện.
+Với từng mục, bạn chuyển được việc hiển thị theo giá trị của mục khác ("bằng", "khác", "trống", "không trống"). Ví dụ, chỉ hiện "Lý do" khi trạng thái là "Tạm hoãn". Mục bắt buộc thì không gắn được điều kiện.
 
 ### Chi tiết (bảng con)
-Tạo phần chi tiết nhập nhiều dòng cho một dữ liệu, như các sản phẩm trong một đơn hàng. Mỗi phần chi tiết tạo một bảng con, hiển thị dạng bảng dưới màn hình nhập. Tối đa 5 phần chi tiết. Trong chi tiết cũng dùng được tính toán và chọn từ bảng khác.
+Bạn tạo được phần chi tiết, nơi nhập nhiều dòng cho 1 dữ liệu, như các sản phẩm trong một đơn hàng. Mỗi phần chi tiết tạo ra một bảng con, và hiện dưới màn hình nhập liệu ở dạng bảng. Tạo được tối đa 5 phần chi tiết. Trong phần chi tiết cũng dùng được thành phần tính toán và thành phần chọn từ bảng khác.
 
 ### Tính toán
-Trong thành phần tính toán, viết các mục số khác (Integer, Decimal, Currency, Calculation) trong `[ ]`.
+Ở thành phần tính toán, bạn viết các mục số khác (số nguyên, số thập phân, tiền tệ, tính toán) trong `[ ]`.
 
 - Ví dụ: `[Số lượng] * [Đơn giá]`
-- Tổng của chi tiết: `合計[tên chi tiết.mục]`
+- Tổng của phần chi tiết: `SUM[tên chi tiết.mục]` (ví dụ: `SUM[Chi tiết đơn hàng.Thành tiền]`)
 - Chỉ dùng được mục, số và `+ - * / ( )`.
 
 ### Nút
-Tạo nút hiện trên trang của dữ liệu. Nút đổi giá trị của một mục (ví dụ "Hoàn thành" đổi trạng thái thành "hoàn thành").
+Bạn tạo được nút hiện trên màn hình của dữ liệu. Khi bấm, nút đổi giá trị của mục (ví dụ: bấm "Hoàn thành" thì trạng thái thành "Đã hoàn thành").
 
-- Tối đa 5 nút cho một màn hình. Mục có thể là lựa chọn, YES/NO, chữ một dòng hoặc số nguyên.
-- Dữ liệu đã có giá trị đó thì không hiện nút.
-- Nút được tạo thành một thiết lập cập nhật dữ liệu (data operation) của bảng, có thể sửa hoặc xóa sau ở đó.
-- Chỉ người có quyền thiết lập bảng mới tạo được nút.
+- Trên 1 màn hình tạo được tối đa 5 nút. Mục đổi được là lựa chọn, YES/NO, văn bản một dòng và số nguyên.
+- Với dữ liệu đã có giá trị đó rồi, nút không hiện.
+- Nút được tạo thành "[Cài đặt cập nhật hàng loạt](/vi/operation)" của bảng. Về sau bạn sửa hoặc xóa được ở đó.
+- Chỉ người có quyền thiết lập của bảng đó mới tạo được nút.
 
 ### Thiết lập chi tiết
-- **Tên bảng (chữ và số)**: dùng trong URL của dữ liệu… Để trống sẽ tự đặt. Không đổi được về sau.
-- **Nơi thêm vào menu**: chọn vị trí trên menu bên trái (hoặc không thêm).
+- **Tên bảng (chữ và số)**: tên dùng cho URL của dữ liệu, v.v. Khi để trống, tên được đặt tự động. Về sau không đổi được.
+- **Vị trí thêm vào menu**: chọn thêm vào đâu trên menu bên trái (cũng chọn được "Không thêm").
 
 ## Tạo thành ứng dụng một lần
-Ở "Make a new app", có thể tạo luôn các màn hình để xem dữ liệu trong mục "Made with the app" (tạo cùng ứng dụng).
+Ở "Tạo ứng dụng mới", tại mục "Tạo cùng ứng dụng", bạn tạo cùng lúc được cả các màn hình để xem dữ liệu.
 
-| Tạo | Mục dùng |
+| Thứ được tạo | Mục dùng |
 | --- | --- |
-| Kanban | Mục chia cột (lựa chọn) |
-| Lịch | Mục ngày (bật chỉ mục tìm kiếm của mục đó vì lịch cần) |
-| Biểu đồ (số lượng) | Số lượng theo mục (lựa chọn hoặc YES/NO) |
-| Dashboard | Đặt danh sách, biểu đồ và lịch cạnh nhau. Quản trị viên hệ thống tạo thì mọi người thấy; người khác tạo thì chỉ người đó thấy. |
+| Kanban | Mục để chia làn (lựa chọn) |
+| Lịch | Mục ngày (để tìm được trên lịch, chỉ mục tìm kiếm của mục đó được bật) |
+| Biểu đồ (số lượng) | Số lượng theo từng mục dùng để phân loại (lựa chọn, YES/NO) |
+| Bảng điều khiển | Xếp danh sách, biểu đồ và lịch. Quản trị viên hệ thống tạo thì mọi người thấy, người khác tạo thì chỉ người đó thấy. |
 
-- Đặt mục dùng được thì tự bật. Có thể tắt.
-- Mỗi thứ được tạo giống như khi tạo ở màn hình thiết lập view/dashboard, và sửa được ở đó về sau.
+- Khi đặt mục dùng được, các thứ này tự được bật. Bạn cũng bỏ được.
+- Tất cả đều giống với thứ được tạo ở màn hình thiết lập view và dashboard. Về sau bạn sửa được ở các màn hình đó.
 
-<!-- Ảnh màn hình: "Made with the app" (img/studio/studio_bundle.png) -->
+<!-- Ảnh màn hình: Tạo cùng ứng dụng (img/studio/studio_bundle.png) -->
 
 ## Sửa bằng Studio
-Màn hình nhập tạo bằng Studio được sửa trên chính màn hình đã dùng để tạo. Nhấn tên màn hình nhập trên danh sách.
+Màn hình nhập liệu đã tạo bằng Studio (và form của bảng đang có) sửa được trên cùng màn hình như lúc tạo. Trên danh sách màn hình, bấm tên của màn hình nhập liệu. Người sửa được là người có quyền thiết lập form của bảng đó.
 
-- Di chuyển hoặc bỏ mục, thêm hoặc bỏ điều kiện, đổi tên màn hình, thêm nút.
-- Mục bỏ khỏi màn hình vẫn còn trong bảng cùng dữ liệu.
-- Thêm thành phần từ "New items (the table gets their columns)" (mục mới, bảng có thêm cột) thì khi lưu bảng có thêm cột và cột hiện trong danh sách. Chỉ người có quyền thiết lập bảng mới làm được. Thành phần tính toán không thêm được ở đây (thêm ở thiết lập cột).
-- Các mục Studio chưa tạo được (tiêu đề, giải thích, HTML, ảnh, đường kẻ, mục hệ thống) được giữ nguyên; di chuyển hoặc bỏ được, nội dung sửa ở thiết lập form.
-- Chi tiết (nhập bảng con) giữ nguyên. Muốn sửa thì mở thiết lập form.
-- Trước khi lưu, màn hình cho biết sẽ thay đổi gì.
+- Bạn di chuyển hoặc bỏ mục, gắn hoặc bỏ điều kiện hiển thị, đổi tên màn hình, thêm nút.
+- Mục đã bỏ khỏi màn hình thì cột của bảng và dữ liệu vẫn còn nguyên.
+- Khi thêm thành phần từ "Mục mới (cột cũng sẽ được tạo trong bảng)", lúc lưu, cột được tạo trong bảng và cũng hiện trong danh sách. Chỉ người có quyền thiết lập của bảng mới làm được việc này. Thành phần tính toán không thêm được ở đây (thêm ở thiết lập cột).
+- Các mục Studio chưa có, như tiêu đề, câu giải thích, HTML, hình ảnh, đường kẻ, mục hệ thống, được giữ lại chứ không bị xóa. Bạn di chuyển hoặc bỏ được, còn nội dung thì sửa ở thiết lập form.
+- Phần chi tiết (nhập liệu của bảng con) được giữ nguyên. Khi muốn sửa phần chi tiết, hãy mở trong thiết lập form.
+- Trước khi lưu, màn hình cho biết cái gì sẽ thay đổi (ví dụ "Bảng "..." cũng sẽ có thêm các cột "...".").
 
-<!-- Ảnh màn hình: sửa bằng Studio (img/studio/studio_edit.png) -->
+<!-- Ảnh màn hình: màn hình sửa bằng Studio (img/studio/studio_edit.png) -->
 
 ## Ứng dụng điện thoại (Exment app)
-Mở `/app` bằng trình duyệt trên điện thoại để dùng màn hình của Studio như một ứng dụng. "Thêm vào màn hình chính" để mở như ứng dụng.
+Khi mở `/app` bằng trình duyệt của điện thoại, bạn dùng được các màn hình của Studio như một ứng dụng điện thoại. Khi "Thêm vào màn hình chính", bạn mở được nó như một ứng dụng.
 
-- **Màn hình**: hiện các màn hình nhập của những bảng bạn dùng được. Mở ra là danh sách; nút "+" ở góc dưới bên phải để thêm dữ liệu.
-- **Ảnh, tệp**: ở mục tệp hoặc ảnh, chụp ảnh ngay tại chỗ. Ảnh được thu nhỏ trên điện thoại trước khi gửi.
-- **"Scan a code" (quét mã)**: nút ở phía trên quét mã QR và mã vạch bằng camera. Mã vạch 2D của Exment ([2D barcode setting (English)](/2d_barcode)) hoặc mã QR của URL dữ liệu sẽ mở dữ liệu đó. Quét từ danh sách của một bảng thì tìm theo các cột chữ, số nguyên và đánh số tự động của bảng đó. Cũng tìm được mã JAN.
-- **Khi không có sóng**: Khi lưu mà không có mạng, dữ liệu nhập (cả chi tiết và ảnh) được giữ trên điện thoại làm bản nháp và tự gửi khi mở ứng dụng hoặc khi có mạng lại. Màn hình đã mở một lần thì mở được cả khi không có mạng, nên nhập mới được. Trong "Drafts not sent" (bản nháp chưa gửi), có thể mở để sửa, gửi ngay hoặc xóa. Bản nháp máy chủ không nhận sẽ được giữ lại kèm lý do. Bản nháp theo từng người dùng.
-- "PC" để trở về màn hình thường.
+- **Màn hình**: các màn hình nhập liệu của những bảng bạn dùng được xếp ra. Mở ra thì danh sách hiện lên, và bạn đăng ký mới được bằng "+" ở góc dưới bên phải.
+- **Ảnh và tệp**: ở mục tệp và hình ảnh, bạn chụp ảnh ngay tại chỗ rồi đính kèm được. Ảnh được thu nhỏ trong điện thoại rồi mới gửi.
+- **Quét mã**: từ nút phía trên, bạn quét được mã QR và mã vạch bằng camera. Nếu là mã vạch 2 chiều của Exment ([Cài đặt mã vạch 2D](/vi/2d_barcode)) hoặc mã QR của URL dữ liệu, dữ liệu đó mở ra. Khi quét từ màn hình danh sách, hệ thống tìm dữ liệu có cùng giá trị ở các cột chữ, số nguyên và đánh số tự động của bảng đó. Mã JAN cũng tìm được.
+- **Khi không có sóng**: lúc lưu mà không có sóng, nội dung đã nhập (cả phần chi tiết và ảnh) được giữ trong điện thoại làm bản nháp, và tự động gửi khi mở ứng dụng hoặc khi có sóng lại. Màn hình đã mở một lần thì không có sóng vẫn mở được, nên bạn cũng nhập mới được. Từ danh sách "Bản nháp chưa gửi", bạn mở để sửa, gửi ngay hoặc xóa. Bản nháp mà máy chủ không nhận được giữ lại kèm lý do. Bản nháp là của từng người dùng.
+- Với "Bản PC", bạn trở về màn hình thường dùng.
 
-<!-- Ảnh màn hình: danh sách và màn hình nhập trên ứng dụng (img/studio/studio_app.png) -->
+<!-- Ảnh màn hình: danh sách và màn hình nhập liệu của ứng dụng điện thoại (img/studio/studio_app.png) -->
 
 ## Mục liên quan
 - [Quản lý tính năng](/vi/feature)
-- [Form](/vi/form)
-- [View](/vi/view)
+- [Form tùy chỉnh](/vi/form)
+- [View tùy chỉnh](/vi/view)
 - [Dashboard](/vi/dashboard)
-- [Data operation (English)](/operation)
+- [Cài đặt cập nhật hàng loạt](/vi/operation)
+- [Cài đặt mã vạch 2D](/vi/2d_barcode)

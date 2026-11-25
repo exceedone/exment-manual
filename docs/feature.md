@@ -2,7 +2,7 @@
 Decide which features and plugins are used, who may use them, and whether their menus are shown.  
 Exment is used by many sites, so a new feature is off at first. Until a system administrator turns it on, it is not in the menu, and its pages cannot be opened even by their URL. Updating Exment does not change the pages or the menu of your site.
 
-※This page is available in Exment v7.2.1 or later.
+Note: this screen is available in Exment v7.2.1 or later.
 
 ## The page
 Log in as a system administrator and open "Admin Setting" → "Feature Management" (the URL is `/feature`).  
@@ -38,8 +38,8 @@ The "Status" column shows:
 | Not available in this environment | The server keeps it off ([Lock features on the server](/feature?id=lock-features-on-the-server)). It cannot be turned on from this page. |
 | It cannot be used because a feature it needs is off. | A feature that works only with another feature ("Only while "..." is used." is shown), and that feature is off. |
 
-※Of the users chosen here, only those who may set tables can use Studio.  
-※Whether the API, the public forms and others are used is in the [System setting](/system_setting) as before.
+Note: Of the users chosen here, only those who may set tables can use Studio.  
+Note: Whether the API, the public forms and others are used is in the [System setting](/system_setting) as before.
 
 <!-- Screenshot: one row of a feature of Exment (Use, Who may use it, Menu) (img/feature/feature_core.png). After #1861 is merged -->
 
@@ -53,8 +53,8 @@ The page does not keep a second copy of their settings: it shows the settings th
 | Who may use it | The same as the "access" permission of the plugin in the role groups. Change it on the [Role group](/role_group) page. |
 | Menu | Whether it is shown in the menu. Only this one is decided on this page. |
 
-※A plugin of a type everyone can use, or a plugin set to "all users can use it", says so.  
-※When a plugin has registered features of its own (as a web mail), each of them has a row under the plugin. A feature in a plugin is off at first too. Of those who may use the plugin, the users chosen here can use it.
+Note: A plugin of a type everyone can use, or a plugin set to "all users can use it", says so.  
+Note: When a plugin has registered features of its own (as a web mail), each of them has a row under the plugin. A feature in a plugin is off at first too. Of those who may use the plugin, the users chosen here can use it.
 
 <!-- Screenshot: a plugin row and the rows of the features in it (img/feature/feature_plugin.png). After #1861 is merged -->
 
@@ -94,7 +94,7 @@ Opening the URL of a feature that cannot be used shows one of these messages.
 | Message | When |
 | --- | --- |
 | This feature is not used on this site. | The feature is off (or the server keeps it off). System administrators also get a link to Feature Management. |
-| You do not have permission to use this feature. Please ask your administrator. | The feature is on, but the user is not one of those who may use it. |
+| You do not have permission to use this feature. Please contact your administrator. | The feature is on, but the user is not one of those who may use it. |
 
 Both have a "Back to home" link. From the API, the same message comes back as JSON (404 when the feature is not used, 403 without permission).
 
@@ -127,7 +127,7 @@ EXMENT_FEATURES_LOCKED=file_server,studio
 
 A locked feature shows "Not available in this environment" on this page.
 
-※After changing `.env` on a server that caches its configuration, run `php artisan config:clear` (or `php artisan config:cache`).
+Note: After changing `.env` on a server that caches its configuration, run `php artisan config:clear` (or `php artisan config:cache`).
 
 ## The order of the rules
 Whether a feature can be used is decided from the top. A lower rule never opens more than the one above it.

@@ -1,24 +1,21 @@
 # (For advanced users) Driver change of session cache
-By default, Exment keeps the session cache in a file on the Web server.  
-However, you may want to save it somewhere other than the web server. For example:  
+This setting changes where the session (the login state, etc.) and the cache (data kept for a while) are saved.  
+By default, they are saved in files on the Web server. Change the place in cases like these.
 
-- Speed up with Redis and memcached.
-- Save to a location other than the web server for redundancy.
-
-This section describes how to set when you want to change the storage location of the session cache.  
+- You want to speed up with Redis or memcached
+- For redundancy (using several servers), you want to save them somewhere other than the Web server
 
 ## Setting method
 
 ### Redis
-This is the procedure for session management with Redis. 
-This section describes the procedure on the Web server side and the procedure on the Redis server side.  
-※When using an external service, such as when using AWS Redis, no Redis server-side steps are required.   
-Make settings only on the Web server side.  
+These are the steps to manage sessions with Redis.  
+There are steps on the Redis server side and steps on the Web server side.  
+Note: When you use an external service such as AWS Redis, the Redis server side steps are not needed. Set only the Web server side.
 
 #### Redis server side
 > This is the procedure for setting on CentOS.
 
-- Execute the following command.
+**(1) Run the following commands.**
 
 ~~~
 yum -y install epel-release
@@ -26,17 +23,17 @@ yum install -y redis
 systemctl enable redis
 ~~~
 
-- Execute the following command to change the Redis settings.
+**(2) Run the following command and change the Redis settings.**
 
 ~~~
 vi /etc/redis.conf
 
-####Changed the description of bind as follows
+####Change the bind line as follows
 #bind 127.0.0.1
 bind 0.0.0.0
 ~~~
 
-- In the firewall settings, allow only Redis access from the connection source IP address.  
+**(3) In the firewall settings, allow access to Redis only from the IP address of the connection source.**
 
 ~~~
 firewall-cmd --permanent --new-zone=from_webserver
@@ -47,33 +44,39 @@ firewall-cmd --zone=from_webserver --add-service=redis
 firewall-cmd --reload
 ~~~
 
-- Start the service.
+**(4) Start the service.**
 
 ~~~
 systemctl start redis.service
 ~~~
 
 #### Web server side
-- Execute the following command in the root folder of the project.  
+**(1) Run the following command in the root folder of the project.**
 
 ~~~
 composer require predis/predis
 ~~~
 
-- Open the .env file and add or change the following settings.  
+**(2) Open the .env file and add or change the following settings.**
 
 ~~~
-CACHE_STORE=redis #When changing the cache storage location. rewrite to redis (when Exment v7.0.0 or later was newly installed)
-CACHE_DRIVER=redis #When changing the cache storage location. rewrite to redis (when updated from Exment v6.x or earlier)
-SESSION_DRIVER=redis #When changing the cache storage location. rewrite to redis  
-REDIS_CLIENT=predis #connect to Redis with "predis" installed above
+CACHE_STORE=redis #To change where the cache is saved. Rewrite to redis (when Exment v7.0.0 or later was newly installed)
+CACHE_DRIVER=redis #To change where the cache is saved. Rewrite to redis (when updated from Exment v6.x or earlier)
+SESSION_DRIVER=redis #To change where the session is saved. Rewrite to redis
+REDIS_CLIENT=predis #Connect to Redis with "predis" installed above
 REDIS_HOST=127.0.0.1 #redis host name
-REDIS_PASSWORD=XXXXXX #redis password, described only if set
-REDIS_PORT=6379 #redis port number, described only if it is not 6379  
+REDIS_PASSWORD=XXXXXX #redis password, write it only if one is set
+REDIS_PORT=6379 #redis port number, write it only if it is not 6379
 ~~~
 
-※ The name of the cache setting is the one written in "default" of "config/cache.php". It is "CACHE_STORE" when Exment v7.0.0 or later was newly installed, and "CACHE_DRIVER" when updated from v6.x or earlier ("config/cache.php" is still the v6.x one).  
-※ Without "REDIS_CLIENT=predis", Laravel tries to connect with the PHP extension "phpredis", and the error "Class "Redis" not found" occurs.
+- The setting name for where the cache is saved is the name written in "default" of "config/cache.php".
+
+| Site | Setting name |
+| ---- | ---- |
+| Exment v7.0.0 or later was newly installed | "CACHE_STORE" |
+| Updated from v6.x or earlier ("config/cache.php" is still the v6.x one) | "CACHE_DRIVER" |
+
+- Without "REDIS_CLIENT=predis", the connection is tried with the PHP extension "phpredis", and the error "Class "Redis" not found" occurs.
 
 
 [←Back to list of additional settings](/quickstart_more)

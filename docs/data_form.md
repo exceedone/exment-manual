@@ -1,60 +1,63 @@
 # Data registration
-Displays a form for creating and editing data in Exment.  
-Items displayed on the form screen are determined by the settings of [Custom column setting](/column.md), custom form, and [Related table](/relation.md).  
-If the display is not as expected, you need to configure the settings on the above page. 
+This page explains the form screen used when creating new data and when editing data.
+
+- The items shown on the form are decided by the settings of the [custom column setting](/column), the custom form and the [related tables](/relation).  
+- When they are not shown as you expect, correct the settings on the pages above.  
 
 ## Functions list
 ![Data screen](img/data/data_form1.png)  
 
-- "Move to page" button：  
-Switches to the screen for changing the settings of the currently displayed custom table.  
+##### [Move to page] button  
+Switches to the screens for changing the settings of the custom table now shown.
 
-- "List" button:：  
+##### [List] button
 Switches to the data list screen.  
-※From v7.1.0, you can also go back with the [← Back to the list] button on the right of the title row. See [here](/data_details?id=back-to-the-list).
+Note: from v7.1.0, you can also go back with the [← Back to the list] button at the right of the heading row. See [Back to the list](/data_details?id=back-to-the-list) for details.
 
-- "Display" button:  
-Switch to the screen for browsing data.  
+##### [View] button  
+Switches to the screen for viewing the data.
 
-- "Delete" button:   
-Deletes the displayed data.  
-※Deleted data can be restored from [Deleted data](/deleted_data).
+##### [Delete] button
+Deletes the data shown.  
+Note: deleted data can be restored from [Deleted data](/deleted_data).
 
-- Form item：  
-Change the value of the data.  
-Items displayed on the form screen are determined by the settings of [Custom column setting](/column.md), custom form, and [Related table](/relation.md).  
-If the display is not as expected, you need to configure the settings on the above page.  
+##### Form items  
+Change the values of the data.  
+The items shown are decided by the settings of the [custom column setting](/column), the custom form and the [related tables](/relation).  
+When they are not shown as you expect, correct the settings on the pages above.  
 
-- Child table:  
-If you set 1: n or n: n in [Related Table](/relation.md), you can also add / change the data of the table set in Related Table.  
+##### Child table  
+When 1:n or n:n is set in the [related tables](/relation), the data of the table set as the related table can be added and changed together. See "Child table" below for details.
 
 
 ## detail of function
 
 ### Child table
-If you set 1: n or n: n in [Related Table](/relation.md), you can also add / change the data of the table set in Related Table.
-Example: If the displayed table item is "Contract" and the child table is "Contract Details", the billing date and customer information can be registered, and at the same time, the detail data of the contract can be added or changed.
+When 1:n or n:n is set in the [related tables](/relation), the data of the table set as the related table can be added and changed together.  
+Example: when the table shown is "Contract" and the child table is "Contract details", the detail data of the contract can be added and changed at the same time as the billing date and the customer information are registered.  
 ![Child table screen](img/data/data_form2.png)  
   
-※There are two ways to display child table data: "Normal form format" and "Table format".  
-Change the format on the custom form screen.  
+Note: there are two ways to show the data of a child table: the "normal form format" and the "table format".  
+The format is switched on the custom form screen.  
   
-- "New" button:    
-Add one child table data.    
+##### [New] button  
+Adds one record of the child table.  
   
-- "Delete button":  
-Delete the data of the selected child table.  
+##### [Delete] button  
+Deletes the selected record of the child table.  
 
 
 ### Data Submit Redirect
-![Data Submit Redirect](img/data/data_submit_redirect1.png)  
-Checkboxes appears to the left of the save button.  
-By checking this checkbox, you can change the page that will be displayed after saving the data.  
+![Child table screen](img/data/data_submit_redirect1.png)  
+Checkboxes are shown to the left of the save button.  
+Checking one changes the screen opened after the data is saved.
 
-- List : Transition to the list page of that data. *Note: Even if no checks are performed, you will still transition to the list page.
-- View : Transition to the Detail page of that data. 
-- Continue creating : Transition to the Create page of that data. 
-- Continue editing : Transition to the Edit page of that data. 
+| Check | Screen opened after saving |
+|---|---|
+| List | The list screen of that data (the list screen too when nothing is checked) |
+| View | The details screen of that data |
+| Continue creating | The screen for creating new data of that table |
+| Continue editing | The edit screen of that data (it is shown again) |
 
-\* After saving with the "Continue creating" or "Continue editing" checkbox selected, when the form is displayed again, the "Continue creating" or "Continue editing" checkbox will be checked by default.  
-\* Starting from v3.9.1, you can now specify default values for checks. For more details, please refer to [this](/system_setting#data-submit-redirect) page.
+- After saving with "Continue creating" or "Continue editing" checked, "Continue creating" or "Continue editing" is already checked the next time the form is shown.  
+- From v3.9.1, the default value of the checks can be specified. See [Data Submit Redirect](/system_setting?id=data-submit-redirect) for details.

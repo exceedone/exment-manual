@@ -1,26 +1,26 @@
 # Maintenance mode
 Lets only system administrators into the site while data is moved or plugins are installed. Switch it in "Settings: System" > "Maintenance Mode" (the URL is `/maintenance`).
 
-※This page is available in Exment v7.2.1 or later.  
-※Only system administrators can use it. Turn on "Maintenance mode" in Feature Management.
+Note: this screen is available in Exment v7.2.1 or later.  
+Note: only system administrators can use this screen. Turn on "Maintenance mode" in Feature Management.
 
 ![Maintenance mode (Japanese screen)](ja/img/maintenance/maintenance1.png)
 
 ## During maintenance
-- Only **system administrators, the one who started it, and the "allowed IP addresses"** get in.
-- The others see the maintenance page with the notice and the planned end (HTTP 503). Logged-in users are logged out.
+- Only **system administrators, the one who started it, and the "IP addresses that get in"** get in.
+- The others see the maintenance page with the "Message" and the planned end (HTTP 503). Logged-in users are logged out.
 - Starts, ends and changes go to the operation log.
 
 ## Settings
 | Item | What it does |
 |---|---|
-| Start | Empty for no plan (to start now, press "Start maintenance now"). With a time, logged-in users see a notice at the top of the page until it starts |
+| Start | Empty for no plan (to start now, press "Start the maintenance now"). With a time, logged-in users see a notice at the top of the page until it starts |
 | End | It ends by itself when the time passes (so it is not left on). Empty: it goes on until the end button is pressed |
-| Notice (ja, en) | The text shown on the maintenance page |
-| Allowed IP addresses | One per line. Ranges such as `192.168.0.0/24` are allowed. The page shows your IP address as the server sees it |
+| Message (ja, en) | The text shown on the maintenance page |
+| IP addresses that get in | One per line. Ranges such as `192.168.0.0/24` are allowed. The page shows your IP address as the server sees it |
 | API (OAuth, API keys) | "System administrators only", "Stop" or "Do not stop" |
 | Stop the pages from outside | Stops public forms, share links, the safety check answer page, and approvals and answers in LINE |
-| Stop scheduled tasks | Stops the schedule and plugin batches. They run once after the end (a task at a set time, like the automatic backup, waits for its next time) |
+| Stop the scheduled jobs | Stops the schedule and plugin batches. They run once after the end (a task at a set time, like the automatic backup, waits for its next time) |
 | Stop the queue | Stops mails and other background work. It goes on from where it was after the end |
 
 ## Command

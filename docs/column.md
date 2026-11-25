@@ -1,179 +1,313 @@
 # Custom column management
-Set the columns of the custom table, "custom columns".  
+This page is for making, changing and deleting the columns of a custom table ("custom columns"). A column is one item of the data, such as "Customer name", "Zip code" or "Address".  
+
+- How to make a column: read "Settings screen" → "Add new column" → "Save" below, in this order.
+- What types of columns there are: see "Column type" below.
+- The explanation of each item: see "Entry details (common)" and "Detailed explanation of entry items (by column type)" below.  
 
 ## Settings screen
-- In the custom table list, put a check in the table you want to set, and click "Custom column setting" on the upper right.   
-![Custom column screen](img/column/column_grid1.png)
+- In the custom table list, check one table you want to set, and press "Table Detail Setting" at the top right.  
+![Custom column screen](ja/img/column/column_grid4.png)
+- Or, after selecting the table you want to set from the menu, press "Table Detail Setting" at the top right in the same way.  
+Note: the setting that shows the table in the menu is needed beforehand.  
+![Custom column screen](ja/img/column/column_grid5.png)
+- On the Table Detail Setting screen that appears, press the icon of the custom columns.
+![Custom column screen](ja/img/column/column_grid6.png)
 
-- Or, after selecting the table you want to set from the menu, similarly click "Custom column setting" on the upper right.  
-※ A setting to display the corresponding table on the menu is required in advance.  
-![Custom column screen](img/column/column_grid2.png)
-
-- This will display the list of columns of the checked custom table.  
+- Now the list of the columns of that custom table appears.  
 ![Custom column screen](img/column/column_grid3.png)
 
 ## Add new column
-- On the "Custom column setting" screen, click the "New" button at the top right of the page.
+- On the "Column Detail Setting" screen, press the [New] button at the top right of the page.
 
-- The screen for adding a new custom column is displayed. Enter the necessary information.
+- The screen for adding a new custom column appears. Enter the necessary items.
 ![Custom column screen](img/column/column_new1.png)
 
 ## Save
-After entering the settings, click “Submit”.
+After entering the settings, press [Submit].
 
 ## Edit
-If you want to edit a column, click the "Edit" button in the corresponding row.    
+When you want to change a column, press the [Edit] link of its row.  
 ![Custom column screen](img/column/column_edit.png)
 
 ## Delete
-If you want to delete a column, click the "Delete" button in the corresponding row.
-  
+When you want to delete a column, press the [Delete] link of its row.  
 ![Custom column screen](img/column/column_delete.png)
-**<span style="color: red; ">※However, the columns installed in the system cannot be deleted.</span>**
-
+**<span style="color: red; ">Note: however, the columns installed by the system cannot be deleted.</span>**
 
 
 ## Entry details (common)
-- Column name (alphanumeric): The name of the column used in the system.  
-Enter with alphanumeric characters or "-" or "_".  
-It can only be set once and cannot be changed.  
-**The following names cannot be used.**  
-id, suuid, parent_id, parent_type, created_at, updated_at, deleted_at, created_user, updated_user, deleted_user
+- Column Name (alphanumeric): the name of the column used in the system. Enter it with alphanumeric characters, "-" or "\_". It can be set only once and cannot be changed.  
+**Note: the following names cannot be used.**  
+id,suuid,parent_id,parent_type,created_at,updated_at,deleted_at,created_user,updated_user,deleted_user
 
-- Column display name: The name of the column displayed on the screen.
+### Column View Name
+The name of the column shown on the screen.
 
-- Column type: The type of column to be set. The contents registered in this item will be applied to the form at the time of data registration.  
-    - One line text: One line text (text box).
-    - Multiline text: Multiline text (text area).  
-    - URL: URL.  
-    - Email address: Email address.  
-    - Integer: A form where only integers can be entered. In the data registration form, "+" and "-" buttons are displayed on the left and right of the item, and the value can be increased or decreased by clicking.  
-    - Decimal point: This is a form where only decimal numbers can be entered. By setting the percentage display to YES,% will be displayed when displaying data.  
-    - Date: Date item. In the form at the time of data registration, you can change the date from the calendar.  
-    - Time: Time item. In the data registration form, you can change the time from the clock.  
-    - Date and time: Date and time items. In the data registration form, you can change the date and time from the calendar and clock.  
-    - Choice: The value and the heading are the same choice list.  
-    - Choice (Register value / heading): A list of choices with different values ​​and headings.  
-    - Choice (select from a list of values ​​in another table): Create a choice where the choice is an item in another table.  
-    - YES / NO: Create a switch to switch between “YES” and “NO”. When registering data, YES is registered as 1 and NO is registered as 0.  
-    - Binary selection: Creates a switch that switches between two values. You can also change the value at the time of data registration.  
-    - Automatic numbering: Create values ​​such as UUIDs and random character strings when creating data.    
-    - Image: An item to upload an image. On the data list and data details screens, the image is displayed with a link. The link (a tag) has the class "image-link", so a [plugin (script)](/plugin_quickstart_script) or a [plugin (style)](/plugin_quickstart_style) can target only the links of images.
-    - File: An item to upload a file.  
-    - User: An option to select a user for the system.  
-    - Organization: An option to select the organization of the system.  
+## Column type
+The type of the column. The type chosen here decides the shape of the input field when data is entered.
 
-- Required: Select whether the field is required.  
-If set to YES, it will be a required item on the data entry screen, and if not entered, an error will be displayed.
+> For the detailed system specification of each custom column, see the [Custom column reference](/column_reference).
 
+#### One-Line Text
+One-line text (a text box).  
+![Custom view screen](ja/img/column/column_type1.png)
+#### Multiple-Line Text
+Multiple-line text (a text area).  
+![Custom view screen](ja/img/column/column_type2.png)
+#### Text Editor
+Data can be entered with a text editor.
+![Custom view screen](ja/img/column/column_type3.png)
+#### URL
+A form where a URL can be entered.  
+![Custom view screen](ja/img/column/column_type4.png)
+#### Email
+A form where an email address can be entered.  
+![Custom view screen](ja/img/column/column_type5.png)
+#### Integer
+A form where only integers can be entered. Also, when data is entered, [+] and [-] buttons can be shown on the left and right of the item, and clicking them moves the value up and down.  
+![Custom view screen](ja/img/column/column_type6.png)
+#### Decimal
+A form where only decimals can be entered. When "Show as Percent" is YES, the data is shown with %.  
+![Custom view screen](ja/img/column/column_type7.png)
+#### Currency
+A form where a currency amount can be entered. The display format can be chosen from four types (￥, 円, ＄, €).
+![Custom view screen](ja/img/column/column_type8.png)
+#### Date
+A date form. When data is entered, the date can be changed from a calendar.  
+![Custom view screen](ja/img/column/column_type9.png)
+#### Time
+A time form. When data is entered, the time can be changed from a clock.  
+![Custom view screen](ja/img/column/column_type10.png)
+#### Date and Time
+A date and time form. When data is entered, the date and time can be changed from a calendar and a clock.  
+![Custom view screen](ja/img/column/column_type11.png)
+#### Select (From Static Value)
+A form of options. It is a list of options whose value and label are the same.  
+![Custom view screen](ja/img/column/column_type12.png)
+#### Select (Save Value and Label)
+A form of options. It is a list of options whose value and label are different.  
+![Custom view screen](ja/img/column/column_type13.png)
+#### Select (From Table)
+A form of options. It makes options that are the items of another table.  
+![Custom view screen](ja/img/column/column_type14.png)
+#### YES/NO
+Makes a switch between "YES" and "NO". When data is saved, YES is saved as 1 and NO as 0.  
+![Custom view screen](ja/img/column/column_type15.png ':size=332')
+#### Select 2-value
+Makes a switch between two values. The values saved with the data can also be changed.  
+![Custom view screen](ja/img/column/column_type16.png ':size=328')
+#### Auto Number
+Makes a value such as a UUID or a random string when the data is created.  
+![Custom view screen](ja/img/column/column_type17.png ':size=479')
+#### Image
+A form for uploading an image.  
+Note: on the data list screen and the data detail screen, an image is shown with a link. The link (a tag) has the class "image-link", so with a [plugin (script)](/plugin_quickstart_script) or a [plugin (style)](/plugin_quickstart_style) you can change the behavior or the look of the image links only.
+![Custom view screen](ja/img/column/column_type18.png)
+#### File
+A form for uploading a file.  
+![Custom view screen](ja/img/column/column_type19.png)
+#### User
+Options for selecting a user of the system.  
+![Custom view screen](ja/img/column/column_type20.png)
+#### Organization
+Options for selecting an organization of the system.  
+![Custom view screen](ja/img/column/column_type21.png)
 
+## Entry details (common)
+- ##### Column Name (alphanumeric)
+The name of the column used in the system. Enter it with alphanumeric characters, "-" or "_". It can be set only once and cannot be changed.  
+**Note: the following names cannot be used.**  
+id,suuid,parent_id,parent_type,created_at,updated_at,deleted_at,created_user,updated_user,deleted_user
 
-- Index Enabled: See "[Search index](#search-index)" below. 
+- ##### Column View Name
+The name of the column shown on the screen.
 
-- Unique (unique): If set to YES, you will not be able to register values that duplicate other data when registering data.  
-Please refer to [Compound unique key setting](/table.md#composite-unique-key-setting) if you want to prevent duplicate registration in a specific combination by multiple column values.  
+- ##### Column Type
+From the [list of column types](/column?id=column-type), select the column used for entering data.
 
-- Enter once only: If you set YES, you can make it a column where data can be registered only at the time of new registration.  
-It is for display only when editing data.
+- ##### Required
+Choose whether this column is required. When YES, it is a required item on the data entry screen, and an error appears if it is not entered.  
 
-- Initial value: Value to be entered as an initial value in the form item.  
+- ##### Index Enabled
+See "[Search index](/column?id=search-index)" below.  
 
-- Placeholder: A character string registered as a placeholder in a form item.    
+- ##### Freeword Search Target
+Shown when Index Enabled is YES.  
+See "[Freeword Search Target](/column?id=freeword-search-target-detail)" below.  
 
-- Help: Content displayed as information below the form item.  
+- ##### Unique
+When YES, a value that is the same as another data cannot be saved when data is saved. When you want to prevent duplicates by a combination of several columns, see [Composite unique key setting](/table?id=composite-unique-key-setting).  
 
-- Display order: Specify the display order on the custom column list screen.  
+- ##### Input Only Once
+When YES, the column can be entered only when the data is newly added. When the data is edited, it is only shown.
 
-- Add to default form view: If YES, add columns to the default form view as new ones are created.  
-It can be set only when creating a new column. When updating, please change from [form screen](/form.md) and [view screen](/view.md).
+- ##### Default Value
+The value put in the input field from the start.  
 
-- Cell appearance: How the value of this column is painted in the data list (colour, tag, badge...).  
-It is picked from the preset library - see [Cell style presets](/cell_style_preset.md) for details.
+- ##### PlaceHolder
+The text shown in pale letters while the input field is empty (the placeholder).  
+
+- ##### Help
+The content shown under the input field as an explanation.
+
+- ##### Order
+Sets the display order on the list screen of the custom columns.
+
+- ##### Add to the default form and view
+When YES, the column is also added to the default form and view when the column is newly made. It can be set only when the column is newly made. To change it later, change it on the [form screen](/form) and the [view screen](/view).
+
+- ##### Add to the Table Label
+The custom column you make can be added to the heading columns.  
+Note: this setting appears only when the custom column is newly made. To change it later, change it in the [Heading display column setting](/table?id=heading-display-column-setting).
+
+- ##### Cell appearance
+Sets with what look (color, tag, badge and so on) the value of this column is shown in the data list.  
+Select from "Appearance preset". See [Cell style presets](/cell_style_preset) for details.
 
 ## Detailed explanation of entry items (by column type)
-- Maximum number of characters (single line text, multiple line text): The maximum number of characters that can be entered in form items.  If it exceeds, an error will occur.  
+- ##### Max Length (One-Line Text, Multiple-Line Text)
+The upper limit of the number of characters that can be entered. Over it, there is an error.  
 
-- Suggest input (single line text): Displays values ​​that match the input content as input candidates from the data values ​​already registered in the same custom column.
+- ##### Available Characters (One-Line Text)
+Only the types of characters you check can be entered.
+When none is checked, all types of characters can be entered.
+![Custom column screen](ja/img/column/available_characters.png)
+
+- ##### Suggest Input (One-Line Text)
+From the values already saved in the same custom column, the ones that fit what was entered are shown as input candidates.
 ![Custom column screen](img/column/suggest.png)
 
-- Regular expression (1 line text): The input contents can be validated by regular expression. See [Regular Expression](#regular-expression) for details.
+- ##### Regular expression (One-Line Text)
+What was entered can be checked with a regular expression (a way of writing a rule for the order of characters). See [Regular expression](/column?id=regular-expression) for details.
 
-- Minimum value (integer, decimal): The minimum value that can be entered in the form item. If you send below that value, an error will occur.  
-If left blank, the minimum value will not be checked.  
+- ##### Min Number (Integer, Decimal)
+The minimum value that can be entered. When a smaller value is sent, there is an error. When empty, the minimum is not checked.  
 
-- Maximum value (integer, decimal): The maximum value that can be entered in the form item. If you send more than that value, you will get an error.  
-If not entered, the maximum value will not be checked.  
+- ##### Max Number (Integer, Decimal)
+The maximum value that can be entered. When a larger value is sent, there is an error. When empty, the maximum is not checked.  
 
-- Choices (Choices, Choices (Register values ​​/ headings)): Register choices to be displayed as candidates in form items.  
-Register multiple candidates with line breaks.  
-If "Choice (Register value / heading)" is selected for the column type, the first column will be the value and the second column will be the heading, with a comma as the column separator.  
+- ##### Calc Formula (Integer, Decimal, Currency)
+See [Calc formula](/column?id=calc-formula) below for details.
+
+- ##### Select Choice (Select (From Static Value), Select (Save Value and Label))
+Register the options shown as candidates in the input field. Register one per line, separated by line breaks.  
+When the column type is "Select (Save Value and Label)", separate with a comma and write the value in the first column and the label in the second.  
 ![Custom column screen](img/column/column_select_valtext1.png)
 ↓  
 ![Custom column screen](img/column/column_select_valtext2.png)  
-When saving data in the form, the value of the first column is saved in the database.  
+When data is saved in the form, the value of the first column is saved in the database.  
 
-- Target table (Choices (select from a list of values ​​in another table)): In the form field, specify the table to be displayed as a choice candidate.  
+- ##### <span id="radio_buttom"> Displayed in radio button / check box format (YES/NO, Select (From Static Value), Select (Save Value and Label))</span>
+<span style="text-decoration: underline">For a Select (From Static Value) or Select (Save Value and Label) column where multiple select is NO</span>, it can be shown in the form in radio button format.
+![Custom column screen](ja/img/column/radio_buttons.png) 
 
-- Numbering type (automatic numbering): Select the type of numbering when registering data.
-    - Format: Register the numbering in the format specified by the user.  
-    - Random (license code): Register a random character string of 5 characters x 5 and 25 characters.  
-    - Random (UUID): Register a random string of 32 digits in total.  
+<span style="text-decoration: underline">For a YES/NO column</span>, or <span style="text-decoration: underline">for a Select (From Static Value) or Select (Save Value and Label) column where multiple select is YES</span>, it can be shown in the form in check box format.
+![Custom column screen](ja/img/column/checkbox.png)
 
-- Number of digits (automatic numbering): The number of digits to be registered as data at the time of automatic numbering.  
-Register the missing part with zero padding.  
+- ##### Make it freely input (Select (From Static Value))
+When YES, options that are not registered in the column settings can also be entered freely and saved.  
 
-- Show an "assign to me" button (user): If YES, the [Assign to me] button is shown next to this column on the data create/edit screen. Click the button to select the logged-in user.  
-If "Allow multiple selections" is YES, the logged-in user is added to the selected users.  
+![Custom column screen](ja/img/column/free_input.gif)
 
-- Accept images pasted from the clipboard (image, file): If YES, an image (such as a screenshot) pasted with Ctrl+V on the data create/edit screen is added to this column as a file. The file is named "paste-(date)-(time)-(sequence number)".  
-If "Allow multiple selections" is YES, the image is added to the selected files. If NO, the image replaces the selected file.  
-An image pasted inside the rich text editor goes into the text as before. Text pasted into a text box is not added as a file.  
-If the screen has more than one column with this setting set to YES, the image is added to the first one.  
+>When [Displayed in radio button / check box format](/column?id=radio_buttom) is YES, this setting cannot be used.
 
-- Allow multiple selections: Set YES if you want to make multiple selections for items such as images, files, and options.  
+- ##### Initial value type (Date, Time, Date and Time, User)
+You can decide the type of the initial value when data is newly added.  
+- For Date, Time, and Date and Time columns, [Specified date and time] or [the date and time of the data entry] can be set as the initial value.  
+- For User columns, [Specified user] or [Login user] can be set as the initial value.
+
+- ##### Select Target Table (Select (From Table))
+Decide the table shown as the candidates of the options.  
+
+>The text shown in the list as an option can be changed in the [Heading display column setting](/table?id=heading-display-column-setting).
+
+- ##### Narrow down the choices (Select (From Table), User, Organization)
+Usually, the options on the data edit screen show all the candidates in a list when the screen is loaded.  
+
+![Custom column screen](ja/img/column/select_table_1.png)
+
+When this setting is YES, the options are not loaded at first; the data is searched with what the user enters, and the candidates are narrowed down.  
+
+![Custom column screen](ja/img/column/select_table_2.png)
+
+When text is entered in the input form, the data is searched on the server and the results are shown as candidates.
+
+![Custom column screen](ja/img/column/select_table_3.png)
+
+> Regardless of this setting, when the total number of data is 100 or more, the narrowing down is used, for better performance.  
+This upper limit can be changed by a [setting value](/config?id=custom-data).  
+
+
+- ##### Auto Number Type (Auto Number)
+Select the type of numbering done when data is saved.
+- <span class="heading_smaller_than_h5">Format</span>  
+The number is saved in the format given by the user.
+- <span class="heading_smaller_than_h5">Random(25-Length)  </span>  
+A random string of 25 characters, 5 characters x 5, is saved.
+- <span class="heading_smaller_than_h5">Random(UUID)</span>  
+A random string of 32 digits in total is saved.
+
+- ##### Auto Number Length (Auto Number)
+The number of digits saved as data at auto numbering. The missing digits are filled with 0.  
+
+- ##### Display users/organizations without permission (User, Organization)
+Decide whether to show only the users and organizations that have access permission to the table, or all users and organizations.
+
+- ##### Show an "assign to me" button (User)
+When YES, the [Assign to me] button is shown next to this column on the data create and edit screens. Clicking the button selects the logged-in user.  
+Note: when "Approval Multiple Select" is YES, the logged-in user is added to the users already selected.
+
+- ##### Accept images pasted from the clipboard (Image, File)
+When YES, an image (a screenshot and so on) pasted with Ctrl+V on the data create and edit screens is added as a file of this column. The file name is "paste-(date)-(time)-(sequence number)".  
+Note: when "Approval Multiple Select" is YES, it is added to the files already selected. When NO, it is replaced by the pasted image.  
+Note: when pasted inside a text editor, it goes into the text as before. Also, text pasted into a text box is not added as a file.  
+Note: when the screen has several columns with this setting YES, it is added to the first column.
+
+- ##### Approval Multiple Select
+Set it to YES when you want several to be selectable in items of images, files and the option types.  
 
 ## Automatic numbering format rules
-If you set the column type to "Automatic numbering" and the numbering type (automatic numbering) to "Format", you can register automatic numbering with your own rules.  
+When the column type is "Auto Number" and the Auto Number Type (Auto Number) is "Format", numbers can be given automatically by a rule you decide.  
 
-- See the following pages for the parameter variables that can be set.  
+See the following page for the parameter variables that can be set.  
 [Parameter variables](/params)
 
 ## Search index
-"Search index" is a function that is set in the database in advance to improve the performance of data search.  
-"Index" is also called "index".  
-In Exment, some functions are enabled only when this search index is set to YES.  
+A "search index" is something set in the database in advance to make data search faster.  
+In Exment, some features can be used only on columns whose Index Enabled is YES.
 ![Search index](img/column/column_index.png)    
 
-When set to YES, the following functions are enabled.    
-- [Custom View](/view)is displayed in "Target column" in "Display condition" setting.  
-
+When YES, the following features work.  
+- It is shown in "Target column" of the "Conditions" setting of a [custom view](/view)  
 ![Custom view_display condition](img/column/custom_view_filter.png)    
 
-- [Custom view](/view) "Sort" setting, it is displayed in "Target column".  
-
+- It is shown in "Target column" of the "Sort" setting of a [custom view](/view)  
 ![Custom view_sort](img/column/custom_view_sort.png)    
 
-- It is displayed in the item of "Filter" setting of [List of data](/data_grid).  
-
+- It is shown in the items of the "Filter" setting of the [data list](/data_grid)  
 ![Data_filter](img/column/data_filter.png)    
 
-- [Data list](/data_grid) "sort" icon is displayed.  
+- The icon for "sorting" in the [data list](/data_grid) is shown
 ![Data_sort](img/column/data_sort.png)    
-- When a user enters a word in the search bar at the top of the page, it becomes a search target for data search.  
-Set YES for columns that you want to search on the search screen, such as various codes and various names.  
 
-※ If you set a large number of "search indexes" in the same table, performance may decrease when new data is created or updated.  
-Up to 10 "search indexes" are recommended, and up to 20 can be set in the same table.  
-※ The upper limit of search indexes can be changed in [Setting values](/config.md?id=number-of-search-indexes).  
+- When a user enters a word in the search bar at the top of the page, the column is a target of the data search. Set it to YES for columns you want searched on the search screen, such as codes and names.  
+
+- <span id="freeword-search-target-detail">**Freeword Search Target**</span> can be set.  
+When YES, the column is a search target when text is entered in the search bar and a search is done.
+
+Note: when very many "search indexes" are set on one table, creating and updating data can become slow.  
+The "search indexes" that can be set on one table are up to 10 as a recommendation and up to 20 as the maximum.  
+Note: the upper limit of search indexes can be changed by a [setting value](/config?id=number-of-search-indexes).
 
 
 ## Use in labels
-> This setting method has been changed to [Extended setting of custom table](/table#extended-settings) in v1.3.0.
+> In v1.3.0, this setting method was changed to the [extended settings of the custom table](/table?id=heading-display-column-setting).
 
 ## Regular expression
-> This setting is displayed only when [Expert mode](/additional_expert) is enabled.  
+> This setting appears only if you have enabled [expert mode](/additional_expert).
 
-If the custom column setting is "1 line text", you can perform validation by regular expression.  
+When the custom column type is "One-Line Text", what is entered can be checked with a regular expression.  
 
 ![Regular expression](img/column/column_regex1.png)  
 
@@ -194,9 +328,88 @@ If the custom column setting is "1 line text", you can perform validation by reg
 
 
 #### Other
-- If a regular expression has been set, "Usable characters" will be invalid.  
-- Judgment of regular expression uses PHP function.  
-When searching for a regular expression sample, please search based on PHP regular expressions.  
-- The "/" at the beginning and end of the sentence and the "u" at the end of the sentence are not required.  
-- The contents of regular expressions are not eligible for free inquiry. Please note.
+- When a regular expression is set, "Available Characters" is not used.  
+- The check of regular expressions uses a PHP function. When you look for examples of regular expressions, look for PHP regular expressions.  
+- The "/" put at the beginning and the end, and the "u" at the end, are not needed.  
+- The content of regular expressions is outside our inquiries. Thank you for your understanding.
 
+
+
+## Calc formula
+When the custom column type is "Integer", "Decimal" or "Currency", a calc formula can be set.  
+When items are entered on the data entry screen, the value is calculated automatically by the formula you set.  
+
+### Setting method
+- When the custom column type is "Integer", "Decimal" or "Currency", the "Calc Formula" item is shown. Click it.  
+![Search index](ja/img/column/calc1.png)    
+
+- The dialog for the calc formula appears.  
+![Search index](ja/img/column/calc2.png)  
+
+- Enter the formula. Enter it by pressing the buttons in the right column, or by hand.
+Note: the variables that can be entered are described later.
+![Search index](ja/img/column/calc3.png)  
+
+- When you have finished entering, press the "Validate Formula" button to confirm the input.
+![Search index](ja/img/column/calc4.png)  
+
+- Note: when the formula you entered has a mistake, an error appears and it cannot be set.
+![Search index](ja/img/column/calc5.png)  
+
+- After entering a correct formula, press the "Setting" button. The dialog closes and the formula is set.
+![Search index](ja/img/column/calc6.png)  
+
+- After the setting, the formula runs on the data entry screen. (In the example below, column 1 × column 2 is set on column 3)
+![Search index](ja/img/column/calc7.gif)  
+
+
+### Formulas and variables that can be used
+
+#### Ordinary operators
+- +, -, *, /  
+Note: enter them in half-width characters. Take care that multiplication is not "×" and division is not "÷".
+
+- Parentheses ()
+
+
+#### Variables
+Note: we recommend putting in variables with the buttons in the right column of the "Calc Formula" dialog.
+
+- The value of another column
+- A column value of the referenced table
+- A column value of the parent table
+- The total of a column of the child table
+- The number of data of the child table
+
+
+| Item | Example | Explanation |
+| ---- | ---- | ---- |
+| ${value:(column name)} | ${value:mitsumori_zeigaku} | Another value in the same table is set.<br />(Example: when the quotation amount ${value:mitsumori_zeigaku} is written for the quotation detail table, the value entered in the item "Quotation amount" is set)  |
+| ${select_table:(column name).(column name of the referenced table)} | ${select_table:client.client_shikiri} | For the column types "Select (From Table)", "User" and "Organization" in the same table, the value of a column of the referenced data is set.<br />(Example: when the "Contract information (contract)" table has a "Customer (client)" column that refers to the "Customer information (client)" table, with ${select_table:client.client_shikiri} the value entered in the customer wholesale rate (client_shikiri) of the "Customer information (client)" table is set)  |
+| ${parent:(column name)} | ${parent:mitsumori_value} | Another value of the parent table is set.<br />(Example: when the quotation table and the quotation detail table have a 1:n relation, and the quotation amount of the parent table column ${parent:mitsumori_value} is written for a column of the quotation detail table, the value of the column "Quotation amount" entered in the parent data "Quotation amount" is set)  |
+| ${sum:(child table name).(column name of the child table)} | ${sum:mitsumori_detail.mitsumori_zeigaku} | When there is a 1:n relation and the form enters parent and child data at the same time, the total of the values of the given column of the child table is set.<br />(Example: when the quotation table and the quotation detail table have a 1:n relation, and the quotation detail amount of the child table column ${sum:mitsumori_detail:mitsumori_zeigaku} is written for a column of the quotation table, the total of the values entered in the child data "Quotation amount" over all data is set)  |
+| ${count:(child table name)} | ${count:mitsumori_detail} | When there is a 1:n relation and the form enters parent and child data at the same time, the number of data of the child table is set.<br />(Example: when the quotation table and the quotation detail table have a 1:n relation, the number of data of the child table is set)  |
+
+
+
+### When the formulas are circular
+With settings like the following, the calculation never ends.    
+
+- Column calc1: formula "${value:calc2} + 2"
+- Column calc2: formula "${value:calc1} + 2"
+
+"Enter the value of column calc1" → "the value of calc1 + 2 is put in column calc2" → "the value of calc2 + 2 is put in column calc1" → "the value of calc1 + 2 is put in column calc2" ... and the calculation does not finish.  
+
+When such formulas are set and a value is entered on the data entry screen, an alert like the following appears.  
+In that case, review the settings of the formulas.
+![Search index](ja/img/column/calc8.png)  
+
+
+### When division by zero happens
+Depending on the formula, division by zero can happen.  
+In that case, the result item is left empty.
+
+
+### Other
+The calc formula logic works when data is entered on the screen.  
+At present it does not work when data is saved by features such as the API and plugins. Thank you for your understanding.

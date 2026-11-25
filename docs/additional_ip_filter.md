@@ -1,39 +1,35 @@
 # IP filter
-You can restrict the IP addresses that are allowed to access the Exment Web page and API.  
-The IP addresses to be registered are of the white list type, and only the IP addresses to which access is permitted are registered.  
-Also, register the allowed IP addresses separately for Web pages and APIs. Therefore, it is also possible to say, for example, "Only API, restrict the IP addresses that can be executed."  
+This setting decides which IP addresses can access the Web pages and the API of Exment.
+
+- You register only the IP addresses that are allowed (a white list).
+- The addresses for the Web pages and for the API are registered separately. For example, you can "restrict the IP addresses only for the API".
 
 
 ### Setup steps
-- Set Exment to expert mode.  
-If you are not already in expert mode, open the ".env" file and add the following values:  
+1. Set Exment to expert mode. If it is not in expert mode yet, open the ".env" file and add the following value.
 
 ~~~
 EXMENT_EXPART_MODE=true
 ~~~
 
-- By opening the system settings screen, the IP filter item has been added.  
+2. Open the System Setting screen. The "IP Filter Setting" items have been added.
 
 ![IP filter settings](img/quickstart/ip_filter.png)
 
 #### Setting details
 
-- If you want to specify a fixed IP address, enter the IP address directly.
-    - Example： 123.4.5.6
-
-- If you want to specify a range of IP addresses, enter the IP address in subnet mask format.  
-    - Example 1： 123.4.0.0/16 → access permission from 123.4.0.0 to 123.4.255.255  
-    - Example 2： 123.4.10.0/24 → access permission from 123.4.10.0 to 123.4.10.255
-
-- To allow access from localhost on a server built on localhost, enter ":: 1".
-
-- To allow multiple IP addresses, enter them separated by line feeds. If any of the IP addresses match, access is allowed.
+| What you want | How to enter it | Example |
+| ---- | ---- | ---- |
+| Allow one fixed IP address | Enter the IP address as it is | 123.4.5.6 |
+| Allow a range of IP addresses | Enter it in subnet mask format | Example 1: 123.4.0.0/16 → access is allowed from 123.4.0.0 to 123.4.255.255<br>Example 2: 123.4.10.0/24 → access is allowed from 123.4.10.0 to 123.4.10.255 |
+| Allow access from localhost on a server built on localhost | Enter "::1" | ::1 |
+| Allow several IP addresses | Enter them on separate lines. Access is allowed when any one of them matches | |
 
 
 #### Forcibly disable IP restrictions
-This is the procedure for disabling IP restrictions in cases such as when access to the Web page becomes impossible due to failure of IP address restrictions.  
+These steps stop the IP restriction, for example when you set the IP addresses of the Web pages wrongly and can no longer access the site.
 
-- Open the ".env" file and add the following values:
+- Open the ".env" file and add the following value.
 
 ~~~
 EXMENT_DISABLE_IP_FILTER=true

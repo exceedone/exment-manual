@@ -1,98 +1,103 @@
 # Custom form
-Set items to be displayed in [Data form page](/data_form.md) of Exment , number of rows in columns, hidden fields, and data linkage settings.  
-The content set in this custom form is reflected in [Data form page](/data_form.md) of each table.  
+This page decides the items shown on the [data form screen](/data_form) of Exment (the screen where data is entered) and how they are arranged. You can change the placement of the items (the layout of the boxes), hidden fields, the data linkage settings and so on.  
+What you set here is reflected in the [data form screen](/data_form) of each table.
+
+- How to open the screen: "Page display" and "Form editing" below
+- How to arrange the items: "Custom form settings" below
+- Copying the values of data chosen from another table: "Data linkage settings" below
+- Narrowing down other options by the chosen value: "Related refinement settings" below
+- Switching the form used by conditions: "Form priority settings" below
 
 ## Page display
-- On the custom table screen, check one of the tables you want to change, and click "form setting" of "page move".  
-![Custom form page](img/form/form_grid1.png)
-
-> * It is also possible to transition directly from the data list screen or data registration screen of the target custom table. Even in that case, click "Detailed table settings" on the upper right.  
-![Custom form page](img/form/form_grid4.png)  
-
-- On the displayed table advanced settings screen, click the form settings icon to display a list of forms.  
-\* One default form is created for each table from the beginning.
-- This will display a list of forms that the checked custom table has.  
-One form is created by default, one for each table.  
+- In the custom table list, check the table you want to set and press "Table Detail Setting" at the top right.  
+![Custom form page](img/form/form_grid3.png)
+> Note: you can also open it directly from the data list screen or the data entry screen of that custom table. In that case too, press "Table Detail Setting" at the top right.  
+![Custom form page](img/form/form_grid4.png)
+- On the Table Detail Setting screen that appears, press the icon of the form setting, and the list of forms appears.  
+Note: one default form is made for each table from the start.
 ![Custom form page](img/form/form_grid5.png)
 ![Custom form page](img/form/form_grid6.png)
 
 ## Form editing
-If you want to edit the form, click the "Edit" link in the appropriate row.  
+To change a form, press the [Edit] link of that form.  
 ![Custom form page](img/form/form_edit.png)
 
 ## Custom form settings
 ![Custom form page](img/form/form.png)
 
 ### Form preferences
-Enter the basic information for the form.
+Enter the basic information of the form.
 
 - ##### Form display name
-Enter the name of the form to be saved.  
+Enter the name of the form.  
 
 - ##### Default form
-If you want to register this form as the default form, please set it to YES.  
-If [form priority](#form-priority-settings) is set, that will be prioritized.
+Set it to YES to make this form the default form.  
+When the [Form priority settings](/form?id=form-priority-settings) are set, they take priority.
 
 - ##### Detailed screen display method
-Select whether to match the item display method on the [data detail page](/data_details) with the row / column layout set on this screen, or to display in a simple vertical single column display.
+Choose how the items are shown on the [data detail screen](/data_details): matching the layout of rows and columns decided on this screen, or in a simple single vertical column.  
 
 ![Custom form page](img/form/basic_configuration.png)
 
 - ##### Heading display method
-Set how to display the heading of each item.  
-\* This is the setting for the entire form. If you want to set them individually, change the settings of each item.
+Decide how the heading of each item is shown.  
+Note: this is the setting for the whole form. To change it for each item, change the setting of each item.
 
 ### Form block settings
-Set the form block.  
-A block is a collection of data, basically one per table.  
-As an exception, if you have set a 1:n relation, you can also enter data on the child table side at the same time. Check "Use" of the child table block and configure the settings.
+Set the blocks of the form.  
+A block is a group of data; usually there is one per table.  
+However, when there is a 1:n relation setting, the data of the child table can also be entered on the same screen. Check "Available" of the child table block and set it.
 
 ![Custom form page](img/form/form_block0.png)
 
 #### Form block items
-\* The following are all configuration items for child tables.
+Note: the following are all setting items of child tables.
 
 - ##### Make the form in table form  
-Display the input fields of the child table in table format.
+The input fields of the child table are shown in the form of a table.
 
 - ##### Optimize loading of child-table data  
-If YES, the rows of this child table are loaded automatically after the edit page opens. For data with many child rows, the edit page appears sooner. The default value is NO.  
-It can be used for a 1:N block with "Make the form in table form" set to YES, when existing data is edited. Saving is not possible until the loading is complete.  
-If "Make the form in table form" is set to NO and the form is saved, this setting also becomes NO.  
-※Available from v7.1.0.
+When YES, the rows of this child table are loaded automatically after the edit screen is shown. For data with many child table rows, it shortens the time until the edit screen appears. The default is NO.  
+It can be used, when existing data is edited, in a one-to-many block where "Make the form in table form" is YES. You cannot save until the loading is finished.  
+When "Make the form in table form" is set to NO and the form is saved, this setting also becomes NO.  
+Note: available from v7.1.0.
+
+![Optimize loading of child-table data](ja/img/form/form_lazy_load.png)
 
 - ##### Form block name  
-The name to be displayed in each block of the form.  
+The name shown on each block of the form.  
 
-- ##### Form Block Display Order   
-When there are multiple child tables, you can specify the display order.  
+- ##### Form Block Display Order  
+When there are several child tables, you can decide the order in which they are shown.  
+
 
 #### Form items
-Setting of items to be displayed on the input form.  
-A list of the set columns is displayed on the data form screen.  
+Choose and arrange the items shown on the input form.  
+The items can be chosen from the "Form item candidate list" below.
 
 ![Custom form page](img/form/item_candidate_list.png)
 
-You can set boxes with 1 to 4 columns on the form.  
-Place form items in these boxes.
+On a form you can place boxes of 1 to 4 columns.  
+You place the form items inside these boxes.
 
 ![Custom form page](img/form/form_box.png)
 
-You can do the following in the box.  
+With a box, you can do the following.  
 
-- Click the "+" button next to the box to add a new column to the current row.  
+- Press the "+" button next to a box to add a new column to the current row.  
 ![Custom form page](img/form/right_box.png)
 
-- Click the "+" button below the box to add a new row. (Add a new column to the next row if it already exists)  
+- Press the "+" button under a box to add a new row. (When the next row already exists, a new column is added to that row)  
 ![Custom form page](img/form/bottom_box.png)
 
-- You can resize the box by dragging and dropping the margin on the right side of the box.  
+- Drag and drop the margin on the right side of a box to change the size of the box.  
 ![Custom form page](img/form/box_size.png)
 
-- Click the trash can icon in the upper right corner of the box to delete the box.  
+- Press the trash can icon at the top right of a box to delete the box.  
 ![Custom form page](img/form/box_delete.png)
 
-By increasing or decreasing the rows and columns of the box and changing the width, you can create the following layout, for example.  
+By adding and removing rows and columns of boxes and changing their width, you can make layouts like the following, for example.  
 
 - 1 column - 2 columns
 ![Custom form page](img/form/column1-2.png)
@@ -103,196 +108,210 @@ By increasing or decreasing the rows and columns of the box and changing the wid
 - 1 column - 2 columns - 1 column
 ![Custom form page](img/form/column1-2-1.png)
 
+
 ### Form item candidate list:  
-Items that can be added to the form.  
-There are two types, "Table column" and "Other".  
+The candidates of the items that can be added to the form.  
+There are two kinds: "Table Column" and "Other".  
+
+![Custom form page](img/form/item_candidate_list.png)
 
 #### Table column  
-A custom column item set in a custom table.  
-You can place it on the data form by dragging and dropping it into the "Form Item" box. You can usually edit or view the value of an item, although it behaves differently depending on the type of custom column and the settings in [Form Item Details](#form-item-details).  
+The items of the custom columns set on the custom table.  
+Drag and drop one into a box of "Form Items", and it is placed on the data form. The behavior differs by the type of the custom column and the settings of [Form item details](/form?id=form-item-details), but usually the value of the item can be edited or shown.
 
 #### Other  
-Items that are not linked to data such as headings, descriptions, and HTML displayed on the form.  
-By dragging and dropping it into the "Form Item" box, it will be placed on the data form.
+Items that are only shown on the form and are not connected to data, such as headings, explanations and HTML.  
+Drag and drop one into a box of "Form Items", and it is placed on the data form.
 
-- ##### Heading:  
-It will be displayed in the form as a heading.  
+- ##### Heading:
+Shown on the form in the form of a heading.
 
-- ##### Explanatory text:  
-Display a descriptive text on the form. HTML is not available.  
+- ##### Explanatory text:
+Shows an explanation on the form. HTML cannot be used.
 
-- ##### HTML:  
-Display HTML on the form.  
-\* For safety, `<script>` and `<iframe>` tags and the `id` attribute are not output (v6.2.15 and later). To run a script on the screen, use a [script plugin](/plugin_quickstart_script).  
+- ##### HTML:
+Shows HTML on the form.  
+Note: for safety, the `<script>` and `<iframe>` tags and the `id` attribute are not output (v6.2.15 or later). To run a script on the screen, use a [script plugin](/plugin_quickstart_script).  
 
 - ##### Extended HTML：
-In addition to HTML, you can use a string in the format specified by the [parameter](/params). When drawing the page, you can create HTML by replacing it with the value of the saved data.  
-\* As with "HTML", `<script>` and `<iframe>` tags and the `id` attribute are not output (v6.2.15 and later).  
-Example：
+In addition to HTML, strings in the format given by [parameters](/params) can be used. When the screen is drawn, they are replaced with the values of the saved data to make the HTML.  
+Note: as with "HTML", the `<script>` and `<iframe>` tags and the `id` attribute are not output (v6.2.15 or later).  
+Example:
 ```
-<h4>ID：${id}、Company Code：${value:company_code}</h4>
+<h4>ID: ${id}, Company code: ${value:company_code}</h4>
 ```
-\* Column values ​​are replaced only when drawing on the screen. Please note that even if you edit the value of the target column on the data edit screen, the value will not be changed in conjunction with it.  
+Note: the column values are replaced only when the screen is drawn. Please note that even if you edit the value of the column on the data edit screen, the value does not change along with it.  
 
 - ##### Image：
-Display the image on the form.
+Shows an image on the form.
 
 - ##### Hairline：
-Display hairlins on the form.
+Shows a ruled line on the form.
+
 
 
 #### Form item details
-Items added to the box are labeled as shown below.  
-
-- Items that are required in the custom column settings are marked with a red mark next to their names.
-- Click the trash can icon to the right of the label to remove the item from the box.
-- Click the gear icon to the right of the label to display the advanced settings dialog.
+An item added to a box appears with a label like the following.  
+- An item made required in the custom column settings has a red mark next to its name.  
+- Press the trash can icon to the right of the label to remove the item from the box.  
+- Press the gear icon to the right of the label to show the detail setting dialog.  
 
 ![Custom form page](img/form/item_details_button.png)
 
 ![Detail setting dialog](img/form/item_details_dialog.png)
 
 ##### Heading display format
-You can set the heading display method for each item individually. (Prefers over form-wide settings)
+You can decide how the heading is shown for each item.
+(It takes priority over the setting of the whole form)
 
 ##### Field Type
-Set the display format on the data form screen.
+Decide how the item is shown on the data form screen. There are the following four.
 
-- Read Only：  
-If checked, the value cannot be changed by the user. Values ​​can be changed / acquired only from the system, calculated fields, and [data linkage settings](#data-linkage-settings).
-Once set, the form will be grayed out as shown below.
+| Type | How it looks on the screen | The user changes the value | Used from calculated fields and data linkage settings |
+|---|---|---|---|
+| Read Only | Shown grayed out | Cannot | Can |
+| View Only | Shown as text | Cannot | Cannot |
+| Hidden Field | Not shown (added as a hidden field) | - | Can |
+| Hide | Not shown (added inside the system just before saving) | - | - |
+
+- Read Only:  
+When checked, the user cannot change the value. The value can be changed and read only from the system, calculated fields and the [Data linkage settings](/form?id=data-linkage-settings).  
+When set, it is shown grayed out on the form, as below.  
 ![Custom form page](img/form/read_only.png)  
-- Display Only:    
-If checked, the value cannot be changed by the user. Values ​​cannot be changed or obtained from the system, calculated fields, or [data linkage settings](#data-linkage-settings).  
-Once set, it will appear as text on the form, as shown below.
+- View Only:  
+When checked, the user cannot change the value. The value cannot be changed or read from the system, calculated fields or the [Data linkage settings](/form?id=data-linkage-settings) either.  
+When set, it is shown as text on the form, as below.  
 ![Custom form page](img/form/view_only.png)  
-- Hidden field：  
-If checked, the item will not be displayed on the page and will be added as a hidden field. Use this setting when you want to use it in the calculated field and [data linkage settings](#data-linkage-settings), but you do not want to display it on the page.
+- Hidden Field:  
+When checked, the item is not shown on the screen and is added as a hidden field.  
+Use this setting when you want to use the item in calculated fields and the [Data linkage settings](/form?id=data-linkage-settings) but do not want to show it on the screen.  
 
-- Hide：  
-If checked, the item will not be added to the page. It is added inside the system just before saving the data.
-Since it does not exist on the page, it cannot be used in calculated fields or data linkage settings.
-Use this setting for items that you do not want to be tampered with or modified, such as internal parameter values.
+- Hide:  
+When checked, the item is not added to the screen. It is added inside the system just before the data is saved.  
+Because it is not on the screen, it cannot be used in calculated fields or data linkage settings.  
+Use this setting for items you do not want tampered with or changed, such as internal parameter values.
 
 
 ##### Data linkage settings (item)  
-Please refer to the [Data linkage settings](#data-linkage-settings).  
+See [Data linkage settings](/form?id=data-linkage-settings).  
 
 ##### Related refinement settings (items)  
-Please refer to the [Related refinement settings](#related-refinement-settings).  
+See [Related refinement settings](/form?id=related-refinement-settings).  
 
 
 ## Data linkage settings
-If there is an item in the form that selects data from another table, you can copy the contents of the selected data to another related item.  
-Ex: When "Customer" is selected in the "Contract" form, the value of "Customer Name" in the "Customer" data is copied to "Customer Name" in the "Contract" form.  
+When the form has an item that chooses data of another table, the content of the chosen data can be copied to another item of the form.  
+Example: when "Customer" is chosen in the "Contract" form, the value of "Customer name" in the "Customer" data is copied to "Customer name" in the "Contract" form.
 
 ![Custom form page](img/form/form_changedata1.png)
-The "Contract" form has a "Customer" select and one line of "Customer Name" text,  
+The "Contract" form has a "Customer" option and a "Customer name" one-line text,  
   
-![Custom form page](img/form/form_changedata2.png)
-When "Customer" is selected,  
-  
-![Custom form page](img/form/form_changedata3.png)
-The value is automatically set in the "customer name" text  
+![Custom form page](img/form/form_changedata2.png) 
+and when "Customer" is chosen, 
 
-![Custom form page](img/form/form_changedata4.png)
+![Custom form page](img/form/form_changedata3.png)
+the value is set automatically in the "Customer name" text  
+
+![Custom form page](ja/img/form/dataconnection.png)
 <br />  
 
 #### Procedure
-- Open the custom form page.  
-Click the setting icon of form item "Customer Name".  
+- Open the custom form screen.  
+Press the setting icon of "Customer name" in the form items.  
 ![Custom form page](img/form/form_changedata_manual1.png)
 
-- There is an item of "Data linkage settings" in the opened dialog.  
+- The dialog that opens has the "Data Linkage Setting" item.  
 ![Custom form page](img/form/form_changedata_manual2.png)
 
-- Under Select Column, select the custom column that will trigger the change.  
- \* In the same form, you can select columns with column types of "Select (from table)", "User", or "Organization". This time, select "Customer".  
+- In "Select Column", choose the custom column that is the trigger of the copy.  
+**Note: you can choose columns in the same form whose column type is "Select (From Table)", "User" or "Organization".**
+In this example, choose "Customer".  
 ![Custom form page](img/form/form_changedata_manual3.png)
 
-- By selecting the "Select column" item, the choice of the second item "Select link column" is displayed.  
-The column list of the table selected in the "Select column" item is displayed.  
-This time, select "Customer Name".  
+- When "Select Column" is chosen, the options of the second item "Select Link Column" appear.  
+The custom columns of the table chosen in "Select Column" appear as a list.  
+In this example, choose "Customer name".  
 ![Custom form page](img/form/form_changedata_manual4.png)
 
-- Finally, click the [Set] button.
-The dialog closes and the word "Set" is displayed next to the "Data Linkage Settings" button.  
+- Finally, press the [Setting] button.  
+The dialog closes, and "Already Setting" appears next to the [Data Linkage Setting] button.  
 ![Custom form page](img/form/form_changedata_manual5.png)
 
-- Click the "Send" button at the bottom of the page to complete the settings. 
+- Press the [Submit] button at the bottom of the page to save the settings.
+
 
 
 ## Related refinement settings
-When the column type is "Select (from table)", "User", or "Organization", the choice is narrowed down according to the selection of another item in the same form. It can be set only when the columns of the parent table or referenced table of the target table exist in the same form.  
+When the column type is "Select (From Table)", "User" or "Organization", the options are narrowed down by what is chosen in another item of the same form. It can be set only when a column of the parent table or of a referenced table of the target table exists in the same form.  
 
 #### Example
-1:n relationship is set in the "Customer Information" table and the "Contact Information" table, and the "Customer" column and the "Contact Information" column exist in the "Contract Information" table.  
-When selecting the "Customer" column, I want to narrow down the options in the "Person in charge" column to only the person in charge whose parent is the selected "Customer".  
+The "Customer information" table and the "Contact person information" table have a 1:n relation, and the "Contract information" table has a "Customer" column and a "Contact person" column.  
+When the "Customer" column is chosen, you want to narrow down the option candidates of the "Contact person" column to only the contact persons whose parent is the chosen "Customer".
 
-![Custom form page](img/form/relation_filter1.png)  
+![Custom form page](ja/img/form/1.n.png)  
 
-There is the following data,
+With data like the following,
 ![Custom form page](img/form/relation_filter2.png)  
 
-On the contract information page,
+on the contract information screen,
 ![Custom form page](img/form/relation_filter3.png) 
 
-After selecting "A Co., Ltd." in "Customer", select the person in charge belonging to A Co., Ltd. as an option candidate.
+when "Company A" is chosen in "Customer", the contact persons who belong to Company A become the option candidates,
 ![Custom form page](img/form/relation_filter4.png)  
 
-If "B Co., Ltd." is selected in "Customer", the person in charge belonging to B Co., Ltd. is selected as an option candidate.
+and when "Company B" is chosen in "Customer", the contact persons who belong to Company B become the option candidates.
 ![Custom form page](img/form/relation_filter5.png)  
 
 #### Procedure
-- Open the Custom form page.  
-In the form item, click the settings icon in the Contact column.  
+- Open the custom form screen.  
+Press the setting icon of the "Contact person" column in the form items.  
 ![Custom form page](img/form/relation_filter6.png)
 
-- In the dialog that opens, there is an item for "Related refinement settings".
-The choices you see are a list of columns that are the parent of the selected column in the same form.
-In this example, the Customer table column, which is the parent table of the Contact table, is displayed in the choices.  
-\* The "Related refinement setting" button is displayed when the custom column is "Select (from table)", "User", and "Organization".
+- The dialog that opens has the "Relation Filter Setting" item.  
+The options shown are the list of the columns, in the same form, that are the parent of the chosen column.  
+In this example, the column of the "Customer" table, which is the parent table of the "Contact person" table, is shown in the options.  
+Note: the "Relation Filter Setting" button is shown when the custom column is "Select (From Table)", "User" or "Organization".
 ![Custom form page](img/form/relation_filter7.png)
 
-- After setting, click the "Set" button.  
+- After setting, press the "Setting" button.  
 
 
 #### Specifications less than v3.3.1
-<span class="small">In v3.3.1 or less, this setting screen was not displayed, and the choices were narrowed down in all fields with 1: n parent-child relationship / reference relationship.  
-As a result, sometimes it caused unnecessary narrowing down and unexpected problems, so in v3.3.1, we added a setting so that you can select whether or not to narrow down.  
-When updating from less than v3.3.1 to v3.3.1 or higher, in order to maintain compatibility, the setting "narrow down the options in all fields with 1: n parent-child relationship / reference relationship" is inherited. I will.  
-Click [here](/patch/relation_filter) for details on the specifications at the time of update.</span>
+<span class="small">In versions lower than v3.3.1, this setting screen was not shown, and the options were narrowed down in all fields with a 1:n parent-child relation or a reference relation.  
+As a result, it sometimes caused unneeded narrowing down and unexpected problems, so in v3.3.1 a setting was added so that you can choose whether to narrow down.  
+When updating from a version lower than v3.3.1 to v3.3.1 or higher, the setting "narrow down the options in all fields with a 1:n parent-child relation or a reference relation" is carried over, to keep compatibility.  
+See [here](/patch/relation_filter) for the details of the specification at the update.</span>
 
 
 ## Form priority settings
-By setting the conditions and priority, you can switch the form screen used for data creation and data detail page.  
+By deciding conditions and priorities, the form used for creating data and on the data detail screen can be switched by conditions.  
 
 ### Create New
-Create from the [New] button to the right of the form priority settings.
+Make one with the [New] button to the right of Form Display Condition Setting.
 ![Form priority](img/form/form_display_conditions.png)
 
 ### Setting Page
 ![Form priority](img/form/form_priority.png)
 
 ##### Target Form  
-Select the form you want to display when the conditions are match.
+Choose the form you want to use when the conditions are met.
 
 ##### Priority  
-Set the display priority of the form.   
-If the data meets multiple form display conditions, the form with the highest priority will be displayed on the screen.
+Decide the priority with which the form is used.
+For data that meets several form display conditions, the screen is shown with the form of the highest priority.
 
 ##### Condition Item  
-This column is used as a display condition.
+The column used as the display condition.
 
 ##### Search Condition  
-Select the content to be a condition.  
-The selection items change depending on the type of content selected in "Condition items" ("Date", "User", etc.).
+Choose the content of the condition.
+What you can choose changes by the type of the column chosen in "Condition Item" ("Date", "User" and so on).
 
 ##### Condition Value  
-Enter the conditions to match the contents of the search conditions.
+Enter the value compared with the search condition.
 
 ##### ［Delete］button  
-Delete the display condition of the form.
+Deletes a display condition of the form.
 
 ##### ［New］button  
-Add a new form display condition.
+Adds a new display condition of the form.

@@ -15,7 +15,7 @@ For each custom column type, this reference describes the following.
 
 ## Type stored in the database for each custom column: overview
 This describes the value that is stored in the database when data is saved from the screen or the API.  
-※In the database, the values of all custom columns are stored in a json-type column named "value". This description shows which type each value is stored as inside that json-type column "value".  
+Note: In the database, the values of all custom columns are stored in a json-type column named "value". This description shows which type each value is stored as inside that json-type column "value".  
 
 
 ## Return value of the function getValue: overview
@@ -38,28 +38,28 @@ To change the format of the value you get, set the format in the second argument
 The values returned by getValue come in the following four main types.  
 
 ### pureValue
-・The value closest to the one registered in the database.  
-・Returned in this type when "ValueType::PURE_VALUE" is specified in the second argument of getValue.  
-・Values are also returned in this type when you [get data with the API](https://exment.net/reference/webapi.html).
+- The value closest to the one registered in the database.  
+- Returned in this type when "ValueType::PURE_VALUE" is specified in the second argument of getValue.  
+- Values are also returned in this type when you [get data with the API](https://exment.net/reference/webapi.html).
 
-※Mainly used in:  
+Mainly used in:  
 - [Data export (normal)](/data_import_export)
 - [Getting data with the API](https://exment.net/reference/webapi.html)
 
 
 ### value
-・Almost the same result as pureValue. However, some column types return an object.  
-・Returned in this type when the second argument of getValue is not specified, is false, or is "ValueType::VALUE".
+- Almost the same result as pureValue. However, some column types return an object.  
+- Returned in this type when the second argument of getValue is not specified, is false, or is "ValueType::VALUE".
 
-※Mainly used in:  
+Mainly used in:  
 - Internal processing.
 
 
 ### text
-・The string used when outputting to the screen or a file as text (label).  
-・Returned in this type when the second argument of getValue is true or is "ValueType::TEXT".
+- The string used when outputting to the screen or a file as text (label).  
+- Returned in this type when the second argument of getValue is true or is "ValueType::TEXT".
 
-※Mainly used in:  
+Mainly used in:  
 - [Heading display column](/table?id=heading-display-column-setting)
 - [Data export (view format)](/data_import_export)
 - [Parameter variables](/params)
@@ -67,10 +67,10 @@ The values returned by getValue come in the following four main types.
 
 
 ### html
-・The string or tag used when outputting to the screen as HTML.  
-・Returned in this type when "ValueType::HTML" is specified in the second argument of getValue.
+- The string or tag used when outputting to the screen as HTML.  
+- Returned in this type when "ValueType::HTML" is specified in the second argument of getValue.
 
-※Mainly used in:  
+Mainly used in:  
 - [Data list](/data_grid)
 - [Data details](/data_details)
 - [Dashboard](/dashboard)
@@ -276,7 +276,7 @@ Integer. Includes commas if the "Use Number Comma String" option is enabled.
 
 #### setValueStrictly - When setting a value
 Set as an integer type or an integer string  
-※The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
+Note: The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
 
 ``` php
 // OK(1)
@@ -289,7 +289,7 @@ $value->setValueStrictly(['integer' => '1,000']);
 
 #### API - When setting a value
 Set as an integer type or an integer string  
-※The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
+Note: The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
 
 ``` json
 // OK(1)
@@ -330,7 +330,7 @@ Decimal. Includes commas if the "Use Number Comma String" option is enabled.
 
 #### setValueStrictly - When setting a value
 Set as a decimal type or a decimal string  
-※The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
+Note: The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
 
 ``` php
 // OK(1)
@@ -343,7 +343,7 @@ $value->setValueStrictly(['decimal' => '1,000.03']);
 
 #### API - When setting a value
 Set as a decimal type or a decimal string  
-※The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
+Note: The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.
 
 ``` json
 // OK(1)
@@ -383,8 +383,8 @@ The amount entered. Includes commas if the "Use Number Comma String" option is e
 
 #### setValueStrictly - When setting a value
 Set as a numeric type or a numeric string  
-※The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.  
-※Currently, a value that includes the currency unit cannot be set. Please remove the currency unit before setting the value.
+Note: The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.  
+Note: Currently, a value that includes the currency unit cannot be set. Please remove the currency unit before setting the value.
 
 ``` php
 // OK(1)
@@ -399,8 +399,8 @@ $value->setValueStrictly(['currency' => '1,000円']);
 
 #### API - When setting a value
 Set as a numeric type or a numeric string  
-※The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.  
-※Currently, a value that includes the currency unit cannot be set. Please remove the currency unit before setting the value.
+Note: The value can be set even if it contains commas. In that case, the commas are removed automatically when saving to the database.  
+Note: Currently, a value that includes the currency unit cannot be set. Please remove the currency unit before setting the value.
 
 ``` json
 // OK(1)
@@ -446,7 +446,7 @@ Date in "yyyy-MM-dd" format.  However, if a format is specified, the value is re
 
 #### setValueStrictly - When setting a value
 Set as a date string or a Carbon object  
-※We recommend setting date strings in "yyyy-MM-dd" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
+Note: We recommend setting date strings in "yyyy-MM-dd" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
 
 ``` php
 // OK(1)
@@ -457,7 +457,7 @@ $value->setValueStrictly(['date' => \Carbon\Carbon::now()]);
 
 #### API - When setting a value
 Set as a date string  
-※We recommend setting date strings in "yyyy-MM-dd" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
+Note: We recommend setting date strings in "yyyy-MM-dd" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
 
 ``` json
 // OK
@@ -528,7 +528,7 @@ Date and time in "yyyy-MM-dd HH:mm:ss" format.  However, if a format is specifie
 
 #### setValueStrictly - When setting a value
 Set as a date and time string or a Carbon object  
-※We recommend setting date and time strings in "yyyy-MM-dd HH:ii:ss" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
+Note: We recommend setting date and time strings in "yyyy-MM-dd HH:ii:ss" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
 
 ``` php
 // OK(1)
@@ -539,7 +539,7 @@ $value->setValueStrictly(['datetime' => \Carbon\Carbon::now()]);
 
 #### API - When setting a value
 Set as a date and time string  
-※We recommend setting date and time strings in "yyyy-MM-dd HH:ii:ss" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
+Note: We recommend setting date and time strings in "yyyy-MM-dd HH:ii:ss" format. The value is converted automatically with a Carbon object, and other formats have not currently been tested.
 
 ``` json
 // OK
@@ -570,7 +570,7 @@ Set one of the option items
 $value->setValueStrictly(['select' => 'Orange']);
 ```
 
-※When multiple selection is allowed, set the value as an array
+Note: When multiple selection is allowed, set the value as an array
 
 ``` php
 // OK
@@ -589,7 +589,7 @@ Set one of the option items
 }
 ```
 
-※When multiple selection is allowed, set the value as an array
+Note: When multiple selection is allowed, set the value as an array
 
 ``` json
 // OK
@@ -624,7 +624,7 @@ $value->setValueStrictly(['select_valtext' => 'val1']);
 $value->setValueStrictly(['select_valtext' => 'Orange']);
 ```
 
-※When multiple selection is allowed, set the value as an array
+Note: When multiple selection is allowed, set the value as an array
 
 ``` php
 // OK
@@ -649,7 +649,7 @@ Set the value or the label of an option
 }
 ```
 
-※When multiple selection is allowed, set the value as an array
+Note: When multiple selection is allowed, set the value as an array
 
 ``` json
 // OK
@@ -690,7 +690,7 @@ $value->setValueStrictly(['select_table' => 1]);
 $value->setValueStrictly(['select_table' => "3"]);
 ```
 
-※When multiple selection is allowed, set the value as an array
+Note: When multiple selection is allowed, set the value as an array
 
 ``` php
 // OK
@@ -715,7 +715,7 @@ Set the id of the data in the referenced table, as an integer type or a string
 }
 ```
 
-※When multiple selection is allowed, set the value as an array
+Note: When multiple selection is allowed, set the value as an array
 
 ``` json
 // OK

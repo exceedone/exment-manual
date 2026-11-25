@@ -5,7 +5,7 @@ From v7.2.4, each user can choose the language of the pages and the time zone. M
 A user can choose the language in any of these places:
 
 - The user menu at the top right
-- "Language" in the login user settings (the user menu at the top right → "Login user settings")
+- "Language" in the Login User Setting (the user menu at the top right → "Login User Setting")
 - The login page
 
 The languages are 日本語, English, Tiếng Việt, 简体中文, 한국어, Deutsch and Español.
@@ -16,19 +16,19 @@ The languages are 日本語, English, Tiếng Việt, 简体中文, 한국어, D
 ### The order of the languages
 Exment decides the language in this order:
 
-1. The language the user chose in the login user settings
+1. The language the user chose in the Login User Setting
 1. The language chosen on the login page
-1. The language of the browser (when "Use the browser's language when a user has not chosen one" is YES in the system settings; among the languages the users can choose)
+1. The language of the browser (when "Use the browser's language when a user has not chosen one" is YES in the System Setting; among the languages the users can choose)
 1. The language of the site
 
-Choosing "Automatic (the language of the browser)" for "Language" in the login user settings goes back to "not chosen".
+Choosing "Automatic (the language of the browser)" for "Language" in the Login User Setting goes back to "not chosen".
 
 > [!WARNING]
 > After updating to v7.2.4, users who have not chosen a language and whose browser is not in the site language see Exment in the language of their browser.  
-> To keep the site language for everyone, set System settings → [Advanced settings] → "Use the browser's language when a user has not chosen one" to NO.
+> To keep the site language for everyone, set System Setting → [Detail Setting] → "Use the browser's language when a user has not chosen one" to NO.
 
 ## Choosing the time zone
-Choose the time zone in "Time zone" of the login user settings. The default is "The time zone of the site".
+Choose the time zone in "Time zone" of the Login User Setting. The default is "The time zone of the site".
 
 Date and times are shown and typed in that time zone: lists, details, forms, filters such as "today", calendar, Gantt chart, Kanban, comments, histories, notifications and operation logs.
 
@@ -44,7 +44,7 @@ Date and times are shown and typed in that time zone: lists, details, forms, fil
 Mails and notifications are sent in the language and the time zone of the person who receives them. When that person has not chosen a language, the language of the site is used.
 
 ## Settings for administrators
-Set these in System settings → [Advanced settings] (see [System setting](/system_setting.md)).
+Set these in System Setting → [Detail Setting] (see [System setting](/system_setting)).
 
 | Item | Description | Default |
 | --- | --- | --- |

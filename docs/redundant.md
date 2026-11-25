@@ -1,31 +1,38 @@
 # (For advanced users) Redundancy
-When building a Web system, there are many cases where the Web server is made redundant.  
-This section describes the procedure for performing a redundant configuration with Exment.
+A site can have two or more web servers, so that it can still be used when one of them stops (redundancy).  
+This page gives the steps to run Exment in a redundant configuration.
+
+There are two things to do.
+
+1. Prepare each web server and install the additional libraries
+2. In the `.env` file, change where files are kept and how sessions are managed
 
 ## Introduction
-On this page, the following configuration is constructed.
+On this page, the following configuration is built.  
 
 
 ### Things to consider when making redundancy
-In general, the following points need to be considered when compared to a single-configuration Web system.
+Unlike with one web server (a single configuration), you need to think about the following two points.
 
-- **Placing the uploaded file on a screen other than the Web server If you upload the file to the Web server,**  you will not be able to access the file from the other Web server.  
-Therefore, it must be uploaded to a different location than the web server.  
-This time, upload the file to AWS S3.  
+- **Put the uploaded files in a place other than the web server**  
+If a file uploaded from the screen is put on a web server, the other web server cannot open that file.  
+Therefore, upload to a place separate from the web servers.  
+On this page, files are uploaded to AWS S3.  
 
 - **Change the session management method**  
-When using Laravel's standard functions, session management is performed using files placed on the web server.  
-However, with redundancy, if the other Web server is accessed, the session will not exist, and the login status will be lost.  
-Therefore, change the session management method.  
-This time, I will use Redis.
+By the Laravel default, sessions (the login state and so on) are managed with files put on the web server.  
+With redundancy, the session does not exist when the other web server is accessed, so the login state is lost.  
+Therefore, change how sessions are managed.  
+On this page, Redis is used.
+
 
 ## How to build
 ### Web server construction
-Build each Web server.  
-Basically, there is no problem if you [install using the normal installation method](/quickstart), but you need to additionally perform only the following contents.  
+Prepare each web server.  
+You can install by the [normal installation method](/quickstart), but do the following two things in addition.
 
 #### Installing additional libraries
-Execute composer and install the following library on the web server.  
+With composer, install the following libraries on the web server.
 
 ~~~
 # S3
@@ -36,13 +43,13 @@ composer require predis/predis
 ~~~
 
 #### Modify .env file
-- Open the .env file and add or change the following settings.
+- Open the .env file and add or change the following setting values.  
 
 ~~~
 ###File upload management
-EXMENT_DRIVER_EXMENT=s3 #s3 Destination to upload files with Exment. Set to s3
-AWS_ACCESS_KEY_ID=XXXXXX #AWS S3 secret key
-AWS_SECRET_ACCESS_KEY=XXXXXX #AWS S3 region
+EXMENT_DRIVER_EXMENT=s3 #Where Exment uploads files. Set to s3
+AWS_ACCESS_KEY_ID=XXXXXX #AWS S3 access key
+AWS_SECRET_ACCESS_KEY=XXXXXX #AWS S3 secret key
 AWS_DEFAULT_REGION=ap-northeast-1 #AWS S3 region
 AWS_BUCKET=XXXXXX #AWS S3 bucket name
 

@@ -15,6 +15,8 @@ A preset is that work done once. The column, or the view column, stores only *wh
 
 ## Where presets are used
 
+Presets are used on these four screens.
+
 | Screen | What it does | Permission |
 | --- | --- | --- |
 | Cell style presets (the library) | List, create, edit and delete presets | System administrator |
@@ -31,16 +33,18 @@ A preset picked on a view **wins over the column setting**.
 
 Open `(your Exment address)/cell_style_preset` in the browser.
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/cell_style_preset`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
-To reach it at any time, add it to the [menu](/menu.md).
+To reach it at any time, add it to the [menu](/menu) setting.
 
-1. Open "Administrator setting" &gt; "Menu".
+1. Open "Admin Setting" &gt; "Menu".
 2. Click [New] at the top right.
 3. Choose "System Menu" as the menu type and "Cell style presets" as the menu name.
-4. Choose the parent menu to show it under, and save.
+4. Choose the parent menu to show it under ("Admin Setting", for example), and save.
 
 ![Preset list](img/cell_style_preset/preset_grid.png)
+
+The list shows these items.
 
 | Column | Content |
 | --- | --- |
@@ -50,7 +54,7 @@ To reach it at any time, add it to the [menu](/menu.md).
 | Order | Position in the pickers (smaller comes first) |
 | Updated | Last update |
 
-A fresh installation already carries 15 presets.
+When Exment is installed, 15 often-used presets are already registered.
 
 | Preset name | Main column types |
 | --- | --- |
@@ -87,6 +91,7 @@ Click [New] at the top right of the list, or the edit icon of a row.
 The name shown in the pickers. Required.
 
 #### Cell style
+Choose the shape the value is shown in.
 
 | Option | What it draws |
 | --- | --- |
@@ -120,7 +125,7 @@ An icon drawn before the value, chosen from the button.
 Not drawn for "Avatar", "Progress bar" and "Fill the whole cell".
 
 #### No wrap
-Set YES to stop the text wrapping inside the cell. Useful for dates and numbers.
+Set YES to stop the text wrapping inside the cell of the list. Use it for columns that are hard to read when broken in the middle, such as dates and numbers.
 
 #### Column types
 The preset is offered on the checked column types. Check none to offer it on every type.
@@ -143,7 +148,7 @@ Position in the pickers. Smaller comes first.
 
 ![Preview](img/cell_style_preset/preset_preview.png)
 
-5. Save with the button at the bottom of the form.
+5. Save with the [Submit] button at the bottom of the screen.
 
 ### Colour per value
 
@@ -158,7 +163,9 @@ The pencil button next to "Appearance preset" opens the preset editor in place.
 
 ![The preset editor](img/cell_style_preset/preset_modal.png)
 
-Everything typed on the left updates the preview on the right straight away.
+Everything changed on the left updates the "Preview" on the right straight away.
+
+The bottom of the dialog has these buttons.
 
 ![The editor buttons](img/cell_style_preset/preset_modal_buttons.png)
 
@@ -166,7 +173,7 @@ Everything typed on the left updates the preview on the right straight away.
 | --- | --- |
 | Save as new preset | Adds the current settings as **another** preset. The original is untouched. |
 | Update this preset | Overwrites the preset being edited. **Every other column using it changes too.** |
-| Delete | Deletes the preset. Press twice to confirm. |
+| Delete | Deletes the preset. To prevent mistakes, it is deleted when pressed once more. |
 | Close | Closes without saving. |
 
 > To use an existing look with small changes, use **"Save as new preset"**, not "Update this preset" - updating changes every column that picked it.
@@ -191,11 +198,11 @@ It falls back to the plain, undecorated look. The data is not affected.
 Its "Column types" probably does not include that column's type. Open the preset on the library screen and check it; leave every box unchecked to offer it on all types.
 
 #### Changing one look changed another table too
-Presets are shared across the whole installation. To change one table only, use "Save as new preset" and pick the new preset there.
+A preset does not belong to a table; it is shared across the whole of Exment. To change one table only, use "Save as new preset" and pick the new preset there.
 
 ## See also
 
-- [Custom columns](/column.md)
-- [Custom views](/view.md)
-- [List of data](/data_grid.md)
-- [Kanban view](/view_kanban.md)
+- [Custom columns](/column)
+- [Custom views](/view)
+- [List of data](/data_grid)
+- [Kanban view](/view_kanban)

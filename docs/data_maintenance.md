@@ -1,5 +1,5 @@
 # Data maintenance
-A page where the administrators of a table tidy its data at once. Open "Data Maintenance" from "Table detail settings" at the top right of the table pages (URL `/data_maintenance/(table name)`).
+A page where the administrators of a table tidy its data at once. Open "Data Maintenance" from "Table Detail Setting" at the top right of the table pages (URL `/data_maintenance/(table name)`).
 
 Note: this page is in Exment v7.3.0 and later.  
 Note: turn "Data maintenance" on in "Feature management". It is off at first.  
@@ -41,7 +41,7 @@ When a day is given, **only the files added before that day** are deleted. Empty
 What was deleted (the table, what, the day, the numbers and the size) is in the [operation log](/logs) as `data_maintenance/(table name)/attachments`.
 
 ## Deleting the data too
-When the data may go too, "Delete completely" in [Deleted data](/deleted_data) also deletes the attachments of that data.
+When the data may go too, "Permanently Delete" in [Deleted data](/deleted_data) also deletes the attachments of that data.
 
 ## Related
 - [Feature management](/feature)

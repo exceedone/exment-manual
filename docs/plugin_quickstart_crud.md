@@ -1,15 +1,15 @@
 ## Plugin (CRUD page)
 Add your own CRUD page to Exment.  
-**※ The plugin (CRUD) provides many features and functions. For details, please refer to the [Plugin reference](/plugin_reference_crud).**  
-※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
+**Note: the plugin (CRUD) provides many features and functions. For details, see the [Plugin reference](/plugin_reference_crud).**  
+Note: the classes of the admin library are written with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin"). If you use v6.x or lower, read them as "Encore\Admin". For details, see [here](/update/v7_0_0).  
 
 ## What is CRUD
-CRUD stands for Create, Read, Update, and Delete.  
-By adding List to these, you can develop plugins specialized in CRUD + List.  
-The screen structure is almost the same as the list, details, create, update, and delete screens for Exment custom data, so you can implement it with only the minimum required development.  
-This allows you to manage external data (for example, other database engines, WordPress, SharePoint lists, third-party web databases, accounting systems, etc.) on Exment screens without importing the data into Exment.  
-Also, compared with developing a [plugin (page)](/plugin_quickstart_page), you only need to develop the internal processing such as retrieving and adding data. Basically no UI development is required, so development man-hours are greatly reduced.
+CRUD stands for Create, Read, Update and Delete.
+This plugin is specialized in making "CRUD + List" screens, which add List to these.
+
+- The screen structure is almost the same as the list, details, create, update and delete screens of Exment custom data. You can make it with only the minimum development.
+- You can manage external data (for example, other database engines, WordPress, SharePoint lists, other companies' web databases, accounting systems) on Exment screens without importing it into Exment.
+- You only develop the internal processing, such as getting and adding data. Basically no UI development is needed, so it takes much less work than developing a [plugin (page)](/plugin_quickstart_page).
 
 ![CRUD](img/crud/crud1.png)  
 
@@ -22,10 +22,10 @@ Also, compared with developing a [plugin (page)](/plugin_quickstart_page), you o
 - Authentication can be configured. Supports "key", "ID and password", or "OAuth authentication". You can control access so that the CRUD page can be accessed only when these settings exist and the user is authenticated
 
 ## How to create (minimum required)
-As a sample, this section describes the steps to create a screen that "lists, shows, creates, updates, and deletes data in the MySQL database 'world', which is a different database from Exment's".  
+This section explains the steps with an example: a screen that "lists, shows, creates, updates and deletes, in Exment, the data of the MySQL database 'world', which is separate from Exment".
 
 ### Preparation
-Perform the following as preparation.
+First, do the following two things.
 - Create an external database. This plugin uses the MySQL sample database "world". Download the zip from [the official website](https://dev.mysql.com/doc/index-other.html) and execute the unzipped SQL in your MySQL (or MariaDB) environment.
 ![MySQL download page](img/plugin/plugin_event1.png)  
 
@@ -72,9 +72,9 @@ Perform the following as preparation.
 
 ~~~
 
-- plugin_name should be written in alphanumeric characters.
-- uuid is a character string of 32 characters + hyphens, totaling 36 characters. It is used to make the plugin unique.  
-Please create one from the following URL etc.  
+- Enter plugin_name in single-byte alphanumeric characters.
+- uuid is a string that tells plugins apart. It is 32 characters plus hyphens, 36 characters in total. Make sure it is not the same value as another plugin's.  
+You can make one at the following URL, for example.  
 https://www.famkruithof.net/uuid/uuidgen
 - For uri, enter the URI used to access this plugin.  
 (If not specified, it is generated from plugin_name.)  
@@ -82,7 +82,7 @@ https://www.famkruithof.net/uuid/uuidgen
 
 ### Plugin file creation
 Create the following PHP file. The file name should be "Plugin.php".  
-**※ The example below is the minimum configuration. The plugin (CRUD) provides many other features and functions besides the ones below. For details, please refer to the [Plugin reference](/plugin_reference_crud).**  
+**Note: the example below is the minimum. The plugin (CRUD) provides many other features and functions. For details, see the [Plugin reference](/plugin_reference_crud).**  
 
 ~~~ php
 <?php
@@ -250,8 +250,8 @@ class Plugin extends PluginCrudBase
 
 ~~~
 
-- (1) The namespace should be **App\Plugins\\(Pascal case of plugin name)**. [Click here for details](/plugin_quickstart#plugin-name-namespace)  
-Also, the class name should be "Plugin" and inherit PluginCrudBase.
+- (1) The namespace should be **App\Plugins\\(plugin name in Pascal case)**. [Click here for details](/plugin_quickstart?id=plugin-name-namespace)  
+Also, name the class "Plugin" and extend PluginCrudBase.
 
 - (2) The property title is the title displayed on each page.
 
@@ -268,28 +268,28 @@ Also, the class name should be "Plugin" and inherit PluginCrudBase.
     - Set "create" for items displayed on the create screen. Enter an integer for the display order.
     - Set "edit" for items displayed on the edit screen. Enter an integer for the display order.
 
-- (6) The function getPaginate retrieves the data list in paginated form.  
-Return the retrieved data as a LengthAwarePaginator.  
-Each element of the list should be an associative array, and the keys of that associative array should be the same as the keys set in getFieldDefinitions.  
-※ When a search is performed on the screen, values are set in the argument $options. For details, please refer to the reference.
+- (6) The function getPaginate gets the data list in paginated form.  
+Return the data as a LengthAwarePaginator.
+Make each element of the list an associative array, with the same keys as the keys set in getFieldDefinitions.
+Note: when a search is made on the screen, values are set in the argument $options. For details, see the [Plugin reference](/plugin_reference_crud).
 
-- (7) The function getData retrieves the data details (a single record).  
-The details should be an associative array, and the keys of that associative array should be the same as the keys set in getFieldDefinitions.
+- (7) The function getData gets the data details (a single record).  
+Make the data an associative array, with the same keys as the keys set in getFieldDefinitions.
 
-- (8) The function setForm sets up the form for the create screen and the edit screen.  
-Implement this function if you want to specify the form in your own way.  
-※ If this function is not implemented, the items with "create" or "edit" set in the function getFieldDefinitions are displayed on the screen.
+- (8) The function setForm sets the form for the create screen and the edit screen.  
+Implement this function when you want to shape the form freely.
+Note: if this function is not implemented, the items with "create" or "edit" set in the function getFieldDefinitions are shown on the screen.
 
-- (9) The function postCreate is called when Save is executed on the create screen. Register the newly created data here.  
+- (9) The function postCreate is called when you save on the create screen. Register the new data here.
 
-- (10) The function putEdit is called when Save is executed on the edit screen. Register the edited data here.  
+- (10) The function putEdit is called when you save on the edit screen. Update the data here.
 
-- (11) The function delete is called when Delete is executed on the screen. Delete the data here.  
-※ Depending on the screen, an array may be set in the argument $id.
+- (11) The function delete is called when you delete on the screen. Delete the data here.
+Note: depending on the screen, an array is set in the argument $id.
 
 
 ### Compress to zip
-Compress the above two files into a zip with the minimum configuration.  
+Compress the above two files, as the minimum configuration, into a zip.  
 The zip file name should be "(plugin_name).zip".  
 - MySQLWorld.zip
     - config.json
@@ -297,8 +297,8 @@ The zip file name should be "(plugin_name).zip".
 
 
 ## Sample plugins
-※The sample plugins below support Exment v7.0.0 or later, and use the namespace "ExmentAdminCore\Admin".  
-If you are using v6.x or lower, please replace "ExmentAdminCore\Admin" with "Encore\Admin" in "Plugin.php" before using them. For details, please check [here](/update/v7_0_0).
+Note: the sample plugins below are for Exment v7.0.0 or later and use the namespace "ExmentAdminCore\Admin".  
+If you use v6.x or lower, replace "ExmentAdminCore\Admin" in "Plugin.php" with "Encore\Admin". For details, see [here](/update/v7_0_0).
 
 The following samples are available.
 

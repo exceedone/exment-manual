@@ -1,25 +1,33 @@
 # Data import / export (command)
-Import and export the data of each table saved in Exment from the command.
+This page explains how to import and export the data of a table with commands on the server.
 
-> For an overview of data import / export, see [here](/data_import_export).
+| What you want to do | Command | Where to look |
+|---|---|---|
+| Put data out to a file | `php artisan exment:export` | "Data export" |
+| Put data out in parts of a set number of records | `php artisan exment:chunkexport` | "Data export (chunk mode)" |
+| Put data in from a file | `php artisan exment:import` | "Data import" |
+| Put files into "Image" and "File" columns at once | `php artisan exment:file-import` | "Data import - attachments of image and file columns" |
+| Put the attachments (documents) of data in at once | `php artisan exment:document-import` | "Data import - document (attachment) list" |
+
+> For an overview of data import and export, see [Data import / export](/data_import_export).
 
 ## Data export
-Export (output) the data of each table saved in Exment from the command.  
-The output data format is compatible with csv and xlsx.
+Exports (outputs) the data of a table to a file by command.  
+The file format is csv or xlsx.  
 
 
 ### Method of operation
 
-- Execute the following command on the command line.
+- Run the following command on the command line.
 
 ~~~
 php artisan exment:export (table name)
 
-#Example
+# Example
 php artisan exment:export information
 ~~~
 
-- By executing the above command, csv data will be output to the folder "(Exment root folder)/storage/app/export/(execution date: yyyyMMddHHiiss)".
+- When this command is run, the csv data is output to the folder "(Exment root folder)/storage/app/export/(execution date and time: yyyyMMddHHiiss)".
 
 ### Command arguments
 
@@ -28,123 +36,116 @@ php artisan exment:export (table name) {--action=default} {--type=all} {--page=1
 ```
 
 - ##### table name  
-(Required) The table name (alphanumeric characters) to be output.
+(Required) The name (alphanumeric) of the table to output.
 
-- ##### action
-(Optional) How to perform the export.  
-    - default: Output all system columns and custom columns. Default value.  
-    - view: Output in the specified view format.  
+- ##### action  
+(Optional) How the export is done.
+    - default : Outputs all system columns and custom columns. The default value.
+    - view : Outputs in the format of the specified view.
 
-- ##### type
-(Optional) The type (number) of data to export.  
-    - all: All data. Default value.  
-    - page: The specified page.  
+- ##### type  
+(Optional) The kind (number) of data to export.
+    - all : All data. The default value.
+    - page : The specified page.
 
-- ##### page
-(Optional) Page number if type is page. integer. If not specified, the first page is output.
+- ##### page    
+(Optional) When type is page, the page number. An integer. When not specified, the first page is output.
 
-- ##### count
-(Optional) If type is page, the maximum number of data items to output.  
-If not specified, the number of data items specified in the target view.  
+- ##### count    
+(Optional) When type is page, the maximum number of records to output. When not specified, the number of records specified in the target view.
 
-- ##### format
-(Optional) The file format to export.  
-    - csv: CSV format. Default value.  
-    - xlsx: Xlsx (Excel) format.  
+- ##### format  
+(Optional) The file format to export.
+    - csv : CSV format. The default value.
+    - xlsx : Xlsx (Excel) format.
 
-- ##### view
-(Optional) The view to output. Specify by id or suuid.  
-If not set, output in all views.
+- ##### view  
+(Optional) The view to output. Specified by id or suuid. When not set, the all data view is used.
 
-- ##### dirpath
-(Optional) The folder path to export.  
-full path. If not set, (Exment root folder)/storage/app/export/(Execution date: yyyyMMddHHiiss).
+- ##### dirpath  
+(Optional) The folder path to export to. A full path. When not set, (Exment root folder)/storage/app/export/(execution date and time: yyyyMMddHHiiss).
 
-- ##### add_relation
-(Optional) Whether to output relation data as well.  
-The default value is 0 (no output).
+- ##### add_relation  
+(Optional) Whether to output the relation data too. The default value is 0 (not output). Valid only in the Xlsx format and when action is default.
 
-- ##### add_setting
-(Optional) Whether to output setting data as well.  
-The default value is 0 (no output).
+- ##### add_setting  
+(Optional) Whether to output the setting data too. The default value is 0 (not output). Valid only in the Xlsx format and when action is default.
 
-- ##### add_comment
-(Optional) Whether to output the comments of each data as well.  
-The default value is 0 (no output). If 1 is specified, the comments are output to the sheet "comment" (for CSV format, the file "comment"). Valid only when action is default and the "Use Comment" setting of the table is YES.
+- ##### add_comment  
+(Optional) Whether to output the comments of each record too. The default value is 0 (not output). When 1 is specified, the comments are output to the sheet (in the CSV format, the file) "comment". Valid only when action is default and the table has "Use Comment" of the custom table setting set to YES.
 
 ~~~
-# Example: export in Xlsx format, with the comments
+# Example: output in the Xlsx format, with the comments
 php artisan exment:export information --format=xlsx --add_comment=1
 ~~~
 
 
 
 
-<h2 id="export_chunk">Data export (chunk mode)</h2>
-Data is divided and output for each specified number (default value: 1000).   
-When outputting a large amount of data, you can reduce the number of lines in one file.
+<h2 id="export_chunk"><a href="#/data_cmd_import_export?id=export_chunk" data-id="export_chunk" class="anchor"><span>Data export (chunk mode)</span></a></h2>
+
+The data is output in parts of a set number of records (default value: 1000). When outputting a large amount of data, the number of rows in one file can be kept small.  
 
 
 ### Method of operation
 
-- Execute the following command on the command line.
+- Run the following command on the command line.
 
 ~~~
 php artisan exment:chunkexport (table name)
 
-#Example
+# Example
 php artisan exment:chunkexport information
 ~~~
 
-- By executing the above command, csv data will be output to the folder "(Exment root folder)/storage/app/export/(execution date: yyyyMMddHHiiss)".
+- When this command is run, the csv data is output to the folder "(Exment root folder)/storage/app/export/(execution date and time: yyyyMMddHHiiss)".
 
 
 ### Command arguments
 
 ```
-exment:chunkexport {table name} {--action=default} {--start=1} {--end=1000} {--count=1000} {--seqlength=1} {--format=csv} {--view=} {--dirpath=}
+php artisan exment:chunkexport (table name) {--action=default} {--start=1} {--end=1000} {--count=1000} {--seqlength=1} {--delimiter=} {--format=csv} {--view=} {--dirpath=}
 ```
 
 - ##### table name  
-(Required) The table name (alphanumeric characters) to be output.
+(Required) The name (alphanumeric) of the table to output.
 
-- ##### action
-(Optional) How to perform the export.  
-    - default: Output all system columns and custom columns. Default value.  
-    - view: Output in the specified view format.  
+- ##### action  
+(Optional) How the export is done.
+    - default : Outputs all system columns and custom columns. The default value.
+    - view : Outputs in the format of the specified view.
 
-- ##### start
-(Optional) Number to start output.  
-If the export ends in the middle, you can restart the export from the specified serial number. If not specified, 1.
+- ##### start  
+(Optional) The file number at which the output starts. When an export stopped partway, it can also be restarted from the specified sequence number. When not specified, 1.
 
-- ##### end
-(Optional) Number to end output. 1000 if not specified.  
+- ##### end  
+(Optional) The file number at which the output ends. When not specified, 1000.
 
-- ##### count
-(Optional) Maximum number of data items to output to one file. 1000 if not specified.
+- ##### count    
+(Optional) The maximum number of records output to one file. When not specified, 1000.
 
-- ##### seqlength
-(Optional) The number of zero-padded serial numbers.  
-As an example, if you enter "3", the serial numbers will be output as "001", "002". If not specified, 1.
+- ##### seqlength    
+(Optional) The number of digits of the zero-padded sequence number. For example, with "3" the sequence numbers are output as "001", "002". When not specified, 1.
 
-- ##### format
-(Optional) The file format to export.  
-    - csv: CSV format. Default value.  
-    - xlsx: Xlsx (Excel) format.  
+- ##### delimiter    
+(Optional) The character put between the table name and the sequence number in the file name. When not specified, "." (period).
 
-- ##### view
-(Optional) The view to output.  
-Specify by id or suuid. If not set, output in all views.
+- ##### format  
+(Optional) The file format to export.
+    - csv : CSV format. The default value.
+    - xlsx : Xlsx (Excel) format.
 
-- ##### dirpath
-(Optional) The folder path to export. full path.  
-If not set, (Exment root folder)/storage/app/export/(Execution date: yyyyMMddHHiiss).
+- ##### view  
+(Optional) The view to output. Specified by id or suuid. When not set, the all data view is used.
+
+- ##### dirpath  
+(Optional) The folder path to export to. A full path. When not set, (Exment root folder)/storage/app/export/(execution date and time: yyyyMMddHHiiss).
 
 
 
 ### Output specifications
 
-- The file name is output as a serial number, such as **"(custom table name).serial number.csv"** (example: client.1.csv).
+- The files are output with sequence numbers, with names like **"(custom table name).sequence number.csv"** (example: client.1.csv).
 
 ```
 #Example
@@ -152,55 +153,236 @@ client.1.csv
 client.2.csv
 client.3.csv
 
-#Example (when seqlength = 3 is specified)
+#Example (when seqlength=3 is specified)
 client.001.csv
 client.002.csv
 client.003.csv
 ```
 
-- The maximum number of files in one execution is 1000 regardless of the number of data or the count option.
+- Regardless of the number of records and the count option, at most 1000 files can be output in one run.
 
 
 
 ## Data import
-Batch data from files in the specified folder to the custom table of Exment.
-※The files that can be used are EXCEL files or csv files in the same format as those imported from the screen.
-※You can enter more than 5000 data that is limited on the screen.
+Puts data into a custom table at once, from files placed in a set folder.
+
+- The files that can be used are EXCEL files or csv files in the same format as for the import from the screen.  
+- More than 5000 records, which is the limit on the screen, can also be put in.  
 
 ### important point
-- CSV files compressed in ZIP format are not processed.
+- CSV files compressed in the ZIP format cannot be imported.  
 
-- Since error checking is performed in the same way as importing from the screen, it may take a very long time if a large amount of data is input.
+- The same error checks as for the import from the screen are done. Therefore, putting in a large amount of data can take a very long time.  
 
-- Imported data is processed in units of 100. Register the first 100 items normally → If there is a defect in the data in the next 100 items, the file processing will be canceled at that point.  
-The 100 already registered items cannot be undone. Please respond by manually deleting or removing the registered data from the file.
+- The data is imported 100 records at a time. For example, if the first 100 records are registered correctly and then the next 100 records have a defect, the processing of the file is stopped there. The 100 records already registered cannot be undone. Delete them by hand, or remove the registered data from the file.  
+
+- <span class="red">Even with the import by command, data with a very large number of records can cause an error because of insufficient memory.</span>  
+We are currently working on improving this. To import a large amount of data, use the [bulk data insert](/data_bulk_insert).
+
+- When importing by csv, at present only the data of that table can be imported. To import relation data too, import by xlsx.
 
 
 ### Data preparation
-First, create a file for import. For details, see [here](/data_import_export).
+First, make the file for import. See [Template output](/data_import_export?id=template-output) for details.  
 
-※The file name is **"(custom table name).csv"** (example: client.csv). Since the files in the folder are imported in order of name, you can also add a serial number at the beginning like **"serial number#(custom table name).csv"** (example: 001#client.csv).
+- The character code of csv files that can be imported is <strong>UTF-8</strong>.  
 
-※The character code of the csv file that can be imported is <strong> UTF-8 </strong>.
+- Use one of the following formats for the file name.  
+Note: the files in the folder are imported in order of name. Therefore, when the order of import matters, such as when importing related data at the same time, use method 3 and add sequence numbers in the order of import.
+
+    1. "(custom table name).csv"    Example: client.csv
+    2. "(custom table name).(sequence number).csv"   Example: client.1.csv, client.002.csv
+    3. "(sequence number).(custom table name).csv"   Example: 01.client.csv, 02.estimate.csv
+
+- <span class="small">Before v3.8.0, a file named "<span class="bold">sequence number<span class="red">#</span>(custom table name).csv</span>" could also be imported.  
+In v3.8.0, [the library used on import was changed](/ja/update/v3_8) (Japanese), so a file with this name can no longer be imported.  
+To import with sequence numbers, change the name to the format "<span class="bold">sequence number<span class="red">.</span>(custom table name).csv</span>" and import.</span>
 
 ### Method of operation
 
-- Create a working folder in the following path on the server.  
-It is recommended that the folder name be something that shows the contents of this work, the date, etc.
+- Make a working folder in the following place on the server. A folder name that shows what this work is about, or a date, is recommended.  
 
 ~~~
 (Project root directory)/storage/app/import/(folder name)
 ~~~
 
-- Place the created csv file or EXCEL file (s) in the above folder.
+- Put the csv files or EXCEL files you made (several are possible) in that folder.
 
 #### Folder layout example
-![Working folder for batch submission](ja/img/import/folder1.png)
+![Working folder for the bulk import](ja/img/import/folder1.png)  
 
-- Execute the following command on the command line.
+- Run the following command on the command line.
 ~~~
 php artisan exment:import {folder name}
 ~~~
 
 #### Command execution example
-![Command execution example](ja/img/import/cmd1.png)
+![Command execution example](ja/img/import/cmd1.png)  
+
+
+### After the run is complete
+- When the import is finished, delete the files placed in the "storage/app/import" folder as needed. (Note: they are not deleted automatically.)
+
+
+<h2 id="import_file"><a href="#/data_cmd_import_export?id=import_file" data-id="import_file" class="anchor"><span>Data import - attachments of image and file columns</span></a></h2>
+Attachments can be registered at once in columns whose custom column type is "Image" or "File". It is the part of the screen below.  
+
+![File import](ja/img/import/file_import1.png)  
+
+### Specifications
+- When a new attachment is imported into a custom column that already has an attachment registered, the previous file is deleted.
+
+
+### Preparing the import data
+
+- Make a working folder in the following place on the server. A folder name that shows what this work is about, or a date, is recommended.  
+
+~~~
+(Project root directory)/storage/app/file-import/(folder name)
+~~~
+
+- Make a "files" folder in the folder you made.
+
+- Put all the attachments you want to import in the "files" folder.
+
+### Filling in the import information
+- Make the file for import. Download the import file from the following links.  
+    - [xlsx format](https://exment.net/downloads/template/file_import_ja.xlsx)
+    - [csv format](https://exment.net/downloads/template/file_import_ja.csv)
+
+- The character code of csv files that can be imported is <strong>UTF-8</strong>.  
+
+- Use one of the following formats for the file name.  
+Note: the files in the folder are imported in order of name. Therefore, when the order of import matters, such as when importing related data at the same time, use method 3 and add sequence numbers in the order of import.
+
+    1. "(custom table name).csv"    Example: client.csv
+    2. "(custom table name).(sequence number).csv"   Example: client.1.csv, client.002.csv
+    3. "(sequence number).(custom table name).csv"   Example: 01.client.csv, 02.estimate.csv
+
+- For xlsx, the file name is free. Use the following format for the sheet name.  
+
+    1. "(custom table name)"    Example: client
+
+- Write the values in the sheet. Follow "List of import items" below.
+
+- Put the import file you made in "(Project root directory)/storage/app/file-import/(folder name)".
+
+#### List of import items
+
+![File import](ja/img/import/file_import2.png)  
+
+##### id (ID)  
+The ID of the custom data the attachment is imported into. A positive integer numbered automatically in sequence when the data is registered.  
+
+##### column_name (column name)  
+The alphanumeric name of the custom column the attachment is imported into. (Example: estimate_file, avatar)  
+
+##### file_name (attachment file name)  
+Write the name of the attachment placed in the "files" folder.
+
+##### display_file_name (attachment file name (screen display))  
+The file name used when the attachment is shown on the screen and when it is downloaded. Note: it may be left out. When it is left out, the value of file_name is the file name on download.
+
+### Folder structure before import
+The folder structure at import is as follows.
+
+```
+(Project root directory)/storage/app/file-import/(folder name)
+    - Import file (example: client.csv)
+    - files
+        - File to import (example: attachment1.pdf)
+        - File to import (example: attachment2.pdf)
+        - File to import (example: attachment3.jpg)
+```
+
+### Method of operation
+
+- Run the following command on the command line.
+~~~
+php artisan exment:file-import {folder name}
+~~~
+
+### After the run is complete
+- When the run is finished, the attachments placed in the "storage/app/file-import" folder have been copied to a place the application can download them from.  
+Delete the files placed in the "storage/app/file-import" folder as needed. (Note: they are not deleted automatically.)
+
+
+
+<h2 id="import_document"><a href="#/data_cmd_import_export?id=import_document" data-id="import_document" class="anchor"><span>Data import - document (attachment) list</span></a></h2>
+Files can be registered at once as the documents (attachments) of custom data. It is the part of the screen below.  
+
+![File import](ja/img/import/document_import1.png)  
+
+### Specifications
+- Several attachments can be added to the same custom data. Even when attachments are already registered, the previous files are not deleted.
+
+
+### Preparing the import data
+
+- Make a working folder in the following place on the server. A folder name that shows what this work is about, or a date, is recommended.  
+
+~~~
+(Project root directory)/storage/app/document-import/(folder name)
+~~~
+
+- Make a "documents" folder in the folder you made.
+
+- Put all the attachments you want to import in the "documents" folder.
+
+### Filling in the import information
+- Make the file for import. Download the import file from the following links.  
+    - [xlsx format](https://exment.net/downloads/template/document_import_ja.xlsx)
+    - [csv format](https://exment.net/downloads/template/document_import_ja.csv)
+
+- The character code of csv files that can be imported is <strong>UTF-8</strong>.  
+
+- Use one of the following formats for the file name.  
+Note: the files in the folder are imported in order of name. Therefore, when the order of import matters, such as when importing related data at the same time, use method 3 and add sequence numbers in the order of import.
+
+    1. "(custom table name).csv"    Example: client.csv
+    2. "(custom table name).(sequence number).csv"   Example: client.1.csv, client.002.csv
+    3. "(sequence number).(custom table name).csv"   Example: 01.client.csv, 02.estimate.csv
+
+- For xlsx, the file name is free. Use the following format for the sheet name.  
+
+    1. "(custom table name)"    Example: client
+
+- Write the values in the sheet. Follow "List of import items" below.
+
+- Put the import file you made in "(Project root directory)/storage/app/document-import/(folder name)".
+
+#### List of import items
+
+![File import](ja/img/import/document_import2.png)  
+
+##### id (ID)  
+The ID of the custom data the attachment is imported into. A positive integer numbered automatically in sequence when the data is registered.  
+
+##### file_name (attachment file name)  
+Write the name of the attachment placed in the "documents" folder.
+
+##### display_file_name (attachment file name (screen display))  
+The file name used when the attachment is shown on the screen and when it is downloaded. Note: it may be left out. When it is left out, the value of file_name is the file name on download.
+
+### Folder structure before import
+The folder structure at import is as follows.
+
+```
+(Project root directory)/storage/app/document-import/(folder name)
+    - Import file (example: client.csv)
+    - documents
+        - File to import (example: attachment1.pdf)
+        - File to import (example: attachment2.pdf)
+        - File to import (example: attachment3.jpg)
+```
+
+### Method of operation
+
+- Run the following command on the command line.
+~~~
+php artisan exment:document-import {folder name}
+~~~
+
+### After the run is complete
+- When the run is finished, the attachments placed in the "storage/app/document-import" folder have been copied to a place the application can download them from.  
+Delete the files placed in the "storage/app/document-import" folder as needed. (Note: they are not deleted automatically.)

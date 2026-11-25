@@ -1,67 +1,68 @@
 # Deleted data
-- In each Exment table, you can display the deleted data.
-- Deleted data can only be displayed by users who have permission to view deleted data.
-- Users with edit privileges can restore or permanently delete data.
+This page explains the screen for seeing deleted data as a list, and for putting it back (restoring) or deleting it permanently.
 
-※Please refer to [Role Group](/role_group.md) for details on permissions.
+- Deleted data can be shown only by users who have permission to show deleted data.
+- Users with edit permission can restore data and delete it permanently.  
+
+Note: for details on permissions, see [Role group](/role_group).
 
 ## List display
-![Data screen](img/data/deleted_data1.png)
+![Data screen](img/data/deleted_data1.png)  
 
-- Select "Deleted data" from the ▼ mark on the upper left side of [Filter] on the data list screen.
-- The display changes and the deleted data for that table is listed.
+1. On the data list screen, choose "Deleted Data" from the ▼ mark to the right of [Filter] at the top left.
+2. The display changes and the deleted data of that table is listed.
 
-![Data screen](img/data/deleted_data2.png)
+![Data screen](img/data/deleted_data2.png)  
 
 
 ## Detail View
 
-- The data in the deleted data list can be displayed in detail.
-- Click the display icon in the data row or operation column for which you want to display details.
+- The details of data in the deleted data list can be shown.  
+- Click the row of the data you want to show, or the show icon in the action column.
 
-![Data screen](img/data/deleted_data3.png)
+![Data screen](img/data/deleted_data3.png)  
 
-- On the data details screen, you can check the display of the deleted user and the deleted date and time.
+- On the data details screen, you can check the user who deleted it and the date and time of deletion.
 
-![Data screen](img/data/deleted_data4.png)
+![Data screen](img/data/deleted_data4.png)  
 
 ## Restore
 
-- Deleted data can be restored to the data list screen.
-- Restoration can be done in three ways.
+- Deleted data can be put back on the data list screen (restored).
+- There are three ways to restore.
     - Use the [Restore] button on the data details screen.
-    ![Data screen](img/data/deleted_data5.png)
-    - On the deleted data list screen, use the [Restore] icon in the operation column.
-    ![Data screen](img/data/deleted_data6.png)
-    - On the deleted data list screen, check the data you want to restore and select "Restore" from the ▼ mark at the top left of the deleted data screen.
-    ![Data screen](img/data/deleted_data7.png)
+    ![Data screen](img/data/deleted_data5.png)  
+    - On the deleted data list screen, use the [Restore] icon in the action column.
+    ![Data screen](img/data/deleted_data6.png)  
+    - On the deleted data list screen, check the data you want to restore, and choose "Restore" from the ▼ mark at the top left of the deleted data screen.
+    ![Data screen](img/data/deleted_data7.png)  
 
-※Data can only be restored by users who have permission to edit the data.
+Note: only users who have edit permission for the data can restore it.
 
 
 ## Completely deleted
 
-- Deleted data can be completely deleted as data. Completely deleted data will be deleted from the deleted data list.
-- Complete deletion can be done in three ways.
-    - Use the [Delete Permanently] button on the data details screen.
-    ![Data screen](img/data/deleted_data8.png)
-    - On the deleted data list screen, use the [Permanently delete] icon in the operation column.
-    ![Data screen](img/data/deleted_data9.png)
-    - On the deleted data list screen, check the data you want to delete completely and select "Permanently delete" from the ▼ mark at the top left of the deleted data screen.
-    ![Data screen](img/data/deleted_data10.png)
+- Deleted data can be deleted permanently. Permanently deleted data also disappears from the deleted data list.
+- There are three ways to delete permanently.
+    - Use the [Permanently Delete] button on the data details screen.
+    ![Data screen](img/data/deleted_data8.png)  
+    - On the deleted data list screen, use the [Permanently Delete] icon in the action column.
+    ![Data screen](img/data/deleted_data9.png)  
+    - On the deleted data list screen, check the data you want to delete permanently, and choose "Permanently Delete" from the ▼ mark at the top left of the deleted data screen.
+    ![Data screen](img/data/deleted_data10.png)  
 
-※Data can only be deleted by users who have permission to edit the data.
+Note: only users who have edit permission for the data can delete it permanently.
 
 
 ## Move to the data list screen
 
-- On the deleted data list screen, click [Deleted data ▼] and select "Cancel" to move to the data list screen for that table.
+- On the deleted data list screen, click [Deleted Data ▼] and choose "Cancel" to move to the data list screen of that table.
 
-![Data screen](img/data/deleted_data11.png)
+![Data screen](img/data/deleted_data11.png)  
 
 
 #### Authority settings
-- In order to display deleted data, the user needs to have permission to view the data.
-- In order to restore deleted data or delete it completely, the user needs edit permission for the data.
+- To show deleted data, the user needs permission to show that data.
+- To restore deleted data or delete it permanently, the user needs edit permission for that data.
 
-※Please refer to [Role Group](/role_group.md) for permission settings.
+Note: for the permission settings, see [Role group](/role_group).

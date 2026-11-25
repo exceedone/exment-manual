@@ -1,6 +1,7 @@
 ## Plugin (Dashboard)
 You can create a new screen on the Exment dashboard.  
-Use this if you want to use your own page as a dashboard item.  
+Use this when you want to use your own page as a dashboard item.  
+This page explains how to make a plugin (dashboard), with buttons for clocking in and out as the example.
 
 ## Introduction
 Exment plugin pages are developed using the PHP framework [Laravel](http://laravel.jp/) and the admin library [exment-admin-core](https://github.com/exceedone/exment-admin-core) (based on laravel-admin / open-admin; laravel-admin in v6.x or earlier).  
@@ -10,11 +11,11 @@ When developing a page, it is recommended that people with knowledge of Laravel 
 
 ### sample
 Here, the following page is created as a sample.
-- Create a table to manage user attendance.
-- Display buttons for attendance, break start, and break end on the dashboard.
+- Create a table to manage the users' clocking in and out.
+- Display the buttons for clocking in, clocking out, starting a break and ending a break on the dashboard.
 - By clicking the button, the time of the click is set in the data.
   
-![Dashboard](img/plugin/plugin_dashboard1.png)   
+![Dashboard](img/plugin/plugin_dashboard1.png)  
 
 ※  Please import [this](https://exment.net/downloads/sample/template/dakoku.zip) template in advance.  
 
@@ -28,8 +29,8 @@ Here, the following page is created as a sample.
 
 {
     "plugin_name": "Dakoku",
-    "plugin_view_name" : "Emboss",
-    "description": "Plugin for stamping on the dashboard.",
+    "plugin_view_name" : "Time clock",
+    "description": "A plugin for clocking in and out on the dashboard.",
     "uuid":  "691a24f2-2c7a-42c5-8cff-23c5277f6f22",
     "author":  "Kajitori",
     "version": "1.0.0",
@@ -53,12 +54,12 @@ Please create from the following URL etc.
 https://www.famkruithof.net/uuid/uuidgen
 - plugin_type should be written as dashboard.  
 - route defines a list of URL endpoints to be executed, their HTTP methods, and methods in the controller.  
-    - uri： uri for page display. The actual URL is "http(s)://(Exment URL)/plugins/(URL set on the plugin management screen)/(specified uri)".  
-    - method：HTTP method. Please fill in with get, post, put, delete.
-    - function：Method in Contoller to execute.
-- Be sure to include a route whose uri is empty (""). Access this endpoint when screen transition from the menu to the plugin page.
+    - uri: uri for page display. The actual URL is "http(s)://(Exment URL)/dashboardbox/plugin/(URL set on the plugin management screen)/(ID of the dashboard item)/(specified uri)".  
+    - method: HTTP method. Please fill in with get, post, put, delete.
+    - function: Method in the Controller to execute
+- Be sure to include a route whose uri is empty (""). This endpoint is accessed when the screen moves from the menu to the plugin page.
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URL is for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/dashboardbox/plugin/(URL set on the plugin management screen)/(ID of the dashboard item)/(specified uri)`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ### Plugin file creation
 
@@ -83,7 +84,7 @@ class Plugin extends PluginDashboardBase
     public function body()
     {
         if(is_null(CustomTable::getEloquent('dakoku'))){
-            return 'The stamping table is not installed. ';
+            return 'The time clock table is not installed.';
         }
         
         $dakoku = $this->getDakoku();
@@ -116,22 +117,22 @@ class Plugin extends PluginDashboardBase
 
         $status = null;
         switch(request()->get('action')){
-            // go to work
+            // Clock in
             case 'syukkin':
                 $dakoku->setValue('syukkin_time', $now);
                 $status = 1;
                 break;
-            // Start a break
+            // Start of break
             case 'kyuukei_start':
                 $dakoku->setValue('kyuukei_start_time', $now);
                 $status = 11;
                 break;
-            // end of break
+            // End of break
             case 'kyuukei_end':
                 $dakoku->setValue('kyuukei_end_time', $now);
                 $status = 21;
                 break;
-            // leave
+            // Clock out
             case 'taikin':
                 $dakoku->setValue('taikin_time', $now);
                 $status = 99;
@@ -166,7 +167,7 @@ class Plugin extends PluginDashboardBase
             $now = $now->addDay(-1);
         }
 
-        // Get the corresponding stamp
+        // Get the time clock record of that day
         $query = getModelName('dakoku')::query();
         $query->where('value->target_date', $now->toDateString())
             ->where('created_user_id', \Exment::user()->base_user_id);
@@ -195,26 +196,26 @@ class Plugin extends PluginDashboardBase
             case 0:
                 return 
                 [
-                    'status_text' => 'not working',
+                    'status_text' => 'Not clocked in',
                     'buttons' => [
                         [
-                        'button_text' => 'Attend',
+                        'button_text' => 'Clock in',
                         'action_name' => 'syukkin',
                         ]
                     ]
                 ];
-            // go to work
+            // Clocked in
             case 1:
                 return  
                 [
                     'status_text' => 'At work',
                     'buttons' => [
                         [
-                            'button_text' => 'break',
+                            'button_text' => 'Break',
                             'action_name' => 'kyuukei_start',
                         ], 
                         [
-                            'button_text' => 'Exit',
+                            'button_text' => 'Clock out',
                             'action_name' => 'taikin',
                         ], 
                     ]
@@ -223,7 +224,7 @@ class Plugin extends PluginDashboardBase
             case 11:
                 return 
                 [
-                    'status_text' => 'during break',
+                    'status_text' => 'On break',
                     'buttons' => [
                         [
                             'button_text' => 'End break',
@@ -246,7 +247,7 @@ class Plugin extends PluginDashboardBase
             case 99:
                 return 
                 [
-                    'status_text' => 'Leave work',
+                    'status_text' => 'Clocked out',
                     'buttons' => [
                     ]
                 ];
@@ -254,27 +255,27 @@ class Plugin extends PluginDashboardBase
     }
 }
 ~~~
-- (1) The namespace should be **App \ Plugins \ (plugin name)**.  
+- (1) The namespace should be **App\Plugins\\(Pascal case of plugin name)**. [Click here for details](/plugin_quickstart?id=plugin-name-namespace)  
 Also, the class name should be "Plugin" and inherit PluginDashboardBase.
 
 - (2) The public method name in the class is the name described in function of config.json.
 
-- (3) When using a view, add "exment_ (snake case for plug-in name) ::" as the prefix of the view name.
+- (3) When using a view, add "exment_(snake case of the plugin name)::" as the prefix of the view name.
 
-- (4) If you want to get the plugin endpoint, use the function "$ this-> getDashboardUri ('endpoint name')".  
-※ If you want to get the URL full path, use admin_url ($ this-> getDashboardUri ('endpoint name')).
+- (4) If you want to get the plugin endpoint, use the function "$this->getDashboardUri('endpoint name')".  
+※ If you want to get the URL full path, use admin_url($this->getDashboardUri('endpoint name')).
 
 #### (Optional) About views
-When separating views, save the blade file under the folder "resources / views".
+When separating views, save the blade file under the folder "resources/views".
 
 #### (Optional) For css, js, and other static files
-- Place the css file in the folder "public / css".
-- Please place the js file in the folder "public / js".
-- Other files (such as image files) should be placed in the folder "public / assets".
+- Place the css file in the folder "public/css".
+- Please place the js file in the folder "public/js".
+- Other files (such as image files) should be placed in the folder "public/assets".
 
 ### Compress to zip
-Compress the above two files into a zip with the minimum configuration.  
-The zip file name should be "(plugin_name) .zip".  
+Compress the above two files, as the minimum set, into a zip.  
+The zip file name should be "(plugin_name).zip".  
 - Dakoku.zip
     - config.json
     - Plugin.php
@@ -302,19 +303,19 @@ You can specify uri like "{id}".
 ~~~
 
 ## Reflect on dashboard
-If you want to reflect the plug-in uploaded this time on the dashboard, perform the following procedure.  
+To show the uploaded plugin on the dashboard, do the following steps.  
 
-- Click New on the dashboard.  
-If you upload a plug-in of type "Dashboard", "Plug-in" will be displayed as a choice.  
-![Dashboard](img/plugin/plugin_dashboard2.png)   
+1. Click "New" on the dashboard.  
+When a plugin of the type "Dashboard" has been uploaded, "Plugin" is shown in the choices.  
+![Dashboard](img/plugin/plugin_dashboard2.png)  
 
-- Enter the display name and the target plugin and submit.
-![Dashboard](img/plugin/plugin_dashboard3.png)   
+2. Enter the display name and the target plugin, and submit.
+![Dashboard](img/plugin/plugin_dashboard3.png)  
 
-- The dashboard displays the selected items.
-![Dashboard](img/plugin/plugin_dashboard4.png)   
+3. The selected item is displayed on the dashboard.  
+![Dashboard](img/plugin/plugin_dashboard4.png)  
 
 
 ### Sample plugin
-[Time stamp management](https://github.com/exment-git/plugin-sample/tree/main/dashboard/Dakoku)  
+[Time clock management](https://github.com/exment-git/plugin-sample/tree/main/dashboard/Dakoku)  
 ※ Please import [this template](https://exment.net/downloads/sample/template/dakoku.zip).

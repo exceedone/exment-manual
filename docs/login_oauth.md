@@ -1,183 +1,191 @@
 # Single sign-on (OAuth)
-In Exment, you can add single sign-on (SSO) by [Login Settings](/login_setting).
-This allows you to use the ID and password for each provider without having to manage a login password specifically for Exment.
-  
-This article describes how to set up SSO using OAuth.
+How to set up single sign-on (SSO) with OAuth. Users can then log in to Exment with an account of Google, Microsoft and so on.  
+In Exment, you can add single sign-on in the [Login Setting](/login_setting). Once it is added, users can log in with the ID and password of the provider (the service that handles the login, such as Google), and you do not have to manage a login password only for Exment.
 
+Do the settings in these two steps, in order.
+
+1. **Prepare the server and the provider** (create an application on the provider side, and install a library if needed) … "Server and provider settings"
+2. **Settings on the screen** (add the provider on the login setting screen) … "On-screen settings"
+
+Step 1 depends on the provider you use.
+
+| Provider you use | Where to look |
+|---|---|
+| Google, Facebook, Twitter, GitHub, LinkedIn, Bitbucket | (1) In case of a provider provided as standard by Socialite |
+| Office365, Microsoft Graph | (2) In case of provider provided by Exment extension |
+| Others | (3) If you provide your own provider |
 
 #### important point
-- In this example, single sign-on processing is implemented using [Socialite](https://github.com/laravel/socialite).
-- **This manual is intended for those who are familiar with OAuth. Please refer to the respective documents for information on how to create the Client ID and Client Secret for each provider.**
-- <span class="red">If you are using v3.0.16 or below and cannot log in to Google, please follow the steps here: (/patch/sso_google).</span>
+- Exment implements the single sign-on processing with [Socialite](https://github.com/laravel/socialite).
+- **This manual is for those who are familiar with OAuth. For how to create the Client ID and Client Secret of each provider, please refer to their documents.**
+- <span class="red">If you are on v3.0.16 or lower and cannot log in with Google, please follow [these steps](/patch/sso_google).</span>
 
 #### Reference links
-- [Open source web database "Exment" now supports SSO with Google accounts](https://qiita.com/hirossyi73/items/70dcc35305a96abace08)
+- [Supporting SSO with a Google account in the open source web database "Exment"](https://qiita.com/hirossyi73/items/70dcc35305a96abace08)
 
 
 ## Server and provider settings
-Before you can add a provider in the login settings screen, you need to enter a command on your server to install the extension.
+Before you add a provider on the login setting screen, you need to run commands on the server to install the extension.
 
 ### (1) In case of a provider provided as standard by Socialite
-- The standard providers provided by Socialite are as follows. (The characters in parentheses will be used to specify the service later.)
+- The providers that Socialite provides as standard are as follows. (The text in parentheses is used later to specify the service.)
     - Google (google)
     - Facebook (facebook)
     - Twitter (twitter)
     - GitHub (github)
-    - LinkedIn (linkedIn)
+    - LinkedIn (linkedin)
     - Bitbucket (bitbucket)
 
-- Create an application for Exment with each provider.
-※The callback URL is as follows:   
+- Create an application for Exment at each provider.  
+※The callback URL is as follows.  
 http(s)://(Exment URL)/auth/login/(socialite provider name)/callback  
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+    - Example 1, GitHub: http(s)://(Exment URL)/auth/login/github/callback  
+    - Example 2, Facebook: http(s)://(Exment URL)/auth/login/facebook/callback  
+    - Example 3, Google: http(s)://(Exment URL)/auth/login/google/callback  
 
-    - Example 1 For GitHub: http(s)://(Exment URL)/auth/login/github/callback  
-    - Example 2 For Facebook: http(s)://(Exment URL)/auth/login/facebook/callback  
-    - Example 3 For Google: http(s)://(Exment URL)/auth/login/google/callback  
+> ※The URLs are for the default setting without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (a site installed with an older version has "admin"), add that value after the URL of the site (e.g. `http(s)://(Exment URL)/admin/auth/login/google/callback`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
-- Run the following command in the Exment root directory:
+- Run the following command in the root directory of Exment.
 
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
-※ In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so this command is not required.
+※In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so you do not need to run this command.
 
-- Carry out [Screen Settings](#on-screen-settings).
+- Do the [On-screen settings](/login_oauth?id=on-screen-settings).
 
 
 
 
 ### (2) In case of provider provided by Exment extension
-- Some providers provide their own providers as an extension of Exment. (The characters in parentheses will be used to specify the service later.)
+- Some providers are provided as an extension of Exment. (The text in parentheses is used later to specify the service.)
     - Office365, Microsoft Graph (graph)
 
-- Create an application for Exment with each provider.
-※The callback URL is as follows:   
+- Create an application for Exment at each provider.  
+※The callback URL is as follows.  
 http(s)://(Exment URL)/auth/login/(socialite provider name)/callback  
 
-    - Example: For Office365: http(s)://(Exment URL)/auth/login/graph/callback
+    - Example, Office365: http(s)://(Exment URL)/auth/login/graph/callback
 
-- Run the following command in the Exment root directory:
+- Run the following command in the root directory of Exment.
 
 ~~~
 composer require exceedone/microsoft-graph
 ~~~
 
-- Carry out [Screen Settings](#on-screen-settings).
+- Do the [On-screen settings](/login_oauth?id=on-screen-settings).
 
 
 ### (3) If you provide your own provider
-If your provider is not listed in (1) or (2), add the unofficial provider at [Socialite Providers](https://socialiteproviders.github.io/).
-Also, unofficial providers do not include a process for obtaining avatars, so if you want to obtain an avatar, you will need to add the process. (Optional)  
+For a provider that is not in (1) or (2), add an unofficial provider from [Socialite Providers](https://socialiteproviders.github.io/).  
+The unofficial providers do not include the processing for getting an avatar (the image of the user) either. If you want to get the avatar, add that processing. (Optional)  
   
-※There are several steps, so please see [How to create your own provider](#how-to-create-your-own-provider) for details.
+※There are several steps. See [How to create your own provider](/login_oauth?id=how-to-create-your-own-provider) for details.
 
-- Once the procedure is complete, proceed to [Settings on screen](#on-screen-settings).
+- When the steps are done, do the [On-screen settings](/login_oauth?id=on-screen-settings).
 
 
 
 ## On-screen settings
-Once the server setup is complete, go to the [Login Settings Screen](/login_setting) and add the provider.
+When the server settings are done, add the provider on the [login setting screen](/login_setting).
 
-- Go to the system settings screen using the administrator account.   
-Click the Login Settings button in the top right of the page to go to the Login Settings screen.
+1. Open the System Setting screen with an administrator account.  
+Open the login setting screen from the "Login Setting" button at the top right of the page.  
 ![Login setting screen](ja/img/login/login_setting1.png)  
 
-- Click the New button to create a login setting.
+2. Press the New button to create a login setting. The items to enter are as below.
 
 ### Provider type
 ![Login setting creation screen](ja/img/login/login_oauth1.png)  
 
-- If you selected a provider in (1) in the Server/Provider Settings, please select the name of that provider.   
+- If you chose a provider of (1) in "Server and provider settings", select the name of that provider.  
 
-- If you selected provider (2) or (3) in the Server/Provider Settings, please select "Other."   
-Also, if you select "Other", please enter the alphanumeric characters for the provider type specified by Socialite in the provider type (alphanumeric characters) that appears.   
-Example: Microsoft Graph: "graph"  
-Example: EntraID: "microsoft"
+- If you chose a provider of (2) or (3) in "Server and provider settings", select "Other".  
+When you select "Other", "Provider Name" appears. Enter there the alphanumeric provider type that Socialite specifies.  
+Example, Microsoft Graph: "graph"
 
 ![Login setting creation screen](ja/img/login/login_oauth2.png)  
 
 
 ### Client ID, Client Secret
-Please set the string provided by your provider.
+Enter the strings given by the provider.
 
 ### Scope
-Basically, there is no explicit purpose for this when logging in, but we recommend setting it if you will be obtaining an access token with [obtain access token](#obtaining-an-access-token).
+For login only, it basically has no clear use. We recommend setting it if you get an access token as in [Obtaining an access token](/login_oauth?id=obtaining-an-access-token).
 
 ### Option Setting
-Set options according to the provider type selected.
-(If you select a provider type with no options set, it will not be displayed.)
+Set the options that fit the selected provider type.
+(It is not shown if you selected a provider type that has no option setting.)
 
 #### In case of the provider type is "other"
-![Option Settings](img/login/login_setting10.png) 
+![Option setting](img/login/login_setting10.png) 
 
 ##### Single Sign-out
-When you log out of Exment, you are also logged out of the provider you logged in with SSO.<span class="red">*Okta is not supported.</span>
+When you log out of Exment, you are also logged out of the provider you logged in to by SSO.<span class="red">※Okta is not supported at present.</span>
 
 <!---
-  OAuth, write the same thing in Saml
+  Write the same thing for OAuth and Saml
 -->
 ### User Setting
-Set the settings for the logged in user.
+Set how the logged-in user is handled.
 
-![User Settings](ja/img/login/login_setting5.png)  
+![User setting](ja/img/login/login_setting5.png)  
 
 #### Account search column
-Set which columns to use to search for Exment accounts from accounts obtained via SSO.
+Set which column of the account obtained by SSO is used to find the Exment account.
 
 #### Create a new user
-If YES, if the logged in user does not exist in Exment, create a new Exment user with the login information.
-If NO, you must create a user in Exment beforehand. If the logged in user does not exist in Exment, an error will be displayed.
+- If YES: when the logged-in user does not exist in Exment, a new Exment user is created from the login information.
+- If NO: you need to create the user in Exment beforehand. When the logged-in user does not exist in Exment, an error is shown.
 
 #### Role group settings
-If YES, you can associate a role group with a new Exment user when creating it.
+If YES, the new Exment user can be linked to role groups when it is created.  
 
 #### Update user information
-If YES, user information such as username will be updated when re-login.
+If YES, user information such as the user name is updated when the user logs in again.
 
 
-- Once you save your data at least once, the Activate button and the Test Login button will be displayed.
+- After you save the data once or more, the "Activate" button and the "Login Test" button are shown.
 
-- If the enable flag is set to YES, a button for SSO authentication will be displayed on the login screen.   
-※Normally, the default login form for entering the user ID and password will also be displayed. You can hide it as shown in the image in [SSO Settings](/system_setting?id=sso-settings).  
-
+- When the active flag is YES, a button for SSO authentication is shown on the login screen.  
+※Normally the default login form, for entering the user ID and password, is shown together. In the [SSO settings](/system_setting?id=sso-settings), you can also hide it as in the image.  
 ![SSO login screen](img/quickstart/sso1.png)
 
 
 
 ### Login button settings
-Set the login button to be displayed on the login screen.
-※Even if you do not make this setting, if you are using a provider that is standard on Socialite (as in Example 1 above), it will be displayed in the respective format.
+Set the login button shown on the login screen.  
+※Even without this setting, the providers in "(1) In case of a provider provided as standard by Socialite" above are shown in their own formats.
 
-![User Settings](ja/img/login/login_setting6.png)  
+![User setting](ja/img/login/login_setting6.png)  
 
 
 ### Activation and login test
-- Once you save your data at least once, the Activate button and the Test Login button will be displayed.
+- After you save the data once or more, the "Activate" button and the "Login Test" button are shown.
 
-![User Settings](ja/img/login/login_setting7.png)  
+![User setting](ja/img/login/login_setting7.png)  
 
 #### activation
-- By enabling it, a button for SSO authentication will be displayed on the login screen.   
-![User Settings](ja/img/login/login_setting8.png)  
+- When you run the activation, a button for SSO authentication is shown on the login screen.  
+![User setting](ja/img/login/login_setting8.png)  
 
 #### Login test
-- You can test your login with the login information you set by clicking the Login Test button. This can be done even if you have not enabled the login settings.
-**In that case, please temporarily add or change the URL displayed in the test redirect URL to the callback URL in the provider's OAuth authentication settings.**
+- Click the "Login Test" button to test a login with the login information you set. You can test even if the login setting is not activated.  
+**In that case, temporarily add the URL shown in "Redirect URL for Test" to the callback URL of the provider's OAuth authentication setting, or change the callback URL to it.**
 
-![User Settings](ja/img/login/login_setting9.png)  
+![User setting](ja/img/login/login_setting9.png)  
 
 
-- You can test whether the settings are correct by clicking the Login button.
-The login result will be displayed in the Execution Result section.
+- Click the "Login" button to test whether the settings are correct.  
+The result is shown in the "Execute Result" item.
 
 
 ### Obtaining an access token
 
-- After logging in, to obtain an access token and refresh token, please follow the steps below.
+- To get the access token and the refresh token after login, get them as follows.
 
-~~~php
+~~~ php
 use Exceedone\Exment\Services\Login\LoginService;
 
 $access_token = LoginService::getAccessToken();
@@ -187,47 +195,48 @@ $refresh_token = LoginService::getRefreshToken();
 
 
 ## How to create your own provider
-If you are performing step (3), add the packages specified in [Socialite Providers](https://socialiteproviders.github.io/).
-Also, create your own provider for avatar acquisition (optional).
+These are the detailed steps for (3). Add the package specified in [Socialite Providers](https://socialiteproviders.github.io/).  
+Also create your own provider for getting the avatar. (Optional)
+
+| Step | Required or not |
+|---|---|
+| Provider settings/addition | Required |
+| Development for obtaining avatars | Optional |
+| Add service provider | Required |
+| Add optional settings | Required for some providers |
+| Configure screen settings | Required |
 
 ### (Required) Provider settings/addition
-- Create an application for Exment with each provider.
-※The callback URL is as follows:   
+- Create an application for Exment at each provider.  
+※The callback URL is as follows.  
 http(s)://(Exment URL)/auth/login/(socialite provider name)/callback  
 
-    - Example: For Microsoft Graph: http(s)://(Exment URL)/auth/login/graph/callback
-    - Example: For EntraID: http(s)://(Exment URL)/auth/login/microsoft/callback
+    - Example, Microsoft Graph: http(s)://(Exment URL)/auth/login/graph/callback
 
-- Run the following command in the Exment root directory:
+- Run the following command in the root directory of Exment.
 
 ~~~
 composer require laravel/socialite=~5.1
 ~~~
-※ In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so this command is not required.
+※In Exment v7.0.0 or later, "laravel/socialite" is installed automatically as a dependency of Exment, so you do not need to run this command.
 
-- Add the packages specified in [Socialite Providers](https://socialiteproviders.github.io/).
+- Add the package specified in [Socialite Providers](https://socialiteproviders.github.io/).  
+
+    - Example: Microsoft Graph
 
 ~~~
-    ### Example: Microsoft Graph
 composer require socialiteproviders/microsoft-graph
-~~~
-~~~
-    ### Example: EntraID
-composer require socialiteproviders/microsoft
 ~~~
 
 ### (Optional) Development for obtaining avatars
-※Creating your own provider is an optional step to obtain avatars. If you do not need to obtain avatars, there is no need to create this provider.
+※Creating this provider of your own is an optional step for getting the avatar. If you do not need the avatar, you do not need to create it.
 
-- To get avatars, create two classes that inherit from existing providers in the app/Socialite folder. ※If the app/Socialite folder does not exist, create it.   
-The first one is MicrosoftGraphProvider.php. It implements the interface ProviderAvatar and getsAvatar.
-In the getAvatar method, please write the API process to obtain the avatar. Please check the URL and endpoint for obtaining the avatar from each OAuth provider.   
-The example below shows the steps for Microsoft Graph.
+- To get the avatar, create two classes that inherit the existing provider, in the folder "app/Socialite". ※If the folder "app/Socialite" does not exist, create it.  
+The first one is MicrosoftGraphProvider.php. It implements the interface ProviderAvatar and implements getAvatar.  
+In the getAvatar method, write the API processing that gets the avatar. Check the URL and the endpoint for getting it at each OAuth provider.  
+The example below is for Microsoft Graph.
 
-~~~php
-
-// Example: Microsoft Graph
-
+~~~ php
 <?php
 
 namespace App\Socialite;
@@ -247,15 +256,15 @@ class MicrosoftGraphProvider extends Provider implements ProviderAvatar
         {
             $client = $this->getHttpClient();
             $response = $client->get('https://graph.microsoft.com/v1.0/me/photo/$value', [
-              'headers' => [
-                  'Authorization' => 'Bearer'.$token,
-                  'Content-Type' => 'application/json;odata.metadata=minimal;odata.streaming=true'
-              ],
-              'http_errors' => false,
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token,
+                    'Content-Type' => 'application/json;odata.metadata=minimal;odata.streaming=true'
+                ],
+                'http_errors' => false,
             ]);
 
-          if($response->getStatusCode() == 404){
-              return null;
+            if($response->getStatusCode() == 404){
+                return null;
             }
 
             return $response->getBody()->getContents();
@@ -267,32 +276,13 @@ class MicrosoftGraphProvider extends Provider implements ProviderAvatar
         }
         return null;
     }
-
-    /**
-     * Get the logout URL for the OAuth provider.
-     *
-     * @param string|null $redirectUri The URI to redirect to after logout.
-     * @return string The logout URL.
-     */
-    public function getLogoutUrl(?string $redirectUri = null)
-    {
-        $logoutUrl = sprintf('https://login.microsoftonline.com/%s/oauth2/logout', $this->getConfig('tenant', 'common'));
-
-        return $redirectUri === null ?
-            $logoutUrl :
-            $logoutUrl.'?'.http_build_query(['post_logout_redirect_uri' => $redirectUri], '', '&', $this->encodingType);
-    }
-
 }
 
-~~~
+~~~ 
 
 - The second one is GraphExtendSocialite.php. Specify the MicrosoftGraphProvider you created.
 
-~~~php
-
-// Example: Microsoft Graph
-
+~~~ php
 <?php
 
 namespace App\Socialite;
@@ -312,45 +302,30 @@ class GraphExtendSocialite
     }
 }
 
-~~~
+~~~ 
 
 ### (Required) Add service provider
-- Add the service provider by filling in the file app/Providers/EventServiceProvider.php with the provider you added.   
-The contents of the description will differ depending on whether or not you have developed your own avatar to obtain it.   
-Also, the class name written in @handle is often listed in the manual of the provider added in [Socialite Providers](https://socialiteproviders.github.io/), so please check it.
+- Write the provider you added in the file app/Providers/EventServiceProvider.php to add the service provider.  
+※What to write depends on whether you did your own development for getting the avatar.  
+Also, the class name written at "@handle" is in most cases written in the manual of the provider you added from [Socialite Providers](https://socialiteproviders.github.io/). Please check it.
 
-~~~php
+~~~ php
 
 // Example: Microsoft Graph
-<?php
 
-namespace App\Providers;
+protected $listen = [
+    ///// If you did your own development for getting the avatar
+    'App\Events\Event' => [
+        'App\Listeners\EventListener',
+    ],
+    
+    /// Add
+    \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+        '\App\Socialite\GraphExtendSocialite@handle', ///// If you did your own development for getting the avatar
+        // 'SocialiteProviders\\Graph\\GraphExtendSocialite@handle', ///// For the normal way, uncomment this line and use it
+    ],
+];
 
-use Illuminate\Support\Facades\Event;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
-class EventServiceProvider extends ServiceProvider
-{
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
-    protected $listen = [
-        // If you have developed your own avatar retrieval
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
-        
-        // Additional
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            '\App\Socialite\GraphExtendSocialite@handle', // If you have developed your own avatar retrieval
-            // 'SocialiteProviders\\Graph\\GraphExtendSocialite@handle', // For normal retrieval, comment this out and use it
-        ],
-    ];
-
-    // ...
-}
 ~~~
 ~~~php
 
@@ -366,7 +341,7 @@ protected $listen = [
 
 ~~~
 
-※ If Exment v7.0.0 or later was newly installed (a project created with Laravel 12), "app/Providers/EventServiceProvider.php" does not exist. In that case, write as follows in the boot method of "app/Providers/AppServiceProvider.php".
+※If Exment v7.0.0 or later was newly installed (a project created with Laravel12), "app/Providers/EventServiceProvider.php" does not exist. In that case, write as follows in the boot method of "app/Providers/AppServiceProvider.php".
 
 ~~~php
 
@@ -384,31 +359,31 @@ public function boot(): void
 
 
 ### (Required by Provider) Add optional settings
-Depending on your OAuth sign-in provider, you may need to perform additional configuration.
+Some OAuth sign-in providers need additional settings.  
 
   
 Example: [OKTA](https://github.com/SocialiteProviders/Okta)
-- Open config/services.php and add the following:
+- Open config/services.php and add the following.
 
-```php
+``` php
 'okta' => [    
-  'base_url' => env('OKTA_BASE_URL'),
+  'base_url' => env('OKTA_BASE_URL'), 
 ],
 ```
 
-- Open the .env file and add the following:
+- Open the .env file and add the following.
 
 ```
 OKTA_BASE_URL='https://<OKTA domain>'
 ```
 
-> Originally, Socialite requires the setting values ​​of "client_id", "client_secret", and "redirect" in config/services.php, and in Exment's OAuth authentication, the values ​​set on the screen are automatically assigned.   
-If you want to enter your own provider-specific configuration values, add the values ​​as shown above to config/services.php.
+> Socialite itself requires the setting values "client_id", "client_secret" and "redirect" in config/services.php. In the OAuth authentication of Exment, the values set on the screen are given to them automatically.  
+If you want to enter setting values that are special to the provider, add the values to config/services.php as above.
 
 
 ### (Required) Configure screen settings
 
-- Once all server-side settings are complete, proceed to [On-screen settings](#on-screen-settings).
+- When all the settings on the server side are done, do the [On-screen settings](/login_oauth?id=on-screen-settings).
 
   
   

@@ -33,7 +33,7 @@
 1. Install the plugin: from Feature Management on Exment v7.2.1 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
 2. On Exment v7.2.1 or later, turn on "ITサポート：受付箱" (IT Support: desk) in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "ITサポート：お客様の窓口" (IT Support: customer door) too (it works only while the desk is on).
    - On a new site both are off at first. Sites that used IT Support before Feature Management keep both on.
-   - Turning the desk off stops the desk, the portal and the batch, and hides its menu entry. The tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables: by URL (such as `/data/its_ticket`) or from "Admin Setting" > "Custom Table". To show them in the menu, add them in "Admin Setting" > "Menu". To hide them, remove the table permissions in the role groups.
+   - Setting the desk to "Don't use" also removes "ITサポート" from the menu. The tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables: by URL (such as `/data/its_ticket`) or from "Admin Setting" > "Custom Table". To show them in the menu, add them in "Admin Setting" > "Menu". To hide them, remove the table permissions in the role groups.
 3. Open "ITサポート" in the menu (or `/plugins/exment_it_support`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
    - The left menu has one entry, "ITサポート", which opens the desk. Tickets (table), knowledge, customers, contacts, IT assets and canned replies open from the bar at the top of the desk; every table (kinds and SLA too) from "テーブル・権限" (tables and permissions) in "設定".
    - The "ITサポート" folder of 1.0.6 and before (the desk and 8 tables) is folded into that one entry the first time the desk is opened after the update to 1.0.7. Menus an administrator added stay.
@@ -73,7 +73,7 @@ A system that can pass the original mail (as a Postfix pipe) can POST it to `/su
 - The request form does not show a link on the page after sending: it mails the link to the address entered. Until that link is opened, the ticket has the tag "メール未確認" and no contact is made.
 - Auto-replies, bounces and mail from its own address are not taken in.
 - Opening a satisfaction link does not save a rating.
-- Only users who may "edit all" of the ticket table (as the role group "ITサポート 担当者") can use the agent desk. "Edit own data only" is not enough.
+- Only users who may "edit all" of the ticket table (such as the role group "ITサポート 担当者") can use the agent desk. "Edit own data only" is not enough.
 
 ### Pages without login
 For safety, Exment does not let a plugin's `config.json` open a page without login. A help desk needs a door for customers without an account, so this plugin registers `/support/...` itself while Exment starts, the same idea as Exment's public forms: the secret in the URL opens one thing only.

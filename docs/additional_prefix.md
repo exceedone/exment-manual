@@ -28,7 +28,7 @@ ADMIN_ROUTE_PREFIX=admin184628
 ~~~
 
 - When a site that had "admin" is set to nothing, opening an old URL (`/admin/...`) goes to the same page (`/...`) (GET only, from v7.2.1). Bookmarks and links in mails keep working.
-- With "admin", the URL without it ([http://localhost](http://localhost)) shows another page (the default page of the framework). A site for general users who do not log in can be built there (public site: see the Japanese manual).
+- With "admin", the URL without it ([http://localhost](http://localhost)) shows another page (the default page of the framework). A site for general users who do not log in can be built there ([public site](/public_site)).
 ![Prefix change](img/quickstart/route_prefix1.png)
 
 ### URLs after changing or removing "admin"
@@ -40,6 +40,10 @@ Also update the URLs registered in other systems (API authentication and executi
 | Login screen | (Exment URL)/auth/login | (Exment URL)/admin/auth/login | (Exment URL)/admin184628/auth/login |
 | API token | (Exment URL)/oauth/token | (Exment URL)/admin/oauth/token | (Exment URL)/admin184628/oauth/token |
 | API execution | (Exment URL)/api/data/(table name) | (Exment URL)/admin/api/data/(table name) | (Exment URL)/admin184628/api/data/(table name) |
-| API app setting | (Exment URL)/api_setting | (Exment URL)/admin/api_setting | (Exment URL)/admin184628/api_setting |
+| API Setting | (Exment URL)/api_setting | (Exment URL)/admin/api_setting | (Exment URL)/admin184628/api_setting |
 | SSO (OAuth) callback | (Exment URL)/auth/login/(provider name)/callback | (Exment URL)/admin/auth/login/(provider name)/callback | (Exment URL)/admin184628/auth/login/(provider name)/callback |
 | Plugin (page) | (Exment URL)/plugins/(URL) | (Exment URL)/admin/plugins/(URL) | (Exment URL)/admin184628/plugins/(URL) |
+
+
+
+[←Back to list of additional settings](/quickstart_more)

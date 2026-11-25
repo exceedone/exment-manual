@@ -1,9 +1,12 @@
 # Plug-in reference
-It is a list of functions and properties unique to each plug-in.  
-※ Custom tables or columns, reference of custom data, [click here](/func_reference) please refer to.  
-※ For the reference of plugins (CRUD pages), please refer to [here](/plugin_reference_crud).  
-※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
+This page is for people who develop plugins.  
+For each type of plugin, it lists the class to inherit and the functions and properties you can use in that class.
+
+- For the functions of custom tables, custom columns and custom data, see the [function reference](/func_reference).
+- For a detailed description of the plugin (CRUD page), see the [Plugin reference (CRUD page)](/plugin_reference_crud).
+- The classes of the admin library are written with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin"). If you are using v6.x or lower, read them as "Encore\Admin". See [Update procedure v7.0.0](/update/v7_0_0) for details.
+
+
 
 ## PluginBase / Plugin common class
 
@@ -14,14 +17,13 @@ If you are using v6.x or lower, please read them as "Encore\Admin". For details,
 | pluginOptions | PluginOptionBase | Class instance that stores various properties of plugin (inherits PluginOptionBase) |
 | useCustomOption | bool | Whether to use plugin-specific settings. Initial value is false |
 
-* In the past, properties were defined directly in the abstract class for each type of plug-in, but this method may cause a name conflict with the property defined by the user.
-Therefore, I decided to define the properties to be added in v4.2.2 or later in pluginOptions. You can access it with "$this->pluginOptions->{property name}". In addition, existing properties are still compatible and can still be used.  
+Note: In the past, properties were defined directly in the abstract class of each plugin type. With that method, a name can conflict with a property that the user defined.  
+Therefore, the properties added in v4.2.2 or later are defined in pluginOptions. You can access them with "$this->pluginOptions->{property name}". The existing properties can still be used as before, to keep compatibility.
 
 ### Function list
 
 #### setCustomOptionForm
-Defines plugin-specific settings.  
-For more information [here](/plugin_quickstart#make-your-own-settings-on-the-plugin-settings-screen), please refer to.
+Defines plugin-specific settings. See [here](/plugin_quickstart?id=make-your-own-settings-on-the-plugin-settings-screen) for details.  
 
 ##### argument
 | Name | Type | Description |
@@ -32,7 +34,7 @@ For more information [here](/plugin_quickstart#make-your-own-settings-on-the-plu
 None
 
 ##### Example of use
-Click [here](/plugin_quickstart#make-your-own-settings-on-the-plugin-settings-screen) Please refer to.  
+See [here](/plugin_quickstart?id=make-your-own-settings-on-the-plugin-settings-screen).  
 
 ---
 
@@ -40,7 +42,7 @@ Click [here](/plugin_quickstart#make-your-own-settings-on-the-plugin-settings-sc
 
 ## PluginApiBase
 An abstract class for plugins (APIs). If you are developing an API plugin, please inherit this class.  
-For more information [here](/plugin_quickstart_api), please refer to.
+See [here](/plugin_quickstart_api) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -63,7 +65,7 @@ Get the endpoint of your own API.
 ##### Return value
 | Type | Description |
 | ---- | ---- |
-| string | Unique API endpoint |
+| string | Endpoint of your own API |
 
 
 ---
@@ -73,7 +75,7 @@ Get the endpoint of your own API.
 
 ## PluginBatchBase
 This is an abstract class of plug-in (batch). When developing a batch plug-in, inherit this class.  
-For more information [here](/plugin_quickstart_batch), please refer to.
+See [here](/plugin_quickstart_batch) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -89,7 +91,7 @@ For more information [here](/plugin_quickstart_batch), please refer to.
 ### Function list
 
 #### execute
-Submit the batch. Describe the processing you want to execute in this function.
+Runs the batch. Describe the processing you want to execute in this function.
 
 ##### argument
 None
@@ -103,7 +105,7 @@ None
 
 ## PluginButtonBase
 An abstract class of plugins (buttons). If you develop a button plugin, please inherit this class.  
-For more information [here](/plugin_quickstart_button), please refer to.  
+See [here](/plugin_quickstart_button) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -112,8 +114,6 @@ For more information [here](/plugin_quickstart_button), please refer to.
 
 
 ##### Property
-
-##### PluginOptionBatch(Inheriting PluginOptionBase)
 | Name | Type | Description |
 | ---- | ---- | ---- |
 | custom_table | CustomTable | Instance of custom table |
@@ -134,7 +134,7 @@ None
 ---
 
 #### render
-Draw your own button.
+Draw your own button.  
 If you want to make it look special or embed a unique script, please describe it in this function.
 
 ##### argument
@@ -143,7 +143,7 @@ None
 ##### Return value
 | Type | Description |
 | ---- | ---- |
-| string,Renderable | Originally drawn button |
+| string,Renderable | The button you drew yourself |
 
 
 ---
@@ -151,9 +151,8 @@ None
 
 
 ## PluginDashboardBase
-This is an abstract class of plugin (dashboard).  
-When developing a dashboard plugin, please inherit this class.  
-For more information [here](/plugin_quickstart_dashboard), please refer to.  
+This is an abstract class of plugin (dashboard). When developing a dashboard plugin, please inherit this class.    
+See [here](/plugin_quickstart_dashboard) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -231,8 +230,8 @@ When performing GET, POST, PUT, etc. in the dashboard BOX, use this function to 
 
 
 ## PluginDocumentBase
-An abstract class for plugins (documents). When developing a document plugin, inherit this class.
-For more information [here](/plugin_quickstart_document), please refer to.
+An abstract class for plugins (documents). When developing a document plugin, inherit this class.  
+See [here](/plugin_quickstart_document) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -249,7 +248,7 @@ For more information [here](/plugin_quickstart_document), please refer to.
 
 #### (protected)executing
 Function called before document output.  
-Use this function when you need to process individually, such as when you want to save values ​​to custom data before execution.
+Use this function when you need to process individually, such as when you want to save values to custom data before execution.
 
 ##### argument
 None
@@ -275,7 +274,7 @@ None
 
 ## PluginEventBase
 An abstract class for plugins (events). If you develop an event plugin, please inherit this class.  
-For more information [here](/plugin_quickstart_event), please refer to.
+See [here](/plugin_quickstart_event) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -290,12 +289,12 @@ For more information [here](/plugin_quickstart_event), please refer to.
 | isDelete | bool | Whether it is deleted data |
 
 
-##### PluginOptionEvent（PluginOptionBaseを継承）
+##### PluginOptionEvent(Inheriting PluginOptionBase)
 | Name | Type | Description |
 | ---- | ---- | ---- |
 | is_modal | bool | Whether the page where the event occurred is a modal form |
-| event_type | PluginEventType | Event type<br>(loading, saving, saved, workflow_action_executing, workflow_action_executed, notify_executing, notify_executed) |
-| page_type | PluginPageType | The type of page where the event occurred<br>(list,create,edit,show) |
+| event_type | PluginEventType | Event type<br>(loading: on load, saving: before saving, saved: after saving, workflow_action_executing: just before the workflow runs, workflow_action_executed: just after the workflow runs, notify_executing: just before the notification runs, notify_executed: after the notification runs) |
+| page_type | PluginPageType | The type of page where the event occurred<br>(list: list screen, create: create screen, edit: edit screen, show: details screen) |
 
 
 ### Function list
@@ -314,7 +313,7 @@ None
 
 ## PluginExportBase
 An abstract class for plugins (exports). If you develop an export plugin, please inherit this class.  
-For more information [here](/plugin_quickstart_export), please refer to.
+See [here](/plugin_quickstart_export) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -362,7 +361,7 @@ A function that sets the view provider.
 
 #### execute
 This function is called as an export process.  
-Please implement the export process in this function.  
+Please implement the export process in this function.
 
 ##### argument
 None
@@ -373,9 +372,24 @@ None
 ---
 
 
+#### getFileName
+A function that sets the name of the file downloaded as the result of the export process.
+
+##### argument
+None
+
+##### Return value
+| Type | Description |
+| ---- | ---- |
+| string | Name of the download file of the export result |
+
+
+---
+
+
 ## PluginImportBase
-It is an abstract class of plug-in (import). When developing an import plugin, inherit this class.
-For more information [here](/plugin_quickstart_import), please refer to.
+It is an abstract class of plug-in (import). When developing an import plugin, inherit this class.  
+See [here](/plugin_quickstart_import) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -390,7 +404,7 @@ For more information [here](/plugin_quickstart_import), please refer to.
 ### Function list
 
 #### execute
-Function called as import processing.
+Function called as import processing.  
 Add import processing to this function.
 
 ##### argument
@@ -405,8 +419,8 @@ None
 
 
 ## PluginPageBase
-An abstract class for plugins (pages). When developing a page plugin, inherit this class.
-For more information [here](/plugin_quickstart_page), please refer to.
+An abstract class for plugins (pages). When developing a page plugin, inherit this class.  
+See [here](/plugin_quickstart_page) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -431,7 +445,7 @@ When performing GET, POST, PUT, etc. on your own page, use this function to get 
 ##### Return value
 | Type | Description |
 | ---- | ---- |
-| string | Endpoint to dashboard BOX |
+| string | Endpoint of your own page |
 
 ---
 
@@ -439,7 +453,7 @@ When performing GET, POST, PUT, etc. on your own page, use this function to get 
 
 ## PluginPublicBase
 An abstract class of plugins (scripts, styles). If you develop script plugins or style plugins, please inherit this class.   
-For more information [script](/plugin_quickstart_script) or [style](/plugin_quickstart_style), please refer to.
+See [Plugin (script)](/plugin_quickstart_script) or [Plugin (style)](/plugin_quickstart_style) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 
@@ -456,7 +470,7 @@ A function to get the path of CSS files.
 ##### argument
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| $skipPath | bool | Set to true if css files are stored directly under the public folder. (Initial value is false) |
+| skipPath | bool | Set to true if css files are stored directly under the public folder. (Initial value is false) |
 
 ##### Return value
 | Type | Description |
@@ -467,25 +481,25 @@ A function to get the path of CSS files.
 
 
 #### js
-A function to get the path of javascript files.
+A function to get the path of js files.
 
 ##### argument
 | Name | Type | Description |
 | ---- | ---- | ---- |
-| $skipPath | bool | Set to true if javascript files are stored directly under the public folder. (Initial value is false) |
+| skipPath | bool | Set to true if js files are stored directly under the public folder. (Initial value is false) |
 
 ##### Return value
 | Type | Description |
 | ---- | ---- |
-| array | Array of javascript file paths |
+| array | Array of js file paths |
 
 ---
 
 
 
 ## PluginValidatorBase
-It is an abstract class of plugin (validation). When developing a validation plugin, inherit this class.
-For more information [here](/plugin_quickstart_validate), please refer to.
+It is an abstract class of plugin (validation). When developing a validation plugin, inherit this class.  
+See [here](/plugin_quickstart_validate) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -494,7 +508,7 @@ For more information [here](/plugin_quickstart_validate), please refer to.
 | Name | Type | Description |
 | ---- | ---- | ---- |
 | custom_table | CustomTable | Custom table instance |
-| original_value | CustomValue | Before change instance of custom data |
+| original_value | CustomValue | Instance of the custom data before the change |
 | input_value | array | Associative array storing screen input values (key: column name, value: input value) |
 | called_type | ValidateCalledType | Caller type <br> (form: form, import: import, api: API) |
 | messages | array | Stores error messages<br>(key: column name, value: error message * array if there are multiple) |
@@ -514,7 +528,7 @@ None
 | boolean | Validation result (true: normal, false: error) |
 
 #### validateDestroy
-Perform validation before delete custom value. Describe the processing you want to execute in this function.
+Performs validation before custom data is deleted. Describe the processing you want to execute in this function.
 
 ##### argument
 | Name | Type | Description |
@@ -539,7 +553,7 @@ Perform validation before delete custom value. Describe the processing you want 
 
 ## PluginViewBase
 An abstract class for plugins (views). If you develop a view plugin, please inherit this class.  
-For more information [here](/plugin_quickstart_view), please refer to.
+See [here](/plugin_quickstart_view) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -551,7 +565,7 @@ For more information [here](/plugin_quickstart_view), please refer to.
 | custom_table | CustomTable | Custom table instance |
 | custom_view | CustomView | Custom view instance |
 | useBox | bool | Whether to display a button in the list |
-| useBoxButtons | array | Which button to display <br> (newButton, menuButton, viewButton) |
+| useBoxButtons | array | Which buttons to display<br>(newButton: New, menuButton: Menu, viewButton: View) |
 
 
 ### Function list
@@ -571,7 +585,7 @@ None
 ---
 
 #### setViewOptionForm
-Defines view-specific settings. For details, please refer to [here](/plugin_quickstart?id=make-your-own-settings-on-the-plugin-settings-screen).  
+Defines view-specific settings. See [here](/plugin_quickstart?id=make-your-own-settings-on-the-plugin-settings-screen) for details.  
 
 ##### argument
 | Name | Type | Description |
@@ -590,8 +604,7 @@ None
 
 ## PluginCrudBase
 An abstract class for plugins (CRUD pages). When developing a CRUD page plugin, inherit this class.  
-For more information [here](/plugin_quickstart_crud), please refer to.  
-※ For the list of functions, please refer to the [Plugin reference (CRUD page)](/plugin_reference_crud).
+See [here](/plugin_quickstart_crud) for details.
 
 - namespace Exceedone\Exment\Services\Plugin
 - trait Exceedone\Exment\Services\Plugin\PluginBase
@@ -619,7 +632,7 @@ None
 | array | Returns the definitions of the items on each page as an associative array |
 
 ##### Return value - definition of the associative array
-| Key | Description |
+| Type | Description |
 | ---- | ---- |
 | key | Item name, used when retrieving data and as the name of each HTML element. Enter alphanumeric characters |
 | label | Text used as the item name on the list screen and other screens |
@@ -648,13 +661,11 @@ None
     }
 ```
 
----
-
 #### getPaginate
 A function that retrieves the data list in paginated form.  
 Return the retrieved data as a LengthAwarePaginator.  
 Each element of the list should be an associative array, and the keys of that associative array should be the same as the keys set in getFieldDefinitions.  
-※ When a search is performed on the screen, values are set in the argument $options. For details, please refer to the [Plugin reference (CRUD page)](/plugin_reference_crud).
+Note: When a search is performed on the screen, values are set in the argument $options.
 
 ##### argument
 | Name | Type | Description |
@@ -664,8 +675,7 @@ Each element of the list should be an associative array, and the keys of that as
 ##### Return value
 | Type | Description |
 | ---- | ---- |
-| LengthAwarePaginator | Search result model |
+| LengthAwarePaginator | List of the retrieved data |
 
----
-
-
+##### Example
+See the [Plugin reference (CRUD page)](/plugin_reference_crud).

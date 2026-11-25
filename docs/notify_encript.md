@@ -1,11 +1,15 @@
 # Attachment encryption for notifications
-Attachments can be added when notifying by email.  
-By making the settings, the attached file can be automatically encrypted by the system and sent by e-mail.  
-The setting method is described.  
+An email notification can have attached files.  
+With the setting on this page, the system encrypts the attached files by itself before it sends them (they become an encrypted zip file).
+
+There are two settings.
+
+1. Add one line to `.env` (the same for Windows and Linux)
+2. Install software that makes zip files on the server (different for Windows and Linux)
 
 ## Windows, Linux common
 
-- Add the following content to ".env".
+- Add the following content to `.env`.
 
 ~~~
 EXMENT_ARCHIVE_MAIL_ATTACHMENT=1
@@ -16,7 +20,7 @@ EXMENT_ARCHIVE_MAIL_ATTACHMENT=1
 [7-zip](https://sevenzip.osdn.jp/)
 
 ## Linux
-- Install zip using the package command of the OS such as yum.  
+- Install zip using the package command of the OS, such as yum.
 
 ~~~
 // For CentOS

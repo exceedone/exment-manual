@@ -1,64 +1,64 @@
 # Quy trình cho đến khi bắt đầu sử dụng
-Phần này giải thích các bước tiêu chuẩn cho đến khi bắt đầu công việc với Exment.
+Đây là quy trình từ lúc cài Exment đến lúc bắt đầu dùng trong công việc.  
+Ai làm gì được tóm tắt theo từng vai trò.
 
 ### Vai trò
-Trước tiên, chúng tôi tóm tắt vai trò của những người tham gia vào Exment.  
-Người phụ trách của từng vai trò sẽ thực hiện các thiết lập cho Exment.  
-※Tùy theo công ty, có trường hợp một người kiêm nhiều vai trò, ví dụ người phụ trách hạ tầng đồng thời là quản trị viên.
+Những người liên quan đến Exment có 4 vai trò sau. Người phụ trách của từng vai trò thực hiện các thiết lập của Exment.  
+※Tùy theo công ty, một người có thể giữ nhiều vai trò, ví dụ người phụ trách hạ tầng đồng thời là quản trị viên.
 
 - ##### Người phụ trách hạ tầng  
-→Người phụ trách các thiết lập về hạ tầng, chẳng hạn như cài đặt Exment lên máy chủ và cập nhật
+→Người làm các việc liên quan đến máy chủ, như cài đặt Exment lên máy chủ và cập nhật
 
 - ##### Quản trị viên  
-→Người phụ trách các thiết lập để sử dụng Exment, chẳng hạn như thiết lập ban đầu ngay sau khi cài đặt, bổ sung thiết lập bảng và cột
+→Người thiết lập để dùng được Exment, như thiết lập ban đầu sau khi cài đặt, thêm bảng và cột
 
 - ##### Người dùng (người dùng thông thường)  
-→Người sử dụng các bảng do quản trị viên chuẩn bị để đăng ký, chỉnh sửa và xóa dữ liệu
+→Người dùng các bảng do quản trị viên chuẩn bị để đăng ký, chỉnh sửa và xóa dữ liệu
 
 - ##### Nhà phát triển  
-→Người phụ trách phát triển để mở rộng Exment khi cần các chức năng đặc biệt, chẳng hạn như khi sử dụng plugin trong Exment  
+→Người phát triển để mở rộng Exment khi cần chức năng đặc biệt, ví dụ khi dùng plugin  
 
 ### Các bước
 
 #### 【Người phụ trách hạ tầng】
 - [Cài đặt](/vi/quickstart)  
-Thực hiện cài đặt Exment lên máy chủ.  
+Cài đặt Exment lên máy chủ.  
 
 - [Cập nhật](/vi/update)  
-Khi Exment có bản cập nhật, hãy đăng nhập vào máy chủ và thực hiện cập nhật.  
+Khi Exment có phiên bản mới, đăng nhập vào máy chủ và cập nhật.  
 
 #### 【Quản trị viên】
 - [Thiết lập ban đầu](/vi/first_setting)  
-Ngay sau khi cài đặt, đăng ký các mục cần thiết như tên trang của Exment và ID đăng nhập của quản trị viên đầu tiên.
+Ngay sau khi cài đặt, đăng ký các mục cần thiết như tên trang và ID đăng nhập của quản trị viên đầu tiên.
 
 - [Thiết lập bảng tùy chỉnh](/vi/table)  
-Đăng ký vào hệ thống các nội dung cần quản lý, chẳng hạn như "quản lý khách hàng" hay "quản lý tác vụ".  
+Đăng ký những thứ muốn quản lý, như "quản lý khách hàng" hay "quản lý tác vụ", thành bảng.  
 
 - [Thiết lập cột tùy chỉnh](/vi/column)  
-Đăng ký các mục muốn quản lý, chẳng hạn như "tên khách hàng", "mã bưu chính", "địa chỉ" cho bảng "quản lý khách hàng".
+Đăng ký các mục muốn quản lý, như "tên khách hàng", "mã bưu chính", "địa chỉ" của bảng "quản lý khách hàng", thành cột.
 
-- [Template](/template)  
-Bằng cách sử dụng các template đã được chuẩn bị sẵn, bạn có thể dễ dàng thêm bảng tùy chỉnh và cột tùy chỉnh mà không cần tạo từ đầu.
+- [Template](/vi/template)  
+Dùng template có sẵn thì bạn thêm được nhiều bảng tùy chỉnh và cột tùy chỉnh cùng lúc, không phải tạo từ đầu.
 
 ##### ■Các thiết lập cần thiết khác
 
 - [Người dùng / Người dùng đăng nhập](/vi/user)  
 Thiết lập ID và mật khẩu để người dùng thông thường đăng nhập vào Exment.
 
-- [Vai trò / Quyền](/permission)  
-Phân bổ phạm vi mà mỗi người dùng có thể thao tác trong Exment.
+- [Vai trò / Quyền](/vi/permission)  
+Quyết định phạm vi mà từng người dùng thao tác được trong Exment.
 
-- [Menu](/menu)  
-Quản lý các mục của menu luôn được hiển thị ở cạnh trái màn hình.  
+- [Menu](/vi/menu)  
+Quản lý các mục của menu luôn hiển thị ở bên trái màn hình.  
 
 #### 【Người dùng (người dùng thông thường)】
 - [Dữ liệu](/vi/data)  
-Người dùng thêm, cập nhật, xem và xóa dữ liệu trong các bảng tùy chỉnh do quản trị viên thiết lập.  
+Thêm, cập nhật, xem và xóa dữ liệu trong các bảng tùy chỉnh do quản trị viên thiết lập.  
 
-- [Tìm kiếm](/search)  
-Người dùng có thể dễ dàng tìm kiếm nội dung của dữ liệu đã đăng ký.  
+- [Tìm kiếm](/vi/search)  
+Tìm dữ liệu đã đăng ký một cách dễ dàng.  
 
 
 #### 【Nhà phát triển】
-- [Plugin](/plugin_quickstart)  
-Khi cần mở rộng chức năng của Exment, bạn có thể tải lên dưới dạng plugin và áp dụng vào hệ thống.
+- [Plugin](/vi/plugin_quickstart)  
+Khi cần mở rộng chức năng của Exment, bạn tải plugin lên để thêm chức năng.

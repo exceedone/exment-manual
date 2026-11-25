@@ -1,70 +1,93 @@
 # Data
-It is a function to list, add new, edit, display and delete data of each table stored in Exment.  
-The user inputs and saves the value by linking it to the table created by the system administrator.  
-The data mainly has the following functions.  
+This page explains the screens for seeing the data of a table as a list, adding new data, editing, showing and deleting it.  
+Tables are made by the system administrator. Users enter values in those tables and save them.
+
+| What you want to do | Where to look |
+|---|---|
+| See the data as a list | [List of data](/data?id=list-of-data) |
+| Add data | [Add new data](/data?id=add-new-data) |
+| Correct data | [Editing data](/data?id=editing-data) |
+| See the contents of data | [View data](/data?id=view-data) |
+| Delete data | [Deleting data](/data?id=deleting-data) |
+| Make data by copying | [Copy data](/data?id=copy-data) |
 
 ## List of data
-The list of data stored in the table is displayed.  
-What you see in the list is the data you created or the ones to which you have been assigned permissions.  
-※By registering the authority to edit and view all data to users and organizations, all data is displayed regardless of the above conditions.  
+The list of the data saved in that table.  
+The list shows the data you created and the data you have been given permission for.
+
+Note: when the "permission to edit and view all data" is registered for a user or an organization, all data is shown, regardless of the condition above.  
 ![Data screen](img/data/data_grid1.png)  
   
-For details of the list screen, please refer to the following page.  
-[List of data](/data_grid.md)
+For a detailed explanation of the list screen, see [List of data](/data_grid).  
 
 
 ## Add new data
-If you want to add data, click the "New" button at the top right of the page.  
-※This button is not displayed if the logged-in user does not have “Edit” permission for the table.  
-Please refer to “Authority Assignment” from the left menu for the authority assignment method.  
+1. Click the [New] link at the top right of the page.  
+
+Note: this button is not shown when the logged-in user does not have the "Edit" permission of that table.  
+For how to assign permissions, see [Role group / Authority setting](/role_group) in the left menu.  
 ![Data screen](img/data/data_new1.png)
-The new data creation screen is displayed.  
+
+2. The screen for creating new data is shown.  
+
 ![Data screen](img/data/data_new2.png)
   
-Click the [Preview] button at the top right of the new data creation screen to check, in a separate window, how the data being entered will look, without saving it.  
-It is shown as a list of item names and values, block by block of the form.  
-※ The [Preview] button is shown only on the new data creation screen. It is not shown on the edit screen.  
-※ The preview does not save the data. To refresh it after changing the input, click the [Preview] button again on the original screen.  
-※ Child table blocks are not shown in the preview.
+For a detailed explanation of the screen for adding new data, see [Data form](/data_form).  
 
-Please refer to the following page for details of the new addition screen.  
-[Data form](/data_form.md)
+### Checking the contents before saving (preview)
+Click the [Preview] button at the top right of the new data creation screen to check what you are entering in a separate window, without saving it.  
+It is shown as a list of item names and values, for each block of the form.
+
+- The [Preview] button is shown only on the new data creation screen. It is not shown on the edit screen.  
+- The preview does not save the data. To refresh the display after changing the input, click the [Preview] button again on the original screen.  
+- Child table blocks are not shown in the preview.
 
 
 ## Editing data
-If you want to edit the data, click the "Edit" link in the corresponding row.  
-※If the logged-in user does not have "Edit" permission for the table, this link will not be displayed.  
-Please refer to “Authority Assignment” from the left menu for the authority assignment method.  
+1. Click the [Edit] link of the row you want to edit.  
+
+Note: this link is not shown when the logged-in user does not have the "Edit" permission of that table.  
+For how to assign permissions, see [Role group / Authority setting](/role_group) in the left menu.  
 ![Data screen](img/data/data_edit1.png)
-The data edit screen is displayed.  
+
+2. The data edit screen is shown.  
+
 ![Data screen](img/data/data_edit2.png)
   
-For details on the edit screen, see the following page.  
-[Data form](/data_form.md)
+For a detailed explanation of the edit screen, see [Data form](/data_form).  
 
+> When you update data and another user has already updated the same data, the following error message is shown.
+![Data screen](img/data/data_edit_error.png)
 
 ## View data
-If you want to display the data, click the "Display" link in the corresponding row.  
+1. Click the [View] link of the row you want to show.  
+
 ![Data screen](img/data/data_show1.png)
-The data display screen is displayed.  
+
+2. The data display screen is shown.  
+
 ![Data screen](img/data/data_show2.png)
   
-For details on the display screen, refer to the following page.  
-[Data details](/data_details.md)
+For a detailed explanation of the display screen, see [Data details](/data_details).  
 
 
 ## Deleting data
-If you want to delete the data, click the "Delete" link in the corresponding row.  
-![List of data](img/data/data_delete1.png)
+- Click the [Delete] link of the row you want to delete.  
+![Custom column screen](img/data/data_delete1.png)
+
 
 ## Copy data
-- If you want to copy data, click the "Copy" link in the relevant row.  
- * In order to display copy links, you need to change the settings. refer to the following page. [here](/config?id=display-custom-data-copy-link)  
-![List of data](img/data/data_copy1.png)
+Note: to show the [Copy] link, a setting value must be changed. See [Display custom data copy link](/config?id=display-custom-data-copy-link).  
 
-- The editing screen will be displayed with the selected data contents initialized.  
- * Only items that exist on the form are copied.  
- * Auto number, files, images, etc. are not eligible.  
-![Data form](img/data/data_copy2.png)
+1. Click the [Copy] link of the row you want to copy.  
+![Data list screen](img/data/data_copy1.png)
 
-- Please modify the contents as necessary and then save.  
+2. The edit screen is shown, filled with the contents of the selected data.  
+![Data screen](img/data/data_copy2.png)
+
+3. Correct what you need, and save.  
+
+What is copied and what is not:
+
+- Only the items on the form are copied.  
+- Auto numbers, files, images and so on are not copied.  

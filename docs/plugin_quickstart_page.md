@@ -1,13 +1,14 @@
 ## Plugin (page)
 You can create a new screen in Exment.  
-Use this if you want to use a page that is completely different from the existing features.  
+Use this when you want a page that is completely different from the standard functions.  
+This page explains how to make a plugin (page), with a page that searches YouTube as the example.
 
 ## Introduction
 Exment plugin pages are developed using the PHP framework [Laravel](http://laravel.jp/) and the admin library [exment-admin-core](https://github.com/exceedone/exment-admin-core) (based on laravel-admin / open-admin; laravel-admin in v6.x or earlier).  
 When developing a page, it is recommended that people with knowledge of Laravel develop it.
 
 ※The classes of the admin library are described with the namespace of Exment v7.0.0 or later ("ExmentAdminCore\Admin").  
-If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [Update procedure v7.0.0](/update/v7_0_0).
+If you are using v6.x or lower, please read them as "Encore\Admin". For details, please check [here](/update/v7_0_0).
 
 ## How to make
 
@@ -17,9 +18,9 @@ Here, the following page is created as a sample.
 - Perform YouTube search with the entered search value. Display the top 20 items.
 - Register the video ID and title, description, link, number of plays, number of high ratings, and number of low ratings of the video for which the "Register" button was clicked in the table "YouTube".
 
-![script](img/plugin/plugin_page2.png)   
+![script](img/plugin/plugin_page2.png)  
 
-※ You need a YouTube access key to execute. Please refer to [here](https://www.plusdesign.co.jp/blog/?p=7752) to get the key.  
+※ You need a YouTube access key to execute. Please refer to [here](https://qiita.com/shinkai_/items/10a400c25de270cb02e4) to get the key.  
   
 ※ Please import [this](https://exment.net/downloads/sample/template/YouTube.zip) template in advance.  
 
@@ -72,13 +73,13 @@ Please create from the following URL etc.
 https://www.famkruithof.net/uuid/uuidgen
 - For plugin_type, enter page.  
 - route defines a list of URL endpoints to be executed, their HTTP methods, and methods in the controller.  
-    - uri：uri for page display. The actual URL is "http(s)://(Exment URL)/plugins/(URL set on the plugin management screen)/(specified uri)".  
-    - method：HTTP method. Please fill in with get, post, put, delete.
-    - function：Method in Contoller to execute
+    - uri: uri for page display. The actual URL is "http(s)://(Exment URL)/plugins/(URL set on the plugin management screen)/(specified uri)".  
+    - method: HTTP method. Please fill in with get, post, put, delete.
+    - function: Method in the Controller to execute
     - Example: If the URL set on the plugin management screen is "youtube_search", the uri specified in config.json is "list", and the specified method is "get", "http(s)://(Exment URL)/plugins/youtube_search/list (method: GET)".
-- Be sure to include a route whose uri is empty (""). Access this endpoint when screen transition from the menu to the plugin page.
+- Be sure to include a route whose uri is empty (""). This endpoint is accessed when the screen moves from the menu to the plugin page.
 
-> Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
+> Note: the URL is for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/plugins/youtube_search/list`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
 ### Plugin file creation
 
@@ -199,48 +200,48 @@ class Plugin extends PluginPageBase
     }
     
     /**
-     * (3) Option to be set on the plug-in edit screen. Enter access key
+     * (3) Options set on the plugin edit screen. Lets the user enter the access key
      *
      * @param [type] $form
      * @return void
      */
     public function setCustomOptionForm(&$form)
     {
-        $form->text('access_key', 'access key')
+        $form->text('access_key', 'Access key')
             ->help('Please enter your YouTube access key.');
     }
 }
 ~~~
 
-- (1) The namespace should be **App \ Plugins \ (plugin name).**  
+- (1) The namespace should be **App\Plugins\\(Pascal case of plugin name)**. [Click here for details](/plugin_quickstart?id=plugin-name-namespace)  
 Also, the class name should be "Plugin" and inherit PluginPageBase.
 
 - (2) The public method name in the class is the name described in function of config.json.
 
-- (3) The function "public function setCustomOptionForm (& $ form)" is an item displayed on the plug-in setting screen.  
+- (3) The function "public function setCustomOptionForm(&$form)" defines the items displayed on the plugin settings screen.  
 In this case, the access key required to execute the YouTube Data API can be set from the screen.  
 ![page](img/plugin/plugin_page1.png)  
-※ To use custom settings, add "protected $ useCustomOption = true;"  
-※ To get the set value, use the function "$ this-> plugin-> getCustomOption ('parameter name')".  
+※To use custom settings, add "protected $useCustomOption = true;".  
+※To get the set value, use the function "$this->plugin->getCustomOption('parameter name')".  
 
-- (4) When using a view, add "exment_ (snake case for plug-in name) ::" as the prefix of the view name.
+- (4) When using a view, add "exment_(snake case of the plugin name)::" as the prefix of the view name.
 
-- (5) If you want to get the plugin endpoint, use the function "$ this-> getRouteUri ('endpoint name')".  
-※ If you want to get the URL full path, use admin_url ($ this-> getRouteUri ('endpoint name')).
+- (5) If you want to get the plugin endpoint, use the function "$this->getRouteUri('endpoint name')".  
+※ If you want to get the URL full path, use admin_url($this->getRouteUri('endpoint name')).
 
 
 #### (Optional) About views
-When separating views, save the blade file under the folder "resources / views".
+When separating views, save the blade file under the folder "resources/views".
 
 #### (Optional) For css, js, and other static files
-- Place the css file in the folder "public / css".
-- Please place the js file in the folder "public / js".
-- Other files (such as image files) should be placed in the folder "public / assets".
+- Place the css file in the folder "public/css".
+- Please place the js file in the folder "public/js".
+- Other files (such as image files) should be placed in the folder "public/assets".
 
 
 ### Compress to zip
-Compress the above two files into a zip with the minimum configuration.  
-The zip file name should be "(plugin_name) .zip".  
+Compress the above two files, as the minimum set, into a zip.  
+The zip file name should be "(plugin_name).zip".  
 - YouTubeSearch.zip
     - config.json
     - Plugin.php

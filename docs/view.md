@@ -1,409 +1,459 @@
 # Custom views
-Set the view such as columns and narrowing conditions to be displayed on the [data list screen](/data_grid.md) of Exment .
+A view is "how the [data list screen](/data_grid) looks". Each view decides which columns are shown, which data is shown, and in what order.  
+This page explains the kinds of views, how to make a view, and its setting items.
+
+The flow of the setting is as follows.
+
+1. Open the list of views ("Page display")  
+2. With [New], choose the kind of view you want to make ("Add new view")  
+3. Enter the setting items and save with [Submit]
 
 ## View type
-Currently, there are the following view types:
+Currently, there are the following kinds.
+
+| Kind | Use |
+|---|---|
+| View (normal view) | See the data as a list |
+| Summary view | See totals, counts and so on for each group |
+| Calendar view | See the data as a calendar |
+| Kanban view | See the data as cards, in one column per state |
+| Gantt chart view | See the data as horizontal bars from the start date to the due date |
+| All data view | A view of the same shape as the normal view, made automatically by the system |
+| Filter view (condition view) | Used only for narrowing down, for example in the conditions of a notification |
 
 ### View (normal view)
 ![Custom view screen](img/view/view_sample1.png)
-It is a data list in normal view.  
-Lists registered data.
+This is the ordinary view: a data list.  
+It lists the registered data.
 
 ### Summary view
 ![Custom view screen](img/view/view_sample2.png)
-Group the registered data and display the total value, number, total value such as maximum value.  
-On the dashboard, you can view charts.
+It puts the registered data into groups and shows summary values such as the total, the count and the maximum.  
+On the dashboard, it can be shown as a chart.
 
 ### Calendar view
 ![Custom view screen](img/view/view_sample3.png)
-Registered data can be displayed in calendar format.
+It shows the registered data as a calendar.
 
 ### Kanban view
 ![Custom view screen](img/view_kanban/kanban_board.png)
-Registered data is shown as cards, in one column per state.  
+It shows the registered data as cards, in one column per state.  
 Dragging a card to another column changes the value of that item.  
-See [Kanban view](/view_kanban.md) for details.
+See [Kanban view](/view_kanban) for details.
 
 ### Gantt chart view
-Registered data is shown on a timeline, each record as a bar from its start date to its end (due) date.  
-See [Gantt chart view](/view_gantt.md) for details.
+It shows the registered data in time order, each record as a horizontal bar from its start date to its due (end) date.  
+See [Gantt chart view](/view_gantt) for details.
 
 ### All view
-It is basically the same as the normal view, but has the following features.  
-- Created automatically by the system.
-- Only one is created. Users cannot create or delete new ones.
-- Used when a list is displayed on the [search](/search) screen.
-- Used to display the detail data from summary view.
+It is basically the same as the normal view, but differs in these points.  
+- The system makes it automatically.  
+- Only one is made. Users cannot make a new one or delete it.  
+- It is used when a list is shown on the [search](/search) screen.  
+- It is used when the detail data is shown from a summary view.
 
 ### Condition view
-[Notification](/notify) notification conditions, and if the column setting of the custom column is "selection (select from the list of values of other tables)", it is used to narrow down.  
-- No display column settings are made.
-- It is not displayed on the data list screen.
-- Only administrators can set it. General users cannot be set.  
+A view used only for narrowing down. It is used for the notification conditions of a [notification](/notify), and for narrowing down when the column setting of a custom column is "Select (From Table)".  
+- It has no setting for display columns.  
+- It is not shown on the data list screen.  
+- Only administrators can set it. General users cannot.
 
-Three types of settings are possible.
-
-### Display example of calendar view
 
 ## Page display
-- On the custom table screen, put a check in the table you want to change, and click "View setting" of "Move page".
-![Custom view screen](img/view/view_grid1.png)
+- In the custom table list, check one table you want to set, and click "Table Detail Setting" at the top right.  
+![Custom view screen](ja/img/view/view_grid3.png)  
+- Or choose the table you want to set from the menu, and click "Table Detail Setting" at the top right in the same way.  
+Note: the table must be shown in the menu beforehand.  
+![Custom view screen](ja/img/view/view_grid4.png)  
+- On the Table Detail Setting screen, click the icon of the view setting.  
+![Custom view screen](ja/img/view/view_grid5.png)
 
-- A list of views set for the checked custom table is displayed.
-![Custom view screen](img/view/view_grid2.png)
+- The list of views of that custom table is now shown.  
 
 ## Add new view
-- On the "Custom View Settings" screen, click "New View" under "New" at the top right of the page.
+- On the "Custom view setting" screen, click the [New] button at the top right of the page.
 ![Custom view screen](img/view/view_new1.png)
-
-- The new view addition screen is displayed. Enter the necessary information.
+In the dialog, click the button of the kind you want to make.  
+![Custom view screen](ja/img/view/view_new7.png)  
+- The screen for adding a new view is shown. Enter the necessary items.
 ![Custom view screen](img/view/view_new2.png)
 
 ## View settings
 #### View display name
-Enter a name for the view.  
+Enter the name of the view.  
 
 #### View permissions
-Select either "System view" or "User view".  
+Decide who can use this view: System View or User View.
 
-"System View": Only the system administrator can make settings. The view will be available to all users who have access to the table.  
-"User view": View settings that can be set by anyone other than the system administrator. The view will only be available to the user who created it.  
+- <span class="heading_smaller_than_h5">System View</span>  
+Only the system administrator can set it.  
+All users who have access permission to the table can use this view.
 
-※ You cannot change the "system view" to the "user view" later.  
-The **"User View" created by the system administrator** can be changed to the "System View" later.  
-※ By [disabling the user view](/config.md?id=user-view-disabled), general users cannot create views.  
+- <span class="heading_smaller_than_h5">User View</span>  
+A view that can be set even by someone who is not the system administrator.  
+Only the user who made it can use this view.
+
+Note: a System View cannot be changed to a User View later.  
+A **User View made by the system administrator** can be changed to a System View later.  
+Note: with the [User view disabled](/config?id=user-view-disabled) setting, general users can no longer make views.
+
 
 #### Displayed results
-Select how many data items are displayed per page in the data list.
+Select how many records are shown per page in the data list.
 
 #### default
-When creating multiple views, when a user opens the data list, the view that is set to "YES" will be displayed.  
-※ The view set to "NO" can be displayed by selecting from the list of views.  
-※ "Default" can be set to "YES" for only one view in one custom table.  
-If "Default" is set to "YES" for two or more views, it will be changed to "NO" except for the view that was last set to "YES".  
+When there are several views, the view set to "YES" is the one shown first when a user opens the data list.  
+Note: a view set to "NO" can also be shown by choosing it from the list of views.  
+Note: "Default" can be "YES" for only one view in one custom table.  
+If you set "YES" on two or more views, all but the one set to "YES" last change to "NO".
 
-#### Order
-Displayed when the setting value of "EXMENT_SORT_CUSTOM_VIEW_OPTIONS" in the .env file is not 0.    
-Set the order of views displayed on the custom view menu button.
+
+#### Use View Infobox
+When set to [YES], an information box can be shown above the view.  
+Enter a title and a body to show what the work is about, or a message to the users.
+![Custom view screen](ja/img/view/view_information_box.png)
 
 #### Display column selection
-The settings for the columns displayed in the view.  
-A list of the set columns is displayed on the data list screen, etc.  
+The setting of the columns shown in the view.  
+The columns set here are shown on the data list screen and so on.
 ![Custom view screen](img/view/view_columns.png)
 
-- Target column:  
-The column to be displayed in the view.
+##### View target column
+The column shown in the view.  
+  
+##### Alias display name  
+The view shows the column under the name entered here.  
 
-- Display as:  
-Displayed in the view with the set name.
+##### Cell appearance preset  
+Choose how the column looks in this view.  
+Note: this has priority over the custom column setting. See [Cell style presets](/cell_style_preset) for details.  
 
-- Cell appearance preset:  
-How this column is painted in this view. It wins over the custom column setting.  
-See [Cell style presets](/cell_style_preset.md) for details.
+##### [↓] button  
+Moves the item shown in the view to the right.  
 
+##### [↑] button  
+Moves the item shown in the view to the left.  
 
-- [↓] Button  
-Moves the item displayed in the view to the right.
+##### [Delete] button  
+Deletes the item from the view.
 
-- [↑] Button  
-Moves the item displayed in the view to the left.
+##### [New] button  
+Adds a new display column to the view.
 
-
-- "Delete" button:  
-Deletes the view display.
-
-- "New" button:  
-Adds a new display column.
 
 #### Data display conditions
-Set the conditions to be displayed in the view.  
-Add a condition when you want to narrow down the displayed content, such as displaying only items within the period or displaying only the contents of a specific status.  
-※ In addition to this setting, filter the data so that only the data of the authority owned by the login user is displayed. Unauthorized data will not be displayed regardless of this setting.  
+The conditions that narrow down the data shown in the view.  
+Add a condition when you want to narrow down, such as "show only the ones within a period" or "show only the ones of a certain status".  
+Note: apart from this setting, the data is narrowed down so that only the data the logged-in user has permission for is shown. Data without permission is not shown, whatever this setting is.
 ![Custom view screen](img/view/view_filter.png)
+>When the column type of the condition item is Select (From Table), the words shown as the condition value can be changed in the [Heading display column setting](/table?id=heading-display-column-setting).
 
-- Target column:  
-A column used for the narrowing condition.
-
-- Condition:  
+##### View target column
+The column used for the narrowing condition.  
+  
+##### Search Condition
 Select the content of the condition.  
-For details, please refer to [Search conditions](/view.md?id=about-search-conditions).
+For details, see [About search conditions](/view?id=about-search-conditions).  
 
-- Search value:  
-Enter the condition to match the content of the search condition.
+##### Filter Condition Value
+Enter the value to compare with the condition.  
+  
+##### [Delete] button
+Deletes the display condition of the view.
+  
+##### [New] button
+Adds a new display condition to the view.
 
-- "Delete" button:  
-Delete the display condition of the view.
+##### Condtion Join
+With "Match All Condition", the data that matches all the conditions is shown.  
+With "Match Any Condition", the data that matches at least one condition is shown.
 
-- "New" button:  
-Adds a new view display condition.
-
-- Condition Join:  
-If you select "Match All Condition", data that matches all conditions will be displayed.  
-If you select "Match Any Condition", data that matches any of the conditions will be displayed.
-
-- Condition Reverse:  
-If you check "Reverse condition", data that does not match the conditions will be displayed.  
-※ Only the summary view is not eligible for the display condition reversal function.
+##### Condtion Reverse
+When "Reverse condition" is checked, the data that does not match the conditions is shown.  
+Note: the summary view cannot use the reversal of conditions.
 
 #### About search conditions
-Depending on the type of content selected in the "Target Column" ("Date", "User", etc.), the options will change.  
-This manual section describes search conditions that should be noted.
+The choices of the condition change with the kind of the column selected in "View target column" ("Date", "User" and so on).  
+Only the search conditions that need an explanation are written here.
 
 ##### When the target column type is "date"
-- X days ago or later
-- X days after date
-- X days before the date
-- The data registered before the date after X days is displayed in the view when it is registered with the date in the corresponding range.  
-Example: When the current date is 1/15 and the search value is registered as "8"  
+- After the date X days ago  
+- After the date X days later  
+- Before the date X days ago  
+- Before the date X days later  
+The data is shown in the view when its date is in that range.  
+
+Example: the current date is 1/15 and the search value is registered as "8"  
 ![Custom view screen](img/view/view_filter_day.png)
 
 ##### When the target column type is "User"
-- The registered data that matches the logged-in user is displayed in the view if it matches the logged-in user.  
-- The registered data that does not match the logged-in user is displayed in the view when it does not match the logged-in user.
+- Match Login User  
+The data is shown in the view when its value is the same as the logged-in user.  
+
+- Not Match Login User    
+The data is shown in the view when its value is different from the logged-in user.  
 
 #### Data Sorting
-Set the sorting (display order) of the data to be displayed in the view.  
-![Data Sorting](img/view/view_sort_order.png)
-
+Set the sorting (display order) of the data shown in the view.
+![Data sorting](img/view/view_sort_order.png)
+ 
 ##### Target Column  
-The column used for data sorting.
+The column used for sorting.  
 
 ##### Sorting  
-Specify the sorting to be executed.
+Specify whether to sort in "ascending order (smallest first)" or "descending order (largest first)".  
 
 ##### [↓] Button  
-Moves the item down in priority for display order.
+Lowers the priority in the sort order.  
 
 ##### [↑] Button  
-Moves the item up in priority for display order.
+Raises the priority in the sort order.  
 
 ##### [Delete] Button  
-Deletes the data sorting from the view.
+Deletes the data sorting from the view.  
 
-##### [New] Button  
+##### [New] Button
 Adds a new data sorting.
 
 #### Specifying "Filter" Items in the View
 
-Specify the columns to be displayed as options in the "Filter" displayed at the top of the view.  
-![Specifying "Filter" Items in the View](img/view/view_filter2.png)
+Specify the columns offered as choices in the "Filter" shown above the view.
+![Specifying "Filter" items in the view](img/view/view_filter2.png)  
 
 ##### Target Column  
-The column to be displayed in the "Filter."
+The column shown in the "Filter".  
 
 ##### [↓] Button  
-Moves the filter item down in the display.
+Moves the item down in the "Filter".  
 
 ##### [↑] Button  
-Moves the filter item up in the display.
+Moves the item up in the "Filter".  
 
 ##### [Delete] Button  
-Deletes the filter item display from the view.
+Deletes the item from the "Filter" of the view.  
 
-##### [New] Button  
-Adds a new column for display in the "Filter" of the view.
+##### [New] Button
+Adds a new display column to the "Filter" of the view.  
 
 ## Add new summary view
-- On the “Custom View Settings” screen, click “New” in “New” at the top right of the page.  
+- On the "Custom view setting" screen, click "Create Summary View" under [New] at the top right of the page.
 ![Custom view screen](img/view/view_new3.png)
 
-- The New Summary View screen is displayed. Enter the necessary information.  
+- The screen for adding a new summary view is shown. Enter the necessary items.
 ![Custom view screen](img/view/view_new4.png)
 
 ## Aggregation view settings
 
 #### View display name, view authority, default
-The setting items are the same as [View settings](/view.md?id=view-settings) above.
+These are the same setting items as [View settings](/view?id=view-settings) above.
 
 #### Group column selection
-Performs grouping in aggregation based on the column selected as the target.  
-If multiple settings are made, totaling is performed by multiple items.
+The data is put into groups by the value of the column selected here, and summarized.  
+When several columns are set, the data is divided and summarized by each combination of those items.
 ![Custom view screen](img/view/view_group_column.png)
 
 
-- Target column:  
-A column used as a reference for grouping.  
+##### View target column  
+The column the grouping is based on.  
 
-Example 1: If two columns are set as the target column, the data will be grouped over two columns and aggregated, as shown in the image.  
-※ "Sales amount" is a column set as a summary column, not a group column.  
+- Example 1: when two target columns are set, the data is grouped by the combination of the two columns and summarized, as in the image.  
+Note: "Sales amount" is not a group column; it is set as a summary column.
 
 ![Custom view screen](img/view/view_group_column_sample1.png)  
 
-Example 2: If only the column of "sales month" is set as a group column, the data that was grouped including the column of "employee name" in Example 1 is integrated into a group of one column, and the aggregation is performed. It is done.  
+- Example 2: when only the "Sales month" column is a group column, the data that was divided by the "Employee name" column too in Example 1 is put together into groups of one column and summarized.  
 
 ![Custom view screen](img/view/view_group_column_sample2.png)  
 
-- Display as:  
-Displayed in the view with the set name.
+##### Alias display name
+The view shows the column under the name entered here.  
 
-- Column type:  
-You can select from the following only when the custom column type of the target column is "Date" or "Date and time".  
-"Every year" "Every month" "Every month" "Every month" "Every day" "Every day of the week"  
-Grouping in the target column is performed according to the set date condition.  
-※ The images in Examples 1 to 3 are displayed when the sales month column type is set to "Year / Month".  
+##### Column type
+Only when the custom column type of the target column is "Date" or "Date and Time", you can choose from the following.  
+"Year" "Year-Month" "Year-Month-Day" "Month" "Day" "Weekday"  
+The target column is grouped by the unit of date chosen here.  
+Note: the images of Examples 1 to 3 show the case where the column type of the sales month is "Year-Month".
 
-- Sort order:  
-Set the order of data display in summary view.  
-Set the priority of the column to be referenced, in which column the data is sorted by the size of the value.  
-The setting order includes group column selection, summary column selection, and both.  
+##### Sort order
+The setting of the order in which the summary view shows the data.  
+It decides the priority of the columns: which column's values are looked at first when the data is ordered.  
+The numbers are given across both "Select grouping columns" and "Select summary columns".  
 
-Example 3: In Example 2 above, the display is for the case where the "sales month" column is 1 and the "sales amount" is 2 in the sort order.  If it is set to 1, as shown in the image below, it will be displayed in the order of priority with the value in the column of "sales amount".  
+- Example 3: Example 2 above is the display when "Sales month" is 1 and "Sales amount" is 2 in the sort order. When "Sales month" is 2 and "Sales amount" is 1, the order gives priority to the values of the "Sales amount" column, as in the image below.  
 
 ![Custom view screen](img/view/view_group_column_sample3.png)  
 
-- Sorting:  
-Set which of the values ​​is to be prioritized in sorting in the target column.  
-Select either "Ascending order (small order)" or "Descending order (largest order)".  
+##### Sort  
+Set whether the target column is ordered from the smallest value or from the largest value.  
+Choose "ascending order (smallest first)" or "descending order (largest first)".  
 
-Example 4: In Example 3 above, the display is for the case where "Sales amount" is sorted in descending order, but when the order is ascending, it is displayed as the following image.  
+- Example 4: Example 3 above is the display when "Sales amount" is in descending order. In ascending order, it looks like the image below.  
 
 ![Custom view screen](img/view/view_group_column_sample4.png)  
 
-- "Arrow buttons":  
-Set the order of columns in the summary view.  
-The items in the above item as the group column selection are displayed on the left in the summary view.
+##### [Arrow] buttons
+Set the order of the columns in the summary view.  
+The higher an item is in the group column selection, the further left it is shown in the summary view.  
 
-- "Delete" button:  
+##### [Delete] button  
 Deletes the group column of the view.
 
-- "New" button:  
-Adds a new group column for the view.
+##### [New] button  
+Adds a new group column to the view.
 
 #### Calculation column selection
-Aggregate by the value of the target column.  
-
+The values of the column selected here are summarized.  
 ![Custom view screen](img/view/view_summary_column.png)
+##### View target column  
+The column whose values are summarized.  
 
-- Target column:  
-A column that summarizes values ​​as targets.
+##### Summary type  
+"Summary" "Count" "Min" "Max"  
+Choose from these four summary types. The result of the chosen summary is shown in the target column of the view.
 
-- Aggregation type:  
-"Total", "Number", "Minimum value", "Maximum value" Of the four aggregation types, the set aggregation result is displayed in the target column view.
+##### Alias display name  
+The view shows the column under the name entered here.  
 
-- Display as:  
-Displayed in the view with the set name.
-
-- "Delete" button:  
-Delete the summary column of the view.
-
-- "New" button:  
-Adds a new summary column for the view.
+##### [Delete] button  
+Deletes the summary column of the view.
+  
+##### [New] button  
+Adds a new summary column to the view.
 
 #### Display condition
-Set the conditions to be displayed in the view.  
-Add a condition when you want to narrow down the displayed content, such as displaying only items within the period or displaying only the contents of a specific status.  
-※ In addition to this setting, filter the data so that only the data of the authority owned by the login user is displayed. Unauthorized data will not be displayed regardless of this setting.  
-
+The conditions that narrow down the data shown in the view.  
+Add a condition when you want to narrow down, such as "show only the ones within a period" or "show only the ones of a certain status".  
+Note: apart from this setting, the data is narrowed down so that only the data the logged-in user has permission for is shown. Data without permission is not shown, whatever this setting is.
 ![Custom view screen](img/view/view_filter.png)
+>When the column type of the condition item is Select (From Table), the words shown as the condition value can be changed in the [Heading display column setting](/table?id=heading-display-column-setting).
 
-- Target column:  
-A column used for the narrowing condition.
-
-- Search condition:  
+##### View target column  
+The column used for the narrowing condition.  
+  
+##### Filter Condition  
 Select the content of the condition.  
-For details, please refer to [About search conditions](/view.md?id=about-search-conditions).
+For details, see [About search conditions](/view?id=about-search-conditions).  
+  
+##### Filter Condition Value  
+Enter the value to compare with the condition.  
+  
+##### [Delete] button  
+Deletes the display condition of the view.
+  
+##### [New] button  
+Adds a new display condition to the view.
 
-- Search value:  
-Enter the condition to match the content of the search condition.
-
-- "Delete" button:  
-Delete the display condition of the view.
-
-- "New" button:  
-Adds a new view display condition.
 
 ## New calendar view added
 
-- On the "Custom View Settings" screen, click "New Calendar View" under "New" at the top right of the page.
+- On the "Custom view setting" screen, click "Calendar view new creation" under [New] at the top right of the page.
 
 ![Custom view screen](img/view/view_new5.png)
 
-- The new calendar view screen is displayed. Enter the necessary information.
+- The screen for adding a new calendar view is shown. Enter the necessary items.
 ![Custom view screen](img/view/view_new6.png)
 
 ## Calendar view settings
 
 #### View display name, view authority, default
-The setting items are the same as [View settings](/view.md?id=view-settings) above.
+These are the same setting items as [View settings](/view?id=view-settings) above.
 
 #### Display column selection
-The settings for the columns displayed in the view.  
-In the calendar view, you can display the date column data as a period by setting the start date and end date.  
-※ For column data that you want to display on a single day, specify only the start date.  
+The setting of the columns shown in the view.  
+In the calendar view, when a start date and an end date are set, the data of the date columns can be shown as a period.  
+Note: to show the data on one day only, specify only the start date.
+
 ![Custom view screen](img/view/view_calendar_filter.png)
 
-- Start date:  
-Set the column that is the start date as the period.
-※ If you do not set the end date, the column set as the start date will be displayed on a single day.
+##### Start date  
+Set the column used as the start date of the period.  
+Note: when no end date is set, the data is shown on one day only, on the day of the column set as the start date.
 
-- End date:  
-Please set the column that is the end date as the period.
+##### End date  
+Set the column used as the end date of the period.
 
-- Display color:  
-Set the display background color of the data displayed in the view.
+##### Display color  
+Set the background color of the data shown in the view.
 
-- Text color:  
-Set the display text color of the data displayed in the view.
+##### Letter color  
+Set the text color of the data shown in the view.
 
-- "Delete" button:  
-Deletes the view display.
+##### [Delete] button  
+Deletes the item from the view.
 
-- "New" button:  
-Adds a new display column.
+##### [New] button  
+Adds a new display column to the view.
 
 #### Display condition
-Set the conditions to be displayed in the view.  
-Add a condition when you want to narrow down the displayed content, such as displaying only items within the period or displaying only the contents of a specific status.  
-※ In addition to this setting, filter the data so that only the data of the authority owned by the login user is displayed. Unauthorized data will not be displayed regardless of this setting.
+The conditions that narrow down the data shown in the view.  
+Add a condition when you want to narrow down, such as "show only the ones within a period" or "show only the ones of a certain status".  
+Note: apart from this setting, the data is narrowed down so that only the data the logged-in user has permission for is shown. Data without permission is not shown, whatever this setting is.
 ![Custom view screen](img/view/view_filter.png)
+>When the column type of the condition item is Select (From Table), the words shown as the condition value can be changed in the [Heading display column setting](/table?id=heading-display-column-setting).
 
-- Target column:  
-A column used for the narrowing condition.
-
-- Search condition:  
-Select the content of the condition.
-For details, please refer to [About search conditions](/view.md?id=about-search-conditions).
-
-- Search value:  
-Enter the condition to match the content of the search condition.
-
-- "Delete" button:  
-Delete the display condition of the view.
-
-- "New" button:  
-Adds a new view display condition.
+##### View target column  
+The column used for the narrowing condition.  
+  
+##### Filter Condition  
+Select the content of the condition.  
+For details, see [About search conditions](/view?id=about-search-conditions).  
+  
+##### Filter Condition Value  
+Enter the value to compare with the condition.  
+  
+##### [Delete] button  
+Deletes the display condition of the view.
+  
+##### [New] button  
+Adds a new display condition to the view.
 
 #### Headings in calendar view
-As in the image example, the heading can be displayed in the target date of the data in the calendar view.  
+As in the example of the image, the calendar view shows a heading at the date of each record.  
 
 ![Custom view screen](img/view/view_calender_heading.png ':size=270')
-- The displayed heading is the part set as [Use in labels](/column.md?id=use-in-labels) in custom column settings.
+- The heading shown is the one set in the [Heading display column setting](/table?id=heading-display-column-setting).
 
-- Also, if the column corresponding to "Date and time" in the custom column type is set as the start date for display column selection, the time of the registered data will be displayed at the head of the heading.
+- Also, when a column whose custom column type is "Date and Time" is set as the start date of the display column selection, the time of the data is shown at the beginning of the heading.  
 
 ## Save
-After filling in the settings, click “Submit”.
+After entering the settings, click [Submit].
 
 ## Preview
-On the screen for creating or editing a view, click the [Preview] button at the top right of the page to show the data (the data list, the kanban board or the gantt chart) with the settings as they are being entered, in a separate window.  
-You can check the result before saving the settings.
+On the screen for creating or editing a view, click the [Preview] button at the top right of the page to check, in a separate window, how the data looks (data list, kanban, gantt chart) with the settings being entered.  
+You can check the look before saving the settings.
 
-※ The [Preview] button is shown for the normal view, the all data view, the kanban view and the gantt chart view. It is not shown for the summary view, the calendar view, the condition view and so on.  
-※ The preview does not save the settings. To refresh it after changing the settings, click the [Preview] button again on the original screen.  
-※ Rows of "Display column selection", "Data display conditions" and "Data Sorting" whose target column or condition is not chosen yet are left out of the preview. In that case, the preview shows "N row(s) are left out of this preview: their column or condition is not chosen yet."
+- The [Preview] button is shown for the normal view, the all data view, the kanban view and the gantt chart view. It is not shown for the summary view, the calendar view, the condition view and so on.  
+- The preview does not save the settings. To refresh the display after changing the settings, click the [Preview] button again on the original screen.  
+- Rows of "Display column selection", "Data display conditions" and "Data Sorting" whose target column or condition is not chosen are not reflected in the preview. In that case, the preview screen shows "N row(s) are left out of this preview: their column or condition is not chosen yet."
 
 ## Edit
-If you want to edit the view, click the "Edit" button in the corresponding row.
+To edit a view, click the [Edit] link of that row.  
 ![Custom view screen](img/view/view_edit.png)
 
 ## Delete
-To delete a view, click the "Delete" button in the corresponding row.
+To delete a view, click the [Delete] link of that row.  
 ![Custom view screen](img/view/view_delete.png)
 
 ## Duplicate custom view
-Click the "Duplicate this view" button to duplicate the blank view with the same settings and only the view display name.
+Click the [Duplicate this view] link to make a view with the same settings and only the view display name left blank.
 ![Custom view screen](img/view/view_duplicate.png)
 
 ## Data list display
-Click the "Display data list in this view" button to display the data list in that view setting.
+Click the [List data in this view] button to show the data list with the settings of that view.
 ![Custom view screen](img/view/view_list.png)
+
+## Sharing a custom view
+Share a custom view you made with other users and organizations.  
+Note: only a "User View" can be shared. (A "System View" is open to all users with permission from the start.)  
+Note: only users or organizations that have access permission to the table can be chosen as the share target.  
+
+#### How to share
+1. Click the "Share" button on the edit screen of the custom view.  
+Note: this button is not shown when creating a new view.  
+![Data screen](ja/img/view/view_share1.png)
+
+2. The dialog for sharing the custom view is shown.  
+![Data screen](ja/img/view/view_share2.png)
+
+3. Add the users or organizations you want to share with, and click "Submit". The view is now shared.  
+![Data screen](ja/img/view/view_share3.png)  

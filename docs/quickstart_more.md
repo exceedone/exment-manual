@@ -1,49 +1,48 @@
 # Additional settings
-Exment can be executed by performing the [installation procedure](/quickstart.md).  
-However, additional settings may be required to use some functions.  
-When using the following functions, set according to the procedure.  
+When the [installation procedure](/quickstart) is finished, Exment runs.  
+However, some features need additional settings.  
+From the list below, open the page of the feature you want to use and set it up by following the steps.  
 
 ### List of settings
 
-- [Change / delete "admin" in URL Change / delete](/additional_prefix)  
-The value such as "/admin" in front of the URLs (a site newly installed with v7.2.1 or later has none by default).
+- [Change / delete "admin" included in URL](/additional_prefix)  
+Change or remove the value, such as "/admin", put in front of the URLs (a new installation of v7.2.1 or later has none by default).
 
 - [Task Schedule](/additional_task_schedule)  
-This is a setting method for performing automatic processing at a certain time, such as automatic creation of backups and notification of deadlines.  
+The setting for running processes automatically at fixed times, such as the automatic backup and deadline notifications.
 
 - [Server external communication off](/additional_disable_outside_api)  
-This is the setting method to stop communication from the server to the external server, such as information on Exment updates.
+The setting for stopping communication from the server to outside servers, such as getting the update information of Exment.
 
-- [Enable Caching Cache](/additional_cache)  
-Master data such as custom tables, columns, views, and workflows.  
-Depending on the environment, it may be faster.
+- [Enable Caching](/additional_cache)  
+Caches master data such as custom tables, columns, views and workflows. Depending on the environment, it can become faster.
 
 - [Change File Save Location](/additional_file_saveplace)  
-This is the procedure to change the file save destination from local server to FTP or AWS S3.
+The steps to change where files are saved, from the local server to FTP, AWS S3 and so on.
 
-- [Change file upload upper limit size / memory size](/additional_php_ini)  
-This is the procedure to change the upload size of attached file and PHP memory usage.
+- [Changing PHP settings](/additional_php_ini)  
+The steps to change the upload size of attached files, the memory usage of PHP and the timeout.
 
 - [IP filter](/additional_ip_filter)  
-Web page requests and API execution can be restricted by IP address.
+You can limit requests to the web pages and API calls by IP address.
 
 - [When 429 error occurs in API](/additional_429_too_many)  
-This is the solution when 429 Too Many Requests occurs during API implementation.
+What to do when 429 Too Many Requests appears when you call the API.
 
 - [Add label column with data acquisition API](/additional_api_label)  
-You can add the "label" column when you get the data list or create / update new data.
+You can add a "label" column to the result when you get a data list or create or update data.
 
-- [Add original option in the setting "Available characters" of column type "1 line text"](/additional_available_characters)  
-Custom column type "One line text" setting You can add available options in "Available characters".
+- [Add original option in the setting "Available Characters" of column type "One-Line Text"](/additional_available_characters)  
+You can add options that can be used in the setting "Available Characters" of the custom column type "One-Line Text".
 
 - [Delayed execution of notification processing](/additional_queue)  
-Some processes such as notifications can be delayed (queued).
+You can make some processes, such as notifications, run later (queue execution).
 
 - [Reverse proxy settings](/additional_reverse_proxy)  
-This is an additional setting when building an environment with a reverse proxy.
+The additional settings needed in an environment that uses a reverse proxy.
 
 - [Using the full-text search engine (Meilisearch)](/additional_meilisearch)  
-This is the setting method for using the full-text search engine "Meilisearch" and searching at high speed in an environment that holds a large amount of data.
+The setting for searching fast with the full-text search engine "Meilisearch" in an environment with a lot of data.
 
 - [Expert mode](/additional_expert)  
-This is a procedure for displaying more flexible setting items.
+The steps to show more detailed setting items on the screen.
