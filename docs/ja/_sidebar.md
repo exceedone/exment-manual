@@ -89,6 +89,7 @@
 * 【10. 機能拡張】
   * [API設定](/ja/api)
   * [API キー](/ja/api_key)
+  * [API で組織・役割グループのメンバーを変える](/ja/api_members)
   * [MCP サーバー（AI から使う）](/ja/mcp)
   * [プラグイン](/ja/plugin)
     * [公式プラグイン](/ja/plugin_official)

@@ -23,6 +23,12 @@ claude mcp add --transport http exment https://(ExmentのURL)/api/mcp --header "
 | `get_data` | データ 1 件 |
 | `list_attachments` | 添付ファイルの一覧（名前などだけ） |
 | `get_workflow_status` | ワークフローの状態 |
+| `list_organization_users` | 組織のユーザー（v7.2.6 以降） |
+| `list_user_organizations` | ユーザーの組織（v7.2.6 以降） |
+| `list_role_groups` | 役割グループの一覧（v7.2.6 以降） |
+| `get_role_group` | 役割グループの権限・ユーザー・組織（v7.2.6 以降） |
+
+組織と役割グループのツールは、[API で組織・役割グループのメンバーを変える](/ja/api_members)と同じ決まりで答えます：「機能の管理」でその機能を使っていて、システム管理者か役割グループの管理の権限がある人だけ、スコープ `user_org_read`・`role_group_read` が要ります。**読むだけです。** メンバーを足す・外すのは API だけでできます。一覧は `limit`（最大は上と同じ）と `offset` で続きを取れます（答えの `total`・`next_offset`）。
 
 ## 返すもの
 - **キーやトークンのユーザーが見られるものだけ**を返します。テーブルとデータの権限、キーの範囲（`table_read`・`value_read`・`workflow_read`）、キーに選んだテーブルが、API と同じように効きます。

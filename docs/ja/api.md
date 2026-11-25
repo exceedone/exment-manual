@@ -557,6 +557,10 @@ Authorization: Bearer eyJ0eXAiOiJKV1Qi......
 | workflow_read | ワークフローの情報を取得できます。 |
 | workflow_execute | ワークフローの実行ができます。 |
 | log | 操作ログの取得ができます。 |
+| user_org_read | 組織のユーザーを取得できます（v7.2.6 以降）。詳細は[こちら](/ja/api_members) |
+| user_org_write | 組織のユーザーを取得・追加・削除できます（v7.2.6 以降） |
+| role_group_read | 役割グループと、そのユーザー・組織を取得できます（v7.2.6 以降） |
+| role_group_write | 役割グループのユーザー・組織を取得・追加・削除できます（v7.2.6 以降） |
 | plugin | プラグインとして追加されたAPIを利用できます。詳細は[こちら](/ja/plugin_quickstart_api) |
 
 ※複数のスコープを指定する場合、スペース区切りでパラメータに設定してください。  

@@ -23,6 +23,12 @@ claude mcp add --transport http exment https://(Exment URL)/api/mcp --header "Au
 | `get_data` | One record |
 | `list_attachments` | The list of attachments (names and such only) |
 | `get_workflow_status` | The workflow status |
+| `list_organization_users` | The users of an organization (v7.2.6 or later) |
+| `list_user_organizations` | The organizations of a user (v7.2.6 or later) |
+| `list_role_groups` | The role groups (v7.2.6 or later) |
+| `get_role_group` | A role group: permissions, users and organizations (v7.2.6 or later) |
+
+The tools of organizations and role groups follow the rule of the [API for members](/api_members): the feature is on, the user is a system administrator or may manage role groups, and the scopes `user_org_read` / `role_group_read`. **They only read**: adding or removing members is the API only. Lists are paged with `limit` and `offset` (`total` and `next_offset` in the answer).
 
 ## What it returns
 - **Only what the user of the key or token may see.** Table and record permissions, the key's scopes (`table_read`, `value_read`, `workflow_read`) and the key's tables apply as for the API.
