@@ -15,15 +15,15 @@ Damit verwalten Sie Projekte und Tickets (Aufgaben) auf den Tabellen von Exment.
 | Funktion | Inhalt |
 | --- | --- |
 | Projekte | Jedes Projekt fasst Aufgaben, Board, Gantt-Diagramm, Wiki und Dateien zusammen. Es gibt drei Arten von Mitgliedern: Administratoren, Mitglieder und Betrachter (auf Basis der Rollengruppen von Exment). |
-| Aufgaben | Liste (Filter und Schnellfilter), Baumanzeige von über- und untergeordneten Aufgaben, direktes Bearbeiten in der Liste, Massenaktualisierung, Anhänge. Der Text wird in Markdown geschrieben, und Bilder lassen sich einfügen. Nach dem Speichern werden Liste und Details an Ort und Stelle neu gezeichnet, ohne die ganze Seite neu zu laden (ab 1.6.5). |
+| Aufgaben | Liste (Filter und Schnellfilter), Baumanzeige von über- und untergeordneten Aufgaben, direktes Bearbeiten in der Liste, Massenaktualisierung, Anhänge. Der Text wird in Markdown geschrieben, und Bilder lassen sich einfügen. Nach dem Speichern werden Liste und Details an Ort und Stelle neu gezeichnet, ohne die ganze Seite neu zu laden (ab 1.6.5). Über- und untergeordnete Aufgaben können bis zu 5 Ebenen tief gehen (ab 1.7.18 / benötigt Exment 7.2.6). |
 | Rollen an einer Aufgabe | Neben dem Zuständigen gibt es stellvertretende Zuständige, Verwalter und Reviewer sowie einen Schwierigkeitsgrad (leicht, normal, schwer). In den Details der Aufgabe steht auch, wer sie angelegt hat. Stellvertretende Zuständige, Verwalter und Reviewer erhalten wie der Zuständige die Hinweise auf Änderungen (ab 1.6.0). |
 | Meilensteine | Verwaltung der Aufgaben je Meilenstein und ein Burndown-Diagramm. |
 | Board und Gantt-Diagramm | Zeigt die Aufgaben auf einem Board nach Status oder in einem Gantt-Diagramm. |
-| Wiki und Dateien | Die Unterlagen des Projekts werden über Wiki und Dateien geteilt. |
+| Wiki und Dateien | Die Unterlagen des Projekts werden über Wiki und Dateien geteilt. Der Tab „ファイル“ kann einen Arbeitsbereich des Dateiservers von Exment zeigen (ab 1.7.18 / benötigt Exment 7.2.6). |
 | Word, Excel und PowerPoint | Mit „表示“ (Anzeigen) bei Dateien von Aufgaben, Kommentaren, Wiki und Projekt öffnen Sie die Datei auf der Seite, ohne sie herunterzuladen. Wer bearbeiten darf, kann sie dort auch bearbeiten und speichern (ab 1.7.0 und 1.7.1. Nötig sind [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) ab 0.4.0 und ein Browser mit WebGPU). Ohne Groupware werden die Dateien wie bisher heruntergeladen. |
 | Kommentare | Zu einer Aufgabe lassen sich Kommentare schreiben. Sie können Benutzer nennen, die einen Hinweis bekommen sollen (Erwähnung), oder um eine Prüfung (Review) bitten. |
 | Gelesen und ungelesen | Sie sehen, wer eine Aufgabe gelesen hat. Aufgaben, die Sie noch nicht angesehen haben, sind in der Liste farbig markiert. |
-| Benachrichtigungen | Hinweise über die Glocke auf der Seite und E-Mails beim Anlegen einer Aufgabe, bei einem Kommentar und über die Schaltfläche „メールで知らせる“ (per E-Mail benachrichtigen). Die E-Mails werden mit den E-Mail-Einstellungen von Exment gesendet. |
+| Benachrichtigungen | Hinweise über die Glocke auf der Seite und E-Mails beim Anlegen einer Aufgabe, bei einem Kommentar und über die Schaltfläche „メールで知らせる“ (per E-Mail benachrichtigen). Die E-Mails werden mit den E-Mail-Einstellungen von Exment gesendet. Jede Person kann sie zusätzlich per E-Mail, per Teams oder beides erhalten (ab 1.7.18 / benötigt Exment 7.2.6). |
 | Einstellungen | Unter ⚙ „設定“ (Einstellungen) stehen die Einstellungen des Portals und die Aktualisierung der Datenstruktur. Systemadministratoren können die „データ移行“ (Datenmigration) nutzen: Projekte werden mit Kommentaren, Änderungsverlauf und Anhängen in eine ZIP-Datei exportiert und in ein anderes Exment importiert (zuerst nur prüfen, dann schreiben). Importierte Aufgaben zeigen auch Aufgabenschlüssel, URL und Ersteller der Quelle sowie die benutzerdefinierten Attribute (ab 1.5.0). |
 
 ## Voraussetzungen
@@ -190,7 +190,7 @@ Für jedes Projekt können Sie ein Git-Repository (Gitea oder Forgejo) anlegen l
 ![Git-Repository](../img/plugin_pm/pm_git.png)
 
 ## Bedienung
-Dieser Abschnitt beschreibt die Seiten von 1.7.17. Wenn Sie ein Projekt öffnen, erscheinen die Tabs „ホーム“ (Start), „ボード“ (Board), „課題“ (Aufgaben), „ガントチャート“ (Gantt-Diagramm), „バーンダウン“ (Burndown), „Wiki“, „ファイル“ (Dateien) und „設定“ (Einstellungen). Wiki, Dateien, Diagramme (Gantt-Diagramm und Burndown) und über- und untergeordnete Aufgaben lassen sich im Projekt unter „設定“ → „利用する機能“ (verwendete Funktionen) ausschalten. Dabei wird nur der Tab ausgeblendet. Es werden keine Daten gelöscht.
+Dieser Abschnitt beschreibt die Seiten von 1.7.18. Wenn Sie ein Projekt öffnen, erscheinen die Tabs „ホーム“ (Start), „ボード“ (Board), „課題“ (Aufgaben), „ガントチャート“ (Gantt-Diagramm), „バーンダウン“ (Burndown), „Wiki“, „ファイル“ (Dateien) und „設定“ (Einstellungen). Wiki, Dateien, Diagramme (Gantt-Diagramm und Burndown) und über- und untergeordnete Aufgaben lassen sich im Projekt unter „設定“ → „利用する機能“ (verwendete Funktionen) ausschalten. Dabei wird nur der Tab ausgeblendet. Es werden keine Daten gelöscht.
 
 ### Aufgaben
 **Die Liste (Tab „課題“)**
@@ -211,11 +211,21 @@ Dieser Abschnitt beschreibt die Seiten von 1.7.17. Wenn Sie ein Projekt öffnen,
 - Mit `@` wählen Sie ein Mitglied, mit `#` eine Aufgabe und mit `~` einen Anhang und fügen ihn ein.
 - „コメント・変更履歴“ (Kommentare und Änderungsverlauf) lässt sich auf „コメントのみ“ (nur Kommentare) umschalten.
 
+**Gelesen und ungelesen**
+- Aufgaben, die Sie noch nicht gelesen haben, erscheinen in der Liste als ungelesen (fett). Wenn Sie eine Aufgabe öffnen, gilt sie als gelesen. Mit einem Rechtsklick auf eine Zeile setzen Sie sie von Hand auf gelesen oder ungelesen. In der Aufgabe sehen Sie, wer sie gelesen hat.
+- Ab 1.7.18: Eine Aufgabe, die Sie aus der Liste geöffnet haben, bleibt gelesen, wenn Sie zur Liste zurückgehen. Was Sie markiert haben (geöffnet oder von Hand gesetzt), bleibt eine Minute lang erhalten, auch wenn die Liste aktualisiert wird. Danach zählt wieder die Antwort des Servers.
+
 ### Über- und untergeordnete Aufgaben
 - Klicken Sie beim Bearbeiten einer Aufgabe auf „親課題を設定“ (übergeordnete Aufgabe festlegen), suchen Sie nach Schlüssel oder Betreff und wählen Sie die Aufgabe. Über „子課題を追加“ (untergeordnete Aufgabe hinzufügen) auf der Seite der Aufgabe legen Sie auch welche an.
 - Auf der Seite der übergeordneten Aufgabe erscheint der Bereich „子課題“ (untergeordnete Aufgaben). Dort sehen Sie, wie viele abgeschlossen sind. Auch die „ツリー“ (Baum) der Liste ordnet sie nach über- und untergeordnet.
 - Übergeordnet kann nur eine Aufgabe desselben Projekts sein.
-- In 1.7.17 gibt es nur eine Ebene. Eine untergeordnete Aufgabe kann nicht übergeordnete Aufgabe einer anderen sein. Eine Aufgabe mit untergeordneten Aufgaben kann nicht einer anderen Aufgabe untergeordnet werden.
+- Über- und untergeordnete Aufgaben können bis zu **5 Ebenen** tief gehen (eine Aufgabe, ihre untergeordnete Aufgabe, deren untergeordnete Aufgabe ...) (ab 1.7.18 / benötigt Exment 7.2.6). Vorher gab es nur eine Ebene.
+- Die Zahl der Ebenen ist eine Einstellung des Plugins: in den Plugin-Einstellungen unter 「課題」 (Aufgaben) > 「課題の階層の数」 (Anzahl der Ebenen), von 2 bis 10. Standard ist 5.
+- Eine übergeordnete Aufgabe wird nur in zwei Fällen abgelehnt: wenn eine Schleife entstünde (eine Aufgabe unter ihrer eigenen untergeordneten Aufgabe) oder wenn die Aufgabe (oder die tiefste Aufgabe darunter) tiefer als die Zahl der Ebenen läge. Die Meldung sagt, welcher Fall es ist. Die Auswahl zeigt nur Aufgaben, die gewählt werden können.
+- Eine Aufgabe mit untergeordneten Aufgaben kann unter eine andere Aufgabe desselben Projekts verschoben werden. Ihre untergeordneten Aufgaben gehen mit, solange sie noch in die Ebenen passen. In ein anderes Projekt kann sie weiterhin nicht verschoben werden.
+- Wenn Sie die Zahl der Ebenen verringern, bleiben bereits tiefere Aufgaben, wie sie sind. Nur eine neue übergeordnete Aufgabe wird geprüft.
+- Der „ツリー“ (Baum) der Liste zeigt alle Ebenen (Einrücken, Auf- und Zuklappen). Eine Aufgabe mit untergeordneten Aufgaben zeigt neben ihrem eigenen Fortschritt 「子の進捗」 (Fortschritt der untergeordneten Aufgaben) N %: der Durchschnitt der Aufgaben darunter, die selbst keine untergeordneten haben; eine erledigte zählt 100 %. Das ist nur eine Anzeige und wird nicht gespeichert.
+- Das Gantt-Diagramm zeigt die tieferen Ebenen mit Exment 7.2.6 eingerückt. Das Board bleibt unverändert (eine Karte zeigt ihre übergeordnete Aufgabe).
 - Eine Aufgabe mit untergeordneten Aufgaben lässt sich weder löschen noch in ein anderes Projekt verschieben. Entfernen Sie zuerst bei den untergeordneten Aufgaben die übergeordnete.
 - Wenn im Projekt „親子課題“ (über- und untergeordnete Aufgaben) ausgeschaltet ist, lässt sich keine übergeordnete Aufgabe festlegen.
 
@@ -228,10 +238,16 @@ Dieser Abschnitt beschreibt die Seiten von 1.7.17. Wenn Sie ein Projekt öffnen,
 
 ### Benachrichtigungen
 - Zu Glocke und E-Mail lesen Sie oben „5. Benachrichtigungen“. Die Glocke kommt an, ohne dass Sie etwas tun. E-Mails senden Sie mit „メールでも知らせる“ oder „メールで知らせる“.
-- 1.7.17 sendet die Benachrichtigungen zu Aufgaben nicht an Teams. Auch „[Benachrichtigungen in den persönlichen Teams-Chat senden](/de/notify_teams)“ von Exment selbst (ab Exment 7.2.6) wird für die Benachrichtigungen der Projektverwaltung nicht verwendet.
+- **Per E-Mail oder Teams, für jede Person** (ab 1.7.18; Teams benötigt Exment 7.2.6): Jede Person wählt unter 「通知」 (Benachrichtigungen) in der oberen Leiste des Portals, wie sie die Hinweise zu Aufgaben (neue Aufgabe, Änderung, Kommentar) zusätzlich zur Glocke erhält: per E-Mail, per Teams oder beides. Für Personen, die nicht gewählt haben, gilt die Plugin-Einstellung 「受け取り方の初めの値」 (Standard für den Empfang; zuerst nur die Glocke).
+- E-Mail und Teams-Nachricht sehen gleich aus: der Titel mit dem Aufgabenschlüssel in Fett (課題が更新されました（KEY）), der Link zur Aufgabe, der Betreff und die Änderungen als nummerierte Liste. Die E-Mail ist HTML (mit Textteil) oder reiner Text, je nach E-Mail-Einstellung von Exment. 「メールでも知らせる」 (auch per E-Mail benachrichtigen) sendet weiterhin an alle, die die Glocke erhalten, im selben Layout.
+- Für Teams ist Exment 7.2.6 oder neuer nötig. Schalten Sie in der [Funktionsverwaltung](/de/feature) „Teams-Benachrichtigungen (persönlicher Chat)“ ein und tragen Sie in den Systemeinstellungen die Adresse des Teams-Workflows ein (siehe „[Benachrichtigung im persönlichen Teams-Chat](/de/notify_teams)“). Bei einem älteren Exment wird nur E-Mail angeboten.
 
 ### Dateien und Wiki
 - **Dateien**: Die Anhänge von Aufgaben, Wiki und Projekt stehen in einer Liste (Name, geändert von, geändert am, Ort). Dateien, die Sie hier ablegen, werden als Anhänge des Projekts gespeichert.
+- **Arbeitsbereich des Dateiservers** (ab 1.7.18 / benötigt Exment 7.2.6): Der Tab „ファイル“ kann statt nur der Anhangsliste den Arbeitsbereich des Projekts im [Dateiserver](/de/file_server) von Exment zeigen (Ordner, Hochladen, Freigabelinks, Versionen, Suche, Link kopieren, in Office öffnen). Es ist eine Funktion der [Funktionsverwaltung](/de/feature), 「プロジェクト管理のファイル（ファイルサーバー）」, und bleibt aus, bis ein Systemadministrator sie einschaltet. Die Dateiserver-Funktion muss verfügbar sein.
+- Der Administrator des Projekts legt in den 「設定」 (Einstellungen) des Projekts unter 「ファイルサーバー」 einen Arbeitsbereich an oder wählt einen, den er verwaltet. Ein Projekt hat einen Arbeitsbereich. Wenn auf einer Site nur Systemadministratoren Arbeitsbereiche anlegen, legt ein Administrator einen an und gibt dem Projektadministrator das Verwaltungsrecht; dieser wählt ihn dann aus.
+- Die obersten Berechtigungen folgen dem Projekt: Administratoren verwalten, Mitglieder und Mitgliedsorganisationen bearbeiten, Betrachter und Betrachter-Organisationen sehen nur. Sie werden bei jeder Änderung der Personen des Projekts neu gesetzt, und mit der Schaltfläche 「権限をプロジェクトに合わせ直す」 (Berechtigungen erneut an das Projekt anpassen). Ein Ordner mit eigenen Berechtigungen im Dateiserver behält sie.
+- Der Tab zeigt die eigenen Seiten des Dateiservers. 「ファイルサーバーで開く」 (im Dateiserver öffnen) öffnet ihn in voller Größe. Die Anhänge von Aufgaben, Wiki und Projekt stehen weiterhin darunter und werden nicht verschoben. Wenn Sie die Verknüpfung lösen, bleiben Arbeitsbereich und Dateien erhalten.
 - Word, Excel und PowerPoint öffnen Sie mit „表示“ (Anzeigen), wenn [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) installiert ist (lesen Sie die Tabelle unter „Was es kann“).
 - **Wiki**: Seiten des Projekts legen Sie mit „追加“ (Hinzufügen) an. Seiten mit einer übergeordneten Seite stehen in der Liste links als Baum unter dieser Seite. Es gibt „編集“ (Bearbeiten), „履歴“ (Verlauf) und „添付“ (Anhänge), und Sie können Tags setzen.
 

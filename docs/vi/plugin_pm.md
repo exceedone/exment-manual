@@ -17,15 +17,15 @@ Plugin quản lý dự án và ticket (công việc) trên chính các bảng c�
 | Chức năng | Nội dung |
 | --- | --- |
 | Dự án | Mỗi dự án có công việc, bảng, biểu đồ Gantt, wiki và tệp riêng. Thành viên có 3 loại: quản lý dự án, thành viên và người xem (dùng nhóm vai trò của Exment). |
-| Công việc | Danh sách có lọc và lọc nhanh, cây cha/con, sửa trực tiếp trên danh sách, cập nhật hàng loạt, tệp đính kèm. Nội dung viết bằng Markdown và dán được ảnh. Sau khi lưu, danh sách và chi tiết được vẽ lại ngay tại chỗ, không tải lại cả trang (từ 1.6.5). |
+| Công việc | Danh sách có lọc và lọc nhanh, cây cha/con, sửa trực tiếp trên danh sách, cập nhật hàng loạt, tệp đính kèm. Nội dung viết bằng Markdown và dán được ảnh. Sau khi lưu, danh sách và chi tiết được vẽ lại ngay tại chỗ, không tải lại cả trang (từ 1.6.5). Công việc cha và con có thể lồng đến 5 cấp (từ 1.7.18 / cần Exment 7.2.6). |
 | Vai trò trên công việc | Ngoài người phụ trách: người phụ trách phụ, người quản lý, người review, và độ khó (dễ, bình thường, khó). Chi tiết công việc cũng hiện người tạo. Người phụ trách phụ, người quản lý và người review cũng nhận thông báo cập nhật như người phụ trách (từ 1.6.0). |
 | Mốc (milestone) | Công việc theo từng mốc và biểu đồ burndown. |
 | Bảng và biểu đồ Gantt | Hiển thị công việc trên bảng theo trạng thái, hoặc trên biểu đồ Gantt. |
-| Wiki và tệp | Chia sẻ tài liệu của dự án bằng wiki và tệp. |
+| Wiki và tệp | Chia sẻ tài liệu của dự án bằng wiki và tệp. Tab 「ファイル」 có thể hiển thị không gian làm việc của máy chủ tệp Exment (từ 1.7.18 / cần Exment 7.2.6). |
 | Word, Excel và PowerPoint | 「表示」 (xem) trên tệp của công việc, bình luận, wiki và dự án mở tệp ngay trên màn hình mà không cần tải về. Người có quyền sửa có thể sửa và lưu tại đó (từ 1.7.0 / 1.7.1; cần [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) 0.4.0 trở lên và trình duyệt hỗ trợ WebGPU). Nếu không có, tệp được tải về như trước. |
 | Bình luận | Bình luận trên công việc. Chỉ định người cần báo (mention) hoặc nhờ xác nhận (review). |
 | Đã đọc / chưa đọc | Biết ai đã đọc công việc. Công việc bạn chưa xem được tô màu trong danh sách. |
-| Thông báo | Chuông trên màn hình, và email khi có công việc mới, bình luận, hoặc khi bấm nút "gửi email về công việc này" (gửi bằng thiết lập email của Exment). |
+| Thông báo | Chuông trên màn hình, và email khi có công việc mới, bình luận, hoặc khi bấm nút "gửi email về công việc này" (gửi bằng thiết lập email của Exment). Mỗi người còn có thể nhận qua email, qua Teams hoặc cả hai (từ 1.7.18 / cần Exment 7.2.6). |
 | Cài đặt | Trong ⚙ 設定 (cài đặt): cài đặt cổng và cập nhật cấu trúc dữ liệu. Quản trị viên hệ thống dùng được "Di chuyển dữ liệu": xuất dự án kèm bình luận, lịch sử và tệp đính kèm ra ZIP rồi nhập vào Exment khác (kiểm tra trước, rồi mới ghi). Công việc được nhập cũng hiện mã, URL và người tạo ở nơi gốc, cùng các thuộc tính tùy chỉnh (từ 1.5.0). |
 
 ## Yêu cầu
@@ -192,7 +192,7 @@ Mỗi dự án có thể yêu cầu một repository Git (Gitea hoặc Forgejo).
 ![Repository Git](../img/plugin_pm/pm_git.png)
 
 ## Cách sử dụng
-Phần này viết theo màn hình của 1.7.17. Khi mở dự án, có các tab 「ホーム」 (trang chủ), 「ボード」 (bảng), 「課題」 (công việc), 「ガントチャート」 (biểu đồ Gantt), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (tệp) và 「設定」 (cài đặt). Wiki, tệp, biểu đồ (biểu đồ Gantt và burndown) và công việc cha/con có thể tắt ở 「設定」 của dự án → 「利用する機能」 (chức năng sử dụng). Tắt thì chỉ ẩn tab, dữ liệu không bị xóa.
+Phần này viết theo màn hình của 1.7.18. Khi mở dự án, có các tab 「ホーム」 (trang chủ), 「ボード」 (bảng), 「課題」 (công việc), 「ガントチャート」 (biểu đồ Gantt), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (tệp) và 「設定」 (cài đặt). Wiki, tệp, biểu đồ (biểu đồ Gantt và burndown) và công việc cha/con có thể tắt ở 「設定」 của dự án → 「利用する機能」 (chức năng sử dụng). Tắt thì chỉ ẩn tab, dữ liệu không bị xóa.
 
 ### Công việc
 **Danh sách (tab 「課題」)**
@@ -213,11 +213,21 @@ Phần này viết theo màn hình của 1.7.17. Khi mở dự án, có các tab
 - Gõ `@` để chọn thành viên, `#` để chọn công việc, `~` để chọn tệp đính kèm.
 - 「コメント・変更履歴」 (bình luận và lịch sử) chuyển được sang 「コメントのみ」 (chỉ bình luận).
 
+**Đã đọc và chưa đọc**
+- Công việc bạn chưa đọc được hiển thị là chưa đọc (chữ đậm) trong danh sách. Mở công việc thì nó thành đã đọc. Nhấp chuột phải vào một dòng để tự đánh dấu đã đọc hoặc chưa đọc. Trên màn hình công việc, bạn xem được ai đã đọc.
+- Từ 1.7.18: công việc bạn mở từ danh sách vẫn ở trạng thái đã đọc khi quay lại danh sách. Dấu bạn vừa đặt (mở, hoặc tự đánh dấu) được giữ trong một phút dù danh sách được làm mới. Sau đó, câu trả lời của máy chủ được dùng trở lại.
+
 ### Công việc cha và công việc con
 - Trong màn hình sửa công việc, bấm 「親課題を設定」 (đặt công việc cha), tìm theo khóa hoặc tiêu đề rồi chọn. Cũng tạo được từ 「子課題を追加」 (thêm công việc con) trên màn hình công việc.
 - Màn hình của công việc cha có ô 「子課題」 (công việc con), cho biết đã xong bao nhiêu. 「ツリー」 (cây) của danh sách cũng xếp theo cha và con.
 - Công việc cha phải thuộc cùng dự án.
-- Ở 1.7.17 chỉ có 1 cấp. Công việc con không làm cha của công việc khác được. Công việc đã có con cũng không làm con của công việc khác được.
+- Công việc cha và con có thể lồng đến **5 cấp** (một công việc, con của nó, con của con đó ...) (từ 1.7.18 / cần Exment 7.2.6). Trước đây chỉ có 1 cấp.
+- Số cấp là một thiết lập của plugin: trong thiết lập plugin, 「課題」 (công việc) > 「課題の階層の数」 (số cấp), từ 2 đến 10. Giá trị ban đầu là 5.
+- Công việc cha chỉ bị từ chối trong hai trường hợp: tạo ra vòng lặp (đặt công việc dưới chính con của nó), hoặc làm công việc đó (hay công việc sâu nhất bên dưới) vượt quá số cấp. Thông báo cho biết là trường hợp nào. Màn hình chọn công việc cha chỉ hiển thị các công việc có thể chọn.
+- Công việc có con có thể được chuyển xuống dưới công việc khác của cùng dự án. Các công việc con đi cùng, miễn là còn nằm trong số cấp. Chuyển sang dự án khác vẫn bị từ chối.
+- Nếu giảm số cấp, các công việc đã sâu hơn vẫn giữ nguyên. Chỉ công việc cha mới được kiểm tra.
+- 「ツリー」 (cây) của danh sách hiển thị mọi cấp (thụt lề, thu gọn/mở rộng). Công việc có con hiển thị 「子の進捗」 (tiến độ của con) N% bên cạnh tiến độ của chính nó: trung bình của các công việc bên dưới không có con, công việc đã xong tính là 100%. Chỉ để hiển thị, không được lưu.
+- Biểu đồ Gantt hiển thị các cấp sâu hơn có thụt lề với Exment 7.2.6. Bảng (board) không đổi (thẻ hiển thị công việc cha).
 - Công việc có con không xóa được, cũng không chuyển sang dự án khác được. Hãy bỏ cha của các công việc con trước.
 - Khi dự án tắt 「親子課題」 (công việc cha/con), không đặt cha được.
 
@@ -230,10 +240,16 @@ Phần này viết theo màn hình của 1.7.17. Khi mở dự án, có các tab
 
 ### Thông báo
 - Về chuông và email, xem "5. Thông báo" ở trên. Chuông tự đến, không cần làm gì; email gửi bằng 「メールでも知らせる」 hoặc 「メールで知らせる」.
-- 1.7.17 không gửi thông báo công việc đến Teams. "[Gửi thông báo vào chat cá nhân trên Teams](/vi/notify_teams)" của Exment (Exment 7.2.6 trở lên) cũng không được dùng cho thông báo của Quản lý dự án.
+- **Qua email hoặc Teams, cho từng người** (từ 1.7.18; Teams cần Exment 7.2.6): mỗi người chọn trong 「通知」 (Thông báo) ở thanh trên của cổng thông tin cách nhận thông báo về công việc (công việc mới, thay đổi, bình luận), ngoài chuông: qua email, qua Teams hoặc cả hai. Với người chưa chọn, thiết lập plugin 「受け取り方の初めの値」 (cách nhận ban đầu) sẽ quyết định (ban đầu chỉ có chuông).
+- Email và tin nhắn Teams có cùng dạng: tiêu đề có khóa công việc in đậm (課題が更新されました（KEY）), liên kết đến công việc, tiêu đề công việc và nội dung thay đổi dưới dạng danh sách đánh số. Email là HTML (kèm phần văn bản) hoặc văn bản thuần, tùy thiết lập email của Exment. 「メールでも知らせる」 (gửi cả email) vẫn gửi email cho mọi người nhận chuông, cùng dạng.
+- Teams cần Exment 7.2.6 trở lên. Bật "Thông báo Teams (trò chuyện cá nhân)" trong [Quản lý chức năng](/vi/feature) và nhập địa chỉ của workflow Teams trong thiết lập hệ thống (xem "[Thông báo đến trò chuyện cá nhân Teams](/vi/notify_teams)"). Với Exment cũ hơn, chỉ có email.
 
 ### Tệp và wiki
 - **Tệp**: xem tệp đính kèm của công việc, wiki và dự án trong 1 danh sách (tên, người cập nhật, ngày cập nhật, vị trí). Tệp kéo thả vào đây được lưu thành tệp đính kèm của dự án.
+- **Không gian làm việc của máy chủ tệp** (từ 1.7.18 / cần Exment 7.2.6): tab 「ファイル」 có thể hiển thị không gian làm việc của dự án trong [máy chủ tệp](/vi/file_server) của Exment (thư mục, tải lên, liên kết chia sẻ, phiên bản, tìm kiếm, sao chép liên kết, mở bằng Office) thay vì chỉ danh sách tệp đính kèm. Đây là một chức năng trong [Quản lý chức năng](/vi/feature), 「プロジェクト管理のファイル（ファイルサーバー）」, và tắt cho đến khi quản trị viên hệ thống bật. Chức năng máy chủ tệp phải dùng được.
+- Quản lý dự án tạo không gian làm việc trong 「設定」 (thiết lập) của dự án > 「ファイルサーバー」 (máy chủ tệp), hoặc chọn một không gian mà họ quản lý. Mỗi dự án có một không gian làm việc. Ở site mà chỉ quản trị viên hệ thống được tạo không gian làm việc, quản trị viên tạo một cái và cấp quyền quản lý cho quản lý dự án; người này sau đó chọn nó.
+- Quyền cấp cao nhất theo dự án: quản lý có quyền quản lý, thành viên và tổ chức thành viên được sửa, người xem và tổ chức xem chỉ được xem. Quyền được đặt lại mỗi khi người trong dự án thay đổi, và bằng nút 「権限をプロジェクトに合わせ直す」 (đặt lại quyền theo dự án). Thư mục có quyền riêng trong máy chủ tệp giữ nguyên quyền đó.
+- Tab hiển thị chính các trang của máy chủ tệp. 「ファイルサーバーで開く」 (mở trong máy chủ tệp) mở ở kích thước đầy đủ. Tệp đính kèm của công việc, wiki và dự án vẫn được liệt kê bên dưới và không bị chuyển. Hủy liên kết thì không gian làm việc và tệp vẫn còn.
 - Word, Excel và PowerPoint mở được bằng 「表示」 (xem) khi đã cài [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) (xem bảng ở "Chức năng").
 - **Wiki**: tạo trang của dự án bằng 「追加」 (thêm). Trang có trang cha được xếp dưới trang cha theo hình cây trong danh sách bên trái. Có 「編集」 (sửa), 「履歴」 (lịch sử) và 「添付」 (đính kèm), và gắn được thẻ.
 
