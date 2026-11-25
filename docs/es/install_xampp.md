@@ -19,30 +19,30 @@ Siga este orden.
 [Descarga de XAMPP](https://www.apachefriends.org/jp/download.html)
 
 2. Elija y descargue una versión con «PHP8.2» o superior.  
-![Pantalla de instalación de XAMPP](img/xampp/xampp_win.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp_win.png)
 
 3. Siga con la instalación de XAMPP.  
-![Pantalla de instalación de XAMPP](img/xampp/xampp1.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp1.png)
 
 4. Durante la instalación aparece una pantalla para elegir los componentes de XAMPP. Elija Apache y MySQL.  
 Marque también «phpMyAdmin».  
 ※ Marque los demás como quiera  
 Después, haga clic en «Next».  
-![Pantalla de instalación de XAMPP](img/xampp/xampp2.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp2.png)
 
 5. Siga las pantallas hasta terminar la instalación.
 
 6. Cuando termine la instalación, inicie el panel de control de XAMPP.  
-![Pantalla de instalación de XAMPP](img/xampp/xampp3.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp3.png)
 
 7. Haga clic en «Start» en las filas «Apache» y «MySQL», arriba del todo.  
-![Pantalla de instalación de XAMPP](img/xampp/xampp4.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp4.png)
 
 8. Si aparece la configuración del firewall, haga clic en «Permitir».  
-![Pantalla de instalación de XAMPP](img/xampp/xampp5.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp5.png)
 
 9. Con esto, Apache está en marcha.  
-![Pantalla de instalación de XAMPP](img/xampp/xampp6.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp6.png)
 
 #### 【Nota】
 - Cuando reinicie el sistema operativo, tiene que iniciar otra vez el panel de control de XAMPP y volver a poner en marcha Apache.
@@ -52,16 +52,16 @@ Después, haga clic en «Next».
 Para ejecutar mysql desde el símbolo del sistema, hay que añadir la ruta a las «variables de entorno».
 
 1. En el Explorador, haga clic con el botón derecho en «Este equipo» y haga clic en «Propiedades».  
-![Variable de entorno de MySQL](img/xampp/mysql_command1.png)
+![Variable de entorno de MySQL](../img/xampp/mysql_command1.png)
 
 2. Haga clic en «Configuración avanzada del sistema».  
-![Variable de entorno de MySQL](img/xampp/mysql_command2.png)
+![Variable de entorno de MySQL](../img/xampp/mysql_command2.png)
 
 3. Haga clic en «Variables de entorno».  
-![Variable de entorno de MySQL](img/xampp/mysql_command3.png)
+![Variable de entorno de MySQL](../img/xampp/mysql_command3.png)
 
 4. Haga clic en «Path» en «Variables de usuario» y haga clic en «Editar».  
-![Variable de entorno de MySQL](img/xampp/mysql_command4.png)
+![Variable de entorno de MySQL](../img/xampp/mysql_command4.png)
 
 5. Haga clic en «Nuevo» y añada la siguiente línea.
 
@@ -69,7 +69,7 @@ Para ejecutar mysql desde el símbolo del sistema, hay que añadir la ruta a las
 C:\xampp\mysql\bin  
 ~~~
 
-![Variable de entorno de MySQL](img/xampp/mysql_command5.png)
+![Variable de entorno de MySQL](../img/xampp/mysql_command5.png)
 
 6. Cuando lo haya escrito, cierre todos los cuadros de diálogo abiertos con «Aceptar».
 
@@ -83,13 +83,13 @@ EXMENT_MYSQL_BIN_DIR="C:/xampp/mysql/bin"
 
 #### Crear la base de datos
 1. Inicie el panel de control de XAMPP y haga clic en «Admin» en la fila «MySQL».  
-![Variable de entorno de MySQL](img/xampp/phpmyadmin0.png)
+![Variable de entorno de MySQL](../img/xampp/phpmyadmin0.png)
 
 2. Haga clic en «Nueva» en el menú de la izquierda.  
-![Variable de entorno de MySQL](img/xampp/phpmyadmin1.png)
+![Variable de entorno de MySQL](../img/xampp/phpmyadmin1.png)
 
 3. En la fila «Crear base de datos», escriba con caracteres alfanuméricos el nombre de base de datos que quiera y haga clic en «Crear».  
-![Variable de entorno de MySQL](img/xampp/phpmyadmin2.png)
+![Variable de entorno de MySQL](../img/xampp/phpmyadmin2.png)
 
 Con esto, la base de datos está creada.
 
@@ -100,7 +100,7 @@ Pero así hay problemas graves. Por ejemplo, al abrir la URL [http://localhost/e
 Por eso recomendamos encarecidamente una configuración que evita este problema. Configúrela con los siguientes pasos.
 
 1. Cree la carpeta «local» en la carpeta «C:\xampp».  
-![Configuración del subdominio](img/xampp/subdomain1.png)
+![Configuración del subdominio](../img/xampp/subdomain1.png)
 
 2. Abra "C:\xampp\apache\conf\extra\httpd-vhosts.conf".
 
@@ -133,7 +133,7 @@ Por eso recomendamos encarecidamente una configuración que evita este problema.
 ~~~
 
 5. Reinicie Apache en el panel de control de XAMPP. Haga clic en el botón «Stop» de la fila «Apache» y después haga clic otra vez en «Start».  
-![Pantalla de instalación de XAMPP](img/xampp/xampp7.png)
+![Pantalla de instalación de XAMPP](../img/xampp/xampp7.png)
 
 6. Con esto, puede abrir Exment en la siguiente URL.  
 http://exment.localapp
@@ -167,7 +167,7 @@ Para cambiar la versión de PHP, siga estos pasos.
    1. Abra [Descarga de XAMPP](https://www.apachefriends.org/jp/download.html)
    2. Descargue el archivo que corresponda a su sistema operativo y a la versión de PHP que quiere usar.  
       > Elija el archivo zip, no installer.exe. (Si puede descomprimirlo, también vale el archivo 7z.)
-      ![Pantalla de descarga de XAMPP](img/xampp/xampp8.png)
+      ![Pantalla de descarga de XAMPP](../img/xampp/xampp8.png)
 
    3. Descomprima el archivo ZIP y copie dentro de XAMPP la carpeta PHP y la carpeta Apache que están justo dentro de la carpeta descomprimida.  
 
@@ -177,12 +177,12 @@ Para cambiar la versión de PHP, siga estos pasos.
 5. Inicie el panel de control de XAMPP.
 
 6. Pulse el botón config de Apache y elija «Apache(httpd-xampp.conf)» en el menú desplegable. 
-   ![Pantalla de selección de XAMPP](img/xampp/xampp9.png)
+   ![Pantalla de selección de XAMPP](../img/xampp/xampp9.png)
 
 7. Edite httpd-xampp.conf. 
    1. Primero, sustituya todos los "php7_module" por "php_module".
    2. Sustituya todos los "php7" restantes por "php8".
-   ![Pantalla de edición de httpd-xampp.conf](img/xampp/xampp10.png)
+   ![Pantalla de edición de httpd-xampp.conf](../img/xampp/xampp10.png)
 
 8. Pulse el botón Shell para abrir la pantalla de comandos y compruebe que la versión de PHP es la nueva.
 

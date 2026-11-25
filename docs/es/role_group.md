@@ -43,7 +43,7 @@ Por ejemplo, hay permisos como los siguientes.
 Permiso para dar a cada usuario el permiso de inicio de sesión y para restablecer contraseñas
 ##### Edición de todos los datos  
 Permiso para añadir, editar y eliminar todos los datos de una tabla concreta
-##### Ver los datos asignados
+##### Ver datos asignados
 Permiso para ver los datos de los que uno mismo es el responsable
 La configuración de permisos es propia de cada grupo de roles.
 
@@ -142,11 +142,11 @@ En los plugins que tienen configuración, puede cambiar la configuración de ese
 - ##### Acceso
 Puede usar de verdad el plugin y acceder a sus páginas. Lo que se controla cambia según el tipo de plugin.
 
-- **Botón, salida de documentos** ： Se controla si se muestran o no los botones en la pantalla.
-- **Página, panel** ： Cambia si se puede o no acceder a la página.
-- **API** ： Cambia si se puede o no ejecutar la API. (Si no hay acceso, se produce un error 403.)
-- **Importación, exportación** ： Se controla si se puede o no ejecutar la importación y la exportación de datos.
-- **Otros** : No se pueden controlar con los grupos de roles. Se ejecutan para todos los usuarios.
+- **Botón, salida de documentos**: Se controla si se muestran o no los botones en la pantalla.
+- **Página, panel**: Cambia si se puede o no acceder a la página.
+- **API**: Cambia si se puede o no ejecutar la API. (Si no hay acceso, se produce un error 403.)
+- **Importación, exportación**: Se controla si se puede o no ejecutar la importación y la exportación de datos.
+- **Otros**: No se pueden controlar con los grupos de roles. Se ejecutan para todos los usuarios.
     
 
 

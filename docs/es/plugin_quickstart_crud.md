@@ -61,8 +61,8 @@ Antes, haga estas dos cosas.
 
 {
     "plugin_name": "MySQLWorld",
-    "plugin_view_name" : "MySQL World: conexión",
-    "description": "MySQL: conecta la base de datos de ejemplo World con Exment.",
+    "plugin_view_name" : "Conexión con MySQL World",
+    "description": "Conecta World, la base de datos de ejemplo de MySQL, con Exment.",
     "uuid":  "2641201a-ba35-2bd9-af59-9440643ca206",
     "author":  "(Your Name)",
     "version": "1.0.0",

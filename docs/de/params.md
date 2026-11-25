@@ -113,7 +113,7 @@ Einzelheiten finden Sie unter [Anhänge und benutzerdefinierte Anhänge](/de/mai
 | ${file:select_table:(Name der benutzerdefinierten Auswahlspalte).(Name der Dateispalte der referenzierten Tabelle)} | Anhänge, die in der Spalte „Datei“ oder „Bild“ der Daten gespeichert sind, die in der benutzerdefinierten Spalte „Auswahl (aus Tabelle)“ ausgewählt sind.<br/>Beispiel: ${file:select_table:customer.contract_file} |
 | ${documents} | Anhänge, die auf der Detailseite der Daten gespeichert sind (die Stelle, die das Bild auf der oben verlinkten Seite zeigt) |
 
-#### Angemeldeter Benutzer
+#### Login-Benutzer
 Nur verwendbar, wenn jemand angemeldet ist. Bei Benachrichtigungen durch einen Batch usw. nicht verwendbar.
 
 | Element | Beschreibung |

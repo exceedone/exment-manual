@@ -116,7 +116,7 @@ El contenido cambia según el tipo de flujo de trabajo.
 Se ponen las condiciones para ejecutar la acción y el estado después de la ejecución. Se pueden poner hasta 3 combinaciones de condición y estado.
 ![Pantalla del flujo de trabajo](../img/workflow/workflow_action3.png)
 
-> Si el tipo de columna del elemento de la condición es Selección (elegir de la lista de valores de otra tabla), el texto que se muestra en el valor de la condición se puede cambiar en la [Configuración de columnas de encabezado](/es/table).
+> Si el tipo de columna del elemento de la condición es Selección (desde tabla), el texto que se muestra en el valor de la condición se puede cambiar en la [Configuración de columnas de encabezado](/es/table).
 
 #### Usuarios ejecutores  
 

@@ -1,6 +1,6 @@
 # 插件(导出)
-这种插件可以独自实现自定义数据列表的导出。
-要导出独自格式的文件，或者进行特殊的转换处理时，请使用这一种。
+这种插件可以自行实现自定义数据列表的导出。
+要导出自己格式的文件，或者进行特殊的转换处理时，请使用这一种。
 
 > 此功能从 v3.2.0 起添加。
 
@@ -28,7 +28,7 @@
     "target_tables": "information",
     "label": "通知信息输出",
     "icon": "fa-question",
-    "export_description": "把通知信息以独自的 csv 格式输出为列表。"
+    "export_description": "把通知信息以自己的 csv 格式输出为列表。"
 }
 ~~~
 
@@ -66,7 +66,7 @@ class Plugin extends PluginExportBase
         $tmp = $this->getTmpFullPath();
 
 
-        ///// 独自的实现处理---从这里开始
+        ///// 自己的实现处理---从这里开始
         // 打开 csv 文件
         $fp = fopen($tmp, 'w');
 
@@ -84,7 +84,7 @@ class Plugin extends PluginExportBase
         }
 
         fclose($fp);
-        ///// 独自的实现处理---到这里结束
+        ///// 自己的实现处理---到这里结束
 
 
         // 返回 $tmp 的 string 字符串
@@ -172,7 +172,7 @@ class Plugin extends PluginExportExcel
         $data = $this->getRecords();
 
 
-        ///// 独自的实现处理---从这里开始
+        ///// 自己的实现处理---从这里开始
         $sheet = $spreadsheet->getActiveSheet();
         $column = 3;
         foreach($data as $record){
@@ -180,8 +180,8 @@ class Plugin extends PluginExportExcel
             // 循环数据并设置
             $sheet->setCellValue("A{$column}", $record->id); // ID
             $sheet->setCellValue("B{$column}", $record->getValue('title', true)); // 标题
-            $sheet->setCellValue("C{$column}", $record->getValue('priority', true)); // 重要度
-            $sheet->setCellValue("D{$column}", $record->updated_at); // 更新日期时间
+            $sheet->setCellValue("C{$column}", $record->getValue('priority', true)); // 优先级
+            $sheet->setCellValue("D{$column}", $record->updated_at); // 更新时间
 
             $column++;
         }
@@ -201,7 +201,7 @@ class Plugin extends PluginExportExcel
         
         // 打印范围的设置
         $sheet->getPageSetup()->setPrintArea("A1:D{$laseRow}");
-        ///// 独自的实现处理---到这里结束
+        ///// 自己的实现处理---到这里结束
 
 
         // 把创建的文件保存到 tmp 文件，并返回该文件路径

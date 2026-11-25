@@ -52,7 +52,7 @@ En la lista de la configuración del flujo de trabajo, haga clic en el botón [C
 | Sin problemas / ○ elemento(s) por revisar | Es el resultado de la comprobación de lo introducido. Al hacer clic se muestra el contenido |
 | Organizar automáticamente | Vuelve a colocar los nodos automáticamente |
 | ⤢ (Ajustar) | Muestra el diagrama de forma que quepa entero |
-| －／＋ | Cambia el aumento de la vista |
+| − / + | Cambia el aumento de la vista |
 | Guardar | Guarda lo editado |
 
 ### Consejos de uso
@@ -162,7 +162,7 @@ Las comprobaciones principales son las siguientes.
 | No se han establecido los usuarios ejecutores en la acción "○○". No se puede guardar así. | Configure quién puede ejecutarla |
 | El número de personas de "Condición para avanzar al siguiente estado" en la acción "○○" debe ser un número de 0 a 10. | Corrija el número de personas |
 
-Sobre los usuarios ejecutores de una acción, también se muestra un mensaje cuando se combinan "Acción especial" y "Los selecciona el usuario que ejecutó la acción anterior", cuando en la primera acción se indica "Los selecciona el usuario que ejecutó la acción anterior" o algo distinto de "Establecer de antemano", y cuando con el mismo estado antes de la ejecución se usan a la vez "Los selecciona el usuario que ejecutó la acción anterior" y otro ajuste.
+Sobre los usuarios ejecutores de una acción, también se muestra un mensaje cuando se combinan "Acción especial" y "Los selecciona el usuario que ejecutó la acción anterior", cuando en la primera acción se indica "Los selecciona el usuario que ejecutó la acción anterior" o cualquier cosa distinta de "Establecer de antemano", y cuando con el mismo estado antes de la ejecución se usan a la vez "Los selecciona el usuario que ejecutó la acción anterior" y otro ajuste.
 
 "Ninguna acción llega a…" y "…no tiene acciones de salida…" son avisos y no impiden guardar. Los demás mensajes impiden guardar.
 

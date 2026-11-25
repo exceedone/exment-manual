@@ -1,5 +1,5 @@
 # Montaje del entorno en un servidor de alquiler
-Estos son los pasos para instalar Exment en un servidor de alquiler (hosting compartido). Es una opción para crear y usar un entorno de forma sencilla.  
+Estos son los pasos para instalar Exment en un servidor de alquiler. Es una opción para crear y usar un entorno de forma sencilla.  
 Se explican los pasos para Xserver y para Sakura Internet.
 
 | Su servidor | Dónde mirar |
@@ -24,7 +24,7 @@ En los dos casos, el proceso general es el mismo.
   Compruebe antes si su servidor de alquiler los cumple.</span>
 
 - En un servidor de alquiler, la carpeta que se publica en la web está fijada (/home/username/www, /public_html, etc.).  
-<span class="red bold big">No coloque directamente en esa carpeta la carpeta donde ha instalado Exment. Los archivos que contienen los valores de la base de datos, la contraseña del correo, etc. quedarían publicados hacia fuera, y eso llevaría a una fuga de información fatal.</span>  
+<span class="red bold big">No coloque directamente en esa carpeta la carpeta donde ha instalado Exment. Los archivos que contienen los valores de la base de datos, la contraseña del correo, etc. quedarían expuestos al público, y eso causaría una fuga de información muy grave.</span>  
 Los pasos de esta página publican en la web solo la carpeta que debe publicarse. Publique siguiendo estos pasos.
 
 - En un servidor de alquiler, después de conectarse por SSH, primero se instala composer y luego se instala Exment.
@@ -52,11 +52,11 @@ Por eso se configura la versión de PHP que usan los comandos.
 
 1. En el panel de administración de Xserver, haga clic en «PHP Ver.切替» (cambio de versión de PHP).  
 Después, elija el dominio.  
-![Configuración de Xserver](img/install/install_xserver2.png)  
-![Configuración de Xserver](img/install/install_xserver3.png)  
+![Configuración de Xserver](../img/install/install_xserver2.png)  
+![Configuración de Xserver](../img/install/install_xserver3.png)  
 
 2. En «PHPバージョン切替» (cambio de versión de PHP) está escrita la versión actual. Anótela.  
-![Configuración de Xserver](img/install/install_xserver4.png)  
+![Configuración de Xserver](../img/install/install_xserver4.png)  
 
 3. Conéctese a Xserver por SSH.
 
@@ -108,7 +108,7 @@ composer --version
 
 **(4) Instalar Exment**
 
-<span class="red bold big">No instale nunca directamente en la carpeta «$HOME/(nombre del dominio)/public_html». Los archivos que contienen los valores de la base de datos, la contraseña del correo, etc. quedarían publicados hacia fuera, y eso llevaría a una fuga de información fatal.</span>  
+<span class="red bold big">No instale nunca directamente en la carpeta «$HOME/(nombre del dominio)/public_html». Los archivos que contienen los valores de la base de datos, la contraseña del correo, etc. quedarían expuestos al público, y eso causaría una fuga de información muy grave.</span>  
 Aquí se crea la carpeta «$HOME/(nombre del dominio)/laravel» y se instala Exment dentro de ella.
 
 ~~~ bash
@@ -123,7 +123,7 @@ rm exment.zip
 **(5) Publicar solo la carpeta public**
 
 Convierta «$HOME/(nombre del dominio)/public_html» en un enlace simbólico a la carpeta «$HOME/(nombre del dominio)/laravel/exment/public» que acaba de crear.  
-Así, el cuerpo de Laravel y los valores de configuración quedan fuera de la carpeta que se publica en la web, y solo la carpeta public de laravel está en public_html.
+Así, el núcleo de Laravel y los valores de configuración quedan fuera de la carpeta que se publica en la web, y solo la carpeta public de laravel está en public_html.
 
 ~~~ bash
 ## Eliminar el public_html predeterminado
@@ -173,7 +173,7 @@ Para cambiar la versión de PHP, siga estos pasos.
 Después, elija el dominio.
 
 2. En «PHPバージョン切替» (cambio de versión de PHP), cambie a la versión nueva y haga clic en «変更» (cambiar).  
-![Configuración de Xserver](img/install/install_xserver6.png)  
+![Configuración de Xserver](../img/install/install_xserver6.png)  
 
 3. Conéctese a Xserver por SSH.
 
@@ -222,10 +222,10 @@ Cree antes el MySQL para Exment.
 **(2) Cambiar la carpeta que se publica**
 
 1. En «ドメイン/SSL設定» (configuración de dominio/SSL) del menú de administración de Sakura Internet, elija el dominio que quiere cambiar.  
-![Configuración de Sakura Internet](img/install/install_rental1.png)  
+![Configuración de Sakura Internet](../img/install/install_rental1.png)  
 
 2. En «マルチドメインの対象のフォルダ» (carpeta de destino del multidominio), cambie la carpeta indicada. Aquí se pone «/exment».  
-![Configuración de Sakura Internet](img/install/install_rental2.png)  
+![Configuración de Sakura Internet](../img/install/install_rental2.png)  
 
 **(3) Conectarse por SSH y configurar el shell y el PATH**
 
@@ -269,7 +269,7 @@ nice -n 20 composer --version
 
 **(5) Instalar Exment**
 
-<span class="red bold big">No instale nunca directamente en la carpeta «$HOME/www/». Los archivos que contienen los valores de la base de datos, la contraseña del correo, etc. quedarían publicados hacia fuera, y eso llevaría a una fuga de información fatal.</span>  
+<span class="red bold big">No instale nunca directamente en la carpeta «$HOME/www/». Los archivos que contienen los valores de la base de datos, la contraseña del correo, etc. quedarían expuestos al público, y eso causaría una fuga de información muy grave.</span>  
 Aquí se crea la carpeta «$HOME/laravel» y se instala Exment dentro de ella.
 
 ~~~ bash
@@ -284,7 +284,7 @@ rm exment.zip
 **(6) Publicar solo la carpeta public**
 
 Cree «$HOME/www/exment» como enlace simbólico a la carpeta «$HOME/laravel/exment/public» que acaba de crear.  
-Así, el cuerpo de Laravel y los valores de configuración quedan fuera de la carpeta que se publica en la web, y solo la carpeta public de laravel está dentro de la carpeta www.
+Así, el núcleo de Laravel y los valores de configuración quedan fuera de la carpeta que se publica en la web, y solo la carpeta public de laravel está dentro de la carpeta www.
 
 ~~~
 ln -s $HOME/laravel/exment/public $HOME/www/exment
@@ -305,10 +305,10 @@ Para cambiar la versión de PHP, siga estos pasos.
 - Los pasos pueden ser distintos según el entorno, el momento en que se instaló, la versión y la forma de instalación.
 
 1. En el panel de administración de Sakura Internet, haga clic en «スクリプト設定» (configuración de scripts) → «言語のバージョン設定» (configuración de la versión del lenguaje).  
-![Configuración de Sakura Internet](img/install/install_sakura1.png)  
+![Configuración de Sakura Internet](../img/install/install_sakura1.png)  
 
 2. En «PHPのバージョン» (versión de PHP), cambie a la versión nueva y haga clic en «保存» (guardar).  
-![Configuración de Sakura Internet](img/install/install_sakura2.png)  
+![Configuración de Sakura Internet](../img/install/install_sakura2.png)  
 
 3. Conéctese a Sakura Internet por SSH.
 

@@ -30,7 +30,7 @@ Descargue el archivo que corresponda a su entorno.
 - En XServer : ExmentUpdateLinuxXserver.sh
 - En los demás casos : ExmentUpdateLinux.sh
 
-> El shell que hace la actualización se ha actualizado. Consulte [Actualización](/es/update) y sustitúyalo.  
+> El script de shell que hace la actualización se ha actualizado. Consulte [Actualización](/es/update) y sustitúyalo.  
 Compruebe que en la segunda línea del archivo de shell figura la versión «v1.1.0» o superior.
 
 **(2) Descargar el batch que comprueba si hay actualizaciones**
@@ -142,13 +142,13 @@ home_path='/home/xxx'
 **(2) Registrar en el Programador de tareas**
 
 1. En el menú de Windows, escriba «task» e inicie el Programador de tareas.  
-![Configuración del Programador de tareas de Windows](img/quickstart/task_windows2.png)
+![Configuración del Programador de tareas de Windows](../img/quickstart/task_windows2.png)
 
 2. En el Programador de tareas, haga clic en «Crear tarea».  
-![Configuración del Programador de tareas de Windows](img/quickstart/task_windows6.png)
+![Configuración del Programador de tareas de Windows](../img/quickstart/task_windows6.png)
 
 3. En la pestaña «General», configure como sigue. («Nombre» puede ser cualquier nombre.)  
-![Configuración del Programador de tareas de Windows](img/quickstart/task_windows1.png)
+![Configuración del Programador de tareas de Windows](../img/quickstart/task_windows1.png)
 
 4. Haga clic en la pestaña «Desencadenadores». Cree un desencadenador.  
     (1) Haga clic en el botón «Nuevo».  
@@ -158,24 +158,24 @@ home_path='/home/xxx'
     - Intervalo: 1 día
     - Marque «Habilitado»  
     Cuando termine, haga clic en «Aceptar».  
-![Configuración del Programador de tareas de Windows](img/quickstart/task_update_windows1.png)
+![Configuración del Programador de tareas de Windows](../ja/img/quickstart/task_update_windows1.png)
 
 5. En la pestaña «Acciones», haga clic en el botón «Nuevo».  
 Después, escriba lo siguiente.
     - Acción: Iniciar un programa
     - Programa o script: la ruta hasta el «ExmentAutoUpdate.exe» que ha colocado
 
-    ![Configuración del Programador de tareas de Windows](img/quickstart/task_update_windows2.png)
+    ![Configuración del Programador de tareas de Windows](../ja/img/quickstart/task_update_windows2.png)
 
 6. En un portátil, en la pestaña «Condiciones», quite la marca de «Iniciar la tarea solo si el equipo está conectado a la corriente alterna».  
-![Configuración del Programador de tareas de Windows](img/quickstart/task_windows9.png)
+![Configuración del Programador de tareas de Windows](../img/quickstart/task_windows9.png)
 
 7. Cuando haya configurado todo esto, haga clic en Aceptar.  
 Después aparece una pantalla para escribir las credenciales del usuario. Escriba la contraseña.  
-![Configuración del Programador de tareas de Windows](img/quickstart/task_windows7.png)
+![Configuración del Programador de tareas de Windows](../img/quickstart/task_windows7.png)
 
 8. Cuando termine la configuración, en «Biblioteca del Programador de tareas» elija la tarea creada y haga clic en «Ejecutar».  
-![Configuración del Programador de tareas de Windows](img/quickstart/task_windows8.png)
+![Configuración del Programador de tareas de Windows](../img/quickstart/task_windows8.png)
 
 Con esto termina la configuración.
 

@@ -15,7 +15,7 @@ Lo crea una persona de la organización de Teams (se ejecuta con la cuenta de qu
 
 1. En Teams, abra **Flujos de trabajo** (Workflows) desde "Aplicaciones", a la izquierda, y elija "Crear" → "Crear desde cero"
 2. Como desencadenador, elija **"Cuando se recibe una solicitud de webhook de Teams"** (When a Teams webhook request is received)
-   - En "Quién puede desencadenar el flujo", elija **"Cualquiera"** (Anyone). Exment se acepta solo por conocer la dirección. **Mantenga la dirección en secreto**
+   - En "Quién puede desencadenar el flujo", elija **"Cualquiera"** (Anyone). Las solicitudes de Exment se aceptan solo por conocer la dirección. **Mantenga la dirección en secreto**
 3. Con "Nuevo paso", añada **"Publicar tarjeta en un chat o canal"** (Post card in a chat or channel)
    - Publicar como: **Bot de flujo**
    - Publicar en: **Chat con el bot de flujo**

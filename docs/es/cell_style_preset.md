@@ -4,7 +4,7 @@ Esta función guarda con un nombre el aspecto de una celda (color, forma, icono,
 
 ## Qué son los ajustes predefinidos de estilo de celda
 
-Hasta ahora, el aspecto de la celda se configuraba **uno por cada columna**.  
+Hasta ahora, el aspecto de la celda se configuraba **columna por columna**.  
 Por eso, una misma configuración, como "mostrar el estado como píldora (esquinas redondeadas)", había que volver a hacerla cada vez que cambiaba la tabla o la columna.
 
 Un ajuste predefinido es un mecanismo para guardar esa configuración una sola vez y con un nombre.  

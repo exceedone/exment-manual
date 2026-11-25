@@ -11,7 +11,7 @@ Oben rechts in der Datenliste, links neben der Auswahl der Ansicht, stehen die S
 
 ![Symbolleiste](../img/data_grid_tools/grid_toolbar.png ':size=352')
 
-Von links: [Anzuzeigende Spalten auswählen], [Spalten fixieren], [Zeilen gruppieren], [Darstellungsdichte], [Automatisch aktualisieren]. Ab v7.1.0 erscheint auch die Schaltfläche [[Excel-Modus]](/de/data_grid_tools?id=Bearbeitung-wie-in-Excel).
+Von links: [Anzuzeigende Spalten auswählen], [Spalten fixieren], [Zeilen gruppieren], [Darstellungsdichte], [Automatisch aktualisieren]. Ab v7.1.0 erscheint auch die Schaltfläche [\[Excel-Modus\]](/de/data_grid_tools?id=Bearbeitung-wie-in-Excel).
 
 > Diese Einstellungen gelten für jede Person einzeln. Sie ändern die Einstellungen der Ansicht nicht und haben deshalb keinen Einfluss auf die Bildschirme anderer Benutzer.  
 > [Spalten fixieren] und [Darstellungsdichte] werden **im Browser gespeichert** und bleiben auch nach dem Schließen des Browsers erhalten.  

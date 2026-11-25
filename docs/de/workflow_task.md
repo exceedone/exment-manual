@@ -106,7 +106,7 @@ Rechts von der Überschrift der Liste steht die Anzahl.
 
 ### Mehrere auf einmal als gelesen oder ungelesen markieren
 
-- **Gewählte Aufgaben als gelesen markieren**: Wählen Sie die Aufgaben mit den Kontrollkästchen und klicken Sie im ▼ rechts neben der erscheinenden Schaltfläche [○ Zeilen ausgewählt] auf „Auswahl als gelesen markieren“.
+- **Gewählte Aufgaben als gelesen markieren**: Wählen Sie die Aufgaben mit den Kontrollkästchen und klicken Sie im ▼ rechts neben der erscheinenden Schaltfläche [○ Einträge ausgewählt] auf „Auswahl als gelesen markieren“.
 
 ![Bedienung für gewählte Aufgaben](../img/workflow_task/wt_select.png)
 
@@ -126,7 +126,7 @@ Sie können auch nach der ID der Daten suchen (Beispiel: „#15“ oder „15“
 
 ### Filter
 
-Mit einem Klick auf die Schaltfläche [Filter] öffnen sich die Eingabefelder für die Bedingungen. Geben Sie die Bedingungen ein und klicken Sie auf [Suchen].
+Mit einem Klick auf die Schaltfläche [Filter] öffnen sich die Eingabefelder für die Bedingungen. Geben Sie die Bedingungen ein und klicken Sie auf [Suche].
 
 ![Filter](../img/workflow_task/wt_filter.png)
 
@@ -146,7 +146,7 @@ Mit einem Klick auf die Schaltfläche [Filter] öffnen sich die Eingabefelder f�
 Aufgaben, die nicht in der Liste stehen müssen, können Sie aus Ihrer eigenen Liste entfernen – zum Beispiel, wenn jemand anderes die Zuständigkeit übernommen hat oder die Sache auf anderem Weg erledigt ist.
 
 - **Einzeln entfernen**: Klicken Sie am rechten Ende der Zeile auf das Papierkorbsymbol und im Bestätigungsdialog auf [Bestätigen].
-- **Mehrere auf einmal entfernen**: Wählen Sie die Aufgaben mit den Kontrollkästchen und klicken Sie im ▼ rechts neben der Schaltfläche [○ Zeilen ausgewählt] auf „Stapel löschen“.
+- **Mehrere auf einmal entfernen**: Wählen Sie die Aufgaben mit den Kontrollkästchen und klicken Sie im ▼ rechts neben der Schaltfläche [○ Einträge ausgewählt] auf „Chargenlöschung“.
 
 ![Bestätigung des Entfernens](../img/workflow_task/wt_delete.png)
 
@@ -157,19 +157,19 @@ Aufgaben, die nicht in der Liste stehen müssen, können Sie aus Ihrer eigenen L
 
 ## Entfernte Aufgaben in die Liste zurückholen
 
-Wenn Sie im ▼ rechts neben der Schaltfläche [Filter] „Gelöscht“ wählen, erscheinen die Aufgaben, die Sie aus der Liste entfernt haben.  
+Wenn Sie im ▼ rechts neben der Schaltfläche [Filter] „Entfernt“ wählen, erscheinen die Aufgaben, die Sie aus der Liste entfernt haben.  
 Sie erreichen sie auch über den Link „○ entfernt“ bei der Anzahl.
 
-![Auswahl „Gelöscht“](../img/workflow_task/wt_scope.png)
+![Auswahl „Entfernt“](../img/workflow_task/wt_scope.png)
 
 ![Liste der entfernten Aufgaben](../img/workflow_task/wt_removed.png)
 
 - Mit einem Klick auf das Symbol zum Zurückholen am rechten Ende der Zeile holen Sie die Aufgabe in die Liste zurück.
-- Um mehrere auf einmal zurückzuholen, wählen Sie sie mit den Kontrollkästchen und klicken im ▼ rechts neben der Schaltfläche [○ Zeilen ausgewählt] auf „Auswahl zurück in die Aufgabenliste“.
+- Um mehrere auf einmal zurückzuholen, wählen Sie sie mit den Kontrollkästchen und klicken im ▼ rechts neben der Schaltfläche [○ Einträge ausgewählt] auf „Auswahl zurück in die Aufgabenliste“.
 - Zurückgeholte Aufgaben sind „ungelesen“.
 - Um zur normalen Liste zurückzukehren, wählen Sie im ▼ „Abbrechen“.
 
-※ Daten, die schon bearbeitet wurden und keine Aufgabe des Login-Benutzers mehr sind, erscheinen auch unter „Gelöscht“ nicht.
+※ Daten, die schon bearbeitet wurden und keine Aufgabe des Login-Benutzers mehr sind, erscheinen auch unter „Entfernt“ nicht.
 
 ## Benachrichtigung an Mitglieder derselben Organisation
 

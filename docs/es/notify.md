@@ -165,7 +165,7 @@ Igual que en "Alerta en el sistema", se elige entre Administrador del sistema, U
 
 
 
-## Mostrar en la pantalla de lista
+## Mostrar la pantalla de lista
 Desde la v4.2.0, la pantalla de configuración de notificaciones ha cambiado de lugar. Según el tipo de disparador de la notificación, se abre desde los siguientes lugares.
 
 - Paso del tiempo, Creación/actualización de datos y Botón  

@@ -1,5 +1,5 @@
 # 插件(文档输出)
-这种插件可以输出报价单、单据等独自的文档资料。
+这种插件可以输出报价单、单据等自己的文档资料。
 作为基础的模板用 Excel 格式制作。输出的文件也是 Excel 格式。
 
 ![文档输出示例](../img/plugin/plugin_document1.png)   
@@ -117,7 +117,7 @@ class Plugin extends PluginDocumentBase
      */
     protected function called($spreadsheet)
     {
-        // 想在执行文档的变量替换之前执行独自的处理时，写在这里
+        // 想在执行文档的变量替换之前执行自己的处理时，写在这里
     }
 
     /**
@@ -207,7 +207,7 @@ class Plugin extends PluginDocumentBase
 
 - namespace 请设为 **App\Plugins\\(插件名的帕斯卡命名)** 。[详情请参阅这里](/zh/plugin_quickstart)
 
-- 加入独自处理的地方，是以下 2 个函数。这些函数通过参数接收电子表格。可以访问这个电子表格，在单元格中设置值。  
+- 加入自己的处理的地方，是以下 2 个函数。这些函数通过参数接收电子表格。可以访问这个电子表格，在单元格中设置值。  
 ※电子表格的详细使用方法，请参阅 [PhpSpreadsheet 的文档](https://phpspreadsheet.readthedocs.io/en/latest/)。
     - 在替换参数变量之前进行处理时：实现“called”方法。
     - 在替换参数变量之后进行处理时：实现“saving”方法。

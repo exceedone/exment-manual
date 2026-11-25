@@ -22,7 +22,7 @@
 3. 安装完成。
 
 ### 安装 SQL Server Management Studio（GUI 工具）
-SQL Server Management Studio 是在画面上操作 SQL Server 的工具。
+SQL Server Management Studio 是在图形界面上操作 SQL Server 的工具。
 
 - 打开下面的网站。  
 在“可用语言”中点击想使用的语言，下载并安装工具。  

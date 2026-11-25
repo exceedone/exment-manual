@@ -255,7 +255,7 @@ Instale la herramienta de gestión de bibliotecas de PHP (Composer) que necesita
 
 ### Descarga de Exment y preparación para su ejecución
 
-1. Descargue el archivo zip de Exment (exment.zip) desde la página de los pasos de instalación de Exment ([https://exment.net/docs/#/quickstart](https://exment.net/docs/#/quickstart))
+1. Descargue el archivo zip de Exment (exment.zip) desde la página de los pasos de instalación de Exment ([Pasos de la instalación](/es/quickstart))
 2. Haga clic con el botón derecho en el archivo ZIP descargado para ver las propiedades, marque «Desbloquear» en \[Seguridad\] de la pestaña \[General\] y haga clic en \[Aceptar\]  
    ![Desbloquear](../img/iis/iis_exment01.png)
 3. Descomprima el contenido de la carpeta exment del archivo ZIP en una carpeta adecuada (ejemplo: C:\exment)  

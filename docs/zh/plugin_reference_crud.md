@@ -856,7 +856,7 @@
 ##### 示例
 ``` php
     // ※例 1。在 setForm 函数中为表单添加验证的方法。
-    // ※为方便起见，把示例写在 validate 函数的说明中，但采用本例时，请不要定义 validate 函数。
+    // ※为方便起见，示例写在 validate 函数内，但采用本例时，请不要定义 validate 函数。
     /**
      * set form info
      *

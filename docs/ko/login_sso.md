@@ -71,7 +71,7 @@ http(s)://(Exment의 URL)/login_setting
 
 ![로그인 설정 목록](../img/login/login_setting4.png)  
 
-- 새 SSO 프로바이더를 더할 때는 오른쪽 위의 "+새로 만들기" 버튼을 누릅니다. 입력하는 내용은 방식별 페이지를 보십시오.  
+- 새 SSO 프로바이더를 더할 때는 오른쪽 위의 "+만들기" 버튼을 누릅니다. 입력하는 내용은 방식별 페이지를 보십시오.  
     - [싱글 사인온(OAuth)](/ko/login_oauth)
     - [싱글 사인온(SAML)](/ko/login_saml)
     - [로그인 설정(LDAP)](/ko/login_ldap)

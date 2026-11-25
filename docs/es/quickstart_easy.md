@@ -11,7 +11,7 @@ Los pasos son estos 3.
 
 ## Notas
 - Si hay un error en la instalación, consulte [Solución de problemas](/es/troubleshooting).
-- <span class="red bold">※No atendemos consultas individuales sobre los pasos de instalación ni sobre el montaje del servidor. Si necesita atención individual, use el soporte de pago.</span>　　
+- <span class="red bold">※No atendemos consultas individuales sobre los pasos de instalación ni sobre el montaje del servidor. Si necesita atención individual, use el soporte de pago.</span>  
 
 ## Montaje del servidor
 Si todavía no tiene un servidor web o un servidor de base de datos, prepárelos antes.  

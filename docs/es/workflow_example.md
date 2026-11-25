@@ -27,11 +27,11 @@ Cómo configurar un flujo sencillo en el que se solicita un dato y se aprueba o 
 
 ![Pantalla del flujo de trabajo](../img/workflow/workflow_status1.png)  
 
-- **Nombre visible del flujo de trabajo** : el nombre que quiera
+- **Nombre visible del flujo de trabajo**: el nombre que quiera
 
-- **Tipo de flujo de trabajo** : "Genérico"
+- **Tipo de flujo de trabajo**: "Genérico"
 
-- **Nombre del estado inicial** : "Sin realizar"
+- **Nombre del estado inicial**: "Sin realizar"
 
 - **Estado, fila 1**  
 Nombre del estado: "En solicitud"  
@@ -50,29 +50,29 @@ No permitir editar los datos: "YES"
 Nombre de la acción: "Solicitar"  
 Estado antes de la ejecución: "Sin realizar"  
 Configuración de acciones > Estado después de la ejecución: "En solicitud"  
-Usuarios ejecutores : "Usuario creador"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
+Usuarios ejecutores: "Usuario creador"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
 
 
 - **Configuración de acciones, fila 2**  
 Nombre de la acción: "Aprobar"  
 Estado antes de la ejecución: "En solicitud"  
 Configuración de acciones > Estado después de la ejecución: "Completado"  
-Usuarios ejecutores : "Grupo de administración" ※Cree antes la organización "Grupo de administración"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "2 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : sin marcar  
+Usuarios ejecutores: "Grupo de administración" ※Cree antes la organización "Grupo de administración"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "2 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: sin marcar  
 
 
 - **Configuración de acciones, fila 3**  
 Nombre de la acción: "Rechazar"  
 Estado antes de la ejecución: "En solicitud"  
 Configuración de acciones > Estado después de la ejecución: "Sin realizar"  
-Usuarios ejecutores : "Grupo de administración" ※Cree antes la organización "Grupo de administración"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Obligatorio"  
-Configuración de opciones > Acción especial : marcado  
+Usuarios ejecutores: "Grupo de administración" ※Cree antes la organización "Grupo de administración"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Obligatorio"  
+Configuración de opciones > Acción especial: marcado  
 
 
 
@@ -100,13 +100,13 @@ Cómo configurar el flujo cuando la acción y el responsable se separan según e
 
 ![Pantalla del flujo de trabajo](../img/workflow/workflow_example2_1.png)  
 
-- **Nombre visible del flujo de trabajo** : el nombre que quiera
+- **Nombre visible del flujo de trabajo**: el nombre que quiera
 
-- **Tipo de flujo de trabajo** : "Solo para una tabla"
+- **Tipo de flujo de trabajo**: "Solo para una tabla"
 
-- **Tabla** : elija la tabla en la que se ejecuta el flujo de trabajo
+- **Tabla**: elija la tabla en la que se ejecuta el flujo de trabajo
 
-- **Nombre del estado inicial** : "Sin solicitar"
+- **Nombre del estado inicial**: "Sin solicitar"
 
 - **Estado, fila 1**  
 Nombre del estado: "En solicitud al director"  
@@ -131,51 +131,51 @@ Estado antes de la ejecución: "Sin solicitar"
 Configuración de acciones > Estado después de la ejecución: vea la imagen de abajo  
 
 ![Pantalla del flujo de trabajo](../img/workflow/workflow_example2_3.png)  
->Si el tipo de columna del elemento de la condición es Selección (elegir de la lista de valores de otra tabla), el texto que se muestra en el valor de la condición se puede cambiar en la [Configuración de columnas de encabezado](/es/table).
+>Si el tipo de columna del elemento de la condición es Selección (desde tabla), el texto que se muestra en el valor de la condición se puede cambiar en la [Configuración de columnas de encabezado](/es/table).
 
-Usuarios ejecutores : "Usuario creador"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
+Usuarios ejecutores: "Usuario creador"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
 
 
 - **Configuración de acciones, fila 2**  
 Nombre de la acción: "Aprobar"  
 Estado antes de la ejecución: "En solicitud al director"  
 Configuración de acciones > Estado después de la ejecución: "Completado"  
-Usuarios ejecutores : "Director" ※Cree antes la organización "Director"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : sin marcar  
+Usuarios ejecutores: "Director" ※Cree antes la organización "Director"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: sin marcar  
 
 
 - **Configuración de acciones, fila 3**  
 Nombre de la acción: "Aprobar"  
 Estado antes de la ejecución: "En solicitud al jefe de sección"  
 Configuración de acciones > Estado después de la ejecución: "Completado"  
-Usuarios ejecutores : "Jefe de sección" ※Cree antes la organización "Jefe de sección"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : sin marcar  
+Usuarios ejecutores: "Jefe de sección" ※Cree antes la organización "Jefe de sección"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: sin marcar  
 
 
 - **Configuración de acciones, fila 4**  
 Nombre de la acción: "Rechazar"  
 Estado antes de la ejecución: "En solicitud al director"  
 Configuración de acciones > Estado después de la ejecución: "Sin solicitar"  
-Usuarios ejecutores : "Director" ※Cree antes la organización "Director"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Obligatorio"  
-Configuración de opciones > Acción especial : marcado  
+Usuarios ejecutores: "Director" ※Cree antes la organización "Director"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Obligatorio"  
+Configuración de opciones > Acción especial: marcado  
 
 
 - **Configuración de acciones, fila 5**  
 Nombre de la acción: "Rechazar"  
 Estado antes de la ejecución: "En solicitud al jefe de sección"  
 Configuración de acciones > Estado después de la ejecución: "Sin solicitar"  
-Usuarios ejecutores : "Jefe de sección" ※Cree antes la organización "Jefe de sección"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Obligatorio"  
-Configuración de opciones > Acción especial : marcado  
+Usuarios ejecutores: "Jefe de sección" ※Cree antes la organización "Jefe de sección"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Obligatorio"  
+Configuración de opciones > Acción especial: marcado  
 
 
 
@@ -226,11 +226,11 @@ Después, edite la información de cada usuario y registre los elementos de las 
 
 ![Pantalla del flujo de trabajo](../ja/img/workflow/workflow_example4_4.png)
 
-- **Nombre visible del flujo de trabajo** : el nombre que quiera
+- **Nombre visible del flujo de trabajo**: el nombre que quiera
 
-- **Tipo de flujo de trabajo** : "Genérico"
+- **Tipo de flujo de trabajo**: "Genérico"
 
-- **Nombre del estado inicial** : "Sin solicitar"
+- **Nombre del estado inicial**: "Sin solicitar"
 
 - **Estado, fila 1**  
 Nombre del estado: "Revisión 1"  
@@ -250,34 +250,34 @@ No permitir editar los datos: "YES"
 ![Pantalla del flujo de trabajo](../ja/img/workflow/workflow_example4_5.png)  
 
 - **Configuración común**  
-Usuario de referencia de los usuarios ejecutores : "Primer usuario ejecutor"  
+Usuario de referencia de los usuarios ejecutores: "Primer usuario ejecutor"  
 
 - **Configuración de acciones, fila 1**  
 Nombre de la acción: "Acción 1"  
 Estado antes de la ejecución: "Sin solicitar"  
 Estado después de la ejecución: Revisión 1  
-Usuarios ejecutores : "Usuario creador"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
+Usuarios ejecutores: "Usuario creador"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
 
 
 - **Configuración de acciones, fila 2**  
 Nombre de la acción: "Acción 2"  
 Estado antes de la ejecución: "Revisión 1"  
 Estado después de la ejecución: "Revisión 2"  
-Usuarios ejecutores : (Obtener de la información del usuario ejecutor) Superior 1  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : sin marcar  
+Usuarios ejecutores: (Obtener de la información del usuario ejecutor) Superior 1  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: sin marcar  
 
 - **Configuración de acciones, fila 3**  
 Nombre de la acción: "Acción 3"  
 Estado antes de la ejecución: "Revisión 2"  
 Estado después de la ejecución: "Completado"  
-Usuarios ejecutores : (Obtener de la información del usuario ejecutor) Superior 2  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : sin marcar  
+Usuarios ejecutores: (Obtener de la información del usuario ejecutor) Superior 2  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: sin marcar  
 
 #### Referencia: cuadro de diálogo que aparece al hacer clic en el botón Cambiar de "Usuarios ejecutores"
 
@@ -329,11 +329,11 @@ Además, deje los datos del usuario "Jefe de equipo" como sigue.
 
 ![Pantalla del flujo de trabajo](../ja/img/workflow/workflow_example5_4.png)
 
-- **Nombre visible del flujo de trabajo** : el nombre que quiera
+- **Nombre visible del flujo de trabajo**: el nombre que quiera
 
-- **Tipo de flujo de trabajo** : "Genérico"
+- **Tipo de flujo de trabajo**: "Genérico"
 
-- **Nombre del estado inicial** : "Sin solicitar"
+- **Nombre del estado inicial**: "Sin solicitar"
 
 - **Estado, fila 1**  
 Nombre del estado: "Revisión 1"  
@@ -353,34 +353,34 @@ No permitir editar los datos: "YES"
 ![Pantalla del flujo de trabajo](../ja/img/workflow/workflow_example5_5.png)  
 
 - **Configuración común**  
-Usuario de referencia de los usuarios ejecutores : "Usuario ejecutor"  
+Usuario de referencia de los usuarios ejecutores: "Usuario ejecutor"  
 
 - **Configuración de acciones, fila 1**  
 Nombre de la acción: "Acción 1"  
 Estado antes de la ejecución: "Sin solicitar"  
 Estado después de la ejecución: Revisión 1  
-Usuarios ejecutores : "Usuario creador"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
+Usuarios ejecutores: "Usuario creador"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
 
 
 - **Configuración de acciones, fila 2**  
 Nombre de la acción: "Acción 2"  
 Estado antes de la ejecución: "Revisión 1"  
 Estado después de la ejecución: "Revisión 2"  
-Usuarios ejecutores : (Obtener de la información del usuario ejecutor) Superior  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : sin marcar  
+Usuarios ejecutores: (Obtener de la información del usuario ejecutor) Superior  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: sin marcar  
 
 - **Configuración de acciones, fila 3**  
 Nombre de la acción: "Acción 3"  
 Estado antes de la ejecución: "Revisión 2"  
 Estado después de la ejecución: "Completado"  
-Usuarios ejecutores : (Obtener de la información del usuario ejecutor) Superior  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : sin marcar  
+Usuarios ejecutores: (Obtener de la información del usuario ejecutor) Superior  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: sin marcar  
 
 
 #### Referencia: cuadro de diálogo que aparece al hacer clic en el botón Cambiar de "Usuarios ejecutores"
@@ -407,11 +407,11 @@ Cómo configurar el flujo cuando quiere bloquear un dato concreto (que no se pue
 
 ![Pantalla del flujo de trabajo](../img/workflow/workflow_status3.png)  
 
-- **Nombre visible del flujo de trabajo** : el nombre que quiera
+- **Nombre visible del flujo de trabajo**: el nombre que quiera
 
-- **Tipo de flujo de trabajo** : "Genérico"
+- **Tipo de flujo de trabajo**: "Genérico"
 
-- **Nombre del estado inicial** : "Sin realizar"
+- **Nombre del estado inicial**: "Sin realizar"
 
 - **Estado, fila 1**  
 Nombre del estado: "Bloqueado"  
@@ -426,17 +426,17 @@ No permitir editar los datos: "YES"
 Nombre de la acción: "Bloquear"  
 Estado antes de la ejecución: "Sin realizar"  
 Configuración de acciones > Estado después de la ejecución: "Bloqueado"  
-Usuarios ejecutores : "Usuario creador"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
+Usuarios ejecutores: "Usuario creador"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
 
 
 - **Configuración de acciones, fila 2**  
 Nombre de la acción: "Desbloquear"  
 Estado antes de la ejecución: "Bloqueado"  
 Configuración de acciones > Estado después de la ejecución: "Sin realizar"  
-Usuarios ejecutores : "Usuario creador"  
-Configuración de opciones > Condición para avanzar al siguiente estado : "1 o más personas ejecutan"  
-Configuración de opciones > Comentario : "Opcional"  
-Configuración de opciones > Acción especial : marcado  
+Usuarios ejecutores: "Usuario creador"  
+Configuración de opciones > Condición para avanzar al siguiente estado: "1 o más personas ejecutan"  
+Configuración de opciones > Comentario: "Opcional"  
+Configuración de opciones > Acción especial: marcado  
 

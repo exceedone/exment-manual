@@ -1,5 +1,5 @@
-# (面向高级用户)更改文件的保存位置
-这是把附件、备份等文件保存到 Web 服务器以外的地方(FTP、Amazon S3 等)的设置。  
+# （面向高级用户）更改文件的保存位置
+这是把附件、备份等文件保存到 Web 服务器以外的地方（FTP、Amazon S3 等）的设置。  
 在标准设置下，附件保存在 Web 服务器上。例如，在下面这些情况下，需要更改保存位置。
 
 - 把备份文件保存到 FTP
@@ -7,7 +7,7 @@
 
 设置按下面的顺序进行。
 
-1. 决定要更改保存位置的“文件种类”，以及要使用的“上传位置(驱动)”。
+1. 决定要更改保存位置的“文件种类”，以及要使用的“上传位置（驱动）”。
 2. 在“通用设置”中，按文件种类指定驱动。
 3. 在“各驱动的设置”中，设置连接目标的信息。
 
@@ -23,13 +23,13 @@
 | **模板** | Exment 的自定义表、自定义列等的设置文件 | template |
 
 
-## 上传位置(驱动)的种类
-目前 Exment 支持下面这些上传位置(驱动)。  
+## 上传位置（驱动）的种类
+目前 Exment 支持下面这些上传位置（驱动）。  
 ※键名在后面的设置中使用。
 
-| 上传位置(驱动) | 保存的地方 | 键名 |
+| 上传位置（驱动） | 保存的地方 | 键名 |
 | ---- | ---- | ---- |
-| **本地(默认)** | Web 服务器 | local |
+| **本地（默认）** | Web 服务器 | local |
 | **FTP** | FTP | ftp |
 | **SFTP** | SFTP | sftp |
 | **Amazon S3** | Amazon S3 | s3 |
@@ -60,7 +60,7 @@ EXMENT_DRIVER_PLUGIN=s3
 
 ### 首次安装的版本低于 v3.0.8 时
 如果首次安装 Exment 时的版本低于 v3.0.8，需要做下面的修改。  
-(如果不知道首次安装的版本，为保险起见请确认一下)
+（如果不知道首次安装的版本，为保险起见请确认一下）
 
 - 打开项目根文件夹中的“config/exment.php”。
 
@@ -99,7 +99,7 @@ EXMENT_DRIVER_PLUGIN=s3
     ],
 ~~~
 
-### (1 推荐)各驱动的设置 - config 和 .env 设置
+### （1 推荐）各驱动的设置 - config 和 .env 设置
 这种方法在 config 中只写最少的内容，设置值写在 .env 中。  
 设置值可以在各文件种类之间共用，所以设置起来比较简单。
 
@@ -259,7 +259,7 @@ AWS_ENDPOINT=(AWS S3 的端点)
 
 > **不使用访问密钥，而用 IAM 角色连接时**
 > 只有同时设置了“AWS_ACCESS_KEY_ID”和“AWS_SECRET_ACCESS_KEY”两项时，才用该访问密钥连接。
-> 其中任何一项没有设置时，用 AWS SDK 的默认方法取得认证信息(环境变量、共享认证信息文件、ECS 任务或 EC2 实例的 IAM 角色等)。
+> 其中任何一项没有设置时，用 AWS SDK 的默认方法取得认证信息（环境变量、共享认证信息文件、ECS 任务或 EC2 实例的 IAM 角色等）。
 > 在 EC2 或 ECS 上分配了 IAM 角色时，不填写这两项，就可以在不保存访问密钥的情况下连接到 S3。“AWS_DEFAULT_REGION”和存储桶的设置仍然需要。
 
 - 按要使用 Amazon S3 的文件种类，追加下面的设置。
@@ -280,9 +280,9 @@ AWS_BUCKET_TEMPLATE=exment_template
 AWS_BUCKET_PLUGIN=exment_plugin
 ~~~
 
-- 把附件的保存位置设为 Amazon S3 后，下载附件时会重定向到 Amazon S3 的临时 URL(带签名的 URL)。浏览器不经过 Exment，直接从 Amazon S3 下载文件。  
-因此，用户的浏览器必须能连接到 Amazon S3(的端点)。  
-※临时 URL 的有效期限(分钟)可以用“.env”的“EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES”更改(默认值为 15)。详情请查看[这里](/zh/config)。
+- 把附件的保存位置设为 Amazon S3 后，下载附件时会重定向到 Amazon S3 的临时 URL（带签名的 URL）。浏览器不经过 Exment，直接从 Amazon S3 下载文件。  
+因此，用户的浏览器必须能连接到 Amazon S3（的端点）。  
+※临时 URL 的有效期限（分钟）可以用“.env”的“EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES”更改（默认值为 15）。详情请查看[这里](/zh/config)。
 
 
 #### Azure Blob
@@ -335,7 +335,7 @@ AZURE_STORAGE_CONTAINER_PLUGIN=exment_plugin
 ~~~
 
 
-### (2 不推荐)各驱动的设置 - 在 config 中分别指定
+### （2 不推荐）各驱动的设置 - 在 config 中分别指定
 这种方法按文件种类，把各驱动的信息详细地设置在 config 中。
 
 #### 例：FTP
@@ -373,18 +373,18 @@ AZURE_STORAGE_CONTAINER_PLUGIN=exment_plugin
 
 
 
-## (面向高级用户和开发者)添加自己的驱动
+## （面向高级用户和开发者）添加自己的驱动
 Exment 在标准状态下支持 FTP、Amazon S3 等驱动。  
 这里说明使用标准不支持的、自己的驱动的方法。  
 
 ### 前提
-- ※在 Exment 中，需要按前面所说的“文件的种类(附件、备份、插件、模板)”分开根文件夹。  
+- ※在 Exment 中，需要按前面所说的“文件的种类（附件、备份、插件、模板）”分开根文件夹。  
 
 - 如果使用的文件系统没有分开根文件夹的功能，就需要采取更改上传位置、按文件种类分别创建应用等对策。
 
 ### 使用条件
 Exment 使用 [Laravel 的文件系统](https://readouble.com/laravel/12.x/ja/filesystem.html)（日语）功能来管理自己的驱动。  
-因此，只有提供了 Laravel 文件系统的服务，才能用于 Exment 的文件管理。(或者，需要自己准备驱动。)
+因此，只有提供了 Laravel 文件系统的服务，才能用于 Exment 的文件管理。（或者，需要自己准备驱动。）
 
 ### 开发方法
 这里以把文件的上传位置设为 Dropbox 为例进行说明。  
@@ -553,49 +553,49 @@ DROPBOX_ACCESS_TOKEN_PLUGIN=VVVVVV
 ※需要事先创建 AWS 账户并登录。
 
 #### 创建 S3 用的 IAM
-- 在控制台页面的右上方，单击自己的账户，打开子菜单。请选择“Security credentials”(安全凭证)。
+- 在控制台页面的右上方，单击自己的账户，打开子菜单。请选择“Security credentials”（安全凭证）。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_1.png)  
 
-- 在左侧的侧边菜单中选择“Users”(用户)。
+- 在左侧的侧边菜单中选择“Users”（用户）。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_2.png)  
 
-- 单击“Add users”(添加用户)按钮。
+- 单击“Add users”（添加用户）按钮。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_3.png)  
 
-- 在“User name”(用户名)中输入任意的名称。
-在“Select AWS credential type”(选择 AWS 凭证类型)中勾选“Access key - Programmatic access”(访问密钥 - 编程访问)，然后单击“Next: Permissions”(下一步：权限)按钮。
+- 在“User name”（用户名）中输入任意的名称。
+在“Select AWS credential type”（选择 AWS 凭证类型）中勾选“Access key - Programmatic access”（访问密钥 - 编程访问），然后单击“Next: Permissions”（下一步：权限）按钮。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_4.png)  
 
-- 在“Set permissions”(设置权限)中单击“Attach existing policies directly”(直接附加现有策略)。
+- 在“Set permissions”（设置权限）中单击“Attach existing policies directly”（直接附加现有策略）。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_5.png)  
 
-- 在“Filter policies”(筛选策略)中输入“S3”进行搜索。在显示的列表中勾选“AmazonS3FullAccess”，然后单击“Next: Tags”(下一步：标签)按钮。
+- 在“Filter policies”（筛选策略）中输入“S3”进行搜索。在显示的列表中勾选“AmazonS3FullAccess”，然后单击“Next: Tags”（下一步：标签）按钮。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_6.png)  
 
-- 单击“Next: Review”(下一步：审核)按钮。
+- 单击“Next: Review”（下一步：审核）按钮。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_7.png)  
 
-- 显示确认页面。确认所选内容后，单击“Create user”(创建用户)按钮。
+- 显示确认页面。确认所选内容后，单击“Create user”（创建用户）按钮。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_8.png)  
 
-- 用户创建成功后，会显示“Access key ID”(访问密钥 ID)和“Secret access key”(秘密访问密钥)。
+- 用户创建成功后，会显示“Access key ID”（访问密钥 ID）和“Secret access key”（秘密访问密钥）。
 后面会用到，请务必记下来。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_9.png)  
 
 #### 创建存储桶
 
 - 创建用户之后，创建存储桶。  
-单击控制台页面左上方的 Services(服务)，选择“Storage”(存储)→“S3”。
+单击控制台页面左上方的 Services（服务），选择“Storage”（存储）→“S3”。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_10.png)  
 
-- 单击“Create bucket”(创建存储桶)按钮。
+- 单击“Create bucket”（创建存储桶）按钮。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_11.png)  
 
-- 在“Bucket name”(存储桶名称)中输入任意的名称。“AWS Region”(AWS 区域)选择“Asia Pacific (Tokyo)”(亚太地区（东京）)。  
+- 在“Bucket name”（存储桶名称）中输入任意的名称。“AWS Region”（AWS 区域）选择“Asia Pacific (Tokyo)”（亚太地区（东京））。  
 ※其他选项请根据需要设置。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_12.png)  
 
-- 单击“Create bucket”(创建存储桶)按钮。
+- 单击“Create bucket”（创建存储桶）按钮。
 ![S3 创建指南](../ja/img/quickstart/saveplace_s3_13.png)  
 
 - 确认创建的存储桶已添加到列表中。

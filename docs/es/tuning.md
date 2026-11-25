@@ -35,7 +35,7 @@ Los ajustes que Exment puede cambiar con seguridad se pueden aplicar desde esta 
 
 ## Elementos
 ### OPcache
-Guarda en memoria el resultado de compilar los programas PHP. Exment tiene muchos archivos, así que también se aumentan los límites de memoria y de número de archivos (es «Ya configurado» con 128MB de memoria o más y 20,000 archivos o más).
+Guarda en memoria el resultado de compilar los programas PHP. Exment tiene muchos archivos, así que también se aumentan los límites de memoria y de número de archivos (es «Ya configurado» con 128MB de memoria o más y 20 000 archivos o más).
 
 Configure php.ini de la siguiente manera y reinicie PHP (PHP-FPM o el servidor web).
 
@@ -144,7 +144,7 @@ Las columnas con «Índice de búsqueda» tienen una columna y un índice propio
 
 ## Otros ajustes relacionados con la velocidad
 ### Gráficos de las vistas de lista (EXMENT_CHART_LIST_MAX_ROWS)
-Los gráficos de las vistas de lista dibujan un punto por fila. Con el valor inicial (`0`), se leen todas las filas. Si en una tabla grande falta memoria o tiempo, puede poner un límite en `.env` (ejemplo: 1000). Cuando se supera el límite, aparece un mensaje que pide usar un gráfico de una vista de resumen. Los gráficos de tablas grandes créelos con una vista de resumen.
+Los gráficos de las vistas de lista dibujan un punto por fila. Con el valor inicial (`0`), se leen todas las filas. Si en una tabla grande falta memoria o tiempo, puede poner un límite en `.env` (ejemplo: 1000). Cuando se supera el límite, aparece «Para verlas todas, cree un gráfico de una vista de resumen.». Los gráficos de tablas grandes créelos con una vista de resumen.
 
 ~~~
 # .env (para poner un límite)

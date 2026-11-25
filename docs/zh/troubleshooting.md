@@ -130,29 +130,29 @@ rm /usr/bin/composer
 执行 composer update 命令时，可能会出现下面这样的错误。
 
 ```
-   LogicException	
+   LogicException	
 	
-  Invalid key supplied	
+  Invalid key supplied	
 	
-  at vendor/league/oauth2-server/src/CryptKey.php:67	
-     63▕             if (!$this->isValidKey($this->keyContents, $this->passPhrase ?? '')) {	
-     64▕                 throw new LogicException('Unable to read key from file ' . $keyPath);	
-     65▕             }	
-     66▕         } else {	
-  ➜  67▕             throw new LogicException('Invalid key supplied');	
-     68▕         }	
-     69▕	
-     70▕         if ($keyPermissionsCheck === true) {	
-     71▕             // Verify the permissions of the key	
+  at vendor/league/oauth2-server/src/CryptKey.php:67	
+     63▕             if (!$this->isValidKey($this->keyContents, $this->passPhrase ?? '')) {	
+     64▕                 throw new LogicException('Unable to read key from file ' . $keyPath);	
+     65▕             }	
+     66▕         } else {	
+  ➜  67▕             throw new LogicException('Invalid key supplied');	
+     68▕         }	
+     69▕	
+     70▕         if ($keyPermissionsCheck === true) {	
+     71▕             // Verify the permissions of the key	
 	
-      +17 vendor frames	
+      +17 vendor frames	
 	
-  18  [internal]:0	
-      Illuminate\Foundation\Application::Illuminate\Foundation\{closure}()	
-      +5 vendor frames	
+  18  [internal]:0	
+      Illuminate\Foundation\Application::Illuminate\Foundation\{closure}()	
+      +5 vendor frames	
 	
-  24  artisan:35	
-      Illuminate\Foundation\Console\Kernel::handle()	
+  24  artisan:35	
+      Illuminate\Foundation\Console\Kernel::handle()	
 ```
 
 #### 这时，请用下面的命令先禁用 API，再创建 Laravel 的密钥。

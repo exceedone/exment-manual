@@ -48,7 +48,7 @@ php -r 'var_dump(function_exists("imagettftext"));'
 设置二维码的布局尺寸。 
 请看下表。
 
-| Case | Cell width（单元格宽度） | Cell height（单元格高度） | Margin right | Margin top（上边距） | Column per page（每页列数） | Row per page（每页行数） | Column spacing（列间距） | Row spacing（行间距） |
+| Case | Cell width（单元格宽度） | Cell height（单元格高度） | Margin right（右边距） | Margin top（上边距） | Column per page（每页列数） | Row per page（每页行数） | Column spacing（列间距） | Row spacing（行间距） |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | 2x5 | 84 | 52 | 17 | 10.5 | 2 | 5 | 8 | 4 |
 | 2x6 | 83.8 | 42.3 | 19.3 | 21.5 | 2 | 6 | 3.8 | 0 |

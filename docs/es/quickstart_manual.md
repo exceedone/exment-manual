@@ -14,7 +14,7 @@ Estos son los pasos para instalar Exment a mano, comando por comando.
 
 ## Notas
 - Si aparece un error durante la instalación, consulte [Solución de problemas](/es/troubleshooting).
-- ※ Lo sentimos mucho, pero por ahora no atendemos consultas individuales sobre los pasos de instalación ni sobre el montaje del servidor. Si desea atención individual, solicite el soporte de pago.　　
+- ※ Lo sentimos mucho, pero por ahora no atendemos consultas individuales sobre los pasos de instalación ni sobre el montaje del servidor. Si desea atención individual, solicite el soporte de pago.  
 
 ## Preparación del servidor
 Si todavía no tiene servidor, prepare un servidor web y un servidor de base de datos.  

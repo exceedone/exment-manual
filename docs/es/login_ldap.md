@@ -70,28 +70,28 @@ Cuando termine la configuración del servidor, añada el proveedor en la [pantal
 
 1. Abra la pantalla de configuración del sistema con una cuenta de administrador.  
 Abra la pantalla de configuración de inicio de sesión con el botón «Configuración de inicio de sesión», arriba a la derecha de la página.  
-![Pantalla de configuración de inicio de sesión](img/login/login_setting1.png)  
+![Pantalla de configuración de inicio de sesión](../ja/img/login/login_setting1.png)  
 
-2. Pulse el botón Nuevo y cree una configuración de inicio de sesión. Los elementos que hay que rellenar son los de abajo.
+2. Pulse el botón Nuevo y cree una configuración de inicio de sesión. Los campos que hay que rellenar son los siguientes.
 
 - **Nombre de LDAP** : escríbalo con caracteres alfanuméricos y sin que se repita con otros.
 
 ### Configuración de LDAP
 Escriba la configuración de LDAP.  
 (Con Active Directory)
-![Configuración de inicio de sesión](img/login/login_ldap5.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_ldap5.png)  
 
 (Con openLDAP)
-![Configuración de inicio de sesión](img/login/login_ldap6.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_ldap6.png)  
 
 ### Configuración de asignación
 Hay que hacer corresponder los nombres de campo que devuelve el proveedor con los nombres de campo de la tabla «Usuario» de Exment.  
 
-![Configuración de inicio de sesión](img/login/login_mapping.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_mapping.png)  
 
 Escriba el nombre de campo que devuelve el proveedor.
 
-![Configuración de inicio de sesión](img/login/login_mapping1.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_mapping1.png)  
 
 Hay 3 formas de escribirlo.
 
@@ -103,24 +103,24 @@ Hay 3 formas de escribirlo.
 
 #### Escribir el nombre de campo tal cual
 Escriba tal cual el nombre de campo que devuelve el proveedor.
-![Configuración de inicio de sesión](img/login/login_mapping3.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_mapping3.png)  
 
 #### Escribir varios nombres de campo separados por comas
 Si hay varios candidatos para el campo que quiere usar, escriba los nombres de campo que devuelve el proveedor separados por comas.  
 Se busca el valor en orden desde el primero y, si hay valor, se usa ese valor.  
 (Ejemplo: se prefiere usar el campo de nombre completo «seimei», pero en el proveedor no es obligatorio. Entonces, si «seimei» tiene valor se usa ese valor y, si no, se usa «username» como nombre de usuario → se escribe seimei,username)
-![Configuración de inicio de sesión](img/login/login_mapping4.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_mapping4.png)  
 
 #### Escribir varios nombres de campo con la forma ${nombre de campo}
 Es la forma de escribir cuando quiere combinar varios datos de usuario que devuelve el proveedor y usarlos como datos de usuario de Exment. Escriba varios campos con la forma ${nombre de campo}.  
 (Ejemplo: el proveedor no tiene el campo «nombre completo», pero tiene los campos «apellido (last_name)» y «nombre (first_name)». Se combinan como «apellido nombre» → se escribe ${last_name} ${first_name})
-![Configuración de inicio de sesión](img/login/login_mapping5.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_mapping5.png)  
 
 
 ### Configuración de usuario
 Aquí se configura cómo se trata al usuario que inicia sesión.
 
-![Configuración de usuario](img/login/login_setting5.png)  
+![Configuración de usuario](../ja/img/login/login_setting5.png)  
 
 #### Columna de búsqueda de cuenta
 Configure qué columna de la cuenta obtenida por SSO se usa para buscar la cuenta de Exment.
@@ -142,40 +142,40 @@ Si es YES, al iniciar sesión otra vez se actualizan los datos del usuario, como
 
 (Con Active Directory)
 
-![Configuración de inicio de sesión](img/login/login_ldap5.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_ldap5.png)  
 
 (Con openLDAP)
 
-![Configuración de inicio de sesión](img/login/login_ldap6.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_ldap6.png)  
 
 
 ### Configuración del botón de inicio de sesión
 Aquí se configura el botón de inicio de sesión que se muestra en la pantalla de inicio de sesión.  
 
-![Configuración de usuario](img/login/login_setting6.png)  
+![Configuración de usuario](../ja/img/login/login_setting6.png)  
 
 
 ### Habilitación y prueba de inicio de sesión
 - Cuando los datos se han guardado 1 vez o más, se muestran el botón «Habilitar» y el botón «Prueba de inicio de sesión».
 
-![Configuración de usuario](img/login/login_setting7.png)  
+![Configuración de usuario](../ja/img/login/login_setting7.png)  
 
 #### Habilitación
 - Al habilitarlo, en la pantalla de inicio de sesión se muestra el botón para la autenticación SSO.  
 ※ Si no quiere mostrar el botón normal «Iniciar sesión», ponga «Mostrar inicio de sesión predeterminado» en «NO» en la [Configuración de inicio de sesión](/es/login_setting).  
-![Configuración de inicio de sesión](img/login/login_ldap2.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_ldap2.png)  
 
 
 #### Prueba de inicio de sesión
 - Al hacer clic en el botón «Prueba de inicio de sesión», puede probar el inicio de sesión con la información configurada. Puede probarlo aunque la configuración de inicio de sesión no esté habilitada.  
 
-![Configuración de inicio de sesión](img/login/login_ldap3.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_ldap3.png)  
 
 
 - Al hacer clic en el botón «Iniciar sesión», puede probar si la configuración es correcta.  
 El resultado se muestra en el elemento «Resultado».
 
-![Configuración de inicio de sesión](img/login/login_ldap4.png)  
+![Configuración de inicio de sesión](../ja/img/login/login_ldap4.png)  
 
   
   

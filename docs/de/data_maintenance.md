@@ -34,7 +34,7 @@ Wenn Sie ein Datum eingeben, werden **nur die Dateien gelöscht, die vor diesem 
 
 ### Verwendung
 1. Wählen Sie „Was gelöscht wird“, geben Sie bei Bedarf unter „Vor dem“ ein Datum ein und drücken Sie auf „Zählen“.
-1. Unter „Zu löschen“ erscheinen die Anzahl der Anhänge, der älteren Versionen und der Dateien der Spalten, die Anzahl der betroffenen Daten und die Gesamtgröße. Bei mehr als 5,000 Dateien ist die Gesamtgröße die der ersten 5,000 Dateien.
+1. Unter „Zu löschen“ erscheinen die Anzahl der Anhänge, der älteren Versionen und der Dateien der Spalten, die Anzahl der betroffenen Daten und die Gesamtgröße. Bei mehr als 5.000 Dateien ist die Gesamtgröße die der ersten 5.000 Dateien.
 1. Geben Sie zur Bestätigung den Tabellennamen ein und drücken Sie auf „○ Dateien löschen“. Es erscheint noch einmal eine Bestätigung.
 1. Am Ende erscheint „○ Dateien (○MB) von ○ Datensätzen wurden gelöscht.“
 

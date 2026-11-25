@@ -115,11 +115,11 @@ Anders als beim Erstellen einzeln über die Seiten können Sie so mehrere Tabell
 - Laden Sie die [Excel-Vorlagendatei](https://exment.net/downloads/template/exment_template.xlsx) herunter und öffnen Sie die Datei.  
 
 - Tragen Sie die Einstellwerte in die Vorlagendatei ein. Die Einstellungen und die zugehörigen Blattnamen sind folgende.
-    - Benutzerdefinierte Tabelle　:　custom_tables
-    - Benutzerdefinierte Spalte　:　custom_columns
-    - Benutzerdefinierte Tabelle (erweiterte Einstellungen)　:　custom_column_multisettings
-    - Relationseinstellungen　:　custom_relations
-    - Menü　:　admin_menu
+    - Benutzerdefinierte Tabelle : custom_tables
+    - Benutzerdefinierte Spalte : custom_columns
+    - Benutzerdefinierte Tabelle (erweiterte Einstellungen) : custom_column_multisettings
+    - Relationseinstellungen : custom_relations
+    - Menü : admin_menu
 
 - Wählen Sie danach auf der Seite der Vorlagen im Punkt „Hochladen (Excel)“ die erstellte Excel-Datei und laden Sie sie hoch.
 

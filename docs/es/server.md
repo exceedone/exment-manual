@@ -11,7 +11,7 @@ En esta página se hacen estas 4 cosas.
 
 Las versiones necesarias de PHP y de la base de datos están en «Entorno de funcionamiento», más abajo.
 
-- <span class="red bold">※No atendemos consultas individuales sobre los pasos de instalación ni sobre el montaje del servidor. Si necesita atención individual, use el soporte de pago.</span>　　
+- <span class="red bold">※No atendemos consultas individuales sobre los pasos de instalación ni sobre el montaje del servidor. Si necesita atención individual, use el soporte de pago.</span>  
 - No tenemos manuales para los entornos que no están en la lista de abajo. Le pedimos su comprensión.
 
 ## Servidor web

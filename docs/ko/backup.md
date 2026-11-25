@@ -206,7 +206,7 @@ php artisan exment:update
 
 
 ### SQL Server를 쓰는 경우
-SQLServer를 쓰는 경우, 현재 Exment에서는 화면에서의 백업／복원을 지원하지 않습니다. 수동으로 작업해야 합니다.  
+SQLServer를 쓰는 경우, 현재 Exment에서는 화면에서의 백업/복원을 지원하지 않습니다. 수동으로 작업해야 합니다.  
 자세한 내용은 [백업·복원(SQL Server)](/ko/backup_sqlserver)을 참조하십시오.
 
 

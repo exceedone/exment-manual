@@ -301,7 +301,7 @@ Bei manual gelten nur die Spalten, die Sie auf dem Bildschirm „Suchfilter-Eins
 ※Nach einer Änderung muss der Index neu erstellt werden. Führen Sie „php artisan exment:meili-index“ aus.
 
 
-#### Meilisearch für die Auswahl (Auswahl aus der Werteliste einer anderen Tabelle) verwenden
+#### Meilisearch für „Auswahl (aus Tabelle)“ verwenden
 - Einstellungsschlüssel : MEILISEARCH_SELECT_TABLE
 - Standardwert : false
 - Aufgabe : Bei true wird Meilisearch für die Eingabevorschläge (Formular und API) der benutzerdefinierten Spalte „Auswahl (aus Tabelle)“ verwendet. Die Einstellung ist unabhängig von „MEILISEARCH_GLOBAL_SEARCH“.
@@ -558,12 +558,12 @@ Einzelheiten finden Sie unter [Offene Aufgaben](/de/workflow_task).
 - Standardwert : false
 - Aufgabe : Bei true wird die Schaltfläche „Ansicht“ (Ansicht wechseln) auf dem Bildschirm der benutzerdefinierten Daten ausgeblendet. ※Nur für allgemeine Benutzer. Für den Systemadministrator und die Administratoren dieser Tabelle wird sie angezeigt.
 
-#### Suchdialog für Daten bei „Auswahl (Verweis auf eine andere Tabelle)“, „Benutzer“ und „Organisation“ ausschalten
+#### Suchdialog für Daten bei „Auswahl (aus Tabelle)“, „Benutzer“ und „Organisation“ ausschalten
 - Einstellungsschlüssel : EXMENT_SELECT_TABLE_MODAL_SEARCH_DISABLED
 - Standardwert : false
-- Aufgabe : Bei true wird auf dem Eingabebildschirm der benutzerdefinierten Daten der Suchdialog für Daten bei „Auswahl (Verweis auf eine andere Tabelle)“, „Benutzer“ und „Organisation“ ausgeschaltet.
+- Aufgabe : Bei true wird auf dem Eingabebildschirm der benutzerdefinierten Daten der Suchdialog für Daten bei „Auswahl (aus Tabelle)“, „Benutzer“ und „Organisation“ ausgeschaltet.
 
-#### Anzahl, ab der „Auswahl (Verweis auf eine andere Tabelle)“, „Benutzer“ und „Organisation“ auf die Form „Auswahloptionen bei Bedarf suchen“ umschalten
+#### Anzahl, ab der „Auswahl (aus Tabelle)“, „Benutzer“ und „Organisation“ auf die Form „Auswahloptionen bei Bedarf suchen“ umschalten
 - Einstellungsschlüssel : EXMENT_SELECT_TABLE_LIMIT_COUNT
 - Standardwert : 100
 - Aufgabe : Legt die Anzahl fest, ab der Auswahlfelder auf dem Bildschirm zum Erstellen und Bearbeiten benutzerdefinierter Daten auf die Form „Auswahloptionen bei Bedarf suchen“ umschalten.  
@@ -836,11 +836,11 @@ Bei einem solchen Speicher werden Sie beim Herunterladen einer Datei auf die tem
 
 ### Sonstiges
 
-#### Im öffentlichen Formular den Anfangswert der benutzerdefinierten Spalten „Auswahl (aus einer anderen Tabelle)“, „Benutzer“ und „Organisation“ nur über die suuid (zufällige Zeichenfolge mit 20 Stellen) setzen können
+#### Im öffentlichen Formular den Anfangswert der benutzerdefinierten Spalten „Auswahl (aus Tabelle)“, „Benutzer“ und „Organisation“ nur über die suuid (zufällige Zeichenfolge mit 20 Stellen) setzen können
 
 - Einstellungsschlüssel : EXMENT_PUBLICFORM_URLPARAM_SUUID
 - Standardwert : false
-- Aufgabe : Einzelheiten finden Sie [hier](/de/publicform) im Abschnitt darüber, wie der Anfangswert der benutzerdefinierten Spalten „Auswahl (aus einer anderen Tabelle)“, „Benutzer“ und „Organisation“ nur über die suuid (zufällige Zeichenfolge mit 20 Stellen) gesetzt werden kann.
+- Aufgabe : Einzelheiten finden Sie [hier](/de/publicform) im Abschnitt darüber, wie der Anfangswert der benutzerdefinierten Spalten „Auswahl (aus Tabelle)“, „Benutzer“ und „Organisation“ nur über die suuid (zufällige Zeichenfolge mit 20 Stellen) gesetzt werden kann.
 
 
 #### Zeilenumbrüche in der HTTP-Antwort entfernen

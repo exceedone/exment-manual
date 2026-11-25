@@ -89,7 +89,7 @@ $value = CustomTable::getEloquent('foo')->getValueModel();
 ////// ODER die Daten mit id 1 aus der Tabelle "foo" holen
 //$value = CustomTable::getEloquent('foo')->getValueModel(1);
 
-////// Die Werte setzen. Ein Array "Name der benutzerdefinierten Spalte => Wert"
+////// Die Werte setzen. Ein Array „Name der benutzerdefinierten Spalte => Wert“
 $value->setValueStrictly(['value1' => 'Wert 1', 'value2' => 2]);
 // Aktualisieren und in der Datenbank speichern
 $value->save();
@@ -263,7 +263,7 @@ Die URL als Zeichenfolge setzen
 #### Typ in der Datenbank
 <span class="red">Typ string</span>  
 
-> Nach der aktuellen Spezifikation wird der Wert in der Datenbank im Typ string gespeichert, auch wenn der Typ der benutzerdefinierten Spalte "Ganzzahl" ist.
+> Nach der aktuellen Spezifikation wird der Wert in der Datenbank im Typ string gespeichert, auch wenn der Typ der benutzerdefinierten Spalte „Ganzzahl“ ist.
 
 
 #### getValue - beim Holen der Daten
@@ -272,7 +272,7 @@ Die URL als Zeichenfolge setzen
 Ganzzahl. Ohne Kommas.
 
 - ##### text,html
-Ganzzahl. Wenn die Option "Zahl mit Tausendertrennzeichen" eingeschaltet ist, mit Kommas.
+Ganzzahl. Wenn die Option „Zahl mit Tausendertrennzeichen“ eingeschaltet ist, mit Kommas.
 
 #### setValueStrictly - beim Setzen des Wertes
 Als Typ Ganzzahl oder als Zeichenfolge einer Ganzzahl setzen  
@@ -318,7 +318,7 @@ Als Typ Ganzzahl oder als Zeichenfolge einer Ganzzahl setzen
 #### Typ in der Datenbank
 <span class="red">Typ string</span>  
 
-> Nach der aktuellen Spezifikation wird der Wert in der Datenbank im Typ string gespeichert, auch wenn der Typ der benutzerdefinierten Spalte "Dezimalzahl" ist.
+> Nach der aktuellen Spezifikation wird der Wert in der Datenbank im Typ string gespeichert, auch wenn der Typ der benutzerdefinierten Spalte „Dezimalzahl“ ist.
 
 #### getValue - beim Holen der Daten
 
@@ -326,7 +326,7 @@ Als Typ Ganzzahl oder als Zeichenfolge einer Ganzzahl setzen
 Dezimalzahl. Ohne Kommas.
 
 - ##### text,html
-Dezimalzahl. Wenn die Option "Zahl mit Tausendertrennzeichen" eingeschaltet ist, mit Kommas.
+Dezimalzahl. Wenn die Option „Zahl mit Tausendertrennzeichen“ eingeschaltet ist, mit Kommas.
 
 #### setValueStrictly - beim Setzen des Wertes
 Als Typ Dezimalzahl oder als Zeichenfolge einer Dezimalzahl setzen  
@@ -371,7 +371,7 @@ Als Typ Dezimalzahl oder als Zeichenfolge einer Dezimalzahl setzen
 #### Typ in der Datenbank
 <span class="red">Typ string</span>  
 
-> Nach der aktuellen Spezifikation wird der Wert in der Datenbank im Typ string gespeichert, auch wenn der Typ der benutzerdefinierten Spalte "Währung" ist.
+> Nach der aktuellen Spezifikation wird der Wert in der Datenbank im Typ string gespeichert, auch wenn der Typ der benutzerdefinierten Spalte „Währung“ ist.
 
 #### getValue - beim Holen der Daten
 
@@ -379,7 +379,7 @@ Als Typ Dezimalzahl oder als Zeichenfolge einer Dezimalzahl setzen
 Der eingegebene Betrag. Ohne Kommas und ohne Währungseinheit.
 
 - ##### text,html
-Der eingegebene Betrag. Wenn die Option "Zahl mit Tausendertrennzeichen" eingeschaltet ist, mit Kommas. Außerdem mit dem ausgewählten "Währungsformat".
+Der eingegebene Betrag. Wenn die Option „Zahl mit Tausendertrennzeichen“ eingeschaltet ist, mit Kommas. Außerdem mit dem ausgewählten „Währungsformat“.
 
 #### setValueStrictly - beim Setzen des Wertes
 Als Typ Zahl oder als Zeichenfolge einer Zahl setzen  
@@ -565,12 +565,12 @@ Der ausgewählte Eintrag.
 Mit einem Eintrag der Auswahl setzen  
 
 ``` php
-///// Wenn die Auswahl "Orange" ist
+///// Wenn die Auswahl „Orange“ ist
 // OK
 $value->setValueStrictly(['select' => 'Orange']);
 ```
 
-※ Wenn "Mehrfachauswahl zulassen" eingestellt ist, als Array setzen
+※ Wenn „Mehrfachauswahl zulassen“ eingestellt ist, als Array setzen
 
 ``` php
 // OK
@@ -589,7 +589,7 @@ Mit einem Eintrag der Auswahl setzen
 }
 ```
 
-※ Wenn "Mehrfachauswahl zulassen" eingestellt ist, als Array setzen
+※ Wenn „Mehrfachauswahl zulassen“ eingestellt ist, als Array setzen
 
 ``` json
 // OK
@@ -617,14 +617,14 @@ Die Bezeichnung des ausgewählten Eintrags.
 Mit dem Wert oder der Bezeichnung der Auswahl setzen  
 
 ``` php
-///// Wenn die Bezeichnung der Auswahl "Orange" und der Wert "val1" ist
+///// Wenn die Bezeichnung der Auswahl „Orange“ und der Wert „val1“ ist
 // OK(1)
 $value->setValueStrictly(['select_valtext' => 'val1']);
 // OK(2)
 $value->setValueStrictly(['select_valtext' => 'Orange']);
 ```
 
-※ Wenn "Mehrfachauswahl zulassen" eingestellt ist, als Array setzen
+※ Wenn „Mehrfachauswahl zulassen“ eingestellt ist, als Array setzen
 
 ``` php
 // OK
@@ -649,7 +649,7 @@ Mit dem Wert oder der Bezeichnung der Auswahl setzen
 }
 ```
 
-※ Wenn "Mehrfachauswahl zulassen" eingestellt ist, als Array setzen
+※ Wenn „Mehrfachauswahl zulassen“ eingestellt ist, als Array setzen
 
 ``` json
 // OK
@@ -690,7 +690,7 @@ $value->setValueStrictly(['select_table' => 1]);
 $value->setValueStrictly(['select_table' => "3"]);
 ```
 
-※ Wenn "Mehrfachauswahl zulassen" eingestellt ist, als Array setzen
+※ Wenn „Mehrfachauswahl zulassen“ eingestellt ist, als Array setzen
 
 ``` php
 // OK
@@ -715,7 +715,7 @@ Die id der Daten in der Zieltabelle als Typ Ganzzahl oder als Zeichenfolge setze
 }
 ```
 
-※ Wenn "Mehrfachauswahl zulassen" eingestellt ist, als Array setzen
+※ Wenn „Mehrfachauswahl zulassen“ eingestellt ist, als Array setzen
 
 ``` json
 // OK
@@ -799,7 +799,7 @@ Die angezeigte Bezeichnung der ausgewählten Seite.
 Die Zeichenfolge des Wertes oder der Bezeichnung einer der 2 Auswahlen setzen, die in den Einstellungen der benutzerdefinierten Spalte gespeichert sind
 
 ``` php
-///// Wenn die Bezeichnung der Auswahl 1 "Orange" und der Wert "val1" ist
+///// Wenn die Bezeichnung der Auswahl 1 „Orange“ und der Wert „val1“ ist
 // OK(1)
 $value->setValueStrictly(['boolean' => 'val1']);
 // OK(2)

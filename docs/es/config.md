@@ -856,7 +856,7 @@ Con este tipo de almacenamiento, al descargar un archivo se redirige a la URL te
 
 > Desde v3.5.0 se cambia desde la pantalla de configuración del sistema.
 
-#### Ocultar los "Campo oculto" en la pantalla de detalle de los datos
+#### Ocultar los campos "Campo oculto" en la pantalla de detalle de los datos
 - Clave de configuración : EXMENT_HIDE_HIDDENFIELD
 - Valor predeterminado : true
 - Función : Si se pone en true, en la pantalla de detalle de los datos se ocultan los datos que en la configuración del formulario son "Campo oculto".

@@ -43,7 +43,7 @@ Diese Seite erklärt die Arten der Trigger und die Erstellung (config.json und P
 }
 ~~~
 
-- Schreiben Sie plugin_name mit Buchstaben und Ziffern (halbe Breite).
+- Schreiben Sie plugin_name nur mit einfachen (ASCII-)Buchstaben und Ziffern.
 - uuid ist eine Zeichenfolge aus 32 Zeichen + Bindestrichen, zusammen 36 Zeichen. Sie dient dazu, das Plugin eindeutig zu erkennen.  
 Erzeugen Sie sie zum Beispiel unter der folgenden URL.  
 https://www.famkruithof.net/uuid/uuidgen

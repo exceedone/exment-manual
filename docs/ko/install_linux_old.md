@@ -1,31 +1,31 @@
-# Linux에 의한 환경 구축(CentOS7)
+# Linux로 환경 구축(CentOS7)
 Linux 서버에 Exment를 설치하는 절차입니다.  
-웹 서버의 설치부터 시작해서, 아무것도 없는 상태에서 만듭니다.
+Web 서버의 설치부터 시작해서, 아무것도 없는 상태에서 만듭니다.
 
 큰 흐름은 다음과 같습니다.
 
 1. (필요하면) MySQL·Redis를 준비한다
-2. 웹 서버에 PHP·Apache·composer를 설치한다
+2. Web 서버에 PHP·Apache·composer를 설치한다
 3. Exment의 파일을 두고 권한을 설정한다
 4. 브라우저에서 Exment의 초기 설치를 한다
 
 ## 환경
 이 페이지의 절차는 다음 환경에서 만들었습니다.  
-- CentOS 7.9.2009 64bit (**현재 8계열에서는 아래 절차에서 오류가 나는 것을 확인했습니다**. 아래 절차로 설치하는 경우, 7계열에서 설치하십시오.)
+- CentOS 7.9.2009 64bit (**현재 8 계열에서는 아래 절차에서 오류가 나는 것을 확인했습니다**. 아래 절차로 설치하는 경우 7 계열에 설치하십시오.)
 - Apache 2.4.6
 - PHP 8.0.21
 - MySQL 5.7.38
 
 ## 주의점
 
-- 쓰고 있는 환경이나 버전에 따라서는 이 절차대로 설정할 수 없는 경우가 있습니다. 양해해 주십시오.
+- 사용하는 환경이나 버전에 따라서는 이 절차대로 설정할 수 없는 경우가 있습니다. 양해해 주십시오.
 
-- 이 페이지에는 Exment를 Linux에서 움직이기 위한 절차만 적혀 있습니다.  
-SSH·데이터베이스 만들기·Linux 명령 등 일반적인 IT 지식은 적혀 있지 않습니다. 양해해 주십시오.  
+- 이 페이지에는 Exment를 Linux에서 움직이기 위한 절차만 적었습니다.  
+SSH·데이터베이스 만들기·Linux 명령 등 일반적인 IT 지식은 적지 않았습니다. 양해해 주십시오.  
 
 - **이 절차는 관리자 계정으로 실행하는 것을 전제로 합니다. 관리자 계정이 아닌 사용자가 실행할 때는 명령 앞에 "sudo"를 붙이십시오**.
 
-- 설치에서 오류가 났을 때는 [문제 해결](/ko/troubleshooting)을 보십시오.
+- 설치에서 오류가 났을 때는 [문제 해결](/ko/troubleshooting)을 참조하십시오.
 
 
 ## Linux에서의 설치 절차
@@ -38,15 +38,15 @@ SSH·데이터베이스 만들기·Linux 명령 등 일반적인 IT 지식은 �
 ### Redis(선택)
 ※절차는 [세션·캐시의 드라이버 변경](/ko/additional_session_cache_driver) 페이지로 옮겼습니다.
 
-### 웹 서버
-- yum을 업데이트하고, 필요한 라이브러리를 설치합니다.  
+### Web 서버
+- yum을 업데이트하고 필요한 라이브러리를 설치합니다.  
 
 ~~~
 yum -y update
 yum install -y wget firewalld unzip git
 ~~~
 
-- epel을 업데이트하고, Remi 리포지토리의 구성 패키지를 설치합니다.  
+- epel을 업데이트하고 Remi 리포지토리의 구성 패키지를 설치합니다.  
 
 ~~~
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -59,7 +59,7 @@ yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum install -y yum-utils
 ~~~
 
-- PHP8.0의 패키지만 켭니다.
+- PHP8.0의 패키지만 활성화합니다.
 
 ~~~
 yum-config-manager --disable 'remi-php*'
@@ -93,7 +93,7 @@ service httpd start
 ~~~
 
 - 방화벽을 설정합니다.  
-※필요한 보안에 맞춰 설정의 내용을 바꾸십시오.
+※필요한 보안에 맞추어 설정의 내용을 바꾸십시오.
 
 ~~~
 systemctl start firewalld
@@ -104,7 +104,7 @@ systemctl reload firewalld
 ~~~
 
 - 필요하면 SELinux를 끕니다.  
-※필요한 보안에 맞춰 설정의 내용을 바꾸십시오.
+※필요한 보안에 맞추어 설정의 내용을 바꾸십시오.
 
 ~~~
 vi /etc/selinux/config
@@ -124,8 +124,8 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ~~~
 
-- php.ini를 필요에 맞춰 고칩니다.  
-특히 [PHP 설정값 변경](/ko/additional_php_ini)에 있는 메모리 사용량의 변경·타임아웃 시간 변경 등을 할 때는 이 파일을 고치십시오.
+- php.ini를 필요에 맞게 고칩니다.  
+특히 [PHP 설정값 변경](/ko/additional_php_ini)에 있는 메모리 사용량 변경·타임아웃 시간 변경 등을 할 때는 이 파일을 고치십시오.
 
 ~~~
 vi /etc/php.ini
@@ -154,7 +154,7 @@ vi /etc/httpd/conf/httpd.conf
 service httpd restart
 ~~~
 
-- (권장) 로그인 사용자를 apache 그룹에 추가합니다. 이렇게 하면 로그인 사용자가 exment 폴더 안의 파일을 자유롭게 편집할 수 있습니다. 그룹은 SSH로 다시 접속한 다음에 반영됩니다.  
+- (권장) 로그인 사용자를 apache 그룹에 추가합니다. 이렇게 하면 로그인 사용자가 exment 폴더 안의 파일을 자유롭게 편집할 수 있습니다. 그룹은 SSH로 다시 접속한 뒤에 반영됩니다.  
 ※아래는 로그인 사용자가 "ec2-user"인 경우입니다.
 
 ~~~
@@ -171,14 +171,14 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
 # 이것을 실행해서 mysql-community-client가 있는지 확인합니다
 yum search mysql-community-client
-# 위 명령에서 "Error: Unable to find a match: mysql-community-client"와 같이 없다는 메시지가 나온 경우에는 먼저 아래 명령을 실행하십시오
+# 위 명령에서 "Error: Unable to find a match: mysql-community-client"처럼 없다는 메시지가 나온 경우에는 먼저 아래 명령을 실행하십시오
 yum -y module disable mysql
 
 # mysql-community-client 설치
 yum -y install mysql-community-client
 ~~~
 
-- Exment를 서버에 둡니다. 최신 Exment 파일을 내려받아 압축을 풉니다.  
+- Exment를 서버에 둡니다. 최신 Exment 파일을 다운로드해서 압축을 풉니다.  
 ※이것은 간편 설치의 절차입니다. 수동 설치일 때는 [수동 설치](/ko/quickstart_manual) 페이지를 보고 두십시오.
 
 ~~~
@@ -196,15 +196,15 @@ cd exment
 chmod 0775 /var/www/exment
 chown -R apache:apache /var/www/exment
 
-# 아래 명령을 실행해서 폴더의 사용자·그룹 권한을 준다. 1 또는 2를 실시한다  
-# ※권한이 모자라는 경우 등은 sudo를 붙이는 등 강한 권한으로 실행하십시오
+# 아래 명령을 실행해서 폴더의 사용자·그룹 권한을 준다. 1 또는 2를 실행한다  
+# ※권한이 모자란 경우 등에는 sudo를 붙이는 등 강한 권한으로 실행하십시오
 # 1. 간편 설치의 경우
 php artisan exment:setup-dir --easy=1
 # 2. 수동 설치의 경우
 php artisan exment:setup-dir
 ~~~
 
-- 가지고 있는 PC의 브라우저에서 만든 웹 서버의 IP 주소를 열고, Exment의 초기 설치를 끝냅니다.
+- 내 PC의 브라우저에서, 만든 Web 서버의 IP 주소를 열고 Exment의 초기 설치를 끝냅니다.
 
 - ※간편 설치로 설치했을 때는 초기 설치가 끝나면 다음 명령을 실행하십시오. 설치할 때만 필요한 권한을 원래대로 되돌립니다.
 
@@ -216,11 +216,11 @@ php artisan exment:setup-dir --easy_clear=1
 ## PHP 버전을 올릴 때의 대응
 PHP의 버전을 바꿀 때는 다음 절차로 버전을 올리십시오.  
 ※버전을 올리는 작업 중에는 Exment에 접속할 수 없게 됩니다.  
-※아래 절차 예는 PHP7.4에서 PHP8.0으로 업데이트하기 위한 절차입니다.  
+※아래 절차의 예는 PHP7.4에서 PHP8.0으로 업데이트하기 위한 절차입니다.  
 ※epel과 remi 리포지토리를 써서 PHP를 설치한 것을 전제로 합니다.  
-※환경이나 도입 시기, 버전이나 설치 방법에 따라 버전을 올리는 방법이 다를 수 있습니다.  
+※환경이나 도입 시기, 버전이나 설치 방법에 따라 버전을 올리는 방법은 다를 수 있습니다.  
 
-- 먼저 백업을 받습니다. 아래 명령은 php.ini와, 설치된 패키지·확장 모듈의 메모를 남기기만 하는 최소한의 예입니다. 쓰고 있는 환경에 맞춰 더하거나 빼십시오.  
+- 먼저 백업을 받습니다. 아래 명령은 php.ini와, 설치된 패키지·확장 모듈의 메모를 남기기만 하는 최소한의 예입니다. 사용하는 환경에 맞추어 더하거나 빼십시오.  
 
 ~~~
 # 백업 폴더를 만든다
@@ -252,7 +252,7 @@ yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum -y install yum-utils
 ~~~
 
-- PHP8.0의 패키지만 켭니다.  
+- PHP8.0의 패키지만 활성화합니다.  
 
 ~~~
 yum-config-manager --disable 'remi-php*'

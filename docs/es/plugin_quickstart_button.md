@@ -19,10 +19,10 @@ Usted implementa el proceso que se hace al mostrar el botón.
 
 | Nombre | Tipo | Descripción |
 | ---- | ---- | ---- |
-| grid_menubutton | Botón de menú de la pantalla de lista | Añade un botón en la parte superior de la pantalla de lista de datos y lanza un evento al hacer clic. |
-| form_menubutton_show | Botón de menú de la pantalla de detalle del dato | Añade un botón en la parte superior de la pantalla de detalle del dato y lanza un evento al hacer clic. |
-| form_menubutton_create | Botón de menú de la pantalla de creación de un dato | Añade un botón en la parte superior de la pantalla de creación de un dato y lanza un evento al hacer clic. |
-| form_menubutton_edit | Botón de menú de la pantalla de actualización del dato | Añade un botón en la parte superior de la pantalla de actualización del dato y lanza un evento al hacer clic. |
+| grid_menubutton | Botón de menú en la vista de lista | Añade un botón en la parte superior de la pantalla de lista de datos y lanza un evento al hacer clic. |
+| form_menubutton_show | Botón de menú en el detalle de datos | Añade un botón en la parte superior de la pantalla de detalle del dato y lanza un evento al hacer clic. |
+| form_menubutton_create | Botón de menú del formulario (al crear) | Añade un botón en la parte superior de la pantalla de creación de un dato y lanza un evento al hacer clic. |
+| form_menubutton_edit | Botón de menú del formulario (al editar) | Añade un botón en la parte superior de la pantalla de actualización del dato y lanza un evento al hacer clic. |
 
 ## Cómo crearlo
 
@@ -91,7 +91,7 @@ class Plugin extends PluginButtonBase
         // ];
 
 
-        // (a partir de v3.4.1) Cuando la llamada se hace desde el "Botón de menú de la pantalla de lista" ---------
+        // (a partir de v3.4.1) Cuando la llamada se hace desde el "Botón de menú en la vista de lista" ---------
         // Lista de objetos CustomValue de los datos marcados en la pantalla de lista. Tipo \Illuminate\Support\Collection
         // $custom_values = $this->selected_custom_values; 
     }

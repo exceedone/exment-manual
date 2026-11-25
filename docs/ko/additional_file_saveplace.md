@@ -1,5 +1,5 @@
 # (고급 사용자용) 파일 저장 위치 변경
-첨부 파일이나 백업 등의 파일을 웹 서버가 아닌 곳(FTP나 Amazon S3 등)에 저장하기 위한 설정입니다.
+첨부 파일이나 백업 등의 파일을 웹 서버가 아닌 곳(FTP나 Amazon S3 등)에 저장하기 위한 설정입니다.  
 표준 설정에서는 첨부 파일이 웹 서버에 저장됩니다. 예를 들어 다음과 같은 경우에 저장 위치를 바꿉니다.
 
 - 백업 파일을 FTP에 저장한다
@@ -12,7 +12,7 @@
 3. "드라이버별 설정"에서 접속 대상의 정보를 설정합니다.
 
 ## 파일의 종류
-현재 Exment에는 다음과 같은 파일의 종류가 있습니다. 저장 위치는 종류별로 정할 수 있습니다.
+현재 Exment에는 다음과 같은 파일의 종류가 있습니다. 저장 위치는 종류별로 정할 수 있습니다.  
 ※ 키 이름은 이 뒤의 설정에서 사용합니다.
 
 | 파일의 종류 | 내용 | 키 이름 |
@@ -24,7 +24,7 @@
 
 
 ## 업로드 위치(드라이버)의 종류
-현재 Exment는 다음 업로드 위치(드라이버)를 지원합니다.
+현재 Exment는 다음 업로드 위치(드라이버)를 지원합니다.  
 ※ 키 이름은 이 뒤의 설정에서 사용합니다.
 
 | 업로드 위치(드라이버) | 저장하는 곳 | 키 이름 |
@@ -59,7 +59,7 @@ EXMENT_DRIVER_PLUGIN=s3
 ~~~
 
 ### 처음 설치한 버전이 v3.0.8 미만인 경우
-Exment를 처음 설치한 버전이 v3.0.8 미만이면 다음 수정이 필요합니다.
+Exment를 처음 설치한 버전이 v3.0.8 미만이면 다음 수정이 필요합니다.  
 (처음 설치한 버전을 모르는 경우에는 만일을 위해 확인하십시오)
 
 - 프로젝트 루트 폴더의 "config/exment.php"를 엽니다.
@@ -100,7 +100,7 @@ Exment를 처음 설치한 버전이 v3.0.8 미만이면 다음 수정이 필요
 ~~~
 
 ### (1 권장) 드라이버별 설정 - config와 .env 설정
-config에 적는 내용은 최소한으로 하고, 설정값은 .env에 적는 방법입니다.
+config에 적는 내용은 최소한으로 하고, 설정값은 .env에 적는 방법입니다.  
 설정값을 파일의 종류 사이에서 함께 쓸 수 있으므로, 비교적 쉽게 설정할 수 있습니다.
 
 #### FTP
@@ -111,7 +111,7 @@ config에 적는 내용은 최소한으로 하고, 설정값은 .env에 적는 �
 composer require league/flysystem-ftp ~3.0
 ~~~
 
-- "config/filesystems.php"를 열고 "disks.ftp"의 설정값을 확인합니다.
+- "config/filesystems.php"를 열고 "disks.ftp"의 설정값을 확인합니다.  
 없으면 다음 설정을 추가합니다.
 
 ~~~php
@@ -131,7 +131,7 @@ composer require league/flysystem-ftp ~3.0
     ],
 ~~~
 
-- ".env"를 열고 다음 내용을 추가합니다.
+- ".env"를 열고 다음 내용을 추가합니다.  
 
 ~~~
 FTP_HOST=(FTP의 호스트 이름)
@@ -167,7 +167,7 @@ FTP_ROOT_PLUGIN=/var/foo/exment/ftp/plugin
 composer require league/flysystem-sftp-v3 ~3.0
 ~~~
 
-- "config/filesystems.php"를 열고 "disks.sftp"의 설정값을 확인합니다.
+- "config/filesystems.php"를 열고 "disks.sftp"의 설정값을 확인합니다.  
 없으면 다음 설정을 추가합니다.
 
 ~~~php
@@ -191,7 +191,7 @@ composer require league/flysystem-sftp-v3 ~3.0
     ],
 ~~~
 
-- ".env"를 열고 다음 내용을 추가합니다.
+- ".env"를 열고 다음 내용을 추가합니다.  
 
 ~~~
 SFTP_HOST=(SFTP의 호스트 이름)
@@ -219,7 +219,7 @@ SFTP_ROOT_PLUGIN=/var/foo/exment/sftp/plugin
 
 
 #### Amazon S3
-- 먼저 [AWS S3의 버킷 만들기, IAM 만들기](/ko/additional_file_saveplace?id=S3용-IAM-만들기)를 합니다.
+- 먼저 [AWS S3의 버킷 만들기, IAM 만들기](/ko/additional_file_saveplace?id=S3용-IAM-만들기)를 합니다.  
 ※ 여러 파일의 종류에 대응시키려면 파일의 종류별로 버킷을 나누어 만드십시오
 
 - 다음 명령을 실행합니다.
@@ -228,7 +228,7 @@ SFTP_ROOT_PLUGIN=/var/foo/exment/sftp/plugin
 composer require league/flysystem-aws-s3-v3 ~3.0
 ~~~
 
-- "config/filesystems.php"를 열고 "disks.s3"의 설정값을 확인합니다.
+- "config/filesystems.php"를 열고 "disks.s3"의 설정값을 확인합니다.  
 없으면 다음 설정을 추가합니다.
 
 ~~~php
@@ -247,7 +247,7 @@ composer require league/flysystem-aws-s3-v3 ~3.0
     ],
 ~~~
 
-- 다음 내용을 ".env"에 추가합니다.
+- 다음 내용을 ".env"에 추가합니다.  
 
 ~~~
 AWS_ACCESS_KEY_ID=(AWS S3의 액세스 키)
@@ -280,13 +280,13 @@ AWS_BUCKET_TEMPLATE=exment_template
 AWS_BUCKET_PLUGIN=exment_plugin
 ~~~
 
-- 첨부 파일의 저장 위치를 Amazon S3로 한 경우, 첨부 파일을 다운로드할 때는 Amazon S3의 임시 URL(서명된 URL)로 리디렉션됩니다. 브라우저가 Exment를 거치지 않고 Amazon S3에서 직접 파일을 다운로드합니다.
-그래서 사용자의 브라우저에서 Amazon S3(의 엔드포인트)에 접속할 수 있어야 합니다.
+- 첨부 파일의 저장 위치를 Amazon S3로 한 경우, 첨부 파일을 다운로드할 때는 Amazon S3의 임시 URL(서명된 URL)로 리디렉션됩니다. 브라우저가 Exment를 거치지 않고 Amazon S3에서 직접 파일을 다운로드합니다.  
+그래서 사용자의 브라우저에서 Amazon S3(의 엔드포인트)에 접속할 수 있어야 합니다.  
 ※ 임시 URL의 유효 기간(분)은 ".env"의 "EXMENT_FILE_DOWNLOAD_TEMPORARY_URL_MINUTES"로 바꿀 수 있습니다(기본값은 15). 자세한 내용은 [여기](/ko/config)를 확인하십시오.
 
 
 #### Azure Blob
-- Azure의 Blob을 만듭니다.
+- Azure의 Blob을 만듭니다.  
 ※ 여러 파일의 종류에 대응시키려면 파일의 종류별로 컨테이너를 나누어 만드십시오
 
 - 다음 명령을 실행합니다.
@@ -295,7 +295,7 @@ AWS_BUCKET_PLUGIN=exment_plugin
 composer require league/flysystem-azure-blob-storage ~3.0
 ~~~
 
-- "config/filesystems.php"를 열고 "disks.azure"의 설정값을 확인합니다.
+- "config/filesystems.php"를 열고 "disks.azure"의 설정값을 확인합니다.  
 없으면 다음 설정을 추가합니다.
 
 ~~~php
@@ -309,7 +309,7 @@ composer require league/flysystem-azure-blob-storage ~3.0
     ],
 ~~~
 
-- 다음 내용을 ".env"에 추가합니다.
+- 다음 내용을 ".env"에 추가합니다.  
 
 ~~~
 AZURE_STORAGE_ACCOUNT=(Azure Blob의 계정)
@@ -339,7 +339,7 @@ AZURE_STORAGE_CONTAINER_PLUGIN=exment_plugin
 파일의 종류별로 각 드라이버 정보를 config에 세밀하게 설정하는 방법입니다.
 
 #### 예: FTP
-- "config/filesystems.php"를 열고 다음 값을 추가합니다.
+- "config/filesystems.php"를 열고 다음 값을 추가합니다.  
 
 ~~~php
     'disks' => [
@@ -367,28 +367,28 @@ AZURE_STORAGE_CONTAINER_PLUGIN=exment_plugin
 
 
 ### 주의 사항
-- 서버에 따라서는 파일을 저장하지 못할 수 있습니다.
+- 서버에 따라서는 파일을 저장하지 못할 수 있습니다.  
 특히 임대 서버에서는 **제공 회사의 설정으로 FTP 등이 제한되어 있을 수 있습니다**. 미리 양해해 주십시오.
 
 
 
 
 ## (고급 사용자·개발자용) 자체 드라이버 추가
-Exment는 표준으로 FTP나 Amazon S3 같은 드라이버를 지원합니다.
-여기서는 표준으로는 지원하지 않는 자체 드라이버를 사용하는 방법을 설명합니다.
+Exment는 표준으로 FTP나 Amazon S3 같은 드라이버를 지원합니다.  
+여기서는 표준으로는 지원하지 않는 자체 드라이버를 사용하는 방법을 설명합니다.  
 
 ### 전제
-- ※ Exment에서는 앞에서 설명한 "파일의 종류(첨부 파일, 백업, 플러그인, 템플릿)"별로 루트 폴더를 나누어야 합니다.
+- ※ Exment에서는 앞에서 설명한 "파일의 종류(첨부 파일, 백업, 플러그인, 템플릿)"별로 루트 폴더를 나누어야 합니다.  
 
 - 사용하는 파일 시스템에 루트 폴더를 나누는 기능이 없으면, 업로드 위치를 바꾸거나 파일의 종류별로 애플리케이션을 만드는 등의 대응이 필요합니다.
 
 ### 이용 조건
-Exment에서는 [Laravel의 파일 시스템](https://readouble.com/laravel/12.x/ja/filesystem.html) 기능을 사용하여 자체 드라이버를 관리합니다.
+Exment에서는 [Laravel의 파일 시스템](https://readouble.com/laravel/12.x/ja/filesystem.html) 기능을 사용하여 자체 드라이버를 관리합니다.  
 그래서 Laravel의 파일 시스템이 준비되어 있는 서비스만 Exment의 파일 관리에 대응합니다. (또는 직접 드라이버를 준비해야 합니다.)
 
 ### 개발 방법
-여기서는 예로, 파일의 업로드 위치를 Dropbox로 하는 방법을 설명합니다.
-※ Dropbox 쪽의 설정은 [참고: Dropbox의 액세스 토큰 가져오는 방법](/ko/additional_file_saveplace?id=참고:-Dropbox의-액세스-토큰-가져오는-방법)을 확인하십시오.
+여기서는 예로, 파일의 업로드 위치를 Dropbox로 하는 방법을 설명합니다.  
+※ Dropbox 쪽의 설정은 [참고: Dropbox의 액세스 토큰 가져오는 방법](/ko/additional_file_saveplace?id=참고:-Dropbox의-액세스-토큰-가져오는-방법)을 확인하십시오.  
 
 #### 필요한 패키지 가져오기
 Laravel에서 Dropbox를 관리하는 데 필요한 패키지를 추가합니다.
@@ -474,26 +474,26 @@ class ExmentAdapterDropbox extends DropboxAdapter implements ExmentAdapterInterf
 ```
 
 ```
-(1) 어댑터 파일에서는 \League\Flysystem\Adapter\AbstractAdapter를 상속하도록 하십시오.
-Dropbox에서는 \Spatie\FlysystemDropbox\DropboxAdapter가 위 클래스를 상속하고 있으므로, 그것을 상속하십시오.
+(1) 어댑터 파일에서는 \League\Flysystem\Adapter\AbstractAdapter를 상속하도록 하십시오.  
+Dropbox에서는 \Spatie\FlysystemDropbox\DropboxAdapter가 위 클래스를 상속하고 있으므로, 그것을 상속하십시오.  
 
-(2) \Exceedone\Exment\Storage\Adapter\ExmentAdapterInterface2 또는 \Exceedone\Exment\Storage\Adapter\ExmentAdapterInterface를 구현하십시오.
-※ ExmentAdapterInterface와 ExmentAdapterInterface2는 함수 getUrl의 인수와 반환값에 형이 명시되어 있는지 여부만 다릅니다.
+(2) \Exceedone\Exment\Storage\Adapter\ExmentAdapterInterface2 또는 \Exceedone\Exment\Storage\Adapter\ExmentAdapterInterface를 구현하십시오.  
+※ ExmentAdapterInterface와 ExmentAdapterInterface2는 함수 getUrl의 인수와 반환값에 형이 명시되어 있는지 여부만 다릅니다.  
 
-(3) AdapterTrait를 use하십시오.
+(3) AdapterTrait를 use하십시오.  
 
-(4) 기본적으로는 적혀 있는 처리를 그대로 사용하십시오.
+(4) 기본적으로는 적혀 있는 처리를 그대로 사용하십시오.  
 
-(5) 어댑터의 인스턴스를 만들 때 호출되는 메서드입니다. 기본적으로 각 파일 서비스의 인스턴스 생성 방법에 따라 구현하십시오.
+(5) 어댑터의 인스턴스를 만들 때 호출되는 메서드입니다. 기본적으로 각 파일 서비스의 인스턴스 생성 방법에 따라 구현하십시오.  
 
-(6) 설정 정보에 병합할 키 값과 설정값의 쌍을 연관 배열로 설정합니다.
+(6) 설정 정보에 병합할 키 값과 설정값의 쌍을 연관 배열로 설정합니다.  
 
 (7) 병합이 끝난 설정 정보를 반환합니다. 기본적으로 "dropbox" 부분만 직접 적은 어댑터 이름으로 바꾸고, 그대로 복사해 붙여 넣으십시오.
   ※ Exment5.0.0부터 필요해진 항목입니다.
 
-※ Exment에서는 앞에서 설명한 "파일의 종류(첨부 파일, 백업, 플러그인, 템플릿)"별로 루트 폴더를 나누어야 합니다.
-Dropbox의 경우, 같은 앱에서 루트 폴더를 나누는 기능이 없습니다.
-그래서 파일의 종류별로 개별 Dropbox 앱을 만들어야 합니다.
+※ Exment에서는 앞에서 설명한 "파일의 종류(첨부 파일, 백업, 플러그인, 템플릿)"별로 루트 폴더를 나누어야 합니다.  
+Dropbox의 경우, 같은 앱에서 루트 폴더를 나누는 기능이 없습니다.  
+그래서 파일의 종류별로 개별 Dropbox 앱을 만들어야 합니다.  
 이 병합 처리는 파일의 종류별로 각각 만들어지는 액세스 토큰을 설정값으로 나누어 넣기 위한 처리입니다.
 ```
 
@@ -512,7 +512,7 @@ Dropbox의 경우, 같은 앱에서 루트 폴더를 나누는 기능이 없습�
 
     
 - ##### 설정값
-"config" 폴더의 "filesystems.php"에 다음을 덧붙입니다.
+"config" 폴더의 "filesystems.php"에 다음을 덧붙입니다.  
 파일의 종류별로 Dropbox의 앱을 나누어야 하므로, 파일의 종류별 토큰을 설정합니다.
 
 ``` php
@@ -527,7 +527,7 @@ Dropbox의 경우, 같은 앱에서 루트 폴더를 나누는 기능이 없습�
 
     
 - ##### .env 파일
-루트 폴더의 ".env"에 다음을 덧붙입니다.
+루트 폴더의 ".env"에 다음을 덧붙입니다.  
 ※ 액세스 토큰을 가져오는 방법은 아래의 "참고: Dropbox의 액세스 토큰 가져오는 방법"을 확인하십시오.
 
 ```
@@ -549,57 +549,57 @@ DROPBOX_ACCESS_TOKEN_PLUGIN=VVVVVV
 
 
 ## 참고: AWS S3 만드는 방법
-Amazon Simple Storage Service (Amazon S3)를 만드는 방법을 간단히 설명합니다.
+Amazon Simple Storage Service (Amazon S3)를 만드는 방법을 간단히 설명합니다.  
 ※ 먼저 AWS 계정을 만들고 로그인해야 합니다.
 
 #### S3용 IAM 만들기
 - 콘솔 화면의 오른쪽 위에서 자신의 계정을 클릭하여 하위 메뉴를 엽니다. "보안 자격 증명"을 선택하십시오.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_1.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_1.png)  
 
 - 왼쪽 사이드 메뉴에서 "사용자"를 선택합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_2.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_2.png)  
 
 - "사용자 추가" 버튼을 클릭합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_3.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_3.png)  
 
 - "사용자 이름"에 원하는 이름을 입력합니다.
 "AWS 자격 증명 유형 선택"에서 "액세스 키 - 프로그래밍 방식 액세스"를 체크하고 "다음: 권한" 버튼을 클릭하십시오.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_4.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_4.png)  
 
 - "권한 설정"에서 "기존 정책 직접 연결"을 클릭합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_5.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_5.png)  
 
 - "정책 필터"에 "S3"라고 입력하고 검색합니다. 표시된 목록에서 "AmazonS3FullAccess"에 체크하고 "다음: 태그" 버튼을 클릭하십시오.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_6.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_6.png)  
 
 - "다음: 검토" 버튼을 클릭합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_7.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_7.png)  
 
 - 확인 화면이 표시되므로, 선택한 내용을 확인한 다음 "사용자 만들기" 버튼을 클릭합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_8.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_8.png)  
 
 - 사용자를 만드는 데 성공하면 "액세스 키 ID"와 "비밀 액세스 키"가 표시됩니다.
 나중에 사용하므로 반드시 적어 두십시오.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_9.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_9.png)  
 
 #### 버킷 만들기
 
-- 사용자를 만든 다음에는 버킷을 만듭니다.
+- 사용자를 만든 다음에는 버킷을 만듭니다.  
 콘솔 화면 왼쪽 위의 서비스를 클릭하고 "스토리지"→"S3"를 선택하십시오.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_10.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_10.png)  
 
 - "버킷 만들기" 버튼을 클릭합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_11.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_11.png)  
 
-- "버킷 이름"에 원하는 이름을 입력합니다. "AWS 리전"은 "아시아 태평양(도쿄)"을 선택합니다.
+- "버킷 이름"에 원하는 이름을 입력합니다. "AWS 리전"은 "아시아 태평양(도쿄)"을 선택합니다.  
 ※ 그 밖의 옵션은 필요에 따라 설정하십시오.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_12.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_12.png)  
 
 - "버킷 만들기" 버튼을 클릭합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_13.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_13.png)  
 
 - 만든 버킷이 목록에 추가되어 있는지 확인합니다.
-![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_14.png)
+![S3 생성 가이드](../ja/img/quickstart/saveplace_s3_14.png)  
 
 
 
@@ -607,25 +607,25 @@ Amazon Simple Storage Service (Amazon S3)를 만드는 방법을 간단히 설�
 - Dropbox의 [App Console](https://www.dropbox.com/developers/apps)에 접속합니다.
 
 - "Create App"을 클릭합니다.
-![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_1.png)
+![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_1.png)  
 
 - "2. Choose the type of access you need"를 "App folder"로 하고, "3. Name your app"에 원하는 이름을 입력한 다음 "Create app"을 클릭합니다.
-![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_2.png)
+![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_2.png)  
 
 - 앱이 새로 만들어집니다. 그다음 Permissions 권한을 바꿉니다. Permissions 탭을 클릭합니다.
-![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_5.png)
+![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_5.png)  
 
 - 다음 내용에 체크를 추가합니다. 설정이 끝나면 Submit을 클릭하십시오.
     - files.metadata.write
     - files.content.write
     - files.content.read
-![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_6.png)
+![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_6.png)  
 
 - Settings 탭의 "OAuth 2"의 "Generated access token" 메뉴에서 "Generate" 버튼을 클릭합니다.
-![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_3.png)
+![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_3.png)  
 
 - 액세스 토큰이 새로 만들어집니다. 이 값을 설정 파일에 기입하십시오.
-![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_4.png)
+![Dropbox 생성 가이드](../ja/img/quickstart/saveplace_dropbox_4.png)  
 
 
 [←추가 설정 목록으로 돌아가기](/ko/quickstart_more)

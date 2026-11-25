@@ -64,20 +64,20 @@ Entscheiden Sie nach den folgenden Kriterien.
 
 | Art der Relation | Wann | Weg |
 |---|---|---|
-| 1:n | Eltern und Kind gehören immer zusammen. Wenn die Elterndaten gelöscht werden, ist es richtig, auch die Kinddaten zu löschen (Beispiel: Angebot und Angebotspositionen) | (1) Relationseinstellungen |
+| 1:n | Über- und untergeordnete Daten gehören immer zusammen. Wenn die übergeordneten Daten gelöscht werden, ist es richtig, auch die untergeordneten Daten zu löschen (Beispiel: Angebot und Angebotspositionen) | (1) Relationseinstellungen |
 | 1:n | Sie gehören nicht immer zusammen. Wenn die referenzierten Daten gelöscht werden, wäre es ein Problem, auch die verweisenden Daten zu löschen (Beispiel: Angebot und Hauptzuständiger) | (2) Benutzerdefinierte Spalte Auswahl (aus Tabelle) |
 | n:m | Grundsätzlich dieser Weg | (1) Relationseinstellungen |
 
 #### 1. Wenn die Art der Relation „1:n“ ist
 Entscheiden Sie nach den folgenden 2 Kriterien.
-1. **Gehören Elterndaten und Kinddaten immer eng zusammen?**  
+1. **Gehören übergeordnete und untergeordnete Daten immer eng zusammen?**  
 Bei den Tabellen „Angebot“ und „Angebotsposition“ zum Beispiel gibt es zu den Daten der Angebotspositionen immer die Daten des Angebots. Sie gehören zusammen.  
 In solchen Fällen verbinden Sie mit „(1) Relationseinstellungen“.  
 Die Tabelle „Angebot“ und der „Hauptzuständige“ des Angebots sind dagegen zwar als Verweis verbunden, gehören aber nicht immer zusammen.  
 In solchen Fällen verbinden Sie mit „(2) Benutzerdefinierte Spalte Auswahl (aus Tabelle)“.  
 
-2. **Ist es beim Löschen der Elterndaten immer richtig, die Kinddaten zu löschen?**  
-Bei den Tabellen „Angebot“ und „Angebotsposition“ zum Beispiel ist es richtig, beim Löschen der Elterndaten „Angebot“ auch alle Kinddaten „Angebotsposition“ zu löschen.  
+2. **Ist es beim Löschen der übergeordneten Daten immer richtig, die untergeordneten Daten zu löschen?**  
+Bei den Tabellen „Angebot“ und „Angebotsposition“ zum Beispiel ist es richtig, beim Löschen der übergeordneten Daten „Angebot“ auch alle untergeordneten Daten „Angebotsposition“ zu löschen.  
 In solchen Fällen verbinden Sie mit „(1) Relationseinstellungen“.  
 ![Bildschirm der verknüpften Tabellen](../ja/img/relation/relation.explain.png)
 

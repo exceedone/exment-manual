@@ -79,7 +79,7 @@ A la derecha del título de la lista se muestran las cantidades.
 | Columna | Descripción |
 | --- | --- |
 | (Casilla) | Selecciona las tareas sobre las que se opera a la vez |
-| Estado | Es "Unread" (no leída) o "Read" (leída). En las tareas no leídas, toda la fila se muestra en negrita |
+| Estado | Es "No leído" o "Leído". En las tareas no leídas, toda la fila se muestra en negrita |
 | Tabla de destino | Es la tabla en la que está registrado el dato |
 | Datos | Es el encabezado del dato. Al hacer clic, se abre la pantalla de detalle del dato |
 | Estado actual | Es el estado actual del flujo de trabajo. Si el dato no se puede editar, se muestra un candado |
@@ -132,7 +132,7 @@ Al hacer clic en el botón [Filtrar], se abren los campos de las condiciones. In
 
 | Elemento | Descripción |
 | --- | --- |
-| Estado | Se elige entre "Todas", "Unread" y "Read" |
+| Estado | Se elige entre "Todas", "No leído" y "Leído" |
 | Tabla de destino | Muestra solo las tareas de la tabla indicada |
 | Estado actual | Muestra solo las tareas del estado indicado. Si varios flujos de trabajo tienen un estado con el mismo nombre, se muestran juntos en una sola opción |
 | Fecha de actualización | Muestra solo las tareas actualizadas en el periodo indicado |
@@ -157,7 +157,7 @@ Las tareas que no hace falta tener en la lista (porque otra persona se ha hecho 
 
 ## Devolver a la lista una tarea quitada
 
-Si elige "Removed" (quitadas) en el ▼ de la derecha del botón [Filtrar], se muestran las tareas que ha quitado de la lista.  
+Si elige "Quitado" en el ▼ de la derecha del botón [Filtrar], se muestran las tareas que ha quitado de la lista.  
 También se pueden mostrar con el enlace "○ quitadas" de las cantidades.
 
 ![Elegir las quitadas](../img/workflow_task/wt_scope.png)
@@ -169,7 +169,7 @@ También se pueden mostrar con el enlace "○ quitadas" de las cantidades.
 - Las tareas devueltas a la lista quedan "no leídas".
 - Para volver a la lista normal, elija "Cancelar" en el ▼.
 
-※Los datos que ya se han tramitado y han dejado de ser tarea del usuario con acceso tampoco se muestran en "Removed".
+※Los datos que ya se han tramitado y han dejado de ser tarea del usuario con acceso tampoco se muestran en "Quitado".
 
 ## Notificación a los miembros de la misma organización
 

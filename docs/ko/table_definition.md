@@ -133,22 +133,22 @@ Exment가 쓰는 데이터베이스의 테이블 정의입니다. 개발하는 �
 | datetime_now_creating| 날짜 관련 항목| 1: 만들 때 실행 일시를 등록| 
 | auto_number_type| 자동 번호| 채번 종류| 
 | auto_number_format| 자동 번호| 채번 포맷| 
-| select_item| 선택지| 선택지| 
-| select_item_valtext| 선택지(값·표시명)| 선택지| 
-| check_radio_enabled| 선택지, 선택지(값·표시명)| 1: 라디오 버튼·체크박스 형식으로 표시| 
-| free_input| 선택지| 1: 자유롭게 입력할 수 있게 한다| 
-| select_target_table| 선택지(다른 테이블)| 대상 테이블| 
-| select_target_view| 선택지(다른 테이블), 사용자, 조직| 필터 조건 뷰| 
-| select_import_column_id| 선택지(다른 테이블), 사용자, 조직| 가져오기 때의 키 열| 
-| select_export_column_id| 선택지(다른 테이블), 사용자, 조직| 내보내기 때의 키 열| 
-| select_load_ajax| 선택지(다른 테이블), 사용자, 조직| 1: 선택지를 그때마다 검색한다| 
+| select_item| 선택 (고정 값)| 선택지| 
+| select_item_valtext| 선택 (값과 표시명 저장)| 선택지| 
+| check_radio_enabled| 선택 (고정 값), 선택 (값과 표시명 저장)| 1: 라디오 버튼·체크박스 형식으로 표시| 
+| free_input| 선택 (고정 값)| 1: 자유롭게 입력할 수 있게 한다| 
+| select_target_table| 선택 (테이블에서)| 대상 테이블| 
+| select_target_view| 선택 (테이블에서), 사용자, 조직| 필터 조건 뷰| 
+| select_import_column_id| 선택 (테이블에서), 사용자, 조직| 가져오기 때의 키 열| 
+| select_export_column_id| 선택 (테이블에서), 사용자, 조직| 내보내기 때의 키 열| 
+| select_load_ajax| 선택 (테이블에서), 사용자, 조직| 1: 선택지를 그때마다 검색한다| 
 | checkbox_enabled| YES/NO| 1: 체크박스 형식으로 표시| 
 | required_yes| YES/NO| 1: YES 필수| 
 | true_value| 2개 값 선택| 선택지 1일 때의 값| 
 | true_label| 2개 값 선택| 선택지 1일 때의 표시| 
 | false_value| 2개 값 선택| 선택지 2일 때의 값| 
 | false_label| 2개 값 선택| 선택지 2일 때의 표시| 
-| multiple_enabled| 파일 항목, 선택지 항목, 사용자, 조직| 1: 다중 선택을 허용한다| 
+| multiple_enabled| 파일 항목, 선택 항목, 사용자, 조직| 1: 다중 선택을 허용한다| 
 | accept_extensions| 파일 항목| 업로드를 허용하는 확장자| 
 | showing_all_user_organizations| 사용자, 조직| 권한이 없는 사용자·조직도 표시한다| 
 

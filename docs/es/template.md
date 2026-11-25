@@ -115,11 +115,11 @@ A diferencia de crear uno por uno en la pantalla, así se crean varias tablas, e
 - Descargue el [archivo de plantilla de Excel](https://exment.net/downloads/template/exment_template.xlsx) y ábralo.  
 
 - Introduzca los valores de configuración en el archivo de plantilla. La configuración y el nombre de la hoja que le corresponde son los siguientes.
-    - Tabla personalizada : custom_tables
-    - Columna personalizada : custom_columns
-    - Tabla personalizada (Configuración ampliada) : custom_column_multisettings
-    - Configuración de relaciones : custom_relations
-    - Menú : admin_menu
+    - Tabla personalizada: custom_tables
+    - Columna personalizada: custom_columns
+    - Tabla personalizada (Configuración ampliada): custom_column_multisettings
+    - Configuración de relaciones: custom_relations
+    - Menú: admin_menu
 
 - Cuando lo haya rellenado, en el elemento "Subir (Excel)" de la pantalla de plantillas elija el archivo de Excel creado y súbalo.
 

@@ -124,7 +124,7 @@ Groupware의 ibisOffice라면 LibreOffice도 Docker도 필요 없고, 임대 서
 
 ## 서버의 준비
 - **매일의 처리**: 휴지통의 자동 삭제는 `php artisan exment:file-server-purge`(매일 3:30)로 움직입니다. [작업 스케줄](/ko/additional_task_schedule)을 설정하십시오.
-- **큐**: 섬네일·미리 보기·글자 추출은 큐로 움직입니다.
+- **큐**: 썸네일·미리 보기·글자 추출은 큐로 움직입니다.
 - **글자 추출 다시 하기**: `php artisan exment:file-server-index`로, 아직 하지 않은 파일의 글자를 추출하고 Meilisearch의 인덱스를 다시 만듭니다.
 - **다른 소프트웨어**(모두 없어도 움직입니다): LibreOffice(Office의 미리 보기)·pdftotext(PDF의 글자)·tesseract(OCR)·Meilisearch(빠른 검색).
 - **LibreOffice를 네트워크 없이 움직이기**: Office 파일은 바깥의 URL을 읽으러 가는 일이 있습니다. `EXMENT_FILE_SERVER_SOFFICE_PREFIX`에 LibreOffice 앞에 붙일 명령을 적으면, 네트워크 없이 변환할 수 있습니다(예: `unshare -rn`, `firejail --net=none --quiet`). 서버에서 그 명령을 쓸 수 있는지 먼저 확인하십시오.

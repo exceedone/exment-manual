@@ -52,7 +52,7 @@ Klicken Sie in der Liste der Workflow-Einstellungen oben rechts auf die Schaltfl
 | Keine Probleme / ○ Punkt(e) zu prüfen | Das Ergebnis der Eingabeprüfung. Mit einem Klick sehen Sie den Inhalt |
 | Automatisch anordnen | Ordnet die Positionen der Knoten automatisch neu an |
 | ⤢ (Einpassen) | Zeigt das Diagramm so an, dass es ganz zu sehen ist |
-| － / ＋ | Ändert den Anzeigemaßstab |
+| - / + | Ändert den Anzeigemaßstab |
 | Speichern | Speichert die Änderungen |
 
 ### Hinweise zur Bedienung
@@ -200,7 +200,7 @@ Auch auf der Seite von Schritt 2 (Aktionseinstellungen) steht rechts ein Ablaufd
 
 - Wenn Sie die Tabelle bearbeiten, wird das Diagramm sofort aktualisiert
 - Wenn Sie im Diagramm auf eine Aktion klicken, wird links in der Tabelle die zugehörige Zeile ausgewählt
-- Mit [＋ Aktion hinzufügen] fügen Sie der Tabelle eine Zeile hinzu
+- Mit [+ Aktion hinzufügen] fügen Sie der Tabelle eine Zeile hinzu
 - [○ Punkt(e) zu prüfen] ist dieselbe Eingabeprüfung wie im Designer
 
 ### Anordnung speichern (Schaltfläche mit der Stecknadel)

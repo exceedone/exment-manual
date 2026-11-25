@@ -43,7 +43,7 @@ En esta página se explican los tipos de disparador y cómo crear el plugin (cre
 }
 ~~~
 
-- Escriba plugin_name con caracteres alfanuméricos de ancho medio.
+- Escriba plugin_name con caracteres alfanuméricos de un byte.
 - uuid es una cadena de 32 caracteres más guiones, 36 caracteres en total. Se usa para identificar el plugin de forma única.  
 Créelo, por ejemplo, en la siguiente URL.  
 https://www.famkruithof.net/uuid/uuidgen

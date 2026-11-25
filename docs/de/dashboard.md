@@ -30,7 +30,7 @@ Er lässt sich nach dem Speichern nicht mehr ändern.
 
 #### Anzeigename des Dashboards
 Der Name, der auf der Seite erscheint, wenn Sie ein Dashboard wählen.  
-Er lässt sich auch nach dem Speichern ändern.
+Auch Japanisch ist möglich. Er lässt sich auch nach dem Speichern ändern.
 
 #### Dashboard-Typ
 Wählen Sie „System-Dashboard“ oder „Benutzer-Dashboard“.  

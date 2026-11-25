@@ -251,7 +251,7 @@ Content-Type: application/json
     "client_id": "(복사한 Client ID)",
     "client_secret": "(복사한 Client Secret)",
 	"login_type": "ldap",
-	"provider_name": "(로그인 설정 화면에서 입력한 "LDAP 이름(영숫자)")",
+	"provider_name": "(로그인 설정 화면에서 입력한 \"LDAP 이름(영숫자)\")",
     "username": "(로그인할 사용자 ID 또는 메일 주소)",
     "password": "(로그인할 사용자 비밀번호)",
     "scope": "(접근할 스코프. 목록은 아래에 기재. 여러 개인 경우에는 공백으로 구분)"

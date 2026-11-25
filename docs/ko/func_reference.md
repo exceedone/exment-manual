@@ -233,7 +233,7 @@ $query = $info->getValueModel()->query();
 // 2. 공지사항 데이터의 ID가 1인 데이터를 가져온다
 $value = $info->getValueModel(1);
 \Log::debug($value->getValue('title')); // Exment에 오신 것을 환영합니다!
-\Log::debug($value->getValue('body')); // Exment는 간단하고 저렴한 데이터 관리 웹 시스템입니다. ・・・・
+\Log::debug($value->getValue('body')); // Exment는 간단하고 저렴한 데이터 관리 웹 시스템입니다. ...
 
 ~~~
 
@@ -540,7 +540,7 @@ CustomTable::getEloquent('information')
 | 이름 | 종류 | 설명 |
 | ---- | ---- | ---- |
 | $column | CustomColumn,string,int | CustomColumn의 인스턴스,column_name,id 중 하나 |
-| $valueType | bool or \Exceedone\Exment\Enums\ValueType | 아래의 내용으로 반환한다. <br />・인수 없음, false, ValueType::VALUE 중 하나: value로 반환  <br /> ・true, ValueType::TEXT 중 하나: text로 반환 <br />・ValueType::HTML : html로 반환 <br />・ValueType::PURE_VALUE : pureValue로 반환 <br /><br />※pureValue,value,text,html의 내용에 대해서는 [여기](/ko/column_reference)를 확인해 주십시오. |
+| $valueType | bool or \Exceedone\Exment\Enums\ValueType | 아래의 내용으로 반환한다. <br />- 인수 없음, false, ValueType::VALUE 중 하나: value로 반환  <br /> - true, ValueType::TEXT 중 하나: text로 반환 <br />- ValueType::HTML : html로 반환 <br />- ValueType::PURE_VALUE : pureValue로 반환 <br /><br />※pureValue,value,text,html의 내용에 대해서는 [여기](/ko/column_reference)를 확인해 주십시오. |
 | $options | array | 가져오는 방법의 옵션 |
 
 ##### 반환값

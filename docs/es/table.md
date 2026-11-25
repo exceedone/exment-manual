@@ -52,7 +52,7 @@ Las tablas importadas con plantillas también aparecen en esta lista.
 
 #### Orden de visualización
 - Es el orden en la pantalla de lista de la configuración de tablas personalizadas.  
-- Indique el número escribiéndolo con caracteres de ancho medio o con los botones [－] y [＋] de los lados.
+- Indique el número escribiéndolo con caracteres de ancho medio o con los botones [-] y [+] de los lados.
 
 ![Pantalla de tablas personalizadas](../img/table/table_detail4.png)
 

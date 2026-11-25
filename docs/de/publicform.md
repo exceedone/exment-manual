@@ -96,7 +96,7 @@ Daten, die über das öffentliche Formular gesendet werden, gelten als von diese
 ![Seite des benutzerdefinierten Formulars](../img/form/form_grid5.png)
 
 - Weiter unten auf der Listenseite der Formulare gibt es das Feld „Einstellungen für öffentliche Formulare“.  
-Klicken Sie oben rechts in diesem Feld auf die Schaltfläche „＋Neu“.
+Klicken Sie oben rechts in diesem Feld auf die Schaltfläche „+Neu“.
 
 ![Seite des benutzerdefinierten Formulars](../img/form/add_public_form.png)
 

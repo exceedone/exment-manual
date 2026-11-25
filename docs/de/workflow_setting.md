@@ -58,7 +58,7 @@ Hier legen Sie die Status des Workflows fest.
 ![Workflow-Seite](../img/workflow/workflow_status1.png)  
 
 #### Anzeigename des Workflows ※Pflicht
-- Der Name des Workflows, der auf den Seiten angezeigt wird. (Beispiel: Genehmigungsablauf)  
+- Der Name des Workflows, der auf den Seiten angezeigt wird. Auch Japanisch ist möglich. (Beispiel: Genehmigungsablauf)  
 
 #### Workflow-Typ ※Pflicht
 - Der Typ des Workflows, den Sie erstellen. Wählen Sie „Allgemein“ oder „Nur Tabelle“.  
@@ -80,8 +80,8 @@ Beispiel: In der Tabelle „Spesenabrechnung“ wird die Aktion „Genehmigung d
 ##### Statusname  
 Der Name des Status.
 ##### Daten nicht bearbeitbar  
-Legt fest, ob die betreffenden Daten in diesem Status nicht bearbeitet werden können. Wenn die Daten nicht bearbeitet werden sollen, wählen Sie JA.  
-Beispiel: Bei „Nicht beantragt“ dürfen die Daten bearbeitet und gelöscht werden, bei „Beantragt“ und „Abgeschlossen“ aber nicht. In diesem Fall stellen Sie „Beantragt“ und „Abgeschlossen“ auf JA.
+Legt fest, ob die betreffenden Daten in diesem Status nicht bearbeitet werden können. Wenn die Daten nicht bearbeitet werden sollen, wählen Sie YES.  
+Beispiel: Bei „Nicht beantragt“ dürfen die Daten bearbeitet und gelöscht werden, bei „Beantragt“ und „Abgeschlossen“ aber nicht. In diesem Fall stellen Sie „Beantragt“ und „Abgeschlossen“ auf YES.
 
 
 
@@ -156,13 +156,13 @@ Das Ziel wird aus den Daten des Benutzers bestimmt, der den Workflow ausführt. 
   
 ![Workflow-Seite](../ja/img/workflow/workflow_action10.png)
 
-※ Für diese Funktion muss der Systemadministrator vorher in der Tabelle „Benutzer“ Spalten mit dem Spaltentyp „Benutzer“ oder „Organisation“ hinzufügen. Außerdem muss bei diesen Spalten „Suchindex“ auf JA stehen.
+※ Für diese Funktion muss der Systemadministrator vorher in der Tabelle „Benutzer“ Spalten mit dem Spaltentyp „Benutzer“ oder „Organisation“ hinzufügen. Außerdem muss bei diesen Spalten „Suchindex“ auf YES stehen.
 
 ![Workflow-Seite](../ja/img/workflow/workflow_action11.png)
 
 **■ Bezugsbenutzer**
 
-Der Benutzer, der als Bezug dient, wenn die ausführenden Benutzer ermittelt werden. Er wird [pro Workflow festgelegt](/de/workflow_setting?id=Bezugsbenutzer-für-ausführende-Benutzer-Pflicht).  
+Der Benutzer, der als Bezug dient, wenn die ausführenden Benutzer ermittelt werden. Er wird [pro Workflow festgelegt](/de/workflow_setting?id=Bezugsbenutzer-für-ausführende-Benutzer-※Pflicht).  
 
 - „Erster ausführender Benutzer“: Bezug ist der Benutzer, der die erste Aktion des Ablaufs ausgeführt hat.  
 - „Ausführender Benutzer“: Bezug ist der Benutzer, der die betreffende Aktion ausgeführt hat.  
@@ -239,7 +239,7 @@ Wenn Sie eine Workflow-Einstellung löschen, die bereits verwendet wird, beachte
 
 - Die Workflow-Einstellung lässt sich nicht wiederherstellen.
 - Laufende Workflows werden ungültig.
-- **Auch wenn in den Statuseinstellungen „Daten nicht bearbeitbar“ auf JA steht, werden gesperrte Daten wieder bearbeitbar.**
+- **Auch wenn in den Statuseinstellungen „Daten nicht bearbeitbar“ auf YES steht, werden gesperrte Daten wieder bearbeitbar.**
 
 ![Workflow-Seite](../ja/img/workflow/workflow4.png)  
 

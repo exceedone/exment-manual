@@ -148,20 +148,20 @@ Nota: Aparte de esta configuración, se aplica un filtro para mostrar solo los d
 ![Pantalla de vista personalizada](../img/view/view_filter.png)
 >Si el tipo de la columna de la condición es Selección (desde tabla), el texto que aparece en el valor de la condición se puede cambiar en la [configuración de columnas de encabezado](/es/table).
 
-##### Columna de destino　　
+##### Columna de destino
 La columna que se usa en la condición de filtro.  
   
 ##### Condición
 Elija el contenido de la condición.  
 Para más detalles, consulte [Acerca de las condiciones de filtro](/es/view?id=Acerca-de-las-condiciones-de-filtro).  
 
-##### Valor de la condición de filtro　　
+##### Valor de la condición de filtro
 Introduzca el valor con el que se compara la condición.  
   
-##### Botón [Eliminar]　　
+##### Botón [Eliminar]
 Elimina la condición de filtro de la vista.
   
-##### Botón [Nuevo]　　
+##### Botón [Nuevo]
 Añade una condición de filtro nueva a la vista.
 
 #####   Combinación de condiciones
@@ -212,7 +212,7 @@ Sube la prioridad de la ordenación.
 ##### Botón [Eliminar]  
 Elimina la ordenación de datos de la vista.  
 
-##### Botón [Nuevo]　　
+##### Botón [Nuevo]
 Añade una ordenación de datos nueva.
 
 #### Elementos del "Filtro" de la vista
@@ -232,7 +232,7 @@ Mueve el elemento del "Filtro" hacia arriba.
 ##### Botón [Eliminar]  
 Elimina el elemento del "Filtro" de la vista.  
 
-##### Botón [Nuevo]　　
+##### Botón [Nuevo]
 Añade una columna nueva al "Filtro" de la vista.  
 
 ## Añadir una vista de resumen nueva
@@ -265,16 +265,16 @@ Nota: "Importe de ventas" no es una columna de agrupación: está configurada co
 
 ![Pantalla de vista personalizada](../img/view/view_group_column_sample2.png)  
 
-##### Nombre visible alternativo　　
+##### Nombre visible alternativo
 La columna aparece en la vista con el nombre escrito aquí.  
 
-##### Tipo de columna　　
+##### Tipo de columna
 Solo se puede elegir entre las siguientes opciones cuando el tipo de la columna personalizada de destino es "Fecha" o "Fecha y hora".  
 "Año", "Año-Mes", "Año-Mes-Día", "Mes", "Día", "Día de la semana"  
 La columna de destino se agrupa por la unidad de fecha elegida aquí.  
 Nota: Las imágenes de los ejemplos 1 a 3 muestran la vista con el tipo de columna de "Mes de venta" en "Año-Mes".
 
-##### Orden　　
+##### Orden
 Es la configuración del orden en que se muestran los datos en la vista de resumen.  
 Decide la prioridad de las columnas: los valores de qué columna se miran primero para ordenar los datos.  
 El orden se asigna contando juntas las columnas de agrupación y las columnas de resumen.  

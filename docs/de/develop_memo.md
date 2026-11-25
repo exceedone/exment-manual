@@ -194,7 +194,7 @@ Einzelheiten: [Bedingungsansicht](/de/view)
 #### Es gibt 100 oder mehr Datensätze
 Wenn die Zieltabelle (Kunde) 100 oder mehr Datensätze hat, werden bei der ersten Anzeige keine Auswahlmöglichkeiten angezeigt.  
 Wenn Sie ein Suchwort eingeben, werden nur die Daten als Auswahlmöglichkeit angezeigt, die zu diesem Suchwort passen.   
-Wenn in den Einstellungen der benutzerdefinierten Spalte „Auswahloptionen bei Bedarf suchen“ auf JA steht, werden die Auswahlmöglichkeiten unabhängig von der Zahl der Datensätze auf diese Weise angezeigt.  
+Wenn in den Einstellungen der benutzerdefinierten Spalte „Auswahloptionen bei Bedarf suchen“ auf YES steht, werden die Auswahlmöglichkeiten unabhängig von der Zahl der Datensätze auf diese Weise angezeigt.  
 
 
 #### Einstellungen zum Relationsfilter
@@ -225,8 +225,8 @@ Wenn die erwarteten Auswahlmöglichkeiten nicht angezeigt werden, tun Sie eines 
 - Fügen Sie in den Einstellungen der Rollengruppen die Benutzer und Organisationen, die als Auswahlmöglichkeit erscheinen sollen, zu einer Rollengruppe hinzu, die eine Berechtigung für die „angezeigte Tabelle (Vertrag)“ hat.  
 Einzelheiten: [Rollengruppe](/de/role_group)
 
-- Stellen Sie in den Einstellungen der benutzerdefinierten Spalte „Auch Benutzer/Organisationen ohne Berechtigung anzeigen“ auf JA.  
-Mit JA wird nicht mehr geprüft, ob der Benutzer oder die Organisation eine Berechtigung für die angezeigte Tabelle (Vertrag) hat.
+- Stellen Sie in den Einstellungen der benutzerdefinierten Spalte „Auch Benutzer/Organisationen ohne Berechtigung anzeigen“ auf YES.  
+Mit YES wird nicht mehr geprüft, ob der Benutzer oder die Organisation eine Berechtigung für die angezeigte Tabelle (Vertrag) hat.
 
 
 #### Einstellung für externe Portalseiten (wenn Sie ein System aufbauen, bei dem sich Benutzer mehrerer Organisationen anmelden)
@@ -251,7 +251,7 @@ Einzelheiten: [Bedingungsansicht](/de/view)
 #### Es gibt 100 oder mehr Datensätze
 Wenn die Zieltabelle (Benutzer) 100 oder mehr Datensätze hat, werden bei der ersten Anzeige keine Auswahlmöglichkeiten angezeigt.  
 Wenn Sie ein Suchwort eingeben, werden nur die Daten als Auswahlmöglichkeit angezeigt, die zu diesem Suchwort passen.   
-Wenn in den Einstellungen der benutzerdefinierten Spalte „Auswahloptionen bei Bedarf suchen“ auf JA steht, werden die Auswahlmöglichkeiten unabhängig von der Zahl der Datensätze auf diese Weise angezeigt.  
+Wenn in den Einstellungen der benutzerdefinierten Spalte „Auswahloptionen bei Bedarf suchen“ auf YES steht, werden die Auswahlmöglichkeiten unabhängig von der Zahl der Datensätze auf diese Weise angezeigt.  
 
 
 #### Einstellungen zum Relationsfilter

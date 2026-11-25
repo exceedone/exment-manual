@@ -16,7 +16,7 @@ La versión 2 mejora en los siguientes puntos.
 - Gran mejora tanto en la velocidad como en el uso de memoria
 - require/remove y las actualizaciones parciales son mucho más rápidos
 
-![composer2](img/update/composer2.png)
+![composer2](../ja/img/update/composer2.png)
 
 Fuentes:  
 https://blog.packagist.com/composer-2-0-is-now-available  

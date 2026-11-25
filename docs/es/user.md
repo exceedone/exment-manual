@@ -54,7 +54,7 @@ Aparece la lista de usuarios registrados ahora en el sistema.
 Si hay organizaciones a las que debe pertenecer el usuario, elíjalas en la lista de datos candidatos y páselas a los datos seleccionados.  
 Nota: si no se ha creado ninguna organización, este campo no aparece.
 
-#### Configuración de grupos de roles
+#### Configuración de roles
 Si hay grupos de roles que asignar al usuario, elíjalos en la lista de datos candidatos y páselos a los datos seleccionados.
 
 #### Configuración de inicio de sesión

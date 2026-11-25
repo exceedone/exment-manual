@@ -17,7 +17,7 @@ Estos son los pasos para usar SQL Server como base de datos de Exment.
 [Descarga de SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)  
 
 2. Ejecute el archivo descargado y siga con la instalación.  
-![Instalación de SQL Server](img/database/sqlserver1.png)  
+![Instalación de SQL Server](../img/database/sqlserver1.png)  
 
 3. La instalación termina.
 
@@ -34,40 +34,40 @@ https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-
 ※ Por ahora hemos comprobado que la siguiente configuración hace falta cuando SQL Server se instala en Windows.
 
 1. En el menú Inicio de Windows, abra «Administrador de configuración de SQL Server».  
-![Instalación de SQL Server](img/database/sqlserver5.png)  
+![Instalación de SQL Server](../img/database/sqlserver5.png)  
 
 2. En el menú de la izquierda, haga clic en «Configuración de red de SQL Server» → «Protocolos de (nombre de la edición)». Después, haga clic con el botón derecho en «TCP/IP» y haga clic en «Habilitar».  
-![Instalación de SQL Server](img/database/sqlserver6.png)  
-![Instalación de SQL Server](img/database/sqlserver7.png)  
-![Instalación de SQL Server](img/database/sqlserver8.png)  
+![Instalación de SQL Server](../img/database/sqlserver6.png)  
+![Instalación de SQL Server](../img/database/sqlserver7.png)  
+![Instalación de SQL Server](../img/database/sqlserver8.png)  
 
 3. Haga clic en el botón del menú Inicio, escriba «Servicios» y ejecute la aplicación «Servicios» que aparece.  
-![Instalación de SQL Server](img/database/sqlserver11.png)  
+![Instalación de SQL Server](../img/database/sqlserver11.png)  
 
 4. En la lista de servicios, elija «SQL Server (nombre de la edición)» y haga clic en «Reiniciar el servicio».  
-![Instalación de SQL Server](img/database/sqlserver12.png)  
+![Instalación de SQL Server](../img/database/sqlserver12.png)  
 
 
 ### Creación de la base de datos y alta del usuario
 1. Ejecute «SQL Server Management Studio».  
-![Instalación de SQL Server](img/database/sqlserver13.png)  
+![Instalación de SQL Server](../img/database/sqlserver13.png)  
 
 2. Inicie sesión.  
-![Instalación de SQL Server](img/database/sqlserver14.png)  
+![Instalación de SQL Server](../img/database/sqlserver14.png)  
 
 #### Creación de la base de datos
 1. En el menú de la izquierda, haga clic con el botón derecho en la carpeta «Bases de datos» y haga clic en «Nueva base de datos».  
-![Instalación de SQL Server](img/database/sqlserver15.png)  
+![Instalación de SQL Server](../img/database/sqlserver15.png)  
 
 2. Escriba el nombre de base de datos que quiera y haga clic en Aceptar.  
-![Instalación de SQL Server](img/database/sqlserver16.png)  
+![Instalación de SQL Server](../img/database/sqlserver16.png)  
 
 #### Alta del usuario
 1. En el menú de la izquierda, haga clic con el botón derecho en «Seguridad» → «Inicios de sesión» y elija «Nuevo inicio de sesión».  
-![Instalación de SQL Server](img/database/sqlserver17.png)  
+![Instalación de SQL Server](../img/database/sqlserver17.png)  
 
 2. Escriba el nombre de inicio de sesión y la contraseña, y elija «Autenticación de SQL Server». Le recomendamos quitar la marca de «Directiva de contraseñas». (Siga la política de su empresa u organización.)  
-![Instalación de SQL Server](img/database/sqlserver18.png)    
+![Instalación de SQL Server](../img/database/sqlserver18.png)    
 
 3. Elija «Asignación de usuarios», arriba a la izquierda.  
 En la lista de bases de datos de «Usuarios asignados a este inicio de sesión», elija la base de datos que acaba de crear.  
@@ -79,34 +79,34 @@ En «Pertenencia al rol de la base de datos», elija los siguientes.
    - public
    - dbcreator (※ Se usa para la copia de seguridad y la restauración manuales de los datos. Márquelo si va a hacer la copia de seguridad y la restauración manuales de los datos.)
 
-   ![Instalación de SQL Server](img/database/sqlserver19.png)    
+   ![Instalación de SQL Server](../img/database/sqlserver19.png)    
 
 4. Cuando termine todo, haga clic en Aceptar.
 
 #### Configuración del inicio de sesión del servidor
 1. En el menú de la izquierda, haga clic con el botón derecho en el servidor, arriba a la izquierda, y elija «Propiedades».  
-![Instalación de SQL Server](img/database/sqlserver20.png) 
+![Instalación de SQL Server](../img/database/sqlserver20.png) 
 
 2. En el menú «Seguridad», elija «Modo de autenticación de Windows y SQL Server» en «Autenticación de servidor» y haga clic en Aceptar.
 
 3. Haga clic en el botón del menú Inicio, escriba «Servicios» y ejecute la aplicación «Servicios» que aparece.  
-![Instalación de SQL Server](img/database/sqlserver11.png)  
+![Instalación de SQL Server](../img/database/sqlserver11.png)  
 
 4. En la aplicación «Servicios», elija otra vez «SQL Server (nombre de la edición)» y haga clic en «Reiniciar el servicio».  
-![Instalación de SQL Server](img/database/sqlserver12.png)  
+![Instalación de SQL Server](../img/database/sqlserver12.png)  
 
 #### Comprobación del puerto
 - En «Administrador de configuración de SQL Server», haga clic con el botón derecho en «TCP/IP» y haga clic en «Propiedades».  
 Después, abra la pestaña «Direcciones IP» y compruebe el valor de «Puertos dinámicos TCP», al final del todo. (Se usará después en la configuración de la base de datos de Exment.)  
-![Instalación de SQL Server](img/database/sqlserver9.png)  
-![Instalación de SQL Server](img/database/sqlserver10.png)  
+![Instalación de SQL Server](../img/database/sqlserver9.png)  
+![Instalación de SQL Server](../img/database/sqlserver10.png)  
 
 
 ## Comprobación de la conexión
 Compruebe que se puede conectar a SQL Server.
 
 1. Ejecute «SQL Server Management Studio».  
-![Instalación de SQL Server](img/database/sqlserver13.png)  
+![Instalación de SQL Server](../img/database/sqlserver13.png)  
 
 2. Inicie sesión con los siguientes datos.
     - Nombre del servidor: el nombre de servidor predeterminado
@@ -114,7 +114,7 @@ Compruebe que se puede conectar a SQL Server.
     - Nombre de usuario: el nombre de usuario del usuario creado
     - Contraseña: la contraseña del usuario creado
 
-    ![Instalación de SQL Server](img/database/sqlserver22.png)  
+    ![Instalación de SQL Server](../img/database/sqlserver22.png)  
 
 3. Compruebe que puede iniciar sesión con normalidad.  
 Si la configuración no ha terminado bien, aparece un error.
@@ -141,13 +141,13 @@ extension_dir => C:\xampp\php\ext => C:\xampp\php\ext
 https://docs.microsoft.com/en-us/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver15
 
 3. Ejecute el archivo EXE descargado. Aparece un cuadro de diálogo como el siguiente.  
-![Instalación de SQL Server](img/database/sqlserver2.png)
+![Instalación de SQL Server](../img/database/sqlserver2.png)
 
 4. Pegue la ruta de archivo anotada en el paso 1 y haga clic en «OK».  
-![Instalación de SQL Server](img/database/sqlserver3.png)
+![Instalación de SQL Server](../img/database/sqlserver3.png)
 
 5. Los archivos dll para conectar a SQL Server se colocan en la carpeta de bibliotecas de extensión de PHP.  
-![Instalación de SQL Server](img/database/sqlserver4.png)
+![Instalación de SQL Server](../img/database/sqlserver4.png)
 
 6. Abra el archivo php.ini y escriba el siguiente contenido al final del archivo.  
 ※ Cambie el nombre del archivo según lo que dicen los comentarios.

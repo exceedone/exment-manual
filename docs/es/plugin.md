@@ -4,7 +4,7 @@ En esta página se explican los tipos de plugin y cómo cargarlos, configurarlos
 
 - Si quiere saber enseguida cómo instalarlos, vea "[Cómo administrarlos](/es/plugin?id=Cómo-administrarlos)".
 - Para los plugins oficiales creados por Exceed One, vea [Plugins oficiales](/es/plugin_official).
-- Si va a crear un plugin usted mismo, vea [Cómo desarrollar plugins](/es/plugin_quickstart).
+- Si va a crear un plugin usted mismo, vea [Cómo crear un plugin](/es/plugin_quickstart).
 
 ## Qué es un plugin
 Cuando las funciones estándar de Exment no bastan para el trabajo, se puede cargar un programa (archivo zip) desde la pantalla para añadir funciones. Eso es un "plugin".  
@@ -187,7 +187,7 @@ Para la forma de instalarlos, vea [Plugins oficiales](/es/plugin_official).
 | --- | --- |
 | [Gestión de proyectos](/es/plugin_pm) | Gestión de proyectos e incidencias (tickets). Árbol de incidencias, hitos, tablero, diagrama de Gantt, Wiki, comentarios, notificaciones, etc. |
 | [Soporte de TI](/es/plugin_it_support) | Mesa de ayuda. Gestiona con tickets las solicitudes por correo, formulario de recepción y teléfono, y comparte el avance con el cliente sin iniciar sesión |
-| [Groupware](/es/plugin_groupware) | Correo web, y abrir y editar en el navegador los archivos de Office del uso compartido de archivos |
+| [Groupware](/es/plugin_groupware) | Correo web, y abrir y editar en el navegador los archivos de Office de Archivos compartidos |
 
 ## Cómo administrarlos
 ### Mostrar la página
@@ -289,4 +289,4 @@ En los plugins cargados con v3.2.0 o posterior, el valor predeterminado es NO.
 
 
 ## Otros
-Para la forma de desarrollar plugins, vea [Cómo desarrollar plugins](/es/plugin_quickstart).
+Para la forma de desarrollar plugins, vea [Cómo crear un plugin](/es/plugin_quickstart).

@@ -103,11 +103,11 @@ php artisan exment:backup
 
 - Si no indica "--target=", se hace la copia de seguridad de todo (base de datos, archivos de plugins, archivos adjuntos, archivos de registro y archivos de configuración).
 - Para limitar lo que se guarda, indique en "--target=" las siguientes claves separadas por comas.
-    - database : Base de datos
-    - plugin : Archivos de plugins
-    - attachment : Archivos adjuntos
-    - log : Archivos de registro
-    - config : Archivos de configuración
+    - database: Base de datos
+    - plugin: Archivos de plugins
+    - attachment: Archivos adjuntos
+    - log: Archivos de registro
+    - config: Archivos de configuración
 
 ~~~
 # Ejemplo: hacer la copia de seguridad solo de la base de datos y de los archivos adjuntos
@@ -153,7 +153,7 @@ Se pasa automáticamente a la página de inicio de sesión.
 
 ### Subir
 Es la forma de recuperar los datos subiendo a Exment una copia de seguridad guardada en su equipo (local).  
-**※Si el archivo que se sube es demasiado grande, puede que no termine bien.** En ese caso, vea [Si el archivo es demasiado grande para cargarlo](/es/backup?id=Si-el-archivo-es-demasiado-grande-para-cargarlo), más abajo.  
+**※Si el archivo que se sube es demasiado grande, puede que no termine bien.** En ese caso, vea [Si el archivo es demasiado grande para subirlo](/es/backup?id=Si-el-archivo-es-demasiado-grande-para-subirlo), más abajo.  
 
 - Haga clic en el botón [Restaurar], arriba a la derecha de la página.  
 ![Pantalla de copias de seguridad](../img/backup/restore4.png)  
@@ -169,7 +169,7 @@ Es la forma de recuperar los datos subiendo a Exment una copia de seguridad guar
 
 
 
-### Si el archivo es demasiado grande para cargarlo
+### Si el archivo es demasiado grande para subirlo
 Al restaurar con "Subir", si el archivo de copia de seguridad es demasiado grande, la restauración puede fallar.  
 En ese caso, haga la restauración con uno de los dos procedimientos siguientes.  
 

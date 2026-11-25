@@ -16,7 +16,7 @@ Wir empfehlen, dass vor allem Personen mit Laravel-Kenntnissen die Entwicklung �
 ## Benutzerdefinierte Ansicht: die wichtigsten Eigenschaften
 - Auf der Listenseite der benutzerdefinierten Daten können Sie eigene Funktionen und eigene Seiten anzeigen.
 - Der Entwickler des Plugins kann die Einstellungen der Ansicht frei erweitern. Die hinzugefügten Einstellungen lassen sich wie bei den Standardansichten auf der Einstellungsseite der Ansicht für jede Ansicht festlegen.
-- Wie bei den Standardansichten können Sie mehrere Ansichten anlegen. Auch bei Ansichten desselben Plugins können Sie die Einstellungen je Ansicht ändern, zum Beispiel „Ansicht A zeigt alle Daten“ und „Ansicht B zeigt nur Daten, bei denen „Aktiv“ auf JA steht“.
+- Wie bei den Standardansichten können Sie mehrere Ansichten anlegen. Auch bei Ansichten desselben Plugins können Sie die Einstellungen je Ansicht ändern, zum Beispiel „Ansicht A zeigt alle Daten“ und „Ansicht B zeigt nur Daten, bei denen ‚Aktiv‘ auf JA steht“.
 
 
 ## Unterschied zwischen Seite und Ansicht
@@ -243,7 +243,7 @@ Der Klassenname muss „Plugin“ lauten, und die Klasse muss PluginViewBase erw
 - (3) Wenn Sie weitere Endpunkte erstellen, muss der Name der public-Methode in der Klasse der Name sein, den Sie in config.json unter function angegeben haben.
 
 - (4) In der Funktion "public function setViewOptionForm($form)" legen Sie die Felder fest, die auf der Einstellungsseite der Ansicht angezeigt werden.
-Diese Einstellung lässt sich für jede Ansicht vornehmen. Auch bei Ansichten desselben Plugins können Sie daher die Einstellungen ändern, zum Beispiel „Ansicht A zeigt alle Daten“ und „Ansicht B zeigt nur Daten, bei denen „Aktiv“ auf JA steht“.
+Diese Einstellung lässt sich für jede Ansicht vornehmen. Auch bei Ansichten desselben Plugins können Sie daher die Einstellungen ändern, zum Beispiel „Ansicht A zeigt alle Daten“ und „Ansicht B zeigt nur Daten, bei denen ‚Aktiv‘ auf JA steht“.
   
     Es gibt zwei Arten von Feldern: eigene Einstellungen des Plugins und die von den Standardfunktionen von Exment bereitgestellten Einstellungen „Filter der Ansicht“ und „Daten sortieren“.
     ※ Den eingestellten Wert holen Sie mit der Funktion „$this->custom_view->getCustomOption('Parametername')“.

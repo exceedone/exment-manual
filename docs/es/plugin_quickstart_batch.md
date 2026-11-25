@@ -113,10 +113,10 @@ Ejecute uno de los siguientes comandos.
 # Indicar el ID del plugin
 php artisan exment:batch 1
 
-# plugin_name(nombre del plugin)
+# Indicar plugin_name (nombre del plugin)
 php artisan exment:batch --name=harddelete_data
 
-# uuid
+# Indicar el uuid
 php artisan exment:batch --uuid=b5c0a5d2-2716-4161-98d0-b490c1ebc521
 ~~~
 

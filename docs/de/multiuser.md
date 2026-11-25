@@ -48,7 +48,7 @@ Diese Seite erklärt die Schritte für die folgenden 2 Punkte.
 
 ![Seite mit mehreren Benutzern](../img/user/multi_user2.png)  
 
-Welche Einstellungen wählbar sind, hängt davon ab, ob in diesem Exment die Einstellung „Organisationsverwaltung verwenden“ auf JA steht.
+Welche Einstellungen wählbar sind, hängt davon ab, ob in diesem Exment die Einstellung „Organisationsverwaltung verwenden“ auf YES steht.
 
 ### Einstellwerte (wenn Organisationen verwendet werden)
 Bei jeder Einstellung kann der Login-Benutzer nur die „abrufbaren Organisationen“ und die „Benutzer dieser Organisationen“ abrufen (außer bei „Nicht filtern“).

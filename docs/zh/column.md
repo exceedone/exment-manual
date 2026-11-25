@@ -196,7 +196,7 @@ id,suuid,parent_id,parent_type,created_at,updated_at,deleted_at,created_user,upd
 ![自定义列页面](../img/column/column_select_valtext1.png)
 ↓  
 ![自定义列页面](../img/column/column_select_valtext2.png)  
-在表单中保存数据后，第 1 列的值会保存到数据库中。
+在表单中保存数据后，第 1 列的值会保存到数据库中。  
 
 - ##### <span id="radio_buttom"> 以单选按钮/复选框形式显示（YES/NO、选项（固定值）、选项（登记值和标签））</span>
 <span style="text-decoration: underline">选项（固定值）、选项（登记值和标签）的列中允许多选为 NO 时</span>，可以在表单中以单选按钮形式显示。

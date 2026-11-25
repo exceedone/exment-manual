@@ -277,9 +277,9 @@ In diesem Beispiel erscheinen die Spalten der Tabelle „Kunde“, der übergeor
 
 
 #### Zum Verhalten vor v3.3.1
-<span class="small">Vor v3.3.1 gab es diesen Einstellungsbildschirm nicht. Die Optionen wurden bei allen Feldern mit einer 1:n-Eltern-Kind-Beziehung oder einer Referenzbeziehung eingegrenzt.  
+<span class="small">Vor v3.3.1 gab es diesen Einstellungsbildschirm nicht. Die Optionen wurden bei allen Feldern mit einer 1:n-Beziehung (über- und untergeordnet) oder einer Referenzbeziehung eingegrenzt.  
 Das führte manchmal zu unnötigem Eingrenzen und zu unerwarteten Fehlern. Deshalb kam in v3.3.1 die Einstellung dazu, mit der Sie wählen, ob eingegrenzt wird.  
-Bei einer Aktualisierung von einer Version vor v3.3.1 auf v3.3.1 oder höher wird wegen der Kompatibilität die Einstellung „bei allen Feldern mit einer 1:n-Eltern-Kind-Beziehung oder einer Referenzbeziehung die Optionen eingrenzen“ übernommen.  
+Bei einer Aktualisierung von einer Version vor v3.3.1 auf v3.3.1 oder höher wird wegen der Kompatibilität die Einstellung „bei allen Feldern mit einer 1:n-Beziehung (über- und untergeordnet) oder einer Referenzbeziehung die Optionen eingrenzen“ übernommen.  
 Einzelheiten zum Verhalten bei der Aktualisierung stehen [hier](/patch/relation_filter) (Englisch).</span>
 
 

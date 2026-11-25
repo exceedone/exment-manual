@@ -7,7 +7,7 @@ Este plugin añade a la pantalla de lista de los datos personalizados una vista 
 ## Introducción
 Una página de plugin de Exment se desarrolla con estos dos elementos.
 
-- El framework de PHP [Laravel](http://laravel.jp/)
+- El framework de PHP [Laravel](http://laravel.com/)
 - La biblioteca de pantallas de administración [exment-admin-core](https://github.com/exceedone/exment-admin-core) (una biblioteca basada en laravel-admin / open-admin; en v6.x o anterior, laravel-admin)
 
 Recomendamos, sobre todo, que el desarrollo lo haga una persona con conocimientos de Laravel.
@@ -166,7 +166,7 @@ class Plugin extends PluginViewBase
     {
         // Añadir si hace falta
         // $form->text('access_key', 'Clave de acceso')
-        //     ->help('YouTube: introduzca la clave de acceso.');
+        //     ->help('Introduzca la clave de acceso de YouTube.');
     }
 
     

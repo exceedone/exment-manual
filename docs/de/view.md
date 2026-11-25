@@ -169,7 +169,7 @@ Mit „Alle Bedingungen erfüllt“ erscheinen die Daten, die alle Bedingungen e
 Mit „Eine der Bedingungen erfüllt“ erscheinen die Daten, die mindestens eine Bedingung erfüllen.
 
 #####   Bedingung umkehren
-Wenn Sie bei „Reverse condition“ (Bedingung umkehren) ein Häkchen setzen, erscheinen die Daten, die die Bedingungen nicht erfüllen.  
+Wenn Sie bei „Bedingung umkehren“ ein Häkchen setzen, erscheinen die Daten, die die Bedingungen nicht erfüllen.  
 ※ In Auswertungsansichten kann die Umkehrung nicht verwendet werden.
 
 #### Über die Filterbedingungen

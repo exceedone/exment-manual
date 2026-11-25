@@ -12,7 +12,7 @@ Beim Bulk Insert hat die Geschwindigkeit Vorrang. Beachten Sie deshalb bitte die
 
 - **Auch wenn die erstellte csv-Datei oder der Inhalt der Daten Fehler hat, gibt es keine genaue Fehlerprüfung.** Prüfen Sie die Dateien beim Erstellen gut. Wenn ein Problem auftritt, lesen Sie zur Kontrolle zum Beispiel einen Teil der Daten mit dem Import über den Bildschirm ein.
 
-- „Angabe der Daten einer anderen Tabelle ändern“, das beim [normalen Import](/de/data_import_export) möglich ist, geht mit dieser Funktion nicht. Schreiben Sie die id in die Spalte und importieren Sie.
+- „[Angabe der Daten einer anderen Tabelle ändern](/de/data_import_export)“, das beim [normalen Import](/de/data_import_export) möglich ist, geht mit dieser Funktion nicht. Schreiben Sie die id in die Spalte und importieren Sie.
 
 
 ## Daten vorbereiten

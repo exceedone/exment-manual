@@ -35,7 +35,7 @@ Pulse «Nueva aplicación o pantalla» en la lista. Hay 3 formas de crear.
 | --- | --- |
 | Crear una aplicación nueva | Al colocar componentes, se crean la tabla y las columnas, la pantalla de entrada y la lista. Si lo elige, también se crean a la vez el kanban, el calendario, el gráfico y el panel ([Crear todo junto como aplicación](/es/studio?id=Crear-todo-junto-como-aplicación)). |
 | Añadir una pantalla a una tabla | No se crea ninguna tabla. Se colocan las columnas existentes y solo se crea la pantalla de entrada (formulario). |
-| Crear desde Excel o CSV | Al leer un archivo Excel (.xlsx) o CSV, se toma la fila 1 como nombres de los campos y desde la fila 2 como datos, y se colocan los componentes que se deducen. Corrija lo que no sea correcto y después guarde. Con «Importar también los datos», los datos también se introducen (hasta 1,000 filas; el archivo, hasta 10MB). |
+| Crear desde Excel o CSV | Al leer un archivo Excel (.xlsx) o CSV, se toma la fila 1 como nombres de los campos y desde la fila 2 como datos, y se colocan los componentes que se deducen. Corrija lo que no sea correcto y después guarde. Con «Importar también los datos», los datos también se introducen (hasta 1000 filas; el archivo, hasta 10MB). |
 
 Antes de guardar, aparece lo que se va a crear («Al guardar se crea la aplicación «○○» (la tabla, la pantalla de entrada y la lista).», etc.). Al guardar, ya puede introducir datos en la pantalla creada.
 
@@ -60,7 +60,7 @@ Antes de guardar, aparece lo que se va a crear («Al guardar se crea la aplicaci
 ### Disposición de filas y columnas
 Si elige para cada fila «1 columna», «2 columnas», «2 columnas (izquierda ancha)», «2 columnas (derecha ancha)», «3 columnas» o «4 columnas», los campos se colocan uno al lado de otro. En el teléfono se colocan uno debajo de otro. Se pueden crear hasta 50 filas.
 
-### Condición de visualización
+### Mostrar cuando
 Para cada campo, puede mostrarlo u ocultarlo según el valor de otro campo («es igual a», «no es igual a», «está vacío», «no está vacío»). Por ejemplo, mostrar «Motivo» solo cuando el estado es «En espera». A los campos obligatorios no se les puede poner una condición.
 
 ### Detalles (tablas hijas)

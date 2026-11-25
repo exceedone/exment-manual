@@ -50,7 +50,7 @@ Exment에 설정할 아래 3가지 값을 확인하여 적어 둡니다.
 | 값 | 확인하는 곳 | 용도 |
 | --- | --- | --- |
 | 채널 시크릿 | LINE Official Account Manager의 "설정"(Settings) → "Messaging API", 또는 [LINE Developers 콘솔](https://developers.line.biz/console/)의 "채널 기본 설정"(Basic settings) 탭 | LINE에서 오는 데이터(Webhook)의 서명 검증 |
-| 채널 액세스 토큰(장기) | LINE Developers 콘솔에서 채널을 선택하고, "Messaging API 설정"(Messaging API) 탭의 "채널 액세스 토큰"(Channel access token)에서 [발행](Issue)을 클릭 | 메시지 전송 |
+| 채널 액세스 토큰(장기) | LINE Developers 콘솔에서 채널을 선택하고, "Messaging API 설정"(Messaging API) 탭의 "채널 액세스 토큰"(Channel access token)에서 [발행(Issue)]을 클릭 | 메시지 전송 |
 | 기본 ID | LINE Official Account Manager의 계정 이름 옆, 또는 LINE Developers 콘솔의 "Messaging API 설정" 탭의 "봇의 기본 ID"(Bot basic ID). "@"로 시작하는 ID입니다 | 계정 연동용 QR 코드 생성 |
 
 ※채널 시크릿과 채널 액세스 토큰은 제3자가 알지 못하도록 관리해 주십시오.
@@ -95,9 +95,9 @@ http(s)://(Exment의 URL)/system?advanced=1
 Webhook은 LINE에서 일어난 일을 LINE이 Exment에 알려 주는 구조입니다. 사용자가 연동 코드를 보내거나 알림 카드의 버튼을 눌렀을 때 그 내용이 Exment로 보내집니다.
 
 1. LINE Developers 콘솔에서 채널을 선택하고 "Messaging API 설정"(Messaging API) 탭을 엽니다.
-2. "Webhook URL"의 [편집](Edit)을 클릭하고, 시스템 설정의 "LINE 설정"에 표시된 Webhook URL을 붙여 넣은 뒤 [업데이트](Update)를 클릭합니다.
+2. "Webhook URL"의 [편집(Edit)]을 클릭하고, 시스템 설정의 "LINE 설정"에 표시된 Webhook URL을 붙여 넣은 뒤 [업데이트(Update)]를 클릭합니다.
 3. "Webhook 사용"(Use webhook)을 켭니다.
-4. [검증](Verify)을 클릭하고 "성공"(Success)이라고 표시되는지 확인합니다.
+4. [검증(Verify)]을 클릭하고 "성공"(Success)이라고 표시되는지 확인합니다.
 
 Webhook URL은 아래 형식입니다.
 
@@ -405,7 +405,7 @@ http(s)://(Exment의 URL)/data/line_send_log
 ## 잘 동작하지 않는 경우
 | 현상 | 주요 원인 | 대처 |
 | --- | --- | --- |
-| Webhook의 [검증](Verify)이 성공하지 않는다 | ·Webhook URL이 "https://"가 아니거나, SSL 인증서가 유효하지 않다<br />·인터넷에서 Exment에 접속할 수 없다<br />·채널 시크릿이 올바르지 않다 | Webhook URL과 서버의 공개 설정, 시스템 설정의 "채널 시크릿"을 확인해 주십시오. |
+| Webhook의 [검증(Verify)]이 성공하지 않는다 | ·Webhook URL이 "https://"가 아니거나, SSL 인증서가 유효하지 않다<br />·인터넷에서 Exment에 접속할 수 없다<br />·채널 시크릿이 올바르지 않다 | Webhook URL과 서버의 공개 설정, 시스템 설정의 "채널 시크릿"을 확인해 주십시오. |
 | 연동 코드를 보내도 답장이 오지 않는다 | ·"Webhook 사용"(Use webhook)이 꺼져 있다<br />·Webhook URL이 올바르지 않다 | [Webhook 설정](/ko/line?id=Webhook-설정)을 확인해 주십시오. |
 | [QR 코드 생성]을 클릭하면 "LINE 공식 계정의 기본 ID가 설정되어 있지 않습니다. "설정: 시스템"의 "시스템 설정"에서 설정해 주십시오."라고 표시된다 | 기본 ID가 설정되어 있지 않다 | 시스템 설정의 "LINE 공식 계정 Basic ID"를 입력해 주십시오. |
 | "연동 코드가 올바르지 않거나 만료되었습니다. 확인 후 다시 시도해 주십시오."라고 답장이 온다 | ·연동 코드의 유효 기간이 지났거나, 코드가 틀렸다<br />·잘못된 연동 코드를 계속 보내서 일시적으로 연동할 수 없게 되었다 | [QR 코드 생성]을 클릭하고 새 QR 코드를 읽어 주십시오. 일시적으로 연동할 수 없게 된 경우에는 시간(초기 설정으로 10분)을 두고 나서 보내 주십시오. |

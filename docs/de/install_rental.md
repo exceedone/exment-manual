@@ -1,6 +1,6 @@
-# Umgebung auf einem Mietserver aufbauen
-Hier steht, wie Sie Exment auf einem Mietserver installieren. Das ist eine Möglichkeit, wenn Sie schnell eine Umgebung aufbauen und betreiben möchten.  
-Die Seite erklärt die Schritte für Xserver und für Sakura Internet.
+# Einrichtung auf einem Mietserver
+So installieren Sie Exment auf einem Mietserver (Shared Hosting). Das ist eine Möglichkeit, wenn Sie eine Umgebung einfach aufbauen und betreiben möchten.  
+Diese Seite erklärt die Schritte für Xserver und für Sakura Internet.
 
 | Ihr Server | Wo Sie nachsehen |
 |---|---|
@@ -11,30 +11,30 @@ Der grobe Ablauf ist bei beiden gleich.
 
 1. Ein MySQL (eine Datenbank) für Exment anlegen
 2. Per SSH mit dem Server verbinden und composer installieren
-3. Exment in einen Ordner legen, der nicht im Web veröffentlicht ist
+3. Exment in einem Ordner installieren, der nicht im Web veröffentlicht ist
 4. Nur den Ordner „public“ von Exment im Web veröffentlichen
-5. Die Einstellungen nach den [Installationsschritten](/de/quickstart) abschließen
+5. Die Einstellungen nach der [Installationsanleitung](/de/quickstart) abschließen
 
-## Worauf Sie beim Aufbau auf einem Mietserver achten müssen
+## Hinweise zum Aufbau auf einem Mietserver
 - Exment braucht die folgende Umgebung.
     1. PHP 8.2 oder höher
     1. MySQL 8.0 oder höher (empfohlen: 8.4)  
     oder MariaDB 10.11 oder höher  
-  <span class="red">Vor allem die MySQL-Version erfüllt bei manchen Mietservern die Bedingungen nicht.  
+  <span class="red">Besonders die MySQL-Version erfüllt bei manchen Mietservern die Bedingungen nicht.  
   Prüfen Sie bitte vorher, ob Ihr Mietserver die Bedingungen erfüllt.</span>
 
-- Bei einem Mietserver ist festgelegt, welcher Ordner im Web veröffentlicht wird (zum Beispiel /home/username/www oder /public_html).  
-<span class="red bold big">Legen Sie den Ordner, in dem Exment installiert ist, nicht einfach direkt in diesen Ordner. Sonst sind Dateien von außen erreichbar, in denen die Einstellungen der Datenbank, das Mail-Passwort und Ähnliches stehen. Das führt zu einem schweren Datenleck.</span>  
-Die Schritte dieser Seite veröffentlichen nur den Ordner, der im Web stehen soll. Veröffentlichen Sie genau nach diesen Schritten.
+- Bei einem Mietserver ist der Ordner festgelegt, der im Web veröffentlicht wird (/home/username/www, /public_html usw.).  
+<span class="red bold big">Legen Sie den Ordner, in dem Exment installiert ist, nicht direkt unter diesen Ordner. Dateien mit den Einstellungen der Datenbank, dem Mail-Passwort usw. wären sonst von außen sichtbar. Das führt zu einem schweren Datenleck.</span>  
+Die Schritte auf dieser Seite veröffentlichen nur den Ordner, der im Web veröffentlicht werden soll. Veröffentlichen Sie ihn genau nach diesen Schritten.
 
-- Auf einem Mietserver installieren Sie nach der SSH-Verbindung zuerst composer und danach Exment.
+- Auf einem Mietserver installieren Sie nach der Verbindung per SSH zuerst composer und danach Exment.
 
-- Je nach Umgebung des Mietservers und nach den Versionen auf dem Server kann es sein, dass die Schritte dieser Seite nicht richtig funktionieren.
+- Je nach Umgebung des Mietservers und den Versionen auf dem Server lassen sich die Schritte dieser Seite manchmal nicht richtig ausführen.
 
-- Diese Seite beschreibt nur die Schritte, mit denen Exment auf einem Mietserver läuft.  
-Allgemeines IT-Wissen wie SSH, das Anlegen einer Datenbank oder Linux-Befehle wird nicht erklärt. Wir bitten um Verständnis.
+- Diese Seite beschreibt nur die Schritte, um Exment auf einem Mietserver zu betreiben.  
+Allgemeines IT-Wissen wie SSH, das Anlegen einer Datenbank oder Linux-Befehle wird nicht erklärt. Wir bitten um Ihr Verständnis.
 
-## Installationsschritte auf einem Mietserver
+## Installation auf einem Mietserver
 
 ### Bei Xserver
 ※Der Betrieb wurde mit dem Tarif X10 geprüft.
@@ -45,22 +45,22 @@ Allgemeines IT-Wissen wie SSH, das Anlegen einer Datenbank oder Linux-Befehle wi
 
 Legen Sie vorher ein MySQL für Exment an.
 
-**(2) Das PHP für Befehle auf dieselbe Version wie in der Verwaltungsoberfläche bringen**
+**(2) Das PHP für Befehle auf die Version der Verwaltungsoberfläche einstellen**
 
-Bei Xserver kann die PHP-Version, die Sie in der Verwaltungsoberfläche einstellen, eine andere sein als die PHP-Version, mit der Befehle nach einer SSH-Verbindung laufen.  
-Stellen Sie deshalb die PHP-Version ein, die für Befehle verwendet wird.
+Bei Xserver kann sich die PHP-Version, die in der Verwaltungsoberfläche eingestellt ist, von der PHP-Version unterscheiden, die Befehle nach der Verbindung per SSH verwenden.  
+Stellen Sie deshalb die PHP-Version für Befehle ein.
 
 1. Klicken Sie in der Verwaltungsoberfläche von Xserver auf „PHP Ver.切替“ (PHP-Version wechseln).  
-Wählen Sie danach die betroffene Domain.  
-![Xserver-Einstellung](../img/install/install_xserver2.png)  
-![Xserver-Einstellung](../img/install/install_xserver3.png)  
+Wählen Sie danach die Domain aus.  
+![Xserver-Einstellungen](../img/install/install_xserver2.png)  
+![Xserver-Einstellungen](../img/install/install_xserver3.png)  
 
-2. Unter „PHPバージョン切替“ (PHP-Version wechseln) steht die jetzige Version. Notieren Sie sie.  
-![Xserver-Einstellung](../img/install/install_xserver4.png)  
+2. Unter „PHPバージョン切替“ (PHP-Version wechseln) steht die aktuelle Version. Notieren Sie sie.  
+![Xserver-Einstellungen](../img/install/install_xserver4.png)  
 
 3. Verbinden Sie sich per SSH mit Xserver.
 
-4. Suchen Sie mit dem folgenden Befehl die PHP-Versionen, die auf Xserver installiert sind.  
+4. Sehen Sie mit dem folgenden Befehl nach, welche PHP-Versionen auf Xserver installiert sind.  
 Kopieren Sie aus dem Ergebnis den Pfad des PHP mit der notierten Version.
 
 ~~~ bash
@@ -76,7 +76,7 @@ mkdir $HOME/bin
 ln -s /opt/php-8.2.9/bin/php $HOME/bin/php
 ~~~
 
-6. Ändern Sie die Datei bashrc, damit dieses PHP im Pfad liegt.
+6. Ändern Sie die Datei bashrc und nehmen Sie dieses PHP in den Pfad auf.
 
 ~~~ bash
 vi ~/.bashrc
@@ -88,7 +88,7 @@ export PATH=$HOME/bin:$PATH
 source ~/.bashrc
 ~~~
 
-7. Prüfen Sie die PHP-Version. Wenn es die Version ist, die in der Verwaltungsoberfläche steht, ist es geschafft.
+7. Prüfen Sie die PHP-Version. Wenn es die Version aus der Verwaltungsoberfläche ist, ist es geschafft.
 
 ~~~ bash
 php --version
@@ -108,7 +108,7 @@ composer --version
 
 **(4) Exment installieren**
 
-<span class="red bold big">Installieren Sie auf keinen Fall direkt in den Ordner „$HOME/(Domainname)/public_html“. Sonst sind Dateien von außen erreichbar, in denen die Einstellungen der Datenbank, das Mail-Passwort und Ähnliches stehen. Das führt zu einem schweren Datenleck.</span>  
+<span class="red bold big">Installieren Sie niemals direkt unter dem Ordner „$HOME/(Domainname)/public_html“. Dateien mit den Einstellungen der Datenbank, dem Mail-Passwort usw. wären sonst von außen sichtbar. Das führt zu einem schweren Datenleck.</span>  
 Hier legen Sie den Ordner „$HOME/(Domainname)/laravel“ an und installieren Exment darin.
 
 ~~~ bash
@@ -123,7 +123,7 @@ rm exment.zip
 **(5) Nur den Ordner public veröffentlichen**
 
 Machen Sie „$HOME/(Domainname)/public_html“ zu einem symbolischen Link auf den eben angelegten Ordner „$HOME/(Domainname)/laravel/exment/public“.  
-So bleiben Laravel selbst und die Einstellungen außerhalb des Ordners, der im Web veröffentlicht wird. Nur der Ordner public von laravel liegt dann in public_html.
+So bleiben Laravel selbst und die Einstellungen außerhalb des Ordners, der im Web veröffentlicht wird. Nur der Ordner public von laravel liegt in public_html.
 
 ~~~ bash
 ## Das vorgegebene public_html löschen
@@ -134,50 +134,50 @@ ln -s $HOME/(Domainname)/laravel/exment/public $HOME/(Domainname)/public_html
 **(6) Die Installation fortsetzen**
 
 Jetzt ist alles bereit, um Exment zu öffnen.  
-Schließen Sie die Einstellungen nach den [Installationsschritten](/de/quickstart) ab.  
-※Ab v7.2.1 öffnet sich Exment unter dieser URL. Bei einer Website, deren `.env` in `ADMIN_ROUTE_PREFIX` den Wert „admin“ hat (eine Website, die mit einer früheren Version installiert wurde), hängen Sie „/admin“ an das Ende der URL an.  
+Schließen Sie die Einstellungen nach der [Installationsanleitung](/de/quickstart) ab.  
+※Ab v7.2.1 öffnet sich Exment unter dieser URL. Bei Websites, deren `.env` unter `ADMIN_ROUTE_PREFIX` „admin“ enthält (Websites, die mit einer früheren Version installiert wurden), hängen Sie „/admin“ an das Ende der URL an.  
 
 
-#### Das PHP für Befehle und für cron
-Bei Xserver sind das PHP für das Web (das PHP, das Sie in der Verwaltungsoberfläche unter „PHP Ver.切替“ gewählt haben) und das PHP, das läuft, wenn Sie über SSH oder in cron `php` eingeben, <span class="red bold">verschieden</span>.
+#### PHP für Befehle und cron
+Bei Xserver sind das PHP für das Web (das in der Verwaltungsoberfläche unter „PHP Ver.切替“ gewählte PHP) und das PHP, das bei der Eingabe von `php` per SSH oder in cron läuft, <span class="red bold">verschieden</span>.
 
-- Wenn Sie über SSH `php` eingeben, läuft `~/bin/php` (das oben verlinkte PHP). Ohne diesen Link läuft das Standard-PHP des Servers (es kann eine alte Version sein).
+- Wenn Sie per SSH `php` eingeben, läuft `~/bin/php` (das oben verlinkte PHP). Ohne diesen Link läuft das Standard-PHP des Servers (es kann eine alte Version sein).
 - cron liest `~/.bashrc` nicht. Mit `php` allein läuft das Standard-PHP des Servers (zum Beispiel 8.0), und Exment läuft nicht.
 
-Führen Sie deshalb die artisan-Befehle und cron **mit dem PHP derselben Version wie in der Verwaltungsoberfläche und mit dem vollen Pfad** aus.
+Führen Sie deshalb die artisan-Befehle und cron **mit dem vollen Pfad des PHP aus, das dieselbe Version wie die Verwaltungsoberfläche hat**.
 
-- Beispiel (bei PHP 8.3): `/usr/bin/php8.3` oder `/opt/php-8.3.x/bin/php`, das Sie oben mit `find` gefunden haben
+- Beispiel (bei PHP 8.3): `/usr/bin/php8.3` oder das oben mit `find` gefundene `/opt/php-8.3.x/bin/php`
 - Wenn Sie die PHP-Version in der Verwaltungsoberfläche ändern, ändern Sie auch den Link `~/bin/php` und den Pfad in cron auf dieselbe Version.
 
-Den [Aufgabenplan](/de/additional_task_schedule) stellen Sie in der Verwaltungsoberfläche von Xserver unter „Cron設定“ (Cron-Einstellungen) wie folgt ein (setzen Sie für `(Server-ID)` und `(Domainname)` Ihre eigenen Werte ein).
+Den [Aufgabenplan](/de/additional_task_schedule) stellen Sie in der Verwaltungsoberfläche von Xserver unter „Cron設定“ (Cron-Einstellungen) wie folgt ein (ersetzen Sie `(Server-ID)` und `(Domainname)` durch Ihre eigenen Werte).
 
 ~~~
 * * * * * cd /home/(Server-ID)/(Domainname)/laravel/exment && nice -n 15 /usr/bin/php8.3 artisan schedule:run >> /dev/null 2>&1
 ~~~
 
-Für die Warteschlange ([verzögerte Ausführung der Benachrichtigungen](/de/additional_queue)) können Sie auf einem Mietserver keinen Worker einrichten, der ständig läuft. Lassen Sie `QUEUE_CONNECTION` in der `.env` auf `sync` (dem Wert bei der Installation). Wenn Sie `database` einstellen, lassen Sie cron jede Minute die angesammelten Jobs abarbeiten.
+Für die Warteschlange ([Verzögerte Ausführung von Benachrichtigungen](/de/additional_queue)) können Sie auf einem Mietserver keinen Worker einrichten, der ständig läuft. Lassen Sie `QUEUE_CONNECTION` in der `.env` auf `sync` (dem Wert bei der Installation). Wenn Sie doch `database` einstellen, lassen Sie cron jede Minute die angesammelten Jobs abarbeiten.
 
 ~~~
 * * * * * cd /home/(Server-ID)/(Domainname)/laravel/exment && nice -n 15 /usr/bin/php8.3 artisan queue:work --stop-when-empty --max-time=50 >> /dev/null 2>&1
 ~~~
 
 
-#### Vorgehen bei einem PHP-Versionswechsel
+#### Vorgehen beim Wechsel der PHP-Version
 Wenn Sie die PHP-Version ändern, gehen Sie nach den folgenden Schritten vor.
 
 - Während der Arbeit am Versionswechsel ist Exment nicht erreichbar.
-- Das Beispiel unten zeigt die Schritte für ein Update von PHP7.4 auf PHP8.2.
-- Je nach Umgebung, Zeitpunkt der Einführung, Version und Installationsweise können die Schritte anders sein.
+- Das Beispiel unten zeigt die Aktualisierung von PHP7.4 auf PHP8.2.
+- Je nach Umgebung, Zeitpunkt der Einführung, Version und Art der Installation können die Schritte anders sein.
 
 1. Klicken Sie in der Verwaltungsoberfläche von Xserver auf „PHP Ver.切替“ (PHP-Version wechseln).  
-Wählen Sie danach die betroffene Domain.
+Wählen Sie danach die Domain aus.
 
 2. Wechseln Sie unter „PHPバージョン切替“ (PHP-Version wechseln) auf die neue Version und klicken Sie auf „変更“ (Ändern).  
-![Xserver-Einstellung](../img/install/install_xserver6.png)  
+![Xserver-Einstellungen](../img/install/install_xserver6.png)  
 
 3. Verbinden Sie sich per SSH mit Xserver.
 
-4. Prüfen Sie mit dem folgenden Befehl die jetzige PHP-Version.  
+4. Prüfen Sie mit dem folgenden Befehl die aktuelle PHP-Version.  
 (Zu diesem Zeitpunkt wird noch die alte Version angezeigt.)
 
 ~~~ 
@@ -190,7 +190,7 @@ php --version
 unlink $HOME/bin/php
 ~~~
 
-6. Suchen Sie den Pfad der Version, die Sie unter „PHPバージョン切替“ gewählt haben.
+6. Sehen Sie nach, welchen Pfad die unter „PHPバージョン切替“ gewählte Version hat.
 
 ~~~ bash
 find /opt/php-*/bin -type f -name 'php'
@@ -211,9 +211,9 @@ php --version
 ~~~
 
 ### Bei Sakura Internet
-※Der Betrieb wurde mit dem Standard-Tarif geprüft.  
-※Bei Sakura Internet kann es sein, dass „composer“ mitten in der Ausführung abbricht.  
-Führen Sie den Befehl deshalb mit „nice -n 20“ davor aus, also zum Beispiel „nice -n 20 composer“.
+※Der Betrieb wurde mit dem Tarif Standard geprüft.  
+※Bei Sakura Internet kann die Ausführung von „composer“ mittendrin abbrechen.  
+Führen Sie den Befehl deshalb mit „nice -n 20“ davor aus, also „nice -n 20 composer“.
 
 **(1) MySQL anlegen**
 
@@ -221,13 +221,13 @@ Legen Sie vorher ein MySQL für Exment an.
 
 **(2) Den veröffentlichten Ordner ändern**
 
-1. Wählen Sie im Verwaltungsmenü von Sakura Internet unter „ドメイン/SSL設定“ (Domain-/SSL-Einstellungen) die Domain, die Sie ändern möchten.  
-![Sakura-Internet-Einstellung](../img/install/install_rental1.png)  
+1. Wählen Sie im Verwaltungsmenü von Sakura Internet unter „ドメイン/SSL設定“ (Domain-/SSL-Einstellungen) die Domain aus, die Sie ändern möchten.  
+![Einstellungen bei Sakura Internet](../img/install/install_rental1.png)  
 
-2. Ändern Sie unter „マルチドメインの対象のフォルダ“ (Zielordner der Multidomain) den angegebenen Ordner. Hier nehmen wir „/exment“.  
-![Sakura-Internet-Einstellung](../img/install/install_rental2.png)  
+2. Ändern Sie unter „マルチドメインの対象のフォルダ“ (Zielordner der Multidomain) den angegebenen Ordner. Hier verwenden wir „/exment“.  
+![Einstellungen bei Sakura Internet](../img/install/install_rental2.png)  
 
-**(3) Per SSH verbinden und Shell und Pfad einstellen**
+**(3) Per SSH verbinden, Shell und Pfad einstellen**
 
 1. Verbinden Sie sich mit Ihrer ID und Ihrem Passwort per SSH.
 
@@ -269,7 +269,7 @@ nice -n 20 composer --version
 
 **(5) Exment installieren**
 
-<span class="red bold big">Installieren Sie auf keinen Fall direkt in den Ordner „$HOME/www/“. Sonst sind Dateien von außen erreichbar, in denen die Einstellungen der Datenbank, das Mail-Passwort und Ähnliches stehen. Das führt zu einem schweren Datenleck.</span>  
+<span class="red bold big">Installieren Sie niemals direkt unter dem Ordner „$HOME/www/“. Dateien mit den Einstellungen der Datenbank, dem Mail-Passwort usw. wären sonst von außen sichtbar. Das führt zu einem schweren Datenleck.</span>  
 Hier legen Sie den Ordner „$HOME/laravel“ an und installieren Exment darin.
 
 ~~~ bash
@@ -283,8 +283,8 @@ rm exment.zip
 
 **(6) Nur den Ordner public veröffentlichen**
 
-Erstellen Sie „$HOME/www/exment“ als symbolischen Link auf den eben angelegten Ordner „$HOME/laravel/exment/public“.  
-So bleiben Laravel selbst und die Einstellungen außerhalb des Ordners, der im Web veröffentlicht wird. Nur der Ordner public von laravel liegt dann im Ordner www.
+Legen Sie „$HOME/www/exment“ als symbolischen Link auf den eben angelegten Ordner „$HOME/laravel/exment/public“ an.  
+So bleiben Laravel selbst und die Einstellungen außerhalb des Ordners, der im Web veröffentlicht wird. Nur der Ordner public von laravel liegt im Ordner www.
 
 ~~~
 ln -s $HOME/laravel/exment/public $HOME/www/exment
@@ -293,22 +293,22 @@ ln -s $HOME/laravel/exment/public $HOME/www/exment
 **(7) Die Installation fortsetzen**
 
 Jetzt ist alles bereit, um Exment zu öffnen.  
-Schließen Sie die Einstellungen nach den [Installationsschritten](/de/quickstart) ab.  
-※Ab v7.2.1 öffnet sich Exment unter dieser URL. Bei einer Website, deren `.env` in `ADMIN_ROUTE_PREFIX` den Wert „admin“ hat (eine Website, die mit einer früheren Version installiert wurde), hängen Sie „/admin“ an das Ende der URL an.  
+Schließen Sie die Einstellungen nach der [Installationsanleitung](/de/quickstart) ab.  
+※Ab v7.2.1 öffnet sich Exment unter dieser URL. Bei Websites, deren `.env` unter `ADMIN_ROUTE_PREFIX` „admin“ enthält (Websites, die mit einer früheren Version installiert wurden), hängen Sie „/admin“ an das Ende der URL an.  
 
 
 
-#### Vorgehen bei einem PHP-Versionswechsel
+#### Vorgehen beim Wechsel der PHP-Version
 Wenn Sie die PHP-Version ändern, gehen Sie nach den folgenden Schritten vor.
 
 - Während der Arbeit am Versionswechsel ist Exment nicht erreichbar.
-- Je nach Umgebung, Zeitpunkt der Einführung, Version und Installationsweise können die Schritte anders sein.
+- Je nach Umgebung, Zeitpunkt der Einführung, Version und Art der Installation können die Schritte anders sein.
 
-1. Klicken Sie in der Verwaltungsoberfläche von Sakura Internet auf „スクリプト設定“ (Skript-Einstellungen) → „言語のバージョン設定“ (Versionseinstellung der Sprache).  
-![Sakura-Internet-Einstellung](../img/install/install_sakura1.png)  
+1. Klicken Sie in der Verwaltungsoberfläche von Sakura Internet auf „スクリプト設定“ (Skript-Einstellungen) → „言語のバージョン設定“ (Einstellung der Sprachversion).  
+![Einstellungen bei Sakura Internet](../img/install/install_sakura1.png)  
 
 2. Wechseln Sie unter „PHPのバージョン“ (PHP-Version) auf die neue Version und klicken Sie auf „保存“ (Speichern).  
-![Sakura-Internet-Einstellung](../img/install/install_sakura2.png)  
+![Einstellungen bei Sakura Internet](../img/install/install_sakura2.png)  
 
 3. Verbinden Sie sich per SSH mit Sakura Internet.
 

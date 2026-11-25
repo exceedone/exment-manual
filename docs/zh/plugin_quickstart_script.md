@@ -1,5 +1,5 @@
 # 插件(脚本)
-这是在 Exment 的页面中执行独自的脚本（javascript）的插件。
+这是在 Exment 的页面中执行自己的脚本（javascript）的插件。
 执行脚本的契机（触发条件）有下面 7 个。
 
 | 触发条件 | 启动的时机 |
@@ -118,7 +118,7 @@ $(function () {
     $(window).off('exment:form_loaded', setEvent).on('exment:form_loaded', setEvent);
 
     function setEvent(ev){
-        // 独自的处理
+        // 自己的处理
     }
 });
 ~~~
@@ -135,7 +135,7 @@ $(function () {
 
     function setEvent(ev){
         let target = ev.target;
-        // 独自的处理
+        // 自己的处理
     }
 });
 ~~~
@@ -157,7 +157,7 @@ function setEvent(ev){
 
 #### 仪表板 BOX 上设置的 data 属性
 
-##### 共同
+##### 通用
 
 | 名称 | 说明 |
 | ---- | ---- |

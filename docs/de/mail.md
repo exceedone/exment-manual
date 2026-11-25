@@ -7,7 +7,7 @@ Bei Installationen mit einer Version vor v3.6.0 heißt es auf einigen Seiten wei
 
 ## Verwaltung
 ### Seite anzeigen
-- Wählen Sie im linken Menü „Benachrichtigungsvorlage“.  
+- Wählen Sie im linken Menü das Menü der Benachrichtigungsvorlagen („E-Mail-Vorlage“).  
 Oder rufen Sie die folgende URL auf.  
 http(s)://(URL von Exment)/data/mail_template  
 Damit erscheint die Seite der Benachrichtigungsvorlagen.  
@@ -16,7 +16,7 @@ Damit erscheint die Seite der Benachrichtigungsvorlagen.
 > ※ Die URL gilt für die Standardeinstellung ohne „/admin“ (Websites, die ab v7.2.1 neu installiert wurden). Wenn `ADMIN_ROUTE_PREFIX` in der `.env` einen Wert hat (bei Websites aus früheren Versionen „admin“), fügen Sie diesen Wert hinter der URL der Website ein (Beispiel: `http(s)://(URL von Exment)/admin/data/mail_template`). Einzelheiten finden Sie unter [„admin“ in der URL ändern oder entfernen](/de/additional_prefix).
 
 ### Vorlage neu hinzufügen
-1. Klicken Sie auf der Seite „Benachrichtigungsvorlage“ oben rechts auf die Schaltfläche [Neu].
+1. Klicken Sie auf der Seite der Benachrichtigungsvorlagen oben rechts auf die Schaltfläche [Neu].
 
 2. Die Seite zum Hinzufügen einer Benachrichtigungsvorlage erscheint.
 ![Seite der Benachrichtigungsvorlagen](../img/mail/mail_new1.png)

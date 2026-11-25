@@ -8,15 +8,15 @@ Esta página explica cómo crear un plugin (Evento). Se crean config.json y Plug
 
 | Nombre | Tipo | Descripción |
 | ---- | ---- | ---- |
-| loading | Al empezar la carga | El proceso se inicia al principio de la carga de la página. |
-| loaded | Al terminar la carga | El proceso se inicia al final de la carga de la página. |
-| saving | Justo antes de guardar | El proceso se inicia justo antes de guardar el dato. |
+| loading | Antes de cargar la pantalla | El proceso se inicia al principio de la carga de la página. |
+| loaded | Después de cargar la pantalla | El proceso se inicia al final de la carga de la página. |
+| saving | Antes de guardar | El proceso se inicia justo antes de guardar el dato. |
 | saved | Después de guardar | El proceso se inicia después de guardar el dato. |
 | deleted | Después de eliminar | El proceso se inicia después de eliminar el dato. |
-| workflow_action_executing | Justo antes de ejecutar el flujo de trabajo | El proceso se inicia justo antes de ejecutar el flujo de trabajo. |
-| workflow_action_executed | Después de ejecutar el flujo de trabajo | El proceso se inicia después de ejecutar el flujo de trabajo. |
-| notify_executing | Justo antes de ejecutar la notificación | El proceso se inicia justo antes de ejecutar la notificación. |
-| notify_executed | Después de ejecutar la notificación | El proceso se inicia después de ejecutar la notificación. |
+| workflow_action_executing | Antes de la acción del flujo de trabajo | El proceso se inicia justo antes de ejecutar el flujo de trabajo. |
+| workflow_action_executed | Después de la acción del flujo de trabajo | El proceso se inicia después de ejecutar el flujo de trabajo. |
+| notify_executing | Antes de la notificación | El proceso se inicia justo antes de ejecutar la notificación. |
+| notify_executed | Después de la notificación | El proceso se inicia después de ejecutar la notificación. |
 
 ## Cómo crearlo
 

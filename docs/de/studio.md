@@ -21,9 +21,9 @@ Wenn Sie das Studio öffnen, sehen Sie die Seiten der Website im Überblick auf 
 | Bereich | Inhalt |
 | --- | --- |
 | Seiten der Tabellen | Für jede Tabelle stehen die Eingabeseiten (Formulare) und die Listen (Ansichten). Es gibt „Öffnen“, „Bearbeiten“, „Kopieren“ und Links zu „Spalten“ und „Tabelleneinstellungen“. Im Feld oben filtern Sie nach Tabellenname und Seitenname. |
-| Dashboards | Die Dashboards des Systems und die Dashboards der Benutzer. |
+| Dashboards (Übersichtsseiten) | Die Dashboards des Systems und die Dashboards der Benutzer. |
 | Plugin-Seiten | Die Plugins vom Typ Seite. |
-| Relationsdiagramm der Tabellen | Sie sehen als Diagramm die Relationen Eltern-Kind (1:n) und n:m sowie die Spalten, die eine andere Tabelle auswählen. |
+| Relationsdiagramm der Tabellen | Sie sehen als Diagramm die Relationen „Über- und untergeordnet“ (1:n) und n:m sowie die Spalten, die eine andere Tabelle auswählen. |
 
 - Wenn Sie auf den Namen einer Eingabeseite (und das Stiftsymbol) klicken, öffnet sich der Bildschirm [Im Studio ändern](/de/studio?id=Im-Studio-ändern). Den bisherigen Bildschirm der Formulareinstellungen öffnen Sie über das Zahnradsymbol („In den Formulareinstellungen öffnen“).
 - In der Liste stehen nur die Tabellen, die Sie selbst einstellen dürfen, und darin nur die Seiten, die Sie einstellen dürfen.
@@ -58,13 +58,13 @@ Vor dem Speichern steht dort, was entsteht (zum Beispiel „Beim Speichern wird 
 - Für jedes Element legen Sie den Elementnamen, den Spaltennamen (Buchstaben und Ziffern) und „Pflichtfeld“ fest.
 
 ### Anordnung in Zeilen und Spalten
-Für jede Zeile wählen Sie „1 Spalte“, „2 Spalten“, „2 Spalten (links breit)“, „2 Spalten (rechts breit)“, „3 Spalten“ oder „4 Spalten“ (1 bis 4 Spalten). So stehen die Elemente nebeneinander. Auf dem Smartphone stehen sie untereinander. Sie können bis zu 50 Zeilen anlegen.
+Für jede Zeile wählen Sie „1 Spalte“, „2 Spalten“, „2 Spalten (links breit)“, „2 Spalten (rechts breit)“, „3 Spalten“ oder „4 Spalten“. So stehen die Elemente nebeneinander. Auf dem Smartphone stehen sie untereinander. Sie können bis zu 50 Zeilen anlegen.
 
 ### Bedingungen für die Anzeige
 Für jedes Element können Sie die Anzeige vom Wert eines anderen Elements abhängig machen („gleich“, „ungleich“, „ist leer“, „ist nicht leer“). Zum Beispiel erscheint „Grund“ nur, wenn der Status „Zurückgestellt“ ist. Pflichtfelder können keine Bedingung bekommen.
 
-### Positionen (Kindtabelle)
-Wie bei den Artikeln einer Bestellung können Sie Positionen erstellen, bei denen zu 1 Datensatz viele Zeilen eingegeben werden. Für jede Position entsteht eine Kindtabelle. Sie erscheint unter der Eingabeseite in Tabellenform. Sie können bis zu 5 Positionen erstellen. Auch in Positionen sind die Bausteine für die Berechnung und für die Auswahl aus einer anderen Tabelle nutzbar.
+### Positionen (untergeordnete Tabelle)
+Wie bei den Artikeln einer Bestellung können Sie Positionen erstellen, bei denen zu 1 Datensatz viele Zeilen eingegeben werden. Für jede Position entsteht eine untergeordnete Tabelle. Sie erscheint unter der Eingabeseite in Tabellenform. Sie können bis zu 5 Positionen erstellen. Auch in Positionen sind die Bausteine für die Berechnung und für die Auswahl aus einer anderen Tabelle nutzbar.
 
 ### Berechnung
 Im Baustein Berechnung schreiben Sie andere Zahlenelemente (Ganzzahl, Dezimalzahl, Währung, Berechnung) in `[ ]`.
@@ -81,7 +81,7 @@ Sie können Schaltflächen erstellen, die auf der Seite eines Datensatzes ersche
 - Die Schaltflächen werden als „[Einstellungen zur Massenaktualisierung](/de/operation)“ der Tabelle erstellt. Dort können Sie sie später ändern oder löschen.
 - Schaltflächen erstellen können nur Personen mit der Berechtigung für die Einstellungen dieser Tabelle.
 
-### Detaileinstellungen
+### Weitere Einstellungen
 - **Tabellenname (Buchstaben und Ziffern)**: Der Name, der zum Beispiel in der URL der Daten verwendet wird. Bleibt er leer, wird er automatisch vergeben. Er lässt sich später nicht ändern.
 - **Im Menü hinzufügen unter**: Sie wählen, an welcher Stelle des linken Menüs der Eintrag hinzukommt (auch „Nicht hinzufügen“ ist wählbar).
 
@@ -107,7 +107,7 @@ Eine im Studio erstellte Eingabeseite (und die Formulare vorhandener Tabellen) �
 - Auch bei Elementen, die Sie von der Seite entfernen, bleiben die Spalte der Tabelle und die Daten erhalten.
 - Wenn Sie unter „Neue Elemente (die Tabelle erhält die zugehörigen Spalten)“ einen Baustein hinzufügen, entsteht beim Speichern eine Spalte in der Tabelle, und sie erscheint auch in der Liste. Das können nur Personen mit der Berechtigung für die Einstellungen der Tabelle. Den Baustein Berechnung können Sie hier nicht hinzufügen (er wird in den Spalteneinstellungen hinzugefügt).
 - Elemente, die es im Studio noch nicht gibt, zum Beispiel Überschrift, Erklärungstext, HTML, Bild, Trennlinie und Systemelemente, werden nicht gelöscht und bleiben erhalten. Sie können sie verschieben und entfernen. Den Inhalt ändern Sie in den Formulareinstellungen.
-- Positionen (die Eingabe von Kindtabellen) bleiben unverändert erhalten. Um Positionen zu ändern, öffnen Sie die Formulareinstellungen.
+- Positionen (die Eingabe von untergeordneten Tabellen) bleiben unverändert erhalten. Um Positionen zu ändern, öffnen Sie die Formulareinstellungen.
 - Vor dem Speichern steht dort, was sich ändert (zum Beispiel „Die Tabelle „○○“ erhält die Spalten „○○“.“).
 
 <!-- Screenshot: der Bildschirm Im Studio ändern (img/studio/studio_edit.png) -->

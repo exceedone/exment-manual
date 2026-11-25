@@ -1,5 +1,5 @@
 ## 插件(视图)
-这是在自定义数据的列表页面中，添加具有独自设计和功能的视图的插件。
+这是在自定义数据的列表页面中，添加具有自己的设计和功能的视图的插件。
 想使用与标准视图（列表、汇总、日历视图）完全不同的功能时，请使用它。
 
 ![视图的实现示例](../img/plugin/plugin_view1.png)   
@@ -14,23 +14,23 @@ Exment 的插件页面，使用下面 2 个来开发。
 
 
 ## 自定义视图 主要规格
-- 可以在自定义数据的列表页面中，显示独自的功能和页面。
+- 可以在自定义数据的列表页面中，显示自己的功能和页面。
 - 视图的设置项目，插件的开发者可以自由添加。添加的项目和标准视图一样，可以在视图设置页面中按视图分别设置。
 - 和标准视图一样，可以创建多个视图。即使是同一个插件的视图，也可以按视图改变设置，例如“视图 A 显示全部数据”“视图 B 只显示启用标志为 YES 的数据”。
 
 
 ## 页面和视图的区别
-创建独自页面的方法，除了本插件(视图)以外，还有[插件(页面)](/zh/plugin_quickstart_page)。
+创建自己的页面的方法，除了本插件(视图)以外，还有[插件(页面)](/zh/plugin_quickstart_page)。
 两者的主要区别如下。
 
 #### 插件(页面)
 - 基本上创建不与特定的表关联的、完全独立的页面。
-- 安装插件后，从那时起就可以访问插件独自的页面。
+- 安装插件后，从那时起就可以访问插件自己的页面。
 - 因为不与特定的表关联，所以也可以创建合并多个表的页面，或与 Exment 的自定义数据完全无关的页面。
 
 #### 插件(视图)
 - 在特定的表的列表页面中，显示所创建的插件的页面。
-- 和标准视图（列表、汇总、日历视图）一样，管理员或用户添加视图后，就会显示插件独自的页面。
+- 和标准视图（列表、汇总、日历视图）一样，管理员或用户添加视图后，就会显示插件自己的页面。
 - 基本上显示与所选表的数据有关的页面。也可以创建合并多个表的页面，或与 Exment 的自定义数据完全无关的页面。
 
 
@@ -103,7 +103,7 @@ use Exceedone\Exment\Model\CustomTable;
 
 class Plugin extends PluginViewBase
 {
-    // (5) 要添加插件独自的设置时，取消注释
+    // (5) 要添加插件自己的设置时，取消注释
     // protected $useCustomOption = true;
 
     /**
@@ -117,7 +117,7 @@ class Plugin extends PluginViewBase
     }
 
     /**
-     * (3) 本插件独自的端点
+     * (3) 本插件自己的端点
      */
     public function update(){
         $value = request()->get('value');
@@ -140,7 +140,7 @@ class Plugin extends PluginViewBase
      */
     public function setViewOptionForm($form)
     {
-        //　添加独自设置时
+        //　添加自己的设置时
         $form->embeds('custom_options', '详细设置', function($form){
             $form->select('category', '类别列')
                 ->options($this->custom_table->getFilteredTypeColumns([ColumnType::SELECT, ColumnType::SELECT_VALTEXT])->pluck('column_view_name', 'id'))
@@ -245,7 +245,7 @@ class Plugin extends PluginViewBase
 - (4) 用函数"public function setViewOptionForm($form)"，定义在视图的设置页面中显示的项目。
 这个设置可以按视图进行，所以即使是同一个插件的视图，也可以改变设置，例如“视图 A 显示全部数据”“视图 B 只显示启用标志为 YES 的数据”。
   
-    项目有 2 种：插件独自的设置，以及 Exment 标准功能准备的“筛选条件”“排序设置”。
+    项目有 2 种：插件自己的设置，以及 Exment 标准功能准备的“筛选条件”“排序设置”。
     ※设置的值，用函数“$this->custom_view->getCustomOption('参数名')”取得。
     ※另外，要使用 Exment 标准功能的视图中使用的列设置时，请像下面这样写。
 

@@ -65,7 +65,7 @@ Ein Feld für die Eingabe einer URL.
 Ein Feld für die Eingabe einer E-Mail-Adresse.  
 ![Bildschirm der benutzerdefinierten Ansicht](../ja/img/column/column_type5.png)
 #### Ganzzahl
-Ein Feld, in das nur ganze Zahlen eingegeben werden können. Außerdem können beim Anlegen der Daten links und rechts die Schaltflächen [＋] und [－] erscheinen, mit denen der Wert per Klick steigt oder sinkt.  
+Ein Feld, in das nur ganze Zahlen eingegeben werden können. Außerdem können beim Anlegen der Daten links und rechts die Schaltflächen [+] und [-] erscheinen, mit denen der Wert per Klick steigt oder sinkt.  
 ![Bildschirm der benutzerdefinierten Ansicht](../ja/img/column/column_type6.png)
 #### Dezimalzahl
 Ein Feld, in das nur Dezimalzahlen eingegeben werden können. Wenn „Als Prozent anzeigen“ auf YES steht, werden die Daten mit % angezeigt.  
@@ -377,18 +377,18 @@ Wenn Sie im Eingabebildschirm der Daten die Felder ausfüllen, wird automatisch 
 
 - Der Wert einer anderen Spalte
 - Der Spaltenwert der referenzierten Tabelle
-- Der Spaltenwert der Elterntabelle
-- Die Summe einer Spalte der Kindtabelle
-- Die Anzahl der Einträge der Kindtabelle
+- Der Spaltenwert der übergeordneten Tabelle
+- Die Summe einer Spalte der untergeordneten Tabelle
+- Die Anzahl der Einträge der untergeordneten Tabelle
 
 
 | Element | Beispiel | Erklärung |
 | ---- | ---- | ---- |
 | ${value:(Spaltenname)} | ${value:mitsumori_zeigaku} | Ein anderer Wert derselben Tabelle wird eingesetzt.<br />(Beispiel: Wenn Sie in der Tabelle der Angebotspositionen den Angebotsbetrag ${value:mitsumori_zeigaku} schreiben, wird der Wert eingesetzt, der im Feld „Angebotsbetrag“ steht)  |
 | ${select_table:(Spaltenname).(Spaltenname der referenzierten Tabelle)} | ${select_table:client.client_shikiri} | Bei Spalten derselben Tabelle mit dem Spaltentyp „Auswahl (aus Tabelle)“, „Benutzer“ oder „Organisation“ wird der Wert der referenzierten Spalte eingesetzt.<br />(Beispiel: Die Tabelle „Vertragsinformationen (contract)“ hat die Spalte „Kunde (client)“, die auf die Tabelle „Kundeninformationen (client)“ verweist. Mit ${select_table:client.client_shikiri} wird der Wert eingesetzt, der im Händlerpreis des Kunden (client_shikiri) der Tabelle „Kundeninformationen (client)“ steht)  |
-| ${parent:(Spaltenname)} | ${parent:mitsumori_value} | Ein Wert der Elterntabelle wird eingesetzt.<br />(Beispiel: Die Tabelle der Angebote und die Tabelle der Angebotspositionen haben eine 1:n-Relation. Wenn Sie für eine Spalte der Tabelle der Angebotspositionen den Angebotsbetrag der Elterntabelle ${parent:mitsumori_value} schreiben, wird der Wert der Spalte „Angebotsbetrag“ eingesetzt, der in den Elterndaten steht)  |
-| ${sum:(Name der Kindtabelle).(Spaltenname der Kindtabelle)} | ${sum:mitsumori_detail.mitsumori_zeigaku} | Bei einer 1:n-Relation und einem Formular, in dem Eltern- und Kinddaten zugleich eingegeben werden, wird die Summe der Werte der angegebenen Spalte der Kindtabelle eingesetzt.<br />(Beispiel: Die Tabelle der Angebote und die Tabelle der Angebotspositionen haben eine 1:n-Relation. Wenn Sie für eine Spalte der Tabelle der Angebote den Positionsbetrag der Kindtabelle ${sum:mitsumori_detail:mitsumori_zeigaku} schreiben, wird die Summe der Werte „Angebotsbetrag“ aller Kinddaten eingesetzt)  |
-| ${count:(Name der Kindtabelle)} | ${count:mitsumori_detail} | Bei einer 1:n-Relation und einem Formular, in dem Eltern- und Kinddaten zugleich eingegeben werden, wird die Anzahl der Einträge der Kindtabelle eingesetzt.<br />(Beispiel: Wenn die Tabelle der Angebote und die Tabelle der Angebotspositionen eine 1:n-Relation haben, wird die Anzahl der Einträge der Kindtabelle eingesetzt)  |
+| ${parent:(Spaltenname)} | ${parent:mitsumori_value} | Ein Wert der übergeordneten Tabelle wird eingesetzt.<br />(Beispiel: Die Tabelle der Angebote und die Tabelle der Angebotspositionen haben eine 1:n-Relation. Wenn Sie für eine Spalte der Tabelle der Angebotspositionen den Angebotsbetrag der übergeordneten Tabelle ${parent:mitsumori_value} schreiben, wird der Wert der Spalte „Angebotsbetrag“ eingesetzt, der in den übergeordneten Daten steht)  |
+| ${sum:(Name der untergeordneten Tabelle).(Spaltenname der untergeordneten Tabelle)} | ${sum:mitsumori_detail.mitsumori_zeigaku} | Bei einer 1:n-Relation und einem Formular, in dem über- und untergeordnete Daten zugleich eingegeben werden, wird die Summe der Werte der angegebenen Spalte der untergeordneten Tabelle eingesetzt.<br />(Beispiel: Die Tabelle der Angebote und die Tabelle der Angebotspositionen haben eine 1:n-Relation. Wenn Sie für eine Spalte der Tabelle der Angebote den Positionsbetrag der untergeordneten Tabelle ${sum:mitsumori_detail:mitsumori_zeigaku} schreiben, wird die Summe der Werte „Angebotsbetrag“ aller untergeordneten Daten eingesetzt)  |
+| ${count:(Name der untergeordneten Tabelle)} | ${count:mitsumori_detail} | Bei einer 1:n-Relation und einem Formular, in dem über- und untergeordnete Daten zugleich eingegeben werden, wird die Anzahl der Einträge der untergeordneten Tabelle eingesetzt.<br />(Beispiel: Wenn die Tabelle der Angebote und die Tabelle der Angebotspositionen eine 1:n-Relation haben, wird die Anzahl der Einträge der untergeordneten Tabelle eingesetzt)  |
 
 
 

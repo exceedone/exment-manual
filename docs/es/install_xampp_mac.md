@@ -20,29 +20,29 @@ Siga este orden.
 
 2. Dentro de «XAMPP para OS X», elija y descargue la versión con «PHP8.2».  
 
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac1.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac1.png)
 
 3. Siga con la instalación de XAMPP.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac2.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac2.png)
 
 4. En la pantalla para elegir los componentes de XAMPP, marque los dos y pulse Next.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac3.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac3.png)
 
 5. Siga las pantallas pulsando Next hasta terminar la instalación.
 
 6. Cuando termina la instalación, en XAMPP (Otros) de LaunchPad hay una aplicación llamada manager-osx. Desde ahí puede iniciar XAMPP.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac4.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac4.png)
 
 7. Cuando haya iniciado XAMPP, haga clic en Manage Servers.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac5.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac5.png)
 
 8. Haga clic en el botón Start de MySQL y de Apache para que Status pase a Running.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac6.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac6.png)
 
 
 #### 【Nota】
 - Cuando reinicie el sistema operativo, tiene que iniciar otra vez el panel de control de XAMPP y volver a poner en marcha Apache.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac8.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac8.png)
 
 ### Añadir la variable de entorno
 Para ejecutar mysql desde el terminal, añada la ruta (Path) al archivo de configuración del terminal, .bash_profile.
@@ -58,10 +58,10 @@ vi .bash_profile
 ~~~
 export PATH="/Applications/XAMPP/xamppfiles/bin:$PATH"
 ~~~
-![Pantalla de instalación de XAMPP](img/xampp_mac/mysql_mac1.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/mysql_mac1.png)
 
 3. Para guardar y cerrar, pulse la tecla Esc y después escriba :wq.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/mysql_mac2.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/mysql_mac2.png)
 
 4. Por último, cargue .bash_profile con el siguiente comando para que el Path quede activo.
 
@@ -76,10 +76,10 @@ http://localhost/phpmyadmin/index.php
 
 
 2. Haga clic en «Nueva» en el menú de la izquierda.  
-![Variable de entorno de MySQL](img/xampp_mac/phpmyadmin1.png)
+![Variable de entorno de MySQL](../img/xampp_mac/phpmyadmin1.png)
 
 3. En la fila «Crear base de datos», escriba con caracteres alfanuméricos el nombre de base de datos que quiera y haga clic en «Crear».  
-![Variable de entorno de MySQL](img/xampp_mac/phpmyadmin2.png)
+![Variable de entorno de MySQL](../img/xampp_mac/phpmyadmin2.png)
 
 Con esto, la base de datos está creada.
 
@@ -89,7 +89,7 @@ Pero así hay problemas graves. Por ejemplo, al abrir la URL [http://localhost/e
 Por eso recomendamos encarecidamente una configuración que evita este problema. Configúrela con los siguientes pasos.
 
 1. Cree la carpeta «local» en la carpeta «/Applications/XAMPP».  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac9.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac9.png)
 
 2. Abra "/Applications/XAMPP/xamppfiles/etc/extra/httpd-xampp.conf".
 
@@ -146,7 +146,7 @@ Añada las siguientes líneas al archivo hosts.
 ~~~
 
 6. Reinicie Apache en el panel de control de XAMPP.  
-![Pantalla de instalación de XAMPP](img/xampp_mac/xampp_mac8.png)
+![Pantalla de instalación de XAMPP](../img/xampp_mac/xampp_mac8.png)
 
 ### Instalación de Exment
 Instale Exment siguiendo los [Pasos de la instalación](/es/quickstart) de Exment.  

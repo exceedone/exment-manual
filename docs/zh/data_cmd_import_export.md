@@ -183,7 +183,7 @@ client.003.csv
 
 
 ### 准备数据
-首先，制作导入用的文件。详情请参阅[导出模板](/zh/data_import_export) 。  
+首先，制作导入用的文件。详情请参阅[导出模板](/zh/data_import_export)。  
 
 - 可以导入的 csv 文件的字符编码是<strong>UTF-8</strong>。  
 

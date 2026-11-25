@@ -144,7 +144,7 @@ function sidebar(file) {
 }
 
 const bars = {}
-for (const [lang, file] of [['/', join(docs, '_sidebar.md')], ['/ja/', join(docs, 'ja', '_sidebar.md')], ['/vi/', join(docs, 'vi', '_sidebar.md')]]) {
+for (const [lang, file] of [['/', join(docs, '_sidebar.md')], ['/ja/', join(docs, 'ja', '_sidebar.md')], ['/vi/', join(docs, 'vi', '_sidebar.md')], ['/zh/', join(docs, 'zh', '_sidebar.md')], ['/ko/', join(docs, 'ko', '_sidebar.md')], ['/de/', join(docs, 'de', '_sidebar.md')], ['/es/', join(docs, 'es', '_sidebar.md')]]) {
   if (existsSync(file)) {
     bars[lang] = sidebar(file)
   }

@@ -11,7 +11,7 @@ Die Liste der vorhandenen benutzerdefinierten Tabellen erscheint.
 
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_grid.png)
 
-※„Grundinformationen“, „Benutzer“, „Organisation“, „Benachrichtigungsvorlage“, „E-Mail-Sendeverlauf“, „Ankündigungen“  
+※„Basisinformationen“, „Benutzer“, „Organisation“, „E-Mail-Vorlage“, „E-Mail-Versandverlauf“, „Information“  
 Diese Tabellen sind seit der Installation von Exment vorhanden.  
 Auch Tabellen, die mit einer Vorlage importiert wurden, stehen in dieser Liste.  
 
@@ -38,7 +38,7 @@ Auch Tabellen, die mit einer Vorlage importiert wurden, stehen in dieser Liste.
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_detail1.png)
 
 #### Anzeigename der Tabelle ※Pflichtfeld
-- Der Name, der auf dem Bildschirm angezeigt wird. Auch Japanisch ist möglich. (Beispiele: Benutzer , Ankündigungen , Angebot )  
+- Der Name, der auf dem Bildschirm angezeigt wird. Auch Japanisch ist möglich. (Beispiele: Benutzer , Information , Angebot )  
 
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_detail2.png)  
 
@@ -52,7 +52,7 @@ Auch Tabellen, die mit einer Vorlage importiert wurden, stehen in dieser Liste.
 
 #### Anzeigereihenfolge
 - Die Reihenfolge in der Liste der Einstellungen der benutzerdefinierten Tabellen.  
-- Geben Sie die Zahl in Zeichen halber Breite ein oder wählen Sie sie mit den Schaltflächen [－] und [＋] links und rechts.
+- Geben Sie die Zahl in Zeichen halber Breite ein oder wählen Sie sie mit den Schaltflächen [-] und [+] links und rechts.
 
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_detail4.png)
 
@@ -136,8 +136,8 @@ Bei „200“ wird mit der 201. Aktualisierung der Eintrag der 1. Aktualisierung
 
 - Bei YES können alle Benutzer alle Daten dieser Tabelle anzeigen. Sie müssen dann keine Berechtigungen je Benutzer vergeben. Der Standardwert ist NO.  
 
-※Bei der Installation von Exment steht nur bei der Tabelle „Ankündigungen“ „Alle Benutzer können anzeigen“ von Anfang an auf YES. So können alle Benutzer die Ankündigungen lesen.  
-Bearbeiten können die Ankündigungen dagegen nur Administratoren.
+※Bei der Installation von Exment steht nur bei der Tabelle „Information“ „Alle Benutzer können anzeigen“ von Anfang an auf YES. So können alle Benutzer die Informationen lesen.  
+Bearbeiten können die Informationen dagegen nur Administratoren.
 
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_detail15.png)
 
@@ -159,9 +159,9 @@ Beispiel: Die Tabelle „Umsatzsteuer“ müssen allgemeine Benutzer nicht als L
 
 - Bei YES können die Daten mit den Berechtigungen der übergeordneten Daten (1:n) angezeigt werden. Sie brauchen aber für diese Tabelle selbst eine Berechtigung wie die Leseberechtigung der Zuständigen. Der Standardwert ist NO.  
 
-※ Diese Option erscheint nur bei Kindtabellen einer 1:n-Relation.  
+※ Diese Option erscheint nur bei untergeordneten Tabellen einer 1:n-Relation.  
 
-※ Auch mit der Bearbeitungsberechtigung für die übergeordneten Daten können Sie die Kinddaten nicht bearbeiten. Sie können sie nur anzeigen.  
+※ Auch mit der Bearbeitungsberechtigung für die übergeordneten Daten können Sie die untergeordneten Daten nicht bearbeiten. Sie können sie nur anzeigen.  
 
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_detail19.png)
 
@@ -171,7 +171,7 @@ Beispiel: Die Tabelle „Umsatzsteuer“ müssen allgemeine Benutzer nicht als L
 
 - Bei YES brauchen Sie zum Bearbeiten der Daten dieser Tabelle die Bearbeitungsberechtigung für die übergeordneten Daten (1:n). Der Standardwert ist YES.  
 
-※ Diese Option erscheint nur bei Kindtabellen einer 1:n-Relation.  
+※ Diese Option erscheint nur bei untergeordneten Tabellen einer 1:n-Relation.  
 
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_detail20.png)
 
@@ -216,7 +216,7 @@ Der Bearbeitungsbildschirm erscheint, und Sie können die Einstellungen ändern.
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_delete.png)  
 
 - Ein Bestätigungsbildschirm wie im Bild unten erscheint. Wenn Sie in das Textfeld delete me eingeben und auf die Schaltfläche [Bestätigen] klicken, wird die Tabelle gelöscht.  
-**<span style="color: red; ">※Tabellen der folgenden Arten lassen sich aber nicht löschen.<br />• Tabellen, die vom System installiert wurden<br />• Tabellen, die in einer Relation als Kind eingestellt sind</span>**
+**<span style="color: red; ">※Tabellen der folgenden Arten lassen sich aber nicht löschen.<br />• Tabellen, die vom System installiert wurden<br />• Tabellen, die in einer Relation als untergeordnete Tabelle eingestellt sind</span>**
 
 ![Bildschirm der benutzerdefinierten Tabellen](../img/table/table_delete2.png)
 
@@ -243,8 +243,8 @@ Beispiel: Wenn Sie wie im Bild unten „Nächster Termin“ und „Name“ zum e
 
 ※Wenn Sie Duplikate nur in 1 Spalte verhindern möchten, setzen Sie in den [Einstellungen der benutzerdefinierten Spalten](/de/column) bei dieser Spalte „Eindeutig“ auf YES.
 
-※ Bei einer 1:N-Relation (siehe [Relationseinstellungen von Exment](/de/relation)) können Sie beim zusammengesetzten eindeutigen Schlüssel einer Kindtabelle auch die Elterntabelle als einen der Schlüssel wählen.  
-Dann wird nur innerhalb derselben Elterndaten auf Duplikate geprüft.
+※ Bei einer 1:N-Relation (siehe [Relationseinstellungen von Exment](/de/relation)) können Sie beim zusammengesetzten eindeutigen Schlüssel einer untergeordneten Tabelle auch die übergeordnete Tabelle als einen der Schlüssel wählen.  
+Dann wird nur innerhalb derselben übergeordneten Daten auf Duplikate geprüft.
 
 ### 2 Spalten vergleichen
 Beim Anlegen und Aktualisieren von Daten werden 2 Spalten verglichen. Gespeichert werden kann nur, wenn die Spaltenwerte die eingestellte Bedingung erfüllen. Sonst erscheint eine Fehlermeldung.  

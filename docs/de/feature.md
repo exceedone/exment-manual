@@ -34,7 +34,7 @@ In der Spalte „Zustand“ steht Folgendes.
 | Zustand | Bedeutung |
 | --- | --- |
 | Neu | Eine Funktion, über die noch niemand entschieden hat (sie gilt als „Nicht verwenden“). |
-| In Verwendung | Die Funktion steht auf „Verwenden“ und ist nutzbar. |
+| Aktiv | Die Funktion steht auf „Verwenden“ und ist nutzbar. |
 | In dieser Umgebung nicht verfügbar | Die Funktion ist in der Einstellung des Servers gesperrt ([In der Einstellung des Servers festlegen](/de/feature?id=In-der-Einstellung-des-Servers-festlegen)). In diesem Bildschirm lässt sie sich nicht auf „Verwenden“ stellen. |
 | Kann nicht verwendet werden, da eine benötigte Funktion deaktiviert ist. | Eine Funktion, die nur zusammen mit einer anderen Funktion läuft (es steht „Nur solange „○○“ verwendet wird.“ dabei), und diese andere Funktion steht auf „Nicht verwenden“. |
 
@@ -53,7 +53,7 @@ Es gibt keine zweite, neue Einstellung. Der Bildschirm zeigt die vorhandenen Ein
 | Wer darf es nutzen | Dasselbe wie die Plugin-Berechtigung „Zugriff“ der Rollengruppen. Zum Ändern gehen Sie in den Bildschirm [Rollengruppe](/de/role_group). |
 | Menü | Ob das Plugin im Menü angezeigt wird. Nur das legen Sie in diesem Bildschirm fest. |
 
-※Bei Plugins eines Typs, den alle nutzen können, und bei Plugins, die in den Plugin-Einstellungen auf „alle Benutzer dürfen es nutzen“ gestellt sind, steht das dabei.  
+※Bei Plugins eines Typs, den alle nutzen können, und bei Plugins, die in den Plugin-Einstellungen auf „Alle Benutzer dürfen es nutzen“ gestellt sind, steht das dabei.  
 ※Wenn ein Plugin Funktionen enthält, die es selbst angemeldet hat (zum Beispiel Webmail), stehen sie unter dem Plugin, jede in einer eigenen Zeile. Auch die Funktionen in einem Plugin stehen am Anfang auf „Nicht verwenden“. Nutzen dürfen sie von den Personen, die das Plugin nutzen dürfen, die hier gewählten.
 
 <!-- Screenshot: die Zeile eines Plugins und die Zeilen der Funktionen im Plugin (img/feature/feature_plugin.png). Wird nach dem Merge von #1861 aufgenommen -->

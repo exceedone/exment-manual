@@ -50,7 +50,7 @@ Lo puede configurar también quien no es administrador del sistema. Es un panel 
 Elija "YES" o "NO".  
 Cuando hay varios paneles, el que se muestra primero al abrir el panel es el que tiene "YES".  
 ※Los paneles con "NO" también se pueden mostrar eligiéndolos en la lista.  
-※Solo １ panel puede tener "Predeterminado" en "YES".  
+※Solo 1 panel puede tener "Predeterminado" en "YES".  
 Si pone "YES" en 2 paneles o más, todos menos el último que puso en "YES" pasan a "NO".
 
 #### Elegir el número de columnas
@@ -63,7 +63,7 @@ Indique en píxeles la altura máxima de los elementos que se muestran en esa fi
 Si el contenido de un elemento supera esta altura, se desplaza dentro del elemento.  
 Introduzca un número entero de 150 a 3000. Si no introduce nada, son 400px.
 
-### Ejemplo con ４ columnas en １ fila
+### Ejemplo con 4 columnas en 1 fila
 ![Pantalla del panel](../img/dashboard/dashboard_grid3.png)  
 
 ## Configuración de la barra de filtros del panel

@@ -1,5 +1,5 @@
 # 插件(导入)
-这种插件可以独自实现向自定义数据的导入处理。
+这种插件可以自行实现向自定义数据的导入处理。
 要把现有系统输出的文件等导入 Exment 时，推荐使用。
 
 ![导入的实现示例](../img/plugin/plugin_import2.png)   
@@ -19,7 +19,7 @@
     "uuid": "b5c0a5d2-2716-4161-98d0-b490c1ebc521",
     "plugin_name": "PluginImportContract",
     "plugin_view_name": "合同数据的导入",
-    "description": "用独自的逻辑导入合同数据。",
+    "description": "用自己的逻辑导入合同数据。",
     "author":  "Kajitori",
     "version": "1.0.0",
     "plugin_type": "import",

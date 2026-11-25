@@ -17,12 +17,12 @@ Diese Seite erklärt, wie Sie hier eigene Einträge (Beispiel: „Hiragana“, �
 \Exceedone\Exment\Model\CustomColumn::customAvailableCharacters([
     [
         'key' => 'hiragana', // Schlüssel. Alphanumerisch
-        'label' => 'Hiragana', // Text, der auf dem Bildschirm angezeigt wird
+        'label' => 'ひらがな', // Text, der auf dem Bildschirm angezeigt wird
         'regex' => 'ぁ-ん', // Erlaubte Zeichen als regulärer Ausdruck
     ],
     [
         'key' => 'katakana',
-        'label' => 'Katakana',
+        'label' => 'カタカナ',
         'regex' => 'ァ-ン',
     ],
 ]);

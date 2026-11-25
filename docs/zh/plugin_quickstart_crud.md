@@ -1,5 +1,5 @@
 ## 插件(CRUD 页面)
-向 Exment 添加独自的 CRUD 页面。  
+向 Exment 添加自己的 CRUD 页面。  
 **※插件(CRUD)准备了很多功能和函数。详细内容请确认[插件参考](/zh/plugin_reference_crud)。**  
 ※管理页面库的类，按 Exment v7.0.0 及以后的命名空间（“ExmentAdminCore\Admin”）记载。使用 v6.x 及以前的版本时，请换读为“Encore\Admin”。详细内容请确认[这里](/update/v7_0_0)（英语）。  
 
@@ -206,7 +206,7 @@ class Plugin extends PluginCrudBase
      */
     public function postCreate(array $posts, array $options = [])
     {
-        // 保存到独自的数据库。
+        // 保存到自己的数据库。
         $value = \DB::connection('world')
             ->table('city')
             ->insertGetId($posts);
@@ -222,7 +222,7 @@ class Plugin extends PluginCrudBase
      */
     public function putEdit($id, array $posts, array $options = [])
     {
-        // 保存到独自的数据库。
+        // 保存到自己的数据库。
         \DB::connection('world')
             ->table('city')
             ->whereOrIn('ID', $id)
@@ -305,7 +305,7 @@ zip 文件名请设为“(plugin_name).zip”。
 | 名称 | 概要 | 认证 | 示例链接 |
 | ---- | ---- | ---- | ---- |
 | MySQLWorld | 连接与 Exment 不同的数据库，进行数据的取得、添加、编辑、删除。 | - | [其他 MySQL 联动](https://github.com/exment-git/plugin-sample/tree/main/crud/mysqlworld) |
-| ShowLevels3Data | 使用独自的 SQL，可以同时列表、参照 3 个层级的项目的示例。 | - | [用独自的 SQL 显示 Exment 数据](https://github.com/exment-git/plugin-sample/tree/main/crud/show_levels3_data) |
+| ShowLevels3Data | 使用自己的 SQL，可以同时列表、参照 3 个层级的项目的示例。 | - | [用自己的 SQL 显示 Exment 数据](https://github.com/exment-git/plugin-sample/tree/main/crud/show_levels3_data) |
 | WordPress | 使用 REST API，把指定的 Wordpress 站点的文章显示为列表和详情。 | - | [WordPress 联动](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpress) |
 | WordPresses | 使用 REST API，把多个 Wordpress 站点的文章显示为列表和详情。支持多个端点，在页面中用按钮切换目标站点。 | - | [多个站点的 WordPress 联动](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpresses) |
 | WordPressPost | 使用 REST API，把指定的 Wordpress 站点的文章显示为列表和详情。另外，使用事先设置的访问密钥，也进行文章的添加、编辑、删除。 | ID 和密码 | [WordPress 文章](https://github.com/exment-git/plugin-sample/tree/main/crud/wordpress_post) |

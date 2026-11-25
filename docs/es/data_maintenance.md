@@ -18,7 +18,7 @@ Elimina de una vez los archivos adjuntos de esta tabla. Se usa cuando se quiere 
 | Elemento | Contenido |
 |---|---|
 | Los archivos adjuntos de los datos | Son los "Archivos adjuntos" de la pantalla de detalle del dato. **También se borran las versiones anteriores** que quedan al reemplazar un archivo adjunto. |
-| Los archivos de las columnas de archivo e imagen | Son los archivos de las columnas de tipo archivo y de tipo imagen. El valor de esa columna en el dato queda vacío. En ese momento no se ejecutan las notificaciones ni el flujo de trabajo, y tampoco cambian la "Fecha de actualización" ni el "Usuario de actualización" del dato. |
+| Los archivos de las columnas de archivo e imagen | Son los archivos de las columnas de tipo archivo y de tipo imagen. El valor de esa columna en el dato queda vacío. En ese momento no se ejecutan las notificaciones ni el flujo de trabajo, y tampoco cambian la "Fecha de actualización" ni el "Usuario que actualizó" del dato. |
 
 Al principio solo está elegido "Los archivos adjuntos de los datos".
 

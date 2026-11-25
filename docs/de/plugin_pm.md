@@ -130,7 +130,7 @@ Die Listen der Felder, die in Aufgaben gewählt werden, lassen sich unverändert
 | 種別 (Typ) | je Projekt | „設定“ → „種別“ des Projekts | タスク Aufgabe, バグ Fehler, 要望 Wunsch, 改善 Verbesserung, その他 Sonstiges |
 | カテゴリー (Kategorie) | je Projekt | „設定“ → „カテゴリー“ des Projekts | (keine) |
 | マイルストーン (Meilenstein) | je Projekt | „設定“ → „マイルストーン“ des Projekts | (keine) |
-| 優先度 (Priorität) | für alle Projekte gemeinsam | ⚙ プロジェクト管理の設定 → „課題の選択肢“ | 至急, 高, 中, 低 |
+| 優先度 (Priorität) | für alle Projekte gemeinsam | ⚙ プロジェクト管理の設定 → „課題の選択肢“ (Auswahlwerte der Aufgaben) | 至急, 高, 中, 低 |
 | 完了理由 (Abschlussgrund) | für alle Projekte gemeinsam | ⚙ プロジェクト管理の設定 → „課題の選択肢“ | 対応済み, 対応しない, 無効, 重複, 再現しない, 保留 |
 
 - Wenn bei einem Status „完了扱い“ (gilt als abgeschlossen) angekreuzt ist, zählen Aufgaben mit diesem Status im Burndown und bei der Prüfung auf Fristüberschreitung als „abgeschlossen“.
@@ -173,7 +173,7 @@ Beide sind am Anfang ausgeschaltet. Die Projektverwaltung lässt sich auch ohne 
 **Automatisches Ausfüllen mit KI**  
 Auf der Seite der Aufgabe erscheint die Schaltfläche „AI で自動入力“ (mit KI automatisch ausfüllen). Ein Klick füllt die leeren Felder „種別“ (Typ), „カテゴリー“ (Kategorie) und „優先度“ (Priorität) mit KI aus. Vor dem Speichern kann ein Mensch die Werte prüfen und ändern.
 - Als KI wird TypeSafe verwendet (ein externer Dienst). Betreff und Einzelheiten der Aufgabe werden an die Server von TypeSafe gesendet. E-Mail-Adressen und Telefonnummern werden vor dem Senden verdeckt.
-- Ein Systemadministrator trägt den API-Schlüssel unter „Administratoreinstellungen“ → „Plugin“ → Einstellungsseite von „Exment Plugin PM“ im Bereich „AI 自動入力（TypeSafe）“ ein (wenn es die Umgebungsvariable `TYPESAFE_KEY` des Servers gibt, wird diese verwendet).
+- Ein Systemadministrator trägt den API-Schlüssel unter „Administratoreinstellungen“ → „Plugin“ → Einstellungsseite von „Exment Plugin PM“ im Bereich „AI 自動入力（TypeSafe）“ (automatisches Ausfüllen mit KI) ein (wenn es die Umgebungsvariable `TYPESAFE_KEY` des Servers gibt, wird diese verwendet).
 - Kreuzen Sie in „設定“ → „AI 自動入力“ des Projekts „AI 自動入力を使う“ (automatisches Ausfüllen mit KI verwenden) an und speichern Sie. Mit „接続テスト“ (Verbindungstest) prüfen Sie, ob die Verbindung funktioniert.
 - Wenn „担当者も自動入力する“ (auch den Zuständigen automatisch ausfüllen) eingeschaltet ist, wird auch ein leerer Zuständiger eingetragen. Den Zuständigen wählt nicht die KI, sondern eine Regel (der Standardzuständige der Kategorie, sonst das Mitglied mit den wenigsten offenen Aufgaben).
 
@@ -184,7 +184,7 @@ Auf der Seite der Aufgabe erscheint die Schaltfläche „AI で自動入力“ (
 **Git-Repository**  
 Für jedes Projekt können Sie ein Git-Repository (Gitea oder Forgejo) anlegen lassen und nutzen.
 - Der Administrator des Servers stellt die Verbindung zum Git-Server in den Umgebungsvariablen des Servers ein (`PMPORTAL_GIT_PROVIDER`, `PMPORTAL_GIT_API_URL`, `PMPORTAL_GIT_API_TOKEN` usw.). Auf den Seiten lässt sich das nicht einstellen.
-- Klicken Sie in „設定“ → „Git リポジトリ“ des Projekts auf „Git を有効にする“ (Git einschalten). Der Projektmanager gibt „リポジトリ名“ (Repository-Name) ein und klickt auf „リポジトリの作成をリクエスト“ (Anlegen des Repositorys anfordern). Wenn kein Git-Server eingestellt ist, bleibt die Anforderung bei „作成待ち“ (wartet auf Anlegen).
+- Klicken Sie in „設定“ → „Git リポジトリ“ (Git-Repository) des Projekts auf „Git を有効にする“ (Git einschalten). Der Projektmanager gibt „リポジトリ名“ (Repository-Name) ein und klickt auf „リポジトリの作成をリクエスト“ (Anlegen des Repositorys anfordern). Wenn kein Git-Server eingestellt ist, bleibt die Anforderung bei „作成待ち“ (wartet auf Anlegen).
 - Wenn das Repository angelegt ist, klickt jede Person selbst auf „HTTP クローン用パスワードを発行“ (Passwort für HTTP-Clone ausstellen) und erhält ein Passwort. Das Passwort wird nur einmal angezeigt.
 
 ![Git-Repository](../img/plugin_pm/pm_git.png)

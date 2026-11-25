@@ -115,7 +115,7 @@ composer --version
 cd ~/(域名)
 mkdir laravel
 cd laravel
-wget https://exment.net/downloads/en/exment.zip
+wget https://exment.net/downloads/ja/exment.zip
 unzip exment.zip
 rm exment.zip
 ~~~
@@ -276,7 +276,7 @@ nice -n 20 composer --version
 cd ~
 mkdir laravel
 cd laravel
-wget https://exment.net/downloads/en/exment.zip
+wget https://exment.net/downloads/ja/exment.zip
 unzip exment.zip
 rm exment.zip
 ~~~

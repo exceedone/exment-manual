@@ -71,7 +71,7 @@ http(s)://(URL von Exment)/login_setting
 
 ![Liste der Anmeldeeinstellungen](../img/login/login_setting4.png)  
 
-- Um einen neuen SSO-Provider hinzuzufügen, klicken Sie oben rechts auf die Schaltfläche „＋Neu“. Was Sie eingeben, steht auf der Seite der jeweiligen Art.  
+- Um einen neuen SSO-Provider hinzuzufügen, klicken Sie oben rechts auf die Schaltfläche „+ Neu“. Was Sie eingeben, steht auf der Seite der jeweiligen Art.  
     - [Single Sign-on (OAuth)](/de/login_oauth)
     - [Single Sign-on (SAML)](/de/login_saml)
     - [Anmeldeeinstellungen (LDAP)](/de/login_ldap)

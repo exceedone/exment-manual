@@ -293,7 +293,7 @@ http(s)://(Exment的URL)/data/line_flex_template
 - 为了确认设置而想立即执行时，请执行以下命令。无论“通知时间”如何设置，都会执行通知。
 
 ~~~
-php artisan exment:notify --name=(通知名称(英文数字))
+php artisan exment:notify --name=(通知名称（英文数字）)
 ~~~
 
 - 反复执行命令等情况下，要避免重复发送同一条提醒，请设置设置值“LINE_DEDUPE_MINUTES”。详情请参阅[设置值](/zh/line?id=设置值)。

@@ -65,7 +65,7 @@ Es un campo donde se puede introducir una URL.
 Es un campo donde se puede introducir una dirección de correo electrónico.  
 ![Pantalla de vistas personalizadas](../ja/img/column/column_type5.png)
 #### Entero
-Es un campo donde solo se pueden introducir números enteros. Además, al registrar datos se pueden mostrar los botones [＋] y [－] a los lados del campo, para subir y bajar el valor con un clic.  
+Es un campo donde solo se pueden introducir números enteros. Además, al registrar datos se pueden mostrar los botones [+] y [-] a los lados del campo, para subir y bajar el valor con un clic.  
 ![Pantalla de vistas personalizadas](../ja/img/column/column_type6.png)
 #### Decimal
 Es un campo donde solo se pueden introducir números decimales. Si pone «Mostrar como porcentaje» en YES, los datos se muestran con %.  

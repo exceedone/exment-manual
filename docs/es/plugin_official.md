@@ -5,7 +5,7 @@ Los plugins oficiales son plugins gratuitos de Exment creados, probados y manten
 | --- | --- |
 | [Gestión de proyectos](/es/plugin_pm) | Proyectos e incidencias (tickets), tablero, diagrama de Gantt, Wiki y archivos |
 | [Soporte de TI](/es/plugin_it_support) | Mesa de ayuda. Gestiona con tickets las solicitudes por correo, formulario de recepción y teléfono, y comparte el avance con el cliente sin iniciar sesión |
-| [Groupware](/es/plugin_groupware) | Correo web, y abrir y editar en el navegador los archivos de Office del uso compartido de archivos |
+| [Groupware](/es/plugin_groupware) | Correo web, y abrir y editar en el navegador los archivos de Office de Archivos compartidos |
 
 ## Cómo instalarlos
 ### Exment v7.2.1 o posterior
