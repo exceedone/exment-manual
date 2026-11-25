@@ -1,23 +1,31 @@
 # SQL Serverインストール手順
-Exmentで、SQL Serverを使用するための手順です。  
-※各種手順は、OSやバージョン、インストール時期などにより、異なる場合があります。  
-<span class="red bold">※現在、バックアップ・リストア機能に非対応です。</span>
+Exment のデータベースに、SQL Server を使うための手順です。
+
+- <span class="red bold">※現在、バックアップ・リストア機能に非対応です。</span>
+- 手順は、OS やバージョン、インストールした時期などによって、違う場合があります。
+
+## 手順の流れ
+1. **SQL Server を用意する**（インストール、データベースとユーザーの作成）… 「SQL Server設定」
+2. **つながるかを確かめる** … 「接続確認」
+3. **Exment からつなぐ**（PHP のドライバーを入れて、Exment をインストールする）… 「Exment設定」
 
 ## SQL Server設定
 
 ### SQL Serverインストール
-- 以下のサイトにアクセスし、SQL Serverをダウンロードします。  
-※エディションについては、用途や事業規模などによって、選定をお願いします。  
+1. 次のサイトから、SQL Server をダウンロードします。  
+※エディションは、用途や事業の規模などに合わせて選んでください。  
 [SQL Serverダウンロード](https://www.microsoft.com/ja-jp/sql-server/sql-server-downloads)  
 
-- ダウンロードしたファイルを実行し、インストールを進めます。  
+2. ダウンロードしたファイルを実行し、インストールを進めます。  
 ![SQL Server インストール](img/database/sqlserver1.png)  
 
-- インストールが完了します。
+3. インストールが終わります。
 
 ### SQL Server Management Studio(GUIツール)インストール
-- 以下のサイトにアクセスしてください。  
-「使用できる言語」から、「日本語」をクリックし、ツールをダウンロード・インストールを行ってください。  
+SQL Server Management Studio は、SQL Server を画面で操作するためのツールです。
+
+- 次のサイトを開きます。  
+「使用できる言語」から「日本語」をクリックして、ツールをダウンロードし、インストールしてください。  
 https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15#available-languages
 
 
@@ -25,101 +33,102 @@ https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-
 ### 追加設定(Windows)
 ※現在、WindowsにSQL Serverをインストールした場合に、下記の設定が必要なことを確認しています。
 
-- Windowsスタートメニューより、「SQL Server 構成マネージャー」を開きます。
+1. Windows のスタートメニューから、「SQL Server 構成マネージャー」を開きます。  
 ![SQL Server インストール](img/database/sqlserver5.png)  
 
-- 左メニューより、「SQL Serverネットワークの構成」→「(エディション名)のプロトコル」をクリック後、「TCP/IP」を右クリックし、「有効にする」をクリックします。
+2. 左のメニューで、「SQL Serverネットワークの構成」→「(エディション名)のプロトコル」をクリックします。そのあと、「TCP/IP」を右クリックし、「有効にする」をクリックします。  
 ![SQL Server インストール](img/database/sqlserver6.png)  
 ![SQL Server インストール](img/database/sqlserver7.png)  
 ![SQL Server インストール](img/database/sqlserver8.png)  
 
-- スタートメニューボタンをクリックし、「サービス」と記入し、表示された「サービス」アプリを実行します。
+3. スタートメニューのボタンをクリックし、「サービス」と入力して、表示された「サービス」アプリを実行します。  
 ![SQL Server インストール](img/database/sqlserver11.png)  
 
-- サービス一覧から、「SQL Server (エディション名)」を選択し、「サービスの再起動」をクリックします。
+4. サービスの一覧から「SQL Server (エディション名)」を選び、「サービスの再起動」をクリックします。  
 ![SQL Server インストール](img/database/sqlserver12.png)  
 
 
 ### データベース作成、ユーザー追加
-- 「SQL Server Management Studio」を実行します。
+1. 「SQL Server Management Studio」を実行します。  
 ![SQL Server インストール](img/database/sqlserver13.png)  
 
-- ログインを行います。
+2. ログインします。  
 ![SQL Server インストール](img/database/sqlserver14.png)  
 
 #### データベース作成
-- 左メニューより、「データベース」フォルダを右クリックし、「新しいデータベース」をクリックします。
+1. 左のメニューで、「データベース」フォルダーを右クリックし、「新しいデータベース」をクリックします。  
 ![SQL Server インストール](img/database/sqlserver15.png)  
 
-- 任意のデータベース名を入力し、OKをクリックします。
+2. 任意のデータベース名を入力し、OK をクリックします。  
 ![SQL Server インストール](img/database/sqlserver16.png)  
 
 #### ユーザー追加
-- 左メニューより、「セキュリティ」→「ログイン」を右クリックし、「新しいログイン」を選択します。
+1. 左のメニューで、「セキュリティ」→「ログイン」を右クリックし、「新しいログイン」を選びます。  
 ![SQL Server インストール](img/database/sqlserver17.png)  
 
-- ログイン名、パスワードを入力し、「SQL Server 認証」を選択します。「パスワード ポリシー」は、チェックを外すことを推奨します。(所属する会社・組織などのポリシーに従ってください。)
+2. ログイン名とパスワードを入力し、「SQL Server 認証」を選びます。「パスワード ポリシー」は、チェックを外すことをおすすめします。（所属する会社・組織などのポリシーに従ってください。）  
 ![SQL Server インストール](img/database/sqlserver18.png)    
 
-- 左上の「ユーザー マッピング」を選択します。  
-「このログインにマップされたユーザー」のデータベース一覧を、先ほど作成したデータベースを選択します。  
-「データベース ロール メンバーシップ」を、以下の内容を選択します。
+3. 左上の「ユーザー マッピング」を選びます。  
+「このログインにマップされたユーザー」のデータベースの一覧で、先ほど作ったデータベースを選びます。  
+「データベース ロール メンバーシップ」で、次のものを選びます。
    - db_backupoperator
    - db_ddladmin
    - db_datawriter
    - db_datareader
    - public
    - dbcreator(※手動でのデータのバックアップ・リストアに使用します。手動でのデータのバックアップ・リストアを実施する場合、チェックしてください。)
-![SQL Server インストール](img/database/sqlserver19.png)    
 
-- すべて完了したら、OKをクリックします。
+   ![SQL Server インストール](img/database/sqlserver19.png)    
+
+4. すべて終わったら、OK をクリックします。
 
 #### サーバーログイン設定
-- 左メニューより、左上のサーバーを右クリックし、「プロパティ」を選択します。
+1. 左のメニューで、左上のサーバーを右クリックし、「プロパティ」を選びます。  
 ![SQL Server インストール](img/database/sqlserver20.png) 
 
-- 「セキュリティ」メニューより、「サーバー認証」を「SQL Server 認証モードと Windows 認証モード」を選択し、OKをクリックします。  
+2. 「セキュリティ」メニューで、「サーバー認証」に「SQL Server 認証モードと Windows 認証モード」を選び、OK をクリックします。
 
-- スタートメニューボタンをクリックし、「サービス」と記入し、表示された「サービス」アプリを実行します。
+3. スタートメニューのボタンをクリックし、「サービス」と入力して、表示された「サービス」アプリを実行します。  
 ![SQL Server インストール](img/database/sqlserver11.png)  
 
-- 「サービス」アプリで、再度「SQL Server (エディション名)」を選択し、「サービスの再起動」をクリックします。
+4. 「サービス」アプリで、もう一度「SQL Server (エディション名)」を選び、「サービスの再起動」をクリックします。  
 ![SQL Server インストール](img/database/sqlserver12.png)  
 
 #### ポート確認
 - 「SQL Server 構成マネージャー」で、「TCP/IP」を右クリックし、「プロパティ」をクリックします。  
-その後、「IPアドレス」タブを開き、最下部の「TCP 動的ポート」の値を確認します。(後ほど使用します。)
+そのあと、「IPアドレス」タブを開き、いちばん下の「TCP 動的ポート」の値を確かめます。（あとで、Exment のデータベース設定で使います。）  
 ![SQL Server インストール](img/database/sqlserver9.png)  
 ![SQL Server インストール](img/database/sqlserver10.png)  
 
 
 ## 接続確認
-SQL Serverに接続できるかどうかの確認を行います。  
+SQL Server につながるかを確かめます。
 
-- 「SQL Server Management Studio」を実行します。
+1. 「SQL Server Management Studio」を実行します。  
 ![SQL Server インストール](img/database/sqlserver13.png)  
 
-- ログインを、以下の内容で実施します。
+2. 次の内容でログインします。
     - サーバー名：既定のサーバー名
     - 認証：SQL Server認証
     - ユーザー名：作成したユーザーのユーザー名
     - パスワード：作成したユーザーのパスワード
 
-![SQL Server インストール](img/database/sqlserver22.png)  
+    ![SQL Server インストール](img/database/sqlserver22.png)  
 
-- 正常にログインができることを確認してください。  
-設定が正常に完了していない場合、エラーが発生します。
+3. 正常にログインできることを確かめます。  
+設定が正しく終わっていないと、エラーが出ます。
 
 
 ## Exment設定
-ExmentからSQL Serverに接続するための環境構築・設定を行います。  
+Exment から SQL Server につなぐための、環境づくりと設定を行います。
 
 ### ドライバのインストール
-ドライバのインストールは、ExmentをインストールしているサーバーのOSにより、手順が異なります。
+ドライバー（PHP から SQL Server につなぐための部品）を入れます。Exment を入れているサーバーの OS によって、手順が違います。
 
 #### Windows
-- 以下のコマンドを実行します。  
-実行結果で、ファイルパスが出力されるので、ファイルパスをメモします。
+1. 次のコマンドを実行します。  
+結果にファイルパスが出るので、メモします。
 
 ```
 php -i | find "extension_dir"
@@ -128,23 +137,20 @@ extension_dir => C:\xampp\php\ext => C:\xampp\php\ext
 ```
 
 
-- 下記のサイトより、PHPからMicrosoft SQL Serverに接続するためのドライバをダウンロードします。  
+2. 次のサイトから、PHP から Microsoft SQL Server につなぐためのドライバーをダウンロードします。  
 [https://docs.microsoft.com/ja-jp/sql/connect/php/download-drivers-php-sql-server?view=sql-server-ver15]
 
-- ダウンロードしたEXEファイルを実行します。
-
-- 実行することで、以下のようなダイアログが表示されます。  
+3. ダウンロードした EXE ファイルを実行します。次のようなダイアログが出ます。  
 ![SQL Server インストール](img/database/sqlserver2.png)
 
-- 上記のコマンド結果のファイルパスを貼り付け、「OK」をクリックします。
+4. 手順 1 でメモしたファイルパスを貼り付け、「OK」をクリックします。  
 ![SQL Server インストール](img/database/sqlserver3.png)
 
-- その結果、sqlserver接続用のdllファイルが、PHPの拡張ライブラリフォルダに配置されます。
+5. SQL Server につなぐための dll ファイルが、PHP の拡張ライブラリのフォルダーに置かれます。  
 ![SQL Server インストール](img/database/sqlserver4.png)
 
-- php.iniファイルを開きます。
-
-- ファイルの末尾に、以下の内容を記入します。※ファイル名は、コメントの内容に従い、適宜変更を行ってください。
+6. php.ini ファイルを開き、ファイルの最後に、次の内容を書きます。  
+※ファイル名は、コメントの内容に合わせて変えてください。
 
 ```
 extension=php_pdo_sqlsrv_72_ts_x64.dll
@@ -153,18 +159,18 @@ extension=php_pdo_sqlsrv_72_ts_x64.dll
 # "x64"部分：コマンド「php -v」を実施時に、1行目に「x64」が含まれていれば「x64」を、そうでなければ「x86」を記入
 ```
 
-- PHPを再起動します。これにて、Windowsでの設定は完了です。
+7. PHP を再起動します。これで、Windows での設定は終わりです。
 
 
 #### Linux
 
-[こちら](https://docs.microsoft.com/ja-jp/sql/connect/php/installation-tutorial-linux-mac?view=sql-server-ver15)の手順に従い、各OSに、ODBC ドライバー・PHP ドライバーをインストールしてください。
+[こちら](https://docs.microsoft.com/ja-jp/sql/connect/php/installation-tutorial-linux-mac?view=sql-server-ver15)の手順のとおりに、それぞれの OS に、ODBC ドライバーと PHP ドライバーをインストールしてください。
 
 
 ### Exment設定
-- その後は、[インストール手順](/ja/quickstart)に従い、各種インストールを進めてください。
+- このあとは、[インストール手順](/ja/quickstart)のとおりに、インストールを進めてください。
 
-- データベース設定画面で入力する値は、以下の値を使用してください。  
+- データベース設定の画面では、次の値を入力してください。
     - データベースの種類 : SQL Server
     - データベースのホスト名 : サーバー名
     - データベースのポート番号 : TCP/IP画面で確認したポート番号

@@ -3,17 +3,15 @@
 
 ![使用可能文字](img/quickstart/available_characters1.png)
 
-この項目に加え、独自の項目を追加するための手順を記載します。
+このページでは、ここに独自の項目(例：「ひらがな」「カタカナ」)を追加する手順を説明します。
 
 ### 設定手順 
 
-- プロジェクトのルートフォルダより、「app/Exment」フォルダを開きます。
-
-- その後、作成されている「bootstrap.php」ファイルを開きます。
+**(1)** プロジェクトのルートフォルダにある「app/Exment」フォルダを開き、その中の「bootstrap.php」ファイルを開きます。
 
 > 「app/Exment/bootstrap.php」ファイルが存在しない場合、手動でフォルダ・phpファイルを作成してください。
 
-- 以下のような記載を追加してください。
+**(2)** 次のような記載を追加して、保存します。
 
 ``` php
 \Exceedone\Exment\Model\CustomColumn::customAvailableCharacters([
@@ -30,12 +28,12 @@
 ]);
 ```
 
-- これにより、使用可能文字の選択肢が追加されます。
+**(3)** 「使用可能文字」に、追加した選択肢が表示されます。
 
 ![使用可能文字](img/quickstart/available_characters2.png)
 
 
-- 保存し、設定完了です。
+これで設定は完了です。
 
 
 [←追加設定一覧へ戻る](/ja/quickstart_more)

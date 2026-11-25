@@ -1,6 +1,6 @@
 ## プラグイン(API)
-Exmentに新しいAPIを作成することができます。  
-[APIリファレンス](https://exment.net/reference/ja/webapi.html)に存在しない機能を追加する場合にご利用ください。  
+Exmentに、新しいAPIを追加するプラグインです。
+[APIリファレンス](https://exment.net/reference/ja/webapi.html)にない機能を追加したいときにご利用ください。
 
 ## はじめに
 ExmentのAPIプラグインは、PHPのフレームワーク[Laravel](http://laravel.jp/) を使用して開発します。  
@@ -42,15 +42,15 @@ APIの開発を行う場合には、特にLaravelの知識がある方が開発�
 ~~~
 
 - plugin_nameは、半角英数で記入してください。
-- uuidは、32文字列+ハイフンの、合計36文字の文字列です。プラグインを一意にするために使用します。  
-以下のURLなどから、作成を行ってください。  
+- uuidは、プラグインを見分けるための文字列です。32文字とハイフンで、合計36文字です。ほかのプラグインと同じ値にならないようにします。  
+次のURLなどで作れます。  
 https://www.famkruithof.net/uuid/uuidgen
 - plugin_typeは、apiと記入してください。  
-- uriは、このプラグイン共通のエンドポイントを記入してください。プラグイン管理画面で設定し直すことができます。  
-- routeは、処理毎のエンドポイントとHTTPメソッド、Contoller内でのメソッド名を一覧で定義します。
+- uriには、このプラグイン共通のエンドポイントを記入してください。後から、プラグイン管理画面で設定し直すことができます。
+- routeには、処理ごとのエンドポイントとHTTPメソッド、Controller内でのメソッド名を一覧で定義します。
     - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/api/plugins/(プラグイン共通のエンドポイント)/(指定したuri)」になります。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
-    - function：実行するContoller内のメソッド名です。
+    - function：実行するController内のメソッド名です。
     - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「admin/api/plugins/sampleapi/column（メソッド：GET）」。
 
 > ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
@@ -120,13 +120,13 @@ class Plugin extends PluginApiBase
 }
 ~~~
 
-- (1) namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
+- (1) namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)** としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 また、クラス名は「Plugin」とし、PluginApiBaseを継承してください。
 
 - (2) クラス内のpublicメソッド名は、config.jsonのfunctionに記載の名称になります。  
 
-- (3) カスタムテーブル情報のメソッドhasPermissionを呼び出すと、現在のユーザーがそのテーブルに対して権限を所持しているかをチェックできます。  
+- (3) カスタムテーブル情報のメソッドhasPermissionを呼び出すと、現在のユーザーがそのテーブルの権限を持っているかをチェックできます。チェックできる権限は、次のとおりです。
     - AVAILABLE_ACCESS_CUSTOM_VALUE：アクセス権限
     - AVAILABLE_VIEW_CUSTOM_VALUE：参照権限
     - AVAILABLE_EDIT_CUSTOM_VALUE：編集権限
@@ -144,8 +144,7 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 
 
 ### アクセス
-URLを入力し、APIにアクセスを行います。  
-URLは、以下のように設定されます。  
+次のURLで、APIにアクセスします。
 http(s)://(ExmentのURL)/api/plugins/(プラグイン名)  
 
 例：プラグイン名が"sampleapi"の場合  
@@ -153,9 +152,9 @@ http(s)://(ExmentのURL)/api/plugins/sampleapi
 
 
 ### その他
-- プラグインで作成したAPIにアクセスする場合、APIスコープは「plugin」にする必要があります。（トークン取得時に指定してください。）  
+- プラグインで作成したAPIにアクセスするには、APIスコープを「plugin」にする必要があります。（トークン取得時に指定してください。）
 
-- 特定のID値のデータを取得したい場合など、URLでパラメータを指定する場合はconfig.jsonのroute→urlに以下のような記述を追加してください。「{id}」や「{table}」のように指定することができます。  
+- 特定のID値のデータを取得する場合など、URLでパラメータを指定したいときは、config.jsonのroute→urlに、以下のような記述を追加してください。「{id}」や「{table}」のように指定できます。
 
 ~~~ json
 

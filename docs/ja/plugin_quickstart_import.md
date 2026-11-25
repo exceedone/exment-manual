@@ -1,14 +1,15 @@
 # プラグイン(インポート)
-カスタムデータへのインポート処理を独自に実装することができます。  
-既存システムで出力したファイル等をExmentに取り込む場合は、このプラグインの使用をおすすめします。  
+カスタムデータへのインポート処理を、独自に実装するプラグインです。
+既存システムで出力したファイルなどをExmentに取り込む場合に、おすすめです。
 
 ![インポート実装例](img/plugin/plugin_import2.png)   
 
 
 ## 作成方法
-「見積書（Excel）を契約テーブルと契約明細テーブルにインポートする」プラグインを例として、作成手順を記載します。  
-※見積書のヘッダ部分には契約テーブルに関する情報、明細部分には契約明細テーブルに関する情報が記載されているものとします。  
-※前提として、PHP及びフレームワーク[Laravel](http://laravel.jp/)、PHPでExcelを操作するためのライブラリ[PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet)の知識が必要になります。
+「見積書（Excel）を契約テーブルと契約明細テーブルにインポートする」プラグインを例に、作成手順を説明します。
+
+- 見積書のヘッダ部分には契約テーブルの情報、明細部分には契約明細テーブルの情報が書かれているものとします。
+- 前提として、PHP、フレームワーク[Laravel](http://laravel.jp/)、PHPでExcelを操作するためのライブラリ[PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet)の知識が必要です。
 
 ### config.json作成
 - 以下のconfig.jsonファイルを作成します。  
@@ -29,8 +30,8 @@
 ~~~
 
 - plugin_name : プラグイン名です。半角英数で記入してください。
-- uuid : 32文字列+ハイフンの、合計36文字の文字列です。プラグインを一意にするために使用します。  
-以下のURLなどから、作成を行ってください。  
+- uuid : プラグインを見分けるための文字列です。32文字とハイフンで、合計36文字です。ほかのプラグインと同じ値にならないようにします。  
+次のURLなどで作れます。  
 https://www.famkruithof.net/uuid/uuidgen
 - plugin_type : importと記入してください。  
 - target_tables : インポート対象のテーブル名を記入してください。  
@@ -111,7 +112,7 @@ class Plugin extends PluginImportBase{
     
 }
 ~~~
-- namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
+- namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)** としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
 - Pluginクラスは、クラスPluginImportBaseを継承する必要があります。  
 
@@ -128,12 +129,13 @@ class Plugin extends PluginImportBase{
 
 
 ### インポートの実行方法
-プラグイン管理画面で登録したtarget_tablesの画面で、インポートダイアログを開くと、インポートプラグインの選択欄が表示されます。登録したプラグインを選択して、送信ボタンを押下すると、Plugin.phpのexecute関数の内容でインポート処理が実行されます。  
+1. プラグイン管理画面で登録したtarget_tablesの画面で、インポートダイアログを開きます。インポートプラグインの選択欄が表示されます。
+2. 登録したプラグインを選択して、送信ボタンを押します。Plugin.phpのexecute関数の内容で、インポート処理が実行されます。
 ![インポートダイアログ](img/plugin/plugin_import1.png)  
 
 
 ### サンプルプラグイン
-※こちらのサンプルプラグインは、テンプレート設定で、「製品販売会社用テンプレート」の追加を行ってください。  
+※このサンプルプラグインを使うには、テンプレート設定で、「製品販売会社用テンプレート」を追加してください。
 [契約データのインポートプラグイン](https://github.com/exment-git/plugin-sample/tree/main/import/PluginImportContract)  
 [契約データの取込ファイル](https://exment.net/downloads/sample/plugin/PluginImportContract/contract_sample.xlsx)  
 

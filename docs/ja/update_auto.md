@@ -1,53 +1,61 @@
 # (上級者向け)自動アップデート
-あらかじめ定期更新処理を設定する事により、Exmentのバージョンが更新された場合に、自動的にアップデートを行います。  
+Exment の新しい版が出たときに、自動でアップデートするための設定です。  
+サーバーに、毎日決まった時間に動く処理（定期更新処理）を登録しておきます。
+
+- ふつうのアップデートのしかたや、どの範囲の版まで上がるかは、[アップデート](/ja/update)をご覧ください。
 
 ## 自動アップデート仕様
+登録した処理は、毎回、次のことを行います。
+
 - Web APIを実行し、Exmentの最新バージョン情報(1)を取得する
 - インストールされているExmentのバージョン(2)を取得する
 - (2)より(1)が新しければ、アップデートバッチを実行する
 - なお、(2)が「dev」からはじまるバージョンであれば、アップデートは行わない
 
 ## 設定方法
-LinuxとWindowsによって、手順が異なりますので、それぞれの手順を記載します。   
+Linux と Windows で、手順が違います。
+
+| サーバー | 見るところ | 使うもの |
+|---|---|---|
+| Linux（さくらインターネット、XServer を含む） | 設定手順(Linux) | アップデートバッチ、ExmentAutoUpdate.bash、jq、cron |
+| Windows | 設定手順(Windows) | アップデートバッチ、ExmentAutoUpdate.exe、タスクスケジューラ |
 
 ### 設定手順(Linux)
-- [アップデートバッチ](/ja/update)をダウンロードし、Exmentプロジェクトフォルダに配置します。  
-環境によって、以下のファイルをダウンロードしてください。
-    - さくらインターネットの場合 : ExmentUpdateLinuxSakura.sh
-    - XServerの場合 : ExmentUpdateLinuxXserver.sh
-    - それ以外の場合 : ExmentUpdateLinux.sh
+**(1) アップデートバッチを置く**
+
+[アップデートバッチ](/ja/update)をダウンロードし、Exment のプロジェクトフォルダーに置きます。  
+環境に合わせて、次のファイルをダウンロードしてください。
+
+- さくらインターネットの場合 : ExmentUpdateLinuxSakura.sh
+- XServerの場合 : ExmentUpdateLinuxXserver.sh
+- それ以外の場合 : ExmentUpdateLinux.sh
 
 > アップデートを行うシェルが更新されましたので、[アップデート](/ja/update)をご確認いただき、差し替えをお願いします。  
 シェルファイルの2行目に「v1.1.0」以上のバージョンが記載されていることをご確認ください。
 
+**(2) 更新チェック用のバッチをダウンロードする**
 
-- 以下のコマンドを、Exmentのルートディレクトリで実行し、ダウンロードを行ってください。
+次のコマンドを、Exment のプロジェクトのルートディレクトリで実行します。
+
 ~~~
 wget https://exment.net/downloads/cmd/ExmentAutoUpdate.bash
 chmod 775 ExmentAutoUpdate.bash
 ~~~
 
+**(3) 「jq」を入れる**
 
-- ライブラリ「jq」をインストールします。  
-以下のコマンドを実行し、「jq」コマンドがインストールされているかどうかを確認します。
+「jq」というライブラリを使います。次のコマンドで、「jq」コマンドが入っているかを確かめます。
 
 ```
 jq --help
 ```
 
-- 「コマンドがありません」のような表記が表示された場合、jqコマンドがインストールされていません。  
-[公式ドキュメントの方法](https://stedolan.github.io/jq/download/)で、jqコマンドをインストールしてください。
+- 「コマンドがありません」のような表示が出た場合は、jq コマンドが入っていません。  
+[公式ドキュメントの方法](https://stedolan.github.io/jq/download/)で、jq コマンドをインストールしてください。
 
+**(4) アップデートバッチに、composer の場所を書く**
 
-- 以下のコマンドを、Exmentプロジェクトのルートディレクトリで実行し、更新チェック用バッチのダウンロードを行ってください。
-
-~~~
-wget https://exment.net/downloads/cmd/ExmentAutoUpdate.bash
-chmod 775 ExmentAutoUpdate.bash
-~~~
-
-
-- composerのパスをコピーします。以下のコマンドを任意のパスで実行し、結果をコピーします。
+composer のパスを調べます。次のコマンドを任意のパスで実行し、結果をコピーします。
 
 ```
 which composer
@@ -55,8 +63,8 @@ which composer
 # /home/xxx/usr/local/bin/composer
 ```
 
-- ダウンロードしたExmentUpdateLinux.sh(または、ExmentUpdateLinuxSakura.sh、ExmentUpdateLinuxXServer.sh)を編集します。  
-ファイル内のcomposer_pathの値を、「which composer」の結果に変更します。
+ダウンロードしたExmentUpdateLinux.sh(または、ExmentUpdateLinuxSakura.sh、ExmentUpdateLinuxXServer.sh)を編集します。  
+ファイルの中の composer_path の値を、「which composer」の結果に変えます。
 
 ```
 # composer_path=''
@@ -64,15 +72,15 @@ which composer
 composer_path='/home/xxx/usr/local/bin/composer'
 ```
 
+**(5) cron に登録する**
 
-
-- 以下のコマンドを実行します。
+次のコマンドを実行します。
 
 ~~~
 crontab -e
 ~~~
 
-- Cronの設定画面が表示されるので、以下の内容を記入します。
+Cron の設定画面が出るので、次の内容を書きます。
 
 ~~~
 
@@ -85,7 +93,7 @@ crontab -e
 
 #### 以下、XServerの場合、追加で実施
 
-- 以下のコマンドを実行し、HOMEパスを取得します。
+- 次のコマンドを実行し、HOME パスを調べます。
 
 ```
 echo $HOME
@@ -93,8 +101,8 @@ echo $HOME
 # /home/xxx
 ```
 
-- その後、ダウンロードしたExmentUpdateLinuxXServer.shを編集します。  
-home_pathの値を、「echo $HOME」の結果に変更します。
+- そのあと、ダウンロードしたExmentUpdateLinuxXServer.shを編集します。  
+home_path の値を、「echo $HOME」の結果に変えます。
 
 ```
 # home_path=''
@@ -104,18 +112,20 @@ home_path='/home/xxx'
 
 
 #### 設定完了
-- これにより、毎日決まった時間に、ExmentAutoUpdate.bashが実行され、最新版があった場合に、自動的にバージョンアップが行われます。
-- 自動アップデートの実行ログは、storage/logs/ExmentAutoUpdate.logに保持されます。
+- これで、毎日決まった時間に ExmentAutoUpdate.bash が動きます。最新版があれば、自動でバージョンアップします。
+- 自動アップデートの実行ログは、storage/logs/ExmentAutoUpdate.log に残ります。
 
 
 
 
 ### 設定手順(Windows)
-- [アップデートバッチ ExmentUpdateWindows.bat](https://exment.net/downloads/cmd/ExmentUpdateWindows.bat)をダウンロードし、Exmentプロジェクトフォルダに配置します。  
+**(1) アップデートバッチと、自動アップデートのプログラムを置く**
 
-- [こちら](https://exment.net/downloads/cmd/ExmentAutoUpdateWindows.zip)より、自動アップデートプログラムのzipをダウンロードします。  
+1. [アップデートバッチ ExmentUpdateWindows.bat](https://exment.net/downloads/cmd/ExmentUpdateWindows.bat)をダウンロードし、Exment のプロジェクトフォルダーに置きます。
 
-- ダウンロードしたzipファイルを解凍し、Exmentプロジェクトフォルダに、"ExmentAutoUpdateWindows"フォルダごと配置します。
+2. [こちら](https://exment.net/downloads/cmd/ExmentAutoUpdateWindows.zip)から、自動アップデートプログラムの zip をダウンロードします。
+
+3. ダウンロードした zip ファイルを解凍し、Exment のプロジェクトフォルダーに、"ExmentAutoUpdateWindows"フォルダーごと置きます。
 
 ```
 # フォルダ階層(一部)
@@ -129,40 +139,42 @@ home_path='/home/xxx'
     - Newtonsoft.Json.dll
 ```
 
+**(2) タスクスケジューラに登録する**
 
-- windowsメニューで、「task」と入力し、タスクスケジューラを起動します。  
+1. Windows のメニューで「task」と入力し、タスクスケジューラを起動します。  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_windows2.png)
 
-- タスクスケジューラで、「タスクの作成」をクリックします。
+2. タスクスケジューラで、「タスクの作成」をクリックします。  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_windows6.png)
 
-- 「全般」タブで、以下のように設定します。（「名前」は任意の名称です）
+3. 「全般」タブで、次のように設定します。（「名前」は任意の名称です）  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_windows1.png)
 
-- 「トリガー」タブをクリックします。2つのトリガーを作成します。  
+4. 「トリガー」タブをクリックします。2つのトリガーを作成します。  
     (1)「新規」ボタンをクリックします。  
-    その後、以下のように入力します。  
+    そのあと、次のように入力します。  
     - タスクの開始：スケジュールに従う
     - 開始：開始する日付の、実行時間
     - 間隔：1日
     - 「有効」にチェック  
-    完了したら「OK」をクリックします。  
+    終わったら「OK」をクリックします。  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_update_windows1.png)
 
-- 「操作」タブで、「新規」ボタンをクリックします。  
-その後、以下のように入力します。
+5. 「操作」タブで、「新規」ボタンをクリックします。  
+そのあと、次のように入力します。
     - 操作：プログラムの開始
     - プログラム/スクリプト：配置した「ExmentAutoUpdate.exe」までのパス
-![Windowsタスクスケジューラ設定](img/quickstart/task_update_windows2.png)
 
-- ノートPCの場合、「条件」タブで、「コンピューターをAC電源で使用している場合のみタスクを開始する」のチェックを外します。 
+    ![Windowsタスクスケジューラ設定](img/quickstart/task_update_windows2.png)
+
+6. ノート PC の場合は、「条件」タブで、「コンピューターをAC電源で使用している場合のみタスクを開始する」のチェックを外します。  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_windows9.png)
 
-- これらの設定が完了したら、OKをクリックします。  
-その後、ユーザーの資格情報を入力する画面が表示されるので、パスワードを入力してください。  
+7. ここまで設定したら、OK をクリックします。  
+そのあと、ユーザーの資格情報を入力する画面が出るので、パスワードを入力してください。  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_windows7.png)
 
-- 設定完了後、「タスク スケジューラ ライブラリ」にて、作成したタスクを選択肢、「実行」をクリックしてください。 
+8. 設定が終わったら、「タスク スケジューラ ライブラリ」で、作ったタスクを選び、「実行」をクリックしてください。  
 ![Windowsタスクスケジューラ設定](img/quickstart/task_windows8.png)
 
 これで設定完了です。
@@ -172,5 +184,5 @@ home_path='/home/xxx'
 
 
 #### 設定完了
-- これにより、毎日決まった時間に、ExmentAutoUpdate.exeが実行され、最新版があった場合に、自動的にバージョンアップが行われます。
+- これで、毎日決まった時間に ExmentAutoUpdate.exe が動きます。最新版があれば、自動でバージョンアップします。
 

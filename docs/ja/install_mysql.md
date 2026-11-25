@@ -1,17 +1,24 @@
 # MySQLインストール手順
-Exmentで、MySQLを使用するための手順です。  
-※各種手順は、OSやバージョン、インストール時期などにより、異なる場合があります。  
+Exment で MySQL を使うために、MySQL をインストールして設定する手順です。  
+※手順は、OS・バージョン・インストールする時期などによって、違うことがあります。  
+
+お使いのサーバーに合わせて、次のどちらかをご覧ください。
+
+| サーバー | 見るところ |
+| ---- | ---- |
+| Windows | 下の「MySQL設定(Windows)」 |
+| Linux | 下の「MySQL設定(Linux)」（MySQL5.7 がすでにあるかどうかで、手順が分かれます） |
 
 
 ## MySQL設定(Windows)
 
 
-- 推奨：アップグレード前に[データベースバックアップ](https://dev.mysql.com/doc/refman/8.4/ja/mysqldump-sql-format.html)を取得してください。
+- 推奨：アップグレードの前に、[データベースバックアップ](https://dev.mysql.com/doc/refman/8.4/ja/mysqldump-sql-format.html)を取ってください。
 
-- (MySQLが起動している場合) 管理者としてコマンドプロンプトを起動し、MySQLを停止します。  
-スタートボタン右側にある「検索バー」へ「コマンドプロンプト」と入力します。  
-表示される「最も一致される検索結果」の上段に表示される 「コマンドプロンプト」を右クリックします。  
-右クリックで表示されたメニューの中から「管理者として実行」を選択します。
+- (MySQLが起動している場合) 管理者としてコマンドプロンプトを開き、MySQL を止めます。  
+スタートボタンの右にある「検索バー」に、「コマンドプロンプト」と入力します。  
+「最も一致される検索結果」の上の段に出る「コマンドプロンプト」を、右クリックします。  
+出てきたメニューから、「管理者として実行」を選びます。
 ![MySQLインストール画面](img/xampp/mysql_cmd1.png)   
 
 ~~~
@@ -19,40 +26,40 @@ net stop mysql57
 net stop mysql80
 ~~~
 
-- 以下のサイトにアクセスし、MySQLをダウンロードします。  
-※MySQL InstallerはMySQL 8.0系のみ提供されています。MySQL 8.1以降(8.4含む)は、MySQL ServerをMSIまたはZIPでダウンロードしてください。  
+- 次のサイトを開き、MySQL をダウンロードします。  
+※MySQL Installer は、MySQL 8.0系だけに用意されています。MySQL 8.1以降(8.4含む)は、MySQL Server を MSI または ZIP でダウンロードしてください。  
 [MySQL Community Server Downloads](https://downloads.mysql.com/archives/community/)  
 
-- Select Versionで「8.4.X」を選択し、OSはWindows (x86, 64-bit)を選択します。  
+- Select Version で「8.4.X」を選び、OS は Windows (x86, 64-bit) を選びます。  
 ![MySQLインストール画面](img/xampp/mysql18.png)
 
 - 以下のいずれかをダウンロードします。
 	- MSI Installer
 ![MySQLインストール画面](img/xampp/mysql19.png)
 
-- ダウンロードしたMSIファイルを実行し、ウィザードに従ってインストールします。
+- ダウンロードした MSI ファイルを実行し、画面の案内（ウィザード）にそってインストールします。
 	- Welcome画面で「Next」をクリックします。
 
 		![MySQLインストール画面](img/xampp/mysql30.png)
 	- License Agreementに同意し、「Next」をクリックします。
 
 		![MySQLインストール画面](img/xampp/mysql20.png)
-	- Setup Typeは「Complete」を選択します。
+	- Setup Type は「Complete」を選びます。
 
 		![MySQLインストール画面](img/xampp/mysql21.png)
 	- 「Install」をクリックします。
 
 		![MySQLインストール画面](img/xampp/mysql22.png)
-	- インストールが完了したら「Finish」をクリックします。
+	- インストールが終わったら「Finish」をクリックします。
 
 		![MySQLインストール画面](img/xampp/mysql23.png)
 
-- MSIのインストール完了後、MySQL Server Configuratorが自動的に起動します。
+- MSI のインストールが終わると、MySQL Server Configurator が自動で開きます。
 	- 「Welcome to the MySQL Server Configurator」で「Next」をクリックします。
 
 		![MySQLインストール画面](img/xampp/mysql31.png)
 
-- Data Directoryは既定のまま「Next」をクリックします。
+- Data Directory は、はじめの値のまま「Next」をクリックします。
 
 	![MySQLインストール画面](img/xampp/mysql32.png)
 
@@ -63,27 +70,27 @@ net stop mysql80
 
 		![MySQLインストール画面](img/xampp/mysql33.png)
 
-- Accounts and Roles: rootユーザーのパスワードを設定して「Next」をクリックします。
+- Accounts and Roles: root ユーザーのパスワードを決めて「Next」をクリックします。
 
 	![MySQLインストール画面](img/xampp/mysql34.png)
 
-- Windows Service: サービス名(例: MySQL84)を設定して「Next」をクリックします。
+- Windows Service: サービス名(例: MySQL84)を決めて「Next」をクリックします。
 
 	![MySQLインストール画面](img/xampp/mysql35.png)
 
-- Server File Permissionsは既定のまま「Next」をクリックします。
+- Server File Permissions は、はじめの値のまま「Next」をクリックします。
 
 	![MySQLインストール画面](img/xampp/mysql36.png)
 
-- Sample Databasesはスキップして「Next」をクリックします。
+- Sample Databases はスキップして「Next」をクリックします。
 
 	![MySQLインストール画面](img/xampp/mysql37.png)
 
-- Apply Configurationで「Execute」をクリックし、完了後に「Next」「Finish」をクリックします。
+- Apply Configuration で「Execute」をクリックし、終わったら「Next」「Finish」をクリックします。
 
 	![MySQLインストール画面](img/xampp/mysql38.png)
 
-- my.iniを修正します。(C:\ProgramData\MySQL\MySQL Server 8.4\my.ini)
+- my.ini を直します。(C:\ProgramData\MySQL\MySQL Server 8.4\my.ini)
 
 ~~~
 # 以下の記述を、末尾に追加
@@ -91,7 +98,7 @@ net stop mysql80
 local-infile=1
 ~~~
 
-- MySQLを再起動します。(サービス名は環境により異なります)
+- MySQL を再起動します。(サービス名は、環境によって違います)
 
 ~~~
 net stop MySQL84
@@ -113,20 +120,27 @@ net start MySQL84
 ![MySQL環境変数](img/xampp/mysql_command4.png)
 
 
-- 「C:\Program Files\MySQL\MySQL Server 5.7\bin」変数が存在する場合は、削除します。
+- 「C:\Program Files\MySQL\MySQL Server 5.7\bin」の行があるときは、削除します。
 ![MySQL環境変数](img/xampp/mysql_command_env1.png)
 
-- 「新規」をクリックし、以下の行を追加します。  
+- 「新規」をクリックし、次の行を追加します。  
  「C:\Program Files\MySQL\MySQL Server 8.4\bin」   
 ![MySQL環境変数](img/xampp/mysql_command_env4.png)
 
-- 入力を行ったら、起動したダイアログをすべて「OK」をクリックし、完了させます。  
+- 入力したら、開いているダイアログをすべて「OK」で閉じます。  
 
 
 ## MySQL設定(Linux)
-LinuxでのMySQLのインストール手順です。  
-※必要に応じて、コマンドの頭にsudoを付与してください。  
-※インストール先がCentOS8、RHEL8等の場合はyumではなくdnfコマンドをご利用ください。
+Linux に MySQL をインストールする手順です。  
+※必要なら、コマンドの頭に sudo を付けてください。  
+※インストール先が CentOS8・RHEL8 などのときは、yum ではなく dnf コマンドをお使いください。
+
+MySQL5.7 がすでに入っているかどうかで、手順が違います。
+
+| いまの状態 | 見るところ |
+| ---- | ---- |
+| MySQL5.7 が入っている | 「MySQL5.7が存在する場合（MySQL5.7→MySQL8.4へアップデート）」 |
+| MySQL5.7 が入っていない | 「MySQL5.7が存在しない場合（MySQL8.4の新規インストール）」 |
 
 ### MySQL5.7が存在する場合（MySQL5.7→MySQL8.4へアップデート）
 - MySQL5.7のパッケージを削除します。
@@ -312,9 +326,9 @@ local-infile=1
 sudo systemctl restart mysqld
 ~~~
 
-- Exment用のデータベースと、ユーザーを作成します。  
+- Exment 用のデータベースと、ユーザーを作ります。  
 ※ここでは、データベース名を「exment_database」、ユーザーを「exment_user」とします。  
-また、接続元のIPアドレスを「192.168.137.%」とします。
+また、接続元の IP アドレスを「192.168.137.%」とします。
 
 ~~~
 CREATE DATABASE exment_database;
@@ -323,7 +337,7 @@ GRANT ALL ON exment_database.* TO 'exment_user'@'192.168.137.%';
 FLUSH PRIVILEGES;
 ~~~
 
-- ファイアウォール設定で、接続元のIPアドレスからのMySQLアクセスのみ許可します。  
+- ファイアウォールの設定で、接続元の IP アドレスからの MySQL へのアクセスだけを許可します。  
 ※ここでは、接続元のIPアドレスを「192.168.137.%」とします。
 
 ~~~

@@ -1,23 +1,21 @@
 # (上級者向け)セッション・キャッシュのドライバ変更
-Exmentでは標準設定の場合、セッション・キャッシュは、Webサーバー上のファイルに保持します。  
-ですが、Webサーバー以外の場所に保存したい場合も考えられます。例えば、以下のような場合です。
+セッション（ログインの状態など）とキャッシュ（一時的に取っておくデータ）の保存先を変える設定です。  
+標準では、Web サーバーの上のファイルに保存します。次のようなときに、保存先を変えます。
 
-- Radisやmemcachedを使用し、高速化を図る
-- 冗長化を行うため、Webサーバー以外の場所に保存する
-
-このように、セッション・キャッシュの保存先を変更したい場合の設定方法を記載します。  
+- Redis や memcached を使って、速くしたい
+- 冗長化（サーバーを複数台にすること）のために、Web サーバー以外の場所に保存したい
 
 ## 設定方法
 
 ### Redis
-セッション管理を、Redisで行う場合の手順です。  
-Webサーバー側の手順と、Redisサーバー側の手順を記載します。  
-※AWS Redisを使用する場合など、外部サービスを使用する場合は、Redisサーバー側の手順は不要です。Webサーバー側だけ、設定を行ってください。
+セッションの管理を、Redis で行うときの手順です。  
+Redis サーバー側の手順と、Web サーバー側の手順があります。  
+※AWS Redis など、外部のサービスを使うときは、Redis サーバー側の手順はいりません。Web サーバー側だけ、設定してください。
 
 #### Redisサーバー側
-> CentOSで設定を行う場合の手順です。
+> CentOS で設定するときの手順です。
 
-- 以下のコマンドを実行します。
+**(1) 次のコマンドを実行します。**
 
 ~~~
 yum -y install epel-release
@@ -25,7 +23,7 @@ yum install -y redis
 systemctl enable redis
 ~~~
 
-- 以下のコマンドを実行し、Redisの設定を変更します。
+**(2) 次のコマンドを実行し、Redis の設定を変えます。**
 
 ~~~
 vi /etc/redis.conf
@@ -35,7 +33,7 @@ vi /etc/redis.conf
 bind 0.0.0.0
 ~~~
 
-- ファイアウォール設定で、接続元のIPアドレスからのRedisアクセスのみ許可します。  
+**(3) ファイアウォールの設定で、接続元の IP アドレスからの Redis へのアクセスだけを許可します。**
 
 ~~~
 firewall-cmd --permanent --new-zone=from_webserver
@@ -46,20 +44,20 @@ firewall-cmd --zone=from_webserver --add-service=redis
 firewall-cmd --reload
 ~~~
 
-- サービスを開始します。
+**(4) サービスを開始します。**
 
 ~~~
 systemctl start redis.service
 ~~~
 
 #### Webサーバー側
-- 以下のコマンドを、プロジェクトのルートフォルダで実行します。
+**(1) 次のコマンドを、プロジェクトのルートフォルダで実行します。**
 
 ~~~
 composer require predis/predis
 ~~~
 
-- .envファイルを開き、以下の設定値を追加・変更します。  
+**(2) .env ファイルを開き、次の設定値を追加・変更します。**
 
 ~~~
 CACHE_STORE=redis #キャッシュの保存先を変更する場合。redisに書き換え(Exment v7.0.0以降で新規インストールした場合)
@@ -71,8 +69,14 @@ REDIS_PASSWORD=XXXXXX #redisのパスワード、設定した場合のみ記述
 REDIS_PORT=6379 #redisのポート番号、6379でない場合のみ記述
 ~~~
 
-※キャッシュの保存先の設定名は、「config/cache.php」の「default」に記載されている名前を使用します。Exment v7.0.0以降で新規インストールした場合は「CACHE_STORE」、v6.x以前からアップデートした場合(「config/cache.php」がv6.xのまま)は「CACHE_DRIVER」です。  
-※「REDIS_CLIENT=predis」を記載しない場合、PHPの拡張機能「phpredis」で接続しようとするため、「Class "Redis" not found」のエラーが発生します。
+- キャッシュの保存先の設定名は、「config/cache.php」の「default」に書いてある名前を使います。
+
+| サイト | 設定名 |
+| ---- | ---- |
+| Exment v7.0.0以降で新規インストールした場合 | 「CACHE_STORE」 |
+| v6.x以前からアップデートした場合(「config/cache.php」がv6.xのまま) | 「CACHE_DRIVER」 |
+
+- 「REDIS_CLIENT=predis」を書かないと、PHP の拡張機能「phpredis」でつなごうとするため、「Class "Redis" not found」のエラーになります。
 
 
 [←追加設定一覧へ戻る](/ja/quickstart_more)

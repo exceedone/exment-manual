@@ -1,5 +1,6 @@
 # プラグイン(イベント)
-Exmentの画面上で特定の操作を行った場合に実行され、値の更新などの処理を行うことができます。  
+Exmentの画面で特定の操作（データの保存、ワークフローの実行など）をしたときに実行され、値の更新などの処理を行うことができます。  
+このページでは、プラグイン(イベント)の作り方を説明します。config.jsonとPlugin.phpを作り、zipに圧縮してアップロードします。  
 
 > この機能は、v3.2.0より追加されました。
 
@@ -85,10 +86,10 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 [外部データベース連携](https://github.com/exment-git/plugin-sample/tree/main/event/PluginSyncCity)  
 - カスタムデータの保存を行った際に、外部データベースとの連携を行うサンプルです。  
 - Exmentの都市テーブルで追加・更新・削除を行うと、外部データベースのcityテーブルに反映されます。  
-- 事前準備として、以下の処理を実行してください。
+- 事前準備として、以下の処理を順に実行してください。
     1. Exmentの管理者設定→テンプレートから、[テンプレート](https://exment.net/downloads/sample/template/city_template.zip)をインポートします。  
-    - 外部データベースを作成します。本プラグインではMySQLのサンプルデータベース「world」を利用しています。[公式サイト](https://dev.mysql.com/doc/index-other.html)からzipをダウンロードした上で、お使いのMySQL（またはMariaDB）環境で解凍したSQLを実行してください。
+    2. 外部データベースを作成します。本プラグインではMySQLのサンプルデータベース「world」を利用しています。[公式サイト](https://dev.mysql.com/doc/index-other.html)からzipをダウンロードした上で、お使いのMySQL（またはMariaDB）環境で解凍したSQLを実行してください。
 ![MySQLダウンロード画面](img/plugin/plugin_event1.png)  
-    - Exmentの管理者設定→プラグインから、[プラグイン](https://github.com/exment-git/plugin-sample/tree/main/event/PluginSyncCity)をアップロードします。  
-    - プラグインの設定画面を開き、2.で設定した外部データベースの接続情報を入力→保存してください。  
+    3. Exmentの管理者設定→プラグインから、[プラグイン](https://github.com/exment-git/plugin-sample/tree/main/event/PluginSyncCity)をアップロードします。  
+    4. プラグインの設定画面を開き、2.で設定した外部データベースの接続情報を入力→保存してください。    
 ![プラグイン設定画面](img/plugin/plugin_event2.png)  

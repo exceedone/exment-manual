@@ -1,13 +1,20 @@
 # Dockerによる環境構築
-本ページでは、DockerでExmentを構築する手順を記載します。  
-※本ページのより詳細な情報は、[GitHub](https://github.com/exceedone/docker-exment)をご確認ください。
+Docker（アプリを「コンテナ」という入れ物で動かす仕組み）で、Exment を動かす手順です。  
+※もっとくわしい情報は、[GitHub](https://github.com/exceedone/docker-exment)をご覧ください。
+
+大きな流れは、次のとおりです。
+
+1. （Windows のパソコンだけ）WSL2 と Docker を入れる
+2. 定義ファイルを取得する
+3. データベースに合わせたコマンドで、環境の構築とセットアップを行う
+4. ブラウザーで、Exment の初期設定を行う
 
 
 ## Special thanks!
-Dockerイメージは、[oreno4649氏によるdockerリポジトリ](https://github.com/oreno4649/docker-exment)をベースに、構築しております。誠にありがとうございます！
+Docker イメージは、[oreno4649氏によるdockerリポジトリ](https://github.com/oreno4649/docker-exment)をもとに作っています。誠にありがとうございます！
 
 ## 環境
-本ページでは、以下の内容で構築を行っております。  
+このページの手順は、次の環境で作っています。  
 - nginx 最新版
 - PHP 8.2.XX
 - Debian
@@ -15,10 +22,10 @@ Dockerイメージは、[oreno4649氏によるdockerリポジトリ](https://git
 
 ## 注意点
 
-- ご利用の環境やバージョンなどにより、本手順では正常に設定できない場合がございます。ご了承ください。
+- お使いの環境やバージョンによっては、この手順どおりに設定できないことがあります。ご了承ください。
 
-- 本手順では、ExmentをDockerで動作させるための手順のみの記載となります。  
-SSHやデータベース作成、Dockerコマンドなど、一般的なIT系のナレッジについては記載致しておりません。ご了承ください。  
+- このページには、Exment を Docker で動かすための手順だけを書いています。  
+SSH・データベースの作成・Docker のコマンドなど、一般的な IT の知識は書いていません。ご了承ください。  
 
 ## Windows のパソコンで使う場合（WSL2）
 Windows では、WSL2（Windows の中で Linux を動かす仕組み）の Ubuntu の中に Docker を入れて動かします。開発・検証用の手順です。
@@ -65,9 +72,9 @@ sudo usermod -aG docker $USER
 
 ## Dockerによるインストール手順
 
-> ※ここでは、もっともスタンダードな、「Webサーバー」「MySQL」の構成を行う場合の手順になります。  
-それ以外にも、「冗長化構成・ロードバランサーを追加する」「httpsを追加する」など、細かい指定も可能です。  
-詳細は[docker-exment](https://github.com/exceedone/docker-exment)のReadmeをご確認ください。
+> ※ここでは、いちばん基本の「Webサーバー」「MySQL」の構成にする手順を書きます。  
+ほかにも、「冗長化構成・ロードバランサーを追加する」「httpsを追加する」など、細かい指定もできます。  
+くわしくは、[docker-exment](https://github.com/exceedone/docker-exment)の Readme をご覧ください。
 
 
 ### 定義ファイル取得
@@ -80,7 +87,7 @@ git clone https://github.com/exceedone/exment-boilerplate.git
 ```
 
 - git を使わない場合は、両方を zip でダウンロードして解凍し、exment-boilerplate のフォルダの名前を「exment-boilerplate」に変えて（解凍すると「exment-boilerplate-master」になります）、docker-exment のフォルダの中に置きます。
-- 以下のコマンドは、docker-exment のフォルダで実行します。
+- 下のコマンドは、docker-exment のフォルダで実行します。お使いのデータベースのものを実行してください。
 
 
 
@@ -121,11 +128,11 @@ $ make sqlsrv-up
 ````
 
 ### Exment初期設定
-- 以下のサイトにアクセスし、Exmentの初期設定を行ってください。(※Webサーバーのポートを変更した場合、そのポートでアクセスを行ってください)  
+- 次の URL を開いて、Exment の初期設定を行ってください。(※Web サーバーのポートを変えたときは、そのポートで開いてください)  
 http://localhost
 
 
-- データベース情報は以下の通りです。(※ポートは内部ポート番号を参照するので、envでポートを変更していても、3306固定になります)
+- データベースの情報は、次のとおりです。(※ポートは、コンテナの中のポート番号を使います。env でポートを変えていても、3306 のままです)
 
 | 項目 | 設定値 |
 | ---- | ---- |
@@ -138,7 +145,7 @@ http://localhost
 
 
 ## サーバーに接続する手順
-- 以下のコマンドで、コンテナ一覧を取得します。
+- 次のコマンドで、コンテナの一覧を出します。
 
 ```
 docker ps
@@ -146,9 +153,9 @@ docker ps
 123412341234        exment-docker_php   "docker-php-entrypoi…"   8 minutes ago       Up 8 minutes        9000/tcp                             exment-docker_php_1
 ```
 
-- 結果のうち、「exment-docker_php」となっているイメージの、「CONTAINER ID」の値をコピーします。上記の例の場合、「123412341234」が該当します。  
+- 結果の中で、「exment-docker_php」となっているイメージの、「CONTAINER ID」の値をコピーします。上の例では、「123412341234」です。  
 
-- 以下のコマンドを実行します。
+- 次のコマンドを実行します。
 
 ```
 docker exec -it (CONTAINER ID) /bin/bash
@@ -156,9 +163,9 @@ docker exec -it (CONTAINER ID) /bin/bash
 docker exec -it 123412341234 /bin/bash
 ```
 
-- これで、Exmentが起動しているWebサーバーに接続できます。
+- これで、Exment が動いている Web サーバーに接続できます。
 
 
 ## その他
-現在、このDockerイメージは検証中、ならびに機能追加中です。  
-GitHubは、[こちら](https://github.com/exceedone/docker-exment)よりお願いします。
+この Docker イメージは、いまも検証と機能の追加を続けています。  
+GitHub は、[docker-exment](https://github.com/exceedone/docker-exment)をご覧ください。

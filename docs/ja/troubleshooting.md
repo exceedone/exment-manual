@@ -1,28 +1,30 @@
 # よくある質問、トラブルシューティング
-Exmentのインストールやアップデート、操作に関するよくある質問、トラブルシューティングをまとめております。  
+Exmentのインストールやアップデート、操作で、よくある質問と、困ったときの対応の方法をまとめています。  
+エラーが出たときは、まず下の「ログファイル」でエラーの内容を確かめてから、当てはまる項目をご覧ください。  
 内容は随時更新していきます。  
 
 ## ログファイル
-Exmentのログファイルは、Exmentのルートプロジェクトフォルダを基準にし、以下のパスに配置されます。エラーなどが発生した場合、このファイル内に、ログが記載されます。  
+エラーなどが発生すると、その内容がログファイルに書き込まれます。  
+ログファイルは、Exmentのルートプロジェクトフォルダを基準にして、次の場所にあります。  
 /storage/logs/laravel.log
 
 
 ## インストール・アップデート
 
 ### ファイル・フォルダのPermission Deniedが発生する
-かんたんインストール実施時や、ログファイルの書き込みの時に、権限エラーが発生する場合があります。  
-また、システム要件の確認を実施時に、以下のエラーが表示される場合があります。  
+かんたんインストールのときや、ログファイルへの書き込みのときに、権限エラーが出ることがあります。  
+また、システム要件の確認で、次のエラーが表示されることがあります。  
 
 ![インストール画面_設定](img/troubleshooting/file_permission1.png)  
 
-Webサーバーを実行するユーザー(apache, www-dataなど)の権限が不足している可能性があります。  
-Exmentのプロジェクトフォルダのうち、以下のフォルダに、Webサーバーを実行するユーザー(apache, www-dataなど)の書き込み権限を追加してください。  
+Webサーバーを実行するユーザー(apache, www-dataなど)の権限が足りない可能性があります。  
+Exmentのプロジェクトフォルダのうち、次のフォルダに、このユーザーの書き込み権限を追加してください。  
 
 - storage
 - bootstrap/cache
 
-また、Web画面からインストールを実行する「[かんたんインストール](/ja/quickstart)」の場合は、追加で以下のフォルダに、Webサーバーを実行するユーザー(apache, www-dataなど)の書き込み権限が必要になります。  
-※インストール時のみ必要です。より厳密に権限設定する場合は、かんたんインストール実行後に、フォルダの書き込み権限を削除してください。
+Web画面からインストールする「[かんたんインストール](/ja/quickstart)」の場合は、これに加えて、次のフォルダにも、同じユーザーの書き込み権限が必要です。  
+※インストールのときだけ必要です。より厳密に権限を設定する場合は、かんたんインストールのあとに、フォルダの書き込み権限を削除してください。
 
 - .env
 - app
@@ -30,7 +32,7 @@ Exmentのプロジェクトフォルダのうち、以下のフォルダに、We
 - public
 
 ### composer requireや、アップデートバッチが途中で終了する
-Linuxへのインストール時、composer requireコマンドや、アップデートバッチを実行時に、以下の表示になることがあります。  
+Linuxへのインストールのときに、composer requireコマンドや、アップデートバッチを実行すると、次のように表示されることがあります。  
 
 ```
 # パターン1
@@ -44,13 +46,12 @@ PHP Fatal error:  Out of memory (allocated XXXXX) (tried to allocate XXXXX bytes
 Fatal error: Allowed memory size of XXXXXXXX bytes exhausted
 ```
 
-これはメモリ不足によるエラーです。  
-
-その場合、以下のいずれかの内容を実施することで、解決する場合があります。
+これは、メモリ不足によるエラーです。  
+次のどちらかを行うと、解決することがあります。
 
 #### swap作成
-以下のコマンドでswapを作成後、再度インストールやアップデートを実施してください。  
-※環境に応じ、適宜コマンドの頭に"sudo"を追加してください。
+次のコマンドでswap(メモリが足りないときに、ディスクをメモリの代わりに使う領域)を作成してから、もう一度インストールやアップデートを行ってください。  
+※環境に応じて、コマンドの頭に"sudo"を追加してください。
 
 ~~~
 dd if=/dev/zero of=/swapfile bs=2M count=2048
@@ -75,7 +76,7 @@ COMPOSER_MEMORY_LIMIT=-1 composer update
 
 ### 手動インストールやアップデート時、composerエラーが発生する
 
-手動インストールやアップデート時、以下のようなエラーが発生する場合があります。
+手動インストールやアップデートのときに、次のようなエラーが出ることがあります。
 
 ```
 Installation failed, reverting ./composer.json to its original content.
@@ -84,8 +85,8 @@ Installation failed, reverting ./composer.json to its original content.
   Could not load package XXX/XXX in http://repo.packagist.org: [UnexpectedValueException] Could not parse version constraint ~4.*: Invalid version string "~4.*"
 ```
 
-この場合、composerのバージョンを上げることにより、解決する場合があります。以下のコマンドで、composerのバージョンを最新版に更新してください。  
-**※環境により、アップデート方法が異なるようです。以下の内容のいずれかで、composer更新をご検証ください。**
+この場合、composerのバージョンを上げると、解決することがあります。composerを最新版に更新してください。  
+**※環境によって、更新の方法が異なるようです。下の(1)から(3)のいずれかで、composerの更新をお試しください。**
 
 
 #### (1)以下のコマンドを実施
@@ -123,7 +124,7 @@ rm /usr/bin/composer
     - [Mac版 解説サイト](https://weblabo.oscasierra.net/php-composer-macos-homebrew-install/)
 
 ### composer updateコマンドの実行時、"LogicException Invalid key supplied "エラーが発生する  
-composer updateコマンドの実行時、以下のようなエラーが発生する場合があります。
+composer updateコマンドを実行したときに、次のようなエラーが出ることがあります。
 
 ```
    LogicException	
@@ -165,7 +166,7 @@ UPDATE `systems` SET `system_value` = '1' WHERE `systems`.`system_name` = 'api_a
 ```
 
 ### アップデートバッチの実行やcomposer requireコマンドの実行時、"require ext-gd "、"require ext-sodium "、"require ext-zip "エラーが発生する
-アップデートバッチの実行やcomposer requireコマンドの実行時に、以下の表示になることがあります。
+アップデートバッチやcomposer requireコマンドを実行したときに、次のように表示されることがあります。
 ```
   Problem 1
     - phpoffice/phpspreadsheet[1.23.0, ..., 1.29.0] require ext-gd * -> it is missing from your system. Install or enable PHP's gd extension.
@@ -180,7 +181,7 @@ UPDATE `systems` SET `system_value` = '1' WHERE `systems`.`system_name` = 'api_a
     - phpoffice/phpspreadsheet[1.23.0, ..., 1.29.0] require ext-zip * -> it is missing from your system. Install or enable PHP's zip extension.
     - Root composer.json requires exceedone/exment ^5.0 -> satisfiable by exceedone/exment[v5.0.0, ..., v5.0.11].
 ```
-この場合、php extensionを有効にしてください。
+この場合、表示されたPHPの拡張機能(php extension)を有効にしてください。
 #### Linuxの場合
 ~~~
 # Ubuntu server
@@ -216,9 +217,8 @@ extension=zip
 
 
 ### 初回インストール後、管理画面にアクセス時、「SQLSTATE[HY000][202] Permission denied」エラーが発生する
-ApacheからMySQLにアクセスを行う場合、SELinuxの設定が必要になる場合があります。  
-
-上記の現象が発生した場合、以下のようにコマンドを実行してください。
+ApacheからMySQLにアクセスするときに、SELinux(Linuxのセキュリティ機能)の設定が必要になることがあります。  
+このエラーが出たときは、次のコマンドを実行してください。
 
 ~~~
 sudo setsebool -P httpd_can_network_connect_db=1
@@ -226,32 +226,31 @@ sudo setsebool -P httpd_can_network_connect_db=1
 
 
 ### アップデート時、「Migrating: 2019_08_19_000000_create_failed_jobs_table」でエラーが発生する
-アップデートによるデータベースの変更処理で、以下のようなメッセージが出力されることがあります。  
+アップデートでデータベースを変更する処理の途中で、次のようなメッセージが出ることがあります。  
 ~~~
 Migrating: 2019_08_19_000000_create_failed_jobs_table  
 SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'failed_jobs' already exists。  
 ~~~
 
-上記の現象が発生した場合は「インストール先のフォルダ\database\migrations」にある「2019_08_19_000000_create_failed_jobs_table」ファイルを削除してから、もう一度アップデートを実行してください。
+この場合は、次の順に対応してください。
+
+1. 「インストール先のフォルダ\database\migrations」にある「2019_08_19_000000_create_failed_jobs_table」ファイルを削除します。
+2. もう一度、アップデートを実行します。
 
 
 ### レンタルサーバーで、「composer require」などのコマンドを実行時に、「Killed」と表示される
-これはメモリに負荷がかかる場合に、時々発生する現象です。  
-※常に発生するわけではありません  
-
-上記の現象が発生した場合、以下のようにコマンドを実行してください。
+メモリに負荷がかかったときに、ときどき起こります(いつも起こるわけではありません)。  
+この表示が出たときは、コマンドの先頭に「nice -n 20」を付けて、composerを実行してください。優先度を下げてコマンドを実行します。
 
 ~~~
 nice -n 20 composer .....
 ~~~
 
-コマンドの冒頭に「nice -n 20」と付けて、composerを実行してください。  
-これにより、優先度を下げてコマンドを実行します。  
-※上記のようにコマンドを実行しても、再度「Killed」が表示される場合があります。ご了承ください。
+※この方法で実行しても、もう一度「Killed」と表示されることがあります。ご了承ください。
 
 
 ### composerのパスを通すには
-composerのパスを通す手順を記載します。  
+composerのパスを通す(composerの場所を設定する)手順です。  
 
 #### 設定値を追加する
 - [こちらの手順](/ja/config)の「Composerパス」で、composerまでのパスを設定します。
@@ -269,8 +268,8 @@ EXMENT_COMPOSER_PATH=/usr/local/bin/composer
 
 
 ### メンテナンスモードの解除
-データベースのリストアでは、リストア中にメンテナンスモードに変更します。  
-リストア完了後に、メンテナンスモードは自動的に解除されますが、何らかの理由でメンテナンスモードが解除されなくなった場合に、以下の手順でメンテナンスモードを手動で解除してください。
+データベースのリストアでは、リストアのあいだ、メンテナンスモードになります。  
+リストアが終わると、メンテナンスモードは自動的に解除されます。何らかの理由で解除されなかった場合は、次の手順で、手動で解除してください。
 
 - プロジェクトのルートフォルダで、以下のコマンドを実施してください。  
 
@@ -290,8 +289,8 @@ php artisan up
 もしくは、インストール画面で以下のような表示がされる場合があります。
 ![バックアップ画面](img/backup/backup_error2.png)  
 
-このエラーが表示される場合、Exmentのバックアップ・リストアに必要な設定が行われていない場合があります。  
-以下の内容をご確認ください。
+このエラーが表示されるときは、バックアップ・リストアに必要な設定ができていない可能性があります。  
+下の2つをご確認ください。
 
 #### mysql-clientがWebサーバーにインストールされていない、パスが通っていない  
 Exmentのバックアップ・リストアでは、以下のコマンドを、Webサーバー上で実行しています。  
@@ -299,12 +298,11 @@ Exmentのバックアップ・リストアでは、以下のコマンドを、We
 - mysqlコマンド
 - mysqldumpコマンド  
 
-これらのコマンドがインストールされていない場合、mysqlコマンド・mysqldumpコマンドをインストールする必要があります。  
-これらのコマンドのインストール方法は、環境によって異なります。  
+**コマンドがインストールされていない場合**は、mysqlコマンド・mysqldumpコマンドをインストールしてください。  
+インストールの方法は、環境によって異なります。  
 例：[Amazon Linux 2](http://tech-wiki.pomme-verte.net/?p=793)  
 
-また、Webサーバーを動作させるユーザーでは、mysqlコマンド・mysqldumpコマンドまでのパスが通っていない可能性があります。  
-その場合、以下の方法で、フルパスでコマンドを実行できるよう、修正してください。  
+**パスが通っていない場合**(Webサーバーを動作させるユーザーから、mysqlコマンド・mysqldumpコマンドの場所が見つからない場合)は、次の方法で、フルパスでコマンドを実行できるようにしてください。  
 ※設定変更の詳細は、[こちら](/ja/config)からご確認ください。  
 
 - envファイルを開く。  
@@ -318,8 +316,8 @@ EXMENT_MYSQL_BIN_DIR=/usr/bin
 ※「EXMENT_MYSQL_BIN_DIR="C:\MySQL\bin"」のようにパスをダブルコーテーションで囲った場合、一部の環境で正しく認識されないことがあります。「EXMENT_MYSQL_BIN_DIR=C:\MySQL\bin」のようにそのまま記載することをお勧めします。
 
 #### php.iniで"safe_mode=Off"を追加する
-mysqlコマンド・mysqldumpコマンドをサーバーから実行する都合上、safe_modeをOffにする必要があります。  
-以下の内容を実施してください。
+mysqlコマンド・mysqldumpコマンドをサーバーから実行するため、safe_modeをOffにする必要があります。  
+次の内容を行ってください。
 
 - php.iniファイルを開く。
 - 以下の内容を追記する。
@@ -330,9 +328,10 @@ safe_mode=Off
 
 ## その他
 ### 大量の入力項目の送信に失敗する
-現在、一部の設定画面で、同一画面で非常に多数の入力が発生した場合に、正常に動作しない場合があります。  
-これは、PHPの設定値「max_input_vars（一度にPOSTできる上限数）」を、実際のPOST値が超えた場合に発生します。  
-この問題が発生した場合、[PHP設定値変更](/ja/additional_php_ini)を実施し、パラメータ値を変更してください。  
+現在、一部の設定画面で、1つの画面に非常に多くの入力項目があると、正常に動作しないことがあります。
+
+- 原因：実際のPOST値が、PHPの設定値「max_input_vars（一度にPOSTできる上限数）」を超えたときに発生します。
+- 対応：[PHP設定値変更](/ja/additional_php_ini)を行い、パラメータ値を変更してください。
   
 現在、以下の機能で発生しやすいことを確認しています。
 
@@ -341,8 +340,8 @@ safe_mode=Off
 - カスタムデータ入力画面にて、項目の件数が非常に多い場合
 
 ### Excelをテンプレートとしたドキュメント出力で、画像の出力に失敗する
-Exmentのプラグイン(ドキュメント出力、もしくはエクスポート)機能で、Excelテンプレートに画像を含めてドキュメント出力を行った場合、作成されたファイルに画像が含まれない現象が発生する場合があります。  
-使用しているライブラリ「PhpSpreadSheet」のバージョンによって、本現象が発生する場合があります。以下の手順を実施してください。  
+Exmentのプラグイン(ドキュメント出力、もしくはエクスポート)機能で、画像を含むExcelテンプレートを使ってドキュメント出力を行うと、作成されたファイルに画像が入らないことがあります。  
+これは、使用しているライブラリ「PhpSpreadSheet」のバージョンによって発生することがあります。次の手順を行ってください。  
 
 ※以下は、Exment v4.x以前(PHP7.X)をご利用の場合の手順です。Exment v7.0.0では、PhpSpreadSheet 1.29以上が自動的にインストールされるため、以下の手順は不要です。
 
