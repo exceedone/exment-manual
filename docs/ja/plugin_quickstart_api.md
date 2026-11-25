@@ -51,9 +51,9 @@ https://www.famkruithof.net/uuid/uuidgen
     - uri：ページ表示のためのuriです。実際のURLは、「http(s)://(ExmentのURL)/api/plugins/(プラグイン共通のエンドポイント)/(指定したuri)」になります。  
     - method：HTTPメソッドです。get,post,put,deleteで記入してください。
     - function：実行するController内のメソッド名です。
-    - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「admin/api/plugins/sampleapi/column（メソッド：GET）」。
+    - 例：プラグイン共通のエンドポイントを「sampleapi」、処理毎のuriが「column」、methodが「get」の場合、「http(s)://(ExmentのURL)/api/plugins/sampleapi/column（メソッド：GET）」。
 
-> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/api/plugins/sampleapi/column`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ### Pluginファイル作成
 
@@ -145,16 +145,16 @@ zipファイル名は、「(plugin_name).zip」にしてください。
 
 ### アクセス
 次のURLで、APIにアクセスします。
-http(s)://(ExmentのURL)/api/plugins/(プラグイン名)  
+http(s)://(ExmentのURL)/api/plugins/(プラグイン共通のエンドポイント)/(routeのuri)  
 
-例：プラグイン名が"sampleapi"の場合  
-http(s)://(ExmentのURL)/api/plugins/sampleapi
+例：プラグイン共通のエンドポイントが"sampleapi"、routeのuriが"column"の場合  
+http(s)://(ExmentのURL)/api/plugins/sampleapi/column
 
 
 ### その他
 - プラグインで作成したAPIにアクセスするには、APIスコープを「plugin」にする必要があります。（トークン取得時に指定してください。）
 
-- 特定のID値のデータを取得する場合など、URLでパラメータを指定したいときは、config.jsonのroute→urlに、以下のような記述を追加してください。「{id}」や「{table}」のように指定できます。
+- 特定のID値のデータを取得する場合など、URLでパラメータを指定したいときは、config.jsonのroute→uriに、以下のような記述を追加してください。「{id}」や「{table}」のように指定できます。
 
 ~~~ json
 

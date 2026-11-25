@@ -148,7 +148,7 @@ FTP_ROOT_TEMPLATE=(テンプレートで使用するFTPのルートパス)
 FTP_ROOT_PLUGIN=(プラグインで使用するFTPのルートパス)
 
 // 例1：バックアップのFTPのルートパスを指定
-FTP_ROOT_EXMENT=/var/foo/exment/ftp/backup
+FTP_ROOT_BACKUP=/var/foo/exment/ftp/backup
 
 // 例2：すべてのFTPのルートパスを指定
 FTP_ROOT_EXMENT=/var/foo/exment/ftp/admin
@@ -194,9 +194,9 @@ composer require league/flysystem-sftp-v3 ~3.0
 - ".env"を開き、以下の内容を追加します。  
 
 ~~~
-SFTP_HOST=(FTPのホスト名)
-SFTP_USERNAME=(FTPのユーザー名)
-SFTP_PASSWORD=(FTPのパスワード)
+SFTP_HOST=(SFTPのホスト名)
+SFTP_USERNAME=(SFTPのユーザー名)
+SFTP_PASSWORD=(SFTPのパスワード)
 ~~~
 
 - SFTPを使用したいファイルの種類ごとに、以下の設定を追記します。
@@ -208,7 +208,7 @@ SFTP_ROOT_TEMPLATE=(テンプレートで使用するSFTPのルートパス)
 SFTP_ROOT_PLUGIN=(プラグインで使用するSFTPのルートパス)
 
 // 例1：バックアップのSFTPのルートパスを指定
-SFTP_ROOT_EXMENT=/var/foo/exment/sftp/backup
+SFTP_ROOT_BACKUP=/var/foo/exment/sftp/backup
 
 // 例2：すべてのSFTPのルートパスを指定
 SFTP_ROOT_EXMENT=/var/foo/exment/sftp/admin
@@ -383,7 +383,7 @@ Exmentは、標準で、FTPやAmazon S3といったドライバに対応して�
 - 使用するファイルシステムで、ルートフォルダを分ける機能がない場合、アップロード先を変更する、ファイルの種類ごとのアプリケーションを作成する、といった対応が必要になります。
 
 ### 利用条件
-Exmentでは、[Laravelのファイルシステム](https://readouble.com/laravel/6.x/ja/filesystem.html)の機能を使用して、独自のドライバを管理します。  
+Exmentでは、[Laravelのファイルシステム](https://readouble.com/laravel/12.x/ja/filesystem.html)の機能を使用して、独自のドライバを管理します。  
 そのため、Laravelのファイルシステムが用意されているサービスのみ、Exmentのファイル管理に対応します。(もしくは、ご自身でドライバを準備する必要があります。)
 
 ### 開発方法
@@ -602,8 +602,6 @@ Amazon Simple Storage Service (Amazon S3) の作成方法について、簡単�
 ![S3作成ガイド](img/quickstart/saveplace_s3_14.png)  
 
 
-[←追加設定一覧へ戻る](/ja/quickstart_more)
-
 
 ## 参考：Dropboxのアクセストークン取得方法
 - Dropboxの[App Console](https://www.dropbox.com/developers/apps)にアクセスします。
@@ -628,3 +626,6 @@ Amazon Simple Storage Service (Amazon S3) の作成方法について、簡単�
 
 - アクセストークンが新規作成されます。この値を設定ファイルに記入してください。
 ![Dropbox作成ガイド](img/quickstart/saveplace_dropbox_4.png)  
+
+
+[←追加設定一覧へ戻る](/ja/quickstart_more)

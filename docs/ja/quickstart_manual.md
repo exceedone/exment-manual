@@ -68,7 +68,7 @@ DB_HOST=127.0.0.1 #データベースのホスト名
 DB_PORT=3306 #データベースのポート番号
 DB_DATABASE=homestead #データベースのExment用データベース名
 DB_USERNAME=homestead #データベースのExment用データベースのユーザー名
-DB_PASSWORD=secret #データベースのExment用データベースの1パスワード
+DB_PASSWORD=secret #データベースのExment用データベースのパスワード
 
 # 日本語と日本時間の設定。コピー・ペーストで設定する
 APP_TIMEZONE=Asia/Tokyo
@@ -116,7 +116,7 @@ php artisan exment:install
 ~~~
 
 ## 設定完了
-インストールが終わったら、続けて[初期設定](/ja/first_setting.md)を行ってください。  
+インストールが終わったら、続けて[初期設定](/ja/first_setting)を行ってください。  
 
 
 ## その他の追加設定

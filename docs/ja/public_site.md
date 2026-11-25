@@ -108,7 +108,7 @@ class IndexController extends BaseController
 #### view：ビュー
 ビューは、2 つのファイルを作ります。共通の枠（_layout.blade.php）と、一覧の中身（index.blade.php）です。
 
-resources/viewに、_layout.blade.phpを作成し、以下のように記載します。  
+resources/viewsに、_layout.blade.phpを作成し、以下のように記載します。  
 ~~~
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -157,7 +157,7 @@ resources/viewに、_layout.blade.phpを作成し、以下のように記載し�
 
 ~~~
 
-resources/viewに、index.blade.phpを作成し、以下のように記載します。  
+resources/viewsに、index.blade.phpを作成し、以下のように記載します。  
 ※そのほかの Blade の書き方は、[Laravel の Blade の説明](https://readouble.com/laravel/8.x/ja/blade.html)をご覧ください。
 
 ~~~
@@ -239,7 +239,7 @@ resources/views/show.blade.php（新規作成）
                 <td>{{$item->id}}</td>
             </tr>
             <tr>
-                <th>タイトル</tr>
+                <th>タイトル</th>
                 <td>{{$item->getValue('title', 'html')}}</td>
             </tr>
             <tr>
@@ -336,8 +336,8 @@ resources/views/create.blade.php（新規作成）
                     <td><input type="text" name="title" value="{{old('title')}}" /></td>
                 </tr>
                 <tr>
-                    <th>詳細</th>
-                    <td><textarea name="body" value="{{old('body')}}"></textarea></td>
+                    <th>本文</th>
+                    <td><textarea name="body">{{old('body')}}</textarea></td>
                 </tr>
                 <tr>
                     <th>表示フラグ</th>
@@ -482,7 +482,6 @@ resources/views/edit.blade.php（新規作成）
                             <option value="4">高い</option>
                             <option value="5">非常に高い</option>
                         </select>
-                </select>
                 </td>
             </tr>
             <tr>
@@ -515,7 +514,7 @@ resources/views/show.blade.php（一覧に戻る のdivタグの上に追加）
     </div>
 ~~~
 
-resources/view/index.blade.php（td タグの中身を書き換え）
+resources/views/index.blade.php（td タグの中身を書き換え）
 ~~~
 <td><a href="{{asset($item->id)}}">詳細</a>&nbsp;&nbsp;<a href="{{asset('edit/'.$item->id)}}">編集</a></td>
 ~~~
@@ -537,13 +536,13 @@ app/Http/Controllers/IndexController.php（update関数の下に追記）
 ~~~
 // 削除実施
     public function delete(Request $request, $id){
-        // データ保存のModel作成
+        // 削除するデータの取得
         $custom_value = CustomTable::getEloquent('information')->getValueModel()->find($id);
 
         // データ削除
         $custom_value->delete();
 
-        // 該当のデータへリダイレクト
+        // 一覧へリダイレクト
         return redirect('/');
     }
 ~~~
@@ -556,7 +555,7 @@ resources/views/show.blade.php（１つ目の div タグの中身を書き換え
     </div>
 ~~~
 
-resources/view/index.blade.php（td タグの中身を書き換え）
+resources/views/index.blade.php（td タグの中身を書き換え）
 ~~~
 <td><a href="{{asset($item->id)}}">詳細</a>&nbsp;&nbsp;<a href="{{asset('edit/'.$item->id)}}">編集</a>&nbsp;&nbsp;<a href="{{asset('/delete/' . $item->id)}}">削除</a></td>
 ~~~

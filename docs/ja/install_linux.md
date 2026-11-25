@@ -162,7 +162,7 @@ MySQL を同じサーバーにインストールしないときも、mysql コ�
 ※MySQL を同じサーバーにインストールするときは、この手順を飛ばしてください。
 
 ~~~
-rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el7-2.noarch.rpm
+rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el8-2.noarch.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 # こちらを実施時して、mysql-community-clientが存在するかを確認します

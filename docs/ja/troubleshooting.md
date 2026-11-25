@@ -71,7 +71,10 @@ memory_limit=-1 #もしくはこちらの指定。メモリを無制限に使用
 ```
 
 - composerの環境変数を設定(アップデート時の問題の場合、バッチに追加してください)
+
+```
 COMPOSER_MEMORY_LIMIT=-1 composer update
+```
 
 
 ### 手動インストールやアップデート時、composerエラーが発生する
@@ -316,6 +319,8 @@ EXMENT_MYSQL_BIN_DIR=/usr/bin
 ※「EXMENT_MYSQL_BIN_DIR="C:\MySQL\bin"」のようにパスをダブルコーテーションで囲った場合、一部の環境で正しく認識されないことがあります。「EXMENT_MYSQL_BIN_DIR=C:\MySQL\bin」のようにそのまま記載することをお勧めします。
 
 #### php.iniで"safe_mode=Off"を追加する
+※safe_modeは、PHP 5.4でなくなった設定です。現在のExment(PHP 8.2以上)では、この手順は必要ありません。古い環境をお使いの場合だけ、ご確認ください。  
+
 mysqlコマンド・mysqldumpコマンドをサーバーから実行するため、safe_modeをOffにする必要があります。  
 次の内容を行ってください。
 

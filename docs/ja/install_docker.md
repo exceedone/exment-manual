@@ -150,10 +150,10 @@ http://localhost
 ```
 docker ps
 # 結果例
-123412341234        exment-docker_php   "docker-php-entrypoi…"   8 minutes ago       Up 8 minutes        9000/tcp                             exment-docker_php_1
+123412341234        docker-exment-php   "docker-php-entrypoi…"   8 minutes ago       Up 8 minutes        9000/tcp                             docker-exment-php-1
 ```
 
-- 結果の中で、「exment-docker_php」となっているイメージの、「CONTAINER ID」の値をコピーします。上の例では、「123412341234」です。  
+- 結果の中で、「docker-exment-php」となっているイメージの、「CONTAINER ID」の値をコピーします。上の例では、「123412341234」です。  
 
 - 次のコマンドを実行します。
 

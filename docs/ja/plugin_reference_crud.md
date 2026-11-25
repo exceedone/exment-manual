@@ -105,7 +105,7 @@ CRUDページの認証種類文字列を返却します。
 ``` php
     /**
      * Get auth type.
-     * Please set null or "key" pr "id_password" or "oauth".
+     * Please set null or "key" or "id_password" or "oauth".
      *
      * @return string|null
      */
@@ -190,7 +190,7 @@ CRUDページの認証種類文字列を返却します。
 
         $query = [
             'per_page' => $options['per_page'] ?? 20,
-            'page' => $options['page'] ?? 20
+            'page' => $options['page'] ?? 1
         ];
 
         if(array_has($options, 'query')){
@@ -251,7 +251,7 @@ CRUDページの認証種類文字列を返却します。
 ``` php
     /**
      * (3) データ一覧を取得
-     * Get data paginate
+     * Get data list
      *
      * @return Collection
      */
@@ -293,7 +293,7 @@ CRUDページの認証種類文字列を返却します。
 
 
 #### getChunkCount
-データの一覧をページネーション形式で取得する際、一度に表示する件数を返却します。  
+データの一覧をページネーション形式で取得する際、一度に取得する件数を返却します。  
 
 ##### 引数
 なし
@@ -739,7 +739,7 @@ SHOW(データ詳細)画面で、ページの右上に独自のボタンを表�
     }
 ```
 
-![callbackGridTool](img/plugin/plugin_crud3.png)  
+![callbackShowTool](img/plugin/plugin_crud3.png)  
 
 ---
 
@@ -779,7 +779,7 @@ CREATE(データ新規作成)画面もしくはEDIT(データ編集)画面で、
     }
 ```
 
-![callbackGridTool](img/plugin/plugin_crud3.png)  
+![callbackFormTool](img/plugin/plugin_crud3.png)  
 
 ---
 

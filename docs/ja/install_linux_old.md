@@ -47,7 +47,6 @@ yum install -y wget firewalld unzip git
 ~~~
 
 - epelを更新し、Remiレポジトリの構成パッケージをインストールします。  
-rpm」**に該当するrpmを指定してください。
 
 ~~~
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm

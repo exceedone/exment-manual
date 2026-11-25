@@ -33,7 +33,7 @@ Exment では、[ログイン設定](/ja/login_setting)でシングルサイン�
     - Facebook (facebook)
     - Twitter (twitter)
     - GitHub (github)
-    - LinkedIn (linkedIn)
+    - LinkedIn (linkedin)
     - Bitbucket (bitbucket)
 
 - それぞれのプロバイダで、Exment 用のアプリケーションを作ります。  
@@ -44,7 +44,7 @@ http(s)://(ExmentのURL)/auth/login/(socialiteのprovider名)/callback
     - 例2 Facebookの場合：http(s)://(ExmentのURL)/auth/login/facebook/callback  
     - 例3 Googleの場合：http(s)://(ExmentのURL)/auth/login/google/callback  
 
-> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/auth/login/google/callback`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 - 次のコマンドを、Exment のルートディレクトリで実行します。
 

@@ -25,7 +25,7 @@ composer require aacotroneo/laravel-saml2
 ※callback URL は、次のとおりです。  
 http(s)://(ExmentのURL)/saml/login/(後ほど追加するSAML名)/acs  
 
-> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/saml/login/(後ほど追加するSAML名)/acs`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 3. [画面での設定](#画面での設定)を行います。
 
@@ -133,7 +133,7 @@ YES の場合、もう一度ログインしたときに、ユーザー名など�
 
 #### ログインテスト
 - 「ログインテスト」ボタンをクリックすると、設定したログイン情報で、ログインのテストができます。ログイン設定を有効化していなくても、テストできます。  
-**そのときは、「テスト用リダイレクトURL」に表示されている URL を、プロバイダの OAuth 認証設定のコールバック URL に、一時的に追加するか、変更してください。**
+**そのときは、「テスト用リダイレクトURL」に表示されている URL を、プロバイダの SAML 認証設定のコールバック URL に、一時的に追加するか、変更してください。**
 
 ![ユーザー設定](img/login/login_setting9.png)  
 

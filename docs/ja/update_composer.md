@@ -70,14 +70,14 @@ composer update
 
 ```
 # 以下のいずれかを実施してください
-composer self-update -–2
-composer selfupdate -–2
+composer self-update --2
+composer selfupdate --2
 ```
 
 - アップデートのあとで不具合が起きた場合は、次のコマンドで、version1.X.X に戻せます。  
 ただし、このコマンドは、**Exmentのフォルダ以外のパス**で実行してください。Exment のフォルダーの中で実行すると、エラーになるようです。
 
 ```
-composer self-update -–1
-composer selfupdate -–1
+composer self-update --1
+composer selfupdate --1
 ```

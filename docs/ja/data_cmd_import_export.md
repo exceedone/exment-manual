@@ -104,7 +104,7 @@ php artisan exment:chunkexport information
 ### コマンドの引数
 
 ```
-exment:chunkexport {テーブル名} {--action=default} {--start=1} {--end=1000} {--count=1000} {--seqlength=1}  {--format=csv} {--view=} {--dirpath=}
+php artisan exment:chunkexport (テーブル名) {--action=default} {--start=1} {--end=1000} {--count=1000} {--seqlength=1} {--delimiter=} {--format=csv} {--view=} {--dirpath=}
 ```
 
 - ##### テーブル名  
@@ -126,6 +126,9 @@ exment:chunkexport {テーブル名} {--action=default} {--start=1} {--end=1000}
 
 - ##### seqlength    
 (オプション)連番の0埋めの桁数。例として「3」と入力した場合、"001", "002"のように連番を出力。未指定の場合、1。
+
+- ##### delimiter    
+(オプション)ファイル名の、テーブル名と連番の間に入れる文字。未指定の場合、「.」(ピリオド)。
 
 - ##### format  
 (オプション)エクスポートするファイル形式。
@@ -256,7 +259,7 @@ php artisan exment:import {フォルダ名}
     2. 「(カスタムテーブルの名前).(連番).csv」   ※例：client.1.csv、client.002.csv
     3. 「(連番).(カスタムテーブルの名前).csv」   ※例：01.client.csv、02.estimate.csv
 
-- xslxの場合、ファイル名は自由です。シート名を、次の形式にしてください。  
+- xlsxの場合、ファイル名は自由です。シート名を、次の形式にしてください。  
 
     1. 「(カスタムテーブルの名前)」    ※例：client
 
@@ -340,7 +343,7 @@ php artisan exment:file-import {フォルダ名}
     2. 「(カスタムテーブルの名前).(連番).csv」   ※例：client.1.csv、client.002.csv
     3. 「(連番).(カスタムテーブルの名前).csv」   ※例：01.client.csv、02.estimate.csv
 
-- xslxの場合、ファイル名は自由です。シート名を、次の形式にしてください。  
+- xlsxの場合、ファイル名は自由です。シート名を、次の形式にしてください。  
 
     1. 「(カスタムテーブルの名前)」    ※例：client
 

@@ -44,8 +44,8 @@ Windows Server の管理・データベースの作成・コマンドなど、�
 5. \[役割サービスの選択\] で \[アプリケーション開発\] を展開し、「CGI」にチェックを入れて、次に進みます  
    ![CGIの追加](img/iis/iis_s03.png)  
    その他の役割（認証や圧縮など）は必要に応じて役割を追加してください（Exment 自体の動作には追加の必要はありません）
-7. \[インストール オプションの確認\] で「インストール」をクリックし、インストールが完了するのを待ちます
-8. インストールが完了したらブラウザー (Internet Explorer など) を起動し、http://localhost にアクセスして IIS の既定のページが表示できることを確認します
+6. \[インストール オプションの確認\] で「インストール」をクリックし、インストールが完了するのを待ちます
+7. インストールが完了したらブラウザー (Internet Explorer など) を起動し、http://localhost にアクセスして IIS の既定のページが表示できることを確認します
 
 > Windows 10 にインストールする場合は、\[コントロール パネル\] - \[プログラム\] -\[プログラムと機能\] - \[Windows の機能の有効化または無効化] で「インターネット インフォメーション サービス」を有効にし、\[アプリケーション開発機能\] で「CGI」を有効にしてください。
 
@@ -178,7 +178,7 @@ Exment で利用する MySQL をインストールして初期構成します
     1. "Enter password for user root:" と尋ねられるので、控えておいた初期パスワードを入力して Enter を押します
     2. "The existing password for the user account root has expired. Please set a new password." と表示されます  
        "New password:" と新しいパスワードを尋ねられますので、新しいパスワードを入力して Enter を押し、"Re-enter new password: と確認されるので、もう一度新しいパスワードを入力して Enter を押します
-       > パスワードは強力で推測されにくいものを使用してください。8文字以上・大文字/小文字/数字/記号のうち3種以上を使用・辞書にあるような単語をすのもも使わない、の要件を満たすことをお勧めします
+       > パスワードは強力で推測されにくいものを使用してください。8文字以上・大文字/小文字/数字/記号のうち3種以上を使用・辞書にあるような単語をそのまま使わない、の要件を満たすことをお勧めします
     3. VALIDATE PASSWORD PLUGIN を利用するか確認されます  
        強力で推測されにくいパスワードを設定した場合は、"y" 以外のキーを入力して Enter を押します
     4. "Change the password for root ?" と尋ねられるので、"y" 以外のキーを入力して Enter を押します
@@ -197,7 +197,7 @@ Exment で利用する MySQL をインストールして初期構成します
     ```
     CREATE DATABASE exment_database;
     CREATE USER 'exment_user' IDENTIFIED BY 'M!p3~S$W7fLm';
-    GRANT ALL ON exment_database.* TO exment_user identified by 'M!p3~S$W7fLm';
+    GRANT ALL ON exment_database.* TO 'exment_user';
     FLUSH PRIVILEGES;
     ```
 20. 以下のように入力して Enter を押し、MySQL からログアウトします
@@ -207,7 +207,7 @@ Exment で利用する MySQL をインストールして初期構成します
 
 ### IIS の準備
 Exment を実行するための IIS の準備を行います
-1. URL Rewite モジュールを導入します。  
+1. URL Rewrite モジュールを導入します。  
    https://www.iis.net/downloads/microsoft/url-rewrite にアクセスし、\[Install this extention\] をクリックします
 2. urlrewrite2.exe がダウンロードされるので実行し、画面のガイダンスにしたがってインストールします
    1. \[インストール\] をクリックします  
@@ -320,7 +320,7 @@ Exment で必要となる PHP ライブラリー管理ツール (Composer) を�
 16. IIS 実行ユーザー (IIS_IUSRS) に exment フォルダーに対する書き込みアクセス権限を追加します
     1. exment フォルダーを右クリックし、\[プロパティ\] を選択します
     2. \[セキュリティ\] タブを開き、\[編集\] をクリックします
-    3. \[storage のアクセス許可\] で \[追加\] ボタンをクリックし、\[ユーザーまたはグループの選択\] を表示します
+    3. \[exment のアクセス許可\] で \[追加\] ボタンをクリックし、\[ユーザーまたはグループの選択\] を表示します
     4. \[選択するオブジェクト名を入力してください\] 欄に IIS_IUSRS と入力し、\[名前の確認\] をクリックします
     5. 表示が (コンピュータ名)\IIS_IUSRS に変わったら、\[OK\] をクリックします  
        ![ユーザー追加](img/iis/iis_s20_1.png)

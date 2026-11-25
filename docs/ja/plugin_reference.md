@@ -450,7 +450,7 @@
 ##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| string | ダッシュボードBOXまでのエンドポイント |
+| string | 独自のページのエンドポイント |
 
 ---
 
@@ -648,7 +648,7 @@ jsファイルのパスを取得する関数です。
 | grid | 一覧画面で表示する項目に設定。表示順に整数を記入してください |
 | show | 詳細画面で表示する項目に設定。表示順に整数を記入してください |
 | create | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
-| edit | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
+| edit | 編集画面で表示する項目に設定。表示順に整数を記入してください |
 
 
 ##### 実装例
@@ -665,7 +665,7 @@ jsファイルのパスを取得する関数です。
             ['key' => 'ID', 'label' => 'ID', 'primary' => true, 'grid' => 1, 'show' => 1, 'edit' => 1],
             ['key' => 'Name', 'label' => '都市名', 'grid' => 2,'show' => 2, 'create' => 1, 'edit' => 2],
             ['key' => 'CountryCode', 'label' => '国コード', 'grid' => 3, 'show' => 3, 'create' => 2,'edit' => 3],
-            ['key' => 'Population', 'label' => '人工', 'show' => 5, 'create' => 4,'edit' => 5],
+            ['key' => 'Population', 'label' => '人口', 'show' => 5, 'create' => 4,'edit' => 5],
         ];
     }
 ```
@@ -677,42 +677,18 @@ jsファイルのパスを取得する関数です。
 ※画面で検索を行った場合、引数$optionsに値が設定されます
 
 ##### 引数
-なし
-
-##### 戻り値
 | 名前 | 種類 | 説明 |
 | ---- | ---- | ---- |
 | $options | array | 一覧画面で呼び出しを行った際のオプション値を設定 |
 
-##### 戻り値-連想配列の定義
+##### 戻り値
 | 種類 | 説明 |
 | ---- | ---- |
-| key | データ取得やHTMLの各要素のnameなどに設定する、項目名。英数字で入力してください |
-| label | 一覧画面などの項目名に使用する文言 |
-| grid | 一覧画面で表示する項目に設定。表示順に整数を記入してください |
-| show | 詳細画面で表示する項目に設定。表示順に整数を記入してください |
-| create | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
-| edit | 新規作成画面で表示する項目に設定。表示順に整数を記入してください |
-
+| LengthAwarePaginator | 取得したデータの一覧 |
 
 ##### 実装例
+[プラグインリファレンス(CRUDページ)](/ja/plugin_reference_crud)をご覧ください。
 
-``` php
-/**
-     * Get fields definitions
-     *
-     * @return array|Collection
-     */
-    public function getFieldDefinitions()
-    {
-        return [
-            ['key' => 'ID', 'label' => 'ID', 'primary' => true, 'grid' => 1, 'show' => 1, 'edit' => 1],
-            ['key' => 'Name', 'label' => '都市名', 'grid' => 2,'show' => 2, 'create' => 1, 'edit' => 2],
-            ['key' => 'CountryCode', 'label' => '国コード', 'grid' => 3, 'show' => 3, 'create' => 2,'edit' => 3],
-            ['key' => 'Population', 'label' => '人工', 'show' => 5, 'create' => 4,'edit' => 5],
-        ];
-    }
-```
 
 
 

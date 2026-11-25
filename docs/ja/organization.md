@@ -18,12 +18,12 @@
 ### 一覧画面表示
 左メニューより、「組織」をクリックします。  
 もしくは、以下のURLにアクセスしてください。  
-これにより、ユーザー設定画面が表示されます。  
+これにより、組織管理画面が表示されます。  
 http(s)://(ExmentのURL)/data/organization  
 現在システムで登録されている組織の一覧が表示されます。
 ![組織管理画面](img/organization/organization2.png)  
 
-> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/oauth/token`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
+> ※URL は、「/admin」が付かない標準の設定（v7.2.1 以降に新しくインストールしたサイト）の場合です。`.env` の `ADMIN_ROUTE_PREFIX` に値がある場合（前の版で入れたサイトは「admin」）は、サイトの URL のあとにその値を足してください（例：`http(s)://(ExmentのURL)/admin/data/organization`）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
   
 ※[設定値](/ja/config#組織一覧ページで階層表示を行う)で、「EXMENT_SHOW_ORGANIZATION_TREE=true」とすることで、階層が表示されます。
 
@@ -129,7 +129,7 @@ Exmentでは、下の図のように、組織に親と子の階層を付けら�
 階層をどこまで含めるかは、「システム設定」 > 「組織設定」で設定します。
 
 - 階層の設定ができるのは、「役割グループ」「カスタムデータの共有」だけです。
-- 「フォーム優先度設定」「ワークフロー」では、ユーザーが所属している組織だけが対象です。
+- 「フォーム優先順位設定」「ワークフロー」では、ユーザーが所属している組織だけが対象です。
 
 ![組織階層](img/organization/organization18.png)
 

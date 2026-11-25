@@ -62,7 +62,7 @@ composer require predis/predis
 ~~~
 CACHE_STORE=redis #キャッシュの保存先を変更する場合。redisに書き換え(Exment v7.0.0以降で新規インストールした場合)
 CACHE_DRIVER=redis #キャッシュの保存先を変更する場合。redisに書き換え(Exment v6.x以前からアップデートした場合)
-SESSION_DRIVER=redis #キャッシュの保存先を変更する場合。redisに書き換え
+SESSION_DRIVER=redis #セッションの保存先を変更する場合。redisに書き換え
 REDIS_CLIENT=predis #上記でインストールした「predis」を使用してRedisに接続する
 REDIS_HOST=127.0.0.1 #redisのホスト名
 REDIS_PASSWORD=XXXXXX #redisのパスワード、設定した場合のみ記述
