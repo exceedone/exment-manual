@@ -16,6 +16,7 @@
   * [Tuning](/tuning)
   * [Security check](/security_check)
   * [Scheduled jobs](/scheduled_jobs)
+  * [Log Management](/log_management)
   * [Maintenance mode](/maintenance)
   * [(For advanced users) Redundancy](/redundant.md)
   * [Mailsend_setting](/mailsend_setting.md)
