@@ -1,11 +1,12 @@
 # プラグイン(トリガー)
 
 > v3.2.0より、「プラグイン(トリガー)」は非推奨になりました。  
-今後は、[プラグイン(ボタン)](/ja/plugin_quickstart_button)、もしくは[プラグイン(イベント))](/ja/plugin_quickstart_event)での実装を行ってください。  
+これから作るときは、[プラグイン(ボタン)](/ja/plugin_quickstart_button)、または[プラグイン(イベント)](/ja/plugin_quickstart_event)で作ってください。  
 
 
-Exmentの画面上で特定の操作を行った場合に実行され、値の更新などの処理を行うことができます。  
-もしくは、一覧画面もしくはフォーム画面にボタンを追加し、クリック時に処理を行うことができます。  
+プラグイン(トリガー)は、Exment の画面で特定の操作をしたときに動くプラグインです。値の更新などの処理ができます。  
+また、一覧画面やフォーム画面にボタンを追加し、クリックしたときに処理を行うこともできます。  
+このページでは、トリガーの種類と、作り方（config.json と Plugin.php を作り、zip にまとめる）を説明します。  
 
 
 ## トリガーの種類
@@ -26,7 +27,7 @@ Exmentの画面上で特定の操作を行った場合に実行され、値の�
 ## 作成方法
 
 ### config.json作成
-- 以下のconfig.jsonファイルを作成します。  
+- 次の config.json ファイルを作ります。  
 
 ~~~ json
 {
@@ -42,17 +43,17 @@ Exmentの画面上で特定の操作を行った場合に実行され、値の�
 }
 ~~~
 
-- plugin_nameは、半角英数で記入してください。
-- uuidは、32文字列+ハイフンの、合計36文字の文字列です。プラグインを一意にするために使用します。  
-以下のURLなどから、作成を行ってください。  
+- plugin_name は、半角英数で書いてください。
+- uuid は、32 文字 + ハイフンの、合計 36 文字の文字列です。プラグインを 1 つに見分けるために使います。  
+次の URL などで作ってください。  
 https://www.famkruithof.net/uuid/uuidgen
-- plugin_typeは、triggerと記入してください。  
-- event_triggersを最初から指定する場合、「トリガーの種類」の名称を、カンマ区切りで入力してください。
-- target_tablesを最初から指定する場合、カスタムテーブルのテーブル名を、カンマ区切りで入力してください。
+- plugin_type は、trigger と書いてください。  
+- event_triggers を最初から指定する場合は、上の「トリガーの種類」の「名前」を、カンマ区切りで書いてください。
+- target_tables を最初から指定する場合は、カスタムテーブルのテーブル名を、カンマ区切りで書いてください。
 
 
 ### PHPファイル作成
-- 以下のようなPHPファイルを作成します。名前は「Plugin.php」としてください。
+- 次のような PHP ファイルを作ります。名前は「Plugin.php」としてください。
 
 ~~~ php
 <?php
@@ -73,15 +74,15 @@ class Plugin extends PluginTriggerBase
 ~~~
 - namespaceは、**App\Plugins\\(プラグイン名のパスカルケース)**としてください。[詳細はこちら](/ja/plugin_quickstart#プラグイン名のnamespace)
 
-- プラグイン管理画面で登録した、トリガーの条件に合致した場合に、プラグインが呼び出され、Plugin.php内のexecute関数が実行されます。  
+- プラグイン管理画面で登録したトリガーの条件に合ったときに、プラグインが呼び出され、Plugin.php の execute 関数が実行されます。  
 
-- Pluginクラスは、クラスPluginTriggerBaseを継承しています。  
-PluginTriggerBaseは、呼び出し元のカスタムテーブル$custom_table、テーブル値$custom_valueなどのプロパティを所有しており、  
-execute関数が呼び出された時点で、そのプロパティに値が代入されます。  
-プロパティの詳細については、[プラグインリファレンス](plugin_reference.md)をご参照ください。  
+- Plugin クラスは、クラス PluginTriggerBase を継承しています。  
+PluginTriggerBase は、呼び出し元のカスタムテーブル $custom_table、テーブル値 $custom_value などのプロパティを持っています。  
+execute 関数が呼び出された時点で、これらのプロパティに値が入っています。  
+プロパティのくわしい内容は、[プラグインリファレンス](plugin_reference.md)をご参照ください。  
 
 ### zipに圧縮
-上記2ファイルを最小構成として、zipに圧縮します。  
+上の 2 つのファイルを最小の構成として、zip に圧縮します。  
 zipファイル名は、「(plugin_name).zip」にしてください。  
 - PluginDemoTrigger.zip
     - config.json

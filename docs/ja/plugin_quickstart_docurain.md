@@ -1,39 +1,39 @@
 # ドキュメント出力(Docurain)
-Excelとjsonだけで帳票開発ができるクラウド帳票エンジン **Docurain** を使用し、PDF出力を行います。  
+クラウド帳票エンジン **Docurain** を使って、帳票をPDFで出力する方法です。Docurainは、Excelとjsonだけで帳票開発ができます。
 
-> Excel形式での出力は、[こちら](/ja/plugin_quickstart_document)をご参照ください。  
+> Excel形式での出力は、[プラグイン(ドキュメント出力)](/ja/plugin_quickstart_document)をご参照ください。
 
 ## Docurainとは
 Docurainは、Excelとjsonだけで帳票開発ができるクラウド帳票エンジンです。  
-さまざまなレイアウトの帳票も、Excelファイルのテンプレートから作成することができ、またPDF形式の出力にも対応しています。  
+さまざまなレイアウトの帳票を、Excelファイルのテンプレートから作成できます。PDF形式の出力にも対応しています。
 [Docurainのサイトはこちら](https://docurain.jp/)
 
-> Docurainは、ルート42株式会社が開発・運用のサービスになります。  
-ご利用の際には、ライセンストークンが必要となります。帳票出力の回数ごとの従量課金となります。（試用トークンの発行は可能です。）  
+> Docurainは、ルート42株式会社が開発・運用しているサービスです。
+ご利用には、ライセンストークンが必要です。料金は、帳票出力の回数ごとの従量課金です。（試用トークンの発行は可能です。）
 Exmentの開発・運用会社である株式会社カジトリは、Docurainの代理店です。試用のご要望、お申し込み、お問い合わせは、[こちら](https://exment.net/docurain)からお願いします。
 
 
 ## 実行方法
-- [こちらのプラグイン](https://github.com/exment-git/plugin-sample/tree/main/docurain/Docurain)をダウンロードします。
+1. [Docurainプラグイン](https://github.com/exment-git/plugin-sample/tree/main/docurain/Docurain)をダウンロードします。
 
-- Exmentのプラグインとしてアップロードします。  
-手順は[こちら](/ja/plugin?id=プラグインアップロード)をご参照ください。
+2. Exmentのプラグインとしてアップロードします。
+手順は[プラグインアップロード](/ja/plugin?id=プラグインアップロード)をご参照ください。
 
-- アップロード後、Docurainプラグインの行をクリックし、プラグイン設定画面に入ります。  
+3. アップロード後、Docurainプラグインの行をクリックし、プラグイン設定画面に入ります。
 
 ![Docurain](img/docurain/docurain_setting3.png)  
 
-- 以下の内容を入力します。
+4. 以下の内容を入力します。
 
 - 対象テーブル：Docurainを実行する対象のテーブル
 
 ![Docurain](img/docurain/docurain_setting1.png)  
 
-- トークン：Docurain実行トークン。トークン発行は、[こちら](https://exment.net/inquiry)にてお問い合わせください
+- トークン：Docurain実行トークン。トークン発行は、[お問い合わせ](https://exment.net/inquiry)にてお問い合わせください
 
 ![Docurain](img/docurain/docurain_setting2.png)  
 
-- テーブル名と帳票ファイル名一覧： 帳票出力を行うテーブル名とテンプレートファイル名、出力する帳票ファイル名、ボタンのラベルをカンマ区切りで入力してください。複数の場合は改行区切りを行ってください。  
+- テーブル名と帳票ファイル名一覧： 帳票出力を行うテーブル名、テンプレートファイル名、出力する帳票ファイル名、ボタンのラベルを、カンマ区切りで入力してください。複数ある場合は、改行で区切ってください。
 ※テンプレートファイル名に日本語は使用できません。（帳票ファイル名とボタンラベルには使用可能です）  
 ※帳票ファイル名を省略した場合はテンプレートファイル名になります。  
 ※ボタンのラベルを省略した場合はプラグイン共通で設定したラベルになります。  
@@ -42,19 +42,19 @@ Exmentの開発・運用会社である株式会社カジトリは、Docurainの
 ![Docurain](img/docurain/docurain_setting4.png)  
 
 
-- 解凍したフォルダ内の「documents」フォルダ内に、帳票の元となるExcelファイルを配置します。  
-複数の帳票をDocurainで作成する場合、複数のExcelファイルをdocumentsに配置してください。  
-※フォルダパスは、「(プロジェクトルートフォルダ)/storage/app/plugins/Docurain/documents」になります。  
+5. 解凍したフォルダ内の「documents」フォルダ内に、帳票の元となるExcelファイルを配置します。
+複数の帳票をDocurainで作成する場合、複数のExcelファイルをdocumentsに配置してください。
+※フォルダパスは、「(プロジェクトルートフォルダ)/storage/app/plugins/Docurain/documents」になります。
 ※帳票の作成方法は、以下の「帳票作成方法」をご確認ください。
 
 ![Docurain](img/docurain/docurain_setting5.png)  
 ![Docurain](img/docurain/docurain_setting6.png)  
 
-- ここまでの設定を行うことで、「対象テーブル」で選択したテーブルに、ボタンが表示されます。  
+6. ここまでの設定が終わると、「対象テーブル」で選択したテーブルに、ボタンが表示されます。
 
 ![Docurain](img/docurain/docurain_setting7.png)  
 
-- ボタンをクリックすることで、帳票が作成されます。  
+7. ボタンをクリックすると、帳票が作成されます。
 
 ![Docurain](img/docurain/docurain_setting8.png)
 ![Docurain](img/docurain/docurain_setting9.png)  
@@ -62,11 +62,11 @@ Exmentの開発・運用会社である株式会社カジトリは、Docurainの
 ### テンプレートExcelファイル作成
 帳票の元となるExcelファイルを作成します。  
 ※Excelファイルの名前に日本語は使用できません。拡張子は必ずxlsxでお願いします。  
-※テンプレートファイルのパラメータは、通常のExmentのパラメータ記載方法とは異なり、Docurain専用の記載方法が必要です。  
+※テンプレートファイルのパラメータは、通常のExmentのパラメータの書き方とは違います。Docurain専用の書き方が必要です。
 
 #### パラメータ
 テンプレートのExcelファイルに設定するパラメータです。
-Excelセルに特定の形式の変数を入力することで、帳票出力時に、様々な値に変換されます。  
+Excelのセルに、決まった形式の変数を入力しておくと、帳票出力時に、さまざまな値に変換されます。
 
 ##### システム値
 | 項目 | 説明 |
@@ -107,9 +107,9 @@ Excelセルに特定の形式の変数を入力することで、帳票出力時
 
 
 ### エラーについて
-- 出力の実行後、エラーが表示される場合があります。  
-その場合はエラー内容をご確認いただき、対応を行ってください。
+- 出力を実行した後に、エラーが表示される場合があります。
+その場合は、エラーの内容を確認して、対応してください。
 ![Docurain](img/docurain/docurain_error1.png)
 
-- エラーのうち、「HTTPステータスコード」が「413」のエラーは、Docurainのクラウドサービス側で、サービス許容値の変更対応を行う必要があります。  
+- 「HTTPステータスコード」が「413」のエラーは、Docurainのクラウドサービス側で、サービス許容値を変更する必要があります。
 その場合は、[こちら](https://exment.net/docurain)よりお問い合わせください。

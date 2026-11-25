@@ -2,14 +2,17 @@
 > 本リファレンスでは、プラグインなどのカスタマイズを行うにあたり、特に重要となるクラスと関数のみ、記載しています。
 
 ## はじめに
-ExmentはPHPを使用したオープンソースシステムです。  
-また、フレームワークに[Laravel](https://laravel.com/)、管理画面ライブラリに[exment-admin-core](https://github.com/exceedone/exment-admin-core)(laravel-admin / open-adminをベースとしたライブラリ)を使用しています。  
-※Exment v6.x以前では、管理画面ライブラリに[laravel-admin](http://laravel-admin.org/docs/#/)を使用しています。  
-そのため、これらの使用している関数やモデルはすべて、使用できます。  
+ExmentはPHPを使用したオープンソースシステムです。次のものを使用しています。
 
-ただしExmentでは、主にカスタムテーブルの実現のために、通常のLaravelのEloquentとは異なる、特殊な記法が必要な箇所があります。  
-また、より有効に開発するために、必要な関数処理などを定義しています。  
-このページでは、Exmentで独自に定義している関数を記載します。
+- フレームワーク：[Laravel](https://laravel.com/)
+- 管理画面ライブラリ：[exment-admin-core](https://github.com/exceedone/exment-admin-core)(laravel-admin / open-adminをベースとしたライブラリ)
+※Exment v6.x以前では、管理画面ライブラリに[laravel-admin](http://laravel-admin.org/docs/#/)を使用しています。
+
+そのため、これらの関数やモデルは、すべて使用できます。
+
+ただしExmentには、主にカスタムテーブルを実現するために、通常のLaravelのEloquentとは異なる、特殊な書き方が必要な箇所があります。
+また、開発しやすくするための関数なども定義しています。
+このページでは、Exmentで独自に定義している関数を説明します。
 
 
 ## ModelBase / モデルの基底クラス
@@ -113,7 +116,7 @@ Exmentでは、ユーザーに関するDBテーブルとして、「カスタム
     - 「カスタムデータの『ユーザー(user)』のID」をbase_user_id列に持つ。1:nの関係
 
 #### 2つのテーブルのIDがずれる場合
-**複数のログイン方法を設定している場合、「カスタムデータの『ユーザー(user)』」テーブルと、「ログインユーザー(login_users)」テーブルのIDがずれる場合があります。**これは、以下のようなケースです。
+**複数のログイン方法を設定している場合、「カスタムデータの『ユーザー(user)』」テーブルと、「ログインユーザー(login_users)」テーブルのIDがずれる場合があります**。これは、以下のようなケースです。
 
 ##### 「カスタムデータの『ユーザー(user)』」テーブル
 | ID | ユーザーコード | ユーザー名 | Eメールアドレス |

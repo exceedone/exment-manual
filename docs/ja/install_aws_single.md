@@ -1,11 +1,11 @@
 # AWSによる環境構築-シングル構成
-本ページでは、Amazon Linux2でExmentを構築する手順を記載します。  
-Webサーバーのインストールをはじめとして、完全に新規にインストールを行う手順となります。  
-また、本手順では**シンプルなWebサーバー1台構成としております。**  
-※冗長化したAWS構成の環境構築方法は、[こちら](/ja/install_aws)をご確認ください。
+AWS の Amazon Linux2 に、Exment を入れる手順です。  
+Web サーバーのインストールから始めて、何もないところから作ります。  
+この手順は、**シンプルな、Web サーバー 1 台の構成**です。  
+※冗長化した（Web サーバーを複数台にした）AWS の構成は、[AWSによる環境構築-冗長構成](/ja/install_aws)をご覧ください。
 
 ## 環境
-本ページでは、以下の内容で構築を行っております。  
+このページの手順は、次の環境で作っています。
 - Amazon Linux 2
 - Apache 2.4.53
 - PHP 8.2.x
@@ -14,61 +14,61 @@ Webサーバーのインストールをはじめとして、完全に新規に�
 
 ## 注意点
 
-- ご利用の環境やバージョンなどにより、本手順では正常に設定できない場合がございます。ご了承ください。
+- お使いの環境やバージョンによっては、この手順どおりに設定できないことがあります。ご了承ください。
 
-- 本手順では、ExmentをLinuxで動作させるための手順のみの記載となります。  
-SSHやデータベース作成、Linuxコマンドなど、一般的なIT系のナレッジについては記載致しておりません。ご了承ください。  
+- このページには、Exment を Linux で動かすための手順だけを書いています。  
+SSH・データベースの作成・Linux のコマンドなど、一般的な IT の知識は書いていません。ご了承ください。
 
-- インストール時にエラーが発生した場合、[トラブルシューティング](/ja/troubleshooting)をご参照ください。
+- インストールでエラーが出たときは、[トラブルシューティング](/ja/troubleshooting)をご覧ください。
 
 
 ## Linuxによるインストール手順
 
 ### MySQL(任意)
-任意の設定内容になります。MySQLサーバーを別に構築すると想定し、MySQLをインストールする場合の手順です。  
-※AWS RDSサービスを使用する場合など、外部サービスを使用する場合は、MySQLサーバー側の手順は不要です。  
-※[こちら](/ja/install_mysql)に移動しました。
+必要な方だけ行ってください。MySQL サーバーを別に作るときに、MySQL をインストールする手順です。  
+※AWS RDS など、外部のサービスを使うときは、MySQL サーバー側の手順はいりません。  
+※手順は、[MySQLインストール手順](/ja/install_mysql)のページに移動しました。
 
 ### Redis(任意)
-※[こちら](/ja/additional_session_cache_driver)に移動しました。
+※手順は、[セッション・キャッシュのドライバ変更](/ja/additional_session_cache_driver)のページに移動しました。
 
 
 ### Webサーバー
 
-- 事前準備としてパッケージ更新を行います。
+- はじめに、パッケージを新しくします。
 
 ~~~
 sudo yum -y update
 ~~~
 
-- インストール可能なPHPのバージョンを確認します。  
-※PHP8.2以外のバージョンが有効(enabled)になっている場合は無効化しておきましょう。  
+- インストールできる PHP のバージョンを確かめます。  
+※PHP8.2 以外のバージョンが有効(enabled)になっているときは、無効にしておいてください。
 
 ~~~
 sudo amazon-linux-extras | grep php
 ~~~
 
-- 「php8.2」を確認できたら、インストールを行います。
+- 「php8.2」があることを確かめたら、インストールします。
 
 ~~~
 sudo amazon-linux-extras install -y php8.2
 ~~~
 
-- その他、必要ライブラリのインストールを行います。
+- そのほかの必要なライブラリをインストールします。
 
 ~~~
 sudo yum install -y httpd git
 sudo yum -y install php-pecl-zip.x86_64 php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64 php-sodium.x86_64 php-dom.x86_64
 ~~~
 
-- 以下のコマンドを実行し、Apacheを起動、自動起動設定します。
+- 次のコマンドを実行し、Apache を起動して、自動で起動するように設定します。
 
 ~~~
 sudo systemctl start httpd
 sudo systemctl enable httpd
 ~~~
 
-- swap領域を作成します。
+- swap 領域（メモリが足りないときに使うディスクの領域）を作ります。
 
 ~~~
 sudo dd if=/dev/zero of=/swapfile bs=1M count=1024
@@ -87,14 +87,14 @@ php -r "unlink('composer-setup.php');"
 sudo mv composer.phar /usr/local/bin/composer
 ~~~
 
-- php.iniに、必要な記述・編集を行います。  
-特に、[PHP設定値変更]（/ja/additional_php_ini）で、メモリ使用量の変更・タイムアウト時間変更などを行う場合は、こちらの設定を変更してください。
+- php.ini を、必要に合わせて直します。  
+とくに、[PHP設定値変更](/ja/additional_php_ini)にある、メモリ使用量の変更・タイムアウト時間変更などを行うときは、このファイルを直してください。
 
 ~~~
 sudo vi /etc/php.ini
 ~~~
 
-- httpd.confを修正します。
+- httpd.conf を直します。
 
 ~~~
 sudo vi /etc/httpd/conf/httpd.conf
@@ -111,7 +111,7 @@ sudo vi /etc/httpd/conf/httpd.conf
 </VirtualHost>
 ~~~
 
-- apacheを再起動します。
+- apache を再起動します。
 
 ~~~
 sudo systemctl restart httpd
@@ -125,8 +125,8 @@ sudo usermod -a -G apache ec2-user
 ~~~
 
 - **(MySQLを同サーバーにインストールしない場合のみ)**  
-MySQLを同サーバーにインストールしない場合でも、mysqlコマンドを実行できるように、mysqlクライアントをインストールする必要があります。  
-※MySQLを同サーバーにインストールする場合は、この手順を飛ばしてください。
+MySQL を同じサーバーにインストールしないときも、mysql コマンドを実行できるように、mysql クライアントをインストールする必要があります。  
+※MySQL を同じサーバーにインストールするときは、この手順を飛ばしてください。
 
 ~~~
 sudo rpm -ivh https://dev.mysql.com/get/mysql84-community-release-el7-2.noarch.rpm
@@ -141,8 +141,8 @@ sudo yum -y module disable mysql
 sudo yum -y install mysql-community-client
 ~~~
 
-- Exmentをサーバーに配置します。最新のExmentファイルをダウンロードし、展開します。  
-※こちらはかんたんインストールの手順です。手動インストールの場合、[こちら](/ja/quickstart_manual)を参考に配置してください。
+- Exment をサーバーに置きます。最新の Exment のファイルをダウンロードして、展開します。  
+※これは、かんたんインストールの手順です。手動インストールのときは、[手動インストール](/ja/quickstart_manual)のページを見て置いてください。
 
 ~~~
 cd /var/www
@@ -169,7 +169,7 @@ sudo php artisan exment:setup-dir
 
 
 #### Webサーバー 設定変更時
-- Exmentアップデート後や、PHPファイルを更新した場合、設定値を変更した場合は、以下のコマンドを実行してください。
+- Exment をアップデートしたとき、PHP ファイルを更新したとき、設定値を変えたときは、次のコマンドを実行してください。
 
 ~~~
 sudo systemctl restart php-fpm
@@ -178,13 +178,13 @@ sudo systemctl restart php-fpm
 
 
 ## PHPバージョンアップ時の対応
-PHPのバージョンを変更する場合、以下の手順でバージョンアップを行ってください。  
+PHP のバージョンを変えるときは、次の手順でバージョンアップしてください。  
 ※バージョンアップ作業中は、Exmentにアクセスできなくなります。  
 ※下記の例は、PHP8.0からPHP8.2へアップデートするための手順です。  
 ※Amazon Linux 2のExtras Library(amazon-linux-extras)を用いて、PHPのインストールを行っている前提です。  
 ※環境や導入時期、バージョンやインストール方法によって、バージョンアップ方法は異なる場合があります。  
 
-- amazon-linux-extras パッケージがインストールされていることを確認します。  
+- amazon-linux-extras パッケージがインストールされていることを確かめます。
 
 ~~~
 which amazon-linux-extras
@@ -192,8 +192,8 @@ which amazon-linux-extras
 # sudo yum install -y amazon-linux-extras
 ~~~
 
-- PHPのバージョンとExtras Libraryのトピックを確認します。  
-※PHPのバージョンが8.0.Xであること。PHP8.0のトピックがenabledであること、PHP8.2のトピックが存在することを確認してください。  
+- PHP のバージョンと、Extras Library のトピックを確かめます。  
+※次の 3 つを確かめてください。PHP のバージョンが 8.0.X であること。PHP8.0 のトピックが enabled であること。PHP8.2 のトピックがあること。
 
 ~~~
 php -v
@@ -212,7 +212,7 @@ sudo amazon-linux-extras disable php8.0
 sudo yum -y remove php\*
 ~~~
 
-- PHP8.2のトピックを有効化後にインストールします。  
+- PHP8.2 のトピックを有効にしてから、インストールします。
 
 ~~~
 sudo amazon-linux-extras enable php8.2
@@ -225,7 +225,7 @@ sudo amazon-linux-extras install -y php8.2
 sudo yum -y install php-xml.x86_64 php-mbstring.x86_64 php-gd.x86_64 php-sodium.x86_64 php-dom.x86_64
 ~~~
 
-- PHPのバージョンが8.Xになっていること、PHP8.0のトピックがdisabled、PHP8.2のトピックがenabledになっていることを確認します。  
+- PHP のバージョンが 8.X になっていること、PHP8.0 のトピックが disabled、PHP8.2 のトピックが enabled になっていることを確かめます。
 
 ~~~
 php -v

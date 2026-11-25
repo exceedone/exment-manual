@@ -1,20 +1,33 @@
 # 利用者向けサイト構築
 
-Exmentでは、エンドポイントを変えることによって、Exmentサイトの他に、開発者が独自に開発した一般ユーザー向けサイトを構築することが出来ます。  
+開発する方のためのページです。  
+Exment では、エンドポイント（URL の入り口）を変えることで、Exment のサイトのほかに、開発者が自分で作った、一般ユーザー向けのサイト（利用者向けサイト）を作れます。
 
-今回当マニュアルで作成するページは、以下のものです。  
-・お知らせデータの一覧  
-・お知らせデータの詳細表示  
-・お知らせデータの新規作成  
-・お知らせデータの編集  
-・お知らせデータの削除  
+このページでは、例として、Exment の「お知らせ」テーブルのデータを扱う、次のページを作ります。
+
+- お知らせデータの一覧
+- お知らせデータの詳細表示
+- お知らせデータの新規作成
+- お知らせデータの編集
+- お知らせデータの削除
+
+作る順番は、次のとおりです。
+
+1. アクセスできるかを確かめる
+2. 一覧のページを作る（ルーティング → コントローラー → ビュー）
+3. 詳細・新規作成・編集・削除のページを、順に足していく
 
 ![利用者向けサイト構築画面](img/public_site/public_site1.png)
 
 ## アクセス確認
-利用者向けサイトは、Exment構築後であってもアクセス出来ます。  
-URL末尾に「/admin」を付与することで管理者サイト(Exment)に、「/」で利用者向けサイトにアクセスします。  
-※利用者向けサイトを「/」に置くには、`.env` の `ADMIN_ROUTE_PREFIX` を「admin」にしてください（v7.2.1 以降の新しいインストールは、標準では Exment が「/」にあるため）。詳しくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。  
+利用者向けサイトは、Exment を構築したあとでもアクセスできます。
+
+| URL の末尾 | 開くサイト |
+|---|---|
+| 「/admin」 | 管理者サイト(Exment) |
+| 「/」 | 利用者向けサイト |
+
+- 利用者向けサイトを「/」に置くには、`.env` の `ADMIN_ROUTE_PREFIX` を「admin」にしてください。v7.2.1 以降の新しいインストールは、標準では Exment が「/」にあるためです。くわしくは[URLに含む「admin」の変更・削除](/ja/additional_prefix)をご覧ください。
 
 ■エンドポイント「/」
 ![利用者向けサイト構築画面](img/public_site/public_site2.png)
@@ -23,18 +36,21 @@ URL末尾に「/admin」を付与することで管理者サイト(Exment)に、
 ![利用者向けサイト構築画面](img/public_site/public_site3.png)
 
 ## ページ作成
-利用者向けサイトは、基本的に一般的なLaravelによるシステム開発と同じ構成・手順で開発していきます。  
-Laravelのルートフォルダ構成です。この内、主に以下のフォルダに対し、phpファイルを作成していきます。  
-・app/Http/Controllers：コントローラー  
-・routes：エンドポイント情報  
-・resources/views：ビューを作成。blade記法に倣って作成する  
-・public：css、js、画像など
+利用者向けサイトは、基本的に、ふつうの Laravel のシステム開発と同じ構成・手順で作ります。  
+下の画像は、Laravel のルートフォルダの構成です。このうち、主に次のフォルダに、phpファイルを作っていきます。
+
+| フォルダ | 置くもの |
+|---|---|
+| app/Http/Controllers | コントローラー |
+| routes | エンドポイント情報 |
+| resources/views | ビュー。blade記法で書きます |
+| public | css、js、画像など |
 
 ![利用者向けサイト構築画面](img/public_site/public_site4.png)
 
 #### routes：ルーティング
-routes/web.phpにて、以下のように今回作成する一覧ページのルーティングを記載します。  
-※その他のルーティング記法は[こちら](https://readouble.com/laravel/8.x/ja/routing.html)
+routes/web.php に、一覧ページのルーティングを、次のように書きます。  
+※そのほかのルーティングの書き方は、[Laravel のルーティングの説明](https://readouble.com/laravel/8.x/ja/routing.html)をご覧ください。
 
 ~~~
 <?php
@@ -61,11 +77,12 @@ Route::get('/', [\App\Http\Controllers\IndexController::class, 'index']);
 ~~~
 
 #### Controller：コントローラー
-app/Http/Controllersフォルダに、IndexController.phpを作成します。  
-IndexController.phpにて、以下のように記載します。  
-・CustomTable：Exmentの「カスタムテーブル」に該当するModel  
-・CustomTable::getEloquent('information')->getValueModel()：Exmentのテーブルのデータ用Model。ユーザーが記入した各データ。  
-※その他のコントローラーの記法は[こちら](https://readouble.com/laravel/8.x/ja/controllers.html)
+app/Http/Controllers フォルダに、IndexController.php を作り、次のように書きます。
+
+- CustomTable：Exmentの「カスタムテーブル」に当たる Model です。
+- CustomTable::getEloquent('information')->getValueModel()：Exmentのテーブルのデータ用の Model です。ユーザーが入力した各データを表します。
+
+※そのほかのコントローラーの書き方は、[Laravel のコントローラーの説明](https://readouble.com/laravel/8.x/ja/controllers.html)をご覧ください。
 
 ~~~
 <?php
@@ -89,6 +106,8 @@ class IndexController extends BaseController
 ~~~
 
 #### view：ビュー
+ビューは、2 つのファイルを作ります。共通の枠（_layout.blade.php）と、一覧の中身（index.blade.php）です。
+
 resources/viewに、_layout.blade.phpを作成し、以下のように記載します。  
 ~~~
 <!DOCTYPE html>
@@ -139,7 +158,7 @@ resources/viewに、_layout.blade.phpを作成し、以下のように記載し�
 ~~~
 
 resources/viewに、index.blade.phpを作成し、以下のように記載します。  
-※その他のBladeの記法は[こちら](https://readouble.com/laravel/8.x/ja/blade.html)
+※そのほかの Blade の書き方は、[Laravel の Blade の説明](https://readouble.com/laravel/8.x/ja/blade.html)をご覧ください。
 
 ~~~
 @extends('_layout')
@@ -177,13 +196,13 @@ resources/viewに、index.blade.phpを作成し、以下のように記載しま
 ~~~
 
 #### 結果表示
-ここまでの開発が正常に完了していれば、以下のようにExmentの「お知らせ」テーブルのデータ一覧が表示されます。  
-※「新規作成する」「詳細」のリンクは現時点ではまだリンク切れとなります。
+ここまでが正しくできていれば、次のように、Exmentの「お知らせ」テーブルのデータの一覧が表示されます。  
+※「新規作成する」「詳細」のリンクは、この時点ではまだ開けません。このあとで作ります。
 
 ![利用者向けサイト構築画面](img/public_site/public_site5.png)
 
 #### データ詳細画面作成
-データ詳細画面を作成していきます。以下のような追記をしていきます。
+データ詳細画面を作ります。次の 3 つのファイルに、書き足します。
 
 routes/web.php
 ~~~
@@ -257,12 +276,12 @@ resources/views/show.blade.php（新規作成）
 ~~~
 
 #### 結果表示
-開発が正常に完了していれば、以下のようにExmentの「お知らせ」テーブルの、指定のIDのデータ詳細が表示されます。
+正しくできていれば、次のように、Exmentの「お知らせ」テーブルの、指定した ID のデータの詳細が表示されます。
 
 ![利用者向けサイト構築画面](img/public_site/public_site6.png)
 
 #### データ新規作成画面
-データ新規作成画面を作成していきます。以下のような追記をしていきます。
+データ新規作成画面を作ります。次の 3 つのファイルに、書き足します。
 
 routes/web.php（詳細ページより上に記載する）
 ~~~
@@ -361,12 +380,12 @@ resources/views/create.blade.php（新規作成）
 
 
 #### 結果表示
-開発が正常に完了していれば、以下のようにExmentの「お知らせ」テーブルにデータを追加するページが表示されます。
+正しくできていれば、次のように、Exmentの「お知らせ」テーブルにデータを追加するページが表示されます。
 
 ![利用者向けサイト構築画面](img/public_site/public_site7.png)
 
 #### データ編集画面
-データ編集画面を作成していきます。以下のような追記をしていきます。
+データ編集画面を作ります。次の 5 つのファイルに、書き足します（または書き換えます）。
 
 routes/web.php（詳細ページより上に記載する）
 ~~~
@@ -506,7 +525,7 @@ resources/view/index.blade.php（td タグの中身を書き換え）
 ![利用者向けサイト構築画面](img/public_site/public_site8.png)
 
 #### データ削除画面
-データ削除画面を作成していきます。以下のような追記をしていきます。
+データを削除できるようにします。次の 4 つのファイルに、書き足します（または書き換えます）。
 
 routes/web.php
 ~~~
