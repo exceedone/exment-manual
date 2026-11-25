@@ -37,6 +37,10 @@ export default defineConfig({
   // a link to a page that is not there stops the build (ISS02820: no dead links)
   ignoreDeadLinks: process.env.MANUAL_DEAD_LINKS === 'ignore' ? true : 'localhostLinks',
   head: [
+    // the same icons as the site (exment.net): without them the browser keeps the old icon of the docsify manual
+    ['link', { rel: 'icon', href: '/assets/favicon-32.png', sizes: '32x32' }],
+    ['link', { rel: 'icon', href: '/assets/logo-mark.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'apple-touch-icon', href: '/assets/apple-touch-icon.png' }],
     ['script', {}, oldUrls.replace('BASE', JSON.stringify(base)).replace('SLUGIFY', () => slugifySource)],
   ],
   markdown: {
