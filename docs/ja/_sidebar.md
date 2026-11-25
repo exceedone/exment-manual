@@ -17,6 +17,7 @@
   * [チューニング](/ja/tuning)
   * [セキュリティチェック](/ja/security_check)
   * [決まった時間の処理](/ja/scheduled_jobs)
+  * [ログの管理](/ja/log_management)
   * [メンテナンスモード](/ja/maintenance)
   * [(上級者向け)冗長化](/ja/redundant)
   * [メール送信設定](/ja/mailsend_setting)

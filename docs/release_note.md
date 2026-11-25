@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.3.0 (planned)
+- <span class="red bold">The logs keep as little personal data as they need: the operation log keeps no values of what was sent (only the keys, as ***), the application log masks mail addresses and the values in SQL, and new log files are made 0640. To keep the values as before, turn on "Keep the input in the logs" in Log Management.</span> See [here](/log_management?id=personal-data-in-the-logs)
+1. New features
+    - **Log Management**: how long each kind of log is kept and its size, the login records (filter, CSV), the level and the daily files of the application log, the automatic deleting of the old logs and their monthly archive (this server or S3). See [here](/log_management)
+    - The system permission "Audit" of the role groups (read the logs and the IT audit report)
+
 ## v7.2.1 (2026/11/23)
 - <span class="red bold">v7.2.1 is the first public release of 7.2. It includes everything of v7.2.0 below (v7.2.0 was withdrawn).</span>
 - <span class="red bold">The left menu is grouped by area of work ("Admin Setting" becomes three groups: "Settings: Data & Screens", "Settings: Users & Permissions", "Settings: System"). On an updated site only the menus still where Exment put them move; menus you moved stay.</span> See [here](/menu?id=the-menu-from-v721)
