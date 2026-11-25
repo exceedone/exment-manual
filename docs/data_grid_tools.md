@@ -146,14 +146,15 @@ Right clicking a row opens the actions available for that record.
 | Quick preview | Shows the record without leaving the list |
 | View | Opens the detail screen |
 | Edit | Opens the edit screen |
-| Duplicate as new | Opens a new record prefilled from this row |
+| Duplicate as new | Opens a new record prefilled from this row. The data of its 1:n child tables comes along as new rows |
 | Set me as ... | Puts the logged-in user into the assignee column |
 | Filter within this page: "..." | Keeps only the rows with the same value as the clicked cell |
 | Copy cell value | Copies the clicked cell to the clipboard |
 | Delete | Deletes the record after a confirmation |
 
 The menu is built once for the table from the user's rights, so a read-only visitor never sees delete or edit. The right on each record (a record locked by a workflow, for example) is checked when the command runs, and a refused command shows a message.  
-Shift + right click opens the browser's own menu instead.
+Shift + right click opens the browser's own menu instead.  
+The child rows that "Duplicate as new" brings along become new records when saved; the original record and its children stay as they are. Many-to-many values come along too. File, image and auto number columns are not copied.
 
 ### Quick preview
 
