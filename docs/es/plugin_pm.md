@@ -17,15 +17,15 @@ Permite gestionar proyectos y tickets (incidencias) sobre las tablas de Exment. 
 | Función | Contenido |
 | --- | --- |
 | Proyectos | Cada proyecto reúne sus incidencias, su tablero, su diagrama de Gantt, su Wiki y sus archivos. Hay 3 tipos de miembros: administradores, miembros y lectores (se usan los grupos de roles de Exment). |
-| Incidencias | Lista (filtros y filtros rápidos), árbol de incidencias madre e hijas, edición directa en la lista, actualización en bloque y archivos adjuntos. El cuerpo se escribe en Markdown y también se pueden pegar imágenes. Después de guardar, la lista y los detalles se vuelven a dibujar en el momento, sin recargar toda la página (desde 1.6.5). |
+| Incidencias | Lista (filtros y filtros rápidos), árbol de incidencias madre e hijas, edición directa en la lista, actualización en bloque y archivos adjuntos. El cuerpo se escribe en Markdown y también se pueden pegar imágenes. Después de guardar, la lista y los detalles se vuelven a dibujar en el momento, sin recargar toda la página (desde 1.6.5). Las incidencias padre e hijas pueden llegar a 5 niveles (desde 1.7.18 / requiere Exment 7.2.6). |
 | Roles de una incidencia | Además del responsable, se pueden indicar el responsable secundario, el administrador y el revisor, y la dificultad (fácil, normal, difícil). En los detalles de la incidencia también aparece quien la abrió. El responsable secundario, el administrador y el revisor reciben los avisos de actualización igual que el responsable (desde 1.6.0). |
 | Hitos | Gestión de las incidencias por hito y gráfico de trabajo pendiente (burndown). |
 | Tablero y diagrama de Gantt | Muestra las incidencias en un tablero por estado o en un diagrama de Gantt. |
-| Wiki y archivos | Los documentos del proyecto se comparten con la Wiki y con archivos. |
+| Wiki y archivos | Los documentos del proyecto se comparten con la Wiki y con archivos. La pestaña 「ファイル」 puede mostrar un espacio de trabajo del servidor de archivos de Exment (desde 1.7.18 / requiere Exment 7.2.6). |
 | Word, Excel y PowerPoint | Con 「表示」 (ver) en los archivos de las incidencias, los comentarios, la Wiki y el proyecto, se abren dentro de la pantalla sin descargarlos. Quien puede editar también puede editarlos y guardarlos ahí mismo (desde 1.7.0 y 1.7.1. Hacen falta [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) 0.4.0 o posterior y un navegador que admita WebGPU). Si no está instalado, se descargan como hasta ahora. |
 | Comentarios | Se pueden escribir comentarios en las incidencias. Se puede indicar a qué usuarios avisar (mención) o pedir una comprobación (revisión). |
 | Leído / no leído | Se ve quién ha leído una incidencia. Las incidencias que usted todavía no ha visto aparecen con color en la lista. |
-| Notificaciones | Avisos con la campana de la pantalla, y correo al registrar una incidencia o un comentario o con el botón 「メールで知らせる」 (avisar por correo). El correo se envía con la configuración de correo de Exment. |
+| Notificaciones | Avisos con la campana de la pantalla, y correo al registrar una incidencia o un comentario o con el botón 「メールで知らせる」 (avisar por correo). El correo se envía con la configuración de correo de Exment. Cada persona puede recibirlos además por correo, por Teams o por ambos (desde 1.7.18 / requiere Exment 7.2.6). |
 | Configuración | Desde ⚙ 設定 (configuración) se hacen la configuración del portal y la actualización de la estructura de datos. Los administradores del sistema pueden usar 「データ移行」 (migración de datos): exporta los proyectos a un ZIP con sus comentarios, su historial de cambios y sus archivos adjuntos, y los importa en otro Exment (primero solo se comprueba y después se escribe). En las incidencias importadas también aparecen la clave, la URL y el autor de la incidencia de origen, y los atributos personalizados (desde 1.5.0). |
 
 ## Requisitos
@@ -192,7 +192,7 @@ Para cada proyecto se pide la creación de un repositorio Git (Gitea o Forgejo) 
 ![Repositorio Git](../img/plugin_pm/pm_git.png)
 
 ## Cómo se usa
-Esta sección describe las pantallas de 1.7.17. Al abrir un proyecto, aparecen las pestañas 「ホーム」 (inicio), 「ボード」 (tablero), 「課題」 (incidencias), 「ガントチャート」 (diagrama de Gantt), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (archivos) y 「設定」 (configuración). La Wiki, los archivos, los gráficos (diagrama de Gantt y burndown) y las incidencias madre e hijas se pueden desactivar en 「設定」 → 「利用する機能」 (funciones que se usan) del proyecto. Al desactivarlos solo se oculta la pestaña; los datos no se eliminan.
+Esta sección describe las pantallas de 1.7.18. Al abrir un proyecto, aparecen las pestañas 「ホーム」 (inicio), 「ボード」 (tablero), 「課題」 (incidencias), 「ガントチャート」 (diagrama de Gantt), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (archivos) y 「設定」 (configuración). La Wiki, los archivos, los gráficos (diagrama de Gantt y burndown) y las incidencias madre e hijas se pueden desactivar en 「設定」 → 「利用する機能」 (funciones que se usan) del proyecto. Al desactivarlos solo se oculta la pestaña; los datos no se eliminan.
 
 ### Incidencias
 **La lista (pestaña 「課題」)**
@@ -213,11 +213,21 @@ Esta sección describe las pantallas de 1.7.17. Al abrir un proyecto, aparecen l
 - Con `@` se elige un miembro, con `#` una incidencia y con `~` un archivo adjunto.
 - 「コメント・変更履歴」 (comentarios e historial de cambios) se puede cambiar a 「コメントのみ」 (solo comentarios).
 
+**Leído y no leído**
+- Las incidencias que no ha leído aparecen como no leídas (en negrita) en la lista. Al abrir una incidencia, queda como leída. Con clic derecho en una fila, la marca como leída o no leída a mano. En la incidencia se ve quién la ha leído.
+- Desde 1.7.18: una incidencia que abrió desde la lista sigue leída al volver a la lista. Lo que marcó (abrir, o marcar a mano) se mantiene durante un minuto aunque se actualice la lista. Después vuelve a valer la respuesta del servidor.
+
 ### Incidencias madre e hijas
 - En la edición de la incidencia, pulse 「親課題を設定」 (indicar la incidencia madre) y busque por clave o asunto. También se puede crear desde 「子課題を追加」 (añadir incidencia hija) en la pantalla de la incidencia.
 - En la pantalla de la incidencia madre aparece el cuadro 「子課題」 (incidencias hijas), con cuántas están cerradas. 「ツリー」 (árbol) de la lista también las muestra como madre e hijas.
 - La incidencia madre tiene que ser del mismo proyecto.
-- En 1.7.17 solo hay un nivel. Una incidencia hija no puede ser madre de otra incidencia, y una incidencia que tiene hijas no puede ser hija de otra.
+- Las incidencias padre e hijas pueden llegar a **5 niveles** (una incidencia, su hija, la hija de esa ...) (desde 1.7.18 / requiere Exment 7.2.6). Antes solo había un nivel.
+- El número de niveles es un ajuste del plugin: en los ajustes del plugin, 「課題」 (incidencias) > 「課題の階層の数」 (número de niveles), de 2 a 10. El valor inicial es 5.
+- Un padre solo se rechaza en dos casos: si crearía un bucle (una incidencia bajo una de sus propias hijas) o si dejaría la incidencia (o la más profunda por debajo) más abajo que el número de niveles. El mensaje indica cuál. El selector de padre muestra solo las incidencias que se pueden elegir.
+- Una incidencia con hijas se puede mover bajo otra incidencia del mismo proyecto. Sus hijas van con ella, mientras quepan en los niveles. Moverla a otro proyecto sigue sin permitirse.
+- Si reduce el número de niveles, las incidencias que ya son más profundas se quedan como están. Solo se comprueba un padre nuevo.
+- El 「ツリー」 (árbol) de la lista muestra todos los niveles (sangría, plegar). Una incidencia con hijas muestra 「子の進捗」 (progreso de las hijas) N % junto a su propio progreso: la media de las incidencias de debajo que no tienen hijas, contando una terminada como 100 %. Solo se muestra; no se guarda.
+- El diagrama de Gantt muestra los niveles más profundos con sangría con Exment 7.2.6. El tablero no cambia (una tarjeta muestra su incidencia padre).
 - Una incidencia con hijas no se puede eliminar ni mover a otro proyecto. Quite antes la madre de las hijas.
 - Si se desactiva 「親子課題」 (incidencias madre e hijas) en el proyecto, no se puede indicar la madre.
 
@@ -230,10 +240,16 @@ Esta sección describe las pantallas de 1.7.17. Al abrir un proyecto, aparecen l
 
 ### Notificaciones
 - Para las reglas de la campana y del correo, vea "5. Notificaciones" más arriba. La campana llega sin hacer nada; el correo se envía con 「メールでも知らせる」 o 「メールで知らせる」.
-- 1.7.17 no envía los avisos de las incidencias a Teams. Gestión de proyectos tampoco usa "[Notificar al chat personal de Teams](/es/notify_teams)" de Exment (Exment 7.2.6 o posterior).
+- **Por correo o Teams, para cada persona** (desde 1.7.18; Teams requiere Exment 7.2.6): cada persona elige en 「通知」 (Notificaciones), en la barra superior del portal, cómo recibir los avisos de las incidencias (nueva incidencia, cambio, comentario), además de la campana: por correo, por Teams o por ambos. Para quien no ha elegido, vale el ajuste del plugin 「受け取り方の初めの値」 (forma inicial de recibir; al principio solo la campana).
+- El correo y el mensaje de Teams tienen el mismo aspecto: el título con la clave de la incidencia en negrita (課題が更新されました（KEY）), el enlace a la incidencia, el asunto y lo que cambió en una lista numerada. El correo es HTML (con parte de texto) o texto, según el ajuste de correo de Exment. 「メールでも知らせる」 (avisar también por correo) sigue enviando correo a todos los que reciben la campana, con el mismo formato.
+- Para Teams hace falta Exment 7.2.6 o posterior. Active "Notificaciones de Teams (chat personal)" en [Gestión de funciones](/es/feature) e indique la dirección del flujo de trabajo de Teams en los ajustes del sistema (consulte "[Notificar al chat personal de Teams](/es/notify_teams)"). Con un Exment anterior, solo se ofrece el correo.
 
 ### Archivos y Wiki
 - **Archivos**: los archivos adjuntos de las incidencias, la Wiki y el proyecto en una sola lista (nombre, actualizado por, fecha de actualización, ubicación). Los archivos que se arrastran aquí se guardan como archivos adjuntos del proyecto.
+- **Espacio de trabajo del servidor de archivos** (desde 1.7.18 / requiere Exment 7.2.6): la pestaña 「ファイル」 puede mostrar, en lugar de solo la lista de adjuntos, el espacio de trabajo del proyecto en el [servidor de archivos](/es/file_server) de Exment (carpetas, subida, enlaces para compartir, versiones, búsqueda, copiar enlace, abrir en Office). Es una función de [Gestión de funciones](/es/feature), 「プロジェクト管理のファイル（ファイルサーバー）」, y sigue desactivada hasta que un administrador del sistema la active. La función de servidor de archivos debe estar disponible.
+- El administrador del proyecto crea un espacio de trabajo en 「設定」 (ajustes) del proyecto > 「ファイルサーバー」, o elige uno que gestione. Un proyecto tiene un espacio de trabajo. En un sitio donde solo los administradores del sistema crean espacios de trabajo, un administrador crea uno y da al administrador del proyecto el permiso de gestión; este lo elige después.
+- Los permisos de nivel superior siguen al proyecto: los administradores gestionan, los miembros y las organizaciones miembro editan, los lectores y las organizaciones lectoras ven. Se vuelven a fijar cada vez que cambian las personas del proyecto, y con el botón 「権限をプロジェクトに合わせ直す」 (ajustar de nuevo los permisos al proyecto). Una carpeta con permisos propios en el servidor de archivos los conserva.
+- La pestaña muestra las páginas propias del servidor de archivos. 「ファイルサーバーで開く」 (abrir en el servidor de archivos) lo abre a tamaño completo. Los adjuntos de incidencias, wiki y proyecto siguen listados debajo y no se mueven. Al desvincular, el espacio de trabajo y sus archivos permanecen.
 - Los archivos de Word, Excel y PowerPoint se abren con 「表示」 (ver) si está instalado [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) (vea la tabla de "Qué permite hacer").
 - **Wiki**: las páginas del proyecto se crean con 「追加」 (añadir). Una página con página madre aparece debajo de ella, en forma de árbol, en la lista de la izquierda. Tienen 「編集」 (editar), 「履歴」 (historial) y 「添付」 (archivos adjuntos), y también se les pueden poner etiquetas.
 

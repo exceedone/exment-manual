@@ -17,15 +17,15 @@ It manages projects and tickets (issues) on Exment's own tables. It is free.
 | Feature | Content |
 | --- | --- |
 | Projects | Each project has its issues, board, Gantt chart, wiki and files. Members are project managers, members or viewers (on Exment's role groups). |
-| Issues | A list with filters and quick filters, a parent / child tree, inline editing in the list, bulk update and attachments. The body is written in Markdown, and images can be pasted. After a save, the list and the detail are drawn again in place, without reloading the whole page (from 1.6.5). |
+| Issues | A list with filters and quick filters, a parent / child tree, inline editing in the list, bulk update and attachments. The body is written in Markdown, and images can be pasted. After a save, the list and the detail are drawn again in place, without reloading the whole page (from 1.6.5). Parent and child issues can go up to 5 levels (from 1.7.18 / needs Exment 7.2.6). |
 | Roles on an issue | Besides the assignees: sub-assignees, managers, reviewers, and a difficulty (easy, normal, hard). The issue detail also shows who raised it. Sub-assignees, managers and reviewers get the update notices like the assignees (from 1.6.0). |
 | Milestones | Issues per milestone, and a burndown chart. |
 | Board and Gantt chart | Shows the issues on a board by status, or on a Gantt chart. |
-| Wiki and files | Share the documents of the project with a wiki and files. |
+| Wiki and files | Share the documents of the project with a wiki and files. The Files tab can show a workspace of Exment's file server (from 1.7.18 / needs Exment 7.2.6). |
 | Word, Excel and PowerPoint | 「表示」 (View) on the files of issues, comments, wiki pages and the project opens them on the screen without downloading. Those who may edit can edit and save them there (from 1.7.0 / 1.7.1; needs [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) 0.4.0 or later and a browser with WebGPU). Without it, the files download as before. |
 | Comments | Comment on an issue. Name the users to notify (mentions) or ask for a review. |
 | Read / unread | See who has read an issue. Issues you have not seen are tinted in the list. |
-| Notifications | Bells on the screen, and mail on a new issue or comment, or with the "mail this issue" button (sent with Exment's mail settings). |
+| Notifications | Bells on the screen, and mail on a new issue or comment, or with the "mail this issue" button (sent with Exment's mail settings). Each person can also get them by mail, by Teams or both (from 1.7.18 / needs Exment 7.2.6). |
 | Settings | In ⚙ Settings: the portal settings and the update of the data structure. System administrators can use "Data migration": export projects with comments, history and attachments to a ZIP and import it into another Exment (check first, then write). Imported issues also show their key, URL and author at the source, and its custom attributes (from 1.5.0). |
 
 ## Requirements
@@ -192,7 +192,7 @@ Each project can ask for a Git repository (Gitea or Forgejo).
 ![Git repository](img/plugin_pm/pm_git.png)
 
 ## How to use
-This section describes the screens of 1.7.17. A project has the tabs 「ホーム」 (home), 「ボード」 (board), 「課題」 (issues), 「ガントチャート」 (Gantt chart), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (files) and 「設定」 (settings). The wiki, files, charts (Gantt chart and burndown) and parent/child issues can be turned off in the project's 「設定」 > 「利用する機能」 (features). Turning one off only hides the tab; no data is deleted.
+This section describes the screens of 1.7.18. A project has the tabs 「ホーム」 (home), 「ボード」 (board), 「課題」 (issues), 「ガントチャート」 (Gantt chart), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (files) and 「設定」 (settings). The wiki, files, charts (Gantt chart and burndown) and parent/child issues can be turned off in the project's 「設定」 > 「利用する機能」 (features). Turning one off only hides the tab; no data is deleted.
 
 ### Issues
 **The list (the 「課題」 tab)**
@@ -213,11 +213,21 @@ This section describes the screens of 1.7.17. A project has the tabs 「ホー�
 - Type `@` to pick a member, `#` an issue and `~` an attachment.
 - 「コメント・変更履歴」 (comments and history) can be switched to 「コメントのみ」 (comments only).
 
+**Read and unread**
+- Issues you have not read are shown as unread (bold) in the list. Opening an issue marks it read. Right-click a row to mark it read or unread by hand. The issue shows who has read it.
+- From 1.7.18: an issue you opened from the list stays read when you go back to the list. What you marked (opened, or marked by hand) stays for one minute, even when the list is refreshed. After that, the server's answer counts again.
+
 ### Parent and child issues
 - In the issue editor, press 「親課題を設定」 (set parent) and search by key or subject. 「子課題を追加」 (add child issue) on the issue screen also makes one.
 - A parent shows a 「子課題」 (child issues) box with how many are done. The list's 「ツリー」 (tree) shows them as parent and children too.
 - The parent must be an issue of the same project.
-- In 1.7.17, there is one level only. A child issue cannot be the parent of another issue, and an issue that has children cannot become a child.
+- Parent and child issues go up to **5 levels** (an issue, its child, the child of that one ...) (from 1.7.18 / needs Exment 7.2.6). Before, there was one level only.
+- The number of levels is a plugin setting: in the plugin settings, 「課題」 (issues) > 「課題の階層の数」 (number of levels), from 2 to 10. The default is 5.
+- A parent is refused only in two cases: it would make a loop (an issue under one of its own children), or it would put the issue (or the deepest issue under it) deeper than the number of levels. The message says which. The parent picker shows only the issues that can be chosen.
+- An issue with children can be moved under another issue of the same project. Its children go with it, as long as they still fit in the levels. Moving it to another project is still refused.
+- If you lower the number of levels, issues that are already deeper stay as they are. Only a new parent is checked.
+- The list's 「ツリー」 (tree) shows every level (indent, fold). An issue with children shows 「子の進捗」 (children's progress) N% next to its own progress: the average of the issues under it that have no children, a done one counting 100%. It is for display only and is not saved.
+- The Gantt chart shows the deeper levels indented with Exment 7.2.6. The board is unchanged (a card shows its parent issue).
 - An issue with children cannot be deleted or moved to another project. Remove the children's parent first.
 - When 「親子課題」 (parent/child issues) is turned off for the project, no parent can be set.
 
@@ -230,10 +240,16 @@ This section describes the screens of 1.7.17. A project has the tabs 「ホー�
 
 ### Notifications
 - For the bell and mail, see "5. Notifications" above. The bell comes by itself; mail is sent with 「メールでも知らせる」 or 「メールで知らせる」.
-- 1.7.17 does not send issue notifications to Teams. Exment's own "[Notifications to a person's Teams chat](/notify_teams)" (Exment 7.2.6 or later) is not used by Project Management either.
+- **By mail or Teams, for each person** (from 1.7.18; Teams needs Exment 7.2.6): each person chooses in 「通知」 (Notifications) in the top bar of the portal how to receive the notices of issues (new issue, change, comment): by mail, by Teams, or both, besides the bell. For people who have not chosen, the plugin setting 「受け取り方の初めの値」 (default way to receive) decides (bell only at first).
+- The mail and the Teams message look the same: the title with the issue key in bold (課題が更新されました（KEY）), the link to the issue, the subject, and what changed as a numbered list. Mail is HTML (with a text part) or plain text, as Exment's mail setting says. 「メールでも知らせる」 (also send mail) still mails everyone who gets the bell, in the same layout.
+- For Teams, Exment 7.2.6 or later is needed. Turn on "Teams notifications (personal chat)" in [Feature Management](/feature), and set the address of the Teams workflow in the system settings (see "[Notifications to a person's Teams chat](/notify_teams)"). On an older Exment, only mail is offered.
 
 ### Files and wiki
 - **Files**: the attachments of the issues, the wiki and the project in one list (name, updated by, updated on, location). Files dropped here are saved as attachments of the project.
+- **Workspace of the file server** (from 1.7.18 / needs Exment 7.2.6): the Files tab can show the project's workspace of Exment's [file server](/file_server) (folders, upload, share links, versions, search, copy link, open in Office) instead of only the list of attachments. It is a feature in [Feature Management](/feature), 「プロジェクト管理のファイル（ファイルサーバー）」, and stays off until a system administrator turns it on. The file server feature must be available.
+- The project's manager makes a workspace in the project's 「設定」 (settings) > 「ファイルサーバー」 (file server), or picks one they manage. One project has one workspace. On a site where only system administrators make workspaces, an administrator makes one and gives the manager the manage right; the manager then picks it.
+- The top permissions follow the project: managers manage, members and member organizations edit, viewers and viewer organizations view. They are set again each time the people of the project change, and with the button 「権限をプロジェクトに合わせ直す」 (set the permissions to the project again). A folder with its own permissions in the file server keeps them.
+- The tab shows the file server's own pages. 「ファイルサーバーで開く」 (open in the file server) opens it full size. The attachments of issues, wiki and project are still listed under it and are not moved. Unlinking leaves the workspace and its files.
 - Word, Excel and PowerPoint files open with 「表示」 (view) when [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) is installed (see the table in "What it does").
 - **Wiki**: make the project's pages with 「追加」 (add). A page with a parent page is shown under it in the tree on the left. Pages have 「編集」 (edit), 「履歴」 (history) and 「添付」 (attachments), and can have tags.
 
