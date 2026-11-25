@@ -58,6 +58,10 @@ export default defineConfig({
         locales: {
           ja: { translations: { button: { buttonText: '検索' }, modal: { noResultsText: '結果がありませんでした', footer: { selectText: '開く', navigateText: '移動', closeText: '閉じる' } } } },
           vi: { translations: { button: { buttonText: 'Tìm kiếm' }, modal: { noResultsText: 'Không có kết quả' } } },
+          zh: { translations: { button: { buttonText: '搜索' }, modal: { noResultsText: '没有结果' } } },
+          ko: { translations: { button: { buttonText: '검색' }, modal: { noResultsText: '결과가 없습니다' } } },
+          de: { translations: { button: { buttonText: 'Suchen' }, modal: { noResultsText: 'Keine Ergebnisse' } } },
+          es: { translations: { button: { buttonText: 'Buscar' }, modal: { noResultsText: 'Sin resultados' } } },
         },
       },
     },
@@ -90,6 +94,30 @@ export default defineConfig({
       lang: 'vi',
       link: '/vi/',
       themeConfig: { nav: backToSite('https://exment.net/vi/'), sidebar: sidebar['/vi/'] ?? [], outline: { level: [2, 3], label: 'Trong trang này' } },
+    },
+    zh: {
+      label: '简体中文',
+      lang: 'zh-CN',
+      link: '/zh/',
+      themeConfig: { nav: backToSite('https://exment.net/zh/'), sidebar: sidebar['/zh/'] ?? [], outline: { level: [2, 3], label: '本页内容' } },
+    },
+    ko: {
+      label: '한국어',
+      lang: 'ko',
+      link: '/ko/',
+      themeConfig: { nav: backToSite('https://exment.net/ko/'), sidebar: sidebar['/ko/'] ?? [], outline: { level: [2, 3], label: '이 페이지의 내용' } },
+    },
+    de: {
+      label: 'Deutsch',
+      lang: 'de',
+      link: '/de/',
+      themeConfig: { nav: backToSite('https://exment.net/de/'), sidebar: sidebar['/de/'] ?? [], outline: { level: [2, 3], label: 'Auf dieser Seite' } },
+    },
+    es: {
+      label: 'Español',
+      lang: 'es',
+      link: '/es/',
+      themeConfig: { nav: backToSite('https://exment.net/es/'), sidebar: sidebar['/es/'] ?? [], outline: { level: [2, 3], label: 'En esta página' } },
     },
   },
 })
