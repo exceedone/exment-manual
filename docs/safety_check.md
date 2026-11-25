@@ -16,7 +16,7 @@ The steps until you use it are as follows.
 
 ## How the safety check works
 - Each time a safety check is sent, one data record is created in "Safety Check Events".
-- At the same time, one data record of "Safety Check Answers" is created for every user, with the answer status "not_answered" (not answered yet).
+- At the same time, one data record of "Safety Check Answers" is created for every user (from v7.3.0, every [recipient](#choosing-who-receives-it-v7-3-0-and-later)), with the answer status "not_answered" (not answered yet).
 - The safety check is sent to each user as follows. Users who receive both LINE and email can answer from either of them.
 
 | Method | Sent to | How to answer |
@@ -148,7 +148,7 @@ http(s)://(Exment URL)/safety_check
 
 ![Send New](img/safety_check/safety_check_send.png)
 
-- **A drill is also sent to all users**. Its LINE messages are also counted toward the message limit.
+- **A drill is also sent to all users (from v7.3.0, to the recipients)**. Its LINE messages are also counted toward the message limit.
 - **Do not click [Send] repeatedly**. A new safety check cannot be sent until the previous sending executed by the same user is finished (up to 10 minutes). If "A send is already in progress. Please wait a moment and refresh the page." is shown, the previous safety check is still being sent. Wait a moment and refresh the page.
 - When there are many users, sending may take time.
 
