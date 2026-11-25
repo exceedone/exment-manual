@@ -1,158 +1,165 @@
 # Update
-This is the procedure when the version of Exment has been updated and an update is required.  
-Please check [here](/release_note)for the update history.  
+How to bring Exment to a newer version.  
+See the [release notes](/release_note) for what changed in each version.
 
-## First: kinds of version updates and how to update
-An Exment version number is "major . minor . patch" (e.g. v7.1.0). How you update depends on which number goes up.
+## The steps
+1. **Check your current version**
+2. **Take a backup**
+3. **Update** (the steps depend on your current version)
+4. **Check after the update**
 
-| Kind | Example | What changes | How to update |
-|---|---|---|---|
-| Patch | v7.0.2 → v7.0.3 | Bug and security fixes only | The update batch and the auto update update it |
-| Minor | v7.0.x → v7.1.0 | New features; the screens may change a little | The update batch and the auto update update it. Please read the [release note](/release_note) first |
-| Major | v6.x → v7.0 | Laravel / PHP requirements and the structure of the program change a lot | **The update batch and the auto update do not update it.** Follow the manual update steps below |
+## 1. Check your current version
+- On the screen: "System Setting" → "System version information" → "Current version"
+- In a file: the `version` of `exceedone/exment` in `composer.lock`
 
-### The update batch, the auto update and the manual update
-| Method | When it runs | What it does | How far it updates |
-|---|---|---|---|
-| Update batch (recommended) | When you run it on the server | Backup (`exment:backup`) → `composer update` → `php artisan exment:update` | The newest version allowed by `composer.json` (e.g. `"exceedone/exment": "^7.0"` → the newest v7.x, never v8) |
-| Auto update | Every day (cron / Task Scheduler) | Looks up the newest version on Packagist; if it is newer than the installed one, runs the update batch | Same as the update batch (only within `composer.json`) |
-| Manual (commands) | When you run the commands | You run `composer update` etc. yourself | As you specify |
+## 2. Take a backup
+Take a backup of the data before the update. See [Backup](/backup) for details.
 
-- **The auto update never updates to a new major version**, because `composer update` stays within the range in `composer.json`. For example, with v6 and `"exceedone/exment": "^6.2"`, it updates only to the newest v6.x even after v7 is out.
-- In that case the auto update sees "a newer version (v7) exists" and runs the update batch every day (staying on the newest v6.x). Please update the major version, or stop the auto update until you do.
-- You can check your version on the "System Setting" page, or as the `version` of `exceedone/exment` in `composer.lock`.
+- Log in to Exment as an administrator and open "Admin Setting" → "Backup" in the left menu.
+- Press the [Backup] button at the top right. A backup of the data and the attached files is made.
+- Click the backup file and download it.
 
-- Updating from v3.X.X or lower to v4.0.X requires a manual update. Please check the contents of [here](/update/v4_0) once and then update.
+Note: the update batch below takes a backup by itself.
 
-- <span class="red bold">Updating from v4.3.X or lower to v4.4.X or higher requires a manual update. Please check the contents of [here](/update/v4_4) once and then update.</span>
+## 3. Update
+### Which steps to use
+It depends on your current version and the version you want.
 
-- <span class="red bold">Updating from v4.4.X or lower to v5.0.0 or higher requires a manual update. Please check the contents of [here](/update/v5_0_php8) once and then update.</span>
+| Current version | What to do |
+|---|---|
+| **v7.x** (a newer v7) | The "[usual update](/update?id=The-usual-update)" below |
+| **v6.x or lower** | First the steps in "[Updating from an old version](/update?id=Updating-from-an-old-version)" below |
 
-- <span class="red bold">Updating from v5.0.X or lower to v6.0.0 or higher requires a manual update. Please check the contents of [here](/update/v6_0_php8) once and then update.</span>
+- From v7.0.x to v7.1.0 or higher, <span class="red bold">the screen design becomes "Modern".</span> To go back to the previous look, select "Classic" in the [Screen design](/system_setting?id=screen-design) of the system setting.
 
-- <span class="red bold">Updating from v6.X.X or lower to v7.0.0 or higher requires a manual update. The Laravel version and the namespace of the admin library have changed. Please check the contents of [here](/update/v7_0_0) once and then update.</span>
+### The usual update
+There are three ways. All of them do the same things (backup → get the new program → update the database).
 
-- Updating from v7.0.X to v7.1.0 uses the usual update steps. <span class="red bold">After the update, the screen design becomes "Modern".</span> To go back to the previous look, select "Classic" in the [Screen design](/system_setting?id=screen-design) of the system setting. After the update, press Ctrl+F5 (super reload) in the browser.
+| Way | For whom |
+|---|---|
+| **A. The update batch (recommended)** | You want to run one file on the server |
+| **B. By commands** | You want to run each step yourself |
+| **C. The auto update** | You want new versions installed every day by themselves ([auto update](/ja/update_auto), Japanese) |
 
-- If you get an error during the update, please refer to [Troubleshooting](/troubleshooting).
+#### A. The update batch (recommended)
+**(1) Download the batch (the first time only)**
 
-## (First time only) Download update batch
+Put it in the folder where Exment is installed (the root directory of the project).
 
-### For Windows
-- Download the following files:  
-https://exment.net/downloads/cmd/ExmentUpdateWindows.bat
+| Server | What to do |
+|---|---|
+| Windows | Download [ExmentUpdateWindows.bat](https://exment.net/downloads/cmd/ExmentUpdateWindows.bat) and put it in the folder |
+| Linux | The commands below (`ExmentUpdateLinux.sh`) |
+| Xserver | The commands below (`ExmentUpdateLinuxXserver.sh`) |
+| Sakura Internet | The commands below (`ExmentUpdateLinuxSakura.sh`) |
+| Mac | Download [ExmentUpdateLinux.sh](https://exment.net/downloads/cmd/ExmentUpdateLinux.sh), put it in the folder and run `chmod 775 ExmentUpdateLinux.sh` |
 
-- Place the downloaded file in the project root directory.
-
-### For Sakura Internet
-- Execute the following command in the project root directory to download.
+On Linux, Xserver and Sakura Internet, run these commands in the folder (only the two lines of your server).
 
 ~~~
+# Linux
+wget https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
+chmod 775 ExmentUpdateLinux.sh
+
+# Xserver
+wget https://exment.net/downloads/cmd/ExmentUpdateLinuxXserver.sh
+chmod 775 ExmentUpdateLinuxXserver.sh
+
+# Sakura Internet
 wget https://exment.net/downloads/cmd/ExmentUpdateLinuxSakura.sh
 chmod 775 ExmentUpdateLinuxSakura.sh
 ~~~
 
-### For Xserver
-- Execute the following command in the root directory of the project to download.
+Note: if your batch was downloaded before April 13, 2021, replace it with the new one.
+
+**(2) Run the batch**
+
+Run it in the folder.
 
 ~~~
-wget https://exment.net/downloads/cmd/ExmentUpdateLinuxXserver.sh
-chmod 775 ExmentUpdateLinuxXserver.sh
-~~~
-
-### For Linux
-- Execute the following command in the project root directory to download.  
-
-~~~
-wget https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
-chmod 775 ExmentUpdateLinux.sh
-~~~
-
-
-### For Mac
-- Download the following files:  
-https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
-
-- Place the downloaded file in the project root directory.
-
-- Execute the following command.
-
-~~~
-chmod 775 ExmentUpdateLinux.sh
-~~~
-
-## Execute update batch
-Execute the update batch.
-
-### For Sakura Internet
-- Execute the following command in the root directory of the project.  
-
-~~~
-sh ExmentUpdateLinuxSakura.sh
-~~~
-
-### Linux / Mac
-- Execute the following command in the root directory of the project.  
-
-~~~
+# Linux / Mac
 sh ExmentUpdateLinux.sh
-~~~
 
-### For Windows
-- Execute the following batch file.  
+# Xserver
+sh ExmentUpdateLinuxXserver.sh
 
-~~~
+# Sakura Internet
+sh ExmentUpdateLinuxSakura.sh
+
+# Windows
 ExmentUpdateWindows.bat
 ~~~
 
-## Update batch execution contents
-The following contents are executed in the update batch.  
- - Data backup
- - Acquire and reflect the latest sources
- - Database update
+The batch does these in order.
 
+- Backs up the data
+- Gets the new program and puts it in place
+- Updates the database
 
-## (Supplement) Screen display after update
-If the latest version exists, the following is displayed on the dashboard screen.
-![Custom table screen](img/update/show_version.png)
-
-In order to display this screen, the "currently installed version" and the "latest version" are acquired by the system.  
-This item is managed by a mechanism called "session" so that it is not acquired each time the screen is displayed, and retains its value until you log out.  
-
-Therefore, **even if an update is performed, the notation of "There is a new version" does not disappear and remains displayed.**  
-After the update, log out and log in again to get the latest version.
-
-## Manual update method
-If you want to execute the update manually from the command, please execute this.  
-
-### (Recommended) Data backup
-Perform a data backup. For more information [backup](/backup) Please confirm.  
-- Log in to Exment as an administrator and select "Administrator Settings" → "Backup" from the left menu.
-- Click the "Backup" button at the top right of the "Backup" page.
-- A backup of the latest data as well as attachments is created.
-- Then click on the backup file at the time of execution and download it.
-
-### Get latest source, reflect, update database
-
-- Currently, XServer does not support the default installation of the PHP Sodium extension.  
-  ※If installation is absolutely necessary, you will need to contact XServer’s support team.  
-
-- If you want to update Composer on XServer, you need to use a different command than the usual update command.  
-  Normally: `composer update` <span style="color: red;">✖</span>  
-  Actually: `composer update --ignore-platform-reqs`  
-  → This command ignores the Sodium check and directly executes the Composer update.  
-
-- On a rental server (Xserver, etc.), `php` over SSH can be a different version from the PHP chosen on the control panel. Check with `php --version` that it is the same version. If not, link `~/bin/php` to that version, or run it by the full path, like `/usr/bin/php8.3 artisan exment:update` ([rental server](/install_rental)).  
-
-- In the command line, execute the following command.  
-  ※Immediately after the release, the latest version might not be detected. In that case, wait for about 10-20 minutes and then run the command again.  
+#### B. By commands
+First do "2. Take a backup" above.  
+Then run these commands in the folder.
 
 ~~~
-cd (Project’s root directory)
+cd (the root directory of the project)
 composer update
-# For XServer, execute the following instead of "composer update"
-# composer update --ignore-platform-reqs
 php artisan exment:update
 ~~~
 
-On a production site (`APP_ENV=production`), you are asked before the database is changed. With no terminal (scripts, cron, CI), run `php artisan exment:update --force`.  
+- Right after a release, the newest version may not be found yet. Wait 10 to 20 minutes and run the commands again.
+- On a production site (`APP_ENV=production`), a question asks you to confirm before the database is changed. Where there is no terminal (scripts, cron, CI), use `php artisan exment:update --force`.
+
+**On a rental server (Xserver, etc.)**
+
+- On Xserver, run `composer update --ignore-platform-reqs` instead of `composer update`, because Xserver does not have the PHP Sodium extension by default (if you really need it installed, contact the Xserver support).
+- `php` over SSH can be a different version from the PHP chosen on the control panel. Check with `php --version` that it is the same version. If not, link `~/bin/php` to that version, or run it by the full path, like `/usr/bin/php8.3 artisan exment:update` ([rental server](/install_rental)).
+
+#### C. The auto update
+Every day it checks for a new version and, when there is one, runs the update batch. See [auto update](/ja/update_auto) (Japanese) for how to set it up.
+
+- The auto update only goes as far as the usual update. **It does not cross a major version, such as v6 to v7**. See "[Version numbers and how far an update goes](/update?id=Version-numbers-and-how-far-an-update-goes)" below.
+
+### Updating from an old version
+These version borders have manual steps. The update batch and the auto update do not cross them.  
+Please read the pages of every border between your current version and the newest one.
+
+| Border | Page |
+|---|---|
+| v3.x or lower → v4.0.x | [Update to v4.0](/update/v4_0) |
+| v4.3.x or lower → v4.4.x or higher | [Update to v4.4](/update/v4_4) |
+| v4.4.x or lower → v5.0.0 or higher | [Update to v5.0](/update/v5_0_php8) |
+| v5.0.x or lower → v6.0.0 or higher | [Update to v6.0](/update/v6_0_php8) |
+| <span class="red bold">v6.x or lower → v7.0.0 or higher</span> | <span class="red bold">[Update to v7.0](/update/v7_0_0)</span> (the Laravel version and the namespace of the admin library change) |
+
+- For how long each version gets fixes, see the [support policy](/support_policy).
+
+## 4. Check after the update
+- Press **Ctrl+F5** (super reload) in the browser to load the screens again.
+- Check in "System Setting" → "System version information" that the version is the new one.
+- If you get an error, see [Troubleshooting](/troubleshooting).
+
+### The "new version" notice on the dashboard
+When a newer version exists, the dashboard shows this.
+![Custom table screen](img/update/show_version.png)
+
+The "currently installed version" and the "latest version" are kept in the session, so that they are not looked up on every screen; the values stay until you log out.
+
+Therefore, **even after an update, the notice "There is a new version" can stay**.  
+Log out and log in again to refresh it.
+
+## Version numbers and how far an update goes
+An Exment version is "major . minor . patch" (for example v7.1.0). Which number goes up decides how you update.
+
+| Kind | Example | What changes | How to update |
+|---|---|---|---|
+| Patch | v7.0.2 → v7.0.3 | Bug and security fixes only | The usual update |
+| Minor | v7.0.x → v7.1.0 | New features; the screens may change a little | The usual update. Please read the [release notes](/release_note) first |
+| Major | v6.x → v7.0 | The Laravel and PHP requirements and the structure of the program change a lot | **Not by the usual update**. Use "Updating from an old version" |
+
+### Why a major version is not installed automatically
+- The update batch and the auto update use `composer update`. It installs the newest version inside the range written in `composer.json`.
+- For example, with `"exceedone/exment": "^7.0"` that is the newest v7.x, never v8. With `"^6.2"` it is the newest v6.x, even after v7 is out.
+- If you stay on v6 with the auto update running, it sees that "a newer version (v7) exists" and runs the update batch every day (the version stays the newest v6.x). Update to v7, or stop the auto update until you do.
+
+## Others
+- Installing a development version, going back to an older version, or replacing the program for a while: [development and older versions](/ja/update_tmp) (Japanese)

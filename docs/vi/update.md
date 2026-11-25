@@ -1,165 +1,156 @@
-# Cập nhật phiên bản
-Đây là các bước thực hiện khi Exment có phiên bản mới và cần cập nhật.  
-Về lịch sử cập nhật, vui lòng xem [tại đây](/release_note).
+# Cập nhật
+Cách đưa Exment lên phiên bản mới hơn.  
+Về những thay đổi của từng phiên bản, vui lòng xem [release note](/release_note).
 
-## Trước tiên: các loại nâng cấp phiên bản và cách cập nhật
-Số phiên bản Exment là "major . minor . patch" (ví dụ v7.1.0). Cách cập nhật khác nhau tùy số nào tăng.
+## Các bước
+1. **Kiểm tra phiên bản hiện tại**
+2. **Sao lưu**
+3. **Cập nhật** (cách làm tùy theo phiên bản hiện tại)
+4. **Kiểm tra sau khi cập nhật**
 
-| Loại | Ví dụ | Nội dung | Cách cập nhật |
-|---|---|---|---|
-| Patch | v7.0.2 → v7.0.3 | Chỉ sửa lỗi và lỗ hổng | Batch cập nhật và cập nhật tự động đều cập nhật được |
-| Minor | v7.0.x → v7.1.0 | Có chức năng mới; màn hình có thể thay đổi một chút | Batch cập nhật và cập nhật tự động đều cập nhật được. Hãy đọc [release note](/release_note) trước |
-| Major | v6.x → v7.0 | Yêu cầu Laravel / PHP và cấu trúc chương trình thay đổi lớn | **Batch cập nhật và cập nhật tự động không nâng lên được.** Hãy làm theo các bước cập nhật thủ công bên dưới |
+## 1. Kiểm tra phiên bản hiện tại
+- Trên màn hình: "System Setting" → "System version information" → "Current version"
+- Trong tệp: `version` của `exceedone/exment` trong `composer.lock`
 
-### Khác nhau giữa batch cập nhật, cập nhật tự động và cập nhật thủ công
-| Cách | Khi chạy | Làm gì | Nâng tới đâu |
-|---|---|---|---|
-| Batch cập nhật (khuyến nghị) | Khi chạy trên server | Backup (`exment:backup`) → `composer update` → `php artisan exment:update` | Bản mới nhất trong phạm vi ghi ở `composer.json` (ví dụ `"exceedone/exment": "^7.0"` → bản v7.x mới nhất, không lên v8) |
-| Cập nhật tự động | Hằng ngày (cron / Task Scheduler) | Tra bản mới nhất trên Packagist; nếu mới hơn bản đang cài thì chạy batch cập nhật | Giống batch cập nhật (chỉ trong phạm vi `composer.json`) |
-| Thủ công (lệnh) | Khi chạy lệnh | Tự chạy `composer update`... | Theo chỉ định |
+## 2. Sao lưu
+Hãy sao lưu dữ liệu trước khi cập nhật. Chi tiết vui lòng xem [Sao lưu](/backup).
 
-- **Cập nhật tự động không bao giờ nâng lên phiên bản major mới**, vì `composer update` chỉ nâng trong phạm vi `composer.json`. Ví dụ đang dùng v6 với `"exceedone/exment": "^6.2"` thì dù đã có v7 cũng chỉ lên bản v6.x mới nhất.
-- Khi đó cập nhật tự động thấy "có bản mới hơn (v7)" nên chạy batch cập nhật mỗi ngày (vẫn ở v6.x mới nhất). Hãy nâng phiên bản major, hoặc tạm dừng cập nhật tự động.
-- Có thể xem phiên bản đang dùng ở màn hình "Cài đặt hệ thống" hoặc `version` của `exceedone/exment` trong `composer.lock`.
+- Đăng nhập Exment bằng tài khoản quản trị, mở "Admin Setting" → "Backup" ở menu bên trái.
+- Bấm nút [Backup] ở góc trên bên phải. Bản sao lưu dữ liệu và tệp đính kèm sẽ được tạo.
+- Bấm vào tệp sao lưu và tải về.
 
-- Việc cập nhật từ v3.X.X trở xuống lên v4.0.X cần được thực hiện thủ công. Vui lòng xem nội dung [tại đây](/update/v4_0) trước khi tiến hành cập nhật.
+Lưu ý: batch cập nhật ở dưới sẽ tự sao lưu.
 
-- Việc cập nhật từ v4.3.X trở xuống lên v4.4.X trở lên cần được thực hiện thủ công. Vui lòng xem nội dung [tại đây](/update/v4_4) trước khi tiến hành cập nhật. 
+## 3. Cập nhật
+### Dùng cách nào
+Tùy theo phiên bản hiện tại và phiên bản muốn nâng lên.
 
-- <span class="red bold">Việc cập nhật từ v4.4.X trở xuống lên v5.0.0 trở lên cần được thực hiện thủ công. Vui lòng xem nội dung [tại đây](/update/v5_0_php8) trước khi tiến hành cập nhật.</span>
+| Phiên bản hiện tại | Việc cần làm |
+|---|---|
+| **v7.x** (lên bản v7 mới hơn) | "[Cập nhật thông thường](/vi/update?id=Cập-nhật-thông-thường)" ở dưới |
+| **v6.x trở xuống** | Trước tiên làm theo "[Nâng từ phiên bản cũ](/vi/update?id=Nâng-từ-phiên-bản-cũ)" ở dưới |
 
-- <span class="red bold">Việc cập nhật từ v5.0.X trở xuống lên v6.0.0 trở lên cần được thực hiện thủ công. Vui lòng xem nội dung [tại đây](/update/v6_0_php8) trước khi tiến hành cập nhật.</span>
+- Khi nâng từ v7.0.x lên v7.1.0 trở lên, <span class="red bold">thiết kế màn hình sẽ chuyển thành "Modern".</span> Để quay lại giao diện cũ, hãy chọn "Classic" ở [Screen design](/vi/system_setting?id=screen-design-thiết-kế-màn-hình) trong thiết lập hệ thống.
 
-- <span class="red bold">Việc cập nhật từ v6.X.X trở xuống lên v7.0.0 trở lên cần được thực hiện thủ công. Phiên bản Laravel và namespace của thư viện màn hình quản trị sẽ thay đổi. Vui lòng xem nội dung [tại đây](/update/v7_0_0) trước khi tiến hành cập nhật.</span>
+### Cập nhật thông thường
+Có 3 cách. Cả 3 đều làm cùng các việc (sao lưu → lấy chương trình mới → cập nhật cơ sở dữ liệu).
 
-- Việc cập nhật từ v7.0.X lên v7.1.0 được thực hiện theo các bước cập nhật thông thường. <span class="red bold">Sau khi cập nhật, thiết kế màn hình sẽ chuyển thành "Modern".</span> Để quay lại giao diện cũ, hãy chọn "Classic" ở [Screen design](/vi/system_setting?id=screen-design-thiết-kế-màn-hình) trong thiết lập hệ thống. Sau khi cập nhật, hãy nhấn Ctrl+F5 trên trình duyệt.
+| Cách | Phù hợp với |
+|---|---|
+| **A. Batch cập nhật (khuyến nghị)** | Muốn chỉ chạy một tệp trên máy chủ |
+| **B. Bằng lệnh** | Muốn tự chạy từng bước |
+| **C. Cập nhật tự động** | Muốn tự động lên bản mới mỗi ngày ([cập nhật tự động](/ja/update_auto), tiếng Nhật) |
 
-- Nếu xảy ra lỗi khi cập nhật, vui lòng tham khảo [Xử lý sự cố](/troubleshooting).
+#### A. Batch cập nhật (khuyến nghị)
+**(1) Tải batch (chỉ lần đầu)**
 
+Đặt vào thư mục đã cài Exment (thư mục gốc của dự án).
 
-## Phương pháp cập nhật
-Hiện tại, Exment cung cấp một số phương pháp cập nhật.
+| Máy chủ | Việc cần làm |
+|---|---|
+| Windows | Tải [ExmentUpdateWindows.bat](https://exment.net/downloads/cmd/ExmentUpdateWindows.bat) và đặt vào thư mục |
+| Linux | Các lệnh ở dưới (`ExmentUpdateLinux.sh`) |
+| Xserver | Các lệnh ở dưới (`ExmentUpdateLinuxXserver.sh`) |
+| Sakura Internet | Các lệnh ở dưới (`ExmentUpdateLinuxSakura.sh`) |
+| Mac | Tải [ExmentUpdateLinux.sh](https://exment.net/downloads/cmd/ExmentUpdateLinux.sh), đặt vào thư mục rồi chạy `chmod 775 ExmentUpdateLinux.sh` |
 
-- ##### Cập nhật bằng batch cập nhật (khuyến nghị)
-→Khi cập nhật, hãy đăng nhập vào máy chủ và thực hiện cập nhật bằng cách chạy batch.
-
-- ##### Cập nhật tự động
-→Có thể thực hiện cập nhật bằng cron. Hệ thống kiểm tra hằng ngày xem có bản cập nhật hay không và có thể tự động cập nhật.  
-Chi tiết vui lòng xem [tại đây](/ja/update_auto) (tiếng Nhật).
-
-- ##### Cập nhật thủ công  
-→Trường hợp thực hiện cập nhật thủ công bằng lệnh.
-
-- ##### Cài đặt bản phát triển hoặc phiên bản cũ, tạm thời thay thế mã nguồn  
-→Nếu thực hiện các công việc như cài đặt bản phát triển, cài đặt phiên bản cũ, hoặc tạm thời thay thế mã nguồn, vui lòng xem [tại đây](/ja/update_tmp) (tiếng Nhật).  
-
-
-## Cập nhật bằng batch cập nhật
-<span class="red bold">※Ngày 13/04/2021, batch cập nhật đã được cập nhật. Vui lòng tải xuống và thay thế bằng bản mới nhất.</span>
-
-### (Chỉ lần đầu) Tải xuống batch cập nhật
-
-#### Trường hợp Windows
-- Tải xuống tệp dưới đây.  
-[ExmentUpdateWindows.bat](https://exment.net/downloads/cmd/ExmentUpdateWindows.bat)
-
-- Đặt tệp đã tải xuống vào thư mục gốc của dự án.
-
-#### Trường hợp Sakura Internet
-- Chạy các lệnh dưới đây tại thư mục gốc của dự án để tải xuống.
+Với Linux, Xserver và Sakura Internet, chạy các lệnh sau trong thư mục (chỉ 2 dòng của máy chủ bạn dùng).
 
 ~~~
+# Linux
+wget https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
+chmod 775 ExmentUpdateLinux.sh
+
+# Xserver
+wget https://exment.net/downloads/cmd/ExmentUpdateLinuxXserver.sh
+chmod 775 ExmentUpdateLinuxXserver.sh
+
+# Sakura Internet
 wget https://exment.net/downloads/cmd/ExmentUpdateLinuxSakura.sh
 chmod 775 ExmentUpdateLinuxSakura.sh
 ~~~
 
-#### Trường hợp Xserver
-- Chạy các lệnh dưới đây tại thư mục gốc của dự án để tải xuống.
+Lưu ý: nếu batch của bạn được tải trước ngày 13/04/2021, hãy thay bằng bản mới.
+
+**(2) Chạy batch**
+
+Chạy trong thư mục.
 
 ~~~
-wget https://exment.net/downloads/cmd/ExmentUpdateLinuxXserver.sh
-chmod 775 ExmentUpdateLinuxXserver.sh
-~~~
-
-#### Trường hợp Linux
-- Chạy các lệnh dưới đây tại thư mục gốc của dự án để tải xuống.
-
-~~~
-wget https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
-chmod 775 ExmentUpdateLinux.sh
-~~~
-
-
-#### Trường hợp Mac
-- Tải xuống tệp dưới đây.  
-https://exment.net/downloads/cmd/ExmentUpdateLinux.sh
-
-- Đặt tệp đã tải xuống vào thư mục gốc của dự án.
-
-- Chạy lệnh dưới đây.
-
-~~~
-chmod 775 ExmentUpdateLinux.sh
-~~~
-
-### Chạy batch cập nhật
-Hãy chạy batch cập nhật.
-
-#### Trường hợp Linux / Mac
-- Chạy lệnh dưới đây tại thư mục gốc của dự án.
-
-~~~
+# Linux / Mac
 sh ExmentUpdateLinux.sh
-# Trường hợp Sakura Internet
-# sh ExmentUpdateLinuxSakura.sh
-# Trường hợp Xserver
-# sh ExmentUpdateLinuxXserver.sh
-~~~
 
-#### Trường hợp Windows
-- Chạy tệp batch dưới đây.  
+# Xserver
+sh ExmentUpdateLinuxXserver.sh
 
-~~~
+# Sakura Internet
+sh ExmentUpdateLinuxSakura.sh
+
+# Windows
 ExmentUpdateWindows.bat
 ~~~
 
-### Nội dung batch cập nhật thực hiện
-Batch cập nhật thực hiện các nội dung sau.  
- - Sao lưu dữ liệu
- - Lấy mã nguồn mới nhất và áp dụng
- - Cập nhật cơ sở dữ liệu
+Batch lần lượt làm các việc sau.
 
+- Sao lưu dữ liệu
+- Lấy chương trình mới và thay vào
+- Cập nhật cơ sở dữ liệu
 
-## Phương pháp cập nhật thủ công
-Nếu thực hiện cập nhật thủ công bằng lệnh, hãy làm theo phần này.
-
-### (Khuyến nghị) Sao lưu dữ liệu
-Thực hiện sao lưu dữ liệu. Chi tiết vui lòng xem [Sao lưu](/backup).  
-- Đăng nhập vào Exment bằng tài khoản quản trị viên, từ menu bên trái chọn "Administrator Settings" → "Backup".
-- Nhấp vào nút [Backup] ở phía trên bên phải của trang "Backup".
-- Bản sao lưu của dữ liệu mới nhất cùng các tệp đính kèm, v.v. sẽ được tạo.
-- Sau đó, nhấp vào tệp sao lưu có thời điểm vừa thực hiện để tải xuống.
-
-
-### Lấy mã nguồn mới nhất, áp dụng và cập nhật cơ sở dữ liệu
-
-- Hiện tại, XServer không hỗ trợ cài đặt mặc định phần mở rộng Sodium của PHP.  
-※Nếu thực sự cần cài đặt, bạn phải liên hệ với bộ phận hỗ trợ của XServer.  
-
-- Nếu muốn cập nhật Composer trên XServer, cần sử dụng lệnh khác với lệnh cập nhật thông thường.  
-Thông thường: `composer update` <span style="color: red;">✖</span>  
-Thực tế: `composer update --ignore-platform-reqs`  
-→ Lệnh này bỏ qua việc kiểm tra Sodium và thực hiện trực tiếp việc cập nhật Composer.  
-
-- Chạy các lệnh dưới đây trên dòng lệnh.  
-※Ngay sau khi phát hành, có trường hợp phiên bản mới nhất chưa được nhận diện. Khi đó, hãy chờ khoảng 10–20 phút rồi chạy lại các lệnh dưới đây.  
+#### B. Bằng lệnh
+Trước tiên hãy làm "2. Sao lưu" ở trên.  
+Sau đó chạy các lệnh sau trong thư mục.
 
 ~~~
 cd (thư mục gốc của dự án)
 composer update
-# Với XServer, hãy chạy lệnh dưới đây thay cho "composer update"
-# composer update --ignore-platform-reqs
 php artisan exment:update
 ~~~
 
-Trên site production (`APP_ENV=production`), sẽ có câu hỏi xác nhận trước khi thay đổi cơ sở dữ liệu. Khi không có terminal (script, cron, CI), hãy chạy `php artisan exment:update --force`.  
+- Ngay sau khi phát hành, có thể chưa tìm thấy phiên bản mới nhất. Hãy chờ 10–20 phút rồi chạy lại.
+- Trên site production (`APP_ENV=production`), sẽ có câu hỏi xác nhận trước khi thay đổi cơ sở dữ liệu. Ở nơi không có terminal (script, cron, CI), hãy dùng `php artisan exment:update --force`.
+
+**Với máy chủ thuê (Xserver, v.v.)**
+
+- Trên Xserver, hãy chạy `composer update --ignore-platform-reqs` thay cho `composer update`, vì Xserver mặc định không có extension Sodium của PHP (nếu thật sự cần cài, hãy liên hệ bộ phận hỗ trợ của Xserver).
+- `php` khi dùng SSH có thể khác phiên bản với PHP đã chọn trên màn hình quản lý máy chủ. Hãy kiểm tra bằng `php --version`. Nếu khác, hãy liên kết `~/bin/php` tới phiên bản đó, hoặc chạy bằng đường dẫn đầy đủ như `/usr/bin/php8.3 artisan exment:update` ([máy chủ thuê](/install_rental)).
+
+#### C. Cập nhật tự động
+Mỗi ngày kiểm tra xem có phiên bản mới không, nếu có thì chạy batch cập nhật. Cách cài đặt vui lòng xem [cập nhật tự động](/ja/update_auto) (tiếng Nhật).
+
+- Cập nhật tự động chỉ lên được trong phạm vi của cập nhật thông thường. **Không vượt qua phiên bản major, ví dụ từ v6 lên v7**. Xem "[Số phiên bản và phạm vi cập nhật](/vi/update?id=Số-phiên-bản-và-phạm-vi-cập-nhật)" ở dưới.
+
+### Nâng từ phiên bản cũ
+Ở các mốc phiên bản sau có các bước làm thủ công. Batch cập nhật và cập nhật tự động không vượt qua được.  
+Vui lòng xem trang của mọi mốc nằm giữa phiên bản hiện tại và phiên bản mới nhất.
+
+| Mốc phiên bản | Trang hướng dẫn |
+|---|---|
+| v3.x trở xuống → v4.0.x | [Cập nhật lên v4.0](/update/v4_0) |
+| v4.3.x trở xuống → v4.4.x trở lên | [Cập nhật lên v4.4](/update/v4_4) |
+| v4.4.x trở xuống → v5.0.0 trở lên | [Cập nhật lên v5.0](/update/v5_0_php8) |
+| v5.0.x trở xuống → v6.0.0 trở lên | [Cập nhật lên v6.0](/update/v6_0_php8) |
+| <span class="red bold">v6.x trở xuống → v7.0.0 trở lên</span> | <span class="red bold">[Cập nhật lên v7.0](/update/v7_0_0)</span> (phiên bản Laravel và namespace của thư viện màn hình quản trị thay đổi) |
+
+- Mỗi phiên bản được sửa lỗi đến khi nào, vui lòng xem [thời hạn hỗ trợ](/vi/support_policy).
+
+## 4. Kiểm tra sau khi cập nhật
+- Nhấn **Ctrl+F5** trên trình duyệt để tải lại màn hình.
+- Kiểm tra ở "System Setting" → "System version information" xem đã là phiên bản mới chưa.
+- Nếu xảy ra lỗi, vui lòng xem [Xử lý sự cố](/troubleshooting).
+
+## Số phiên bản và phạm vi cập nhật
+Số phiên bản của Exment là "major . minor . patch" (ví dụ v7.1.0). Số nào tăng sẽ quyết định cách cập nhật.
+
+| Loại | Ví dụ | Nội dung | Cách cập nhật |
+|---|---|---|---|
+| Patch | v7.0.2 → v7.0.3 | Chỉ sửa lỗi và lỗ hổng bảo mật | Cập nhật thông thường |
+| Minor | v7.0.x → v7.1.0 | Có chức năng mới; màn hình có thể thay đổi một chút | Cập nhật thông thường. Hãy đọc [release note](/release_note) trước |
+| Major | v6.x → v7.0 | Yêu cầu về Laravel, PHP và cấu trúc chương trình thay đổi lớn | **Không lên được bằng cập nhật thông thường**. Hãy làm theo "Nâng từ phiên bản cũ" |
+
+### Vì sao phiên bản major không tự động lên
+- Batch cập nhật và cập nhật tự động dùng `composer update`. Lệnh này cài phiên bản mới nhất trong phạm vi ghi ở `composer.json`.
+- Ví dụ, với `"exceedone/exment": "^7.0"` thì là bản v7.x mới nhất, không lên v8. Với `"^6.2"` thì là bản v6.x mới nhất, dù v7 đã ra.
+- Nếu vẫn dùng v6 và để cập nhật tự động chạy, nó sẽ thấy "có phiên bản mới hơn (v7)" và chạy batch cập nhật mỗi ngày (phiên bản vẫn là v6.x mới nhất). Hãy nâng lên v7, hoặc tắt cập nhật tự động cho đến khi nâng.
+
+## Khác
+- Cài bản phát triển, quay về phiên bản cũ, hoặc tạm thời thay chương trình: [bản phát triển và phiên bản cũ](/ja/update_tmp) (tiếng Nhật)
