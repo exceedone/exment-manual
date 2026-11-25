@@ -189,6 +189,67 @@ Für jedes Projekt können Sie ein Git-Repository (Gitea oder Forgejo) anlegen l
 
 ![Git-Repository](../img/plugin_pm/pm_git.png)
 
+## Bedienung
+Dieser Abschnitt beschreibt die Seiten von 1.7.17. Wenn Sie ein Projekt öffnen, erscheinen die Tabs „ホーム“ (Start), „ボード“ (Board), „課題“ (Aufgaben), „ガントチャート“ (Gantt-Diagramm), „バーンダウン“ (Burndown), „Wiki“, „ファイル“ (Dateien) und „設定“ (Einstellungen). Wiki, Dateien, Diagramme (Gantt-Diagramm und Burndown) und über- und untergeordnete Aufgaben lassen sich im Projekt unter „設定“ → „利用する機能“ (verwendete Funktionen) ausschalten. Dabei wird nur der Tab ausgeblendet. Es werden keine Daten gelöscht.
+
+### Aufgaben
+**Die Liste (Tab „課題“)**
+- In der oberen Zeile filtern Sie nach Status („すべて“ (alle), „完了以外“ (nicht abgeschlossen) und die Status des Projekts, jeweils mit Anzahl).
+- Mit den Schnellfiltern darunter grenzen Sie ein auf 期限切れ (überfällig), 今日・明日 (heute und morgen), 自分が作成 (von mir angelegt), ウォッチ中 (beobachtet), 未読 (ungelesen) und 確認待ち (wartet auf Prüfung).
+- Sie können auch nach Stichwort, Zuständigem, Typ, Meilenstein, Kategorie, gelesen oder ungelesen, Priorität und „自分の課題“ (meine Aufgaben) filtern. Mit „検索条件を保存“ (Suchbedingungen speichern) öffnet sich die Liste beim nächsten Mal mit denselben Bedingungen. Unter „保存した条件“ (gespeicherte Bedingungen) können Sie Bedingungen auch mit einem Namen ablegen.
+- „CSV“ lädt alle gefilterten Aufgaben herunter.
+- Wenn Sie Zeilen wählen, ändern Sie sie gemeinsam („一括更新“ (Massenaktualisierung)). Sie können auch direkt in der Liste bearbeiten.
+- Aufgaben, die vor 30 Tagen oder länger abgeschlossen wurden, werden in der Liste ausgeblendet (Archiv). Mit „表示する“ (anzeigen) erscheinen sie wieder.
+
+**Eine Aufgabe anlegen**
+- Legen Sie Aufgaben über „課題の追加“ (Aufgabe hinzufügen) oben an. Die Nummer einer Aufgabe besteht aus Projektschlüssel und Nummer (Beispiel: `WEB-1`).
+
+**Text, Kommentare und Anhänge**
+- Text und Kommentare schreiben Sie nach der „テキスト整形のルール“ (Formatierungsregel) des Projekts (Markdown oder Backlog記法 (Backlog-Notation), am Anfang Markdown). Es gibt Schaltflächen für Überschriften, Fettdruck, Listen, Checklisten, Tabellen, Links und mehr sowie „プレビュー“ (Vorschau).
+- Ein Bild, das Sie mit `Ctrl+V` einfügen, wird direkt angehängt. Dateien hängen Sie per Ablegen oder mit „ファイルを添付“ (Datei anhängen) an.
+- Kommentare schreiben Sie unten auf der Seite der Aufgabe unter „コメントを追加“ (Kommentar hinzufügen). Zusammen mit dem Kommentar können Sie mit „状態を変更“ (Status ändern) und „課題を変更“ (Aufgabe ändern) auch Felder ändern. Mit `Ctrl+Enter` speichern Sie.
+- Mit `@` wählen Sie ein Mitglied, mit `#` eine Aufgabe und mit `~` einen Anhang und fügen ihn ein.
+- „コメント・変更履歴“ (Kommentare und Änderungsverlauf) lässt sich auf „コメントのみ“ (nur Kommentare) umschalten.
+
+### Über- und untergeordnete Aufgaben
+- Klicken Sie beim Bearbeiten einer Aufgabe auf „親課題を設定“ (übergeordnete Aufgabe festlegen), suchen Sie nach Schlüssel oder Betreff und wählen Sie die Aufgabe. Über „子課題を追加“ (untergeordnete Aufgabe hinzufügen) auf der Seite der Aufgabe legen Sie auch welche an.
+- Auf der Seite der übergeordneten Aufgabe erscheint der Bereich „子課題“ (untergeordnete Aufgaben). Dort sehen Sie, wie viele abgeschlossen sind. Auch die „ツリー“ (Baum) der Liste ordnet sie nach über- und untergeordnet.
+- Übergeordnet kann nur eine Aufgabe desselben Projekts sein.
+- In 1.7.17 gibt es nur eine Ebene. Eine untergeordnete Aufgabe kann nicht übergeordnete Aufgabe einer anderen sein. Eine Aufgabe mit untergeordneten Aufgaben kann nicht einer anderen Aufgabe untergeordnet werden.
+- Eine Aufgabe mit untergeordneten Aufgaben lässt sich weder löschen noch in ein anderes Projekt verschieben. Entfernen Sie zuerst bei den untergeordneten Aufgaben die übergeordnete.
+- Wenn im Projekt „親子課題“ (über- und untergeordnete Aufgaben) ausgeschaltet ist, lässt sich keine übergeordnete Aufgabe festlegen.
+
+### Board, Gantt-Diagramm, Meilensteine und Burndown
+- **Board**: Die Aufgaben stehen in einer Spalte je Status. Wenn Sie eine Karte ziehen, ändert sich der Status. Die Spalten entstehen aus der Liste der Status des Projekts. Verwendet wird die [Kanban-Ansicht](/de/view_kanban) von Exment.
+- **Gantt-Diagramm**: Ein Balken reicht vom Startdatum bis zum Fälligkeitsdatum. Die Farbe zeigt den Status, der Fortschritt den Fortschrittsgrad. Gruppiert wird nach Meilenstein. Verwendet wird die [Gantt-Diagramm-Ansicht](/de/view_gantt) von Exment.
+- Board und Gantt-Diagramm verwenden die Ansichten der Aufgaben, die die Ersteinrichtung anlegt („カンバン（状態別）“ (Kanban nach Status) und „ガントチャート“ (Gantt-Diagramm)). Wenn eine Ansicht gelöscht wird, zeigt der Tab, wie Sie sie anlegen.
+- **Meilensteine**: Legen Sie sie im Projekt unter „設定“ → „マイルストーン“ (Meilenstein) an und setzen Sie sie bei Aufgaben. Unter „ホーム“ stehen die verbleibenden Tage je Meilenstein.
+- **Burndown**: Wenn Sie einen Meilenstein wählen, sehen Sie die Zahl der offenen Aufgaben als Planlinie, Ist-Linie und Prognose. Sie sehen auch, ob das jetzige Tempo für die Frist reicht. Ohne Aufgaben mit Meilenstein erscheint nichts. Als abgeschlossen zählen Status mit „完了扱い“ (gilt als abgeschlossen).
+
+### Benachrichtigungen
+- Zu Glocke und E-Mail lesen Sie oben „5. Benachrichtigungen“. Die Glocke kommt an, ohne dass Sie etwas tun. E-Mails senden Sie mit „メールでも知らせる“ oder „メールで知らせる“.
+- 1.7.17 sendet die Benachrichtigungen zu Aufgaben nicht an Teams. Auch „[Benachrichtigungen in den persönlichen Teams-Chat senden](/de/notify_teams)“ von Exment selbst (ab Exment 7.2.6) wird für die Benachrichtigungen der Projektverwaltung nicht verwendet.
+
+### Dateien und Wiki
+- **Dateien**: Die Anhänge von Aufgaben, Wiki und Projekt stehen in einer Liste (Name, geändert von, geändert am, Ort). Dateien, die Sie hier ablegen, werden als Anhänge des Projekts gespeichert.
+- Word, Excel und PowerPoint öffnen Sie mit „表示“ (Anzeigen), wenn [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) installiert ist (lesen Sie die Tabelle unter „Was es kann“).
+- **Wiki**: Seiten des Projekts legen Sie mit „追加“ (Hinzufügen) an. Seiten mit einer übergeordneten Seite stehen in der Liste links als Baum unter dieser Seite. Es gibt „編集“ (Bearbeiten), „履歴“ (Verlauf) und „添付“ (Anhänge), und Sie können Tags setzen.
+
+### Aus Backlog übernehmen (ExmentPMBacklog)
+Mit dem getrennten Plugin „Exment Plugin PM Backlog 連携“ (`ExmentPMBacklog`, 0.2.0) werden die Aufgaben eines Backlog-Projekts in festen Abständen in ein Projekt der Projektverwaltung übernommen. Backlog ist maßgeblich, und die Richtung geht nur von Backlog zu Exment (was Sie in Exment ändern, wird durch den Inhalt aus Backlog überschrieben).
+
+- Voraussetzungen: Projektverwaltung (ExmentPM) 1.7.7 oder neuer. Für den Lauf in festen Abständen brauchen Sie die [Aufgabenplanung](/de/additional_task_schedule).
+- Installation: Laden Sie die ZIP-Datei unter „ExmentPMBacklog-v(Version)“ in den [Releases](https://github.com/exceedone/exment-plugins/releases) unter „Administratoreinstellungen“ → „Plugin“ hoch.
+- Hier beginnen Sie: `/plugins/exment_pm_backlog` („Backlog 連携“ (Backlog-Anbindung)). Nur Systemadministratoren können es nutzen.
+    1. Tragen Sie unter „つながりを追加“ (Verbindung hinzufügen) die URL des Backlog-Bereichs, den API-Schlüssel, den Projektschlüssel, das Projekt in Exment als Ziel und den Abstand ein (5 Minuten oder mehr, am Anfang 30 Minuten). Der API-Schlüssel wird verschlüsselt gespeichert und nicht auf der Seite angezeigt.
+    2. Ordnen Sie unter „割り付け“ (Zuordnung) Status, Typen, Prioritäten, Kategorien, Meilensteine, Abschlussgründe und Benutzer von Backlog denen von Exment zu. Es gibt auch „読み直して、足りない状態・種別・カテゴリー・マイルストーンを作る“ (neu laden und fehlende Status, Typen, Kategorien und Meilensteine anlegen). Benutzer werden über die E-Mail-Adresse zugeordnet. Wer nicht passt, wählen Sie auf der Seite.
+    3. Testen Sie mit „今すぐ同期“ (jetzt synchronisieren, bis zu 100 Aufgaben auf einmal). Wenn alles stimmt, schalten Sie „決まった間隔で自動に取り込む“ (in festen Abständen automatisch übernehmen) ein.
+- Was übernommen wird: Aufgaben (Betreff, Einzelheiten, Status, Typ, Priorität, Kategorie, Meilenstein, Zuständiger, Startdatum, Fälligkeitsdatum, geplante und tatsächliche Stunden, Abschlussgrund, übergeordnete Aufgabe, benutzerdefinierte Attribute), Kommentare und Anhänge (bis 20MB). Erstellungszeit, Änderungszeit und Ersteller kommen aus Backlog. Der Ersteller aus Backlog und Ähnliches bleiben auch unter „移行元“ (Quelle) der Aufgabe erhalten.
+- Bei der Übernahme werden keine Benachrichtigungen gesendet.
+- Zuständige, die es in Exment nicht gibt oder die nicht Mitglied des Projekts sind, bleiben leer. Der Name bleibt unter „移行元の担当者“ (Zuständiger in der Quelle) erhalten.
+- Aufgaben, die in Backlog gelöscht wurden, werden in Exment nicht gelöscht. Stattdessen wird ein Kommentar hinterlassen.
+- Wenn die Synchronisierung anfängt fehlzuschlagen und wenn sie wieder funktioniert, erhalten die Systemadministratoren einen Hinweis über die Glocke.
+
 ## Aktualisierung
 - Laden Sie die ZIP-Datei der neuen Version herunter und laden Sie sie wie bei der Installation hoch. Das Plugin wird ersetzt, die Daten bleiben erhalten.
 - Öffnen Sie als Systemadministrator „⚙ 設定“ in der Projektverwaltung und sehen Sie unter „データ構造の更新“ (Aktualisierung der Datenstruktur) nach. Wenn eine Aktualisierung nötig ist, sehen nur Administratoren oben auf der Seite „データ構造の更新があります“ (ab 1.6.4). Ein Klick darauf öffnet die Einstellungsseite.

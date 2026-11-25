@@ -191,6 +191,67 @@ Mỗi dự án có thể yêu cầu một repository Git (Gitea hoặc Forgejo).
 
 ![Repository Git](../img/plugin_pm/pm_git.png)
 
+## Cách sử dụng
+Phần này viết theo màn hình của 1.7.17. Khi mở dự án, có các tab 「ホーム」 (trang chủ), 「ボード」 (bảng), 「課題」 (công việc), 「ガントチャート」 (biểu đồ Gantt), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (tệp) và 「設定」 (cài đặt). Wiki, tệp, biểu đồ (biểu đồ Gantt và burndown) và công việc cha/con có thể tắt ở 「設定」 của dự án → 「利用する機能」 (chức năng sử dụng). Tắt thì chỉ ẩn tab, dữ liệu không bị xóa.
+
+### Công việc
+**Danh sách (tab 「課題」)**
+- Hàng trên cùng lọc theo trạng thái: 「すべて」 (tất cả), 「完了以外」 (chưa xong) và từng trạng thái của dự án, kèm số lượng.
+- Lọc nhanh bên dưới thu hẹp danh sách thành 期限切れ (quá hạn), 今日・明日 (hôm nay và ngày mai), 自分が作成 (do tôi tạo), ウォッチ中 (đang theo dõi), 未読 (chưa đọc) và 確認待ち (chờ xác nhận).
+- Cũng lọc được theo từ khóa, người phụ trách, loại, mốc, danh mục, đã đọc / chưa đọc, mức ưu tiên và 「自分の課題」 (công việc của tôi). 「検索条件を保存」 (lưu điều kiện tìm kiếm) thì lần sau mở với cùng điều kiện. 「保存した条件」 (điều kiện đã lưu) giữ được các điều kiện có đặt tên.
+- 「CSV」 tải về mọi công việc đã lọc.
+- Chọn các dòng để đổi cùng lúc (「一括更新」 cập nhật hàng loạt). Cũng sửa trực tiếp được trên danh sách.
+- Công việc đã xong từ 30 ngày trở lên bị ẩn khỏi danh sách (lưu trữ). 「表示する」 (hiển thị) để hiện lại.
+
+**Tạo công việc**
+- Tạo từ 「課題の追加」 (thêm công việc) ở phía trên. Số công việc là khóa dự án và số (ví dụ `WEB-1`).
+
+**Nội dung, bình luận và tệp đính kèm**
+- Nội dung và bình luận viết theo 「テキスト整形のルール」 (quy tắc định dạng văn bản) của dự án: Markdown (mặc định) hoặc Backlog記法 (cú pháp Backlog). Có các nút tiêu đề, chữ đậm, danh sách, danh sách kiểm, bảng, liên kết…, và 「プレビュー」 (xem trước).
+- Ảnh dán bằng `Ctrl+V` được đính kèm luôn. Tệp thì kéo thả hoặc dùng 「ファイルを添付」 (đính kèm tệp).
+- Viết bình luận từ 「コメントを追加」 (thêm bình luận) ở cuối màn hình công việc. Cùng với bình luận, đổi được các trường bằng 「状態を変更」 (đổi trạng thái) và 「課題を変更」 (đổi công việc). `Ctrl+Enter` để đăng.
+- Gõ `@` để chọn thành viên, `#` để chọn công việc, `~` để chọn tệp đính kèm.
+- 「コメント・変更履歴」 (bình luận và lịch sử) chuyển được sang 「コメントのみ」 (chỉ bình luận).
+
+### Công việc cha và công việc con
+- Trong màn hình sửa công việc, bấm 「親課題を設定」 (đặt công việc cha), tìm theo khóa hoặc tiêu đề rồi chọn. Cũng tạo được từ 「子課題を追加」 (thêm công việc con) trên màn hình công việc.
+- Màn hình của công việc cha có ô 「子課題」 (công việc con), cho biết đã xong bao nhiêu. 「ツリー」 (cây) của danh sách cũng xếp theo cha và con.
+- Công việc cha phải thuộc cùng dự án.
+- Ở 1.7.17 chỉ có 1 cấp. Công việc con không làm cha của công việc khác được. Công việc đã có con cũng không làm con của công việc khác được.
+- Công việc có con không xóa được, cũng không chuyển sang dự án khác được. Hãy bỏ cha của các công việc con trước.
+- Khi dự án tắt 「親子課題」 (công việc cha/con), không đặt cha được.
+
+### Bảng, biểu đồ Gantt, mốc và burndown
+- **Bảng**: xếp công việc thành cột theo trạng thái. Kéo thẻ thì trạng thái đổi. Các cột lấy từ danh sách trạng thái của dự án. Dùng [chế độ xem Kanban](/vi/view_kanban) của Exment.
+- **Biểu đồ Gantt**: thanh từ ngày bắt đầu đến ngày hạn. Màu theo trạng thái, tiến độ theo tỷ lệ tiến độ, gom theo mốc. Dùng [chế độ xem biểu đồ Gantt](/vi/view_gantt) của Exment.
+- Bảng và biểu đồ Gantt dùng các chế độ xem của bảng công việc do thiết lập lần đầu tạo (「カンバン（状態別）」 và 「ガントチャート」). Nếu xóa chế độ xem, tab sẽ hiện hướng dẫn cách tạo.
+- **Mốc**: tạo ở 「設定」 của dự án → 「マイルストーン」 và gắn vào công việc. 「ホーム」 hiện số ngày còn lại của từng mốc.
+- **Burndown**: chọn mốc để xem số công việc còn lại bằng đường kế hoạch, đường thực tế và dự báo. Cũng cho biết với tốc độ hiện tại có kịp hạn không. Không hiện nếu không có công việc nào gắn mốc. Công việc ở trạng thái có 「完了扱い」 (tính là xong) được tính là xong.
+
+### Thông báo
+- Về chuông và email, xem "5. Thông báo" ở trên. Chuông tự đến, không cần làm gì; email gửi bằng 「メールでも知らせる」 hoặc 「メールで知らせる」.
+- 1.7.17 không gửi thông báo công việc đến Teams. "[Gửi thông báo vào chat cá nhân trên Teams](/vi/notify_teams)" của Exment (Exment 7.2.6 trở lên) cũng không được dùng cho thông báo của Quản lý dự án.
+
+### Tệp và wiki
+- **Tệp**: xem tệp đính kèm của công việc, wiki và dự án trong 1 danh sách (tên, người cập nhật, ngày cập nhật, vị trí). Tệp kéo thả vào đây được lưu thành tệp đính kèm của dự án.
+- Word, Excel và PowerPoint mở được bằng 「表示」 (xem) khi đã cài [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) (xem bảng ở "Chức năng").
+- **Wiki**: tạo trang của dự án bằng 「追加」 (thêm). Trang có trang cha được xếp dưới trang cha theo hình cây trong danh sách bên trái. Có 「編集」 (sửa), 「履歴」 (lịch sử) và 「添付」 (đính kèm), và gắn được thẻ.
+
+### Nhập từ Backlog (ExmentPMBacklog)
+Plugin riêng "Exment Plugin PM Backlog 連携" (`ExmentPMBacklog`, 0.2.0) nhập công việc của một dự án Backlog vào một dự án của Quản lý dự án theo khoảng thời gian cố định. Backlog là bản gốc, và chỉ một chiều từ Backlog sang Exment (nội dung sửa trong Exment bị ghi đè bằng nội dung của Backlog).
+
+- Yêu cầu: Quản lý dự án (ExmentPM) 1.7.7 trở lên. Để chạy theo khoảng thời gian cố định, cần [task schedule](/vi/additional_task_schedule).
+- Cài đặt: tải lên tệp zip trong "ExmentPMBacklog-v(phiên bản)" ở [Releases](https://github.com/exceedone/exment-plugins/releases) tại "Cài đặt quản trị" → "Plugin".
+- Nơi bắt đầu: `/plugins/exment_pm_backlog` (「Backlog 連携」). Chỉ quản trị viên hệ thống dùng được.
+    1. Ở 「つながりを追加」 (thêm kết nối), nhập URL của space Backlog, API key, khóa dự án, dự án Exment để nhập vào và khoảng thời gian (từ 5 phút trở lên, ban đầu là 30 phút). API key được mã hóa khi lưu và không hiện trên màn hình.
+    2. Ở 「割り付け」 (ánh xạ), khớp trạng thái, loại, mức ưu tiên, danh mục, mốc, lý do hoàn thành và người dùng của Backlog với của Exment. Cũng dùng được 「読み直して、足りない状態・種別・カテゴリー・マイルストーンを作る」 (đọc lại và tạo trạng thái, loại, danh mục, mốc còn thiếu). Người dùng được khớp theo địa chỉ email; người không khớp thì chọn trên màn hình.
+    3. Thử bằng 「今すぐ同期」 (đồng bộ ngay; mỗi lần tối đa 100 công việc), nếu ổn thì bật 「決まった間隔で自動に取り込む」 (tự nhập theo khoảng thời gian cố định).
+- Những gì được nhập: công việc (tiêu đề, chi tiết, trạng thái, loại, mức ưu tiên, danh mục, mốc, người phụ trách, ngày bắt đầu, ngày hạn, thời gian dự kiến và thực tế, lý do hoàn thành, công việc cha, thuộc tính tùy chỉnh), bình luận và tệp đính kèm (đến 20MB). Thời gian tạo, thời gian cập nhật và người tạo lấy theo Backlog. Người tạo… của Backlog cũng được giữ ở 「移行元」 (nơi gốc) của công việc.
+- Khi nhập, không gửi thông báo.
+- Người phụ trách không có trong Exment, hoặc không phải thành viên của dự án, được để trống, và tên được giữ ở 「移行元の担当者」 (người phụ trách ở nơi gốc).
+- Công việc bị xóa trong Backlog không bị xóa khỏi Exment; một bình luận được để lại.
+- Khi đồng bộ bắt đầu thất bại và khi hoạt động lại, quản trị viên hệ thống được báo bằng chuông.
+
 ## Cập nhật
 - Tải tệp zip phiên bản mới và tải lên giống như khi cài. Plugin được thay thế; dữ liệu vẫn giữ nguyên.
 - Bằng quản trị viên hệ thống, mở 「⚙ 設定」 của Quản lý dự án và xem 「データ構造の更新」 (cập nhật cấu trúc dữ liệu). Khi cần cập nhật, chỉ riêng quản trị viên thấy 「データ構造の更新があります」 (có cập nhật cấu trúc dữ liệu) ở phía trên màn hình (từ 1.6.4). Bấm vào thì màn hình cài đặt mở ra.

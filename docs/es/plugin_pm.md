@@ -191,6 +191,67 @@ Para cada proyecto se pide la creación de un repositorio Git (Gitea o Forgejo) 
 
 ![Repositorio Git](../img/plugin_pm/pm_git.png)
 
+## Cómo se usa
+Esta sección describe las pantallas de 1.7.17. Al abrir un proyecto, aparecen las pestañas 「ホーム」 (inicio), 「ボード」 (tablero), 「課題」 (incidencias), 「ガントチャート」 (diagrama de Gantt), 「バーンダウン」 (burndown), 「Wiki」, 「ファイル」 (archivos) y 「設定」 (configuración). La Wiki, los archivos, los gráficos (diagrama de Gantt y burndown) y las incidencias madre e hijas se pueden desactivar en 「設定」 → 「利用する機能」 (funciones que se usan) del proyecto. Al desactivarlos solo se oculta la pestaña; los datos no se eliminan.
+
+### Incidencias
+**La lista (pestaña 「課題」)**
+- La fila de arriba filtra por estado (「すべて」 todas, 「完了以外」 no cerradas y cada estado del proyecto, con su número).
+- Los filtros rápidos de debajo reducen la lista a 期限切れ (fuera de plazo), 今日・明日 (hoy y mañana), 自分が作成 (creadas por mí), ウォッチ中 (en seguimiento), 未読 (no leídas) y 確認待ち (pendientes de comprobación).
+- También se puede filtrar por palabra clave, responsable, tipo, hito, categoría, leídas o no leídas, prioridad y 「自分の課題」 (mis incidencias). Con 「検索条件を保存」 (guardar las condiciones de búsqueda), la lista se abre la próxima vez con las mismas condiciones. En 「保存した条件」 (condiciones guardadas) también se pueden guardar con un nombre.
+- 「CSV」 descarga todas las incidencias filtradas.
+- Si selecciona filas, puede cambiarlas a la vez (「一括更新」 actualización en bloque). También se puede editar directamente en la lista.
+- Las incidencias cerradas hace 30 días o más se ocultan de la lista (archivado). Con 「表示する」 (mostrar) aparecen.
+
+**Crear una incidencia**
+- Se crea desde 「課題の追加」 (añadir incidencia), arriba. La clave de la incidencia es la clave del proyecto y un número (por ejemplo, `WEB-1`).
+
+**Cuerpo, comentarios y archivos adjuntos**
+- El cuerpo y los comentarios se escriben con 「テキスト整形のルール」 (regla de formato del texto) del proyecto: Markdown o Backlog記法 (notación de Backlog). Al principio es Markdown. Hay botones para títulos, negrita, listas, listas de comprobación, tablas, enlaces, etc., y 「プレビュー」 (vista previa).
+- Una imagen pegada con `Ctrl+V` se adjunta tal cual. Los archivos se adjuntan arrastrándolos o con 「ファイルを添付」 (adjuntar archivo).
+- Los comentarios se escriben desde 「コメントを追加」 (añadir comentario), en la parte de abajo de la pantalla de la incidencia. Junto con el comentario, también se pueden cambiar campos con 「状態を変更」 (cambiar el estado) y 「課題を変更」 (cambiar la incidencia). `Ctrl+Enter` lo registra.
+- Con `@` se elige un miembro, con `#` una incidencia y con `~` un archivo adjunto.
+- 「コメント・変更履歴」 (comentarios e historial de cambios) se puede cambiar a 「コメントのみ」 (solo comentarios).
+
+### Incidencias madre e hijas
+- En la edición de la incidencia, pulse 「親課題を設定」 (indicar la incidencia madre) y busque por clave o asunto. También se puede crear desde 「子課題を追加」 (añadir incidencia hija) en la pantalla de la incidencia.
+- En la pantalla de la incidencia madre aparece el cuadro 「子課題」 (incidencias hijas), con cuántas están cerradas. 「ツリー」 (árbol) de la lista también las muestra como madre e hijas.
+- La incidencia madre tiene que ser del mismo proyecto.
+- En 1.7.17 solo hay un nivel. Una incidencia hija no puede ser madre de otra incidencia, y una incidencia que tiene hijas no puede ser hija de otra.
+- Una incidencia con hijas no se puede eliminar ni mover a otro proyecto. Quite antes la madre de las hijas.
+- Si se desactiva 「親子課題」 (incidencias madre e hijas) en el proyecto, no se puede indicar la madre.
+
+### Tablero, diagrama de Gantt, hitos y burndown
+- **Tablero**: las incidencias en una columna por estado. Al arrastrar una tarjeta, cambia el estado. Las columnas salen de la lista de estados del proyecto. Usa la [vista kanban](/es/view_kanban) de Exment.
+- **Diagrama de Gantt**: una barra desde la fecha de inicio hasta la fecha de vencimiento. El color es el estado y el avance es el porcentaje de progreso; se agrupa por hito. Usa la [vista de diagrama de Gantt](/es/view_gantt) de Exment.
+- El tablero y el diagrama de Gantt usan las vistas de la tabla de incidencias que crea la configuración inicial (「カンバン（状態別）」 kanban por estado y 「ガントチャート」 diagrama de Gantt). Si se elimina la vista, la pestaña explica cómo crearla.
+- **Hitos**: se crean en 「設定」 → 「マイルストーン」 (hitos) del proyecto y se ponen en las incidencias. En 「ホーム」 aparecen los días que quedan para cada hito.
+- **Burndown**: al elegir un hito, se muestra el número de incidencias pendientes con una línea del plan, una línea real y una previsión. También se muestra si con el ritmo actual se llega al vencimiento. No aparece si ninguna incidencia tiene ese hito. Se cuentan como cerradas las incidencias en un estado con 「完了扱い」 (se trata como cerrada).
+
+### Notificaciones
+- Para las reglas de la campana y del correo, vea "5. Notificaciones" más arriba. La campana llega sin hacer nada; el correo se envía con 「メールでも知らせる」 o 「メールで知らせる」.
+- 1.7.17 no envía los avisos de las incidencias a Teams. Gestión de proyectos tampoco usa "[Notificar al chat personal de Teams](/es/notify_teams)" de Exment (Exment 7.2.6 o posterior).
+
+### Archivos y Wiki
+- **Archivos**: los archivos adjuntos de las incidencias, la Wiki y el proyecto en una sola lista (nombre, actualizado por, fecha de actualización, ubicación). Los archivos que se arrastran aquí se guardan como archivos adjuntos del proyecto.
+- Los archivos de Word, Excel y PowerPoint se abren con 「表示」 (ver) si está instalado [Groupware](https://github.com/exceedone/exment-plugins/tree/main/groupware) (vea la tabla de "Qué permite hacer").
+- **Wiki**: las páginas del proyecto se crean con 「追加」 (añadir). Una página con página madre aparece debajo de ella, en forma de árbol, en la lista de la izquierda. Tienen 「編集」 (editar), 「履歴」 (historial) y 「添付」 (archivos adjuntos), y también se les pueden poner etiquetas.
+
+### Importar desde Backlog (ExmentPMBacklog)
+Otro plugin, "Exment Plugin PM Backlog 連携" (`ExmentPMBacklog`, 0.2.0), importa cada cierto intervalo las incidencias de un proyecto de Backlog en un proyecto de Gestión de proyectos. Backlog es el original, y va en un solo sentido, de Backlog a Exment (los cambios hechos en Exment se sobrescriben con el contenido de Backlog).
+
+- Requisitos: Gestión de proyectos (ExmentPM) 1.7.7 o posterior. Para ejecutarlo cada cierto intervalo hace falta la [programación de tareas](/es/additional_task_schedule).
+- Instalación: cargue el zip de "ExmentPMBacklog-v(versión)" de [Releases](https://github.com/exceedone/exment-plugins/releases) en "Configuración de administración" → "Plugin".
+- Dónde se empieza: `/plugins/exment_pm_backlog` (「Backlog 連携」 integración con Backlog). Solo lo pueden usar los administradores del sistema.
+    1. En 「つながりを追加」 (añadir una conexión), escriba la URL del espacio de Backlog, la clave de API, la clave del proyecto, el proyecto de Exment donde se importa y el intervalo (5 minutos o más; al principio, 30 minutos). La clave de API se guarda cifrada y no se muestra en la pantalla.
+    2. En 「割り付け」 (correspondencia), haga coincidir los estados, los tipos, las prioridades, las categorías, los hitos, los motivos de cierre y los usuarios de Backlog con los de Exment. También está 「読み直して、足りない状態・種別・カテゴリー・マイルストーンを作る」 (volver a leer y crear los estados, tipos, categorías e hitos que faltan). Los usuarios se hacen coincidir por la dirección de correo; los que no coinciden se eligen en la pantalla.
+    3. Pruebe con 「今すぐ同期」 (sincronizar ahora; hasta 100 incidencias cada vez) y, si está bien, active 「決まった間隔で自動に取り込む」 (importar automáticamente cada cierto intervalo).
+- Qué se importa: las incidencias (asunto, detalles, estado, tipo, prioridad, categoría, hito, responsable, fecha de inicio, fecha de vencimiento, horas previstas y reales, motivo de cierre, incidencia madre, atributos personalizados), los comentarios y los archivos adjuntos (hasta 20MB). La fecha de creación, la fecha de actualización y el autor son los de Backlog. El autor de Backlog y otros datos también se guardan en 「移行元」 (origen) de la incidencia.
+- La importación no envía avisos.
+- Si el responsable no existe en Exment o no es miembro del proyecto, el campo se deja vacío y el nombre se guarda en 「移行元の担当者」 (responsable en el origen).
+- Las incidencias eliminadas en Backlog no se eliminan de Exment; se deja un comentario.
+- Cuando la sincronización empieza a fallar y cuando vuelve a funcionar, se avisa a los administradores del sistema con la campana.
+
 ## Actualización
 - Descargue el zip de la versión nueva y cárguelo con los mismos pasos que en la instalación. El plugin se sustituye y los datos se conservan.
 - Como administrador del sistema, abra 「⚙ 設定」 de Gestión de proyectos y mire 「データ構造の更新」 (actualización de la estructura de datos). Cuando hace falta una actualización, solo a los administradores les aparece 「データ構造の更新があります」 (hay una actualización de la estructura de datos) en la parte superior de la pantalla (desde 1.6.4). Al pulsarlo, se abre la pantalla de configuración.
