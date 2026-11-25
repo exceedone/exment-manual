@@ -57,9 +57,43 @@ Decide the rules about login passwords.
 - When the number of history records is "0", the passwords are not compared.
 - The initial value is "0".
 
+#### Password length (v7.3.0 and later)
+- A password has 8 to 64 characters. The maximum length is 64 from v7.3.0 (it was 32). Long pass phrases can be used.
+- The length and the usable characters can be changed in `.env`. See "Password" in the [list of settings](/config).
+
+#### Initial values for a new site (v7.3.0 and later)
+- When `.env` has `EXMENT_PASSWORD_POLICY_NEW_SITE=true`, a newly created site starts with these settings.
+    - Complex password: YES
+    - Have the password changed when logging in for the first time: YES
+    - Number of password history records: 5
+- The effective days stay "0".
+- A site that already exists is not changed. You can change them later on this screen.
+
 #### Note
 
 - <span class="small">"Complex Password" and "Number of Password History" are used when users decide their password themselves, on the user setting screen, the password reset screen and so on. They do not apply when a system administrator decides the password.</span>
+
+
+### Logins from a new place (v7.3.0 and later)
+Tells the user when a login comes from an IP address that is not usual.
+
+- **Tell the user of a login from a new IP address**
+    - When YES, the user gets a notification if the IP address was not used for a login of the same user in the last 90 days.
+    - The first login of a user is not told.
+    - The initial value is "NO".
+- **Also send a mail**
+    - Shown when "Tell the user of a login from a new IP address" is YES. When YES, the notice is also sent to the mail address of the user.
+    - The initial value is "NO".
+
+> When you use Exment behind a load balancer or a reverse proxy, set `ADMIN_TRUST_PROXY_IPS` in `.env`. If not, the recorded IP address is the proxy's. See [Settings when using a reverse proxy](/additional_reverse_proxy).
+
+
+### My login history (v7.3.0 and later)
+Users can check their own logins. "My login history" is shown under the Login User Setting (the user menu at the top right → "Login User Setting").
+
+- The latest 20 logins of your own account are shown.
+- You can see the date and time, the result, the IP address and the browser.
+- If there is a login you do not know, change your password and tell the system administrator.
 
 
 ### Other

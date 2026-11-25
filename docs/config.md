@@ -145,6 +145,26 @@ EXMENT_FILTER_SEARCH_FULL=true
 - Default value : 10
 - Role : For two-factor authentication by email, the time (minutes) for which the verification code sent by email is valid.
 
+#### Minimum password length (v7.3.0 and later)
+- Setting key : EXMENT_PASSWORD_RULE_MIN
+- Default value : 8
+- Role : The minimum length of a password.
+
+#### Maximum password length (v7.3.0 and later)
+- Setting key : EXMENT_PASSWORD_RULE_MAX
+- Default value : 64
+- Role : The maximum length of a password. It was 32 before v7.3.0.
+
+#### Characters allowed in a password (v7.3.0 and later)
+- Setting key : EXMENT_PASSWORD_RULE
+- Default value : ^[ -~]+$
+- Role : Decides the characters allowed in a password with a regular expression. The default is half-width letters, numbers and symbols.
+
+#### Password policy for a new site (v7.3.0 and later)
+- Setting key : EXMENT_PASSWORD_POLICY_NEW_SITE
+- Default value : false
+- Role : If true, a newly created site starts with "Complex password" and "Have the password changed when logging in for the first time" set to YES, and "Number of password history records" set to 5. The effective days stay 0. A site that already exists is not changed. Please check [here](/login_setting) for details.
+
 #### Disable SSO login settings
 - Setting key : EXMENT_CUSTOM_LOGIN_DISABLED
 - Default value : false
