@@ -79,6 +79,21 @@ The following items are created.
 
 ※ For the numeric items other than "Manual Resend Interval (minutes)", if 0 or an empty value is saved, the initial value is used.
 
+### Choosing who receives it (v7.3.0 and later)
+By default, a safety check is sent to all users. You can choose who receives it with the following three items.
+
+| Item | Description |
+| --- | --- |
+| Target Organizations | Multiple selection. Sends only to users who belong to the selected organizations, including their child organizations (up to the organization depth setting). Not shown when organizations are not used. |
+| Target View | Select a shared view of the user table (a summary view cannot be selected). Sends only to users that match the conditions of the view. |
+| Excluded Users | Multiple selection. The selected users never receive it (e.g. users who have left, external users). |
+
+- The recipients are all users who match both the organizations and the view, minus the excluded users. An item that is not set does not narrow the recipients.
+- The same rule is used for manual or drill sending, resending, and automatic sending on an earthquake (exment:safetywatch).
+- Users who are not recipients get no answer data. They are not counted as "not answered".
+- If the selected organizations or the view have been deleted, that condition is skipped and a log is written, so that nobody is left out by mistake.
+- A user removed from the recipients after a send is not sent a resend. Their earlier answer data stays.
+
 ## Mail settings
 
 ### Answer link
@@ -127,8 +142,9 @@ http(s)://(Exment URL)/safety_check
 ### Sending manually or as a drill
 1. Enter the title of the safety check in "Title" of "Send New" (example: Typhoon No. 15 safety check).
 2. Select "Manual" or "Drill" in "Trigger Type".
-3. Click [Send]. "Started sending the safety check." is shown, and an "Open" safety check is added to the list.
-4. The safety check is sent after the screen is shown. When the sending is finished, "Sent Count" and "Target Count" on the list are updated. Reload the screen to check them.
+3. (v7.3.0 and later) "Recipients: N users" is shown before sending. The "Recipient settings" link opens the settings screen.
+4. Click [Send]. "Started sending the safety check." is shown, and an "Open" safety check is added to the list.
+5. The safety check is sent after the screen is shown. When the sending is finished, "Sent Count" and "Target Count" on the list are updated. Reload the screen to check them.
 
 ![Send New](img/safety_check/safety_check_send.png)
 
