@@ -36,6 +36,7 @@
   * [カスタムビュー](/ja/view)
   * [カンバンビュー](/ja/view_kanban)
   * [ガントチャートビュー](/ja/view_gantt)
+  * [名前を言語ごとに持つ](/ja/name_locales)
   * [表示プリセット](/ja/cell_style_preset)
   * [データ更新設定](/ja/operation)
   * [データコピー設定](/ja/copy)
