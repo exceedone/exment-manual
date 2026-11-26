@@ -1,6 +1,86 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.3.0 (2026/xx/xx)
+- <span class="red bold">7.3 の最初の版です。v7.2.6 までの内容をすべて含みます。</span>
+- 更新方法：`composer update` と `php artisan exment:update` を実行してください。<span class="red bold">exment-admin-core 2.0 以上が要ります</span>（`composer update` で入ります）。PHP 8.2 以上、Laravel 12 です。詳細は[こちら](/ja/update)
+- 新しいテーブルと、決まった時間に動く処理が増えます。`exment:update`（マイグレーション）を実行し、cron（`php artisan schedule:run`）を動かしたままにしてください。
+- 新しい機能の多くは、初めは使いません。「機能の管理」で使うようにしてください（下に「初めは使わない」と書いたもの）。詳細は[こちら](/ja/feature)
+- **初めから動きが変わること**
+    - <span class="red bold">保存したときの通知は、画面の答えを返したあとか、キューで作ります。</span>保存が通知を待たなくなります。`.env` の `EXMENT_NOTIFY_MODE` の初めは `auto` です（`QUEUE_CONNECTION` が `sync` でなければキュー、`sync` なら画面の答えのあと）。前と同じにするときは `EXMENT_NOTIFY_MODE=sync` にしてください。キューを使っているサイトでは、キューのワーカーを動かしてください。詳細は[こちら](/ja/additional_queue)（[#2239](https://github.com/exceedone/exment/pull/2239)・[#2240](https://github.com/exceedone/exment/pull/2240)）
+    - <span class="red bold">ログには個人の情報をなるべく残しません。</span>操作の記録には入力の値を残さず（キーだけ、値は `***`）、アプリのログではメールアドレスと SQL の値を伏せます。新しいログのファイルは 0640 で作ります（`EXMENT_LOG_FILE_PERMISSION`）。今までどおり値を残すときは、「ログの管理」で「ログに入力の値を残す」をオンにしてください。詳細は[こちら](/ja/log_management)（[#2142](https://github.com/exceedone/exment/pull/2142)）
+    - ログの記録（操作の記録・ログイン・API キーの最後に使った日時）は、画面の答えを返したあとに書きます（`EXMENT_LOG_WRITE_MODE=after_response`。前と同じは `sync`）（[#2228](https://github.com/exceedone/exment/pull/2228)）
+    - ログインの記録は 365 日、日ごとのアプリのログのファイルは 90 日で消します（「ログの管理」で変えられます。0 は消さない）（[#2128](https://github.com/exceedone/exment/pull/2128)）
+    - API と画面の回数の上限・ログインのロックは、IPv6 を /64 のまとまりで数えます（`EXMENT_IPV6_LIMIT_PREFIX`。前と同じは 128）（[#2243](https://github.com/exceedone/exment/pull/2243)）
+    - システムの IP フィルターで、改行（LF）やカンマで区切った行も効くようになります。正しくない行は保存できません。今の設定をたしかめてください（[#2242](https://github.com/exceedone/exment/pull/2242)）
+    - パスワードの長さの上限を 64 文字にしました（前は 32 文字。`EXMENT_PASSWORD_RULE_MAX` など）（[#2201](https://github.com/exceedone/exment/pull/2201)）
+    - ダッシュボードのグラフが Chart.js 4 になります（下の「プラグイン・カスタムスクリプトをお使いの方へ」）（[#2213](https://github.com/exceedone/exment/pull/2213)）
+- **プラグイン・カスタムスクリプトをお使いの方へ**
+    - 画面の土台（exment-admin-core）が 2.0 になり、古い JavaScript のライブラリが無くなりました（ISS02862）。公式のプラグインは対応ずみです。ご自分で作ったプラグイン・カスタムスクリプトは、次をたしかめてください。
+    - **Chart.js 2 → 4**：グローバルの `Chart` を Chart.js 2 の書き方で使っているときは、Chart.js 4 の書き方に変えてください（`Chart.defaults.global`・`scales.xAxes` / `yAxes`・`scaleLabel`・`tooltips`・`chart.chart`・`getElementAtEvent`・`_model` / `_index` など。Chart.js 3・4 の移行ガイドを見てください）（[#2213](https://github.com/exceedone/exment/pull/2213)）
+    - **iCheck**：読み込まなくなりました。チェックボックスはふつうの `change` のイベントで受けてください（`ifChanged`・`ifToggled`・`.iCheck(...)` は使えません）（[#2216](https://github.com/exceedone/exment/pull/2216)・[#2251](https://github.com/exceedone/exment/pull/2251)）
+    - **日付の入力**：Exment の日付の入力は flatpickr になりました。eonasdan の datetimepicker と moment は無くなりました（`moment(...)` は、ご自分で読み込まないと使えません）（[#2216](https://github.com/exceedone/exment/pull/2216)・[#2251](https://github.com/exceedone/exment/pull/2251)）
+    - **x-editable**：使わなくなりました。一覧のその場の編集は admin-core 2.0 の仕組み（`_edit_inline`）です（[#2262](https://github.com/exceedone/exment/pull/2262)・[#2263](https://github.com/exceedone/exment/pull/2263)）
+    - **slimScroll・Bootstrap 3 の残り**：無くなりました。`.slimScrollDiv` に向けた CSS は効きません（[#2214](https://github.com/exceedone/exment/pull/2214)・[#2259](https://github.com/exceedone/exment/pull/2259)）
+    - 通知のイベント：あとで作る通知のベルは、Laravel の `NotificationSending`・`NotificationSent` を通りません（[#2240](https://github.com/exceedone/exment/pull/2240)）
+1. 機能追加
+    - **ログの管理**（ISS02839）
+        - 「ログの管理」の画面：ログの種類ごとの残す期間、ログインの記録（絞りこみ・CSV）、アプリのログの重さと日ごとのファイル、ログのダウンロード。詳細は[こちら](/ja/log_management)（[#2128](https://github.com/exceedone/exment/pull/2128)・[#2138](https://github.com/exceedone/exment/pull/2138)）
+        - 役割グループのシステムの権限に「監査」（ログと IT 監査のレポートを見る）を足しました（[#2128](https://github.com/exceedone/exment/pull/2128)）
+        - 古いログを、月と種類ごとに 1 つの gzip にまとめて残せます（このサーバーか、バックアップのディスク・S3）（初めは使わない）（[#2139](https://github.com/exceedone/exment/pull/2139)）
+        - データを読んだ・変えた記録と、日ごとの数（[#2234](https://github.com/exceedone/exment/pull/2234)・[#2238](https://github.com/exceedone/exment/pull/2238)）
+        - 役割グループの権限とメンバーの変更の記録（5 年残す）（[#2219](https://github.com/exceedone/exment/pull/2219)・[#2241](https://github.com/exceedone/exment/pull/2241)）
+        - ブラウザーのログ：画面のエラー・失敗した通信・開いた画面（選んだとき）。「機能の管理」の `browser_log` で使います（初めは使わない）（[#2231](https://github.com/exceedone/exment/pull/2231)）
+        - MCP の呼び出しのログ。「機能の管理」の `mcp_log` で使います（初めは使わない）（[#2254](https://github.com/exceedone/exment/pull/2254)）
+        - ログのテーブルを別のデータベースに置けます（`EXMENT_LOG_DB_CONNECTION`・`php artisan exment:log-db --copy`）。ログが大きくなると、「ログの管理」とセキュリティチェックで知らせます（`EXMENT_LOG_SIZE_WARN_MB`、初めは 1024 MB）（[#2246](https://github.com/exceedone/exment/pull/2246)）
+    - **IT 監査のレポート**（ISS02840）：アカウント・使っていないアカウント・管理者・ログイン・API キー・外への共有・公開フォーム・ログの残す期間・役割グループの権限とメンバー・テーブルごとの権限・データを読んだ人と変えた人・MCP の呼び出し・セキュリティの状態を、1 つのレポートにします（CSV・PDF）。毎月か四半期ごとに作って知らせることもでき（初めは使わない）、PDF ごとの SHA-256 でたしかめられます（[#2215](https://github.com/exceedone/exment/pull/2215)・[#2219](https://github.com/exceedone/exment/pull/2219)・[#2220](https://github.com/exceedone/exment/pull/2220)・[#2238](https://github.com/exceedone/exment/pull/2238)・[#2250](https://github.com/exceedone/exment/pull/2250)）
+    - **セキュリティ**
+        - **列の暗号化**：テキスト・複数行テキスト・メール・URL の列を、暗号にして保存できます。画面・変更履歴・API・MCP・エクスポートでは伏せて出し（****1234）、「暗号化した値を見る」権限があれば見られます（見たことは記録します）。全文検索には送りません。鍵は `DATA_ENCRYPTION_KEYS`（APP_KEY とは別。`php artisan exment:data-key generate` で作り、バックアップとは別に保管してください）。「機能の管理」の `encrypted_columns` で使います（初めは使わない）。詳細は[こちら](/ja/column)（[#2264](https://github.com/exceedone/exment/pull/2264)・[#2265](https://github.com/exceedone/exment/pull/2265)・[#2266](https://github.com/exceedone/exment/pull/2266)）
+        - 暗号化の鍵を、AWS KMS・AWS Secrets Manager・HashiCorp Vault から取れます（`EXMENT_DATA_KEY_PROVIDER`。AWS には `aws/aws-sdk-php` を入れてください）。メールの OAuth・LINE WORKS の秘密の値も、この鍵で守ります。詳細は[こちら](/ja/data_key_provider)（[#2287](https://github.com/exceedone/exment/pull/2287)・[#2288](https://github.com/exceedone/exment/pull/2288)）
+        - **IPv6**：システムの IP フィルター・API キーの IP・メンテナンスモードで、IPv6 のアドレスと範囲を使えます。ログの IP の「短くする」は、IPv6 の /64 を残します（[#2242](https://github.com/exceedone/exment/pull/2242)・[#2243](https://github.com/exceedone/exment/pull/2243)・[#2244](https://github.com/exceedone/exment/pull/2244)・[#2260](https://github.com/exceedone/exment/pull/2260)）
+        - **IP フィルターの例外**：決めたユーザー・組織・役割グループは、許可した IP の外からも使えます（[#2255](https://github.com/exceedone/exment/pull/2255)）
+        - **API を使える人**：API・OAuth のトークン・API キー・MCP・プラグインの API を使える人を決められます（決めないときは全員）（[#2256](https://github.com/exceedone/exment/pull/2256)）
+        - **API の上限を重さで数える**：たくさん読む呼び出しや検索を多めに数えるか、上限を超えた呼び出しをログに書くだけにできます（`EXMENT_API_RATE_COST`、初めは使わない）（[#2249](https://github.com/exceedone/exment/pull/2249)・[#2252](https://github.com/exceedone/exment/pull/2252)）
+        - **API の Content-Type を厳しくたしかめる**：`application/json` 以外の POST・PUT・PATCH を 415 で断ります（`EXMENT_API_STRICT_CONTENT_TYPE`、初めは使わない）（[#2257](https://github.com/exceedone/exment/pull/2257)）
+        - ログイン：自分のログインの記録（最近の 20 回）を見られます。新しい IP からのログインを、ベル（とメール）で知らせられます（初めは使わない）（[#2202](https://github.com/exceedone/exment/pull/2202)）
+        - パスワードのルールを `.env` で決められます。新しいサイトを、おすすめのログインのルールで始められます（`EXMENT_PASSWORD_POLICY_NEW_SITE`、初めは使わない）（[#2201](https://github.com/exceedone/exment/pull/2201)）
+        - サーバーの管理者が、root だけが書けるファイル（`/etc/exment/exment.php` など）で設定を決められます。`.env` より強く、サイトからは変えられません（[#2140](https://github.com/exceedone/exment/pull/2140)）
+        - ログインの設定「IdP からアバターを取る」。オフにすると、SSO で Exment のアバターを上書きしません（[#2286](https://github.com/exceedone/exment/pull/2286)）
+    - **通知**
+        - **Webhook（JSON）**：選んだ列を、決めた URL に JSON で送ります（署名・やりなおし・送れなかったときのベル。サーバーの内側のアドレスには送りません）。「機能の管理」の `webhook_notify` で使います（初めは使わない）。詳細は[こちら](/ja/notify_webhook)（[#2247](https://github.com/exceedone/exment/pull/2247)）
+        - **LINE WORKS**：LINE WORKS（API 2.0 のボット）のチャンネルか、一人ひとりに通知できます。「機能の管理」の `lineworks_notify` で使います（初めは使わない）。詳細は[こちら](/ja/notify_lineworks)（[#2267](https://github.com/exceedone/exment/pull/2267)）
+        - **メールの OAuth 2.0**：Microsoft 365・Google のメールを、OAuth 2.0 で送れます（Microsoft 365 の SMTP の基本認証の終わりに向けて）。「機能の管理」の `mail_oauth` で使います（初めは使わない）。詳細は[こちら](/ja/mailsend_setting)（[#2248](https://github.com/exceedone/exment/pull/2248)）
+        - キューのメールは、失敗すると 3 回までやりなおします。2 段階認証とパスワードの再設定のメールは、すぐ送ります。送れなかったメールは記録して、管理者と送った人に知らせます（[#2212](https://github.com/exceedone/exment/pull/2212)）
+    - **データ同期**（ISS00113）：外のサービスのデータを、テーブルに取り込みます（7.3 は取り込みだけ）。「データ同期」の画面で、接続・対応づけ・ためしの実行・実行の記録を扱います。つなぐ先（コネクタ）はプラグインが足します。「機能の管理」の `data_sync` で使います（初めは使わない）（[#2280](https://github.com/exceedone/exment/pull/2280)・[#2283](https://github.com/exceedone/exment/pull/2283)）
+    - **ゴミ箱**（ISS00147）：すべてのテーブルの削除したデータを 1 つの画面で見て、もどすか、完全に消せます。「機能の管理」の `trash` で使います（初めは使わない）。テーブルごとに「削除したデータを残す日数」を決めると、古いものをアーカイブしてから消します（初めは消さない）。詳細は[こちら](/ja/trash)（[#2222](https://github.com/exceedone/exment/pull/2222)・[#2226](https://github.com/exceedone/exment/pull/2226)・[#2230](https://github.com/exceedone/exment/pull/2230)）
+    - **言語ごとの名前**：テーブル・列・ビュー・メニュー・フォーム・フォームのブロック・ダッシュボード・ボックスに、言語ごとの名前をつけられます。ユーザーには、その人の言語の名前で出します。詳細は[こちら](/ja/name_locales)（[#2137](https://github.com/exceedone/exment/pull/2137)・[#2172](https://github.com/exceedone/exment/pull/2172)）
+    - **データの一覧・フォーム**
+        - 一覧のその場の編集を、システム全体かビューごとに止められます。Yes/No の列も、その場とまとめて編集できます（[#2199](https://github.com/exceedone/exment/pull/2199)）
+        - データのフォームで、子のテーブルの行をコピーできます。フォームの 1:n のブロックで「並び順の列」を選ぶと、上下に動かせます（[#2207](https://github.com/exceedone/exment/pull/2207)、[#1595](https://github.com/exceedone/exment/issues/1595)）
+        - 詳細画面の「関連データ検索」に出すテーブルと、その順番を選べます（[#2208](https://github.com/exceedone/exment/pull/2208)、[#1570](https://github.com/exceedone/exment/issues/1570)）
+        - カンバン：列ごとに読むボードで、絞りこみと検索をサーバーで行い、まだ読んでいないカードも見つけます（[#2203](https://github.com/exceedone/exment/pull/2203)、[#2185](https://github.com/exceedone/exment/issues/2185)）。「自分のものだけ」に作成ユーザーを使えます（[#2194](https://github.com/exceedone/exment/pull/2194)、[#2188](https://github.com/exceedone/exment/issues/2188)）
+        - 表示プリセットの色の入力に、色を選ぶ部品をつけました（[#2195](https://github.com/exceedone/exment/pull/2195)、[#2158](https://github.com/exceedone/exment/issues/2158)）。複数の値の列を、区切りの文字なしのバッジで出します（カンバンも）（[#2198](https://github.com/exceedone/exment/pull/2198)、[#2159](https://github.com/exceedone/exment/issues/2159)）
+        - 安否確認を受ける人を、組織・ユーザーのビュー・除く人で決められます（[#2204](https://github.com/exceedone/exment/pull/2204)、[#2180](https://github.com/exceedone/exment/issues/2180)）
+        - 安否確認と全文検索の設定を、それぞれの画面にしました（前のリンクからも移ります）（[#2200](https://github.com/exceedone/exment/pull/2200)、[#2157](https://github.com/exceedone/exment/issues/2157)）
+    - **Studio・デザイン**：1 件だけのテーブルの印、カンバン・グラフの項目の検索用の索引、値と表示名を選ぶ部品（[#2284](https://github.com/exceedone/exment/pull/2284)）。Studio の画面の題名、ファイル共有のメンバーの選び方とリンクのコピー（[#2281](https://github.com/exceedone/exment/pull/2281)・[#2282](https://github.com/exceedone/exment/pull/2282)）。モダンのデザインで、ダッシュボードの一覧の操作を左に出します（[#2285](https://github.com/exceedone/exment/pull/2285)）
+    - スマホでも通知のベルを出します（[#2292](https://github.com/exceedone/exment/pull/2292)）
+    - Exment を使うアプリケーションが、決まった時間の処理と、もどさない設定を足せます（`CoreExtensions::addSchedule`・`addRestoreRule`）（[#2104](https://github.com/exceedone/exment/pull/2104)・[#2107](https://github.com/exceedone/exment/pull/2107)）
+1. 機能改善
+    - **チューニング・速さ**
+        - チューニングの画面に、データの量・変更履歴・削除したデータ・添付ファイル・InnoDB のバッファの項目を足しました（毎晩数えます）。詳細は[こちら](/ja/tuning)（[#2279](https://github.com/exceedone/exment/pull/2279)）
+        - キューのワーカー：キャッシュを消しても、ワーカーの再起動の合図を残します。ワーカーが動いているかを 5 分ごとにたしかめ、セキュリティチェックに出します（キューを使うときだけ）。詳細は[こちら](/ja/additional_queue)（[#2291](https://github.com/exceedone/exment/pull/2291)・[#2293](https://github.com/exceedone/exment/pull/2293)）
+        - 通知を受ける人が多いときの読み込みをまとめ、保存を速くしました（[#2237](https://github.com/exceedone/exment/pull/2237)）
+        - ビューのデータの API（`api/viewdata`）を、セルごとでなく列ごとに読んで速くしました（[#2217](https://github.com/exceedone/exment/pull/2217)）。API の一覧で `total=0` を付けると、件数を数えません（[#2210](https://github.com/exceedone/exment/pull/2210)）
+        - MCP の `search_data` に続き（`next_cursor`）と時間の上限（`EXMENT_MCP_SEARCH_SECONDS`、初めは使わない）（[#2211](https://github.com/exceedone/exment/pull/2211)）
+        - 変更履歴に索引を足しました（[#2292](https://github.com/exceedone/exment/pull/2292)）
+1. 不具合修正
+    - グラフの凡例が「undefined」になる・折れ線の凡例が灰色になるのを直しました（[#2227](https://github.com/exceedone/exment/pull/2227)・[#2261](https://github.com/exceedone/exment/pull/2261)）
+    - ログインの記録のロックが、ロックしたアカウントのものになるようにしました（[#2236](https://github.com/exceedone/exment/pull/2236)）
+    - 新しいサイトの「設定：データと画面」に、使えない「通知」を作らないようにしました。今のサイトでも、その項目がそのままなら消します（[#2294](https://github.com/exceedone/exment/pull/2294)、[#2289](https://github.com/exceedone/exment/issues/2289)）
+    - ファイル共有で、名前が .png・.js などで終わるファイルの画面を開きなおすと、デザインが崩れたのを直しました（前のリンクも使えます）（[#2294](https://github.com/exceedone/exment/pull/2294)、[#2290](https://github.com/exceedone/exment/issues/2290)）
+1. セキュリティの強化
+    - セキュリティの強化
+
 ## v7.2.6 (2026/11/xx)
 - 更新方法：ふつうのアップデートです。exment-admin-core 1.0.6 以上が要りますが、ふつうのアップデートで入ります。詳細は[こちら](/ja/update)
 - エディター（HTML）の TinyMCE が 8 になります。新しいファイルは、ふつうのアップデートで入れなおされるので、することはありません。プラグインで `$(...).tinymce()`（`jquery.tinymce.min.js`）を使っているときは、`tinymce.init()` に変えてください（TinyMCE 5 のプラグイン paste・hr・textcolor なども無くなりました）（[#2133](https://github.com/exceedone/exment/pull/2133)）
