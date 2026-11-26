@@ -15,7 +15,7 @@ Se abre desde "Claves de API", en la pantalla "Configuración" del menú de usua
 | Nombre | Un nombre que indique para qué sirve la clave |
 | Qué puede hacer | "Solo lectura" (me, table_read, view_read, value_read, workflow_read, notify_read), o elegir los ámbitos |
 | Tablas | Todas las tablas que usted puede ver, o solo las tablas elegidas. Si elige tablas, solo se puede llamar a la API de esas tablas y a su propia información (me) |
-| Direcciones IP permitidas | Una por línea (se admiten rangos). Si está vacío, desde cualquier lugar (la restricción de IP de la API de todo el sitio se sigue aplicando) |
+| Direcciones IP permitidas | Una por línea (se admiten rangos). IPv4 e IPv6 (7.3.0: `2001:db8::/32`, `2001:db8:1:2::/64`). Si está vacío, desde cualquier lugar (la restricción de IP de la API de todo el sitio se sigue aplicando) |
 | Fecha de caducidad | 7, 30, 90 (al principio), 180 o 365 días |
 | Certificado de cliente | Si escribe la huella SHA-256 de un certificado, la clave solo funciona cuando se presenta ese certificado (el certificado lo comprueba el servidor web que está delante) |
 | Contraseña actual | Al crear la clave, escriba su contraseña actual |

@@ -15,7 +15,7 @@ Benutzer erstellen selbst API-Schlüssel. Damit rufen Programme oder eine KI die
 | Name | Ein Name, an dem man den Zweck des Schlüssels erkennt |
 | Berechtigungen | „Nur lesen“ (me, table_read, view_read, value_read, workflow_read, notify_read) oder eine eigene Auswahl |
 | Tabellen | Alle Tabellen, die Sie sehen können, oder nur ausgewählte Tabellen. Mit einer Auswahl ruft der Schlüssel nur die API dieser Tabellen und Ihre eigenen Informationen (me) auf |
-| Zugelassene IP-Adressen | Eine pro Zeile (auch Bereiche). Leer: von überall (der IP-Filter der API für die ganze Website gilt weiterhin) |
+| Zugelassene IP-Adressen | Eine pro Zeile (auch Bereiche). IPv4 und IPv6 (7.3.0: `2001:db8::/32`, `2001:db8:1:2::/64`). Leer: von überall (der IP-Filter der API für die ganze Website gilt weiterhin) |
 | Ablaufdatum | 7, 30, 90 (Standard), 180 oder 365 Tage |
 | Client-Zertifikat | Wenn Sie den SHA-256-Fingerabdruck eines Zertifikats eintragen, funktioniert der Schlüssel nur mit diesem Zertifikat (das Zertifikat prüft der vorgelagerte Webserver) |
 | Aktuelles Passwort | Beim Erstellen geben Sie Ihr aktuelles Passwort ein |

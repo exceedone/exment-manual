@@ -26,6 +26,20 @@ EXMENT_EXPART_MODE=true
 | Mehrere IP-Adressen erlauben | Geben Sie sie durch Zeilenumbrüche getrennt ein. Der Zugriff ist möglich, wenn eine davon passt | |
 
 
+#### IPv6 (7.3.0)
+Ab Exment 7.3.0 können auch IPv6-Adressen und -Bereiche eingetragen werden, gemischt mit IPv4.
+
+| Was Sie möchten | Eingabe | Beispiel |
+| ---- | ---- | ---- |
+| Eine IPv6-Adresse erlauben | Die Adresse so eingeben, wie sie ist (Groß- oder Kleinschreibung, kurze oder lange Form) | 2001:db8::10 |
+| Das Netz eines Haushalts oder Büros erlauben | Das /64 des Anbieters eingeben | 2001:db8:1:2::/64 |
+| Einen größeren IPv6-Bereich erlauben | Mit der Präfixlänge eingeben | 2001:db8::/32 |
+
+- Ein IPv4-Client, den ein Dual-Stack-Server als `::ffff:192.0.2.7` sieht, wird als `192.0.2.7` verglichen: eine IPv4-Zeile wie `192.0.2.0/24` passt.
+- Zeilen werden durch Zeilenumbrüche oder Kommas getrennt. Eine Zeile, die keine Adresse und kein Bereich ist, kann nicht gespeichert werden.
+- Die Begrenzung der Versuche (Login-Sperre, API-Ratenlimit) zählt eine IPv6-Adresse als ihr /64: ein Wechsel der Adresse im selben /64 gibt keine weiteren Versuche.
+- Mit „Gekürzt“ in der IP-Einstellung der Protokollverwaltung wird eine IPv6-Adresse als ihr /64 gespeichert (`2001:db8:1:2::/64`).
+
 #### IP-Einschränkung zwangsweise ausschalten
 Mit diesen Schritten schalten Sie die IP-Einschränkung aus, zum Beispiel wenn Sie die IP-Adressen für die Webseiten falsch eingestellt haben und nicht mehr zugreifen können.
 

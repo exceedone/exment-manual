@@ -26,6 +26,20 @@ EXMENT_EXPART_MODE=true
 | Allow several IP addresses | Enter them on separate lines. Access is allowed when any one of them matches | |
 
 
+#### IPv6 (7.3.0)
+From Exment 7.3.0, IPv6 addresses and ranges can be written too, mixed with IPv4 ones.
+
+| What you want | How to enter it | Example |
+| ---- | ---- | ---- |
+| Allow one IPv6 address | Enter the address as it is (upper or lower case, short or long form) | 2001:db8::10 |
+| Allow the network of a home or an office | Enter the /64 the provider gives | 2001:db8:1:2::/64 |
+| Allow a larger IPv6 range | Enter it with its prefix length | 2001:db8::/32 |
+
+- An IPv4 client seen by a dual-stack server as `::ffff:192.0.2.7` is compared as `192.0.2.7`: an IPv4 line such as `192.0.2.0/24` matches it.
+- Lines can be separated by line breaks or commas. A line that is not an address or a range cannot be saved.
+- The limits of tries (the login lockout, the API rate limit) count an IPv6 address as its /64: changing the address inside the same /64 does not get more tries.
+- With "Shortened" in the IP setting of Log Management, an IPv6 address is kept as its /64 (`2001:db8:1:2::/64`).
+
 #### Forcibly disable IP restrictions
 These steps stop the IP restriction, for example when you set the IP addresses of the Web pages wrongly and can no longer access the site.
 
