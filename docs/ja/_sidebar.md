@@ -94,6 +94,7 @@
     * [公式プラグイン](/ja/plugin_official)
       * [プロジェクト管理](/ja/plugin_pm)
       * [IT サポート](/ja/plugin_it_support)
+        * [監視の道具とつなぐ](/ja/plugin_it_support_monitoring)
       * [Groupware](/ja/plugin_groupware)
   * [プラグイン作成方法](/ja/plugin_quickstart)
     * [ボタン](/ja/plugin_quickstart_button)

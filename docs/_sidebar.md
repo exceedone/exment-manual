@@ -94,6 +94,7 @@
     * [Official plugins](/plugin_official)
       * [Project Management](/plugin_pm)
       * [IT Support](/plugin_it_support)
+        * [Connecting monitoring tools](/plugin_it_support_monitoring)
       * [Groupware](/plugin_groupware)
   * [Plugin creation method](/plugin_quickstart)
     * [Button](/plugin_quickstart_button)

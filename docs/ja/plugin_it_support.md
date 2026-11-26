@@ -133,6 +133,8 @@
 ## 監視・エラーログから起票する
 監視の仕組みから、API でチケットを作れます。キーは設定の画面にあります。
 
+IT サポートの次の版からは、Zabbix・Mackerel・Prometheus Alertmanager・Azure Monitor の知らせをそのまま受けられ、道具ごとのキー・復旧の知らせでの解決・ばたつき・IT 資産とのつなぎ・署名が使えます。くわしくは「[監視の道具とつなぐ](/ja/plugin_it_support_monitoring)」をご覧ください。下は、前からの共有のキーでの送り方です。
+
 ~~~sh
 curl -X POST https://あなたの Exment/support/intake/alert \
   -H "X-ITS-Key: （設定画面のキー）" \
@@ -168,6 +170,7 @@ curl -X POST https://あなたの Exment/support/intake/alert \
 Exment は、安全のため、プラグインの `config.json` からはログインなしのページを作れないようにしています。ヘルプデスクにはアカウントのないお客様の入口が要るので、このプラグインは Exment が起動するときに `/support/...` のページを自分で登録します。Exment の公開フォームと同じ考え方で、URL の秘密が開けるものだけを見せます。
 
 ## 関連項目
+- [監視の道具とつなぐ](/ja/plugin_it_support_monitoring)
 - [公式プラグイン](/ja/plugin_official)
 - [プラグイン](/ja/plugin)
 - [README（GitHub）](https://github.com/exceedone/exment-plugins/blob/main/it-support/README.md)

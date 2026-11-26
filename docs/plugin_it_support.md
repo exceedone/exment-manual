@@ -133,6 +133,8 @@ The customer door is `https://your-exment/support` (while both "ITサポート�
 ## Tickets from monitoring and error logs
 Monitoring can make tickets through the API. The key is on the settings page.
 
+From the next version of IT Support, the alerts of Zabbix, Mackerel, Prometheus Alertmanager and Azure Monitor are taken as they are, with a key per tool, recovery, flapping, the IT asset link and signatures. See "[Connecting monitoring tools](/plugin_it_support_monitoring)". Below is the way with the old shared key.
+
 ~~~sh
 curl -X POST https://your-exment/support/intake/alert \
   -H "X-ITS-Key: (the key on the settings page)" \
@@ -168,6 +170,7 @@ A system that can pass the original mail (as a Postfix pipe) can POST it to `/su
 For safety, Exment does not let a plugin's `config.json` open a page without login. A help desk needs a door for customers without an account, so this plugin registers `/support/...` itself while Exment starts, the same idea as Exment's public forms: the secret in the URL opens one thing only.
 
 ## Related
+- [Connecting monitoring tools](/plugin_it_support_monitoring)
 - [Official plugins](/plugin_official)
 - [Plugin](/plugin)
 - [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/it-support/README.md)
