@@ -15,7 +15,7 @@ Mở từ "Khóa API" trên màn hình "Cài đặt" của menu người dùng �
 | Tên | Tên cho biết khóa dùng vào việc gì |
 | Phạm vi thao tác | "Chỉ đọc" (me, table_read, view_read, value_read, workflow_read, notify_read), hoặc tự chọn phạm vi |
 | Bảng | Tất cả bảng bạn có thể xem, hoặc chỉ các bảng đã chọn. Khi chọn bảng, khóa chỉ gọi được API của các bảng đó và thông tin của chính bạn (me) |
-| Địa chỉ IP được phép | Mỗi dòng một địa chỉ (có thể ghi dải địa chỉ). Để trống thì từ đâu cũng được (giới hạn IP của API cho toàn site vẫn có hiệu lực) |
+| Địa chỉ IP được phép | Mỗi dòng một địa chỉ (có thể ghi dải địa chỉ). IPv4 và IPv6 (từ 7.3.0: `2001:db8::/32`, `2001:db8:1:2::/64`). Để trống thì từ đâu cũng được (giới hạn IP của API cho toàn site vẫn có hiệu lực) |
 | Ngày hết hạn | 7, 30, 90 (mặc định), 180 hoặc 365 ngày |
 | Chứng chỉ máy khách | Khi nhập dấu vân tay SHA-256 của chứng chỉ, khóa chỉ dùng được khi có kèm chứng chỉ đó (chứng chỉ do máy chủ web phía trước kiểm tra) |
 | Mật khẩu hiện tại | Khi tạo khóa, hãy nhập mật khẩu hiện tại |

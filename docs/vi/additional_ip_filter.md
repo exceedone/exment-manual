@@ -26,6 +26,20 @@ EXMENT_EXPART_MODE=true
 | Cho phép nhiều địa chỉ IP | Nhập mỗi địa chỉ trên một dòng. Chỉ cần khớp một trong số đó là truy cập được | |
 
 
+#### IPv6 (7.3.0)
+Từ Exment 7.3.0, có thể nhập cả địa chỉ và dải IPv6, cùng với IPv4.
+
+| Điều bạn muốn | Cách nhập | Ví dụ |
+| ---- | ---- | ---- |
+| Cho phép một địa chỉ IPv6 | Nhập địa chỉ như nó là (chữ hoa hay chữ thường, dạng rút gọn hay đầy đủ đều được) | 2001:db8::10 |
+| Cho phép mạng của một gia đình hay văn phòng | Nhập dải /64 nhà cung cấp cấp cho | 2001:db8:1:2::/64 |
+| Cho phép một dải IPv6 rộng hơn | Nhập kèm độ dài tiền tố | 2001:db8::/32 |
+
+- Một máy khách IPv4 mà máy chủ dual-stack thấy là `::ffff:192.0.2.7` được so sánh như `192.0.2.7`: một dòng IPv4 như `192.0.2.0/24` sẽ khớp.
+- Các dòng được phân cách bằng xuống dòng hoặc dấu phẩy. Dòng không phải địa chỉ hay dải không lưu được.
+- Giới hạn số lần thử (khóa đăng nhập, giới hạn API) đếm một địa chỉ IPv6 theo /64 của nó: đổi địa chỉ trong cùng /64 không có thêm lượt thử.
+- Khi chọn «Rút gọn» trong cài đặt IP của Quản lý log, địa chỉ IPv6 được giữ đến /64 (`2001:db8:1:2::/64`).
+
 #### Buộc tắt giới hạn IP
 Đây là các bước dừng giới hạn IP, dùng khi bạn thiết lập sai địa chỉ IP của trang web và không truy cập được nữa.
 
