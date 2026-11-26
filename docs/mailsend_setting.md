@@ -60,6 +60,63 @@ MAIL_FROM_ADDRESS=(sender address)
 MAIL_FROM_NAME=(name shown as the sender)
 ~~~
 
+## Sending with OAuth 2.0 (Microsoft 365, Google)
+* This feature is available in Exment v7.3.0 and later.
+
+Microsoft 365 is retiring SMTP basic authentication (login with a user name and a password). With OAuth 2.0 (SMTP XOAUTH2), mail is sent from Microsoft 365 or Google Workspace (Gmail) without a password.
+
+### Turning it on
+1. A system administrator turns on "Mail OAuth authentication (Microsoft 365, Google)" in [Feature management](/feature).
+2. In "Mail" of the system settings, enter the following. The password can stay empty.
+
+| Item | Microsoft 365 | Google |
+|---|---|---|
+| Host name | smtp.office365.com | smtp.gmail.com |
+| Port | 587 | 587 |
+| Encryption | tls | tls |
+| User name | The address of the mailbox that sends | The Gmail / Workspace address that sends |
+| From | The same address as the user name | The same address as the user name |
+
+Without a host name and port, the values above are used.
+
+3. Open "Mail OAuth authentication" from the menu of the system setting pages, and set it up as below.
+
+### Microsoft 365
+Mail is sent with the credentials of an app (client credentials). The scope is `https://outlook.office365.com/.default` (SMTP.SendAsApp).
+
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com/), open "App registrations" > "New registration" and register an app (no redirect URI is needed). Note the "Application (client) ID" and the "Directory (tenant) ID".
+2. In "Certificates & secrets", create a client secret and note its "Value" (it is not shown again; make a new one before it expires).
+3. In "API permissions" > "Add a permission" > "APIs my organization uses" > "Office 365 Exchange Online" > "Application permissions", add "SMTP.SendAsApp", then press "Grant admin consent".
+4. In Exchange Online PowerShell, allow the app to send as the mailbox (use the "Object ID" of the app shown in "Enterprise applications").
+
+```powershell
+Connect-ExchangeOnline
+New-ServicePrincipal -AppId <Application (client) ID> -ObjectId <Object ID of the enterprise application>
+Add-MailboxPermission -Identity "<mailbox that sends>" -User <Object ID of the enterprise application> -AccessRights FullAccess
+# when SMTP authentication is turned off for the mailbox
+Set-CASMailbox -Identity "<mailbox that sends>" -SmtpClientAuthenticationDisabled $false
+```
+
+5. In "Mail OAuth authentication" of Exment, choose "Microsoft 365 (app credentials)", enter the tenant ID, the client ID and the client secret, and save.
+6. Send a [test email](#send-test-email) to check.
+
+See also Microsoft's "[Authenticate an IMAP, POP or SMTP connection using OAuth](https://learn.microsoft.com/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth)".
+
+### Google
+The mailbox that sends is "connected" once on the screen. Exment keeps its refresh token encrypted, and gets an access token when it sends. The scope is `https://mail.google.com/`.
+
+1. In the [Google Cloud console](https://console.cloud.google.com/), create a project and set up the "OAuth consent screen". With Google Workspace, the user type "Internal" is the simplest.
+With "External" left in "Testing", the refresh token expires in 7 days: set it to "In production".
+2. In "Credentials" > "Create credentials" > "OAuth client ID", create one of the type "Web application". As the "Authorized redirect URI", enter the URI shown on the "Mail OAuth authentication" page of Exment (`https://(URL of Exment)/admin/mail_oauth_setting/google/callback`). Note the client ID and the client secret.
+3. In "Mail OAuth authentication" of Exment, choose "Google (Workspace / Gmail)", enter the client ID and the client secret, and save.
+4. Press "Connect with Google", log in to Google with the mailbox that sends (the user name of the system settings) and allow it. When "The mailbox is connected" is shown, it is done.
+5. Send a [test email](#send-test-email) to check.
+
+### When there is no token
+- An access token is kept and used again until a minute before it expires.
+- When no token can be had, the mail fails ([In case of transmission error](#in-case-of-transmission-error)), and the system administrators are told by a bell on the screen (once an hour), with the error code and description Microsoft or Google returned.
+- Common causes: an expired client secret (Microsoft 365), no admin consent or mailbox permission (Microsoft 365), a revoked or expired refresh token (Google: press "Connect with Google" again).
+
 ## SPF record settings
 - When the emails you send become junk mail, in many cases the "SPF record" setting of the domain is not enough. Register an SPF record in the settings of the domain.  
 [Reference 1](https://sendgrid.kke.co.jp/blog/?p=3509)  

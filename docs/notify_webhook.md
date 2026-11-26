@@ -7,6 +7,7 @@ This page explains how to get a Webhook URL, and the setting for mentioning a pa
 | Notify Slack | [Slack acquisition procedure](/notify_webhook?id=slack-acquisition-procedure) |
 | Notify Microsoft Teams | [Microsoft Teams acquisition procedure](/notify_webhook?id=microsoft-teams-acquisition-procedure) |
 | Mention a user in a Slack notification | [How to set the Slack ID](/notify_webhook?id=how-to-set-the-slack-id) |
+| Send JSON to any URL (v7.3.0 and later) | [JSON webhook](/notify_webhook?id=json-webhook) |
 
 ## Slack acquisition procedure
 1. Open the following URL.  
@@ -75,3 +76,108 @@ On the notification setting screen, the notification targets are shown different
 ![Notification](ja/img/notify/notify_slack7.png) 
 ![Notification](ja/img/notify/notify_slack8.png) 
 
+## JSON webhook
+* This feature is available in Exment v7.3.0 and later.
+
+When "Webhook (JSON)" is chosen as the action of a notification, the data is sent as JSON to any URL. Zapier, n8n, Power Automate or a program of your own can receive it.
+
+### Turning it on
+The values of the data are sent outside the site, so it is off at first. A system administrator turns on "Webhook notifications (JSON)" in [Feature management](/feature).
+
+### The notification setting
+Choose "Webhook (JSON)" as the action of the notification and fill in the following.
+
+| Item | Description |
+|---|---|
+| Webhook URL | The URL to send to (http or https). The server itself and internal addresses cannot be used (as with Slack and Teams) |
+| Columns to send | The columns of the data sent. Columns not chosen are not sent. The ID, label and URL of the data are always sent |
+| Signing secret | When set, the JSON is signed, so the receiver can check with the same value that Exment sent it. It is stored encrypted and cannot be shown later |
+
+### The JSON sent
+A POST with a body of `Content-Type: application/json`.
+
+```json
+{
+  "event": "exment.notify",
+  "id": "3f2c6a1e-6c1b-4d8e-9a57-2f1d0c9b7e11",
+  "sent_at": "2026-11-26T10:15:30+09:00",
+  "trigger": "create_update_data",
+  "action": "updated",
+  "notify": { "id": 12, "name": "Deal updated" },
+  "table": { "name": "deal", "label": "Deal" },
+  "record": {
+    "id": 101,
+    "label": "Renewal of A Inc.",
+    "url": "https://exment.example.com/admin/data/deal/101",
+    "created_at": "2026-11-20T09:00:00+09:00",
+    "updated_at": "2026-11-26T10:15:29+09:00",
+    "deleted": false,
+    "values": { "status": "2", "amount": 1200000 },
+    "texts": { "status": "Negotiating", "amount": "1,200,000" }
+  },
+  "user": { "id": 3, "name": "Taro Yamada" },
+  "subject": "[Deal 101] The data was updated",
+  "body": "... the body of the mail template ..."
+}
+```
+
+| Item | Description |
+|---|---|
+| trigger | What started the notification: time, create_update_data (data created or updated), button, workflow |
+| action | For data created or updated, what was done: created, updated, comment, attachmented |
+| record.values | The stored values of the columns chosen (a user or the data of another table is its ID) |
+| record.texts | The values of the columns chosen, as shown on the screen |
+| subject, body | The subject and body of the mail template of the notification |
+
+These headers are sent too.
+
+| Header | Content |
+|---|---|
+| X-Exment-Event | `exment.notify` |
+| X-Exment-Delivery | An ID that changes each time (the same as `id` of the body). When the same one arrives twice, the second can be ignored |
+| X-Exment-Timestamp | When it was sent (UNIX time, seconds) |
+| X-Exment-Signature | Only with a signing secret: `sha256=` and the HMAC-SHA256 (hex) of "timestamp + `.` + body" |
+
+### Checking the signature on the receiver
+Use the body exactly as the bytes received (a JSON read and written again does not match the signature). Refusing old timestamps stops the same notification from being sent again by someone else.
+
+PHP:
+
+```php
+$secret = '(the signing secret)';
+$body = file_get_contents('php://input');
+$timestamp = $_SERVER['HTTP_X_EXMENT_TIMESTAMP'] ?? '';
+$signature = $_SERVER['HTTP_X_EXMENT_SIGNATURE'] ?? '';
+
+$expected = 'sha256=' . hash_hmac('sha256', $timestamp . '.' . $body, $secret);
+if (!hash_equals($expected, $signature) || abs(time() - (int)$timestamp) > 300) {
+    http_response_code(401);
+    exit;
+}
+$data = json_decode($body, true);
+```
+
+Node.js (Express):
+
+```js
+const crypto = require('crypto');
+app.post('/exment', express.raw({ type: 'application/json' }), (req, res) => {
+  const timestamp = req.get('X-Exment-Timestamp') || '';
+  const expected = 'sha256=' + crypto.createHmac('sha256', process.env.EXMENT_SECRET)
+    .update(timestamp + '.' + req.body).digest('hex');
+  const signature = req.get('X-Exment-Signature') || '';
+  const ok = signature.length === expected.length
+    && crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))
+    && Math.abs(Date.now() / 1000 - Number(timestamp)) <= 300;
+  if (!ok) return res.sendStatus(401);
+  const data = JSON.parse(req.body);
+  res.sendStatus(204);
+});
+```
+
+### When it cannot be sent
+- The receiver answers 2xx (200, 204, ...). Any other answer means it was not sent.
+- On 5xx, 408, 429 or no connection, it is tried 3 times in all: 1 and 5 minutes apart with a queue worker, 1 and 2 seconds apart without one (`QUEUE_CONNECTION=sync`).
+- Other 4xx and redirects (3xx) are not tried again. Redirects are not followed.
+- When it is not sent at last, the user who made the notification is told by a bell on the screen, with the host name only.
+- It is sent after the answer of the save (or by the queue): the save does not wait ([When notifications are sent](/additional_queue?id=when-notifications-are-sent)).
