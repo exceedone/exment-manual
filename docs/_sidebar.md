@@ -49,6 +49,7 @@
   * [Data details](/data_details)
   * [Data registration](/data_form)
   * [Deleted data](/deleted_data)
+  * [Trash](/trash)
   * [Data maintenance](/data_maintenance)
   * [Data import / export](/data_import_export)
   * [Data cmd import / export](/data_cmd_import_export)
