@@ -9,6 +9,7 @@ Note: only system administrators can see this screen.
 ## Reading the page
 - Each item shows "Already set" or "Not set (recommended)". For the items marked "Not set", set what is shown below them.
 - The items with a button can be changed from this page.
+- The data items (7.3.0) show what was counted at night. Before the first count, or when it cannot be checked, they show the "could not check" mark (?).
 - Ask the server administrator to change the server settings (php.ini, .env).
 - The same items are shown in "To make it faster (optional)" on the installer and in "== Tuning (optional) ==" of `php artisan exment:checkrequire`. They only say "Already set" or "Not set", and never stop the install.
 
@@ -141,6 +142,32 @@ With the slow query log of MySQL / MariaDB on, slow queries are recorded, to fin
 
 ### Indexes of the search index (DB)
 A column with "search index" has its own column and index in the data table. Without the index (after a failed restore or change), every filter and sort reads all rows. Checks that the indexes are there.
+
+## Data items (7.3.0)
+From Exment 7.3.0, the page shows problems on the data side too, besides the server settings.
+
+- The data is **counted every night at 4:30** and the counts are kept (`php artisan exment:tuning-data`). Opening the page does not count anything. You can also count it with "Run now" on the scheduled jobs page.
+- The result shows when it was counted. Before the first count, it shows "Not counted yet".
+- **It only shows.** Exment never changes the data or the settings by itself. A search index is added only when an administrator presses the button.
+
+| Item | What it shows | When it recommends | How to fix |
+| ---- | ---- | ---- | ---- |
+| Amount of data (tables) | The 5 tables with the most rows; on MySQL / MariaDB also the sizes of the data and the indexes | A table grew 2× and by 50,000 rows since the count before | Check that no import or automatic job runs again and again |
+| Revisions | Tables with more than 1,000,000 revisions | There is such a table | Lower "Data Revision Versioning Count" in the [table](/table) settings (when a row is saved, its oldest revisions go first) |
+| Deleted data | Tables with 10,000+ deleted rows (in the trash) that are 20%+ of the table | "Days to keep deleted data" is not set | Set the days in the table settings: old deleted data is then deleted for good every night (kept in an archive) |
+| Attachments | The number and total size of the attachments (of the newest 5,000), and the files linked to no data | There are files left after their data was deleted for good | No page shows them; they only use the disk |
+| Database settings (MySQL, MariaDB) | `innodb_buffer_pool_size` and the size of the data and indexes | `innodb_buffer_pool_size` is smaller than the data and indexes | Write the value shown in the MySQL settings file and restart (up to 50-70% of the memory of the server). Another database, or a setting that cannot be read: "Could not check" |
+| Columns without a search index | In tables with 10,000+ rows, the columns that views filter, sort or group by, and the reference columns (select, user, organization), without a search index | There are such columns | Choose the columns and press "Add a search index to the chosen columns (in the background)", or add it in the [column](/column) settings |
+| Heavy views | Views of tables with 10,000+ rows that filter, sort or group by a column without a search index, or that summarize a child table | There are such views | Add a search index to the columns they use, or review the conditions of the [view](/view) |
+
+### Adding a search index from the page
+- Choose columns in "Columns without a search index" and press the button: the index is added **in the background**. On large tables it takes time.
+- With a queue worker it runs on the worker; without one, after the page has answered. While it runs, the column shows as "being added".
+- A column of a table that already has the most search indexes allowed (20 by default) cannot be chosen.
+- The press is kept in the operation log, and the change in the application log.
+
+### Size of the logs (7.3.0)
+When the logs in the database are big and no log database is set yet, the page also suggests keeping them in a database of their own, with `EXMENT_LOG_DB_CONNECTION` and `php artisan exment:log-db --copy`.
 
 ## Other settings for speed
 ### Charts of list views (EXMENT_CHART_LIST_MAX_ROWS)
