@@ -127,6 +127,7 @@
   * [コマンド一覧](/ja/command)
   * [パッチ・脆弱性リスト](/ja/patch_weakness)
   * [トラブルシューティング](/ja/troubleshooting)
+  * [ファイアウォール・プロキシに保存を止められるとき](/ja/troubleshooting_firewall)
   * [インストール時のエラー](/ja/install_error)
   * [ライセンス](/ja/license)
   * [開発メモ](/ja/develop_memo)
