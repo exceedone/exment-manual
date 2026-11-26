@@ -301,6 +301,31 @@ Số "Chỉ mục tìm kiếm" đặt được trong 1 bảng được khuyến 
 ※Giới hạn số chỉ mục tìm kiếm đổi được bằng [giá trị thiết lập](/vi/config).
 
 
+## Lưu ở dạng mã hóa (7.3.0)
+
+Cột văn bản một dòng, nhiều dòng, email hoặc URL có thể lưu giá trị ở dạng mã hóa trong cơ sở dữ liệu. Chỉ có cơ sở dữ liệu hoặc tệp sao lưu thì không đọc được giá trị.
+
+### Chuẩn bị trước khi dùng
+1. Chạy `php artisan exment:data-key generate` trên máy chủ và đưa dòng được in ra vào `DATA_ENCRYPTION_KEYS` trong `.env`.
+    - Khóa không nằm trong cơ sở dữ liệu và bản sao lưu. **Nếu mất khóa, các giá trị đã mã hóa sẽ không đọc lại được.** Hãy giữ một bản sao ở nơi an toàn, tách khỏi máy chủ.
+2. Bật "Mã hóa cột" trong Quản lý chức năng (mặc định tắt).
+3. Đặt "Lưu ở dạng mã hóa" của cột là YES. Các giá trị đã có được mã hóa ở chế độ nền (làm ngay: `php artisan exment:encrypt-column tên_bảng tên_cột`). Chọn NO sẽ chuyển lại.
+
+### Những gì không làm được
+Cột đã mã hóa không dùng được cho tìm kiếm một phần, sắp xếp, tổng hợp, biểu đồ, công thức hay tìm kiếm toàn văn, và không dùng cùng "Chỉ mục tìm kiếm", "Duy nhất" hay "Chọn nhiều".
+
+### Cách hiển thị
+- Danh sách, trang chi tiết, lịch sử thay đổi, API, AI (MCP), thông báo và xuất dữ liệu hiển thị giá trị bị che, như `****1234` (0 đến 4 ký tự cuối).
+- Người có quyền nhóm vai trò "Xem giá trị đã mã hóa" sẽ thấy nút hình con mắt, bấm để xem giá trị thật một lúc. Mỗi lần đều được ghi vào nhật ký truy cập dữ liệu. API có `GET api/data/{bảng}/{id}/reveal/{cột}` (cùng quyền và nhật ký).
+- Màn hình chỉnh sửa không bao giờ hiện giá trị thật. Để trống thì giữ nguyên giá trị.
+
+### Xuất và nhập
+- Tệp đã xuất chứa giá trị bị che (`****1234`). **Nhập lại tệp đó thì giá trị không đổi** (giá trị che trùng với dạng che của giá trị hiện tại được xem là "không đổi").
+- **Để thay đổi giá trị, hãy nhập toàn bộ giá trị mới.** Một giá trị che khác (ví dụ `****0000`) sẽ làm dòng đó bị lỗi.
+
+### Thay khóa
+Tạo khóa mới bằng `exment:data-key generate`, đặt nó ở đầu `DATA_ENCRYPTION_KEYS`, rồi chạy `php artisan exment:data-key rotate`. `php artisan exment:data-key status` cho biết số giá trị của từng khóa. Chỉ xóa khóa cũ khi số đó là 0.
+
 ## Sử dụng làm nhãn
 > Ở v1.3.0, cách thiết lập này đã được đổi sang [thiết lập mở rộng của bảng tùy chỉnh](/vi/table?id=thiết-lập-cột-hiển-thị-tiêu-đề).
 

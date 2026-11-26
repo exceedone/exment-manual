@@ -301,6 +301,31 @@ En una tabla se recomiendan hasta 10 «Índice de búsqueda», y el máximo es 2
 ※El límite de índices de búsqueda se puede cambiar con los [valores de configuración](/es/config).
 
 
+## Guardar cifrado (7.3.0)
+
+Una columna de texto de una o varias líneas, correo o URL puede guardar sus valores cifrados en la base de datos. La base de datos o un archivo de copia de seguridad por sí solos no pueden leerlos.
+
+### Antes de usarlo
+1. Ejecute `php artisan exment:data-key generate` en el servidor y ponga la línea que muestra en `DATA_ENCRYPTION_KEYS` de `.env`.
+    - La clave no está en la base de datos ni en una copia de seguridad. **Si se pierde la clave, los valores cifrados no se pueden volver a leer.** Guarde una copia en un lugar seguro, aparte del servidor.
+2. Active «Columnas cifradas» en la gestión de funciones (desactivada al principio).
+3. Ponga «Guardar cifrado» de la columna en SÍ. Los valores existentes se cifran en segundo plano (al momento: `php artisan exment:encrypt-column nombre_tabla nombre_columna`). NO los vuelve a convertir.
+
+### Lo que no se puede
+Una columna cifrada no se puede usar para búsqueda parcial, orden, totales, gráficos, fórmulas ni la búsqueda de texto completo, ni con «Índice de búsqueda», «Único» o «Múltiple».
+
+### Cómo se muestra
+- Las listas, la página de detalle, el historial, la API, la IA (MCP), las notificaciones y las exportaciones lo muestran oculto, como `****1234` (de 0 a 4 caracteres finales, un ajuste de la columna).
+- Quien tiene el permiso del grupo de roles «Ver valores cifrados» ve un botón de ojo que muestra el valor real un rato. Cada vez queda en el registro de acceso a los datos. La API tiene `GET api/data/{tabla}/{id}/reveal/{columna}` (mismo permiso y registro).
+- El formulario de edición nunca muestra el valor real. Si se deja vacío, el valor queda como está.
+
+### Exportar e importar
+- Un archivo exportado tiene los valores ocultos (`****1234`). **Importarlo de nuevo no cambia nada** (un valor oculto igual a la forma oculta del valor actual se toma como «sin cambios»).
+- **Para cambiar un valor, escriba el valor nuevo completo.** Otro valor oculto (como `****0000`) hace que esa fila dé error.
+
+### Cambiar la clave
+Cree una clave nueva con `exment:data-key generate`, póngala al principio de `DATA_ENCRYPTION_KEYS` y ejecute `php artisan exment:data-key rotate`. `php artisan exment:data-key status` muestra cuántos valores tiene cada clave. Quite una clave antigua solo cuando tenga 0.
+
 ## Usar en la etiqueta
 > En v1.3.0, este método de configuración cambió a la [configuración ampliada de las tablas personalizadas](/es/table).
 

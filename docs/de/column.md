@@ -301,6 +301,31 @@ Für eine Tabelle werden bis zu 10 „Suchindizes“ empfohlen. Möglich sind h�
 ※Die Obergrenze der Suchindizes lässt sich mit einem [Einstellungswert](/de/config) ändern.
 
 
+## Verschlüsselt speichern (7.3.0)
+
+Eine Spalte mit ein- oder mehrzeiligem Text, E-Mail oder URL kann ihre Werte verschlüsselt in der Datenbank speichern. Die Datenbank oder eine Sicherungsdatei allein kann sie nicht lesen.
+
+### Vor der Verwendung
+1. Führen Sie auf dem Server `php artisan exment:data-key generate` aus und tragen Sie die ausgegebene Zeile in `DATA_ENCRYPTION_KEYS` in `.env` ein.
+    - Der Schlüssel ist nicht in der Datenbank und nicht in einer Sicherung. **Geht der Schlüssel verloren, können die verschlüsselten Werte nicht mehr gelesen werden.** Bewahren Sie eine Kopie getrennt vom Server sicher auf.
+2. Schalten Sie in der Funktionsverwaltung „Verschlüsselte Spalten“ ein (anfangs aus).
+3. Setzen Sie „Verschlüsselt speichern“ der Spalte auf JA. Vorhandene Werte werden im Hintergrund verschlüsselt (sofort: `php artisan exment:encrypt-column Tabellenname Spaltenname`). NEIN wandelt sie zurück.
+
+### Was nicht geht
+Eine verschlüsselte Spalte kann nicht für Teilsuche, Sortierung, Summen, Diagramme, Formeln oder die Volltextsuche verwendet werden und nicht mit „Suchindex“, „Eindeutig“ oder „Mehrfach“.
+
+### Anzeige
+- Listen, Detailseite, Änderungsverlauf, API, KI (MCP), Benachrichtigungen und Exporte zeigen den Wert maskiert, z. B. `****1234` (0 bis 4 letzte Zeichen, eine Einstellung der Spalte).
+- Wer das Recht der Rollengruppe „Verschlüsselte Werte anzeigen“ hat, bekommt eine Augen-Schaltfläche, die den echten Wert eine Weile zeigt. Jedes Mal wird im Datenzugriffsprotokoll festgehalten. Die API hat `GET api/data/{Tabelle}/{id}/reveal/{Spalte}` (gleiches Recht und Protokoll).
+- Das Bearbeitungsformular zeigt den echten Wert nie. Leer gelassen, bleibt der Wert, wie er ist.
+
+### Export und Import
+- Eine exportierte Datei enthält die maskierten Werte (`****1234`). **Sie erneut zu importieren, ändert nichts** (ein maskierter Wert gleich der maskierten Form des jetzigen Werts gilt als „nicht geändert“).
+- **Um einen Wert zu ändern, geben Sie den ganzen neuen Wert ein.** Ein anderer maskierter Wert (z. B. `****0000`) macht die Zeile zu einem Fehler.
+
+### Schlüssel wechseln
+Erzeugen Sie mit `exment:data-key generate` einen neuen Schlüssel, setzen Sie ihn an den Anfang von `DATA_ENCRYPTION_KEYS` und führen Sie `php artisan exment:data-key rotate` aus. `php artisan exment:data-key status` zeigt die Anzahl der Werte je Schlüssel. Entfernen Sie einen alten Schlüssel erst bei 0.
+
 ## In der Bezeichnung verwenden
 > Diese Einstellung wurde in v1.3.0 in die [erweiterten Einstellungen der benutzerdefinierten Tabelle](/de/table) verlegt.
 
