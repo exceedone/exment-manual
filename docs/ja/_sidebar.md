@@ -16,6 +16,7 @@
   * [追加設定](/ja/quickstart_more)
   * [チューニング](/ja/tuning)
   * [セキュリティチェック](/ja/security_check)
+    * [暗号化の鍵の置き場所](/ja/data_key_provider)
   * [決まった時間の処理](/ja/scheduled_jobs)
   * [メンテナンスモード](/ja/maintenance)
   * [(上級者向け)冗長化](/ja/redundant)

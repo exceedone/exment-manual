@@ -326,6 +326,9 @@ YESにすることで、検索バーに文字列を入れて検索を行う際�
 ### 鍵の入れ替え
 新しい鍵を `exment:data-key generate` で作り、`DATA_ENCRYPTION_KEYS` の先頭に入れてから、`php artisan exment:data-key rotate` を実行します。古い鍵の値を新しい鍵で暗号化し直します。`php artisan exment:data-key status` で、鍵ごとの値の数がわかります。古い鍵は、数が 0 になってから消してください。
 
+### 鍵の置き場所
+鍵は、`.env` のほかに、AWS KMS・Secrets Manager・HashiCorp Vault に置けます。サーバーのファイルを盗まれても、鍵そのものは取り出せなくなります。くわしくは「[暗号化の鍵の置き場所](/ja/data_key_provider)」をご覧ください。
+
 ## ラベルで使用する
 > 本設定方法は、v1.3.0にて[カスタムテーブルの拡張設定](/ja/table#見出し表示列設定)に変更されました。
 

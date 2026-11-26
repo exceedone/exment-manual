@@ -326,6 +326,9 @@ An encrypted column cannot be used for a partial search, sorting, totals, charts
 ### Rotating the key
 Make a new key with `exment:data-key generate`, put it first in `DATA_ENCRYPTION_KEYS`, and run `php artisan exment:data-key rotate`: the values of the old keys are encrypted again with it. `php artisan exment:data-key status` shows how many values each key has. Remove an old key only when it has 0.
 
+### Where the keys are
+Besides `.env`, the keys can be kept in AWS KMS, Secrets Manager or HashiCorp Vault, so the files of the server alone do not give them. See "[Where the encryption keys are](/data_key_provider)".
+
 ## Use in labels
 > In v1.3.0, this setting method was changed to the [extended settings of the custom table](/table?id=heading-display-column-setting).
 
