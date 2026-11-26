@@ -82,6 +82,7 @@
   * [通知模板](/zh/mail)
   * [通知与邮件发送设置](/zh/notify)
     * [通知到 Teams 的个人聊天](/zh/notify_teams)
+    * [LINE WORKS 通知](/zh/notify_lineworks)
   * [LINE 关联](/zh/line)
   * [安全确认](/zh/safety_check)
   * [日志](/zh/logs)

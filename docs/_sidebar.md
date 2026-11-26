@@ -82,6 +82,7 @@
   * [Mail template](/mail)
   * [Notification](/notify)
     * [Teams personal chat](/notify_teams)
+    * [LINE WORKS notifications](/notify_lineworks)
   * [LINE integration](/line)
   * [Safety check](/safety_check)
   * [Log](/logs)

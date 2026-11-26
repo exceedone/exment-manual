@@ -82,6 +82,7 @@
   * [Benachrichtigungsvorlage](/de/mail)
   * [Benachrichtigungen und E-Mail-Versand einstellen](/de/notify)
     * [Benachrichtigungen in den persönlichen Teams-Chat senden](/de/notify_teams)
+    * [LINE WORKS-Benachrichtigungen](/de/notify_lineworks)
   * [LINE-Anbindung](/de/line)
   * [Sicherheitsabfrage](/de/safety_check)
   * [Protokolle](/de/logs)

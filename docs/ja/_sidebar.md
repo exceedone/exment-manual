@@ -82,6 +82,7 @@
   * [通知テンプレート](/ja/mail)
   * [通知](/ja/notify)
     * [Teams の個人のチャット](/ja/notify_teams)
+    * [LINE WORKS の通知](/ja/notify_lineworks)
   * [LINE連携](/ja/line)
   * [安否確認](/ja/safety_check)
   * [ログ](/ja/logs)

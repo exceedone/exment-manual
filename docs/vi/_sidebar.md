@@ -82,6 +82,7 @@
   * [Mẫu thông báo](/vi/mail)
   * [Thiết lập thông báo / gửi email](/vi/notify)
     * [Gửi thông báo vào chat cá nhân trên Teams](/vi/notify_teams)
+    * [Thông báo LINE WORKS](/vi/notify_lineworks)
   * [Liên kết LINE](/vi/line)
   * [Xác nhận an toàn](/vi/safety_check)
   * [Log](/vi/logs)
