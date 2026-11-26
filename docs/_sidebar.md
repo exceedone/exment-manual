@@ -16,6 +16,7 @@
   * [Additional settings](/quickstart_more)
   * [Tuning](/tuning)
   * [Security check](/security_check)
+    * [Where the encryption keys are](/data_key_provider)
   * [Scheduled jobs](/scheduled_jobs)
   * [Maintenance mode](/maintenance)
   * [(For advanced users) Redundancy](/redundant)
