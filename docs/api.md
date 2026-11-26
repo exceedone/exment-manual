@@ -21,6 +21,16 @@ To use the API in Exment, change "API Available" to YES from the menu "Admin Set
 
 > Note: the URLs are for the default without "/admin" (a site newly installed with v7.2.1 or later). If `ADMIN_ROUTE_PREFIX` in `.env` has a value (an older site has "admin"), add it after the URL of the site (e.g. `http(s)://(Exment URL)/admin/oauth/token`). For details, see [Change / delete "admin" included in URL](/additional_prefix).
 
+## Who may use the API (7.3.0)
+From Exment 7.3.0 you can choose who may use the API. In System settings → [Advanced] → "Users of the API", choose users, organizations (with the organizations below them) and role groups.
+
+- If nothing is chosen (the default), every user may use the API, as before.
+- The system administrators always may.
+- It applies to the OAuth access tokens, the [API keys](/api_key), MCP and the API of the plugins. The web API used inside the pages (webapi) is part of the pages and is not affected.
+- When a user who may not use the API calls it, the answer is HTTP status 403 with the error code 302.
+- `/oauth/token` still gives an access token to a user who may not use the API. The API calls made with that token are refused.
+- In the IT audit report, the "Users" section has an "API" column that shows "May use" or "May not use" for each user.
+
 ## API authentication method
 There are three authentication methods. Choose the one that fits how you use the API.
 
@@ -588,6 +598,7 @@ This is the list of the error codes and the status codes of the HTTP response.
 | 204 | 400 | Occurs when the specified action ID cannot be executed when executing the "Execute the workflow for specific data" API. |
 | 205 | 400 | Occurs when the next working user does not exist when executing the "Execute the workflow for specific data" API. |
 | 301 | 400 | The API cannot be executed due to IP restriction. |
+| 302 | 403 | The user may not use the API (System settings, "Users of the API", 7.3.0). |
 | 401 | 403 | Occurs when the target table is not included in the public form in the API for public forms. |
 | 402 | 403 | Occurs when trying to create the second or later data for a table with "Save Only One Record" set. |
 
