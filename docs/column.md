@@ -301,6 +301,31 @@ The "search indexes" that can be set on one table are up to 10 as a recommendati
 Note: the upper limit of search indexes can be changed by a [setting value](/config?id=number-of-search-indexes).
 
 
+## Store encrypted (7.3.0)
+
+A one-line text, multi-line text, email or URL column can keep its values encrypted in the database. The database or a backup file alone cannot read them.
+
+### Before you use it
+1. Run `php artisan exment:data-key generate` on the server and put the line it prints in `DATA_ENCRYPTION_KEYS` of `.env`.
+    - The key is not in the database and not in a backup. **If the key is lost, the encrypted values cannot be read again.** Keep a copy of it in a safe place apart from the server.
+2. Turn on "Encrypted columns" in Feature management (off at first).
+3. Set "Store encrypted" of the column to YES. The values already there are encrypted in the background (to do it at once: `php artisan exment:encrypt-column table_name column_name`). NO converts them back.
+
+### What it cannot do
+An encrypted column cannot be used for a partial search, sorting, totals, charts, formulas or the full-text search, and cannot be used with "Search index", "Unique" or "Multiple".
+
+### How it is shown
+- Lists, the detail page, revisions, the API, AI (MCP), notifications and exports show it masked, as `****1234` (0 to 4 last characters, a setting of the column).
+- A user with the role group permission "Show encrypted values" gets an eye button that shows the real value for a while. Each time is recorded in the data access log. The API has `GET api/data/{table}/{id}/reveal/{column}` (the same permission and log).
+- The edit form never shows the real value. Left empty, the value stays as it is.
+
+### Export and import
+- An exported file has the masked values (`****1234`). **Importing it again changes nothing** (a masked value equal to the masked form of the value there now is taken as "not changed").
+- **To change a value, enter the whole new value.** A masked value that is not the masked form of the value there now (such as `****0000`) makes that row an error.
+
+### Rotating the key
+Make a new key with `exment:data-key generate`, put it first in `DATA_ENCRYPTION_KEYS`, and run `php artisan exment:data-key rotate`: the values of the old keys are encrypted again with it. `php artisan exment:data-key status` shows how many values each key has. Remove an old key only when it has 0.
+
 ## Use in labels
 > In v1.3.0, this setting method was changed to the [extended settings of the custom table](/table?id=heading-display-column-setting).
 
