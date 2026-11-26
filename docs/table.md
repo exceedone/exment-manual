@@ -113,6 +113,14 @@ If you enter "200", the first change history is deleted at the 201st update. The
 
 ![Custom table screen](img/table/table_detail13.png)
 
+#### Days to keep deleted data
+- Enter, as a number, how many days after deletion the data is deleted for good. Empty or 0 means it is never deleted automatically. The default is empty.
+- When you enter days, data deleted more than that many days ago is saved in an archive and then deleted for good every night.
+- User, organization, comment and document tables do not have this setting.
+- For details, see [Trash](/trash).
+
+Note: available in v7.3.0 and later.
+
 #### Optimize list display
 - When YES, the data list screen is shown first, and its rows are loaded automatically after that. For a table with many data or many columns, it shortens the time until the list screen appears. The default is NO.
 - It is a setting that draws the rows later. It does not reduce the queries to the database.

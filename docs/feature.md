@@ -20,6 +20,7 @@ New features of Exment itself:
 | File sharing | Workspaces, folders, versions and share links. Turning it off does not remove the files. (Shown only in versions that have File sharing) |
 | Studio | The list of screens, making screens, and the phone app (/app). For those who may set tables. |
 | Data maintenance | Tidy the data of a table at once (for now: delete the attachments at once). For those who may set tables. (v7.3.0 and later) [Data maintenance](/data_maintenance) |
+| Trash | See the deleted data of all tables on one page, restore it or delete it for good. For those with the "View deleted data" permission and so on. (v7.3.0 and later) [Trash](/trash) |
 
 For each feature, decide these three.
 

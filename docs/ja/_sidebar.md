@@ -49,6 +49,7 @@
   * [データ詳細](/ja/data_details)  
   * [データ登録](/ja/data_form)
   * [削除済データ](/ja/deleted_data)
+  * [ゴミ箱](/ja/trash)
   * [データメンテナンス](/ja/data_maintenance)
   * [データインポート・エクスポート](/ja/data_import_export)
   * [インポート・エクスポート（コマンド）](/ja/data_cmd_import_export)
