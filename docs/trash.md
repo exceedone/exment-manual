@@ -50,7 +50,7 @@ Plugins can receive events when data is restored or deleted for good (`CustomVal
 Data that was deleted more than the set number of days ago is deleted for good every night.
 
 ### Setting for each table
-In [Custom table settings](/table), enter the number of days in "Days to keep deleted data" (the time from deleting to deleting for good).
+On the [Custom table settings](/table) screen (near "Change history version number"), enter the number of days in "Days to keep deleted data" (the time from deleting to deleting for good).
 - Empty or 0 means never. The default is empty.
 - User, organization, comment and document tables do not have this setting.
 
