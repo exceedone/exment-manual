@@ -78,6 +78,7 @@
     - ログインの記録のロックが、ロックしたアカウントのものになるようにしました（[#2236](https://github.com/exceedone/exment/pull/2236)）
     - 新しいサイトの「設定：データと画面」に、使えない「通知」を作らないようにしました。今のサイトでも、その項目がそのままなら消します（[#2294](https://github.com/exceedone/exment/pull/2294)、[#2289](https://github.com/exceedone/exment/issues/2289)）
     - ファイル共有で、名前が .png・.js などで終わるファイルの画面を開きなおすと、デザインが崩れたのを直しました（前のリンクも使えます）（[#2294](https://github.com/exceedone/exment/pull/2294)、[#2290](https://github.com/exceedone/exment/issues/2290)）
+    - チューニングの画面がすすめる nginx の静的ファイルのキャッシュの決まりに `try_files` を足しました。ファイルでないもの（プラグインのファイルなど）は Exment に回します。この決まりを入れたサイトは、書きなおしてください（[#2295](https://github.com/exceedone/exment/pull/2295)）
 1. セキュリティの強化
     - セキュリティの強化
 

@@ -78,6 +78,7 @@
     - A lockout in the login log is recorded for the account it locks ([#2236](https://github.com/exceedone/exment/pull/2236))
     - A new site no longer gets the unusable "Notify" item under "Settings: Data and screens"; on existing sites it is removed while it is still that item ([#2294](https://github.com/exceedone/exment/pull/2294), [#2289](https://github.com/exceedone/exment/issues/2289))
     - File sharing: the page of a file whose name ends in .png, .js and so on lost its design when opened again (old links still work) ([#2294](https://github.com/exceedone/exment/pull/2294), [#2290](https://github.com/exceedone/exment/issues/2290))
+    - The nginx rule for the cache of static files, suggested on the tuning page, has `try_files`: what is not a file (the files of plugins and others) goes on to Exment. A site that uses the rule should update it ([#2295](https://github.com/exceedone/exment/pull/2295))
 1. Security hardening
     - Security hardening
 
