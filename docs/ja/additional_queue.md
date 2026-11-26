@@ -54,6 +54,47 @@ php artisan queue:listen
 
 > queue:listen をバックグラウンドでずっと動かし続けるには、[Supervisor](https://readouble.com/laravel/12.x/ja/queues.html#supervisor-configuration)のようなプロセスモニタ（ワーカが止まっていないかを見張るしくみ）が必要です。
 
+### ワーカーを動かし続ける（Supervisor・systemd）
+ワーカーが止まったら自動で動きなおすように、プロセスモニタで動かします。`--max-time=3600`（1 時間）と `--memory=192`（192 MB）で、ワーカーはときどき入れかわり、メモリーがたまりません。ワーカーは、Web と同じユーザー（www-data など）で動かします。
+
+Supervisor の例（`/etc/supervisor/conf.d/exment-queue.conf`）：
+```
+[program:exment-queue]
+command=/usr/bin/php8.3 artisan queue:work --sleep=3 --tries=3 --timeout=120 --memory=192 --max-time=3600
+directory=/(Exmentのルートディレクトリ)
+user=www-data
+autostart=true
+autorestart=true
+stopwaitsecs=130
+stdout_logfile=/var/log/exment-queue.log
+```
+
+systemd の例（`/etc/systemd/system/exment-queue.service`）：
+```
+[Unit]
+Description=Exment queue worker
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/(Exmentのルートディレクトリ)
+ExecStart=/usr/bin/php8.3 artisan queue:work --sleep=3 --tries=3 --timeout=120 --memory=192 --max-time=3600
+Restart=always
+RestartSec=5
+Nice=10
+
+[Install]
+WantedBy=multi-user.target
+```
+`systemctl enable --now exment-queue` で動かします。
+
+### ワーカーが動いているかを確かめる（v7.3.0 から）
+`QUEUE_CONNECTION` を sync 以外にしているとき、Exment は 5 分ごとに小さな仕事をキューに入れ、ワーカーが片づけた時刻を残します（スケジュールの `php artisan schedule:run` が毎分動いている必要があります）。
+
+- 15 分たっても片づかないときは、「[セキュリティチェック](/ja/security_check)」の「キューのワーカー」が NG になります。ワーカーが止まっているか、追いついていません。
+- `php artisan exment:queue-heartbeat --status` でも確かめられます。
+- `QUEUE_CONNECTION=sync`（初期値）のときは、何もしません。
+
 ### ワーカーを動かし続けられないとき（レンタルサーバーなど）
 レンタルサーバーなどで、ワーカーを動かし続けられないときは、cron で毎分、たまったジョブを片付けます（`--stop-when-empty` でジョブがなくなったら終わり、`--max-time=50` で次の cron までに終わります）。php は、Web と同じ版をフルパスで書いてください。
 
@@ -70,6 +111,9 @@ php artisan queue:listen
 ```
 php artisan queue:restart
 ```
+
+- ワーカーを Supervisor・systemd で動かしているときは、`supervisorctl restart exment-queue` や `systemctl restart exment-queue` で動かしなおしても、同じです（こちらのほうが確かです）。
+- v7.3.0 から、Exment のキャッシュを消す処理（設定の保存・`php artisan exment:update`）は、queue:restart の合図を消しません。前の版では、アップデートのあとに queue:restart を動かしても、キャッシュを消すと合図が消えて、ワーカーが古いコードのまま動き続けることがありました。前の版では、アップデートが終わってから最後に queue:restart を動かしてください。
 
 
 ## 実行中ジョブの確認
