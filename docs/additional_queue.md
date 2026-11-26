@@ -54,6 +54,47 @@ php artisan queue:listen
 
 > To keep queue:listen running in the background all the time, you need a process monitor (something that watches whether the worker has stopped) such as [Supervisor](https://laravel.com/docs/queues#supervisor-configuration).
 
+### Keeping the worker running (Supervisor, systemd)
+Run the worker under a process monitor, so it starts again when it stops. With `--max-time=3600` (one hour) and `--memory=192` (192 MB) the worker is replaced from time to time and its memory does not grow. Run it as the same user as the web (www-data, for example).
+
+Supervisor (`/etc/supervisor/conf.d/exment-queue.conf`):
+```
+[program:exment-queue]
+command=/usr/bin/php8.3 artisan queue:work --sleep=3 --tries=3 --timeout=120 --memory=192 --max-time=3600
+directory=/(Exment root directory)
+user=www-data
+autostart=true
+autorestart=true
+stopwaitsecs=130
+stdout_logfile=/var/log/exment-queue.log
+```
+
+systemd (`/etc/systemd/system/exment-queue.service`):
+```
+[Unit]
+Description=Exment queue worker
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/(Exment root directory)
+ExecStart=/usr/bin/php8.3 artisan queue:work --sleep=3 --tries=3 --timeout=120 --memory=192 --max-time=3600
+Restart=always
+RestartSec=5
+Nice=10
+
+[Install]
+WantedBy=multi-user.target
+```
+Start it with `systemctl enable --now exment-queue`.
+
+### Checking that a worker runs (v7.3.0 and later)
+With `QUEUE_CONNECTION` other than sync, Exment queues a small job every five minutes and keeps the time a worker ran it (the scheduler, `php artisan schedule:run` every minute, must be running).
+
+- When it has not been run for 15 minutes, "The queue worker" of the [security check](/security_check) is NG: the worker has stopped, or cannot keep up.
+- `php artisan exment:queue-heartbeat --status` shows it too.
+- With `QUEUE_CONNECTION=sync` (the default) nothing is done.
+
 ### When a worker cannot keep running (rental servers, etc.)
 On a rental server or the like, where a worker cannot keep running, let cron clear the waiting jobs every minute (`--stop-when-empty` ends when no jobs are left, and `--max-time=50` ends before the next cron). Write php by the full path of the same version as the web.
 
@@ -70,6 +111,9 @@ So restart the workers when you update the system. The queue:restart command res
 ```
 php artisan queue:restart
 ```
+
+- With the worker under Supervisor or systemd, restarting it (`supervisorctl restart exment-queue`, `systemctl restart exment-queue`) does the same, more surely.
+- From v7.3.0, clearing Exment's cache (saving the settings, `php artisan exment:update`) keeps the queue:restart signal. In earlier versions, clearing the cache could wipe the signal, so a worker went on with the old code even after queue:restart; there, run queue:restart last, after the update has finished.
 
 
 ## Checking the running jobs
