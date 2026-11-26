@@ -127,6 +127,7 @@
   * [Command](/command)
   * [Patch_weakness](/patch_weakness)
   * [Troubleshooting](/troubleshooting)
+  * [When a firewall or a proxy stops a save](/troubleshooting_firewall)
   * [Errors during installation](/install_error)
   * [License](/license)
   * [Development notes](/develop_memo)
