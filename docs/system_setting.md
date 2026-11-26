@@ -208,6 +208,8 @@ See [Safety check settings](/safety_check?id=safety-check-settings) for details.
 Set the IP addresses that are allowed to communicate, as a fixed IP (example: 12.3.5.6) or in the range format (example: 123.4.5.0/24).  
 If not set, all IP addresses are allowed.
 See [IP filter](/additional_ip_filter) for details.
+From 7.3.0 you can also choose users, organizations and role groups exempt from the IP filter (see "Users exempt from the IP filter" in [IP filter](/additional_ip_filter)).  
+Who may use the API is chosen here too (see "Who may use the API" in [API settings](/api)).
 
 
 ## Password policy

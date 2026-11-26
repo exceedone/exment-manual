@@ -36,4 +36,31 @@ EXMENT_DISABLE_IP_FILTER=true
 ~~~
 
 
+#### Users exempt from the IP filter (7.3.0)
+From Exment 7.3.0 you can choose users who are exempt from the IP filter of the web pages, for example people who work from home or on a business trip.
+
+- In System settings → [Advanced] → "IP Filter Setting", choose from the three items below. If nothing is chosen, nothing changes.
+
+| Item | Who is exempt |
+| ---- | ---- |
+| Exempt users (web pages) | The chosen users |
+| Exempt organizations (web pages) | The users of the chosen organizations and of the organizations below them |
+| Exempt role groups (web pages) | The users of the chosen role groups (as a user or through an organization) |
+
+- Only the web pages are affected. The API, the API keys and MCP keep the IP filter for the API.
+- When an exempt user works from an address that is not allowed, the login history records "Out of the IP filter (exempt)", once per session and address.
+- When a user who is not exempt logs in from an address that is not allowed, the login is refused. The login history records only a failure ("out of the IP filter"). It is not counted as a success, and no new-IP-address notice is sent.
+- The IT audit report has two sections: "Exempt from the IP filter" and "Uses from out of the IP filter".
+
+> [!WARNING]
+> **For administrators:** while at least one exemption is set, the following pages can be opened from IP addresses that are not allowed:
+> - the login page (with its images)
+> - the forgotten-password, password-reset and password-change pages
+> - the SSO (OAuth, SAML) login and callback pages
+>
+> A user who is not exempt cannot get past the login. But the login page is visible and logins can be tried (the usual lockout settings apply). When no exemption is set, these pages stay closed from outside, as before.
+>
+> The install pages and the file share links stay closed from outside even when exemptions are set.
+
+
 [←Back to list of additional settings](/quickstart_more)
