@@ -7,6 +7,8 @@ Currently, the following processes can run later.
 - Sending mail
 - Sending to Slack
 - Sending to Microsoft Teams
+- Sending webhooks (JSON) (v7.3.0 and later)
+- Finding the recipients of the notifications of a saved record and sending them (v7.3.0 and later, [When notifications are sent](#when-notifications-are-sent))
 
 ## Notes
 - In delayed execution, processes (jobs) are kept in a waiting line called a "queue" and run in a process separate from the screen.
@@ -62,6 +64,24 @@ On a rental server or the like, where a worker cannot keep running, let cron cle
 ```
 
 If you cannot do that either, keep `QUEUE_CONNECTION=sync` (the value set at installation).
+
+## When notifications are sent
+* This setting is available in Exment v7.3.0 and later.
+
+The notifications of a saved record (create, update, comment, attachment) are sent later, without keeping the answer of the save waiting. Even with many recipients, the save ends quickly. The recipients and the content are the same as before.  
+When they are sent is set by `EXMENT_NOTIFY_MODE` in .env.
+
+| EXMENT_NOTIFY_MODE | When it is sent |
+|---|---|
+| not set (auto) | queue when `QUEUE_CONNECTION` is not sync; when it is sync, after_response (on the screen) or sync (a command) |
+| queue | By the queue worker |
+| after_response | By the same PHP process, after it answers the screen |
+| sync | In the save (as up to v7.2) |
+
+- **When `QUEUE_CONNECTION` is not sync, always run a worker** ([Setting procedure](#setting-procedure)). While no worker runs, neither the notifications of a save nor the mails, Slack, Teams and webhooks are sent.
+- With after_response, the process (a php-fpm worker, for example) stays busy after the answer until the notifications are sent. With very many recipients and many saves at the same time, use queue.
+- The notifications of a share and a delete are sent at once, as before.
+- A save from a command (a data import, for example) sends at once with auto.
 
 ## When updating the system
 The queue worker is a process that keeps running for a long time. Unless it is restarted, the new code is not used.  
