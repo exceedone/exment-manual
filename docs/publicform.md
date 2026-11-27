@@ -18,6 +18,36 @@ Also, the following tables cannot be the target of a public form.
 - Tables set to "Save Only One Record" in the table setting
 
 
+## Creating one easily (7.3.0)
+From Exment 7.3.0 you can create a web form in three steps. The detailed settings, such as the design and the confirm page, can be changed later.
+
+First, turn on public forms in the system settings (step 2 of "Setup steps" below).
+
+1. Open "Create a web form" from the menu of a table (on the data list or on the table settings). The "Create a web form" button on the list of public forms opens it too.
+2. **Choose the fields**: tick "Show" for the fields on the form. For a field that must not be left empty, tick "Must be filled" too. The fields required by the table are ticked from the start.
+3. **The notice and the text after sending**: choose who is told by mail of each submission (you, at first), and write the text shown after sending (a sample is filled in).
+4. **Publish**: press "Publish". The form is created and published at once.
+
+Under "More settings" you can change the name of the form, the receipt mail to the sender (sent to an email field), the robot guard (reCAPTCHA, only when it is set in the system settings), and whether it is published at once.
+
+> [!WARNING]
+> - A form adds data with the permissions of the person who created it. If that person may not add data to the table, the form cannot be sent (the page tells you).
+> - With a user, organization or other-table field on the form, anybody can see the list to choose from (names and so on). The page marks such fields with ⚠.
+> - If nobody is chosen to be told, nobody is told of a submission.
+
+## Putting it on a web site (7.3.0)
+After publishing, the page "Code to paste on a web site" is shown. It also opens from "Code to paste on a web site" on the list of public forms and on the settings screen.
+
+| What | How to use it |
+| ---- | ---- |
+| URL of the form | For a link in a mail or a button |
+| Code to paste on a web site (recommended) | A one-line `<script>` tag. Paste it where the form should appear. Its height follows the form |
+| Code with a height you set | An `<iframe>` tag. For when a `<script>` cannot be pasted. Set the height with style |
+
+- Each has a "Copy" button. The right side of the page shows how the form looks when pasted (sending it there really adds data).
+- A form pasted on a web site has no header or footer.
+- To paste it on another web site, the address of the Exment site must start with **https**. Over http the form may not be sent.
+
 ## Setting flow
 Set in the following order. For the detailed steps, see "Setup steps" below.
 
