@@ -1,6 +1,15 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.2.8 (2026/11/28)
+- 更新方法：ふつうのアップデートです（`composer update` と `php artisan exment:update`）。詳細は[こちら](/ja/update)
+1. 不具合修正
+    - プラグインが 1 つ読みこめなくても、全部の画面（と artisan）が止まらないようにしました。そのプラグインだけ飛ばして、ログに 1 回出します。保存されたプラグインの種類が古いときは、そのヒントも出します（[#2335](https://github.com/exceedone/exment/pull/2335)）
+    - フォームの期限が切れたとき（419）、入力した内容を残してお知らせを出すようにしました。Ajax の通信には 419 を返します。お知らせは利用者の言語で出て、うしろの通信で消えません（[#2330](https://github.com/exceedone/exment/pull/2330)：[#2308](https://github.com/exceedone/exment/pull/2308)・[#2311](https://github.com/exceedone/exment/pull/2311)・[#2328](https://github.com/exceedone/exment/pull/2328)）
+    - `exment:restore` でバックアップのファイルがないとき、お知らせを出して終了コード 1 で止まり、メンテナンスにしないようにしました。復元中のバックアップの画面も直しました（[#2330](https://github.com/exceedone/exment/pull/2330)）
+    - ファイル共有：名前が .png・.jpg などで終わるファイルの詳細画面が Exment の CSS・JavaScript で開くように、メンバーの選択欄が文字を入れなくても使えるように、http のサイトでも共有リンクをコピーできるように（できないときはダイアログを出します）しました（[#2323](https://github.com/exceedone/exment/pull/2323)、GitHub [#2290](https://github.com/exceedone/exment/issues/2290)・[#2276](https://github.com/exceedone/exment/issues/2276)・[#2277](https://github.com/exceedone/exment/issues/2277)・[#2278](https://github.com/exceedone/exment/issues/2278)）
+    - 新しいサイトに、「移動しました」とだけ出る中身のない「通知」のメニューが作られないようにしました。更新のときに、空のものは消します（[#2323](https://github.com/exceedone/exment/pull/2323)、GitHub [#2289](https://github.com/exceedone/exment/issues/2289)）
+
 ## v7.2.7 (2026/11/28)
 - 更新方法：ふつうのアップデートです（`composer update` と `php artisan exment:update`）。v7.2.6 で、`Controller.php` を `Illuminate\Routing\Controller` を継承するように直していた場合は、そのままでかまいません。詳細は[こちら](/ja/update)
 1. 不具合修正

@@ -1,6 +1,15 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.8 (2026/11/28)
+- How to update: the usual update (`composer update` and `php artisan exment:update`). See [here](/update)
+1. Bug fixes
+    - One plugin that fails to load no longer stops every page (and artisan): the plugin is skipped and logged once, with a hint when its saved type is out of date ([#2335](https://github.com/exceedone/exment/pull/2335))
+    - An expired form token (419) keeps what was typed and shows a message instead of an error page; Ajax requests get 419; the message is in the user's language and is not lost to background requests ([#2330](https://github.com/exceedone/exment/pull/2330): [#2308](https://github.com/exceedone/exment/pull/2308), [#2311](https://github.com/exceedone/exment/pull/2311), [#2328](https://github.com/exceedone/exment/pull/2328))
+    - `exment:restore` with a missing backup file shows a message and exits 1 without turning on maintenance mode; the backup pages during a restore are fixed too ([#2330](https://github.com/exceedone/exment/pull/2330))
+    - File sharing: file pages whose names end with .png, .jpg etc. open with Exment's CSS and JavaScript; the member picker works without typing; copying a share link works on http sites, with a dialog when it can't ([#2323](https://github.com/exceedone/exment/pull/2323), GitHub [#2290](https://github.com/exceedone/exment/issues/2290), [#2276](https://github.com/exceedone/exment/issues/2276), [#2277](https://github.com/exceedone/exment/issues/2277), [#2278](https://github.com/exceedone/exment/issues/2278))
+    - New sites no longer get an empty 「通知」 menu item that only says it has moved; the update removes it when it is empty ([#2323](https://github.com/exceedone/exment/pull/2323), GitHub [#2289](https://github.com/exceedone/exment/issues/2289))
+
 ## v7.2.7 (2026/11/28)
 - How to update: the usual update (`composer update` and `php artisan exment:update`). If you changed `Controller.php` to extend `Illuminate\Routing\Controller` as a workaround, you can keep it. See [here](/update)
 1. Bug fixes
