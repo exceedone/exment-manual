@@ -1,6 +1,60 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.6 (2026/11/27)
+- How to update: the usual update. Run `php artisan exment:update` so the new CSS/JS and TinyMCE are published. exment-admin-core 1.0.6 or later (`^1.0.6`) is required; the usual update installs it. See [here](/update)
+1. New features
+    - **"← Back" button** on every page. Going back to a data list brings back its state ([#2141](https://github.com/exceedone/exment/pull/2141))
+    - **The left menu and the system table menus in each user's language** ([#2079](https://github.com/exceedone/exment/pull/2079), [#2099](https://github.com/exceedone/exment/pull/2099), [#2110](https://github.com/exceedone/exment/pull/2110))
+    - **Notifications to a person's Teams chat** through a Teams workflow. See [here](/notify_teams) ([#2126](https://github.com/exceedone/exment/pull/2126))
+    - **The notification bell** keeps read notifications (greyed) and can mark all as read ([#2116](https://github.com/exceedone/exment/pull/2116))
+    - **Gantt**: every level is under its parent, indented, and can be folded ([#2124](https://github.com/exceedone/exment/pull/2124), [#2175](https://github.com/exceedone/exment/pull/2175))
+    - **API and MCP**
+        - The API reads and writes members of organizations and role groups ([#2135](https://github.com/exceedone/exment/pull/2135))
+        - MCP tools to read members ([#2150](https://github.com/exceedone/exment/pull/2150))
+        - MCP on the API keys page. See [here](/mcp) ([#2129](https://github.com/exceedone/exment/pull/2129))
+        - Temporary raises of the API rate limit ([#2108](https://github.com/exceedone/exment/pull/2108))
+    - **Data copy calculates the calculated columns** ([#2146](https://github.com/exceedone/exment/pull/2146))
+    - **SSO avatars**: an SSO login takes the avatar from the IdP ([#2145](https://github.com/exceedone/exment/pull/2145))
+    - Forms may check required columns they do not show ([#2122](https://github.com/exceedone/exment/pull/2122))
+    - The 2-step verification mails say where the login came from
+    - From 7.3: notifications in templates and packs, three template packs, data maintenance, and Yes/No conditions ([#2091](https://github.com/exceedone/exment/pull/2091))
+    - For developers: `CoreExtensions::addSchedule` and `addRestoreRule` ([#2103](https://github.com/exceedone/exment/pull/2103), [#2106](https://github.com/exceedone/exment/pull/2106))
+1. Improvements
+    - **Faster API and MCP** (permission calculation, `route:cache`) ([#2147](https://github.com/exceedone/exment/pull/2147))
+    - Dashboard: the boxes near the screen are read first, 3 at a time ([#2114](https://github.com/exceedone/exment/pull/2114))
+1. Fixes
+    - **Issues reported on GitHub** (#2151–#2188) ([#2176](https://github.com/exceedone/exment/pull/2176), [#2192](https://github.com/exceedone/exment/pull/2192))
+        - The "?" of the LINE link and the flow designer opens their manual pages ([#2156](https://github.com/exceedone/exment/issues/2156))
+        - The columns made by the safety check and the LINE link are system columns (they cannot be deleted) ([#2160](https://github.com/exceedone/exment/issues/2160))
+        - "Step 3" is gone from the help of a new flow design ([#2161](https://github.com/exceedone/exment/issues/2161))
+        - The filter chips show the names of the created / updated user, the work user and the status ([#2162](https://github.com/exceedone/exment/issues/2162))
+        - The colored labels of a Kanban card show every value of a multiple column ([#2164](https://github.com/exceedone/exment/issues/2164))
+        - The ◆ (deadline) column of the Gantt is chosen by the column name or its label ([#2165](https://github.com/exceedone/exment/issues/2165))
+        - File and image columns cannot be chosen in the filters of dashboards and charts ([#2166](https://github.com/exceedone/exment/issues/2166))
+        - A slow double click on a cell no longer opens the inline edit ([#2167](https://github.com/exceedone/exment/issues/2167))
+        - Image columns cannot be used for "Group" and "Filter in this page" of a data list ([#2168](https://github.com/exceedone/exment/issues/2168))
+        - When a table disables editing on screen, the buttons of the data update settings on the detail page are shown and run ([#2171](https://github.com/exceedone/exment/issues/2171))
+        - Other reports ([#2178](https://github.com/exceedone/exment/issues/2178), [#2179](https://github.com/exceedone/exment/issues/2179), [#2181](https://github.com/exceedone/exment/issues/2181), [#2182](https://github.com/exceedone/exment/issues/2182), [#2184](https://github.com/exceedone/exment/issues/2184), [#2186](https://github.com/exceedone/exment/issues/2186), [#2187](https://github.com/exceedone/exment/issues/2187))
+    - **Kanban, presets, preview, avatars and cell borders** ([#2169](https://github.com/exceedone/exment/pull/2169))
+        - "Save a view with this condition" of a Kanban board makes a system view where user views are not used ([#2151](https://github.com/exceedone/exment/issues/2151))
+        - A cell style preset on a system column (ID, created user, ...) is applied in the list ([#2152](https://github.com/exceedone/exment/issues/2152))
+        - The preview of a "plain" preset is the same as the list ([#2153](https://github.com/exceedone/exment/issues/2153))
+        - The avatar color follows the colors per value ([#2154](https://github.com/exceedone/exment/issues/2154))
+        - The border of "fill the whole cell" is no longer drawn over a pinned column ([#2155](https://github.com/exceedone/exment/issues/2155))
+    - Gantt indent, the MCP page, API client dates and empty TinyMCE strings ([#2175](https://github.com/exceedone/exment/pull/2175))
+    - Data API word search: pages in one order, and not stopped at `keyword_search_count` ([#2235](https://github.com/exceedone/exment/pull/2235), [#2258](https://github.com/exceedone/exment/pull/2258)); MCP `search_data` with words ([#2225](https://github.com/exceedone/exment/pull/2225))
+    - viewdata answered 500 with a pivot filter ([#2223](https://github.com/exceedone/exment/pull/2223))
+    - A mail that could not be sent is saved again ([#2224](https://github.com/exceedone/exment/pull/2224))
+    - The list state kept in the session is not dropped by a request that ends later ([#2205](https://github.com/exceedone/exment/pull/2205))
+    - `map('intval')` took the key as the base ([#2131](https://github.com/exceedone/exment/pull/2131)); RevisionableTrait uses the Event facade ([#2096](https://github.com/exceedone/exment/pull/2096))
+    - A missing plugin page shows Exment's 404 page, and table page headers are in the user's language ([#2101](https://github.com/exceedone/exment/pull/2101)); `lang` on `<html>` of the login and install pages ([#2097](https://github.com/exceedone/exment/pull/2097))
+1. Security hardening
+    - Security check: supported versions of PHP and the database ([#2118](https://github.com/exceedone/exment/pull/2118)), and the APP_KEY shipped in the download zip ([#2112](https://github.com/exceedone/exment/pull/2112))
+    - Member API: organizations in a system administrators' group are changed by administrators only ([#2196](https://github.com/exceedone/exment/pull/2196))
+    - Column names are escaped in form messages; no redirects for the Teams post ([#2190](https://github.com/exceedone/exment/pull/2190))
+    - TinyMCE 5.10.9 → 8.10.2 ([#2133](https://github.com/exceedone/exment/pull/2133)); exment-admin-core `^1.0.6` ([#2120](https://github.com/exceedone/exment/pull/2120))
+
 ## v7.2.5 (2026/11/25)
 - How to update: the usual update. See [here](/update)
 1. Bug fixes

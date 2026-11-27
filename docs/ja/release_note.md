@@ -1,6 +1,60 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.2.6 (2026/11/27)
+- 更新方法：ふつうのアップデートです。`php artisan exment:update` を実行して、新しい CSS・JS と TinyMCE を公開してください。exment-admin-core は 1.0.6 以上（`^1.0.6`）が要りますが、ふつうのアップデートで入ります。詳細は[こちら](/ja/update)
+1. 機能追加
+    - **「← 戻る」ボタン**：全部の画面に出します。データの一覧に戻ると、前の状態に戻ります（[#2141](https://github.com/exceedone/exment/pull/2141)）
+    - **左のメニューとシステムのテーブルのメニューを、ユーザーの言語で**出します（[#2079](https://github.com/exceedone/exment/pull/2079)・[#2099](https://github.com/exceedone/exment/pull/2099)・[#2110](https://github.com/exceedone/exment/pull/2110)）
+    - **Teams の個人のチャットに通知**：Teams のワークフローを通して、通知を一人ひとりの Teams のチャットに送れます。詳細は[こちら](/ja/notify_teams)（[#2126](https://github.com/exceedone/exment/pull/2126)）
+    - **通知のベル**：読んだ通知も灰色で残します。ベルから「すべて既読にする」ができます（[#2116](https://github.com/exceedone/exment/pull/2116)）
+    - **ガントチャート**：すべての階層を親の下に字下げして出し、たためます（[#2124](https://github.com/exceedone/exment/pull/2124)・[#2175](https://github.com/exceedone/exment/pull/2175)）
+    - **API・MCP**
+        - API で、組織と役割グループのメンバーを読み書きできます（[#2135](https://github.com/exceedone/exment/pull/2135)）
+        - MCP に、メンバーを読むツールを足しました（[#2150](https://github.com/exceedone/exment/pull/2150)）
+        - API キーの画面に MCP の案内を出します。詳細は[こちら](/ja/mcp)（[#2129](https://github.com/exceedone/exment/pull/2129)）
+        - API の 1 分の上限を、一時的に引き上げられます（[#2108](https://github.com/exceedone/exment/pull/2108)）
+    - **データコピーで計算式の列を計算**します（[#2146](https://github.com/exceedone/exment/pull/2146)）
+    - **SSO のアバター**：SSO でログインしたとき、IdP からアバターを取ります（[#2145](https://github.com/exceedone/exment/pull/2145)）
+    - フォームで、そのフォームに出していない必須の列も確かめられます（[#2122](https://github.com/exceedone/exment/pull/2122)）
+    - 2 段階認証のメールに、どこからのログインかを出します
+    - 7.3 の機能の一部：テンプレートとパックの通知、テンプレートのパック 3 つ、データメンテナンス、Yes/No の条件（[#2091](https://github.com/exceedone/exment/pull/2091)）
+    - 開発者向け：`CoreExtensions::addSchedule` と `addRestoreRule`（[#2103](https://github.com/exceedone/exment/pull/2103)・[#2106](https://github.com/exceedone/exment/pull/2106)）
+1. 機能改善
+    - **API と MCP を速く**しました（権限の計算・`route:cache`）（[#2147](https://github.com/exceedone/exment/pull/2147)）
+    - ダッシュボード：画面に近いボックスから、3 つずつ読みます（[#2114](https://github.com/exceedone/exment/pull/2114)）
+1. 不具合修正
+    - **GitHub で報告された不具合**（#2151〜#2188）（[#2176](https://github.com/exceedone/exment/pull/2176)・[#2192](https://github.com/exceedone/exment/pull/2192)）
+        - 「LINE連携」とフロー デザイナーの「?」で、それぞれのマニュアルを開きます（[#2156](https://github.com/exceedone/exment/issues/2156)）
+        - 安否確認と LINE連携が作る列を、システムの列にしました（削除できません）（[#2160](https://github.com/exceedone/exment/issues/2160)）
+        - フロー デザイナーの新規作成の説明から「ステップ3」を外しました（[#2161](https://github.com/exceedone/exment/issues/2161)）
+        - 「絞り込み中」のチップで、作成ユーザー・更新ユーザー・作業ユーザー・ステータスを名前で出します（[#2162](https://github.com/exceedone/exment/issues/2162)）
+        - カンバンの色付きラベルに、複数選択の列のすべての値を出します（[#2164](https://github.com/exceedone/exment/issues/2164)）
+        - ガントチャートの ◆（期限）の列を、列名か列表示名で選びます（[#2165](https://github.com/exceedone/exment/issues/2165)）
+        - ダッシュボードとチャートの絞り込みで、ファイル・画像の列を選べないようにしました（[#2166](https://github.com/exceedone/exment/issues/2166)）
+        - セルを少しゆっくりダブルクリックしたとき、インライン編集を開かないようにしました（[#2167](https://github.com/exceedone/exment/issues/2167)）
+        - データ一覧の「グループ化」と「このページ内で絞り込み」で、画像の列を使えないようにしました（[#2168](https://github.com/exceedone/exment/issues/2168)）
+        - テーブルの「画面からの変更不可」で編集を止めても、データ詳細画面の「データ更新設定」のボタンを出し、押せば動くようにしました（[#2171](https://github.com/exceedone/exment/issues/2171)）
+        - そのほかのご報告（[#2178](https://github.com/exceedone/exment/issues/2178)・[#2179](https://github.com/exceedone/exment/issues/2179)・[#2181](https://github.com/exceedone/exment/issues/2181)・[#2182](https://github.com/exceedone/exment/issues/2182)・[#2184](https://github.com/exceedone/exment/issues/2184)・[#2186](https://github.com/exceedone/exment/issues/2186)・[#2187](https://github.com/exceedone/exment/issues/2187)）
+    - **カンバン・プリセット・プレビュー・アバター・セルの枠**（[#2169](https://github.com/exceedone/exment/pull/2169)）
+        - カンバンの「この条件でビューを保存」で、ユーザービューが使えないテーブルではシステムビューを作ります（[#2151](https://github.com/exceedone/exment/issues/2151)）
+        - システムの列（ID・作成ユーザーなど）に付けたセルの書式のプリセットを、一覧でも使います（[#2152](https://github.com/exceedone/exment/issues/2152)）
+        - 「プレーン」のプリセットのプレビューを、一覧と同じにしました（[#2153](https://github.com/exceedone/exment/issues/2153)）
+        - アバターの色を、値ごとの色の設定どおりにしました（[#2154](https://github.com/exceedone/exment/issues/2154)）
+        - 「セル全体を塗る」の枠が、固定した列の上に出ないようにしました（[#2155](https://github.com/exceedone/exment/issues/2155)）
+    - ガントチャートの字下げ・MCP の画面・API クライアントの日付・TinyMCE の空の文字（[#2175](https://github.com/exceedone/exment/pull/2175)）
+    - データ API のキーワード検索：ページの並びがいつも同じになり、`keyword_search_count` で止まらないようにしました（[#2235](https://github.com/exceedone/exment/pull/2235)・[#2258](https://github.com/exceedone/exment/pull/2258)）。MCP の `search_data` で、言葉で探せるようにしました（[#2225](https://github.com/exceedone/exment/pull/2225)）
+    - ピボットで絞るビューの viewdata が 500 になるのを直しました（[#2223](https://github.com/exceedone/exment/pull/2223)）
+    - 送れなかったメールを、また保存するようにしました（[#2224](https://github.com/exceedone/exment/pull/2224)）
+    - セッションに残した一覧の状態が、あとで終わったリクエストで消えないようにしました（[#2205](https://github.com/exceedone/exment/pull/2205)）
+    - `map('intval')` がキーを基数にしていたのを直しました（[#2131](https://github.com/exceedone/exment/pull/2131)）。RevisionableTrait が Event のファサードを使います（[#2096](https://github.com/exceedone/exment/pull/2096)）
+    - 無いプラグインのページは、Exment の 404 の画面にしました。テーブルの画面の見出しを、ユーザーの言語で出します（[#2101](https://github.com/exceedone/exment/pull/2101)）。ログインとインストールの画面の `<html>` に `lang` を付けました（[#2097](https://github.com/exceedone/exment/pull/2097)）
+1. セキュリティの強化
+    - セキュリティチェック：PHP とデータベースがサポートされている版か（[#2118](https://github.com/exceedone/exment/pull/2118)）、ダウンロードの zip に入っていた APP_KEY のままでないか（[#2112](https://github.com/exceedone/exment/pull/2112)）を確かめます
+    - メンバーの API：システム管理者のグループに入っている組織は、管理者だけが変えられます（[#2196](https://github.com/exceedone/exment/pull/2196)）
+    - フォームのメッセージで、列の名前をエスケープします。Teams への送信で、リダイレクトをたどりません（[#2190](https://github.com/exceedone/exment/pull/2190)）
+    - TinyMCE を 5.10.9 から 8.10.2 にしました（[#2133](https://github.com/exceedone/exment/pull/2133)）。exment-admin-core を `^1.0.6` にしました（[#2120](https://github.com/exceedone/exment/pull/2120)）
+
 ## v7.2.5 (2026/11/25)
 - 更新方法：ふつうのアップデートです。詳細は[こちら](/ja/update)
 1. 不具合修正
