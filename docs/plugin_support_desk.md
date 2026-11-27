@@ -1,11 +1,11 @@
-# IT Support (official plugin)
-"IT Support" is an **official plugin** of Exment for IT support and help desks. Requests from customers (mail, a request form, phone) and problems found by monitoring or error logs are managed as tickets, and **their progress is shared with the customer without login**. It is free.
+# Support Desk (official plugin)
+"Exment Support Desk" is an **official plugin** of Exment for IT support and help desks. Requests from customers (mail, a request form, phone) and problems found by monitoring or error logs are managed as tickets, and **their progress is shared with the customer without login**. It is free.
 
-- Source code and docs: [exceedone/exment-plugins (it-support)](https://github.com/exceedone/exment-plugins/tree/main/it-support)
+- Source code and docs: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - License: GPL-3.0 (the same as Exment)
-- Name in the plugin list: Exment Plugin IT Support（ITサポート）. The internal name is `ExmentITSupport` and the URL is `/plugins/exment_it_support`.
+- Name in the plugin list: Exment Plugin Support Desk（サポートデスク）. The internal name is `ExmentSupportDesk` and the URL is `/plugins/exment_support_desk`.
 
-<!-- Screenshot: the agent desk (img/plugin_it_support/its_desk.png). Take it after 2b checks the page -->
+<!-- Screenshot: the agent desk (img/plugin_support_desk/sd_desk.png). Take it after 2b checks the page -->
 
 ## What it does
 | Area | Content |
@@ -31,20 +31,20 @@
 
 ## Install
 1. Install the plugin: from Feature Management on Exment v7.2.1 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
-2. On Exment v7.2.1 or later, turn on "ITサポート：受付箱" (IT Support: desk) in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "ITサポート：お客様の窓口" (IT Support: customer door) too (it works only while the desk is on).
-   - On a new site both are off at first. Sites that used IT Support before Feature Management keep both on.
-   - Setting the desk to "Don't use" also removes "ITサポート" from the menu. The tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables: by URL (such as `/data/its_ticket`) or from "Admin Setting" > "Custom Table". To show them in the menu, add them in "Admin Setting" > "Menu". To hide them, remove the table permissions in the role groups.
-3. Open "ITサポート" in the menu (or `/plugins/exment_it_support`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
-   - The left menu has one entry, "ITサポート", which opens the desk. Tickets (table), knowledge, customers, contacts, IT assets and canned replies open from the bar at the top of the desk; every table (kinds and SLA too) from "テーブル・権限" (tables and permissions) in "設定".
+2. On Exment v7.2.1 or later, turn on "Support Desk: agent desk" in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "Support Desk: customer portal" too (it works only while the desk is on).
+   - On a new site both are off at first. Sites that used Support Desk before Feature Management keep both on.
+   - Setting the desk to "Don't use" also removes "サポートデスク" from the menu. The tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables: by URL (such as `/data/sd_ticket`) or from "Admin Setting" > "Custom Table". To show them in the menu, add them in "Admin Setting" > "Menu". To hide them, remove the table permissions in the role groups.
+3. Open "サポートデスク" in the menu (or `/plugins/exment_support_desk`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
+   - The left menu has one entry, "サポートデスク", which opens the desk. Tickets (table), knowledge, customers, contacts, IT assets and canned replies open from the bar at the top of the desk; every table (kinds and SLA too) from "テーブル・権限" (tables and permissions) in "設定".
    - The "ITサポート" folder of 1.0.6 and before (the desk and 8 tables) is folded into that one entry the first time the desk is opened after the update to 1.0.7. Menus an administrator added stay.
 4. In "設定" (settings), enter the mailbox for requests (IMAP) and the address of the desk, save, and press "IMAP につながるか試す" (test IMAP). To receive mail, also enter "差出人の確認" (sender check) and "受信サーバーの名前" (the name of the receiving server: the first name in Authentication-Results of received mail). Until then, tickets from mail are marked "possibly spoofed".
-5. Put agents in the role group "ITサポート 担当者". Customers who log in go in "ITサポート お客様", linked by "Exment のユーザー" of "お客様の担当者".
+5. Put agents in the role group "サポートデスク 担当者". Customers who log in go in "サポートデスク お客様", linked by "Exment のユーザー" of "お客様の担当者".
 6. Tell customers the URL of the desk (`https://your-exment/support`).
 
 ## How to use
 
 ### The desk
-Open "ITサポート" in the menu to see the desk (受付箱). It has three panes.
+Open "サポートデスク" in the menu to see the desk (受付箱). It has three panes.
 
 | Pane | Content |
 | --- | --- |
@@ -91,7 +91,7 @@ There are six statuses:
 - Choose the person in 「担当者」 (assignee) in the right pane. The `A` key assigns the ticket to you. When you send a reply or an internal note on a ticket with no assignee, you become the assignee.
 - For automatic assignment, choose in 「担当者の決め方」 (how to assign) in 「設定」:
     - 種類ごとの「最初の担当者」 (the first assignee of the kind; default): the person set on the ticket's kind.
-    - 種類で決まらなければ、対応中が少ない人 (else the agent with the fewest open tickets): among the role group 「ITサポート 担当者」, the person with the fewest tickets that are not finished.
+    - 種類で決まらなければ、対応中が少ない人 (else the agent with the fewest open tickets): among the role group 「サポートデスク 担当者」, the person with the fewest tickets that are not finished.
     - 自動では決めない (do not assign automatically)
 
 ### Due times (SLA)
@@ -107,7 +107,7 @@ There are six statuses:
 - 「このチケットからナレッジを作る」 (make knowledge from this ticket) makes a draft article.
 
 ### The customer side
-The customer door is `https://your-exment/support` (while both "ITサポート：お客様の窓口" and 「使う」 (use) in 「お客様の窓口（ログインなし）」 (customer door, no login) in 「設定」 are on).
+The customer door is `https://your-exment/support` (while both "Support Desk: customer portal" and 「使う」 (use) in 「お客様の窓口（ログインなし）」 (customer door, no login) in 「設定」 are on).
 
 | URL | Content |
 | --- | --- |
@@ -120,7 +120,7 @@ The customer door is `https://your-exment/support` (while both "ITサポート�
 - The ticket page shows how far the ticket has got (受付 received, 対応中, 解決, 完了) and the conversation (internal notes are not shown). The customer can send a reply and files, and press 「解決しました」.
 - The link stops opening 30 days after the ticket is closed (「リンクの期限」 link expiry in 「設定」).
 - A ticket with 「開くときに確認のコード」 on in the right pane opens only with a 6-digit code sent to the registered address.
-- When a customer who logs in (role group 「ITサポート お客様」) opens "ITサポート", they see the list of their requests (`/plugins/exment_it_support/my`). A contact with 「お客様の管理者」 (customer manager) sees all the company's requests.
+- When a customer who logs in (role group 「サポートデスク お客様」) opens "サポートデスク", they see the list of their requests (`/plugins/exment_support_desk/my`). A contact with 「お客様の管理者」 (customer manager) sees all the company's requests.
 
 ### Mail intake
 - In 「メールで受け付ける（IMAP）」 (receive by mail) in 「設定」, turn on 「受信する」 (receive), and enter the IMAP server, port and encryption (SSL/TLS or STARTTLS), user name, password and folder. The password is stored encrypted.
@@ -135,7 +135,7 @@ Monitoring can make tickets through the API. The key is on the settings page.
 
 ~~~sh
 curl -X POST https://your-exment/support/intake/alert \
-  -H "X-ITS-Key: (the key on the settings page)" \
+  -H "X-SD-Key: (the key on the settings page)" \
   -H "Content-Type: application/json" \
   -d '{"title":"Disk full on web01","source":"web01.example.co.jp","severity":"error","detail":"/var 98%"}'
 ~~~
@@ -152,7 +152,7 @@ curl -X POST https://your-exment/support/intake/alert \
 A system that can pass the original mail (as a Postfix pipe) can POST it to `/support/intake/mail` (the same key).
 
 - Tickets from monitoring are hidden from the customer at first.
-- When "ITサポート：お客様の窓口" is off in Feature Management, `/support/intake/alert` and `/support/intake/mail` return 404.
+- When "Support Desk: customer portal" is off in Feature Management, `/support/intake/alert` and `/support/intake/mail` return 404.
 
 ## Safety
 - Customer links are long numbers that cannot be guessed, and only their hashes are stored. A link shows that one ticket only (no internal notes, other customers or agents' addresses).
@@ -162,7 +162,7 @@ A system that can pass the original mail (as a Postfix pipe) can POST it to `/su
 - The request form does not show a link on the page after sending: it mails the link to the address entered. Until that link is opened, the ticket has the tag "メール未確認" and no contact is made.
 - Auto-replies, bounces and mail from its own address are not taken in.
 - Opening a satisfaction link does not save a rating.
-- Only users who may "edit all" of the ticket table (such as the role group "ITサポート 担当者") can use the agent desk. "Edit own data only" is not enough.
+- Only users who may "edit all" of the ticket table (such as the role group "サポートデスク 担当者") can use the agent desk. "Edit own data only" is not enough.
 
 ### Pages without login
 For safety, Exment does not let a plugin's `config.json` open a page without login. A help desk needs a door for customers without an account, so this plugin registers `/support/...` itself while Exment starts, the same idea as Exment's public forms: the secret in the URL opens one thing only.
@@ -170,4 +170,4 @@ For safety, Exment does not let a plugin's `config.json` open a page without log
 ## Related
 - [Official plugins](/plugin_official)
 - [Plugin](/plugin)
-- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/it-support/README.md)
+- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/support-desk/README.md)

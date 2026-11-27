@@ -140,7 +140,7 @@ php artisan exment:update
 - 更新之后，在“功能管理”中确认附带的官方插件的新版本（见下面的“[更新与附带的官方插件](/zh/update?id=更新与附带的官方插件)”）。
 
 ## 更新与附带的官方插件
-从 Exment v7.2.1 起，免费的官方插件（项目管理、IT 支持、Groupware）随 Exment 附带（软件包 exceedone/exment-plugins-release）。
+从 Exment v7.2.1 起，免费的官方插件（项目管理、支持服务台、Groupware）随 Exment 附带（软件包 exceedone/exment-plugins-release）。
 
 `composer update` 和 `php artisan exment:update`（更新批处理和自动更新也一样）会随新的 Exment 一起带来新的附带插件。**但站点正在使用的插件不会自动切换。** 插件有数据和设置，所以何时切换由系统管理员决定。
 

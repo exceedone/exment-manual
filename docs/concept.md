@@ -22,7 +22,7 @@ Customer lists, deals, requests, asset ledgers: bring the data you now manage he
 ### 3. Connect it: with other systems and AI
 - With the API you can exchange data with other systems. You can also make an API key for each user.
 - **AI (MCP)**: an AI such as Claude can read the data with the permissions of the user.
-- The official plugins (project management, IT support, Groupware) are included for free. You can add features with plugins.
+- The official plugins (project management, Support Desk, Groupware) are included for free. You can add features with plugins.
 
 ## How it differs from Excel
 | | Excel and files | Exment |

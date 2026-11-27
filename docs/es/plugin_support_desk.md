@@ -1,11 +1,11 @@
-# Soporte de TI (plugin oficial)
-"Soporte de TI" (「IT サポート」) es un **plugin oficial** de Exment para el soporte de TI y la mesa de ayuda. Gestiona con "tickets" las solicitudes de los clientes (correo, formulario de recepción, teléfono) y los problemas encontrados por la monitorización o los registros de errores, y **comparte el avance con el cliente sin iniciar sesión**. Es gratuito.
+# Mesa de soporte (plugin oficial)
+"Mesa de soporte" (「サポートデスク」) es un **plugin oficial** de Exment para el soporte de TI y la mesa de ayuda. Gestiona con "tickets" las solicitudes de los clientes (correo, formulario de recepción, teléfono) y los problemas encontrados por la monitorización o los registros de errores, y **comparte el avance con el cliente sin iniciar sesión**. Es gratuito.
 
-- Código fuente y explicación: [exceedone/exment-plugins (it-support)](https://github.com/exceedone/exment-plugins/tree/main/it-support)
+- Código fuente y explicación: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - Licencia: GPL-3.0 (la misma que Exment)
-- Nombre que aparece en la lista de plugins: Exment Plugin IT Support（ITサポート）. El nombre interno es `ExmentITSupport` y la URL es `/plugins/exment_it_support`.
+- Nombre que aparece en la lista de plugins: Exment Plugin Support Desk（サポートデスク）. El nombre interno es `ExmentSupportDesk` y la URL es `/plugins/exment_support_desk`.
 
-<!-- Captura de pantalla: bandeja de recepción del agente (img/plugin_it_support/its_desk.png). Hacerla después de que 2b la compruebe -->
+<!-- Captura de pantalla: bandeja de recepción del agente (img/plugin_support_desk/sd_desk.png). Hacerla después de que 2b la compruebe -->
 
 ## Qué permite hacer
 | Ámbito | Qué permite hacer |
@@ -31,20 +31,20 @@
 
 ## Instalación
 1. Instale el plugin. Desde Exment v7.2.1 se hace desde "Gestión de funciones"; en versiones anteriores, cargando el zip. Vea [Plugins oficiales](/es/plugin_official).
-2. En Exment v7.2.1 o posterior, active "ITサポート：受付箱" (Soporte de TI: bandeja de recepción) en "Configuración de administración" → "[Gestión de funciones](/es/feature)" (mientras está desactivado, tampoco se puede abrir la pantalla de configuración inicial). Para la bandeja de recepción se pueden elegir los grupos de roles que pueden usarla. Si va a usar la ventanilla del cliente (`/support`), la recepción de correo y la apertura de tickets desde la monitorización, active también "ITサポート：お客様の窓口" (Soporte de TI: ventanilla del cliente). Solo funciona cuando la bandeja de recepción está activada.
-   - En un sitio recién instalado, las dos están desactivadas al principio. En los sitios que ya usaban Soporte de TI antes de la gestión de funciones, las dos siguen activadas.
-   - Si la bandeja de recepción se pone en no usar, también desaparece "ITサポート" del menú. Las tablas (tickets, etc.) se conservan como datos y se pueden abrir como tablas normales de Exment con la URL (`/data/its_ticket`, etc.) o desde "Configuración de administración" → "Tabla personalizada". Si quiere mostrarlas en el menú, añada las tablas en "Configuración de administración" → "Menú". Si no quiere que se vean, quite los permisos de las tablas en los grupos de roles.
-3. Abra "ITサポート" en el menú (o `/plugins/exment_it_support`) y pulse "セットアップする" (configurar). Se crean las tablas, los menús, los permisos, los SLA, los tipos, las respuestas predefinidas y ejemplos de FAQ.
-   - En el menú de la izquierda solo hay una entrada, "ITサポート" (al abrirla, aparece la bandeja de recepción). La tabla de tickets, el conocimiento, los clientes, los contactos, los activos de TI y las respuestas predefinidas se abren desde el menú de la parte superior de la bandeja de recepción; todas las tablas (también los tipos de ticket y los SLA) se abren desde "テーブル・権限" (tablas y permisos) de "設定" (configuración).
+2. En Exment v7.2.1 o posterior, active "Mesa de soporte: panel del agente" en "Configuración de administración" → "[Gestión de funciones](/es/feature)" (mientras está desactivado, tampoco se puede abrir la pantalla de configuración inicial). Para la bandeja de recepción se pueden elegir los grupos de roles que pueden usarla. Si va a usar la ventanilla del cliente (`/support`), la recepción de correo y la apertura de tickets desde la monitorización, active también "Mesa de soporte: portal de clientes". Solo funciona cuando la bandeja de recepción está activada.
+   - En un sitio recién instalado, las dos están desactivadas al principio. En los sitios que ya usaban Mesa de soporte antes de la gestión de funciones, las dos siguen activadas.
+   - Si la bandeja de recepción se pone en no usar, también desaparece "サポートデスク" del menú. Las tablas (tickets, etc.) se conservan como datos y se pueden abrir como tablas normales de Exment con la URL (`/data/sd_ticket`, etc.) o desde "Configuración de administración" → "Tabla personalizada". Si quiere mostrarlas en el menú, añada las tablas en "Configuración de administración" → "Menú". Si no quiere que se vean, quite los permisos de las tablas en los grupos de roles.
+3. Abra "サポートデスク" en el menú (o `/plugins/exment_support_desk`) y pulse "セットアップする" (configurar). Se crean las tablas, los menús, los permisos, los SLA, los tipos, las respuestas predefinidas y ejemplos de FAQ.
+   - En el menú de la izquierda solo hay una entrada, "サポートデスク" (al abrirla, aparece la bandeja de recepción). La tabla de tickets, el conocimiento, los clientes, los contactos, los activos de TI y las respuestas predefinidas se abren desde el menú de la parte superior de la bandeja de recepción; todas las tablas (también los tipos de ticket y los SLA) se abren desde "テーブル・権限" (tablas y permisos) de "設定" (configuración).
    - La carpeta "ITサポート" de las versiones hasta 1.0.6 (la bandeja de recepción y 8 tablas) se reúne en una sola entrada la primera vez que se abre la bandeja de recepción después de actualizar a 1.0.7. Los menús añadidos por el administrador se conservan.
 4. En "設定" (configuración), escriba el buzón de recepción (IMAP) y la dirección de la ventanilla, guarde y pulse "IMAP につながるか試す" (probar la conexión IMAP). Si va a usar la recepción de correo, escriba también "差出人の確認" (comprobación del remitente) y "受信サーバーの名前" (nombre del servidor de recepción: el primer nombre de Authentication-Results de los correos recibidos). Hasta que lo escriba, los tickets que llegan por correo quedan como "なりすましの疑い" (sospecha de suplantación).
-5. Añada a los agentes al grupo de roles "ITサポート 担当者" (Soporte de TI: agentes). Añada a los clientes que inician sesión a "ITサポート お客様" (Soporte de TI: clientes) y enlácelos con "Exment のユーザー" (usuario de Exment) de "お客様の担当者" (contacto del cliente).
+5. Añada a los agentes al grupo de roles "サポートデスク 担当者" (Mesa de soporte: agentes). Añada a los clientes que inician sesión a "サポートデスク お客様" (Mesa de soporte: clientes) y enlácelos con "Exment のユーザー" (usuario de Exment) de "お客様の担当者" (contacto del cliente).
 6. Indique a los clientes la URL de la ventanilla (`https://su-exment/support`).
 
 ## Cómo se usa
 
 ### La bandeja de recepción
-Abra "ITサポート" en el menú para ver la bandeja de recepción (受付箱). Tiene 3 columnas.
+Abra "サポートデスク" en el menú para ver la bandeja de recepción (受付箱). Tiene 3 columnas.
 
 | Columna | Contenido |
 | --- | --- |
@@ -91,7 +91,7 @@ Hay 6 estados:
 - Elija a la persona en 「担当者」 (responsable) de la columna derecha. Con la tecla `A`, usted pasa a ser el responsable. Si envía una respuesta o una nota interna en un ticket sin responsable, quien la envía pasa a ser el responsable.
 - Para la asignación automática, elija en 「担当者の決め方」 (cómo se asigna el responsable) de 「設定」:
     - 種類ごとの「最初の担当者」 (el primer responsable de cada tipo; valor inicial): la persona indicada en el tipo del ticket.
-    - 種類で決まらなければ、対応中が少ない人 (si el tipo no lo decide, la persona con menos tickets en curso): dentro del grupo de roles 「ITサポート 担当者」, la persona con menos tickets sin terminar.
+    - 種類で決まらなければ、対応中が少ない人 (si el tipo no lo decide, la persona con menos tickets en curso): dentro del grupo de roles 「サポートデスク 担当者」, la persona con menos tickets sin terminar.
     - 自動では決めない (no asignar automáticamente)
 
 ### Plazos (SLA)
@@ -107,7 +107,7 @@ Hay 6 estados:
 - Con 「このチケットからナレッジを作る」 (crear conocimiento desde este ticket) se crea el borrador de un artículo.
 
 ### El lado del cliente
-La ventanilla del cliente es `https://su-exment/support` (cuando están activados tanto "ITサポート：お客様の窓口" como 「使う」 (usar) de 「お客様の窓口（ログインなし）」 (ventanilla del cliente, sin iniciar sesión) en 「設定」).
+La ventanilla del cliente es `https://su-exment/support` (cuando están activados tanto "Mesa de soporte: portal de clientes" como 「使う」 (usar) de 「お客様の窓口（ログインなし）」 (ventanilla del cliente, sin iniciar sesión) en 「設定」).
 
 | URL | Contenido |
 | --- | --- |
@@ -120,7 +120,7 @@ La ventanilla del cliente es `https://su-exment/support` (cuando están activado
 - En la página del ticket se ve hasta dónde ha avanzado (受付 recibido, 対応中, 解決, 完了) y la conversación (las notas internas no aparecen). El cliente puede enviar respuestas y archivos, y pulsar 「解決しました」.
 - El enlace deja de abrirse 30 días después de cerrar el ticket (「リンクの期限」 caducidad del enlace, en 「設定」).
 - Un ticket con 「開くときに確認のコード」 activado en la columna derecha solo se abre con el código de 6 dígitos que llega a la dirección registrada.
-- Cuando un cliente que inicia sesión (grupo de roles 「ITサポート お客様」) abre "ITサポート", aparece la lista de sus solicitudes (`/plugins/exment_it_support/my`). A un contacto del cliente con 「お客様の管理者」 (administrador del cliente) le aparecen todas las solicitudes de la empresa.
+- Cuando un cliente que inicia sesión (grupo de roles 「サポートデスク お客様」) abre "サポートデスク", aparece la lista de sus solicitudes (`/plugins/exment_support_desk/my`). A un contacto del cliente con 「お客様の管理者」 (administrador del cliente) le aparecen todas las solicitudes de la empresa.
 
 ### Recepción por correo
 - En 「メールで受け付ける（IMAP）」 (recibir por correo) de 「設定」, active 「受信する」 (recibir) y escriba el servidor IMAP, el puerto y el cifrado (SSL/TLS o STARTTLS), el nombre de usuario, la contraseña y la carpeta. La contraseña se guarda cifrada.
@@ -135,7 +135,7 @@ Un sistema de monitorización puede crear tickets con la API. La clave está en 
 
 ~~~sh
 curl -X POST https://su-exment/support/intake/alert \
-  -H "X-ITS-Key: (clave de la pantalla de configuración)" \
+  -H "X-SD-Key: (clave de la pantalla de configuración)" \
   -H "Content-Type: application/json" \
   -d '{"title":"Disk full on web01","source":"web01.example.co.jp","severity":"error","detail":"/var 98%"}'
 ~~~
@@ -152,7 +152,7 @@ curl -X POST https://su-exment/support/intake/alert \
 Desde un mecanismo que puede enviar el correo original tal cual (un pipe de Postfix, por ejemplo), se puede hacer POST a `/support/intake/mail` (con la misma clave).
 
 - Los tickets creados desde la monitorización no se muestran al cliente al principio.
-- Cuando "ITサポート：お客様の窓口" (Soporte de TI: ventanilla del cliente) está desactivado en la gestión de funciones, `/support/intake/alert` y `/support/intake/mail` devuelven 404.
+- Cuando "Mesa de soporte: portal de clientes" está desactivado en la gestión de funciones, `/support/intake/alert` y `/support/intake/mail` devuelven 404.
 
 ## Reglas de seguridad
 - El enlace del cliente es un número largo que no se puede adivinar, y en la base de datos solo se guarda su hash. Con el enlace solo se ve ese ticket (no aparecen las notas internas, los demás clientes ni las direcciones de correo de los agentes).
@@ -162,7 +162,7 @@ Desde un mecanismo que puede enviar el correo original tal cual (un pipe de Post
 - El formulario de recepción no muestra el enlace en la pantalla de confirmación: lo envía por correo a la dirección escrita. Hasta que se abre ese enlace, el ticket lleva la etiqueta "メール未確認" (correo sin confirmar) y no se crea el contacto.
 - No se importan las respuestas automáticas, los rebotes ni los correos enviados desde la propia dirección.
 - El enlace de satisfacción no guarda nada solo por abrirlo.
-- La pantalla del agente solo la pueden usar las personas que pueden editar todos los datos de la tabla de tickets (el grupo de roles "ITサポート 担当者", por ejemplo). Con el permiso de editar solo los datos propios no se puede usar.
+- La pantalla del agente solo la pueden usar las personas que pueden editar todos los datos de la tabla de tickets (el grupo de roles "サポートデスク 担当者", por ejemplo). Con el permiso de editar solo los datos propios no se puede usar.
 
 ### Sobre las páginas sin inicio de sesión
 Por seguridad, Exment no permite crear páginas sin inicio de sesión desde el `config.json` de un plugin. Una mesa de ayuda necesita una entrada para los clientes sin cuenta, así que este plugin registra por sí mismo las páginas `/support/...` cuando Exment se inicia. La idea es la misma que la de los formularios públicos de Exment: solo se muestra lo que abre el secreto de la URL.
@@ -170,4 +170,4 @@ Por seguridad, Exment no permite crear páginas sin inicio de sesión desde el `
 ## Temas relacionados
 - [Plugins oficiales](/es/plugin_official)
 - [Plugin](/es/plugin)
-- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/it-support/README.md)
+- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/support-desk/README.md)

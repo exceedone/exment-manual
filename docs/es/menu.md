@@ -26,7 +26,7 @@ Panel
 Groupware ▸ Archivos compartidos y correo (Groupware)
 Solicitudes y aprobaciones ▸ Tareas pendientes, Solicitud de aprobación (ringi), Reembolso de gastos … (plantilla incluida "Paquete de solicitudes")
 Proyectos ▸ Gestión de proyectos (plugin oficial)
-Soporte de TI ▸ Soporte de TI (plugin oficial)
+Mesa de soporte ▸ Mesa de soporte (plugin oficial)
 Maestros ▸ Información básica, Organización, Usuario, Avisos
 Configuración: datos y pantallas ▸ Tabla personalizada, Studio, Menú, Flujo de trabajo, Plantilla de correo, Notificación, Estilos de celda predefinidos, Plantilla
 Configuración: usuarios y permisos ▸ Usuarios con acceso, Grupo de roles, Configuración de inicio de sesión, Configuración de API, Registro de operaciones
@@ -35,7 +35,7 @@ Configuración: sistema ▸ Configuración del sistema, Gestión de funciones, P
 
 - Los sitios instalados de nuevo quedan con esta forma.
 - En los sitios actualizados desde la v7.1 o anterior, solo se mueven los menús que están como los dejó Exment (cuando el contenido de Configuración de administración sigue en el orden de Exment, cuando "Gestión de maestros" sigue en el tercer lugar desde arriba, cuando Archivos compartidos sigue en el nivel más alto). Los menús que usted movió, los nombres que puso y los menús de plugins se quedan como están. En los sitios que tienen otros menús dentro de Configuración de administración, Configuración de administración no se divide.
-- Los plugins oficiales (gestión de proyectos, soporte de TI, Groupware) y las plantillas incluidas ponen sus menús debajo de su área (si el área no existe, la crean). Solo se mueven los menús que están en el nivel más alto.
+- Los plugins oficiales (gestión de proyectos, mesa de soporte, Groupware) y las plantillas incluidas ponen sus menús debajo de su área (si el área no existe, la crean). Solo se mueven los menús que están en el nivel más alto.
 - Las áreas que no tienen dentro ningún menú que se pueda mostrar no se muestran (los menús de las funciones desactivadas en [Gestión de funciones](/es/feature) no se muestran).
 
 #### Ordenar en el orden estándar

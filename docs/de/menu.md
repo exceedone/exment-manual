@@ -26,7 +26,7 @@ Dashboard
 Groupware ▸ Dateifreigabe, E-Mail (Groupware)
 Anträge & Genehmigungen ▸ Offene Aufgaben, Genehmigungsantrag (Ringi), Spesenabrechnung … (mitgelieferte Vorlage „Antrags-Paket“)
 Projekte ▸ Projektmanagement (offizielles Plugin)
-IT-Support ▸ IT-Support (offizielles Plugin)
+Support-Desk ▸ Support-Desk (offizielles Plugin)
 Stammdaten ▸ Basisinformationen, Organisation, Benutzer, Information
 Einstellungen: Daten & Bildschirme ▸ Benutzerdefinierte Tabelle, Studio, Menü, Workflow, E-Mail-Vorlage, Benachrichtigung, Zellstil-Vorlagen, Vorlage
 Einstellungen: Benutzer & Berechtigungen ▸ Login-Benutzer, Rollengruppe, Anmeldeeinstellungen, API-Einstellungen, Betriebsprotokoll
@@ -35,7 +35,7 @@ Einstellungen: System ▸ Systemeinstellungen, Funktionsverwaltung, Plugin, Sich
 
 - Eine neu installierte Website hat diese Form.
 - Bei einer Website, die von v7.1 oder früher aktualisiert wurde, werden nur die Menüs verschoben, die noch dort stehen, wo Exment sie abgelegt hat (wenn der Inhalt der Administratoreinstellungen noch in der Reihenfolge von Exment steht, wenn „Stammdaten verwalten“ noch an 3. Stelle von oben steht, wenn die Dateifreigabe noch auf der obersten Ebene steht). Menüs, die Sie selbst verschoben haben, selbst vergebene Namen und Menüs von Plugins bleiben, wie sie sind. Bei Websites, bei denen in den Administratoreinstellungen andere Menüs liegen, werden die Administratoreinstellungen nicht aufgeteilt.
-- Die offiziellen Plugins (Projektmanagement, IT-Support, Groupware) und die mitgelieferten Vorlagen legen ihre Menüs unter ihrem jeweiligen Bereich ab (fehlt der Bereich, wird er angelegt). Nur Menüs auf der obersten Ebene werden verschoben.
+- Die offiziellen Plugins (Projektmanagement, Support-Desk, Groupware) und die mitgelieferten Vorlagen legen ihre Menüs unter ihrem jeweiligen Bereich ab (fehlt der Bereich, wird er angelegt). Nur Menüs auf der obersten Ebene werden verschoben.
 - Ein Bereich, in dem kein Menü angezeigt werden kann, erscheint nicht (die Menüs von Funktionen, die in der [Funktionsverwaltung](/de/feature) ausgeschaltet sind, erscheinen nicht).
 
 #### In Standardreihenfolge anordnen

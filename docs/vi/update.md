@@ -140,7 +140,7 @@ Vui lòng xem trang của mọi mốc nằm giữa phiên bản hiện tại và
 - Sau khi cập nhật, hãy kiểm tra phiên bản mới của plugin chính thức đi kèm trong "Quản lý tính năng" (xem "[Cập nhật và plugin chính thức đi kèm](/vi/update?id=cập-nhật-và-plugin-chính-thức-đi-kèm)" bên dưới).
 
 ## Cập nhật và plugin chính thức đi kèm
-Từ Exment v7.2.1, các plugin chính thức miễn phí (quản lý dự án, hỗ trợ IT, Groupware) được đi kèm Exment (gói exceedone/exment-plugins-release).
+Từ Exment v7.2.1, các plugin chính thức miễn phí (quản lý dự án, Bộ phận hỗ trợ, Groupware) được đi kèm Exment (gói exceedone/exment-plugins-release).
 
 `composer update` và `php artisan exment:update` (cả batch cập nhật và cập nhật tự động) mang đến plugin đi kèm mới cùng với Exment mới. **Nhưng plugin trang web đang dùng không tự chuyển.** Plugin có dữ liệu và thiết lập, nên quản trị viên hệ thống quyết định khi nào chuyển.
 

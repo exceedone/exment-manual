@@ -58,8 +58,8 @@ Decide who can see or change which tables and data, with [role groups](/role_gro
 **🔌 [Plugins](/plugin)**　`Standard`  
 Add your own buttons, pages, views, batches, APIs and more. The most flexible way to extend Exment. See also [how to make one](/plugin_quickstart).
 
-**📦 [Official plugins (project management, IT support, groupware)](/plugin_official)**　`NEW (7.2.1)`  
-[Project management](/plugin_pm), [IT support](/plugin_it_support) and [groupware](/plugin_groupware) come with Exment from 7.2.1. Just turn them on in "Features".
+**📦 [Official plugins (project management, Support Desk, groupware)](/plugin_official)**　`NEW (7.2.1)`  
+[Project management](/plugin_pm), [Support Desk](/plugin_support_desk) and [groupware](/plugin_groupware) come with Exment from 7.2.1. Just turn them on in "Features".
 
 **🧩 [Studio (build screens and a phone app)](/studio)**　`NEW (7.2.1)`  
 Place parts to make a table, its input screen and its list. The screens also work in the phone app.

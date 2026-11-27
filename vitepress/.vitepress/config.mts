@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { slugifySource } from '../slug.mjs'
+import { moved } from '../moved.mjs'
 
 // made by prepare.mjs from the _sidebar.md of each language
 const sidebar = JSON.parse(readFileSync(fileURLToPath(new URL('./sidebar.json', import.meta.url)), 'utf8'))
@@ -19,9 +20,18 @@ const oldUrls = `(function () {
   rest = rest.replace(/\\.md$/, '').replace(/\\/$/, '/index');
   if (rest === '' || rest === 'README') { rest = 'index'; }
   rest = rest.replace(/(^|\\/)README$/, '$1index');
+  // a page that got a new name (moved.mjs)
+  rest = rest.replace(/(^|\\/)([^\\/]+)$/, function (all, dir, name) { return dir + (MOVED.hasOwnProperty(name) ? MOVED[name] : name); });
   // the anchor as VitePress makes it from the heading
   var slug = (SLUGIFY)(id);
   location.replace(BASE + rest + '.html' + (slug ? '#' + slug : ''));
+})();`
+
+// a page that got a new name (moved.mjs): its old URL opens the new page, with the heading
+const movedPages = `(function () {
+  var m = location.pathname.match(/^(.*\\/)([^\\/]+?)(\\.html)?$/);
+  if (!m || !MOVED.hasOwnProperty(m[2])) { return; }
+  location.replace(m[1] + MOVED[m[2]] + (m[3] || '') + location.search + location.hash);
 })();`
 
 const base = process.env.MANUAL_BASE || '/docs/'
@@ -41,7 +51,8 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/assets/favicon-32.png', sizes: '32x32' }],
     ['link', { rel: 'icon', href: '/assets/logo-mark.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'apple-touch-icon', href: '/assets/apple-touch-icon.png' }],
-    ['script', {}, oldUrls.replace('BASE', JSON.stringify(base)).replace('SLUGIFY', () => slugifySource)],
+    ['script', {}, oldUrls.replace('BASE', JSON.stringify(base)).replace('SLUGIFY', () => slugifySource).replace(/MOVED/g, JSON.stringify(moved))],
+    ['script', {}, movedPages.replace(/MOVED/g, JSON.stringify(moved))],
   ],
   markdown: {
     // the tables and notes of the manual are wide: no line numbers

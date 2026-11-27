@@ -93,7 +93,7 @@
   * [Plugin](/vi/plugin)
     * [Plugin chính thức](/vi/plugin_official)
       * [Quản lý dự án](/vi/plugin_pm)
-      * [IT Support](/vi/plugin_it_support)
+      * [Bộ phận hỗ trợ](/vi/plugin_support_desk)
       * [Groupware](/vi/plugin_groupware)
   * [Cách tạo plugin](/vi/plugin_quickstart)
     * [Plugin (Nút)](/vi/plugin_quickstart_button)

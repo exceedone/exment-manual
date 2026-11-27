@@ -140,7 +140,7 @@ php artisan exment:update
 - アップデートのあと、「機能の管理」で同梱の公式プラグインの新しい版を確かめます（下の「[アップデートと同梱の公式プラグイン](/ja/update?id=アップデートと同梱の公式プラグイン)」）。
 
 ## アップデートと同梱の公式プラグイン
-Exment v7.2.1 から、無料の公式プラグイン（プロジェクト管理・IT サポート・Groupware）が Exment に同梱されています（パッケージ exceedone/exment-plugins-release）。
+Exment v7.2.1 から、無料の公式プラグイン（プロジェクト管理・サポートデスク・Groupware）が Exment に同梱されています（パッケージ exceedone/exment-plugins-release）。
 
 `composer update` と `php artisan exment:update`（アップデートバッチ・自動アップデートも同じ）では、新しい Exment と一緒に、新しい同梱のプラグインも届きます。**ただし、サイトで使っているプラグインは、自動では切りかわりません。** プラグインにはデータと設定があるので、いつ切りかえるかは、システム管理者が決めます。
 

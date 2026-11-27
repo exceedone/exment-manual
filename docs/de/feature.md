@@ -59,7 +59,7 @@ Es gibt keine zweite, neue Einstellung. Der Bildschirm zeigt die vorhandenen Ein
 <!-- Screenshot: die Zeile eines Plugins und die Zeilen der Funktionen im Plugin (img/feature/feature_plugin.png). Wird nach dem Merge von #1861 aufgenommen -->
 
 ## Kostenlose offizielle Plugins (in Exment enthalten)
-Mit Exment werden kostenlose offizielle Plugins ausgeliefert (Projektverwaltung, IT-Support, Groupware). Sie installieren sie im Bereich „Kostenlose offizielle Plugins (in Exment enthalten)“ der „Funktionsverwaltung“. Einzelheiten stehen unter [Offizielle Plugins](/de/plugin_official).
+Mit Exment werden kostenlose offizielle Plugins ausgeliefert (Projektverwaltung, Support-Desk, Groupware). Sie installieren sie im Bereich „Kostenlose offizielle Plugins (in Exment enthalten)“ der „Funktionsverwaltung“. Einzelheiten stehen unter [Offizielle Plugins](/de/plugin_official).
 
 - Bis Sie auf „Verwenden (installieren)“ klicken, wird nichts installiert und nichts geladen (es werden auch keine Tabellen angelegt).
 - Nach dem Klick wird geprüft, dann installiert und aktiviert. Auch die Hauptfunktion des Plugins steht dann auf „Verwenden“. Danach steht das Plugin auch oben im Bereich „Plugins“, und Sie können festlegen, wer es nutzen darf und ob es im Menü steht.

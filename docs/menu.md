@@ -26,7 +26,7 @@ Dashboard
 Groupware ▸ File sharing, Mail (Groupware)
 Requests & approvals ▸ Pending tasks, Approval request (ringi), Expense claim … (bundled template "Request pack")
 Projects ▸ Project Management (official plugin)
-IT support ▸ IT support (official plugin)
+Support Desk ▸ Support Desk (official plugin)
 Master ▸ Base Info, Organization, User, Information
 Settings: Data & Screens ▸ Custom Table, Studio, Menu, Workflow, Mail template, Notify, Cell style presets, Template
 Settings: Users & Permissions ▸ LoginUser, Role group, Login Setting, API Setting, Operation log
@@ -35,7 +35,7 @@ Settings: System ▸ System Setting, Feature Management, Plugin, Backup, Tuning,
 
 - A newly installed site has this form.
 - On a site updated from v7.1 or earlier, only the menus that are still where Exment put them move (when the inside of Admin Setting is still in Exment's order, when "Manage Master" is still third from the top, when File sharing is still at the top). Menus you moved yourself, names you gave and the menus of plugins stay as they are. On a site where other menus are inside Admin Setting, Admin Setting is not divided.
-- The official plugins (Project Management, IT Support, Groupware) and the bundled templates put their menus under their own group (the group is made when it does not exist). Only menus at the top are moved.
+- The official plugins (Project Management, Support Desk, Groupware) and the bundled templates put their menus under their own group (the group is made when it does not exist). Only menus at the top are moved.
 - A group with no menu that can be shown inside it is not shown (the menus of features turned off in [Feature Management](/feature) are not shown).
 
 #### Arrange in the standard order

@@ -52,7 +52,7 @@ Chi tiết vui lòng xem [Thiết lập ban đầu](/vi/first_setting).
 ## 4. Bắt đầu dùng
 - **Việc cần quyết định trước tiên (trang nào cũng cần)**: hãy thiết lập [lịch chạy tác vụ](/vi/additional_task_schedule) (cron). Nhờ đó thông báo, lịch chạy, sao lưu tự động, v.v. mới hoạt động.
 - Tạo [bảng](/vi/table), [form](/vi/form) và [view](/vi/view) cho hợp với công việc.
-- Ở [Quản lý tính năng](/vi/feature), chọn chức năng sẽ dùng và các plugin chính thức miễn phí (quản lý dự án, hỗ trợ IT, Groupware).
+- Ở [Quản lý tính năng](/vi/feature), chọn chức năng sẽ dùng và các plugin chính thức miễn phí (quản lý dự án, Bộ phận hỗ trợ, Groupware).
 - Kiểm tra các thiết lập về an toàn và tốc độ ở [Kiểm tra bảo mật](/vi/security_check) và [Tinh chỉnh hiệu năng](/vi/tuning).
 - Các thiết lập khác (email, nơi lưu tệp, queue, v.v.) có ở [Thiết lập bổ sung](/vi/quickstart_more).
 

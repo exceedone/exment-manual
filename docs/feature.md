@@ -59,7 +59,7 @@ Note: When a plugin has registered features of its own (as a web mail), each of 
 <!-- Screenshot: a plugin row and the rows of the features in it (img/feature/feature_plugin.png). After #1861 is merged -->
 
 ## Free official plugins (bundled with Exment)
-Exment comes with free official plugins (Project Management, IT Support and Groupware). Install them from "Free official plugins (bundled with Exment)" on Feature Management. See [Official plugins](/plugin_official).
+Exment comes with free official plugins (Project Management, Support Desk and Groupware). Install them from "Free official plugins (bundled with Exment)" on Feature Management. See [Official plugins](/plugin_official).
 
 - Nothing is installed or loaded (no tables are made) until you press "Use (install)".
 - Pressing it checks the plugin, installs it and makes it active. The main features of the plugin are turned on too. After that, it is also listed under "Plugins" above, where you choose who may use it and its menu.

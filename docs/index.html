@@ -49,6 +49,10 @@
       noEmoji: true,
       executeScript: true,
       subMaxLevel: 2,
+      // pages that got a new name (as vitepress/moved.mjs): the old URL shows the new page
+      alias: {
+        '/((?:ja|vi|zh|ko|de|es)/)?plugin_it_support': '/$1plugin_support_desk',
+      },
       nameLink: {
         '/ja': '#/ja/',
         '/vi': '#/vi/',

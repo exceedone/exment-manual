@@ -1,11 +1,11 @@
-# IT Support (plugin chính thức)
-"IT Support" là **plugin chính thức** của Exment dành cho hỗ trợ IT và help desk. Yêu cầu từ khách hàng (email, biểu mẫu tiếp nhận, điện thoại) và sự cố phát hiện qua giám sát hay nhật ký lỗi được quản lý bằng "ticket", và **tiến độ được chia sẻ với khách hàng không cần đăng nhập**. Miễn phí.
+# Bộ phận hỗ trợ (plugin chính thức)
+"Exment Support Desk" là **plugin chính thức** của Exment dành cho hỗ trợ IT và help desk. Yêu cầu từ khách hàng (email, biểu mẫu tiếp nhận, điện thoại) và sự cố phát hiện qua giám sát hay nhật ký lỗi được quản lý bằng "ticket", và **tiến độ được chia sẻ với khách hàng không cần đăng nhập**. Miễn phí.
 
-- Mã nguồn và tài liệu: [exceedone/exment-plugins (it-support)](https://github.com/exceedone/exment-plugins/tree/main/it-support)
+- Mã nguồn và tài liệu: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - Giấy phép: GPL-3.0 (giống Exment)
-- Tên trong danh sách plugin: Exment Plugin IT Support（ITサポート）. Tên nội bộ `ExmentITSupport`, URL `/plugins/exment_it_support`.
+- Tên trong danh sách plugin: Exment Plugin Support Desk（サポートデスク）. Tên nội bộ `ExmentSupportDesk`, URL `/plugins/exment_support_desk`.
 
-<!-- Ảnh màn hình: hộp tiếp nhận của nhân viên (img/plugin_it_support/its_desk.png). Chụp sau khi 2b xác nhận -->
+<!-- Ảnh màn hình: hộp tiếp nhận của nhân viên (img/plugin_support_desk/sd_desk.png). Chụp sau khi 2b xác nhận -->
 
 ## Chức năng
 | Lĩnh vực | Nội dung |
@@ -31,20 +31,20 @@
 
 ## Cài đặt
 1. Cài plugin: từ "Quản lý tính năng" với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Vui lòng xem [Plugin chính thức](/vi/plugin_official).
-2. Với Exment v7.2.1 trở đi, bật "ITサポート：受付箱" (IT Support: hộp tiếp nhận) ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)" (khi tắt thì cũng không mở được màn hình thiết lập). Với hộp tiếp nhận, có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "ITサポート：お客様の窓口" (IT Support: cổng khách hàng) (chỉ chạy khi hộp tiếp nhận đang bật).
-   - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng IT Support từ trước khi có Quản lý tính năng thì cả hai vẫn bật.
-   - Khi đặt hộp tiếp nhận thành "Không sử dụng", mục menu "ITサポート" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/data/its_ticket`) hoặc từ "Cài đặt quản trị" → "Bảng tùy chỉnh". Muốn hiện trên menu thì thêm bảng ở "Cài đặt quản trị" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
-3. Mở "ITサポート" trên menu (hoặc `/plugins/exment_it_support`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
-   - Menu bên trái chỉ có 1 mục "ITサポート" (mở hộp tiếp nhận). Bảng ticket, kiến thức, khách hàng, liên hệ, tài sản IT, mẫu trả lời mở từ menu phía trên của hộp tiếp nhận; tất cả các bảng (cả loại và SLA) mở từ "テーブル・権限" (bảng và quyền) trong "設定".
+2. Với Exment v7.2.1 trở đi, bật "Bộ phận hỗ trợ: màn hình người phụ trách" ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)" (khi tắt thì cũng không mở được màn hình thiết lập). Với hộp tiếp nhận, có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "Bộ phận hỗ trợ: cổng khách hàng" (chỉ chạy khi hộp tiếp nhận đang bật).
+   - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng Bộ phận hỗ trợ từ trước khi có Quản lý tính năng thì cả hai vẫn bật.
+   - Khi đặt hộp tiếp nhận thành "Không sử dụng", mục menu "サポートデスク" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/data/sd_ticket`) hoặc từ "Cài đặt quản trị" → "Bảng tùy chỉnh". Muốn hiện trên menu thì thêm bảng ở "Cài đặt quản trị" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
+3. Mở "サポートデスク" trên menu (hoặc `/plugins/exment_support_desk`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
+   - Menu bên trái chỉ có 1 mục "サポートデスク" (mở hộp tiếp nhận). Bảng ticket, kiến thức, khách hàng, liên hệ, tài sản IT, mẫu trả lời mở từ menu phía trên của hộp tiếp nhận; tất cả các bảng (cả loại và SLA) mở từ "テーブル・権限" (bảng và quyền) trong "設定".
    - Thư mục "ITサポート" của 1.0.6 trở về trước (hộp tiếp nhận và 8 bảng) được gộp thành 1 mục khi mở hộp tiếp nhận lần đầu sau khi lên 1.0.7. Menu do quản trị viên tự thêm vẫn giữ nguyên.
 4. Ở "設定" (cài đặt), nhập hộp thư tiếp nhận (IMAP) và địa chỉ của bộ phận hỗ trợ, lưu lại, rồi bấm "IMAP につながるか試す" (thử kết nối IMAP). Nếu nhận email, nhập thêm "差出人の確認" (kiểm tra người gửi) và "受信サーバーの名前" (tên máy chủ nhận: tên ở đầu Authentication-Results của email đã nhận). Trước khi nhập, ticket từ email sẽ bị đánh dấu "nghi giả mạo".
-5. Đưa nhân viên vào nhóm vai trò "ITサポート 担当者" (nhân viên IT Support). Khách đăng nhập thì đưa vào "ITサポート お客様" (khách hàng IT Support), và liên kết qua "Exment のユーザー" (người dùng Exment) của "お客様の担当者" (người liên hệ của khách hàng).
+5. Đưa nhân viên vào nhóm vai trò "サポートデスク 担当者" (nhân viên Bộ phận hỗ trợ). Khách đăng nhập thì đưa vào "サポートデスク お客様" (khách hàng Bộ phận hỗ trợ), và liên kết qua "Exment のユーザー" (người dùng Exment) của "お客様の担当者" (người liên hệ của khách hàng).
 6. Báo cho khách URL của bộ phận hỗ trợ (`https://exment-của-bạn/support`).
 
 ## Cách sử dụng
 
 ### Hộp tiếp nhận
-Mở "ITサポート" trên menu thì hộp tiếp nhận (受付箱) hiện ra. Màn hình có 3 cột.
+Mở "サポートデスク" trên menu thì hộp tiếp nhận (受付箱) hiện ra. Màn hình có 3 cột.
 
 | Cột | Nội dung |
 | --- | --- |
@@ -91,7 +91,7 @@ Có 6 trạng thái:
 - Chọn ở 「担当者」 (người phụ trách) trong cột phải. Phím `A` đặt mình làm người phụ trách. Khi gửi trả lời hoặc ghi chú nội bộ trên ticket chưa có người phụ trách, người gửi thành người phụ trách.
 - Để tự phân công, chọn ở 「担当者の決め方」 (cách chọn người phụ trách) trong 「設定」:
     - 種類ごとの「最初の担当者」 (người phụ trách đầu tiên theo loại; mặc định): người đã đặt cho loại của ticket.
-    - 種類で決まらなければ、対応中が少ない人 (nếu loại không quyết định thì chọn người ít việc): trong nhóm vai trò 「ITサポート 担当者」, người có ít ticket chưa xong nhất.
+    - 種類で決まらなければ、対応中が少ない人 (nếu loại không quyết định thì chọn người ít việc): trong nhóm vai trò 「サポートデスク 担当者」, người có ít ticket chưa xong nhất.
     - 自動では決めない (không tự phân công)
 
 ### Hạn (SLA)
@@ -107,7 +107,7 @@ Có 6 trạng thái:
 - 「このチケットからナレッジを作る」 (tạo kiến thức từ ticket này) tạo nháp bài viết.
 
 ### Phía khách hàng
-Cổng khách hàng là `https://exment-của-bạn/support` (khi cả "ITサポート：お客様の窓口" và 「使う」 (sử dụng) của 「お客様の窓口（ログインなし）」 (cổng khách hàng, không đăng nhập) trong 「設定」 đều bật).
+Cổng khách hàng là `https://exment-của-bạn/support` (khi cả "Bộ phận hỗ trợ: cổng khách hàng" và 「使う」 (sử dụng) của 「お客様の窓口（ログインなし）」 (cổng khách hàng, không đăng nhập) trong 「設定」 đều bật).
 
 | URL | Nội dung |
 | --- | --- |
@@ -120,7 +120,7 @@ Cổng khách hàng là `https://exment-của-bạn/support` (khi cả "ITサポ
 - Trang ticket cho thấy ticket đã đến bước nào (受付 tiếp nhận, 対応中, 解決, 完了) và trao đổi (không hiện ghi chú nội bộ). Khách gửi được trả lời và tệp, và bấm được 「解決しました」.
 - Liên kết không mở được sau 30 ngày kể từ khi ticket đóng (「リンクの期限」 hạn liên kết trong 「設定」).
 - Ticket đã bật 「開くときに確認のコード」 ở cột phải chỉ mở được bằng mã 6 chữ số gửi đến email đã đăng ký.
-- Khi khách đăng nhập (nhóm vai trò 「ITサポート お客様」) mở "ITサポート", danh sách yêu cầu của mình (`/plugins/exment_it_support/my`) hiện ra. Người liên hệ có 「お客様の管理者」 (quản trị viên của khách hàng) thấy mọi yêu cầu của công ty.
+- Khi khách đăng nhập (nhóm vai trò 「サポートデスク お客様」) mở "サポートデスク", danh sách yêu cầu của mình (`/plugins/exment_support_desk/my`) hiện ra. Người liên hệ có 「お客様の管理者」 (quản trị viên của khách hàng) thấy mọi yêu cầu của công ty.
 
 ### Tiếp nhận email
 - Ở 「メールで受け付ける（IMAP）」 (tiếp nhận qua email) trong 「設定」, bật 「受信する」 (nhận), rồi nhập máy chủ IMAP, cổng và mã hóa (SSL/TLS, STARTTLS), tên người dùng, mật khẩu, thư mục. Mật khẩu được mã hóa khi lưu.
@@ -135,7 +135,7 @@ Hệ thống giám sát có thể tạo ticket qua API. Khóa có trên màn hì
 
 ~~~sh
 curl -X POST https://exment-của-bạn/support/intake/alert \
-  -H "X-ITS-Key: (khóa trên màn hình cài đặt)" \
+  -H "X-SD-Key: (khóa trên màn hình cài đặt)" \
   -H "Content-Type: application/json" \
   -d '{"title":"Disk full on web01","source":"web01.example.co.jp","severity":"error","detail":"/var 98%"}'
 ~~~
@@ -152,7 +152,7 @@ curl -X POST https://exment-của-bạn/support/intake/alert \
 Hệ thống chuyển được nguyên email gốc (như pipe của Postfix) có thể POST đến `/support/intake/mail` (cùng khóa).
 
 - Ticket tạo từ giám sát ban đầu không cho khách thấy.
-- Khi "ITサポート：お客様の窓口" (IT Support: cổng hỗ trợ khách hàng) tắt trong Quản lý tính năng, `/support/intake/alert` và `/support/intake/mail` trả về 404.
+- Khi "Bộ phận hỗ trợ: cổng khách hàng" tắt trong Quản lý tính năng, `/support/intake/alert` và `/support/intake/mail` trả về 404.
 
 ## An toàn
 - Liên kết cho khách là chuỗi dài không đoán được, cơ sở dữ liệu chỉ lưu hash. Liên kết chỉ cho thấy đúng 1 ticket đó (không hiện ghi chú nội bộ, khách hàng khác, địa chỉ email của nhân viên).
@@ -162,7 +162,7 @@ Hệ thống chuyển được nguyên email gốc (như pipe của Postfix) có
 - Biểu mẫu tiếp nhận không hiện liên kết sau khi gửi mà gửi liên kết qua email đến địa chỉ đã nhập. Đến khi mở liên kết đó, ticket có thẻ "メール未確認" (chưa xác nhận email) và không tạo liên hệ.
 - Không nhận email trả lời tự động, email bị trả về, email từ chính địa chỉ của mình.
 - Chỉ mở liên kết khảo sát thì chưa lưu đánh giá.
-- Chỉ người "sửa tất cả" được bảng ticket (như nhóm vai trò "ITサポート 担当者") mới dùng được màn hình nhân viên. "Chỉ sửa dữ liệu của mình" thì không dùng được.
+- Chỉ người "sửa tất cả" được bảng ticket (như nhóm vai trò "サポートデスク 担当者") mới dùng được màn hình nhân viên. "Chỉ sửa dữ liệu của mình" thì không dùng được.
 
 ### Về các trang không cần đăng nhập
 Vì an toàn, Exment không cho tạo trang không cần đăng nhập từ `config.json` của plugin. Help desk cần lối vào cho khách hàng không có tài khoản, nên plugin này tự đăng ký các trang `/support/...` khi Exment khởi động. Cách nghĩ giống biểu mẫu công khai của Exment: chỉ hiển thị những gì mà bí mật trong URL mở được.
@@ -170,4 +170,4 @@ Vì an toàn, Exment không cho tạo trang không cần đăng nhập từ `con
 ## Mục liên quan
 - [Plugin chính thức](/vi/plugin_official)
 - [Plugin](/vi/plugin)
-- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/it-support/README.md)
+- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/support-desk/README.md)

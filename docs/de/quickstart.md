@@ -52,7 +52,7 @@ Einzelheiten stehen unter [Ersteinrichtung](/de/first_setting).
 ## 4. Mit der Nutzung beginnen
 - **Was Sie zuerst festlegen (auf jeder Website nötig)**: Richten Sie den [Aufgabenplan](/de/additional_task_schedule) (cron) ein. Damit laufen Benachrichtigungen, Zeitpläne, die automatische Sicherung und mehr.
 - Passend zu Ihrer Arbeit legen Sie [Tabellen](/de/table), [Formulare](/de/form) und [Ansichten](/de/view) an.
-- In der [Funktionsverwaltung](/de/feature) wählen Sie die Funktionen, die Sie nutzen, und die kostenlosen offiziellen Plugins (Projektverwaltung, IT-Support, Groupware).
+- In der [Funktionsverwaltung](/de/feature) wählen Sie die Funktionen, die Sie nutzen, und die kostenlosen offiziellen Plugins (Projektverwaltung, Support-Desk, Groupware).
 - Mit der [Sicherheitsprüfung](/de/security_check) und der [Optimierung](/de/tuning) prüfen Sie die Einstellungen für Sicherheit und Geschwindigkeit.
 - Weitere Einstellungen (E-Mail, Speicherort der Dateien, Warteschlange usw.) stehen unter [Zusätzliche Einstellungen](/de/quickstart_more).
 
