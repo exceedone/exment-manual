@@ -11,6 +11,7 @@
   * [Configuración inicial](/es/first_setting)
   * [Configuración del sistema](/es/system_setting)
   * [Gestión de funciones](/es/feature)
+  * [Ventas (CRM / SFA)](/es/feature_sales)
   * [Información básica](/es/base_info)
   * [Actualización](/es/update)
   * [Configuración adicional](/es/quickstart_more)

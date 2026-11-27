@@ -11,6 +11,7 @@
   * [初期設定](/ja/first_setting)
   * [システム設定](/ja/system_setting)
   * [機能の管理](/ja/feature)
+  * [営業（CRM・SFA）](/ja/feature_sales)
   * [基本情報](/ja/base_info)
   * [アップデート](/ja/update)
   * [追加設定](/ja/quickstart_more)

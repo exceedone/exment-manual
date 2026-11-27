@@ -20,6 +20,7 @@ New features of Exment itself:
 | File sharing | Workspaces, folders, versions and share links. Turning it off does not remove the files. (Shown only in versions that have File sharing) |
 | Studio | The list of screens, making screens, and the phone app (/app). For those who may set tables. |
 | Data maintenance | Tidy the data of a table at once (for now: delete the attachments at once). For those who may set tables. (v7.3.0 and later) [Data maintenance](/data_maintenance) |
+| Sales (CRM / SFA) | Turns on and adds the tables, views, dashboard, menu and role group for customers, deals, quotes, contracts and activities. Who may use them is set by the role group it adds. (v7.3.0 and later) [Sales (CRM / SFA)](/feature_sales) |
 
 For each feature, decide these three.
 
@@ -125,6 +126,7 @@ EXMENT_FEATURES_LOCKED=file_server,studio
 | --- | --- |
 | `file_server` | File sharing |
 | `studio` | Studio (with the phone app) |
+| `sales` | Sales (CRM / SFA) |
 
 A locked feature shows "Not available in this environment" on this page.
 

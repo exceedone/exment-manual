@@ -20,6 +20,7 @@ Màn hình được chia thành "Tính năng của Exment" ở trên và "Plugin
 | Chia sẻ tệp | Workspace, thư mục, quản lý phiên bản, liên kết chia sẻ, v.v. Chuyển sang không sử dụng thì tệp cũng không bị xóa. (Chỉ hiện ở các phiên bản có chia sẻ tệp) |
 | Studio | Danh sách màn hình, tạo màn hình và ứng dụng điện thoại (/app). Người dùng được là người thiết lập được bảng. |
 | Bảo trì dữ liệu | Sắp xếp dữ liệu của bảng cùng lúc (hiện tại là xóa hàng loạt tệp đính kèm). Người dùng được là người thiết lập được bảng. (từ v7.3.0 trở đi) [Bảo trì dữ liệu](/vi/data_maintenance) |
+| Bán hàng (CRM / SFA) | Thêm các bảng, view, dashboard, menu và nhóm vai trò cho khách hàng, cơ hội bán hàng, báo giá, hợp đồng và hoạt động. Ai được dùng do nhóm vai trò được thêm quyết định. (từ v7.3.0 trở đi) [Bán hàng (CRM / SFA)](/vi/feature_sales) |
 
 Với mỗi tính năng, bạn quyết định 3 mục sau.
 
@@ -125,6 +126,7 @@ EXMENT_FEATURES_LOCKED=file_server,studio
 | --- | --- |
 | `file_server` | Chia sẻ tệp |
 | `studio` | Studio (gồm cả ứng dụng điện thoại) |
+| `sales` | Bán hàng (CRM / SFA) |
 
 Tính năng đã cố định sẽ hiện "Không khả dụng trong môi trường này" trên màn hình này.
 

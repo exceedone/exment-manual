@@ -11,6 +11,7 @@
   * [初始设置](/zh/first_setting)
   * [系统设置](/zh/system_setting)
   * [功能管理](/zh/feature)
+  * [销售（CRM・SFA）](/zh/feature_sales)
   * [基本信息](/zh/base_info)
   * [更新](/zh/update)
   * [追加设置](/zh/quickstart_more)

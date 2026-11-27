@@ -11,6 +11,7 @@
   * [초기 설정](/ko/first_setting)
   * [시스템 설정](/ko/system_setting)
   * [기능 관리](/ko/feature)
+  * [영업 (CRM・SFA)](/ko/feature_sales)
   * [기본 정보](/ko/base_info)
   * [업데이트](/ko/update)
   * [추가 설정](/ko/quickstart_more)

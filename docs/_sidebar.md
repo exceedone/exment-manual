@@ -11,6 +11,7 @@
   * [Initial setting](/first_setting)
   * [System setting](/system_setting)
   * [Feature Management](/feature)
+  * [Sales (CRM / SFA) (v7.3.0 and later)](/feature_sales)
   * [Basic information](/base_info)
   * [Update](/update)
   * [Additional settings](/quickstart_more)

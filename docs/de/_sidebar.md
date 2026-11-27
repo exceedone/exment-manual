@@ -11,6 +11,7 @@
   * [Ersteinrichtung](/de/first_setting)
   * [Systemeinstellungen](/de/system_setting)
   * [Funktionsverwaltung](/de/feature)
+  * [Vertrieb (CRM / SFA)](/de/feature_sales)
   * [Basisinformationen](/de/base_info)
   * [Aktualisierung](/de/update)
   * [Zusätzliche Einstellungen](/de/quickstart_more)
