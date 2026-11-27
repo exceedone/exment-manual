@@ -141,6 +141,13 @@ Note: in v7.0.2 and earlier, install the template ([Template zip file](https://e
 Select one of "5", "10" and "20".  
 - The initial value is "5".  
 
+#### Opening the menu (default)
+- How an item of the left menu with items under it (such as "Master") opens. From v7.3.0.
+  - **To the side** (the initial value): the items are shown at the right of the menu when the mouse is over the item or it is clicked, also with the menu folded. With the keyboard: Enter or → opens them, ↑↓ choose, Esc or ← closes them.
+  - **Below (as before)**: a click opens them below the item.
+- Each user can choose in "Opening the menu" of the login user settings; their choice is used then.
+- On a phone or other touch screen, or a narrow screen, they always open below.
+
 #### Date and time display format
 - You can choose the display format of dates from three types: "Default（Y-m-d H:i:s）", "Custom（Y/m/d H:i:s）" and "Local（Y年m月d日 H時i分s秒）". The initial value is "Default（Y-m-d H:i:s）".
 
