@@ -1,6 +1,12 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.7 (2026/11/28)
+- How to update: the usual update (`composer update` and `php artisan exment:update`). If you changed `Controller.php` to extend `Illuminate\Routing\Controller` as a workaround, you can keep it. See [here](/update)
+1. Bug fixes
+    - After updating to v7.2.6, the dashboard and admin pages failed with "Call to undefined method App\Http\Controllers\Controller::callAction()" on sites whose `app/Http/Controllers/Controller.php` is the Laravel 11/12 empty class (new installs from the zip, and others) ([#2313](https://github.com/exceedone/exment/pull/2313), GitHub [#2309](https://github.com/exceedone/exment/issues/2309))
+    - Updating or installing from the browser (the web installer, the update screen, tuning's 「部品を入れ直す」) did not publish the screen files (CSS, JavaScript, images such as the login logo) since v7.2.4 ([#2316](https://github.com/exceedone/exment/pull/2316))
+
 ## v7.2.6 (2026/11/27)
 - How to update: the usual update. Run `php artisan exment:update` so the new CSS/JS and TinyMCE are published. exment-admin-core 1.0.6 or later (`^1.0.6`) is required; the usual update installs it. See [here](/update)
 1. New features
