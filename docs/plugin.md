@@ -186,7 +186,7 @@ For how to install them, see [Official plugins](/plugin_official).
 | Plugin | What it does |
 | --- | --- |
 | [Project Management](/plugin_pm) | Management of projects and issues (tickets): issue tree, milestones, board, Gantt chart, wiki, comments, notifications and more |
-| [IT Support](/plugin_it_support) | A help desk. Requests by mail, request form and phone are managed as tickets, and the progress is shared with the customer without a login |
+| [Support Desk](/plugin_support_desk) | A help desk. Requests by mail, request form and phone are managed as tickets, and the progress is shared with the customer without a login |
 | [Groupware](/plugin_groupware) | Web mail, and opening and editing the Office files of File sharing in the browser |
 
 ## Management method

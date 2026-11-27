@@ -93,7 +93,7 @@
   * [플러그인](/ko/plugin)
     * [공식 플러그인](/ko/plugin_official)
       * [프로젝트 관리(공식 플러그인)](/ko/plugin_pm)
-      * [IT 지원(공식 플러그인)](/ko/plugin_it_support)
+      * [서포트 데스크(공식 플러그인)](/ko/plugin_support_desk)
       * [Groupware(공식 플러그인)](/ko/plugin_groupware)
   * [플러그인 만드는 방법](/ko/plugin_quickstart)
     * [플러그인(버튼)](/ko/plugin_quickstart_button)

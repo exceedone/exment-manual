@@ -186,7 +186,7 @@ Para la forma de instalarlos, vea [Plugins oficiales](/es/plugin_official).
 | Plugin | Qué permite hacer |
 | --- | --- |
 | [Gestión de proyectos](/es/plugin_pm) | Gestión de proyectos e incidencias (tickets). Árbol de incidencias, hitos, tablero, diagrama de Gantt, Wiki, comentarios, notificaciones, etc. |
-| [Soporte de TI](/es/plugin_it_support) | Mesa de ayuda. Gestiona con tickets las solicitudes por correo, formulario de recepción y teléfono, y comparte el avance con el cliente sin iniciar sesión |
+| [Mesa de soporte](/es/plugin_support_desk) | Mesa de ayuda. Gestiona con tickets las solicitudes por correo, formulario de recepción y teléfono, y comparte el avance con el cliente sin iniciar sesión |
 | [Groupware](/es/plugin_groupware) | Correo web, y abrir y editar en el navegador los archivos de Office de Archivos compartidos |
 
 ## Cómo administrarlos

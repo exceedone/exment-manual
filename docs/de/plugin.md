@@ -186,7 +186,7 @@ Die Installation steht unter [Offizielle Plugins](/de/plugin_official).
 | Plugin | Was es kann |
 | --- | --- |
 | [Projektverwaltung](/de/plugin_pm) | Verwaltung von Projekten und Aufgaben (Tickets). Baumanzeige der Aufgaben, Meilensteine, Board, Gantt-Diagramm, Wiki, Kommentare, Benachrichtigungen usw. |
-| [IT-Support](/de/plugin_it_support) | Helpdesk. Anfragen per E-Mail, Anfrageformular und Telefon werden als Tickets verwaltet. Der Kunde sieht den Fortschritt ohne Anmeldung |
+| [Support Desk](/de/plugin_support_desk) | Helpdesk. Anfragen per E-Mail, Anfrageformular und Telefon werden als Tickets verwaltet. Der Kunde sieht den Fortschritt ohne Anmeldung |
 | [Groupware](/de/plugin_groupware) | Webmail sowie Office-Dateien der Dateifreigabe im Browser öffnen und bearbeiten |
 
 ## Verwaltung

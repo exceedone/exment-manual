@@ -149,7 +149,7 @@ Therefore, **even after an update, the notice "There is a new version" can stay*
 Log out and log in again to refresh it.
 
 ## Updates and the bundled official plugins
-From Exment v7.2.1, the free official plugins (Project management, IT Support, Groupware) are bundled with Exment (the package exceedone/exment-plugins-release).
+From Exment v7.2.1, the free official plugins (Project management, Support Desk, Groupware) are bundled with Exment (the package exceedone/exment-plugins-release).
 
 `composer update` and `php artisan exment:update` (and also the update batch and the auto update) bring the new bundled plugins together with the new Exment. **But the plugins the site uses are not switched by themselves.** A plugin has data and settings, so a system administrator decides when to switch.
 

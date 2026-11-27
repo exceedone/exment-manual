@@ -140,7 +140,7 @@ php artisan exment:update
 - 업데이트한 뒤에 "기능 관리"에서 포함된 공식 플러그인의 새 버전을 확인합니다(아래의 "[업데이트와 포함된 공식 플러그인](/ko/update?id=업데이트와-포함된-공식-플러그인)").
 
 ## 업데이트와 포함된 공식 플러그인
-Exment v7.2.1부터 무료 공식 플러그인(프로젝트 관리·IT 지원·Groupware)이 Exment에 포함되어 있습니다(패키지 exceedone/exment-plugins-release).
+Exment v7.2.1부터 무료 공식 플러그인(프로젝트 관리·서포트 데스크·Groupware)이 Exment에 포함되어 있습니다(패키지 exceedone/exment-plugins-release).
 
 `composer update`와 `php artisan exment:update`(업데이트 배치·자동 업데이트도 같음)로 새 Exment와 함께 새 포함 플러그인도 옵니다. **다만 사이트에서 쓰고 있는 플러그인은 자동으로 바뀌지 않습니다.** 플러그인에는 데이터와 설정이 있으므로, 언제 바꿀지는 시스템 관리자가 정합니다.
 

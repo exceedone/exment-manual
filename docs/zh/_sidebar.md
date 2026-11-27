@@ -93,7 +93,7 @@
   * [插件](/zh/plugin)
     * [官方插件](/zh/plugin_official)
       * [项目管理（官方插件）](/zh/plugin_pm)
-      * [IT 支持（官方插件）](/zh/plugin_it_support)
+      * [支持服务台（官方插件）](/zh/plugin_support_desk)
       * [Groupware（官方插件）](/zh/plugin_groupware)
   * [插件的创建方法](/zh/plugin_quickstart)
     * [插件(按钮)](/zh/plugin_quickstart_button)

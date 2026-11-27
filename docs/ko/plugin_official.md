@@ -4,14 +4,14 @@
 | 플러그인 | 할 수 있는 것 |
 | --- | --- |
 | [프로젝트 관리](/ko/plugin_pm) | 프로젝트와 과제(티켓)·보드·간트 차트·Wiki·파일 |
-| [IT 지원](/ko/plugin_it_support) | 헬프데스크. 메일·접수 폼·전화로 온 의뢰를 티켓으로 관리하고, 진행 상황을 고객과 로그인 없이 공유 |
+| [서포트 데스크](/ko/plugin_support_desk) | 헬프데스크. 메일·접수 폼·전화로 온 의뢰를 티켓으로 관리하고, 진행 상황을 고객과 로그인 없이 공유 |
 | [Groupware](/ko/plugin_groupware) | 웹 메일과, 파일 공유의 Office 파일을 브라우저에서 열기·편집하기 |
 
 ## 설치 방법
 ### Exment v7.2.1 이상
 공식 플러그인은 Exment와 함께 들어 있습니다. 시스템 관리자가 "관리자 설정" → "기능 관리"의 "[무료 공식 플러그인(Exment에 포함)](/ko/feature)" 칸에서 "사용(설치)"을 누르면 설치됩니다. 누르기 전까지는 설치도 읽어 들이기도 하지 않습니다.
 
-- Exment 7.2.1에 포함된 것은 프로젝트 관리(ExmentPM) 1.7.15, IT 지원(ExmentITSupport) 1.0.9, Groupware(ExmentGroupware) 0.4.7입니다(패키지 exceedone/exment-plugins-release 7.2.14).
+- Exment 7.2.1에 포함된 것은 프로젝트 관리(ExmentPM) 1.7.15, 서포트 데스크(ExmentITSupport) 1.0.9, Groupware(ExmentGroupware) 0.4.7입니다(패키지 exceedone/exment-plugins-release 7.2.14).
 - 포함된 플러그인은 Exceed One의 서명을 확인한 뒤에 설치합니다.
 - 새 버전이 있을 때는 알리기만 합니다. "이 버전으로 업데이트"로 업데이트하고, "이전 버전(○○)으로 되돌리기"로 되돌릴 수 있습니다.
 - 보안 수정이 들어간 새 버전이 있을 때는 시스템 관리자에게 알립니다. 자세한 내용은 [기능 관리](/ko/feature)를 참조하십시오.

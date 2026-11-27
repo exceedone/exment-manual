@@ -140,7 +140,7 @@ Compruebe todas las páginas de los cambios que hay entre su versión actual y l
 - Después de actualizar, compruebe en «Gestión de funciones» las versiones nuevas de los plugins oficiales incluidos (vea «[Las actualizaciones y los plugins oficiales incluidos](/es/update?id=las-actualizaciones-y-los-plugins-oficiales-incluidos)» más abajo).
 
 ## Las actualizaciones y los plugins oficiales incluidos
-Desde Exment v7.2.1, los plugins oficiales gratuitos (gestión de proyectos, soporte de TI, Groupware) se incluyen con Exment (el paquete exceedone/exment-plugins-release).
+Desde Exment v7.2.1, los plugins oficiales gratuitos (gestión de proyectos, mesa de soporte, Groupware) se incluyen con Exment (el paquete exceedone/exment-plugins-release).
 
 `composer update` y `php artisan exment:update` (y también el lote de actualización y la actualización automática) traen los plugins incluidos nuevos junto con el nuevo Exment. **Pero los plugins que usa el sitio no se cambian solos.** Un plugin tiene datos y ajustes, así que un administrador del sistema decide cuándo cambiar.
 

@@ -93,7 +93,7 @@
   * [Plugin](/plugin)
     * [Official plugins](/plugin_official)
       * [Project Management](/plugin_pm)
-      * [IT Support](/plugin_it_support)
+      * [Support Desk](/plugin_support_desk)
       * [Groupware](/plugin_groupware)
   * [Plugin creation method](/plugin_quickstart)
     * [Button](/plugin_quickstart_button)

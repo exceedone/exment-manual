@@ -52,7 +52,7 @@ Para más detalles, consulte [Configuración inicial](/es/first_setting).
 ## 4. Empezar a usarlo
 - **Lo primero que hay que decidir (necesario en todos los sitios)**: configure la [programación de tareas](/es/additional_task_schedule) (cron). Así funcionan las notificaciones, las programaciones, las copias de seguridad automáticas, etc.
 - Cree las [tablas](/es/table), los [formularios](/es/form) y las [vistas](/es/view) según su trabajo.
-- En la [gestión de funciones](/es/feature), elija las funciones que va a usar y los plugins oficiales gratuitos (gestión de proyectos, soporte de TI, Groupware).
+- En la [gestión de funciones](/es/feature), elija las funciones que va a usar y los plugins oficiales gratuitos (gestión de proyectos, mesa de soporte, Groupware).
 - Con la [comprobación de seguridad](/es/security_check) y la [optimización](/es/tuning), compruebe los ajustes de seguridad y de velocidad.
 - Los demás ajustes (correo, ubicación de los archivos, colas, etc.) están en [Configuración adicional](/es/quickstart_more).
 

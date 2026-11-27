@@ -93,7 +93,7 @@
   * [Plugin](/es/plugin)
     * [Plugins oficiales](/es/plugin_official)
       * [Gestión de proyectos (plugin oficial)](/es/plugin_pm)
-      * [Soporte de TI (plugin oficial)](/es/plugin_it_support)
+      * [Mesa de soporte (plugin oficial)](/es/plugin_support_desk)
       * [Groupware (plugin oficial)](/es/plugin_groupware)
   * [Cómo crear un plugin](/es/plugin_quickstart)
     * [Plugin (Botón)](/es/plugin_quickstart_button)

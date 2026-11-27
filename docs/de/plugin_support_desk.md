@@ -1,11 +1,11 @@
-# IT-Support (offizielles Plugin)
-„IT-Support“ („ITサポート“) ist ein **offizielles Plugin** für Exment, gedacht für IT-Support und Helpdesk. Anfragen von Kunden (E-Mail, Anfrageformular, Telefon) und Probleme aus Überwachung und Fehlerprotokollen werden als „Tickets“ verwaltet. **Der Kunde sieht den Fortschritt ohne Anmeldung**. Das Plugin ist kostenlos.
+# Support Desk (offizielles Plugin)
+„Exment Support Desk“ („サポートデスク“) ist ein **offizielles Plugin** für Exment, gedacht für IT-Support und Helpdesk. Anfragen von Kunden (E-Mail, Anfrageformular, Telefon) und Probleme aus Überwachung und Fehlerprotokollen werden als „Tickets“ verwaltet. **Der Kunde sieht den Fortschritt ohne Anmeldung**. Das Plugin ist kostenlos.
 
-- Quellcode und Beschreibung: [exceedone/exment-plugins (it-support)](https://github.com/exceedone/exment-plugins/tree/main/it-support)
+- Quellcode und Beschreibung: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - Lizenz: GPL-3.0 (wie Exment)
-- Name in der Plugin-Liste: Exment Plugin IT Support（ITサポート）. Der interne Name ist `ExmentITSupport`, die URL ist `/plugins/exment_it_support`.
+- Name in der Plugin-Liste: Exment Support Desk（サポートデスク）. Der interne Name ist `ExmentSupportDesk`, die URL ist `/plugins/exment_support_desk`.
 
-<!-- Screenshot: Eingangskorb der Bearbeiter (img/plugin_it_support/its_desk.png). Erst aufnehmen, nachdem 2b es geprüft hat -->
+<!-- Screenshot: Eingangskorb der Bearbeiter (img/plugin_support_desk/sd_desk.png). Erst aufnehmen, nachdem 2b es geprüft hat -->
 
 ## Was es kann
 | Bereich | Was es kann |
@@ -31,20 +31,20 @@
 
 ## Installation
 1. Installieren Sie das Plugin. Ab Exment v7.2.1 geht das über die „Funktionsverwaltung“, in älteren Versionen laden Sie die ZIP-Datei hoch. Lesen Sie [Offizielle Plugins](/de/plugin_official).
-2. Ab Exment v7.2.1 schalten Sie unter „Administratoreinstellungen“ → „[Funktionsverwaltung](/de/feature)“ den Punkt „ITサポート：受付箱“ (IT-Support: Eingangskorb) ein (solange er aus ist, lässt sich auch die Einrichtungsseite nicht öffnen). Für den Eingangskorb können Sie die Rollengruppen wählen, die ihn nutzen dürfen. Wenn Sie den Kundenzugang (`/support`), den E-Mail-Empfang und Tickets aus der Überwachung nutzen, schalten Sie auch „ITサポート：お客様の窓口“ (IT-Support: Kundenzugang) ein (er arbeitet nur, wenn der Eingangskorb eingeschaltet ist).
-   - Auf einer neu installierten Website sind beide zunächst aus. Auf Websites, die den IT-Support schon vor der Funktionsverwaltung genutzt haben, bleiben beide eingeschaltet.
-   - Wenn Sie den Eingangskorb auf „Nicht verwenden“ stellen, verschwindet auch „ITサポート“ aus dem Menü. Die Tabellen (Tickets und andere) bleiben als Daten erhalten. Sie lassen sich als gewöhnliche Tabellen von Exment über die URL (zum Beispiel `/data/its_ticket`) oder unter „Administratoreinstellungen“ → „Benutzerdefinierte Tabelle“ öffnen. Wenn sie im Menü stehen sollen, fügen Sie die Tabellen unter „Administratoreinstellungen“ → „Menü“ hinzu. Wenn sie nicht sichtbar sein sollen, entfernen Sie die Tabellenberechtigungen in den Rollengruppen.
-3. Öffnen Sie im Menü „ITサポート“ (oder `/plugins/exment_it_support`) und klicken Sie auf „セットアップする“ (Einrichten). Angelegt werden Tabellen, Menü, Berechtigungen, SLA, Arten, Textbausteine und Beispiele für die FAQ.
-   - Im linken Menü steht nur der eine Punkt „ITサポート“ (er öffnet den Eingangskorb). Ticket-Tabelle, Wissensdatenbank, Kunden, Kontakte, IT-Geräte und Textbausteine öffnen Sie über das Menü oben im Eingangskorb. Alle Tabellen (auch Ticketarten und SLA) öffnen Sie unter „設定“ (Einstellungen) über „テーブル・権限“ (Tabellen und Berechtigungen).
+2. Ab Exment v7.2.1 schalten Sie unter „Administratoreinstellungen“ → „[Funktionsverwaltung](/de/feature)“ den Punkt „サポートデスク：受付箱“ (Support Desk: Eingangskorb) ein (solange er aus ist, lässt sich auch die Einrichtungsseite nicht öffnen). Für den Eingangskorb können Sie die Rollengruppen wählen, die ihn nutzen dürfen. Wenn Sie den Kundenzugang (`/support`), den E-Mail-Empfang und Tickets aus der Überwachung nutzen, schalten Sie auch „サポートデスク：お客様の窓口“ (Support Desk: Kundenzugang) ein (er arbeitet nur, wenn der Eingangskorb eingeschaltet ist).
+   - Auf einer neu installierten Website sind beide zunächst aus. Auf Websites, die den Support Desk schon vor der Funktionsverwaltung genutzt haben, bleiben beide eingeschaltet.
+   - Wenn Sie den Eingangskorb auf „Nicht verwenden“ stellen, verschwindet auch „サポートデスク“ aus dem Menü. Die Tabellen (Tickets und andere) bleiben als Daten erhalten. Sie lassen sich als gewöhnliche Tabellen von Exment über die URL (zum Beispiel `/data/sd_ticket`) oder unter „Administratoreinstellungen“ → „Benutzerdefinierte Tabelle“ öffnen. Wenn sie im Menü stehen sollen, fügen Sie die Tabellen unter „Administratoreinstellungen“ → „Menü“ hinzu. Wenn sie nicht sichtbar sein sollen, entfernen Sie die Tabellenberechtigungen in den Rollengruppen.
+3. Öffnen Sie im Menü „サポートデスク“ (oder `/plugins/exment_support_desk`) und klicken Sie auf „セットアップする“ (Einrichten). Angelegt werden Tabellen, Menü, Berechtigungen, SLA, Arten, Textbausteine und Beispiele für die FAQ.
+   - Im linken Menü steht nur der eine Punkt „サポートデスク“ (er öffnet den Eingangskorb). Ticket-Tabelle, Wissensdatenbank, Kunden, Kontakte, IT-Geräte und Textbausteine öffnen Sie über das Menü oben im Eingangskorb. Alle Tabellen (auch Ticketarten und SLA) öffnen Sie unter „設定“ (Einstellungen) über „テーブル・権限“ (Tabellen und Berechtigungen).
    - Der Ordner „ITサポート“ bis 1.0.6 (Eingangskorb und 8 Tabellen) wird nach der Aktualisierung auf 1.0.7 zu einem Punkt zusammengefasst, sobald der Eingangskorb zum ersten Mal geöffnet wird. Menüpunkte, die ein Administrator selbst hinzugefügt hat, bleiben.
 4. Tragen Sie unter „設定“ (Einstellungen) das Postfach für Anfragen (IMAP) und die Adresse des Kundenzugangs ein, speichern Sie und klicken Sie auf „IMAP につながるか試す“ (IMAP-Verbindung testen). Wenn Sie den E-Mail-Empfang nutzen, tragen Sie auch „差出人の確認“ (Prüfung des Absenders) und „受信サーバーの名前“ (Name des Empfangsservers: der erste Name in Authentication-Results einer empfangenen E-Mail) ein. Bis dahin gelten Tickets aus E-Mails als „Verdacht auf gefälschten Absender“.
-5. Nehmen Sie die Bearbeiter in die Rollengruppe „ITサポート 担当者“ (IT-Support Bearbeiter) auf. Kunden, die sich anmelden, kommen in „ITサポート お客様“ (IT-Support Kunden) und werden über „Exment のユーザー“ (Exment-Benutzer) bei „お客様の担当者“ (Kontakt des Kunden) verknüpft.
+5. Nehmen Sie die Bearbeiter in die Rollengruppe „サポートデスク 担当者“ (Support Desk Bearbeiter) auf. Kunden, die sich anmelden, kommen in „サポートデスク お客様“ (Support Desk Kunden) und werden über „Exment のユーザー“ (Exment-Benutzer) bei „お客様の担当者“ (Kontakt des Kunden) verknüpft.
 6. Teilen Sie den Kunden die URL des Kundenzugangs mit (`https://Ihr Exment/support`).
 
 ## Bedienung
 
 ### Der Eingangskorb
-Öffnen Sie im Menü „ITサポート“. Dann erscheint der Eingangskorb („受付箱“). Die Seite hat drei Spalten.
+Öffnen Sie im Menü „サポートデスク“. Dann erscheint der Eingangskorb („受付箱“). Die Seite hat drei Spalten.
 
 | Spalte | Inhalt |
 | --- | --- |
@@ -91,7 +91,7 @@ Es gibt diese 6 Status.
 - Wählen Sie die Person unter „担当者“ (Bearbeiter) in der rechten Spalte. Mit der Taste `A` übernehmen Sie das Ticket selbst. Wenn Sie zu einem Ticket ohne Bearbeiter eine Antwort oder eine interne Notiz senden, werden Sie zum Bearbeiter.
 - Für die automatische Zuweisung wählen Sie unter „設定“ bei „担当者の決め方“ (Art der Zuweisung).
     - 種類ごとの「最初の担当者」 (erster Bearbeiter der Art, Standard): die Person, die bei der Art des Tickets eingetragen ist.
-    - 種類で決まらなければ、対応中が少ない人 (sonst die Person mit den wenigsten offenen Tickets): in der Rollengruppe „ITサポート 担当者“ die Person mit den wenigsten nicht beendeten Tickets.
+    - 種類で決まらなければ、対応中が少ない人 (sonst die Person mit den wenigsten offenen Tickets): in der Rollengruppe „サポートデスク 担当者“ die Person mit den wenigsten nicht beendeten Tickets.
     - 自動では決めない (nicht automatisch zuweisen)
 
 ### Fristen (SLA)
@@ -107,7 +107,7 @@ Es gibt diese 6 Status.
 - Mit „このチケットからナレッジを作る“ (aus diesem Ticket einen Artikel anlegen) entsteht ein Entwurf für einen Artikel.
 
 ### Die Seite der Kunden
-Der Kundenzugang ist `https://Ihr Exment/support` (wenn „ITサポート：お客様の窓口“ und „使う“ (verwenden) unter „設定“ bei „お客様の窓口（ログインなし）“ (Kundenzugang ohne Anmeldung) beide eingeschaltet sind).
+Der Kundenzugang ist `https://Ihr Exment/support` (wenn „サポートデスク：お客様の窓口“ und „使う“ (verwenden) unter „設定“ bei „お客様の窓口（ログインなし）“ (Kundenzugang ohne Anmeldung) beide eingeschaltet sind).
 
 | URL | Inhalt |
 | --- | --- |
@@ -120,7 +120,7 @@ Der Kundenzugang ist `https://Ihr Exment/support` (wenn „ITサポート：お�
 - Auf der Seite des Tickets sieht der Kunde, wie weit es ist (受付 eingegangen, 対応中, 解決, 完了), und den Austausch (interne Notizen erscheinen nicht). Er kann Antworten und Dateien senden und auf „解決しました“ klicken.
 - 30 Tage nach dem Abschluss des Tickets lässt sich der Link nicht mehr öffnen („リンクの期限“ (Ablauf des Links) unter „設定“).
 - Ein Ticket, bei dem in der rechten Spalte „開くときに確認のコード“ eingeschaltet ist, öffnet sich nur mit dem 6-stelligen Code, der an die eingetragene Adresse gesendet wird.
-- Wenn ein Kunde, der sich anmeldet (Rollengruppe „ITサポート お客様“), „ITサポート“ öffnet, sieht er die Liste seiner Anfragen (`/plugins/exment_it_support/my`). Kontakte des Kunden mit „お客様の管理者“ (Administrator des Kunden) sehen alle Anfragen der Firma.
+- Wenn ein Kunde, der sich anmeldet (Rollengruppe „サポートデスク お客様“), „サポートデスク“ öffnet, sieht er die Liste seiner Anfragen (`/plugins/exment_support_desk/my`). Kontakte des Kunden mit „お客様の管理者“ (Administrator des Kunden) sehen alle Anfragen der Firma.
 
 ### E-Mail-Empfang
 - Schalten Sie unter „設定“ bei „メールで受け付ける（IMAP）“ (per E-Mail annehmen) „受信する“ (empfangen) ein und tragen Sie IMAP-Server, Port und Verschlüsselung (SSL/TLS oder STARTTLS), Benutzername, Passwort und Ordner ein. Das Passwort wird verschlüsselt gespeichert.
@@ -135,7 +135,7 @@ Ein Überwachungssystem kann über die API Tickets anlegen. Der Schlüssel steht
 
 ~~~sh
 curl -X POST https://Ihr Exment/support/intake/alert \
-  -H "X-ITS-Key: (Schlüssel von der Einstellungsseite)" \
+  -H "X-SD-Key: (Schlüssel von der Einstellungsseite)" \
   -H "Content-Type: application/json" \
   -d '{"title":"Disk full on web01","source":"web01.example.co.jp","severity":"error","detail":"/var 98%"}'
 ~~~
@@ -152,7 +152,7 @@ curl -X POST https://Ihr Exment/support/intake/alert \
 Systeme, die die ursprüngliche E-Mail unverändert weitergeben können (zum Beispiel eine Pipe von Postfix), können per POST an `/support/intake/mail` senden (mit demselben Schlüssel).
 
 - Tickets aus der Überwachung werden dem Kunden zunächst nicht gezeigt.
-- Wenn in der Funktionsverwaltung „ITサポート：お客様の窓口“ aus ist, antworten `/support/intake/alert` und `/support/intake/mail` mit 404.
+- Wenn in der Funktionsverwaltung „サポートデスク：お客様の窓口“ aus ist, antworten `/support/intake/alert` und `/support/intake/mail` mit 404.
 
 ## Regeln für die Sicherheit
 - Der Link für den Kunden ist eine lange Nummer, die sich nicht erraten lässt. In der Datenbank wird nur der Hash gespeichert. Über den Link ist nur dieses eine Ticket zu sehen (interne Notizen, andere Kunden und die E-Mail-Adressen der Bearbeiter erscheinen nicht).
@@ -162,7 +162,7 @@ Systeme, die die ursprüngliche E-Mail unverändert weitergeben können (zum Bei
 - Das Anfrageformular zeigt nach dem Absenden keinen Link an. Der Link wird per E-Mail an die eingegebene Adresse gesendet. Bis dieser Link geöffnet wird, hat das Ticket den Tag „メール未確認“ (E-Mail nicht bestätigt), und es wird kein Kontakt angelegt.
 - Automatische Antworten, Bounces und E-Mails von der eigenen Adresse werden nicht übernommen.
 - Der Link zur Zufriedenheit speichert nichts, wenn er nur geöffnet wird.
-- Die Seite der Bearbeiter können nur Personen nutzen, die in der Ticket-Tabelle „alles bearbeiten“ dürfen (zum Beispiel die Rollengruppe „ITサポート 担当者“). „Nur eigene Daten bearbeiten“ reicht nicht.
+- Die Seite der Bearbeiter können nur Personen nutzen, die in der Ticket-Tabelle „alles bearbeiten“ dürfen (zum Beispiel die Rollengruppe „サポートデスク 担当者“). „Nur eigene Daten bearbeiten“ reicht nicht.
 
 ### Seiten ohne Anmeldung
 Aus Sicherheitsgründen lässt Exment nicht zu, dass ein Plugin über seine `config.json` Seiten ohne Anmeldung anlegt. Ein Helpdesk braucht aber einen Zugang für Kunden ohne Konto. Deshalb registriert dieses Plugin die Seiten unter `/support/...` selbst, wenn Exment startet. Es folgt demselben Gedanken wie die öffentlichen Formulare von Exment: Gezeigt wird nur, was das Geheimnis in der URL öffnet.
@@ -170,4 +170,4 @@ Aus Sicherheitsgründen lässt Exment nicht zu, dass ein Plugin über seine `con
 ## Verwandte Themen
 - [Offizielle Plugins](/de/plugin_official)
 - [Plugin](/de/plugin)
-- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/it-support/README.md)
+- [README (GitHub)](https://github.com/exceedone/exment-plugins/blob/main/support-desk/README.md)

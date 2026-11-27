@@ -22,7 +22,7 @@ Listas de clientes, oportunidades, solicitudes, inventarios de activos: los dato
 ### 3. Conectar —— con otros sistemas y con la IA
 - Con la API puede intercambiar datos con otros sistemas. También puede crear claves de API por usuario.
 - **IA (MCP)**: una IA como Claude puede leer los datos con los mismos permisos del usuario.
-- Los plugins oficiales (gestión de proyectos, soporte de TI, Groupware) vienen incluidos gratis. Puede añadir funciones con plugins.
+- Los plugins oficiales (gestión de proyectos, mesa de soporte, Groupware) vienen incluidos gratis. Puede añadir funciones con plugins.
 
 ## Diferencias con Excel
 | | Excel y archivos | Exment |

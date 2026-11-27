@@ -52,7 +52,7 @@
 ## 4. 开始使用
 - **首先要决定的事（任何站点都需要）**：请设置[任务计划](/zh/additional_task_schedule)（cron）。通知、计划、自动备份等才会运行。
 - 按照业务创建[表](/zh/table)、[表单](/zh/form)、[视图](/zh/view)。
-- 在[功能管理](/zh/feature)中选择要使用的功能和免费的官方插件（项目管理、IT 支持、Groupware）。
+- 在[功能管理](/zh/feature)中选择要使用的功能和免费的官方插件（项目管理、支持服务台、Groupware）。
 - 用[安全检查](/zh/security_check)和[性能调优](/zh/tuning)确认安全和速度方面的设置。
 - 其他设置（邮件、文件的保存位置、队列等）在[追加设置](/zh/quickstart_more)中。
 

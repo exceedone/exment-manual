@@ -93,7 +93,7 @@
   * [プラグイン](/ja/plugin)
     * [公式プラグイン](/ja/plugin_official)
       * [プロジェクト管理](/ja/plugin_pm)
-      * [IT サポート](/ja/plugin_it_support)
+      * [サポートデスク](/ja/plugin_support_desk)
       * [Groupware](/ja/plugin_groupware)
   * [プラグイン作成方法](/ja/plugin_quickstart)
     * [ボタン](/ja/plugin_quickstart_button)

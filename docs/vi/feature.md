@@ -59,7 +59,7 @@ Màn hình không giữ thêm một bản thiết lập mới, mà cho xem đún
 <!-- Ảnh màn hình: dòng plugin và các dòng tính năng trong plugin (img/feature/feature_plugin.png). Chụp sau khi #1861 được merge -->
 
 ## Plugin chính thức miễn phí (đi kèm Exment)
-Exment có kèm sẵn các plugin chính thức miễn phí (quản lý dự án, hỗ trợ IT, Groupware). Bạn cài từ mục "Plugin chính thức miễn phí (đi kèm Exment)" của "Quản lý tính năng". Chi tiết vui lòng xem [Plugin chính thức](/vi/plugin_official).
+Exment có kèm sẵn các plugin chính thức miễn phí (quản lý dự án, Support Desk, Groupware). Bạn cài từ mục "Plugin chính thức miễn phí (đi kèm Exment)" của "Quản lý tính năng". Chi tiết vui lòng xem [Plugin chính thức](/vi/plugin_official).
 
 - Cho đến khi bấm "Sử dụng (cài đặt)", plugin không được cài đặt và cũng không được nạp (bảng cũng không được tạo).
 - Khi bấm, hệ thống kiểm tra rồi cài đặt và bật plugin. Tính năng chính của plugin đó cũng thành "Sử dụng". Sau đó plugin cũng nằm ở mục "Plugin" phía trên, và bạn quyết định được người được sử dụng và menu.

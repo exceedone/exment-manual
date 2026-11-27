@@ -59,7 +59,7 @@ No se guarda un ajuste nuevo por duplicado: se muestran tal cual los ajustes que
 <!-- Captura de pantalla: la fila de un plugin y la fila de una función de dentro del plugin (img/feature/feature_plugin.png). Se toma después de fusionar #1861 -->
 
 ## Plugins oficiales gratuitos (incluidos con Exment)
-Exment incluye plugins oficiales gratuitos (gestión de proyectos, soporte de TI, Groupware). Se instalan desde la sección «Plugins oficiales gratuitos (incluidos con Exment)» de «Gestión de funciones». Para más detalles, consulte [Plugins oficiales](/es/plugin_official).
+Exment incluye plugins oficiales gratuitos (gestión de proyectos, mesa de soporte, Groupware). Se instalan desde la sección «Plugins oficiales gratuitos (incluidos con Exment)» de «Gestión de funciones». Para más detalles, consulte [Plugins oficiales](/es/plugin_official).
 
 - Hasta que pulse «Usar (instalar)», no se instalan ni se cargan (tampoco se crean tablas).
 - Al pulsarlo, se comprueba, se instala y se activa. La función principal de ese plugin también pasa a «usar». Después aparece también en la sección «Plugins» de arriba, y puede decidir quién puede usarlo y el menú.
