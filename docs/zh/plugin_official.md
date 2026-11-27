@@ -16,6 +16,7 @@
 - 有新版本时，只会给出提示。用“更新到此版本”更新，用“恢复到上一版本（○○）”恢复。
 - 有包含安全修复的新版本时，会通知系统管理员。详情请参阅[功能管理](/zh/feature)。
 - Groupware 在安装时会在左侧菜单中创建“メール”（邮件）。
+- 更新 Exment 会带来新的附带版本，但正在使用的插件不会自动切换（[更新与附带的官方插件](/zh/update?id=更新与附带的官方插件)）。
 
 ### 更早版本的 Exment
 从 GitHub 的 [Releases](https://github.com/exceedone/exment-plugins/releases) 下载 zip，在“管理员设置”→“[插件](/zh/plugin)”中上传。不要解压（请不要使用绿色的“Code → Download ZIP”）。

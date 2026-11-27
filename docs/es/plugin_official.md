@@ -16,6 +16,7 @@ Los plugins oficiales llegan junto con Exment. Se instalan cuando el administrad
 - Cuando hay una versión nueva, solo se avisa. Se actualiza con "Actualizar a esta versión" y se puede volver atrás con "Volver a la versión anterior (○○)".
 - Cuando hay una versión nueva con una corrección de seguridad, se avisa al administrador del sistema. Para más detalles, vea [Gestión de funciones](/es/feature).
 - Groupware crea "Correo" en el menú de la izquierda al instalarlo.
+- Actualizar Exment trae las versiones incluidas nuevas, pero los plugins en uso no se cambian solos ([Las actualizaciones y los plugins oficiales incluidos](/es/update?id=las-actualizaciones-y-los-plugins-oficiales-incluidos)).
 
 ### Versiones anteriores de Exment
 Descargue el zip desde [Releases](https://github.com/exceedone/exment-plugins/releases) de GitHub y cárguelo en "Configuración de administración" → "[Plugin](/es/plugin)". No lo descomprima (no use el botón verde "Code → Download ZIP").

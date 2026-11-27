@@ -6,7 +6,7 @@ Was sich in welcher Version geändert hat, steht in den [Versionshinweisen](/rel
 1. **Die aktuelle Version prüfen**
 2. **Eine Sicherung erstellen**
 3. **Aktualisieren** (die Schritte hängen von der aktuellen Version ab)
-4. **Nach der Aktualisierung prüfen**
+4. **Nach der Aktualisierung prüfen** (auch die neuen Versionen der mitgelieferten offiziellen Plugins)
 
 ## 1. Die aktuelle Version prüfen
 - Am Bildschirm: „Systemeinstellungen“ → „Informationen zur Systemversion“ → „Aktuelle Version“
@@ -137,6 +137,35 @@ Bitte lesen Sie die Seiten aller Versionswechsel, die zwischen Ihrer aktuellen V
 - Drücken Sie im Browser **Ctrl+F5** (vollständiges Neuladen) und laden Sie den Bildschirm neu.
 - Prüfen Sie unter „Systemeinstellungen“ → „Informationen zur Systemversion“, ob die neue Version da ist.
 - Bei einem Fehler lesen Sie [Fehlerbehebung](/de/troubleshooting).
+- Prüfen Sie nach der Aktualisierung in der „Funktionsverwaltung“ die neuen Versionen der mitgelieferten offiziellen Plugins (siehe unten „[Aktualisierungen und die mitgelieferten offiziellen Plugins](/de/update?id=aktualisierungen-und-die-mitgelieferten-offiziellen-plugins)“).
+
+## Aktualisierungen und die mitgelieferten offiziellen Plugins
+Ab Exment v7.2.1 werden die kostenlosen offiziellen Plugins (Projektverwaltung, IT-Support, Groupware) mit Exment ausgeliefert (das Paket exceedone/exment-plugins-release).
+
+`composer update` und `php artisan exment:update` (ebenso der Aktualisierungs-Batch und die automatische Aktualisierung) bringen mit dem neuen Exment auch die neuen mitgelieferten Plugins. **Die Plugins, die die Website verwendet, werden aber nicht von selbst gewechselt.** Ein Plugin hat Daten und Einstellungen, daher entscheidet ein Systemadministrator, wann gewechselt wird.
+
+Nach einer Aktualisierung hat eine Website deshalb zwei Arten:
+
+| | Wo | Wann es sich ändert |
+| --- | --- | --- |
+| Das verwendete Plugin | Der Plugin-Ordner der Website und die Datenbank | Wenn ein Systemadministrator es in der „Funktionsverwaltung“ wechselt |
+| Das mitgelieferte Plugin | Im Exment-Paket (exceedone/exment-plugins-release) | Wenn Exment aktualisiert wird |
+
+### So wechseln Sie
+1. Öffnen Sie die „[Funktionsverwaltung](/de/feature?id=kostenlose-offizielle-plugins-in-exment-enthalten)“. Die mitgelieferten Plugins stehen unter „Kostenlose offizielle Plugins (in Exment enthalten)“.
+2. Gibt es eine neue Version, steht dort „Version ○○ ist verfügbar.“ Mit „Auf diese Version aktualisieren“ wechseln Sie. Einstellungen, Menüs und Berechtigungen bleiben erhalten.
+3. Die Version vor dem Wechsel bleibt erhalten. Funktioniert etwas nicht, kehren Sie mit „Zurück zur vorherigen Version (○○)“ zurück.
+
+- Es erscheinen nur offizielle Plugins, deren Signatur von Exceed One geprüft werden konnte.
+- Enthält eine neue Version eine Sicherheitskorrektur, werden die Systemadministratoren einmal informiert: mit einem Hinweis auf ihrer Startseite und an der Glocke (auf Websites mit E-Mail-Versand auch per E-Mail). Siehe [Hinweis auf Sicherheitskorrekturen](/de/feature?id=hinweis-auf-sicherheitskorrekturen).
+- Ein Plugin, für das nie „Verwenden“ gedrückt wurde, wird durch eine Aktualisierung nicht installiert.
+- Auf Websites, auf denen der Betreiber die Versionen wechselt (z. B. Exment SaaS), erscheinen keine Schaltflächen; der Betreiber wechselt sie.
+
+### Wenn neue mitgelieferte Versionen ankommen
+- Exment 7.2.x verwendet das Paket exceedone/exment-plugins-release im Bereich `~7.2.0`. Daher bringt `composer update` die neuesten mitgelieferten Plugins von 7.2.x, **auch wenn es keine neue Version von Exment selbst gibt** (z. B. kommt ExmentPM 1.7.24 mit dem Paket 7.2.22).
+- Beim Ankommen ändern sich die verwendeten Plugins nicht. Sie wechseln nur, wenn ein Systemadministrator in der „Funktionsverwaltung“ auf „Auf diese Version aktualisieren“ klickt.
+- Das ZIP von exment.net enthält die mitgelieferten Plugins vom Tag, an dem das ZIP erstellt wurde. Das ZIP wird nur für eine neue Version von Exment neu erstellt. Auch eine aus dem ZIP installierte Website erhält die neueren mitgelieferten Plugins beim nächsten `composer update`.
+- Exment 7.3 funktioniert genauso: Es erhält die mitgelieferten Plugins derselben Nebenversionsreihe (7.3.x).
 
 ## Versionsnummern und Reichweite einer Aktualisierung
 Die Versionsnummer von Exment hat die Form „Major . Minor . Patch“ (Beispiel: v7.1.0). Je nachdem, welche Zahl steigt, läuft die Aktualisierung anders.

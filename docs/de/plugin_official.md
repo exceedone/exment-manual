@@ -16,6 +16,7 @@ Die offiziellen Plugins werden mit Exment ausgeliefert. Ein Systemadministrator 
 - Wenn es eine neue Version gibt, wird nur darauf hingewiesen. Mit „Auf diese Version aktualisieren“ aktualisieren Sie, mit „Zurück zur vorherigen Version (○○)“ kehren Sie zurück.
 - Wenn es eine neue Version mit einer Sicherheitskorrektur gibt, werden die Systemadministratoren benachrichtigt. Einzelheiten stehen unter [Funktionsverwaltung](/de/feature).
 - Groupware legt bei der Installation im linken Menü den Punkt „メール“ (E-Mail) an.
+- Eine Aktualisierung von Exment bringt die neuen mitgelieferten Versionen, wechselt die verwendeten Plugins aber nicht von selbst ([Aktualisierungen und die mitgelieferten offiziellen Plugins](/de/update?id=aktualisierungen-und-die-mitgelieferten-offiziellen-plugins)).
 
 ### Ältere Versionen von Exment
 Laden Sie die ZIP-Datei von den [Releases](https://github.com/exceedone/exment-plugins/releases) auf GitHub herunter und laden Sie sie unter „Administratoreinstellungen“ → „[Plugin](/de/plugin)“ hoch. Entpacken Sie die Datei nicht (verwenden Sie nicht die grüne Schaltfläche „Code → Download ZIP“).
