@@ -1,6 +1,12 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.2.7 (2026/11/28)
+- 更新方法：ふつうのアップデートです（`composer update` と `php artisan exment:update`）。v7.2.6 で、`Controller.php` を `Illuminate\Routing\Controller` を継承するように直していた場合は、そのままでかまいません。詳細は[こちら](/ja/update)
+1. 不具合修正
+    - v7.2.6 に上げると、`app/Http/Controllers/Controller.php` が Laravel 11/12 の空のクラスのサイト（zip から入れたサイトなど）で、ダッシュボードなど管理の画面が「Call to undefined method …Controller::callAction()」になる不具合を直しました（[#2313](https://github.com/exceedone/exment/pull/2313)、GitHub [#2309](https://github.com/exceedone/exment/issues/2309)）
+    - ブラウザーから入れる・更新する（インストーラー・更新の画面・チューニングの「部品を入れ直す」）と、画面の部品（CSS・JavaScript・ログインのロゴなどの画像）が新しくならない不具合を直しました（v7.2.4 から、[#2316](https://github.com/exceedone/exment/pull/2316)）
+
 ## v7.2.6 (2026/11/27)
 - 更新方法：ふつうのアップデートです。`php artisan exment:update` を実行して、新しい CSS・JS と TinyMCE を公開してください。exment-admin-core は 1.0.6 以上（`^1.0.6`）が要りますが、ふつうのアップデートで入ります。詳細は[こちら](/ja/update)
 1. 機能追加
