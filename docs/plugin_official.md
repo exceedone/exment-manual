@@ -16,6 +16,7 @@ The official plugins come with Exment. A system administrator presses "Use (inst
 - A newer version is only shown. "Update to this version" updates it, and "Back to the previous version (...)" puts it back.
 - When a newer version includes a security fix, the system administrators are told. See [Feature Management](/feature?id=notices-of-security-fixes).
 - Groupware makes the "Mail" menu in the side menu when it is installed.
+- Updating Exment brings the new bundled versions, but the plugins in use are not switched by themselves ([Updates and the bundled official plugins](/update?id=updates-and-the-bundled-official-plugins)).
 
 ### Older Exment
 Download the zip from [Releases](https://github.com/exceedone/exment-plugins/releases) on GitHub and upload it in "Admin Setting" > "[Plugin](/plugin)". Do not unzip it (do not use the green "Code → Download ZIP" button).
