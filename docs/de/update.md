@@ -165,7 +165,7 @@ Nach einer Aktualisierung hat eine Website deshalb zwei Arten:
 - Exment 7.2.x verwendet das Paket exceedone/exment-plugins-release im Bereich `~7.2.0`. Daher bringt `composer update` die neuesten mitgelieferten Plugins von 7.2.x, **auch wenn es keine neue Version von Exment selbst gibt** (z. B. kommt ExmentPM 1.7.24 mit dem Paket 7.2.22).
 - Beim Ankommen ändern sich die verwendeten Plugins nicht. Sie wechseln nur, wenn ein Systemadministrator in der „Funktionsverwaltung“ auf „Auf diese Version aktualisieren“ klickt.
 - Das ZIP von exment.net enthält die mitgelieferten Plugins vom Tag, an dem das ZIP erstellt wurde. Das ZIP wird nur für eine neue Version von Exment neu erstellt. Auch eine aus dem ZIP installierte Website erhält die neueren mitgelieferten Plugins beim nächsten `composer update`.
-- Exment 7.3 funktioniert genauso: Es erhält die mitgelieferten Plugins derselben Nebenversionsreihe (7.3.x).
+- Exment 7.3 erhält dieselben mitgelieferten Plugins wie 7.2 (die offiziellen Plugins laufen auf beiden; Exment 7.3 verwendet das Paket im Bereich `^7.2`).
 
 ## Versionsnummern und Reichweite einer Aktualisierung
 Die Versionsnummer von Exment hat die Form „Major . Minor . Patch“ (Beispiel: v7.1.0). Je nachdem, welche Zahl steigt, läuft die Aktualisierung anders.

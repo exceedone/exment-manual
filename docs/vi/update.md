@@ -165,7 +165,7 @@ Vì vậy, sau khi cập nhật, trang web có hai loại:
 - Exment 7.2.x dùng gói exceedone/exment-plugins-release trong phạm vi `~7.2.0`. Vì vậy `composer update` mang đến plugin đi kèm mới nhất của 7.2.x **ngay cả khi Exment không có phiên bản mới** (ví dụ, ExmentPM 1.7.24 đến cùng gói 7.2.22).
 - Khi đến, plugin đang dùng không thay đổi. Chỉ chuyển khi quản trị viên hệ thống bấm "Cập nhật lên phiên bản này" trong "Quản lý tính năng".
 - File zip tải từ exment.net chứa plugin đi kèm của ngày tạo zip. Zip chỉ được tạo lại khi có phiên bản Exment mới. Trang web cài từ zip cũng nhận plugin đi kèm mới hơn ở lần `composer update` tiếp theo.
-- Exment 7.3 cũng vậy: nhận plugin đi kèm của cùng dòng phiên bản phụ (7.3.x).
+- Exment 7.3 nhận cùng plugin đi kèm như 7.2 (plugin chính thức chạy được trên cả hai; Exment 7.3 dùng gói trong phạm vi `^7.2`).
 
 ## Số phiên bản và phạm vi cập nhật
 Số phiên bản của Exment là "major . minor . patch" (ví dụ v7.1.0). Số nào tăng sẽ quyết định cách cập nhật.

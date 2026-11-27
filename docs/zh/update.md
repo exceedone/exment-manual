@@ -165,7 +165,7 @@ php artisan exment:update
 - Exment 7.2.x 以 `~7.2.0` 的范围使用软件包 exceedone/exment-plugins-release。因此执行 `composer update` 时，**即使 Exment 本身没有新版本**，也会带来 7.2.x 最新的附带插件（例如 ExmentPM 1.7.24 随软件包 7.2.22 到来）。
 - 到来后，正在使用的插件也不会变化。只有系统管理员在“功能管理”中点击“更新到此版本”时才会切换。
 - 从 exment.net 下载的 zip 中，包含制作该 zip 当天的附带插件。zip 只在 Exment 有新版本时重新制作。用 zip 安装的站点，在下次 `composer update` 时也会收到新的附带插件。
-- Exment 7.3 也一样：会收到同一次版本系列（7.3.x）的附带插件。
+- Exment 7.3 也会收到与 7.2 相同的附带插件（官方插件在两者上都能运行；Exment 7.3 以 `^7.2` 的范围使用该软件包）。
 
 ## 版本号和升级的范围
 Exment 的版本号是“主版本 . 次版本 . 补丁”（例：v7.1.0）。更新的方法随哪个数字上升而不同。

@@ -165,7 +165,7 @@ Por eso, después de una actualización, un sitio tiene dos tipos:
 - Exment 7.2.x usa el paquete exceedone/exment-plugins-release en el rango `~7.2.0`. Así, `composer update` trae los plugins incluidos más recientes de 7.2.x **aunque Exment no tenga una versión nueva** (por ejemplo, ExmentPM 1.7.24 llega con el paquete 7.2.22).
 - Cuando llegan, los plugins en uso no cambian. Solo cambian cuando un administrador del sistema pulsa «Actualizar a esta versión» en «Gestión de funciones».
 - El zip que se descarga de exment.net contiene los plugins incluidos del día en que se creó. El zip solo se vuelve a crear para una versión nueva de Exment. Un sitio instalado desde el zip también recibe los plugins incluidos más nuevos en su siguiente `composer update`.
-- Exment 7.3 funciona igual: recibe los plugins incluidos de la misma línea menor (7.3.x).
+- Exment 7.3 recibe los mismos plugins incluidos que 7.2 (los plugins oficiales funcionan en ambos; Exment 7.3 usa el paquete en el rango `^7.2`).
 
 ## Números de versión y hasta dónde se sube
 El número de versión de Exment es «mayor . menor . parche» (ejemplo: v7.1.0). La forma de actualizar cambia según qué número sube.

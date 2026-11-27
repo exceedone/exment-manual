@@ -174,7 +174,7 @@ So after an update, a site has two kinds:
 - Exment 7.2.x uses the package exceedone/exment-plugins-release in the range `~7.2.0`. So `composer update` brings the newest 7.2.x bundled plugins **even when Exment itself has no new version** (for example, ExmentPM 1.7.24 arrives with the package 7.2.22).
 - The plugins in use do not change when they arrive. They switch only when a system administrator presses "Update to this version" in "Feature management".
 - The zip downloaded from exment.net contains the bundled plugins of the day the zip was built. The zip is built again only for a new version of Exment. A site installed from the zip also gets the newer bundled plugins at its next `composer update`.
-- Exment 7.3 works the same way: it gets the bundled plugins of the same minor line (7.3.x).
+- Exment 7.3 receives the same bundled plugin releases as 7.2 (the official plugins work on both; Exment 7.3 uses the package in the range `^7.2`).
 
 ## Version numbers and how far an update goes
 An Exment version is "major . minor . patch" (for example v7.1.0). Which number goes up decides how you update.
