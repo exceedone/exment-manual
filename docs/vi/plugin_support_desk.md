@@ -31,7 +31,7 @@
 
 ## Cài đặt
 1. Cài plugin: từ "Quản lý tính năng" với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Vui lòng xem [Plugin chính thức](/vi/plugin_official).
-2. Với Exment v7.2.1 trở đi, bật "Bộ phận hỗ trợ: hộp tiếp nhận" ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)" (khi tắt thì cũng không mở được màn hình thiết lập). Với hộp tiếp nhận, có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "Bộ phận hỗ trợ: cổng khách hàng" (chỉ chạy khi hộp tiếp nhận đang bật).
+2. Với Exment v7.2.1 trở đi, bật "Bộ phận hỗ trợ: màn hình người phụ trách" ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)" (khi tắt thì cũng không mở được màn hình thiết lập). Với hộp tiếp nhận, có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "Bộ phận hỗ trợ: cổng khách hàng" (chỉ chạy khi hộp tiếp nhận đang bật).
    - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng Bộ phận hỗ trợ từ trước khi có Quản lý tính năng thì cả hai vẫn bật.
    - Khi đặt hộp tiếp nhận thành "Không sử dụng", mục menu "サポートデスク" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/data/sd_ticket`) hoặc từ "Cài đặt quản trị" → "Bảng tùy chỉnh". Muốn hiện trên menu thì thêm bảng ở "Cài đặt quản trị" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
 3. Mở "サポートデスク" trên menu (hoặc `/plugins/exment_support_desk`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
