@@ -26,7 +26,7 @@ Bảng điều khiển
 Groupware ▸ Chia sẻ tệp, Email (Groupware)
 Đề xuất & phê duyệt ▸ Công việc chờ xử lý, Tờ trình phê duyệt, Thanh toán chi phí … (mẫu đi kèm "Gói yêu cầu")
 Dự án ▸ Quản lý dự án (plugin chính thức)
-Support Desk ▸ Support Desk (plugin chính thức)
+Bộ phận hỗ trợ ▸ Bộ phận hỗ trợ (plugin chính thức)
 Dữ liệu chủ ▸ Thông tin cơ bản, Tổ chức, Người dùng, Thông báo chung
 Cài đặt: Dữ liệu và màn hình ▸ Bảng tùy chỉnh, Studio, Menu, Quy trình làm việc, Mẫu thông báo, Thông báo, Mẫu hiển thị thiết lập sẵn, Mẫu
 Cài đặt: Người dùng và quyền ▸ Người dùng đăng nhập, Nhóm vai trò, Cài đặt đăng nhập, Cài đặt ứng dụng API, Nhật ký thao tác
@@ -35,7 +35,7 @@ Cài đặt: Hệ thống ▸ Cài đặt hệ thống, Quản lý tính năng, 
 
 - Site cài mới sẽ có dạng này.
 - Với site cập nhật từ v7.1 trở về trước, chỉ những menu vẫn ở nguyên chỗ Exment đặt mới được chuyển (khi bên trong Cài đặt quản trị vẫn theo thứ tự của Exment, khi "Quản lý dữ liệu chủ" vẫn ở vị trí thứ 3 từ trên xuống, khi Chia sẻ tệp vẫn ở trên cùng). Menu do bạn tự chuyển, tên bạn đã đặt, menu của plugin thì giữ nguyên. Site có menu khác nằm trong Cài đặt quản trị thì không tách Cài đặt quản trị.
-- Plugin chính thức (Quản lý dự án, Support Desk, Groupware) và mẫu đi kèm đặt menu dưới phân loại của mình (nếu chưa có phân loại thì tạo). Chỉ menu đang ở trên cùng mới được chuyển.
+- Plugin chính thức (Quản lý dự án, Bộ phận hỗ trợ, Groupware) và mẫu đi kèm đặt menu dưới phân loại của mình (nếu chưa có phân loại thì tạo). Chỉ menu đang ở trên cùng mới được chuyển.
 - Phân loại không có menu nào hiển thị được ở bên trong thì không hiển thị (menu của tính năng đã tắt ở [Quản lý tính năng](/vi/feature) không hiển thị).
 
 #### Sắp xếp theo thứ tự chuẩn

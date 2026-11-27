@@ -1,4 +1,4 @@
-# Support Desk (plugin chính thức)
+# Bộ phận hỗ trợ (plugin chính thức)
 "Exment Support Desk" là **plugin chính thức** của Exment dành cho hỗ trợ IT và help desk. Yêu cầu từ khách hàng (email, biểu mẫu tiếp nhận, điện thoại) và sự cố phát hiện qua giám sát hay nhật ký lỗi được quản lý bằng "ticket", và **tiến độ được chia sẻ với khách hàng không cần đăng nhập**. Miễn phí.
 
 - Mã nguồn và tài liệu: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
@@ -32,13 +32,13 @@
 ## Cài đặt
 1. Cài plugin: từ "Quản lý tính năng" với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Vui lòng xem [Plugin chính thức](/vi/plugin_official).
 2. Với Exment v7.2.1 trở đi, bật "Bộ phận hỗ trợ: hộp tiếp nhận" ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)" (khi tắt thì cũng không mở được màn hình thiết lập). Với hộp tiếp nhận, có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "Bộ phận hỗ trợ: cổng khách hàng" (chỉ chạy khi hộp tiếp nhận đang bật).
-   - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng Support Desk từ trước khi có Quản lý tính năng thì cả hai vẫn bật.
+   - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng Bộ phận hỗ trợ từ trước khi có Quản lý tính năng thì cả hai vẫn bật.
    - Khi đặt hộp tiếp nhận thành "Không sử dụng", mục menu "サポートデスク" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/data/sd_ticket`) hoặc từ "Cài đặt quản trị" → "Bảng tùy chỉnh". Muốn hiện trên menu thì thêm bảng ở "Cài đặt quản trị" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
 3. Mở "サポートデスク" trên menu (hoặc `/plugins/exment_support_desk`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
    - Menu bên trái chỉ có 1 mục "サポートデスク" (mở hộp tiếp nhận). Bảng ticket, kiến thức, khách hàng, liên hệ, tài sản IT, mẫu trả lời mở từ menu phía trên của hộp tiếp nhận; tất cả các bảng (cả loại và SLA) mở từ "テーブル・権限" (bảng và quyền) trong "設定".
    - Thư mục "ITサポート" của 1.0.6 trở về trước (hộp tiếp nhận và 8 bảng) được gộp thành 1 mục khi mở hộp tiếp nhận lần đầu sau khi lên 1.0.7. Menu do quản trị viên tự thêm vẫn giữ nguyên.
 4. Ở "設定" (cài đặt), nhập hộp thư tiếp nhận (IMAP) và địa chỉ của bộ phận hỗ trợ, lưu lại, rồi bấm "IMAP につながるか試す" (thử kết nối IMAP). Nếu nhận email, nhập thêm "差出人の確認" (kiểm tra người gửi) và "受信サーバーの名前" (tên máy chủ nhận: tên ở đầu Authentication-Results của email đã nhận). Trước khi nhập, ticket từ email sẽ bị đánh dấu "nghi giả mạo".
-5. Đưa nhân viên vào nhóm vai trò "サポートデスク 担当者" (nhân viên Support Desk). Khách đăng nhập thì đưa vào "サポートデスク お客様" (khách hàng Support Desk), và liên kết qua "Exment のユーザー" (người dùng Exment) của "お客様の担当者" (người liên hệ của khách hàng).
+5. Đưa nhân viên vào nhóm vai trò "サポートデスク 担当者" (nhân viên Bộ phận hỗ trợ). Khách đăng nhập thì đưa vào "サポートデスク お客様" (khách hàng Bộ phận hỗ trợ), và liên kết qua "Exment のユーザー" (người dùng Exment) của "お客様の担当者" (người liên hệ của khách hàng).
 6. Báo cho khách URL của bộ phận hỗ trợ (`https://exment-của-bạn/support`).
 
 ## Cách sử dụng

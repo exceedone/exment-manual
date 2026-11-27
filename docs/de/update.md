@@ -140,7 +140,7 @@ Bitte lesen Sie die Seiten aller Versionswechsel, die zwischen Ihrer aktuellen V
 - Prüfen Sie nach der Aktualisierung in der „Funktionsverwaltung“ die neuen Versionen der mitgelieferten offiziellen Plugins (siehe unten „[Aktualisierungen und die mitgelieferten offiziellen Plugins](/de/update?id=aktualisierungen-und-die-mitgelieferten-offiziellen-plugins)“).
 
 ## Aktualisierungen und die mitgelieferten offiziellen Plugins
-Ab Exment v7.2.1 werden die kostenlosen offiziellen Plugins (Projektverwaltung, Support Desk, Groupware) mit Exment ausgeliefert (das Paket exceedone/exment-plugins-release).
+Ab Exment v7.2.1 werden die kostenlosen offiziellen Plugins (Projektverwaltung, Support-Desk, Groupware) mit Exment ausgeliefert (das Paket exceedone/exment-plugins-release).
 
 `composer update` und `php artisan exment:update` (ebenso der Aktualisierungs-Batch und die automatische Aktualisierung) bringen mit dem neuen Exment auch die neuen mitgelieferten Plugins. **Die Plugins, die die Website verwendet, werden aber nicht von selbst gewechselt.** Ein Plugin hat Daten und Einstellungen, daher entscheidet ein Systemadministrator, wann gewechselt wird.
 

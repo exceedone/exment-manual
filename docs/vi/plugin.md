@@ -186,7 +186,7 @@ Cách cài vui lòng xem [Plugin chính thức](/vi/plugin_official).
 | Plugin | Chức năng |
 | --- | --- |
 | [Quản lý dự án](/vi/plugin_pm) | Quản lý dự án và công việc (ticket). Hiển thị công việc dạng cây, milestone, bảng, biểu đồ Gantt, wiki, bình luận, thông báo, v.v. |
-| [Support Desk](/vi/plugin_support_desk) | Help desk: quản lý yêu cầu qua email, biểu mẫu tiếp nhận, điện thoại bằng ticket và chia sẻ tiến độ với khách hàng không cần đăng nhập |
+| [Bộ phận hỗ trợ](/vi/plugin_support_desk) | Help desk: quản lý yêu cầu qua email, biểu mẫu tiếp nhận, điện thoại bằng ticket và chia sẻ tiến độ với khách hàng không cần đăng nhập |
 | [Groupware](/vi/plugin_groupware) | Web mail, và mở/sửa tệp Office của chia sẻ tệp trên trình duyệt |
 
 ## Cách quản lý

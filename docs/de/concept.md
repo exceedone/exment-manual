@@ -22,7 +22,7 @@ Kundenlisten, Projekte, Anträge, Inventarlisten: Daten, die heute verstreut in 
 ### 3. Verbinden —— mit anderen Systemen und mit KI
 - Über die API tauschen Sie Daten mit anderen Systemen aus. Sie können auch API-Schlüssel für einzelne Benutzer anlegen.
 - **KI (MCP)**: Eine KI wie Claude kann Daten lesen, und zwar mit den Berechtigungen des Benutzers.
-- Die offiziellen Plugins (Projektverwaltung, Support Desk, Groupware) sind kostenlos dabei. Mit Plugins fügen Sie Funktionen hinzu.
+- Die offiziellen Plugins (Projektverwaltung, Support-Desk, Groupware) sind kostenlos dabei. Mit Plugins fügen Sie Funktionen hinzu.
 
 ## Der Unterschied zu Excel
 | | Excel und Dateien | Exment |

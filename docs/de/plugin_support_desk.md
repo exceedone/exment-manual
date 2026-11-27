@@ -1,4 +1,4 @@
-# Support Desk (offizielles Plugin)
+# Support-Desk (offizielles Plugin)
 „Exment Support Desk“ („サポートデスク“) ist ein **offizielles Plugin** für Exment, gedacht für IT-Support und Helpdesk. Anfragen von Kunden (E-Mail, Anfrageformular, Telefon) und Probleme aus Überwachung und Fehlerprotokollen werden als „Tickets“ verwaltet. **Der Kunde sieht den Fortschritt ohne Anmeldung**. Das Plugin ist kostenlos.
 
 - Quellcode und Beschreibung: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
@@ -32,13 +32,13 @@
 ## Installation
 1. Installieren Sie das Plugin. Ab Exment v7.2.1 geht das über die „Funktionsverwaltung“, in älteren Versionen laden Sie die ZIP-Datei hoch. Lesen Sie [Offizielle Plugins](/de/plugin_official).
 2. Ab Exment v7.2.1 schalten Sie unter „Administratoreinstellungen“ → „[Funktionsverwaltung](/de/feature)“ den Punkt „Support-Desk: Eingang“ ein (solange er aus ist, lässt sich auch die Einrichtungsseite nicht öffnen). Für den Eingangskorb können Sie die Rollengruppen wählen, die ihn nutzen dürfen. Wenn Sie den Kundenzugang (`/support`), den E-Mail-Empfang und Tickets aus der Überwachung nutzen, schalten Sie auch „Support-Desk: Kundenportal“ ein (er arbeitet nur, wenn der Eingangskorb eingeschaltet ist).
-   - Auf einer neu installierten Website sind beide zunächst aus. Auf Websites, die den Support Desk schon vor der Funktionsverwaltung genutzt haben, bleiben beide eingeschaltet.
+   - Auf einer neu installierten Website sind beide zunächst aus. Auf Websites, die den Support-Desk schon vor der Funktionsverwaltung genutzt haben, bleiben beide eingeschaltet.
    - Wenn Sie den Eingangskorb auf „Nicht verwenden“ stellen, verschwindet auch „サポートデスク“ aus dem Menü. Die Tabellen (Tickets und andere) bleiben als Daten erhalten. Sie lassen sich als gewöhnliche Tabellen von Exment über die URL (zum Beispiel `/data/sd_ticket`) oder unter „Administratoreinstellungen“ → „Benutzerdefinierte Tabelle“ öffnen. Wenn sie im Menü stehen sollen, fügen Sie die Tabellen unter „Administratoreinstellungen“ → „Menü“ hinzu. Wenn sie nicht sichtbar sein sollen, entfernen Sie die Tabellenberechtigungen in den Rollengruppen.
 3. Öffnen Sie im Menü „サポートデスク“ (oder `/plugins/exment_support_desk`) und klicken Sie auf „セットアップする“ (Einrichten). Angelegt werden Tabellen, Menü, Berechtigungen, SLA, Arten, Textbausteine und Beispiele für die FAQ.
    - Im linken Menü steht nur der eine Punkt „サポートデスク“ (er öffnet den Eingangskorb). Ticket-Tabelle, Wissensdatenbank, Kunden, Kontakte, IT-Geräte und Textbausteine öffnen Sie über das Menü oben im Eingangskorb. Alle Tabellen (auch Ticketarten und SLA) öffnen Sie unter „設定“ (Einstellungen) über „テーブル・権限“ (Tabellen und Berechtigungen).
    - Der Ordner „ITサポート“ bis 1.0.6 (Eingangskorb und 8 Tabellen) wird nach der Aktualisierung auf 1.0.7 zu einem Punkt zusammengefasst, sobald der Eingangskorb zum ersten Mal geöffnet wird. Menüpunkte, die ein Administrator selbst hinzugefügt hat, bleiben.
 4. Tragen Sie unter „設定“ (Einstellungen) das Postfach für Anfragen (IMAP) und die Adresse des Kundenzugangs ein, speichern Sie und klicken Sie auf „IMAP につながるか試す“ (IMAP-Verbindung testen). Wenn Sie den E-Mail-Empfang nutzen, tragen Sie auch „差出人の確認“ (Prüfung des Absenders) und „受信サーバーの名前“ (Name des Empfangsservers: der erste Name in Authentication-Results einer empfangenen E-Mail) ein. Bis dahin gelten Tickets aus E-Mails als „Verdacht auf gefälschten Absender“.
-5. Nehmen Sie die Bearbeiter in die Rollengruppe „サポートデスク 担当者“ (Support Desk Bearbeiter) auf. Kunden, die sich anmelden, kommen in „サポートデスク お客様“ (Support Desk Kunden) und werden über „Exment のユーザー“ (Exment-Benutzer) bei „お客様の担当者“ (Kontakt des Kunden) verknüpft.
+5. Nehmen Sie die Bearbeiter in die Rollengruppe „サポートデスク 担当者“ (Support-Desk Bearbeiter) auf. Kunden, die sich anmelden, kommen in „サポートデスク お客様“ (Support-Desk Kunden) und werden über „Exment のユーザー“ (Exment-Benutzer) bei „お客様の担当者“ (Kontakt des Kunden) verknüpft.
 6. Teilen Sie den Kunden die URL des Kundenzugangs mit (`https://Ihr Exment/support`).
 
 ## Bedienung

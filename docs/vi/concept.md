@@ -22,7 +22,7 @@ Danh sách khách hàng, thương vụ, đơn yêu cầu, sổ tài sản — nh
 ### 3. Kết nối được — với hệ thống khác và AI
 - Trao đổi dữ liệu với hệ thống khác bằng API. Cũng tạo được API key cho từng người dùng.
 - **AI (MCP)**: AI như Claude đọc được dữ liệu, với đúng quyền của người dùng.
-- Các plugin chính thức (quản lý dự án, Support Desk, Groupware) được kèm sẵn miễn phí. Bạn thêm chức năng bằng plugin.
+- Các plugin chính thức (quản lý dự án, Bộ phận hỗ trợ, Groupware) được kèm sẵn miễn phí. Bạn thêm chức năng bằng plugin.
 
 ## Khác với Excel
 | | Excel, tệp | Exment |
