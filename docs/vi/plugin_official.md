@@ -16,6 +16,7 @@ Các plugin chính thức đi kèm Exment. Quản trị viên hệ thống bấm
 - Khi có phiên bản mới, chỉ có thông báo. Cập nhật bằng "Cập nhật lên phiên bản này", quay lại bằng "Quay lại phiên bản trước (...)".
 - Khi phiên bản mới có bản sửa lỗi bảo mật, quản trị viên hệ thống sẽ được báo. Chi tiết vui lòng xem [Quản lý tính năng](/vi/feature?id=thông-báo-bản-sửa-lỗi-bảo-mật).
 - Groupware tạo mục "メール" (email) ở menu bên trái khi được cài.
+- Cập nhật Exment mang đến phiên bản đi kèm mới, nhưng plugin đang dùng không tự chuyển ([Cập nhật và plugin chính thức đi kèm](/vi/update?id=cập-nhật-và-plugin-chính-thức-đi-kèm)).
 
 ### Exment cũ hơn
 Tải tệp zip từ [Releases](https://github.com/exceedone/exment-plugins/releases) trên GitHub và tải lên ở "Cài đặt quản trị" → "[Plugin](/vi/plugin)". Không giải nén (đừng dùng nút xanh "Code → Download ZIP").
