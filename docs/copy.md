@@ -121,7 +121,7 @@ With "Button on the create form" on, the create form of the **copy-to table** ha
 Note: v7.2.2 and later.
 
 ## Copying in the same table
-The copy-to table may be the same table. To copy data in the same table without a setting, "Duplicate as new" of the right-click menu of a row of the data list does it too ([Data list](/data_grid)).
+The copy-to table may be the same table. To copy data in the same table without a setting, "Duplicate as new" of the right-click menu of a row of the data list does it too ([Data list](/data_grid)). "Duplicate as new" copies the data of the 1:n child tables as well, as new rows: saving makes new child records, and the original data stays as it is.
 
 ## Related
 - [Data details](/data_details)

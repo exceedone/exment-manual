@@ -52,3 +52,9 @@
 
 /* the old table of contents in a page: VitePress shows its own on the right */
 .vp-doc .page_toc { display: none; }
+
+/* the screenshots that open larger on a click (medium-zoom, in index.ts) */
+.vp-doc img.zoomable { cursor: zoom-in; transition: box-shadow 0.2s, border-color 0.2s; }
+.vp-doc img.zoomable:hover { border-color: var(--vp-c-brand-1); box-shadow: var(--vp-shadow-2); }
+.medium-zoom-overlay { z-index: 100; }
+.medium-zoom-image--opened { z-index: 101; border: none; border-radius: 0; box-shadow: var(--vp-shadow-4); }
