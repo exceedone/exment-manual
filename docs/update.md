@@ -6,7 +6,7 @@ See the [release notes](/release_note) for what changed in each version.
 1. **Check your current version**
 2. **Take a backup**
 3. **Update** (the steps depend on your current version)
-4. **Check after the update**
+4. **Check after the update** (including the new versions of the bundled official plugins)
 
 ## 1. Check your current version
 - On the screen: "System Setting" → "System version information" → "Current version"
@@ -137,6 +137,7 @@ Please read the pages of every border between your current version and the newes
 - Press **Ctrl+F5** (super reload) in the browser to load the screens again.
 - Check in "System Setting" → "System version information" that the version is the new one.
 - If you get an error, see [Troubleshooting](/troubleshooting).
+- After the update, check the new versions of the bundled official plugins in "Feature management" (see "[Updates and the bundled official plugins](/update?id=updates-and-the-bundled-official-plugins)" below).
 
 ### The "new version" notice on the dashboard
 When a newer version exists, the dashboard shows this.
@@ -146,6 +147,28 @@ The "currently installed version" and the "latest version" are kept in the sessi
 
 Therefore, **even after an update, the notice "There is a new version" can stay**.  
 Log out and log in again to refresh it.
+
+## Updates and the bundled official plugins
+From Exment v7.2.1, the free official plugins (Project management, IT Support, Groupware) are bundled with Exment (the package exceedone/exment-plugins-release).
+
+`composer update` and `php artisan exment:update` (and also the update batch and the auto update) bring the new bundled plugins together with the new Exment. **But the plugins the site uses are not switched by themselves.** A plugin has data and settings, so a system administrator decides when to switch.
+
+So after an update, a site has two kinds:
+
+| | Where | When it changes |
+| --- | --- | --- |
+| The plugin in use | The plugin folder of the site, and the database | When a system administrator switches it in "Feature management" |
+| The bundled plugin | Inside the Exment package (exceedone/exment-plugins-release) | When Exment is updated |
+
+### How to switch
+1. Open "[Feature management](/feature?id=free-official-plugins-bundled-with-exment)" in "Setting: System". The bundled plugins are listed under "Free official plugins (bundled with Exment)".
+2. When there is a newer version, "Version ○○ is available." is shown. Press "Update to this version" to switch. The settings, menus and permissions stay.
+3. The version before the switch is kept. If something does not work, go back with "Back to the previous version (○○)".
+
+- Only official plugins whose signature by Exceed One could be checked are listed.
+- When a new version has a security fix, the system administrators are told once: by a notice on their home and by the bell (and by mail on sites that send mails). See [the notice of a security fix](/feature?id=notices-of-security-fixes).
+- A plugin for which "Use" has never been pressed is not installed by an update.
+- On a site whose provider switches the versions (such as Exment SaaS), the buttons are not shown; the provider switches them.
 
 ## Version numbers and how far an update goes
 An Exment version is "major . minor . patch" (for example v7.1.0). Which number goes up decides how you update.

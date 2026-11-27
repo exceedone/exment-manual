@@ -65,6 +65,7 @@ Exment comes with free official plugins (Project Management, IT Support and Grou
 - Pressing it checks the plugin, installs it and makes it active. The main features of the plugin are turned on too. After that, it is also listed under "Plugins" above, where you choose who may use it and its menu.
 - When a newer version is there, "Version ... is available." is shown. It is never installed by itself: "Update to this version" updates it (settings, menus and permissions stay).
 - The version before the update is kept: "Back to the previous version (...)" puts it back.
+- Updating Exment does not switch the plugins in use by itself. See [Updates and the bundled official plugins](/update?id=updates-and-the-bundled-official-plugins).
 - A plugin installed manually before stays as it is (it is not installed again). Only when the bundled one is newer, it is shown. Once it is replaced by the bundled version, you cannot go back to the manual one.
 - A bundled plugin is installed only after its signature by Exceed One is checked. A plugin whose signature does not match is not listed.
 - On a site where the provider changes the versions (as a SaaS), "The versions are changed by the provider of this site." is shown without the buttons (`EXMENT_BUNDLED_PLUGINS_UPDATES=false` in `.env`).
