@@ -3,7 +3,7 @@
 
 - Source code and docs: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - License: GPL-3.0 (the same as Exment)
-- Name in the plugin list: Exment Support Desk（サポートデスク）. The internal name is `ExmentSupportDesk` and the URL is `/plugins/exment_support_desk`.
+- Name in the plugin list: Exment Plugin Support Desk（サポートデスク）. The internal name is `ExmentSupportDesk` and the URL is `/plugins/exment_support_desk`.
 
 <!-- Screenshot: the agent desk (img/plugin_support_desk/sd_desk.png). Take it after 2b checks the page -->
 
@@ -31,7 +31,7 @@
 
 ## Install
 1. Install the plugin: from Feature Management on Exment v7.2.1 or later, by uploading the zip on older ones. See [Official plugins](/plugin_official).
-2. On Exment v7.2.1 or later, turn on "サポートデスク：受付箱" (Support Desk: desk) in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "サポートデスク：お客様の窓口" (Support Desk: customer door) too (it works only while the desk is on).
+2. On Exment v7.2.1 or later, turn on "Support Desk: agent desk" in "Admin Setting" > "[Feature Management](/feature)" (the setup page does not open while it is off). Choose the role groups that may use the desk. To use the customer door (`/support`), mail intake and tickets from monitoring, turn on "Support Desk: customer portal" too (it works only while the desk is on).
    - On a new site both are off at first. Sites that used Support Desk before Feature Management keep both on.
    - Setting the desk to "Don't use" also removes "サポートデスク" from the menu. The tables (tickets and so on) stay as data and can still be opened as ordinary Exment tables: by URL (such as `/data/sd_ticket`) or from "Admin Setting" > "Custom Table". To show them in the menu, add them in "Admin Setting" > "Menu". To hide them, remove the table permissions in the role groups.
 3. Open "サポートデスク" in the menu (or `/plugins/exment_support_desk`) and press "セットアップする" (set up). Tables, menus, permissions, SLA, kinds, canned replies and sample FAQ are made.
@@ -107,7 +107,7 @@ There are six statuses:
 - 「このチケットからナレッジを作る」 (make knowledge from this ticket) makes a draft article.
 
 ### The customer side
-The customer door is `https://your-exment/support` (while both "サポートデスク：お客様の窓口" and 「使う」 (use) in 「お客様の窓口（ログインなし）」 (customer door, no login) in 「設定」 are on).
+The customer door is `https://your-exment/support` (while both "Support Desk: customer portal" and 「使う」 (use) in 「お客様の窓口（ログインなし）」 (customer door, no login) in 「設定」 are on).
 
 | URL | Content |
 | --- | --- |
@@ -152,7 +152,7 @@ curl -X POST https://your-exment/support/intake/alert \
 A system that can pass the original mail (as a Postfix pipe) can POST it to `/support/intake/mail` (the same key).
 
 - Tickets from monitoring are hidden from the customer at first.
-- When "サポートデスク：お客様の窓口" is off in Feature Management, `/support/intake/alert` and `/support/intake/mail` return 404.
+- When "Support Desk: customer portal" is off in Feature Management, `/support/intake/alert` and `/support/intake/mail` return 404.
 
 ## Safety
 - Customer links are long numbers that cannot be guessed, and only their hashes are stored. A link shows that one ticket only (no internal notes, other customers or agents' addresses).

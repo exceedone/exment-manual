@@ -3,7 +3,7 @@
 
 - Mã nguồn và tài liệu: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - Giấy phép: GPL-3.0 (giống Exment)
-- Tên trong danh sách plugin: Exment Support Desk（サポートデスク）. Tên nội bộ `ExmentSupportDesk`, URL `/plugins/exment_support_desk`.
+- Tên trong danh sách plugin: Exment Plugin Support Desk（サポートデスク）. Tên nội bộ `ExmentSupportDesk`, URL `/plugins/exment_support_desk`.
 
 <!-- Ảnh màn hình: hộp tiếp nhận của nhân viên (img/plugin_support_desk/sd_desk.png). Chụp sau khi 2b xác nhận -->
 
@@ -31,7 +31,7 @@
 
 ## Cài đặt
 1. Cài plugin: từ "Quản lý tính năng" với Exment v7.2.1 trở đi, hoặc tải lên tệp zip với bản cũ hơn. Vui lòng xem [Plugin chính thức](/vi/plugin_official).
-2. Với Exment v7.2.1 trở đi, bật "サポートデスク：受付箱" (Support Desk: hộp tiếp nhận) ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)" (khi tắt thì cũng không mở được màn hình thiết lập). Với hộp tiếp nhận, có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "サポートデスク：お客様の窓口" (Support Desk: cổng khách hàng) (chỉ chạy khi hộp tiếp nhận đang bật).
+2. Với Exment v7.2.1 trở đi, bật "Bộ phận hỗ trợ: hộp tiếp nhận" ở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)" (khi tắt thì cũng không mở được màn hình thiết lập). Với hộp tiếp nhận, có thể chọn nhóm vai trò được dùng. Nếu dùng cổng khách hàng (`/support`), nhận email và tạo ticket từ giám sát, bật thêm "Bộ phận hỗ trợ: cổng khách hàng" (chỉ chạy khi hộp tiếp nhận đang bật).
    - Trang cài mới thì cả hai ban đầu tắt. Trang đã dùng Support Desk từ trước khi có Quản lý tính năng thì cả hai vẫn bật.
    - Khi đặt hộp tiếp nhận thành "Không sử dụng", mục menu "サポートデスク" cũng biến mất. Các bảng (ticket v.v.) vẫn còn là dữ liệu và vẫn mở được như bảng Exment thông thường bằng URL (ví dụ `/data/sd_ticket`) hoặc từ "Cài đặt quản trị" → "Bảng tùy chỉnh". Muốn hiện trên menu thì thêm bảng ở "Cài đặt quản trị" → "Menu". Nếu không muốn hiển thị, hãy bỏ quyền bảng trong nhóm vai trò.
 3. Mở "サポートデスク" trên menu (hoặc `/plugins/exment_support_desk`) và bấm "セットアップする" (thiết lập). Bảng, menu, quyền, SLA, loại, mẫu trả lời và FAQ mẫu được tạo.
@@ -107,7 +107,7 @@ Có 6 trạng thái:
 - 「このチケットからナレッジを作る」 (tạo kiến thức từ ticket này) tạo nháp bài viết.
 
 ### Phía khách hàng
-Cổng khách hàng là `https://exment-của-bạn/support` (khi cả "サポートデスク：お客様の窓口" và 「使う」 (sử dụng) của 「お客様の窓口（ログインなし）」 (cổng khách hàng, không đăng nhập) trong 「設定」 đều bật).
+Cổng khách hàng là `https://exment-của-bạn/support` (khi cả "Bộ phận hỗ trợ: cổng khách hàng" và 「使う」 (sử dụng) của 「お客様の窓口（ログインなし）」 (cổng khách hàng, không đăng nhập) trong 「設定」 đều bật).
 
 | URL | Nội dung |
 | --- | --- |
@@ -152,7 +152,7 @@ curl -X POST https://exment-của-bạn/support/intake/alert \
 Hệ thống chuyển được nguyên email gốc (như pipe của Postfix) có thể POST đến `/support/intake/mail` (cùng khóa).
 
 - Ticket tạo từ giám sát ban đầu không cho khách thấy.
-- Khi "サポートデスク：お客様の窓口" (Support Desk: cổng hỗ trợ khách hàng) tắt trong Quản lý tính năng, `/support/intake/alert` và `/support/intake/mail` trả về 404.
+- Khi "Bộ phận hỗ trợ: cổng khách hàng" tắt trong Quản lý tính năng, `/support/intake/alert` và `/support/intake/mail` trả về 404.
 
 ## An toàn
 - Liên kết cho khách là chuỗi dài không đoán được, cơ sở dữ liệu chỉ lưu hash. Liên kết chỉ cho thấy đúng 1 ticket đó (không hiện ghi chú nội bộ, khách hàng khác, địa chỉ email của nhân viên).

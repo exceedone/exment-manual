@@ -3,7 +3,7 @@
 
 - Quellcode und Beschreibung: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - Lizenz: GPL-3.0 (wie Exment)
-- Name in der Plugin-Liste: Exment Support Desk（サポートデスク）. Der interne Name ist `ExmentSupportDesk`, die URL ist `/plugins/exment_support_desk`.
+- Name in der Plugin-Liste: Exment Plugin Support Desk（サポートデスク）. Der interne Name ist `ExmentSupportDesk`, die URL ist `/plugins/exment_support_desk`.
 
 <!-- Screenshot: Eingangskorb der Bearbeiter (img/plugin_support_desk/sd_desk.png). Erst aufnehmen, nachdem 2b es geprüft hat -->
 
@@ -31,7 +31,7 @@
 
 ## Installation
 1. Installieren Sie das Plugin. Ab Exment v7.2.1 geht das über die „Funktionsverwaltung“, in älteren Versionen laden Sie die ZIP-Datei hoch. Lesen Sie [Offizielle Plugins](/de/plugin_official).
-2. Ab Exment v7.2.1 schalten Sie unter „Administratoreinstellungen“ → „[Funktionsverwaltung](/de/feature)“ den Punkt „サポートデスク：受付箱“ (Support Desk: Eingangskorb) ein (solange er aus ist, lässt sich auch die Einrichtungsseite nicht öffnen). Für den Eingangskorb können Sie die Rollengruppen wählen, die ihn nutzen dürfen. Wenn Sie den Kundenzugang (`/support`), den E-Mail-Empfang und Tickets aus der Überwachung nutzen, schalten Sie auch „サポートデスク：お客様の窓口“ (Support Desk: Kundenzugang) ein (er arbeitet nur, wenn der Eingangskorb eingeschaltet ist).
+2. Ab Exment v7.2.1 schalten Sie unter „Administratoreinstellungen“ → „[Funktionsverwaltung](/de/feature)“ den Punkt „Support-Desk: Eingang“ ein (solange er aus ist, lässt sich auch die Einrichtungsseite nicht öffnen). Für den Eingangskorb können Sie die Rollengruppen wählen, die ihn nutzen dürfen. Wenn Sie den Kundenzugang (`/support`), den E-Mail-Empfang und Tickets aus der Überwachung nutzen, schalten Sie auch „Support-Desk: Kundenportal“ ein (er arbeitet nur, wenn der Eingangskorb eingeschaltet ist).
    - Auf einer neu installierten Website sind beide zunächst aus. Auf Websites, die den Support Desk schon vor der Funktionsverwaltung genutzt haben, bleiben beide eingeschaltet.
    - Wenn Sie den Eingangskorb auf „Nicht verwenden“ stellen, verschwindet auch „サポートデスク“ aus dem Menü. Die Tabellen (Tickets und andere) bleiben als Daten erhalten. Sie lassen sich als gewöhnliche Tabellen von Exment über die URL (zum Beispiel `/data/sd_ticket`) oder unter „Administratoreinstellungen“ → „Benutzerdefinierte Tabelle“ öffnen. Wenn sie im Menü stehen sollen, fügen Sie die Tabellen unter „Administratoreinstellungen“ → „Menü“ hinzu. Wenn sie nicht sichtbar sein sollen, entfernen Sie die Tabellenberechtigungen in den Rollengruppen.
 3. Öffnen Sie im Menü „サポートデスク“ (oder `/plugins/exment_support_desk`) und klicken Sie auf „セットアップする“ (Einrichten). Angelegt werden Tabellen, Menü, Berechtigungen, SLA, Arten, Textbausteine und Beispiele für die FAQ.
@@ -107,7 +107,7 @@ Es gibt diese 6 Status.
 - Mit „このチケットからナレッジを作る“ (aus diesem Ticket einen Artikel anlegen) entsteht ein Entwurf für einen Artikel.
 
 ### Die Seite der Kunden
-Der Kundenzugang ist `https://Ihr Exment/support` (wenn „サポートデスク：お客様の窓口“ und „使う“ (verwenden) unter „設定“ bei „お客様の窓口（ログインなし）“ (Kundenzugang ohne Anmeldung) beide eingeschaltet sind).
+Der Kundenzugang ist `https://Ihr Exment/support` (wenn „Support-Desk: Kundenportal“ und „使う“ (verwenden) unter „設定“ bei „お客様の窓口（ログインなし）“ (Kundenzugang ohne Anmeldung) beide eingeschaltet sind).
 
 | URL | Inhalt |
 | --- | --- |
@@ -152,7 +152,7 @@ curl -X POST https://Ihr Exment/support/intake/alert \
 Systeme, die die ursprüngliche E-Mail unverändert weitergeben können (zum Beispiel eine Pipe von Postfix), können per POST an `/support/intake/mail` senden (mit demselben Schlüssel).
 
 - Tickets aus der Überwachung werden dem Kunden zunächst nicht gezeigt.
-- Wenn in der Funktionsverwaltung „サポートデスク：お客様の窓口“ aus ist, antworten `/support/intake/alert` und `/support/intake/mail` mit 404.
+- Wenn in der Funktionsverwaltung „Support-Desk: Kundenportal“ aus ist, antworten `/support/intake/alert` und `/support/intake/mail` mit 404.
 
 ## Regeln für die Sicherheit
 - Der Link für den Kunden ist eine lange Nummer, die sich nicht erraten lässt. In der Datenbank wird nur der Hash gespeichert. Über den Link ist nur dieses eine Ticket zu sehen (interne Notizen, andere Kunden und die E-Mail-Adressen der Bearbeiter erscheinen nicht).

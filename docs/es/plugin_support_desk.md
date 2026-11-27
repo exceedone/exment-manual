@@ -3,7 +3,7 @@
 
 - Código fuente y explicación: [exceedone/exment-plugins (support-desk)](https://github.com/exceedone/exment-plugins/tree/main/support-desk)
 - Licencia: GPL-3.0 (la misma que Exment)
-- Nombre que aparece en la lista de plugins: Exment Support Desk（サポートデスク）. El nombre interno es `ExmentSupportDesk` y la URL es `/plugins/exment_support_desk`.
+- Nombre que aparece en la lista de plugins: Exment Plugin Support Desk（サポートデスク）. El nombre interno es `ExmentSupportDesk` y la URL es `/plugins/exment_support_desk`.
 
 <!-- Captura de pantalla: bandeja de recepción del agente (img/plugin_support_desk/sd_desk.png). Hacerla después de que 2b la compruebe -->
 
@@ -31,7 +31,7 @@
 
 ## Instalación
 1. Instale el plugin. Desde Exment v7.2.1 se hace desde "Gestión de funciones"; en versiones anteriores, cargando el zip. Vea [Plugins oficiales](/es/plugin_official).
-2. En Exment v7.2.1 o posterior, active "サポートデスク：受付箱" (Mesa de soporte: bandeja de recepción) en "Configuración de administración" → "[Gestión de funciones](/es/feature)" (mientras está desactivado, tampoco se puede abrir la pantalla de configuración inicial). Para la bandeja de recepción se pueden elegir los grupos de roles que pueden usarla. Si va a usar la ventanilla del cliente (`/support`), la recepción de correo y la apertura de tickets desde la monitorización, active también "サポートデスク：お客様の窓口" (Mesa de soporte: ventanilla del cliente). Solo funciona cuando la bandeja de recepción está activada.
+2. En Exment v7.2.1 o posterior, active "Mesa de soporte: bandeja de entrada" en "Configuración de administración" → "[Gestión de funciones](/es/feature)" (mientras está desactivado, tampoco se puede abrir la pantalla de configuración inicial). Para la bandeja de recepción se pueden elegir los grupos de roles que pueden usarla. Si va a usar la ventanilla del cliente (`/support`), la recepción de correo y la apertura de tickets desde la monitorización, active también "Mesa de soporte: portal de clientes". Solo funciona cuando la bandeja de recepción está activada.
    - En un sitio recién instalado, las dos están desactivadas al principio. En los sitios que ya usaban Mesa de soporte antes de la gestión de funciones, las dos siguen activadas.
    - Si la bandeja de recepción se pone en no usar, también desaparece "サポートデスク" del menú. Las tablas (tickets, etc.) se conservan como datos y se pueden abrir como tablas normales de Exment con la URL (`/data/sd_ticket`, etc.) o desde "Configuración de administración" → "Tabla personalizada". Si quiere mostrarlas en el menú, añada las tablas en "Configuración de administración" → "Menú". Si no quiere que se vean, quite los permisos de las tablas en los grupos de roles.
 3. Abra "サポートデスク" en el menú (o `/plugins/exment_support_desk`) y pulse "セットアップする" (configurar). Se crean las tablas, los menús, los permisos, los SLA, los tipos, las respuestas predefinidas y ejemplos de FAQ.
@@ -107,7 +107,7 @@ Hay 6 estados:
 - Con 「このチケットからナレッジを作る」 (crear conocimiento desde este ticket) se crea el borrador de un artículo.
 
 ### El lado del cliente
-La ventanilla del cliente es `https://su-exment/support` (cuando están activados tanto "サポートデスク：お客様の窓口" como 「使う」 (usar) de 「お客様の窓口（ログインなし）」 (ventanilla del cliente, sin iniciar sesión) en 「設定」).
+La ventanilla del cliente es `https://su-exment/support` (cuando están activados tanto "Mesa de soporte: portal de clientes" como 「使う」 (usar) de 「お客様の窓口（ログインなし）」 (ventanilla del cliente, sin iniciar sesión) en 「設定」).
 
 | URL | Contenido |
 | --- | --- |
@@ -152,7 +152,7 @@ curl -X POST https://su-exment/support/intake/alert \
 Desde un mecanismo que puede enviar el correo original tal cual (un pipe de Postfix, por ejemplo), se puede hacer POST a `/support/intake/mail` (con la misma clave).
 
 - Los tickets creados desde la monitorización no se muestran al cliente al principio.
-- Cuando "サポートデスク：お客様の窓口" (Mesa de soporte: ventanilla del cliente) está desactivado en la gestión de funciones, `/support/intake/alert` y `/support/intake/mail` devuelven 404.
+- Cuando "Mesa de soporte: portal de clientes" está desactivado en la gestión de funciones, `/support/intake/alert` y `/support/intake/mail` devuelven 404.
 
 ## Reglas de seguridad
 - El enlace del cliente es un número largo que no se puede adivinar, y en la base de datos solo se guarda su hash. Con el enlace solo se ve ese ticket (no aparecen las notas internas, los demás clientes ni las direcciones de correo de los agentes).
