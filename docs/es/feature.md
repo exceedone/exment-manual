@@ -20,6 +20,7 @@ Son las funciones nuevas del propio Exment. Ahora hay las siguientes.
 | Archivos compartidos | Espacios de trabajo, carpetas, control de versiones, enlaces para compartir, etc. Aunque la ponga en «no usar», los archivos no se borran. (Solo aparece en las versiones que incluyen los archivos compartidos) |
 | Studio | La lista de pantallas, la creación de pantallas y la aplicación para teléfono (/app). Pueden usarlo las personas que pueden configurar tablas. |
 | Mantenimiento de datos | Ordena de una vez los datos de las tablas (por ahora, la eliminación de archivos adjuntos en bloque). Pueden usarlo las personas que pueden configurar tablas. (v7.3.0 o posterior) [Mantenimiento de datos](/es/data_maintenance) |
+| Ventas (CRM / SFA) | Añade las tablas, vistas, el panel, el menú y el grupo de roles de clientes, oportunidades, presupuestos, contratos y actividades. Quién puede usarlos lo decide el grupo de roles que añade. (v7.3.0 o posterior) [Ventas (CRM / SFA)](/es/feature_sales) |
 
 Para cada función se deciden estas 3 cosas.
 
@@ -125,6 +126,7 @@ EXMENT_FEATURES_LOCKED=file_server,studio
 | --- | --- |
 | `file_server` | Archivos compartidos |
 | `studio` | Studio (incluida la aplicación para teléfono) |
+| `sales` | Ventas (CRM / SFA) |
 
 Las funciones fijadas aparecen en esta pantalla como «No disponible en este entorno».
 

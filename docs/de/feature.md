@@ -20,6 +20,7 @@ Die neuen Funktionen von Exment selbst. Derzeit gibt es die folgenden.
 | Dateifreigabe | Arbeitsbereiche, Ordner, Versionsverwaltung, Freigabelinks usw. Auch bei „Nicht verwenden“ werden die Dateien nicht gelöscht. (Erscheint nur in Versionen, die die Dateifreigabe enthalten) |
 | Studio | Die Bildschirmliste, das Erstellen von Bildschirmen und die Smartphone-App (/app). Nutzen können es die Personen, die Tabellen einrichten dürfen. |
 | Datenpflege | Die Daten einer Tabelle werden auf einmal bereinigt (derzeit: Anhänge auf einmal löschen). Nutzen können es die Personen, die Tabellen einrichten dürfen. (ab v7.3.0) [Datenpflege](/de/data_maintenance) |
+| Vertrieb (CRM / SFA) | Fügt die Tabellen, Ansichten, das Dashboard, das Menü und die Rollengruppe für Kunden, Verkaufschancen, Angebote, Verträge und Aktivitäten hinzu. Wer sie nutzen darf, legt die hinzugefügte Rollengruppe fest. (ab v7.3.0) [Vertrieb (CRM / SFA)](/de/feature_sales) |
 
 Für jede Funktion legen Sie die folgenden 3 Dinge fest.
 
@@ -125,6 +126,7 @@ EXMENT_FEATURES_LOCKED=file_server,studio
 | --- | --- |
 | `file_server` | Dateifreigabe |
 | `studio` | Studio (einschließlich der Smartphone-App) |
+| `sales` | Vertrieb (CRM / SFA) |
 
 Bei einer so festgelegten Funktion steht in diesem Bildschirm „In dieser Umgebung nicht verfügbar“.
 

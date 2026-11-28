@@ -11,6 +11,7 @@
   * [Thiết lập ban đầu](/vi/first_setting)
   * [Thiết lập hệ thống](/vi/system_setting)
   * [Quản lý tính năng](/vi/feature)
+  * [Bán hàng (CRM / SFA)](/vi/feature_sales)
   * [Thông tin cơ bản](/vi/base_info)
   * [Cập nhật phiên bản](/vi/update)
   * [Thiết lập bổ sung](/vi/quickstart_more)
