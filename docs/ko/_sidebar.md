@@ -83,6 +83,7 @@
   * [알림 템플릿](/ko/mail)
   * [알림·메일 전송 설정](/ko/notify)
     * [Teams의 개인 채팅으로 알림 보내기](/ko/notify_teams)
+    * [LINE WORKS 알림](/ko/notify_lineworks)
   * [LINE 연동](/ko/line)
   * [안부 확인](/ko/safety_check)
   * [로그](/ko/logs)

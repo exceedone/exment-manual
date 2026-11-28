@@ -83,6 +83,7 @@
   * [Plantilla de notificación](/es/mail)
   * [Configuración de notificaciones y envío de correo](/es/notify)
     * [Notificar al chat personal de Teams](/es/notify_teams)
+    * [Notificaciones de LINE WORKS](/es/notify_lineworks)
   * [Integración con LINE](/es/line)
   * [Comprobación de seguridad del personal](/es/safety_check)
   * [Registros](/es/logs)
