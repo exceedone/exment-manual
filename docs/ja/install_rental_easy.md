@@ -10,7 +10,8 @@ SSH を使って自分で入れるときは、[レンタルサーバーによる
 - 空き容量 400MB ほど
 
 ## 手順
-1. [exment-installer.zip](https://exment.net/downloads/exment-installer.zip) をダウンロードして展開し、中の `exment-installer.php` を取り出します。
+1. [exment-installer.zip](https://exment.net/downloads/installer/exment-installer.zip) をダウンロードして展開し、中の `exment-installer.php` を取り出します。
+    zip の SHA-256 は [exment-installer.zip.sha256](https://exment.net/downloads/installer/exment-installer.zip.sha256) に書いてあります（いまは `9954da9ff53685451ac2b9376063fd92fc6b5559bc9e010048ddde72b884e5f1`）。
 2. Exment を置きたいフォルダーに、`exment-installer.php` を上げます。
     - ドメインのトップで使う：`public_html`（さくらは `www`）
     - 一部のフォルダーで使う：`public_html/exment` など。**空のフォルダー**にしてください。

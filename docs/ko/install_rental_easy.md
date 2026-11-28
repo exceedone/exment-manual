@@ -10,7 +10,8 @@ SSH로 직접 설치할 때는 [임대 서버](/ko/install_rental)를 보십시�
 - 여유 공간 약 400MB
 
 ## 절차
-1. [exment-installer.zip](https://exment.net/downloads/exment-installer.zip)을 다운로드해서 압축을 풀고, 안의 `exment-installer.php`를 꺼냅니다.
+1. [exment-installer.zip](https://exment.net/downloads/installer/exment-installer.zip)을 다운로드해서 압축을 풀고, 안의 `exment-installer.php`를 꺼냅니다.
+    zip의 SHA-256은 [exment-installer.zip.sha256](https://exment.net/downloads/installer/exment-installer.zip.sha256)에 적혀 있습니다(현재 `9954da9ff53685451ac2b9376063fd92fc6b5559bc9e010048ddde72b884e5f1`).
 2. Exment를 둘 폴더에 `exment-installer.php`를 올립니다.
     - 도메인의 최상위에서 사용: `public_html`(Sakura는 `www`)
     - 일부 폴더에서 사용: `public_html/exment` 등. **빈 폴더**로 하십시오.

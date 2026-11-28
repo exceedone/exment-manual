@@ -10,7 +10,8 @@
 - 约 400MB 的可用空间
 
 ## 步骤
-1. 下载 [exment-installer.zip](https://exment.net/downloads/exment-installer.zip) 并解压，取出其中的 `exment-installer.php`。
+1. 下载 [exment-installer.zip](https://exment.net/downloads/installer/exment-installer.zip) 并解压，取出其中的 `exment-installer.php`。
+    zip 的 SHA-256 写在 [exment-installer.zip.sha256](https://exment.net/downloads/installer/exment-installer.zip.sha256) 中（当前为 `9954da9ff53685451ac2b9376063fd92fc6b5559bc9e010048ddde72b884e5f1`）。
 2. 将 `exment-installer.php` 上传到要放置 Exment 的文件夹。
     - 在域名的根目录使用：`public_html`（Sakura 为 `www`）
     - 在某个文件夹中使用：`public_html/exment` 等。请使用**空文件夹**。

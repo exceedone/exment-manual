@@ -10,7 +10,8 @@ Para instalarlo usted mismo con SSH, consulte [Servidor de alquiler](/es/install
 - Unos 400 MB de espacio libre
 
 ## Pasos
-1. Descargue [exment-installer.zip](https://exment.net/downloads/exment-installer.zip), descomprímalo y saque `exment-installer.php`.
+1. Descargue [exment-installer.zip](https://exment.net/downloads/installer/exment-installer.zip), descomprímalo y saque `exment-installer.php`.
+    El SHA-256 del zip está en [exment-installer.zip.sha256](https://exment.net/downloads/installer/exment-installer.zip.sha256) (ahora `9954da9ff53685451ac2b9376063fd92fc6b5559bc9e010048ddde72b884e5f1`).
 2. Suba `exment-installer.php` a la carpeta donde debe estar Exment.
     - En la raíz del dominio: `public_html` (`www` en Sakura)
     - En una carpeta: `public_html/exment`, etc. Use una **carpeta vacía**.

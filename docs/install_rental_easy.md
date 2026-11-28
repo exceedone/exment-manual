@@ -10,7 +10,8 @@ To install it yourself with SSH, see [Rental server](/install_rental).
 - About 400 MB of free space
 
 ## Steps
-1. Download [exment-installer.zip](https://exment.net/downloads/exment-installer.zip), unpack it, and take out `exment-installer.php`.
+1. Download [exment-installer.zip](https://exment.net/downloads/installer/exment-installer.zip), unpack it, and take out `exment-installer.php`.
+    The SHA-256 of the zip is shown in [exment-installer.zip.sha256](https://exment.net/downloads/installer/exment-installer.zip.sha256) (now `9954da9ff53685451ac2b9376063fd92fc6b5559bc9e010048ddde72b884e5f1`).
 2. Upload `exment-installer.php` into the folder Exment should be in.
     - At the top of the domain: `public_html` (`www` on Sakura)
     - In a folder: `public_html/exment` and so on. Use an **empty folder**.

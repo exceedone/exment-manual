@@ -10,7 +10,8 @@ Cách cài Exment lên máy chủ thuê (Xserver, Sakura Internet, v.v.) chỉ b
 - Khoảng 400 MB dung lượng trống
 
 ## Các bước
-1. Tải [exment-installer.zip](https://exment.net/downloads/exment-installer.zip), giải nén và lấy tệp `exment-installer.php`.
+1. Tải [exment-installer.zip](https://exment.net/downloads/installer/exment-installer.zip), giải nén và lấy tệp `exment-installer.php`.
+    SHA-256 của tệp zip được ghi trong [exment-installer.zip.sha256](https://exment.net/downloads/installer/exment-installer.zip.sha256) (hiện tại là `9954da9ff53685451ac2b9376063fd92fc6b5559bc9e010048ddde72b884e5f1`).
 2. Tải `exment-installer.php` lên thư mục muốn đặt Exment.
     - Dùng ở gốc tên miền: `public_html` (Sakura là `www`)
     - Dùng trong một thư mục: `public_html/exment`, v.v. Hãy dùng **thư mục trống**.
