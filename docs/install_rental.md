@@ -2,6 +2,8 @@
 How to install Exment on a rental server. It is an option when you want to build and run an environment easily.  
 This page explains the steps for Xserver and for Sakura Internet.
 
+> To install without SSH, by uploading one file, see [Easy install (rental server)](/install_rental_easy).
+
 | Your server | Where to look |
 |---|---|
 | Xserver | [For Xserver](/install_rental?id=for-xserver) |

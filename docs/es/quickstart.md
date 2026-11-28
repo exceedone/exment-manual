@@ -20,7 +20,7 @@ Para ver el entorno de funcionamiento y los ajustes en detalle, consulte [Config
 | Entorno que usa | Pasos |
 |---|---|
 | Para probar en su propio ordenador | [XAMPP (Windows)](/es/install_xampp) y [XAMPP (Mac)](/es/install_xampp_mac) |
-| Servidor de alquiler (Xserver, etc.) | [Servidor de alquiler](/es/install_rental) |
+| Servidor de alquiler (Xserver, etc.) | [Instalación fácil (servidor de alquiler)](/es/install_rental_easy)・[Servidor de alquiler (SSH)](/es/install_rental) |
 | Servidor Linux | [Linux](/es/install_linux) |
 | Nube | [AWS](/es/install_aws), [AWS (1 servidor)](/es/install_aws_single) y [Azure Web Apps](/es/install_azure_web_apps) |
 | Docker | [Docker](/es/install_docker) |

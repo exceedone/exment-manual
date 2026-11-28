@@ -20,7 +20,7 @@ Die genaue Betriebsumgebung und die Einstellungen stehen unter [Servereinstellun
 | Umgebung | Anleitung |
 |---|---|
 | Zum Testen auf dem eigenen Computer | [XAMPP (Windows)](/de/install_xampp), [XAMPP (Mac)](/de/install_xampp_mac) |
-| Mietserver (Xserver usw.) | [Mietserver](/de/install_rental) |
+| Mietserver (Xserver usw.) | [Einfache Installation (Mietserver)](/de/install_rental_easy)・[Mietserver (SSH)](/de/install_rental) |
 | Linux-Server | [Linux](/de/install_linux) |
 | Cloud | [AWS](/de/install_aws), [AWS (1 Server)](/de/install_aws_single), [Azure Web Apps](/de/install_azure_web_apps) |
 | Docker | [Docker](/de/install_docker) |

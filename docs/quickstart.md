@@ -20,7 +20,7 @@ For the detailed requirements and settings, see [Server settings](/server). Ther
 | Environment | Steps |
 |---|---|
 | A trial on your own computer | [XAMPP (Windows)](/install_xampp) / [XAMPP (Mac)](/install_xampp_mac) |
-| A rental server (Xserver and so on) | [Rental server](/install_rental) |
+| A rental server (Xserver and so on) | [Easy install (rental server)](/install_rental_easy)・[Rental server (SSH)](/install_rental) |
 | A Linux server | [Linux](/install_linux) |
 | Cloud | [AWS](/install_aws) / [AWS (one server)](/install_aws_single) / [Azure Web Apps](/install_azure_web_apps) |
 | Docker | [Docker](/install_docker) |

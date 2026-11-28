@@ -2,6 +2,8 @@
 Đây là các bước cài Exment trên máy chủ thuê (rental server). Đây là một lựa chọn khi bạn muốn tạo môi trường và vận hành một cách đơn giản.  
 Trang này giải thích các bước cho Xserver và Sakura Internet.
 
+> Để cài không cần SSH, chỉ bằng cách tải lên một tệp, xem [Cài đặt dễ dàng (máy chủ thuê)](/vi/install_rental_easy).
+
 | Máy chủ bạn dùng | Phần cần xem |
 |---|---|
 | Xserver | [Trường hợp Xserver](/vi/install_rental?id=trường-hợp-xserver) |

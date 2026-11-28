@@ -20,7 +20,7 @@ Môi trường hoạt động và thiết lập chi tiết vui lòng xem [Thiế
 | Môi trường dùng | Các bước |
 |---|---|
 | Thử trên máy tính của mình | [XAMPP (Windows)](/vi/install_xampp), [XAMPP (Mac)](/vi/install_xampp_mac) |
-| Máy chủ thuê (Xserver, v.v.) | [Máy chủ thuê](/vi/install_rental) |
+| Máy chủ thuê (Xserver, v.v.) | [Cài đặt dễ dàng (máy chủ thuê)](/vi/install_rental_easy)・[Máy chủ thuê (SSH)](/vi/install_rental) |
 | Máy chủ Linux | [Linux](/vi/install_linux) |
 | Đám mây | [AWS](/vi/install_aws), [AWS (1 máy)](/vi/install_aws_single), [Azure Web Apps](/vi/install_azure_web_apps) |
 | Docker | [Docker](/vi/install_docker) |

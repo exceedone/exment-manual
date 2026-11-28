@@ -8,6 +8,7 @@
   * [Pasos de la instalación](/es/quickstart)
   * [Configuración del servidor](/es/server)
   * [Pasos de instalación (instalación fácil)](/es/quickstart_easy)
+  * [Instalación fácil (servidor de alquiler)](/es/install_rental_easy)
   * [Configuración inicial](/es/first_setting)
   * [Configuración del sistema](/es/system_setting)
   * [Gestión de funciones](/es/feature)

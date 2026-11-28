@@ -20,7 +20,7 @@ Exment は、PHP が動く Web サーバーとデータベースがあれば動�
 | 使う環境 | 手順 |
 |---|---|
 | 試しに自分のパソコンで | [XAMPP（Windows）](/ja/install_xampp)・[XAMPP（Mac）](/ja/install_xampp_mac) |
-| レンタルサーバー（Xserver など） | [レンタルサーバー](/ja/install_rental) |
+| レンタルサーバー（Xserver など） | [かんたんインストール（レンタルサーバー）](/ja/install_rental_easy)・[レンタルサーバー（SSH）](/ja/install_rental) |
 | Linux サーバー | [Linux](/ja/install_linux) |
 | クラウド | [AWS](/ja/install_aws)・[AWS（1 台）](/ja/install_aws_single)・[Azure Web Apps](/ja/install_azure_web_apps) |
 | Docker | [Docker](/ja/install_docker) |

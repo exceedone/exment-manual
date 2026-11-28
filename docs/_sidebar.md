@@ -8,6 +8,7 @@
   * [Installation procedure](/quickstart)
   * [Server settings](/server)
   * [Installation procedure (easy installation)](/quickstart_easy)
+  * [Easy install (rental server)](/install_rental_easy)
   * [Initial setting](/first_setting)
   * [System setting](/system_setting)
   * [Feature Management](/feature)

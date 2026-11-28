@@ -8,6 +8,7 @@
   * [설치의 흐름](/ko/quickstart)
   * [서버 설정](/ko/server)
   * [설치 절차(간편 설치)](/ko/quickstart_easy)
+  * [간편 설치(임대 서버)](/ko/install_rental_easy)
   * [초기 설정](/ko/first_setting)
   * [시스템 설정](/ko/system_setting)
   * [기능 관리](/ko/feature)
