@@ -8,6 +8,7 @@
   * [はじめに](/ja/quickstart)
   * [サーバー設定](/ja/server)
   * [インストール手順](/ja/quickstart_easy)
+  * [かんたんインストール（レンタルサーバー）](/ja/install_rental_easy)
   * [初期設定](/ja/first_setting)
   * [システム設定](/ja/system_setting)
   * [機能の管理](/ja/feature)

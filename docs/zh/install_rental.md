@@ -2,6 +2,8 @@
 这是在租用服务器上安装 Exment 的步骤。想轻松搭建环境并使用时，可以选择这种方式。  
 这里说明 Xserver 和 Sakura Internet（さくらインターネット）的步骤。
 
+> 如需不使用 SSH、只上传一个文件进行安装，请参阅[简易安装（租用服务器）](/zh/install_rental_easy)。
+
 | 您使用的服务器 | 看哪里 |
 |---|---|
 | Xserver | [Xserver 的情况](/zh/install_rental?id=Xserver-的情况) |

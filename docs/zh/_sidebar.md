@@ -8,6 +8,7 @@
   * [安装的流程](/zh/quickstart)
   * [服务器设置](/zh/server)
   * [安装步骤（简易安装）](/zh/quickstart_easy)
+  * [简易安装（租用服务器）](/zh/install_rental_easy)
   * [初始设置](/zh/first_setting)
   * [系统设置](/zh/system_setting)
   * [功能管理](/zh/feature)

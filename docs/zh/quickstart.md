@@ -20,7 +20,7 @@
 | 使用的环境 | 步骤 |
 |---|---|
 | 在自己的电脑上试用 | [XAMPP（Windows）](/zh/install_xampp)、[XAMPP（Mac）](/zh/install_xampp_mac) |
-| 租用服务器（Xserver 等） | [租用服务器](/zh/install_rental) |
+| 租用服务器（Xserver 等） | [简易安装（租用服务器）](/zh/install_rental_easy)・[租用服务器（SSH）](/zh/install_rental) |
 | Linux 服务器 | [Linux](/zh/install_linux) |
 | 云 | [AWS](/zh/install_aws)、[AWS（1 台）](/zh/install_aws_single)、[Azure Web Apps](/zh/install_azure_web_apps) |
 | Docker | [Docker](/zh/install_docker) |

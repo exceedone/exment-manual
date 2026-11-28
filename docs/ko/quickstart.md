@@ -20,7 +20,7 @@ Exment는 PHP가 동작하는 웹 서버와 데이터베이스가 있으면 동�
 | 쓰는 환경 | 절차 |
 |---|---|
 | 시험 삼아 자신의 PC에서 | [XAMPP(Windows)](/ko/install_xampp)·[XAMPP(Mac)](/ko/install_xampp_mac) |
-| 임대 서버(Xserver 등) | [임대 서버](/ko/install_rental) |
+| 임대 서버(Xserver 등) | [간편 설치(임대 서버)](/ko/install_rental_easy)・[임대 서버(SSH)](/ko/install_rental) |
 | Linux 서버 | [Linux](/ko/install_linux) |
 | 클라우드 | [AWS](/ko/install_aws)·[AWS(1대)](/ko/install_aws_single)·[Azure Web Apps](/ko/install_azure_web_apps) |
 | Docker | [Docker](/ko/install_docker) |

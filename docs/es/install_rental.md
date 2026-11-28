@@ -2,6 +2,8 @@
 Estos son los pasos para instalar Exment en un servidor de alquiler. Es una opción para crear y usar un entorno de forma sencilla.  
 Se explican los pasos para Xserver y para Sakura Internet.
 
+> Para instalar sin SSH, subiendo un solo archivo, consulte [Instalación fácil (servidor de alquiler)](/es/install_rental_easy).
+
 | Su servidor | Dónde mirar |
 |---|---|
 | Xserver | [En Xserver](/es/install_rental?id=En-Xserver) |

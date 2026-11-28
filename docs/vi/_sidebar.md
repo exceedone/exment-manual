@@ -8,6 +8,7 @@
   * [Quy trình cài đặt](/vi/quickstart)
   * [Thiết lập máy chủ](/vi/server)
   * [Các bước cài đặt (cài đặt đơn giản)](/vi/quickstart_easy)
+  * [Cài đặt dễ dàng (máy chủ thuê)](/vi/install_rental_easy)
   * [Thiết lập ban đầu](/vi/first_setting)
   * [Thiết lập hệ thống](/vi/system_setting)
   * [Quản lý tính năng](/vi/feature)

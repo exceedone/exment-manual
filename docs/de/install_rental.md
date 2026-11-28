@@ -2,6 +2,8 @@
 So installieren Sie Exment auf einem Mietserver (Shared Hosting). Das ist eine Möglichkeit, wenn Sie eine Umgebung einfach aufbauen und betreiben möchten.  
 Diese Seite erklärt die Schritte für Xserver und für Sakura Internet.
 
+> Zur Installation ohne SSH, durch Hochladen einer Datei, siehe [Einfache Installation (Mietserver)](/de/install_rental_easy).
+
 | Ihr Server | Wo Sie nachsehen |
 |---|---|
 | Xserver | [Bei Xserver](/de/install_rental?id=Bei-Xserver) |
