@@ -8,7 +8,7 @@ Tính năng thêm cùng lúc các bảng, view, dashboard, menu và các thứ k
 Làm theo một trong hai cách sau.
 
 - **Từ Quản lý tính năng**: đăng nhập bằng quản trị viên hệ thống rồi mở "Cài đặt quản trị" → "[Quản lý tính năng](/vi/feature)". Chuyển "Bán hàng (CRM / SFA)" trong "Tính năng của Exment" sang "dùng" rồi lưu.
-- **Từ màn hình thiết lập ban đầu**: ở mục "Tính năng" của [màn hình thiết lập ban đầu](/vi/first_setting) khi mới cài đặt, đánh dấu "Sử dụng Bán hàng (CRM / SFA)?". Nó được thêm sau khi lưu thiết lập ban đầu. Bạn cũng có thể chuyển sang "dùng" sau ở Quản lý tính năng.
+- **Từ màn hình thiết lập ban đầu**: ở mục "Tính năng" của [màn hình thiết lập ban đầu](/vi/first_setting) khi mới cài đặt, đánh dấu "Sử dụng Bán hàng (CRM / SFA)?" trong "Dùng ngay từ đầu". Nó được thêm sau khi lưu thiết lập ban đầu. Bạn cũng có thể chuyển sang "dùng" sau ở Quản lý tính năng.
 
 Khi xong, sẽ có thông báo rằng các bảng, view, dashboard, menu, v.v. đã được thêm.  
 Sau đó, hãy thêm người dùng vào nhóm vai trò "Bán hàng" ở màn hình [Nhóm vai trò](/vi/role_group).
@@ -34,7 +34,7 @@ Sau đó, hãy thêm người dùng vào nhóm vai trò "Bán hàng" ở màn h�
 - Các view mà dashboard dùng (5 ô của dashboard, ở dưới)
 
 ### Bảng điều khiển bán hàng
-"Bảng điều khiển bán hàng" được thêm ở trên cùng của menu "Bán hàng & khách hàng". Gồm 5 ô:
+"Bảng điều khiển bán hàng" được thêm làm mục đầu tiên của menu "Bán hàng & khách hàng". Gồm 5 ô:
 
 - Đơn hàng dự kiến theo tháng (biểu đồ cột)
 - Cơ hội đang mở theo người phụ trách: số lượng và số tiền dự kiến
@@ -43,7 +43,9 @@ Sau đó, hãy thêm người dùng vào nhóm vai trò "Bán hàng" ở màn h�
 - Hợp đồng sắp kết thúc (30 ngày)
 
 ### Menu
-Menu "Bán hàng & khách hàng" gồm bảng điều khiển bán hàng, khách hàng, cơ hội bán hàng, báo giá, hợp đồng và hoạt động. Có thể di chuyển hoặc gỡ ra ở màn hình [Menu](/vi/menu).
+Menu "Bán hàng & khách hàng" gồm bảng điều khiển bán hàng, khách hàng, cơ hội bán hàng, báo giá, hợp đồng và hoạt động. Bảng điều khiển bán hàng đứng đầu. Có thể di chuyển hoặc gỡ ra ở màn hình [Menu](/vi/menu).  
+※Tên nội bộ của dashboard là `exment_sales_dashboard`, nên được tạo riêng với dashboard tên `sales_dashboard` mà trang tự tạo.  
+※Nếu trang đã trỏ mục menu "Bảng điều khiển bán hàng" sang dashboard khác, khi cài lại nó sẽ trỏ về bảng điều khiển bán hàng (liên kết đã đổi sang thứ không phải dashboard thì giữ nguyên).
 
 ### Thông báo
 "Hợp đồng sắp hết hạn (trước 30 ngày)": lúc 9 giờ, 30 ngày trước ngày kết thúc của hợp đồng, người tạo hợp đồng và những người xem được hợp đồng sẽ nhận thông báo trong Exment. Số ngày và các thứ khác đổi ở màn hình [Thông báo](/vi/notify).
@@ -52,9 +54,10 @@ Menu "Bán hàng & khách hàng" gồm bảng điều khiển bán hàng, khách
 Nhóm vai trò được xem, tạo và sửa tất cả dữ liệu của 7 bảng ở trên. Hãy thêm người dùng vào đây.
 
 ## Lưu ý
-- **Khi thất bại giữa chừng**: những gì đã tạo được vẫn giữ nguyên. Sẽ có thông báo và dòng trở lại "không dùng". Chuyển lại sang "dùng" rồi lưu thì chỉ tạo những gì còn thiếu. Nếu thất bại ở màn hình thiết lập ban đầu, thiết lập ban đầu vẫn hoàn tất; hãy chuyển sang "dùng" sau ở Quản lý tính năng.
+- **Khi thất bại giữa chừng**: những gì đã tạo được vẫn giữ nguyên. Sẽ có thông báo và dòng trở lại "không dùng". Chuyển lại sang "dùng" rồi lưu thì chỉ tạo những gì còn thiếu (cả phần còn thiếu của view hoặc dashboard đã tạo dở). Nếu thất bại ở màn hình thiết lập ban đầu, thiết lập ban đầu vẫn hoàn tất; hãy chuyển sang "dùng" sau ở Quản lý tính năng.
+- **Khi dừng giữa chừng trong lúc đang "dùng"** (ví dụ hết thời gian): trong khi còn thiếu bảng hoặc dashboard, dòng trong Quản lý tính năng hiện "Thiếu một phần những gì được thêm (một bảng hoặc bảng điều khiển). Khi lưu, phần còn thiếu sẽ được thêm." Lưu thì phần còn thiếu được thêm. Nếu thất bại, dòng vẫn ở "dùng"; lần lưu sau sẽ thử lại.
 - **Dù chuyển sang "dùng" bao nhiêu lần**, cũng không tạo trùng. Những gì trang đã đổi (tên bảng và view, nhãn, số ngày của thông báo, nhóm vai trò, menu) vẫn giữ nguyên.
-- **Những gì đã xóa sẽ được tạo lại**: nếu xóa một bảng hoặc view, rồi chuyển "không dùng" và lại "dùng", thứ đã xóa sẽ được tạo lại. Thứ không cần, hãy gỡ khỏi menu thay vì xóa.
+- **Những gì đã xóa không quay lại chỉ bằng việc lưu**: sau khi cài xong hoàn toàn, các bảng, view, dashboard và menu mà trang cố ý xóa sẽ không được tạo lại khi lưu Quản lý tính năng. Chuyển dòng sang "không dùng" (lưu) rồi lại "dùng" (lưu) thì những gì còn thiếu được tạo lại, kể cả thứ đã xóa.
 - **"Không dùng" không xóa và không ẩn gì cả**: bảng, dữ liệu, view, dashboard, menu, thông báo và nhóm vai trò vẫn còn, và menu vẫn hiện. Khi không dùng nữa, hãy gỡ khỏi [Menu](/vi/menu) hoặc gỡ người dùng khỏi nhóm vai trò.
 - **Khi trang có bảng trùng tên**: nếu trang đã có bảng riêng trùng tên với các bảng bán hàng (`sales_customer`, `sales_deal` và các bảng khác bắt đầu bằng `sales_`), sẽ không tạo bảng mới mà thêm các cột còn thiếu vào các bảng đó. Cột và dữ liệu hiện có vẫn giữ nguyên.
 - **Trang đã cài template bán hàng cũ**: ở trang đã cài [Mẫu](/vi/template) cũ "Sales pack" (営業パック), chỉ thêm những gì còn thiếu như trên. Cột giai đoạn của cơ hội bán hàng giữ tên cũ (tiếng Nhật là 「状態」; trang mới cài là 「段階」). Muốn đổi, hãy đổi ở màn hình [Cột tùy chỉnh](/vi/column).

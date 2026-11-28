@@ -8,7 +8,7 @@ Eine Funktion, die auf einmal die Tabellen, Ansichten, das Dashboard, das Menü 
 Auf eine der beiden Arten:
 
 - **In der Funktionsverwaltung**: Melden Sie sich als Systemadministrator an und öffnen Sie „Administratoreinstellungen“ → „[Funktionsverwaltung](/de/feature)“. Stellen Sie „Vertrieb (CRM / SFA)“ unter „Funktionen von Exment“ auf „Verwenden“ und speichern Sie.
-- **Im Bildschirm der Ersteinrichtung**: Setzen Sie im [Bildschirm der Ersteinrichtung](/de/first_setting) einer neuen Installation unter „Funktionen“ das Häkchen bei „Vertrieb (CRM / SFA) verwenden?“. Es wird nach dem Speichern der Ersteinrichtung hinzugefügt. Sie können es auch später in der Funktionsverwaltung einschalten.
+- **Im Bildschirm der Ersteinrichtung**: Setzen Sie im [Bildschirm der Ersteinrichtung](/de/first_setting) einer neuen Installation unter „Funktionen“ bei „Von Anfang an verwenden“ das Häkchen bei „Vertrieb (CRM / SFA) verwenden?“. Es wird nach dem Speichern der Ersteinrichtung hinzugefügt. Sie können es auch später in der Funktionsverwaltung einschalten.
 
 Danach erscheint eine Meldung, dass die Tabellen, Ansichten, das Dashboard, das Menü usw. hinzugefügt wurden.  
 Fügen Sie dann im Bildschirm der [Rollengruppen](/de/role_group) die Benutzer der Rollengruppe „Vertrieb“ hinzu.
@@ -34,7 +34,7 @@ Fügen Sie dann im Bildschirm der [Rollengruppen](/de/role_group) die Benutzer d
 - Die Ansichten, die das Dashboard nutzt (seine 5 Boxen, siehe unten)
 
 ### Vertriebs-Dashboard
-Ganz oben im Menü „Vertrieb & Kunden“ wird das „Vertriebs-Dashboard“ hinzugefügt. Es zeigt:
+Als erster Eintrag des Menüs „Vertrieb & Kunden“ wird das „Vertriebs-Dashboard“ hinzugefügt. Es zeigt:
 
 - Erwartete Aufträge je Monat (Balkendiagramm)
 - Offene Verkaufschancen je Verantwortlichem: Anzahl und erwartete Beträge
@@ -43,7 +43,9 @@ Ganz oben im Menü „Vertrieb & Kunden“ wird das „Vertriebs-Dashboard“ hi
 - Bald endende Verträge (30 Tage)
 
 ### Menü
-Das Menü „Vertrieb & Kunden“ mit dem Vertriebs-Dashboard, Kunden, Verkaufschancen, Angeboten, Verträgen und Aktivitäten. Sie können es im Bildschirm des [Menüs](/de/menu) verschieben oder entfernen.
+Das Menü „Vertrieb & Kunden“ mit dem Vertriebs-Dashboard, Kunden, Verkaufschancen, Angeboten, Verträgen und Aktivitäten. Das Vertriebs-Dashboard steht an erster Stelle. Sie können es im Bildschirm des [Menüs](/de/menu) verschieben oder entfernen.  
+※Der interne Name des Dashboards ist `exment_sales_dashboard`; es wird getrennt von einem eigenen Dashboard der Website mit dem Namen `sales_dashboard` angelegt.  
+※Hat die Website den Menüeintrag „Vertriebs-Dashboard“ auf ein anderes Dashboard gerichtet, zeigt er nach einer erneuten Installation wieder auf das Vertriebs-Dashboard (ein Link, der auf etwas anderes als ein Dashboard geändert wurde, bleibt).
 
 ### Benachrichtigung
 „Vertrag endet bald (30 Tage vorher)“: 30 Tage vor dem Enddatum eines Vertrags um 9 Uhr erhalten der Benutzer, der den Vertrag angelegt hat, und die Benutzer, die ihn sehen dürfen, eine Benachrichtigung in Exment. Die Tage usw. ändern Sie im Bildschirm der [Benachrichtigungen](/de/notify).
@@ -52,9 +54,10 @@ Das Menü „Vertrieb & Kunden“ mit dem Vertriebs-Dashboard, Kunden, Verkaufsc
 Eine Rollengruppe, die alle Daten der 7 Tabellen oben sehen, anlegen und bearbeiten darf. Fügen Sie ihr die Benutzer hinzu.
 
 ## Hinweise
-- **Wenn es unterwegs fehlschlägt**: Was schon angelegt wurde, bleibt. Es erscheint eine Meldung, und die Zeile steht wieder auf „Nicht verwenden“. Wenn Sie wieder „Verwenden“ wählen und speichern, wird nur das Fehlende angelegt. Schlägt es im Bildschirm der Ersteinrichtung fehl, wird die Ersteinrichtung trotzdem abgeschlossen; schalten Sie die Funktion später in der Funktionsverwaltung ein.
+- **Wenn es unterwegs fehlschlägt**: Was schon angelegt wurde, bleibt. Es erscheint eine Meldung, und die Zeile steht wieder auf „Nicht verwenden“. Wenn Sie wieder „Verwenden“ wählen und speichern, wird nur das Fehlende angelegt (auch fehlende Teile einer halb angelegten Ansicht oder des Dashboards). Schlägt es im Bildschirm der Ersteinrichtung fehl, wird die Ersteinrichtung trotzdem abgeschlossen; schalten Sie die Funktion später in der Funktionsverwaltung ein.
+- **Wenn es bei „Verwenden“ unterwegs angehalten hat** (z. B. durch eine Zeitüberschreitung): Solange eine Tabelle oder das Dashboard fehlt, zeigt die Zeile in der Funktionsverwaltung „Ein Teil davon (eine Tabelle oder das Dashboard) fehlt. Beim Speichern wird das Fehlende hinzugefügt.“ Beim Speichern wird das Fehlende hinzugefügt. Schlägt das fehl, bleibt die Zeile auf „Verwenden“; das nächste Speichern versucht es erneut.
 - **Egal wie oft Sie „Verwenden“ wählen**, nichts wird doppelt angelegt. Was die Website geändert hat (Namen der Tabellen und Ansichten, Bezeichnungen, die Tage der Benachrichtigung, die Rollengruppe, das Menü), bleibt.
-- **Was Sie gelöscht haben, wird wieder angelegt**: Wenn Sie eine Tabelle oder Ansicht löschen und die Funktion danach aus- und wieder einschalten, wird sie wieder angelegt. Entfernen Sie Nicht-Benötigtes lieber aus dem Menü, statt es zu löschen.
+- **Gelöschtes kommt durch Speichern nicht zurück**: Nach einer vollständigen Installation werden Tabellen, Ansichten, Dashboards und Menüs, die die Website absichtlich gelöscht hat, beim Speichern der Funktionsverwaltung nicht wieder angelegt. Wenn Sie die Zeile auf „Nicht verwenden“ stellen (speichern) und danach wieder auf „Verwenden“ (speichern), wird das Fehlende wieder angelegt, auch das Gelöschte.
 - **„Nicht verwenden“ löscht nichts und verbirgt nichts**: Tabellen, Daten, Ansichten, Dashboard, Menü, Benachrichtigung und Rollengruppe bleiben, und das Menü wird weiter angezeigt. Wenn Sie es nicht mehr nutzen, entfernen Sie es aus dem [Menü](/de/menu) oder die Benutzer aus der Rollengruppe.
 - **Wenn die Website Tabellen mit denselben Namen hat**: Hat die Website schon eigene Tabellen mit denselben Namen wie die Vertriebstabellen (`sales_customer`, `sales_deal` und die anderen mit `sales_`), wird keine neue Tabelle angelegt; die fehlenden Spalten werden diesen Tabellen hinzugefügt. Ihre Spalten und Daten bleiben.
 - **Websites mit der alten Vertriebsvorlage**: Auf einer Website, die die alte [Vorlage](/de/template) „Sales pack“ (営業パック) installiert hat, wird wie oben nur das Fehlende hinzugefügt. Die Spalte der Phase der Verkaufschancen behält ihren alten Namen (auf Japanisch 「状態」; bei einer neuen Installation 「段階」). Ändern Sie ihn bei Bedarf im Bildschirm der [benutzerdefinierten Spalten](/de/column).

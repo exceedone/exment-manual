@@ -8,7 +8,7 @@ Una función que añade de una vez las tablas, vistas, el panel, el menú y más
 De una de estas dos maneras:
 
 - **En la Gestión de funciones**: inicie sesión como administrador del sistema y abra «Configuración de administración» → «[Gestión de funciones](/es/feature)». Ponga «Ventas (CRM / SFA)» de «Funciones de Exment» en «usar» y guarde.
-- **En la pantalla de configuración inicial**: en la [pantalla de configuración inicial](/es/first_setting) de una instalación nueva, marque «¿Usar Ventas (CRM / SFA)?» en «Funciones». Se añade después de guardar la configuración inicial. También puede ponerla en «usar» más tarde en la Gestión de funciones.
+- **En la pantalla de configuración inicial**: en la [pantalla de configuración inicial](/es/first_setting) de una instalación nueva, marque «¿Usar Ventas (CRM / SFA)?» en «Usar desde el principio», dentro de «Funciones». Se añade después de guardar la configuración inicial. También puede ponerla en «usar» más tarde en la Gestión de funciones.
 
 Al terminar, aparece un mensaje de que se añadieron las tablas, vistas, el panel, el menú, etc.  
 Después, añada los usuarios al grupo de roles «Ventas» en la pantalla de [grupos de roles](/es/role_group).
@@ -34,7 +34,7 @@ Después, añada los usuarios al grupo de roles «Ventas» en la pantalla de [gr
 - Las vistas que usa el panel (sus 5 cuadros, abajo)
 
 ### Panel de ventas
-Arriba del todo del menú «Ventas y clientes» se añade el «Panel de ventas». Muestra:
+Como primer elemento del menú «Ventas y clientes» se añade el «Panel de ventas». Muestra:
 
 - Pedidos previstos por mes (gráfico de barras)
 - Oportunidades abiertas por responsable: número e importes previstos
@@ -43,7 +43,9 @@ Arriba del todo del menú «Ventas y clientes» se añade el «Panel de ventas»
 - Contratos que terminan pronto (30 días)
 
 ### Menú
-El menú «Ventas y clientes», con el panel de ventas, clientes, oportunidades, presupuestos, contratos y actividades. Se puede mover o quitar en la pantalla del [menú](/es/menu).
+El menú «Ventas y clientes», con el panel de ventas, clientes, oportunidades, presupuestos, contratos y actividades. El panel de ventas va primero. Se puede mover o quitar en la pantalla del [menú](/es/menu).  
+※El nombre interno del panel es `exment_sales_dashboard`; se crea aparte de un panel propio del sitio llamado `sales_dashboard`.  
+※Si el sitio apuntó el elemento «Panel de ventas» del menú a otro panel, al instalar de nuevo vuelve a apuntar al panel de ventas (un enlace cambiado a algo que no es un panel se queda).
 
 ### Notificación
 «Contrato por vencer (30 días antes)»: a las 9:00, 30 días antes de la fecha de fin de un contrato, el usuario que creó el contrato y los usuarios que pueden verlo reciben una notificación en Exment. Los días y demás se cambian en la pantalla de [notificaciones](/es/notify).
@@ -52,9 +54,10 @@ El menú «Ventas y clientes», con el panel de ventas, clientes, oportunidades,
 Un grupo de roles que puede ver, crear y editar todos los datos de las 7 tablas de arriba. Añada los usuarios a él.
 
 ## Notas
-- **Si falla a medias**: lo que se creó se queda. Aparece un mensaje y la fila vuelve a «no usar». Si la pone otra vez en «usar» y guarda, solo se crea lo que falta. Si falla en la pantalla de configuración inicial, la configuración inicial termina igualmente; póngala en «usar» más tarde en la Gestión de funciones.
+- **Si falla a medias**: lo que se creó se queda. Aparece un mensaje y la fila vuelve a «no usar». Si la pone otra vez en «usar» y guarda, solo se crea lo que falta (también las partes que faltan de una vista o del panel hechos a medias). Si falla en la pantalla de configuración inicial, la configuración inicial termina igualmente; póngala en «usar» más tarde en la Gestión de funciones.
+- **Si se detuvo a medias estando en «usar»** (por ejemplo, por tiempo de espera): mientras falte una tabla o el panel, la fila de la Gestión de funciones dice «Falta parte de lo que añade (una tabla o el panel). Al guardar, se añade lo que falta.» Al guardar, se añade lo que falta. Si eso falla, la fila sigue en «usar»; el siguiente guardado lo vuelve a intentar.
 - **Por muchas veces que la ponga en «usar»**, nada se crea dos veces. Lo que cambió el sitio (nombres de tablas y vistas, etiquetas, los días de la notificación, el grupo de roles, el menú) se queda como está.
-- **Lo que borró se vuelve a crear**: si borra una tabla o una vista y luego pone la función en «no usar» y otra vez en «usar», lo borrado se vuelve a crear. Para dejar de usar algo, quítelo del menú en lugar de borrarlo.
+- **Lo que borró no vuelve al guardar**: después de una instalación completa, las tablas, vistas, paneles y menús que el sitio borró a propósito no se vuelven a crear al guardar la Gestión de funciones. Si pone la fila en «no usar» (guardar) y otra vez en «usar» (guardar), se vuelve a crear lo que falta, también lo borrado.
 - **«No usar» no borra ni oculta nada**: las tablas, los datos, las vistas, el panel, el menú, la notificación y el grupo de roles se quedan, y el menú sigue apareciendo. Si deja de usarla, quítela del [menú](/es/menu) o quite los usuarios del grupo de roles.
 - **Si el sitio tiene tablas con los mismos nombres**: si el sitio ya tiene tablas propias con los mismos nombres que las de ventas (`sales_customer`, `sales_deal` y las demás que empiezan por `sales_`), no se crea una tabla nueva; se añaden a esas tablas las columnas que faltan. Sus columnas y datos se quedan como están.
 - **Sitios que instalaron la antigua plantilla de ventas**: en un sitio que instaló la antigua [plantilla](/es/template) «Sales pack» (営業パック), solo se añade lo que falta, como arriba. La columna de la etapa de las oportunidades conserva su nombre antiguo (en japonés 「状態」; en una instalación nueva 「段階」). Si quiere cambiarlo, use la pantalla de [columnas personalizadas](/es/column).

@@ -8,7 +8,7 @@ Note: it is off at first. Turning it on makes what is listed under "What it adds
 Turn it on in one of these ways.
 
 - **In Feature Management**: log in as a system administrator and open "Admin Setting" → "[Feature Management](/feature)". Set "Sales (CRM / SFA)" under "Features of Exment" to "Use" and save.
-- **On the initial setting screen**: on the [initial setting screen](/first_setting) of a new installation, check "Use Sales (CRM / SFA)?" under "Features". It is added after the initial setting is saved. You can also turn it on later in Feature Management.
+- **On the initial setting screen**: on the [initial setting screen](/first_setting) of a new installation, check "Use Sales (CRM / SFA)?" in "Use from the start" under "Features". It is added after the initial setting is saved. You can also turn it on later in Feature Management.
 
 When it is added, the message "The tables, views, dashboard, menu and more of "Sales (CRM / SFA)" were added. Add the users to its role group." is shown.  
 Then add the users to the role group "Sales" on the [role group](/role_group) page.
@@ -34,7 +34,7 @@ Note: the "Menu" column says "The menu it adds can be moved or removed on the me
 - The views used by the dashboard (its 5 boxes, below)
 
 ### Sales dashboard
-"Sales dashboard" is added at the top of the menu "Sales & customers". It shows:
+"Sales dashboard" is added as the first item of the menu "Sales & customers". It shows:
 
 - Expected orders by month (a bar chart)
 - Open deals by owner: the number of deals and the expected amounts
@@ -43,7 +43,9 @@ Note: the "Menu" column says "The menu it adds can be moved or removed on the me
 - Contracts ending soon (30 days)
 
 ### Menu
-The menu "Sales & customers" is added, with the sales dashboard, customers, deals, quotes, contracts and activities. It can be moved or removed on the [menu](/menu) page.
+The menu "Sales & customers" is added, with the sales dashboard (first), customers, deals, quotes, contracts and activities. It can be moved or removed on the [menu](/menu) page.  
+Note: the internal name of the dashboard is `exment_sales_dashboard`, so it is made apart from a dashboard named `sales_dashboard` that the site made itself.  
+Note: if the site pointed the menu item "Sales dashboard" to another dashboard, installing again points it back to the sales dashboard (a link changed to something that is not a dashboard stays).
 
 ### Notice
 "Contract ending soon (30 days before)": at 9:00, 30 days before the end date of a contract, the user who made the contract and the users who may see it get a notice in Exment. The days and more can be changed on the [notify](/notify) page.
@@ -52,9 +54,10 @@ The menu "Sales & customers" is added, with the sales dashboard, customers, deal
 A role group that may see, make and edit all the data of the 7 tables above. Add the users to it.
 
 ## Notes
-- **If it fails partway**: what was made stays. The message "\"Sales (CRM / SFA)\" could not be added. Turn it on and save again; the log has the details." is shown, and the row is off again. Turning it on and saving again makes only what is missing. If it fails on the initial setting screen, the initial setting still finishes; turn it on later in Feature Management.
+- **If it fails partway**: what was made stays. The message "\"Sales (CRM / SFA)\" could not be added. Turn it on and save again; the log has the details." is shown, and the row is off again. Turning it on and saving again makes only what is missing (also the missing parts of a view or the dashboard made partway). If it fails on the initial setting screen, the initial setting still finishes; turn it on later in Feature Management.
+- **If it stopped partway while on** (a timeout, for example): while a table or the dashboard is missing, the row in Feature Management says "Part of what it adds (a table or the dashboard) is missing. Saving adds what is missing." Saving then adds what is missing. If that fails, the row stays on; the next save tries again.
 - **Turning it on any number of times** never makes the same thing twice. What the site changed (the names of the tables and views, the labels, the days of the notice, the role group, the menu) stays as it is.
-- **What you deleted is made again**: if you delete a table or a view, then turn the feature off and on again, what you deleted is made again. To stop using something, remove it from the menu instead of deleting it.
+- **What you deleted is not made again by saving**: after a complete install, tables, views, dashboards and menus that the site deleted on purpose are not made again when Feature Management is saved. Turning the row off (save) and then "Use" again (save) makes the missing ones again, including what you deleted.
 - **Turning it off deletes nothing and hides nothing**: the tables, data, views, dashboard, menu, notice and role group stay, and the menu is still shown. To stop using it, remove it from the [menu](/menu) or remove the users from the role group.
 - **If the site has tables with the same names**: if the site already has its own tables with the same names as the sales tables (`sales_customer`, `sales_deal` and the others starting with `sales_`), no new table is made; the missing columns are added to those tables. Their columns and data stay as they are.
 - **Sites that installed the old sales template**: on a site that installed the old [template](/template) "Sales pack", only what is missing is added, as above. The stage column of the deals keeps its old name (「状態」 in Japanese; on a new installation it is 「段階」). To change it, use the [custom column](/column) page.
