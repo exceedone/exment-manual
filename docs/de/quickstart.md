@@ -20,7 +20,7 @@ Die genaue Betriebsumgebung und die Einstellungen stehen unter [Servereinstellun
 | Umgebung | Anleitung |
 |---|---|
 | Zum Testen auf dem eigenen Computer | [XAMPP (Windows)](/de/install_xampp), [XAMPP (Mac)](/de/install_xampp_mac) |
-| Mietserver (Xserver usw.) | [Mietserver](/de/install_rental) |
+| Mietserver (Xserver usw.) | [Einfache Installation (Mietserver)](/de/install_rental_easy)・[Mietserver (SSH)](/de/install_rental) |
 | Linux-Server | [Linux](/de/install_linux) |
 | Cloud | [AWS](/de/install_aws), [AWS (1 Server)](/de/install_aws_single), [Azure Web Apps](/de/install_azure_web_apps) |
 | Docker | [Docker](/de/install_docker) |
@@ -52,7 +52,7 @@ Einzelheiten stehen unter [Ersteinrichtung](/de/first_setting).
 ## 4. Mit der Nutzung beginnen
 - **Was Sie zuerst festlegen (auf jeder Website nötig)**: Richten Sie den [Aufgabenplan](/de/additional_task_schedule) (cron) ein. Damit laufen Benachrichtigungen, Zeitpläne, die automatische Sicherung und mehr.
 - Passend zu Ihrer Arbeit legen Sie [Tabellen](/de/table), [Formulare](/de/form) und [Ansichten](/de/view) an.
-- In der [Funktionsverwaltung](/de/feature) wählen Sie die Funktionen, die Sie nutzen, und die kostenlosen offiziellen Plugins (Projektverwaltung, IT-Support, Groupware).
+- In der [Funktionsverwaltung](/de/feature) wählen Sie die Funktionen, die Sie nutzen, und die kostenlosen offiziellen Plugins (Projektverwaltung, Support-Desk, Groupware).
 - Mit der [Sicherheitsprüfung](/de/security_check) und der [Optimierung](/de/tuning) prüfen Sie die Einstellungen für Sicherheit und Geschwindigkeit.
 - Weitere Einstellungen (E-Mail, Speicherort der Dateien, Warteschlange usw.) stehen unter [Zusätzliche Einstellungen](/de/quickstart_more).
 

@@ -20,7 +20,7 @@ Exment は、PHP が動く Web サーバーとデータベースがあれば動�
 | 使う環境 | 手順 |
 |---|---|
 | 試しに自分のパソコンで | [XAMPP（Windows）](/ja/install_xampp)・[XAMPP（Mac）](/ja/install_xampp_mac) |
-| レンタルサーバー（Xserver など） | [レンタルサーバー](/ja/install_rental) |
+| レンタルサーバー（Xserver など） | [かんたんインストール（レンタルサーバー）](/ja/install_rental_easy)・[レンタルサーバー（SSH）](/ja/install_rental) |
 | Linux サーバー | [Linux](/ja/install_linux) |
 | クラウド | [AWS](/ja/install_aws)・[AWS（1 台）](/ja/install_aws_single)・[Azure Web Apps](/ja/install_azure_web_apps) |
 | Docker | [Docker](/ja/install_docker) |
@@ -52,7 +52,7 @@ Exment は、PHP が動く Web サーバーとデータベースがあれば動�
 ## 4. 使い始める
 - **まず決めておくこと（どのサイトでも必要）**：[タスクスケジュール](/ja/additional_task_schedule)（cron）を設定してください。通知・スケジュール・自動バックアップなどが動きます。
 - 業務に合わせて、[テーブル](/ja/table)・[フォーム](/ja/form)・[ビュー](/ja/view)を作ります。
-- [機能の管理](/ja/feature)で、使う機能と、無料の公式プラグイン（プロジェクト管理・IT サポート・Groupware）を選びます。
+- [機能の管理](/ja/feature)で、使う機能と、無料の公式プラグイン（プロジェクト管理・サポートデスク・Groupware）を選びます。
 - [セキュリティチェック](/ja/security_check)と[チューニング](/ja/tuning)で、安全と速さの設定を確かめます。
 - そのほかの設定（メール・ファイルの置き場所・キューなど）は[追加設定](/ja/quickstart_more)にあります。
 

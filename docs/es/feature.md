@@ -59,12 +59,13 @@ No se guarda un ajuste nuevo por duplicado: se muestran tal cual los ajustes que
 <!-- Captura de pantalla: la fila de un plugin y la fila de una función de dentro del plugin (img/feature/feature_plugin.png). Se toma después de fusionar #1861 -->
 
 ## Plugins oficiales gratuitos (incluidos con Exment)
-Exment incluye plugins oficiales gratuitos (gestión de proyectos, soporte de TI, Groupware). Se instalan desde la sección «Plugins oficiales gratuitos (incluidos con Exment)» de «Gestión de funciones». Para más detalles, consulte [Plugins oficiales](/es/plugin_official).
+Exment incluye plugins oficiales gratuitos (gestión de proyectos, mesa de soporte, Groupware). Se instalan desde la sección «Plugins oficiales gratuitos (incluidos con Exment)» de «Gestión de funciones». Para más detalles, consulte [Plugins oficiales](/es/plugin_official).
 
 - Hasta que pulse «Usar (instalar)», no se instalan ni se cargan (tampoco se crean tablas).
 - Al pulsarlo, se comprueba, se instala y se activa. La función principal de ese plugin también pasa a «usar». Después aparece también en la sección «Plugins» de arriba, y puede decidir quién puede usarlo y el menú.
 - Cuando hay una versión nueva, aparece «Está disponible la versión ○○.». No se instala automáticamente. Se actualiza con «Actualizar a esta versión» (los ajustes, los menús y los permisos se conservan).
 - La versión anterior a la actualización se conserva, y puede volver a ella con «Volver a la versión anterior (○○)».
+- Actualizar Exment no cambia solo los plugins en uso. Vea [Las actualizaciones y los plugins oficiales incluidos](/es/update?id=las-actualizaciones-y-los-plugins-oficiales-incluidos).
 - Los plugins que ya había instalado a mano se siguen usando tal cual (no se reinstalan). Solo se le avisa cuando la versión incluida es más reciente. Si lo sustituye por la versión incluida, no puede volver a la versión instalada a mano.
 - Los plugins incluidos se instalan después de comprobar la firma de Exceed One. Los que no tienen una firma correcta no aparecen.
 - En los sitios donde el proveedor cambia las versiones (SaaS, etc.), aparece «Las versiones las cambia el proveedor de este sitio.» y no aparecen los botones (`EXMENT_BUNDLED_PLUGINS_UPDATES=false` en `.env`).

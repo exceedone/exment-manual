@@ -10,6 +10,7 @@ import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statS
 import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { slugify } from './slug.mjs'
+import { moved } from './moved.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const docs = join(here, '..', 'docs')
@@ -114,6 +115,17 @@ walk(docs, (path) => {
     cpSync(path, to)
   }
 })
+
+// the pages that got a new name: a small page at the old name (the browser is sent on by
+// the script of .vitepress/config.mts; this is for when it does not run)
+for (const lang of ['', 'ja', 'vi', 'zh', 'ko', 'de', 'es']) {
+  for (const [from, to] of Object.entries(moved)) {
+    if (existsSync(join(src, lang, to + '.md')) && !existsSync(join(src, lang, from + '.md'))) {
+      const link = (lang ? '/' + lang : '') + '/' + to
+      writeFileSync(join(src, lang, from + '.md'), `---\nsearch: false\nsidebar: false\n---\n\n→ [${link}](${link})\n`)
+    }
+  }
+}
 
 // the sidebar: "* 【group】" with "  * [title](/ja/page)" under it
 function sidebar(file) {

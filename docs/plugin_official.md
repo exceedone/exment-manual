@@ -4,18 +4,19 @@ The official plugins are free plugins of Exment, made, tested and supported by E
 | Plugin | What it does |
 | --- | --- |
 | [Project Management](/plugin_pm) | Projects and issues (tickets), boards, Gantt charts, wiki and files |
-| [IT Support](/plugin_it_support) | A help desk: requests by mail, a form or phone as tickets, with their progress shared with the customer without login |
+| [Support Desk](/plugin_support_desk) | A help desk: requests by mail, a form or phone as tickets, with their progress shared with the customer without login |
 | [Groupware](/plugin_groupware) | Web mail, and opening and editing Office files of File sharing in the browser |
 
 ## Install
 ### Exment v7.2.1 or later
 The official plugins come with Exment. A system administrator presses "Use (install)" in "[Free official plugins (bundled with Exment)](/feature?id=free-official-plugins-bundled-with-exment)" of "Admin Setting" > "Feature Management". Nothing is installed or loaded until then.
 
-- Exment 7.2.1 comes with Project Management (ExmentPM) 1.7.15, IT Support (ExmentITSupport) 1.0.9 and Groupware (ExmentGroupware) 0.4.7 (package exceedone/exment-plugins-release 7.2.14).
+- Exment 7.2.1 comes with Project Management (ExmentPM) 1.7.15, Support Desk (ExmentITSupport) 1.0.9 and Groupware (ExmentGroupware) 0.4.7 (package exceedone/exment-plugins-release 7.2.14).
 - A bundled plugin is installed only after its signature by Exceed One is checked.
 - A newer version is only shown. "Update to this version" updates it, and "Back to the previous version (...)" puts it back.
 - When a newer version includes a security fix, the system administrators are told. See [Feature Management](/feature?id=notices-of-security-fixes).
 - Groupware makes the "Mail" menu in the side menu when it is installed.
+- Updating Exment brings the new bundled versions, but the plugins in use are not switched by themselves ([Updates and the bundled official plugins](/update?id=updates-and-the-bundled-official-plugins)).
 
 ### Older Exment
 Download the zip from [Releases](https://github.com/exceedone/exment-plugins/releases) on GitHub and upload it in "Admin Setting" > "[Plugin](/plugin)". Do not unzip it (do not use the green "Code → Download ZIP" button).

@@ -20,7 +20,7 @@ For the detailed requirements and settings, see [Server settings](/server). Ther
 | Environment | Steps |
 |---|---|
 | A trial on your own computer | [XAMPP (Windows)](/install_xampp) / [XAMPP (Mac)](/install_xampp_mac) |
-| A rental server (Xserver and so on) | [Rental server](/install_rental) |
+| A rental server (Xserver and so on) | [Easy install (rental server)](/install_rental_easy)・[Rental server (SSH)](/install_rental) |
 | A Linux server | [Linux](/install_linux) |
 | Cloud | [AWS](/install_aws) / [AWS (one server)](/install_aws_single) / [Azure Web Apps](/install_azure_web_apps) |
 | Docker | [Docker](/install_docker) |
@@ -52,7 +52,7 @@ See [Initial setting](/first_setting) for details.
 ## 4. Start using it
 - **Decide this first (needed on every site)**: set up the [task schedule](/additional_task_schedule) (cron). Notifications, schedules, the automatic backup and so on run with it.
 - Make [tables](/table), [forms](/form) and [views](/view) to fit your work.
-- In [Feature Management](/feature), choose the features you use and the free official plugins (project management, IT support, Groupware).
+- In [Feature Management](/feature), choose the features you use and the free official plugins (project management, Support Desk, Groupware).
 - Check the settings for safety and speed with the [security check](/security_check) and [tuning](/tuning).
 - The other settings (email, where files are saved, the queue and so on) are in [Additional settings](/quickstart_more).
 

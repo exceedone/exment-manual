@@ -2,6 +2,8 @@
 임대 서버에 Exment를 설치하는 절차입니다. 간단하게 환경을 만들어 운영하고 싶을 때의 선택지입니다.  
 Xserver와 사쿠라 인터넷의 절차를 설명합니다.
 
+> SSH 없이 파일 하나만 올려서 설치할 때는 [간편 설치(임대 서버)](/ko/install_rental_easy)를 보십시오.
+
 | 사용하는 서버 | 볼 곳 |
 |---|---|
 | Xserver | [Xserver의 경우](/ko/install_rental?id=xserver의-경우) |

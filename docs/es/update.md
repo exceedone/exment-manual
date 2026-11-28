@@ -6,7 +6,7 @@ Para ver qué cambió en cada versión, consulte las [Notas de la versión](/rel
 1. **Comprobar la versión actual**
 2. **Hacer una copia de seguridad**
 3. **Actualizar** (los pasos cambian según la versión actual)
-4. **Comprobar después de actualizar**
+4. **Comprobar después de actualizar** (también las versiones nuevas de los plugins oficiales incluidos)
 
 ## 1. Comprobar la versión actual
 - Verla en la pantalla: «Configuración del sistema» → «Información de la versión del sistema» → «Versión actual»
@@ -137,6 +137,35 @@ Compruebe todas las páginas de los cambios que hay entre su versión actual y l
 - Pulse **Ctrl+F5** (recarga forzada) en el navegador para volver a cargar la pantalla.
 - En «Configuración del sistema» → «Información de la versión del sistema», compruebe que ya es la versión nueva.
 - Si aparece un error, consulte [Solución de problemas](/es/troubleshooting).
+- Después de actualizar, compruebe en «Gestión de funciones» las versiones nuevas de los plugins oficiales incluidos (vea «[Las actualizaciones y los plugins oficiales incluidos](/es/update?id=las-actualizaciones-y-los-plugins-oficiales-incluidos)» más abajo).
+
+## Las actualizaciones y los plugins oficiales incluidos
+Desde Exment v7.2.1, los plugins oficiales gratuitos (gestión de proyectos, mesa de soporte, Groupware) se incluyen con Exment (el paquete exceedone/exment-plugins-release).
+
+`composer update` y `php artisan exment:update` (y también el lote de actualización y la actualización automática) traen los plugins incluidos nuevos junto con el nuevo Exment. **Pero los plugins que usa el sitio no se cambian solos.** Un plugin tiene datos y ajustes, así que un administrador del sistema decide cuándo cambiar.
+
+Por eso, después de una actualización, un sitio tiene dos tipos:
+
+| | Dónde | Cuándo cambia |
+| --- | --- | --- |
+| El plugin en uso | La carpeta de plugins del sitio y la base de datos | Cuando un administrador del sistema lo cambia en «Gestión de funciones» |
+| El plugin incluido | Dentro del paquete de Exment (exceedone/exment-plugins-release) | Cuando se actualiza Exment |
+
+### Cómo cambiar
+1. Abra «[Gestión de funciones](/es/feature?id=plugins-oficiales-gratuitos-incluidos-con-exment)». Los plugins incluidos aparecen en «Plugins oficiales gratuitos (incluidos con Exment)».
+2. Cuando hay una versión nueva, aparece «Está disponible la versión ○○.». Pulse «Actualizar a esta versión» para cambiar. Los ajustes, los menús y los permisos se conservan.
+3. La versión anterior al cambio se conserva. Si algo no funciona, vuelva con «Volver a la versión anterior (○○)».
+
+- Solo aparecen los plugins oficiales cuya firma de Exceed One se pudo comprobar.
+- Cuando una versión nueva tiene una corrección de seguridad, se avisa una vez a los administradores del sistema: con un aviso en su inicio y en la campana (y por correo en los sitios que envían correo). Vea [Aviso de correcciones de seguridad](/es/feature?id=aviso-de-correcciones-de-seguridad).
+- Un plugin para el que nunca se pulsó «Usar» no se instala con una actualización.
+- En un sitio cuyo proveedor cambia las versiones (como Exment SaaS), no aparecen los botones; los cambia el proveedor.
+
+### Cuándo llegan versiones nuevas incluidas
+- Exment 7.2.x usa el paquete exceedone/exment-plugins-release en el rango `~7.2.0`. Así, `composer update` trae los plugins incluidos más recientes de 7.2.x **aunque Exment no tenga una versión nueva** (por ejemplo, ExmentPM 1.7.24 llega con el paquete 7.2.22).
+- Cuando llegan, los plugins en uso no cambian. Solo cambian cuando un administrador del sistema pulsa «Actualizar a esta versión» en «Gestión de funciones».
+- El zip que se descarga de exment.net contiene los plugins incluidos del día en que se creó. El zip solo se vuelve a crear para una versión nueva de Exment. Un sitio instalado desde el zip también recibe los plugins incluidos más nuevos en su siguiente `composer update`.
+- Exment 7.3 recibe los mismos plugins incluidos que 7.2 (los plugins oficiales funcionan en ambos; Exment 7.3 usa el paquete en el rango `^7.2`).
 
 ## Números de versión y hasta dónde se sube
 El número de versión de Exment es «mayor . menor . parche» (ejemplo: v7.1.0). La forma de actualizar cambia según qué número sube.

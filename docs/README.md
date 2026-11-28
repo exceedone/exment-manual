@@ -3,6 +3,119 @@
 <img src="https://exment.net/docs/img/common/exment_logo_side.png" alt="Exment" style="border:none;">
 </p>
 
+**Exment is a free web database: you build your business apps on the screen, without code.** Plugins let you add any feature you need. From this page, open the guide for the feature you want to use.
+
+[What Exment can do (overview)](/concept)　/　[New to Exment (quick start)](/quickstart)　/　[Settings for administrators](/system_setting)　/　[API](/api) and [plugins](/plugin)
+
+## Main features
+Click a name to open its guide. The tag on the right is the version you need ("Standard" means it has been there for a long time).
+
+### The database
+
+**🗂️ [Tables and columns](/table)**　`Standard`  
+Make the tables that hold your data, and their items (columns), on the screen. Text, numbers, dates, choices, files and many more types.
+
+**🔗 [Relations (linking tables)](/relation)**　`Standard`  
+Link tables, such as "Company" and "Contact". One-to-many and many-to-many.
+
+**📝 [Forms (input screens)](/form)**　`Standard`  
+Decide the order and headings of the input screen. You can switch screens by person or by case.
+
+**📋 [Views (list, summary, calendar, kanban, Gantt)](/view)**　`7.0`  
+See the same data in many ways. Kanban and Gantt chart views are available from 7.0.
+
+**🧰 [Data list tools](/data_grid_tools)**　`7.1`  
+Show, pin and group columns, edit in place, use the keyboard as in Excel, and act on many rows at once.
+
+**🎨 [Display presets](/cell_style_preset)**　`7.0`  
+Save the color, shape and icon of cells under a name, and use them in many lists.
+
+**📊 [Dashboard](/dashboard)**　`Standard`  
+Put charts, lists and calendars on your home page. Click a chart to filter.
+
+**🔍 [Search](/search) and [full-text search (Meilisearch)](/additional_meilisearch)**　`7.0`　`easy setup 7.2.2`  
+Search all tables by words. With a lot of data, Meilisearch makes it faster.
+
+**📥 [Import and export](/data_import_export)**　`Standard`  
+Bring in many rows from Excel or CSV. You can also export a list to a file.
+
+### Running your work
+
+**✅ [Workflow (requests and approvals)](/workflow_setting)**　`7.0`  
+Make the flow of request, approval and sending back. From 7.0, you can [draw the flow](/workflow_design).
+
+**🔔 [Notifications (email, Slack, Teams, LINE)](/notify)**　`Standard`  
+Tell people when data changes, when a due date is near, or when a request is approved. [LINE](/line) is from 7.1.
+
+**🌐 [Public forms](/publicform)**　`Standard`  
+Make a form that people outside your company can fill in without logging in.
+
+**👥 [Permissions and organizations](/permission)**　`Standard`  
+Decide who can see or change which tables and data, with [role groups](/role_group) and [organizations](/organization).
+
+### Extending Exment (plugins and more)
+
+**🔌 [Plugins](/plugin)**　`Standard`  
+Add your own buttons, pages, views, batches, APIs and more. The most flexible way to extend Exment. See also [how to make one](/plugin_quickstart).
+
+**📦 [Official plugins (project management, Support Desk, groupware)](/plugin_official)**　`NEW (7.2.1)`  
+[Project management](/plugin_pm), [Support Desk](/plugin_support_desk) and [groupware](/plugin_groupware) come with Exment from 7.2.1. Just turn them on in "Features".
+
+**🧩 [Studio (build screens and a phone app)](/studio)**　`NEW (7.2.1)`  
+Place parts to make a table, its input screen and its list. The screens also work in the phone app.
+
+**📁 [File sharing](/file_server)**　`NEW (7.2.1)`  
+Share folders and files in a space for each team. You can go back to an older version and make share links.
+
+**🤖 [API keys](/api_key) and [MCP (connect from AI)](/mcp)**　`NEW (7.2.1)`  
+Users can make their own API keys. AI such as Claude can read Exment data with that user's permissions.
+
+### Managing Exment
+
+**⚙️ [Features](/feature)**　`NEW (7.2.1)`  
+On one screen, decide whether to use each new feature and plugin, and who can use it.
+
+**🚀 [Tuning](/tuning)**　`NEW (7.2.1)`  
+See the settings that make Exment faster, and their state now. Some can be changed with a button on the screen.
+
+**🛡️ [Security (two-factor login, IP limits, security check)](/security_check)**　`NEW (7.2.1)`  
+Besides [two-factor login](/login_2factor) and the [IP filter](/additional_ip_filter), from 7.2.1 you can check on the screen for unsafe settings.
+
+**💾 [Backup and restore](/backup)**　`Standard`  
+Save your data and files, and bring them back later. It can also save automatically at a set time.
+
+**🌏 [Language and time zone per user](/user_locale)**　`NEW (7.2.4)`  
+Each user can choose the language and time zone of the screen.
+
+## Find by what you want to do
+
+| What you want to do | Page |
+|---|---|
+| Install Exment and start | [Installation flow](/quickstart) |
+| Settings before you start | [Initial setting](/first_setting) |
+| Make tables and columns | [Tables](/table) / [Columns](/column) |
+| Arrange the input screen | [Forms](/form) |
+| Bring in data from Excel or CSV | [Data import](/data_import_export?id=data-import) |
+| See data as a list, kanban, Gantt chart or calendar | [Views](/view) |
+| Put charts and summaries on the home page | [Dashboard](/dashboard) |
+| Find data | [Search](/search) |
+| Run requests and approvals | [Workflow](/workflow_setting) / [Request pack](/template?id=bundled-template-request-pack) |
+| Tell people when something changes | [Notifications](/notify) / [LINE](/line) |
+| Let people outside fill in a form | [Public forms](/publicform) |
+| Add users and organizations | [Users](/user) / [Organizations](/organization) |
+| Decide who can see what | [Permissions](/permission) / [Role groups](/role_group) |
+| Decide how people log in (SSO, two-factor) | [Login settings](/login_setting) / [Two-factor login](/login_2factor) |
+| Share files in a team | [File sharing](/file_server) |
+| Choose the features to use | [Features](/feature) |
+| Connect other systems | [API](/api) / [API keys](/api_key) |
+| Read data from AI (such as Claude) | [MCP](/mcp) |
+| Add your own features | [Plugins](/plugin) / [How to make one](/plugin_quickstart) |
+| Bring back deleted data | [Deleted data](/deleted_data) |
+| Back up | [Backup and restore](/backup) |
+| When screens are slow | [Tuning](/tuning) |
+| Update to a new version | [Update](/update) |
+| When something does not work | [Troubleshooting](/troubleshooting) |
+
 ## What is Exment
 ### Move your work out of spreadsheets and scattered files.
 Exment is a **free, open source web database for building your own business apps without code**. Bring customers, deals, requests and tasks into one place, and run them as a team.

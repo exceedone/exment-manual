@@ -20,7 +20,7 @@ Exment는 PHP가 동작하는 웹 서버와 데이터베이스가 있으면 동�
 | 쓰는 환경 | 절차 |
 |---|---|
 | 시험 삼아 자신의 PC에서 | [XAMPP(Windows)](/ko/install_xampp)·[XAMPP(Mac)](/ko/install_xampp_mac) |
-| 임대 서버(Xserver 등) | [임대 서버](/ko/install_rental) |
+| 임대 서버(Xserver 등) | [간편 설치(임대 서버)](/ko/install_rental_easy)・[임대 서버(SSH)](/ko/install_rental) |
 | Linux 서버 | [Linux](/ko/install_linux) |
 | 클라우드 | [AWS](/ko/install_aws)·[AWS(1대)](/ko/install_aws_single)·[Azure Web Apps](/ko/install_azure_web_apps) |
 | Docker | [Docker](/ko/install_docker) |
@@ -52,7 +52,7 @@ Exment는 PHP가 동작하는 웹 서버와 데이터베이스가 있으면 동�
 ## 4. 쓰기 시작한다
 - **먼저 정해 둘 것(어느 사이트에서나 필요)**: [작업 스케줄](/ko/additional_task_schedule)(cron)을 설정하십시오. 알림·스케줄·자동 백업 등이 동작합니다.
 - 업무에 맞추어 [테이블](/ko/table)·[폼](/ko/form)·[뷰](/ko/view)를 만듭니다.
-- [기능 관리](/ko/feature)에서 쓸 기능과 무료 공식 플러그인(프로젝트 관리·IT 지원·Groupware)을 고릅니다.
+- [기능 관리](/ko/feature)에서 쓸 기능과 무료 공식 플러그인(프로젝트 관리·서포트 데스크·Groupware)을 고릅니다.
 - [보안 점검](/ko/security_check)과 [튜닝](/ko/tuning)으로 안전과 속도의 설정을 확인합니다.
 - 그 밖의 설정(메일·파일을 두는 곳·큐 등)은 [추가 설정](/ko/quickstart_more)에 있습니다.
 

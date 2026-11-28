@@ -6,7 +6,7 @@ Về những thay đổi của từng phiên bản, vui lòng xem [release note]
 1. **Kiểm tra phiên bản hiện tại**
 2. **Sao lưu**
 3. **Cập nhật** (cách làm tùy theo phiên bản hiện tại)
-4. **Kiểm tra sau khi cập nhật**
+4. **Kiểm tra sau khi cập nhật** (kiểm tra cả phiên bản mới của plugin chính thức đi kèm)
 
 ## 1. Kiểm tra phiên bản hiện tại
 - Trên màn hình: "System Setting" → "System version information" → "Current version"
@@ -137,6 +137,35 @@ Vui lòng xem trang của mọi mốc nằm giữa phiên bản hiện tại và
 - Nhấn **Ctrl+F5** trên trình duyệt để tải lại màn hình.
 - Kiểm tra ở "System Setting" → "System version information" xem đã là phiên bản mới chưa.
 - Nếu xảy ra lỗi, vui lòng xem [Xử lý sự cố](/vi/troubleshooting).
+- Sau khi cập nhật, hãy kiểm tra phiên bản mới của plugin chính thức đi kèm trong "Quản lý tính năng" (xem "[Cập nhật và plugin chính thức đi kèm](/vi/update?id=cập-nhật-và-plugin-chính-thức-đi-kèm)" bên dưới).
+
+## Cập nhật và plugin chính thức đi kèm
+Từ Exment v7.2.1, các plugin chính thức miễn phí (quản lý dự án, Bộ phận hỗ trợ, Groupware) được đi kèm Exment (gói exceedone/exment-plugins-release).
+
+`composer update` và `php artisan exment:update` (cả batch cập nhật và cập nhật tự động) mang đến plugin đi kèm mới cùng với Exment mới. **Nhưng plugin trang web đang dùng không tự chuyển.** Plugin có dữ liệu và thiết lập, nên quản trị viên hệ thống quyết định khi nào chuyển.
+
+Vì vậy, sau khi cập nhật, trang web có hai loại:
+
+| | Nằm ở đâu | Khi nào thay đổi |
+| --- | --- | --- |
+| Plugin đang dùng | Thư mục plugin của trang web và cơ sở dữ liệu | Khi quản trị viên hệ thống chuyển trong "Quản lý tính năng" |
+| Plugin đi kèm | Trong gói của Exment (exceedone/exment-plugins-release) | Khi cập nhật Exment |
+
+### Cách chuyển
+1. Mở "[Quản lý tính năng](/vi/feature?id=plugin-chính-thức-miễn-phí-đi-kèm-exment)". Các plugin đi kèm hiện trong mục "Plugin chính thức miễn phí (đi kèm Exment)".
+2. Khi có phiên bản mới, sẽ hiện "Có phiên bản mới ...". Bấm "Cập nhật lên phiên bản này" để chuyển. Thiết lập, menu và quyền được giữ lại.
+3. Phiên bản trước khi chuyển vẫn còn. Nếu có gì không chạy, hãy quay lại bằng "Quay lại phiên bản trước (...)".
+
+- Chỉ hiện các plugin chính thức đã kiểm tra được chữ ký của Exceed One.
+- Khi phiên bản mới có bản sửa lỗi bảo mật, quản trị viên hệ thống được báo một lần: bằng thông báo ở trang chủ và ở chuông (và bằng email ở trang gửi được email). Xem [Thông báo bản sửa lỗi bảo mật](/vi/feature?id=thông-báo-bản-sửa-lỗi-bảo-mật).
+- Plugin chưa từng bấm "Dùng" sẽ không được cài khi cập nhật.
+- Ở trang mà đơn vị vận hành đổi phiên bản (như Exment SaaS), không có nút; đơn vị vận hành sẽ chuyển.
+
+### Khi phiên bản đi kèm mới đến
+- Exment 7.2.x dùng gói exceedone/exment-plugins-release trong phạm vi `~7.2.0`. Vì vậy `composer update` mang đến plugin đi kèm mới nhất của 7.2.x **ngay cả khi Exment không có phiên bản mới** (ví dụ, ExmentPM 1.7.24 đến cùng gói 7.2.22).
+- Khi đến, plugin đang dùng không thay đổi. Chỉ chuyển khi quản trị viên hệ thống bấm "Cập nhật lên phiên bản này" trong "Quản lý tính năng".
+- File zip tải từ exment.net chứa plugin đi kèm của ngày tạo zip. Zip chỉ được tạo lại khi có phiên bản Exment mới. Trang web cài từ zip cũng nhận plugin đi kèm mới hơn ở lần `composer update` tiếp theo.
+- Exment 7.3 nhận cùng plugin đi kèm như 7.2 (plugin chính thức chạy được trên cả hai; Exment 7.3 dùng gói trong phạm vi `^7.2`).
 
 ## Số phiên bản và phạm vi cập nhật
 Số phiên bản của Exment là "major . minor . patch" (ví dụ v7.1.0). Số nào tăng sẽ quyết định cách cập nhật.

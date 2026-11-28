@@ -20,7 +20,7 @@ Para ver el entorno de funcionamiento y los ajustes en detalle, consulte [Config
 | Entorno que usa | Pasos |
 |---|---|
 | Para probar en su propio ordenador | [XAMPP (Windows)](/es/install_xampp) y [XAMPP (Mac)](/es/install_xampp_mac) |
-| Servidor de alquiler (Xserver, etc.) | [Servidor de alquiler](/es/install_rental) |
+| Servidor de alquiler (Xserver, etc.) | [Instalación fácil (servidor de alquiler)](/es/install_rental_easy)・[Servidor de alquiler (SSH)](/es/install_rental) |
 | Servidor Linux | [Linux](/es/install_linux) |
 | Nube | [AWS](/es/install_aws), [AWS (1 servidor)](/es/install_aws_single) y [Azure Web Apps](/es/install_azure_web_apps) |
 | Docker | [Docker](/es/install_docker) |
@@ -52,7 +52,7 @@ Para más detalles, consulte [Configuración inicial](/es/first_setting).
 ## 4. Empezar a usarlo
 - **Lo primero que hay que decidir (necesario en todos los sitios)**: configure la [programación de tareas](/es/additional_task_schedule) (cron). Así funcionan las notificaciones, las programaciones, las copias de seguridad automáticas, etc.
 - Cree las [tablas](/es/table), los [formularios](/es/form) y las [vistas](/es/view) según su trabajo.
-- En la [gestión de funciones](/es/feature), elija las funciones que va a usar y los plugins oficiales gratuitos (gestión de proyectos, soporte de TI, Groupware).
+- En la [gestión de funciones](/es/feature), elija las funciones que va a usar y los plugins oficiales gratuitos (gestión de proyectos, mesa de soporte, Groupware).
 - Con la [comprobación de seguridad](/es/security_check) y la [optimización](/es/tuning), compruebe los ajustes de seguridad y de velocidad.
 - Los demás ajustes (correo, ubicación de los archivos, colas, etc.) están en [Configuración adicional](/es/quickstart_more).
 

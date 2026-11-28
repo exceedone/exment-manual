@@ -59,12 +59,13 @@ Es gibt keine zweite, neue Einstellung. Der Bildschirm zeigt die vorhandenen Ein
 <!-- Screenshot: die Zeile eines Plugins und die Zeilen der Funktionen im Plugin (img/feature/feature_plugin.png). Wird nach dem Merge von #1861 aufgenommen -->
 
 ## Kostenlose offizielle Plugins (in Exment enthalten)
-Mit Exment werden kostenlose offizielle Plugins ausgeliefert (Projektverwaltung, IT-Support, Groupware). Sie installieren sie im Bereich „Kostenlose offizielle Plugins (in Exment enthalten)“ der „Funktionsverwaltung“. Einzelheiten stehen unter [Offizielle Plugins](/de/plugin_official).
+Mit Exment werden kostenlose offizielle Plugins ausgeliefert (Projektverwaltung, Support-Desk, Groupware). Sie installieren sie im Bereich „Kostenlose offizielle Plugins (in Exment enthalten)“ der „Funktionsverwaltung“. Einzelheiten stehen unter [Offizielle Plugins](/de/plugin_official).
 
 - Bis Sie auf „Verwenden (installieren)“ klicken, wird nichts installiert und nichts geladen (es werden auch keine Tabellen angelegt).
 - Nach dem Klick wird geprüft, dann installiert und aktiviert. Auch die Hauptfunktion des Plugins steht dann auf „Verwenden“. Danach steht das Plugin auch oben im Bereich „Plugins“, und Sie können festlegen, wer es nutzen darf und ob es im Menü steht.
 - Wenn es eine neue Version gibt, steht dort „Version ○○ ist verfügbar.“ Sie wird nicht automatisch installiert. Sie aktualisieren mit „Auf diese Version aktualisieren“ (Einstellungen, Menüs und Berechtigungen bleiben erhalten).
 - Die Version vor der Aktualisierung bleibt erhalten. Mit „Zurück zur vorherigen Version (○○)“ kehren Sie zurück.
+- Eine Aktualisierung von Exment wechselt die verwendeten Plugins nicht von selbst. Siehe [Aktualisierungen und die mitgelieferten offiziellen Plugins](/de/update?id=aktualisierungen-und-die-mitgelieferten-offiziellen-plugins).
 - Plugins, die Sie schon früher von Hand installiert haben, nutzen Sie unverändert weiter (sie werden nicht neu installiert). Nur wenn die mitgelieferte Version neuer ist, erscheint ein Hinweis. Wenn Sie durch die mitgelieferte Version ersetzen, können Sie nicht zur von Hand installierten Version zurückkehren.
 - Mitgelieferte Plugins werden erst installiert, nachdem die Signatur von Exceed One geprüft wurde. Plugins, deren Signatur nicht stimmt, erscheinen nicht.
 - Auf Websites, auf denen der Betreiber die Versionen wechselt (SaaS usw.), steht „Die Versionen werden vom Betreiber dieser Website gewechselt.“, und es erscheinen keine Schaltflächen (`EXMENT_BUNDLED_PLUGINS_UPDATES=false` in `.env`).

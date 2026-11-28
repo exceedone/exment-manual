@@ -59,12 +59,13 @@ Màn hình không giữ thêm một bản thiết lập mới, mà cho xem đún
 <!-- Ảnh màn hình: dòng plugin và các dòng tính năng trong plugin (img/feature/feature_plugin.png). Chụp sau khi #1861 được merge -->
 
 ## Plugin chính thức miễn phí (đi kèm Exment)
-Exment có kèm sẵn các plugin chính thức miễn phí (quản lý dự án, hỗ trợ IT, Groupware). Bạn cài từ mục "Plugin chính thức miễn phí (đi kèm Exment)" của "Quản lý tính năng". Chi tiết vui lòng xem [Plugin chính thức](/vi/plugin_official).
+Exment có kèm sẵn các plugin chính thức miễn phí (quản lý dự án, Bộ phận hỗ trợ, Groupware). Bạn cài từ mục "Plugin chính thức miễn phí (đi kèm Exment)" của "Quản lý tính năng". Chi tiết vui lòng xem [Plugin chính thức](/vi/plugin_official).
 
 - Cho đến khi bấm "Sử dụng (cài đặt)", plugin không được cài đặt và cũng không được nạp (bảng cũng không được tạo).
 - Khi bấm, hệ thống kiểm tra rồi cài đặt và bật plugin. Tính năng chính của plugin đó cũng thành "Sử dụng". Sau đó plugin cũng nằm ở mục "Plugin" phía trên, và bạn quyết định được người được sử dụng và menu.
 - Khi có phiên bản mới, sẽ hiện "Có phiên bản mới ...". Hệ thống không tự cài. Bạn cập nhật bằng "Cập nhật lên phiên bản này" (thiết lập, menu và quyền được giữ lại).
 - Phiên bản trước khi cập nhật vẫn còn, và bạn quay lại được bằng "Quay lại phiên bản trước (...)".
+- Cập nhật Exment không tự chuyển các plugin đang dùng. Xem [Cập nhật và plugin chính thức đi kèm](/vi/update?id=cập-nhật-và-plugin-chính-thức-đi-kèm).
 - Plugin đã cài bằng tay từ trước vẫn dùng được như cũ (không cài lại). Chỉ khi bản kèm sẵn mới hơn thì mới có thông báo. Khi đã thay bằng phiên bản kèm sẵn thì không quay lại phiên bản cài bằng tay được.
 - Plugin kèm sẵn được cài sau khi kiểm tra chữ ký của Exceed One. Plugin có chữ ký không khớp sẽ không hiện ra.
 - Ở trang mà đơn vị vận hành đổi phiên bản (SaaS, v.v.), sẽ hiện "Việc thay đổi phiên bản do đơn vị cung cấp trang này thực hiện." và không có nút (`EXMENT_BUNDLED_PLUGINS_UPDATES=false` trong `.env`).
