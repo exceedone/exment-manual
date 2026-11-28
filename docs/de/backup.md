@@ -115,6 +115,31 @@ php artisan exment:backup --target=database,attachment
 ~~~
 
 
+<h3 id="check_backup_db"><a href="#/de/backup?id=check_backup_db" data-id="check_backup_db" class="anchor"><span>Prüfen, ob eine Sicherung die Datenbank enthält</span></a></h3>
+
+Bis v7.2.8 konnte bei manchen Kombinationen aus mysqldump-Client und Datenbankserver eine Sicherung ohne die Datenbank gespeichert werden, obwohl sie als erfolgreich angezeigt wurde (die `.sql`-Dateien haben 0 Byte). Zum Beispiel: die MariaDB-Client-Tools ab 11.4 mit einem MySQL-8-Server mit selbstsigniertem Zertifikat oder mit einem MariaDB-Server ohne TLS. **Wird eine solche Sicherung wiederhergestellt, ist die Datenbank danach leer.**
+
+- Öffnen Sie die ZIP-Datei der Sicherung und sehen Sie sich die Größe von `table_definition.sql` auf der obersten Ebene an. **Hat sie 0 Byte, ist die Datenbank nicht in dieser Sicherung. Stellen Sie sie nicht wieder her.**
+- Aktualisieren Sie auf v7.2.9, erstellen Sie eine neue Sicherung und prüfen Sie sie auf dieselbe Weise.
+- Ab v7.2.9 schlägt eine Sicherung mit dem Grund und einem Hinweis fehl, wenn mysqldump fehlschlägt oder eine leere Datei schreibt. Eine Wiederherstellung prüft vor jeder Änderung an der Datenbank alle Dateien und die Verbindung; schlägt eine Prüfung fehl, bricht sie mit der Meldung ab, dass nichts wiederhergestellt und die Datenbank nicht geändert wurde. Eine fehlgeschlagene automatische Sicherung wird protokolliert.
+
+#### Optionen für mysqldump und mysql
+Passen die TLS-Einstellungen von Client und Server nicht zusammen, können Sie Optionen in der `.env` ergänzen (ab v7.2.9).
+
+~~~
+# Optionen für mysqldump (Sicherung)
+EXMENT_DB_DUMP_OPTIONS=--skip-ssl-verify-server-cert
+# Optionen für mysql (Wiederherstellung und die Verbindungsprüfung davor)
+EXMENT_DB_RESTORE_OPTIONS=--skip-ssl-verify-server-cert
+~~~
+
+- MariaDB-Client: `--skip-ssl-verify-server-cert` (oder `skip-ssl-verify-server-cert` unter `[client]` in der my.cnf)
+- MySQL-Client: `--ssl-mode=DISABLED` oder `--ssl-mode=VERIFY_CA --ssl-ca=...` mit der CA-Datei
+- Führen Sie danach `php artisan config:clear` aus (bzw. `php artisan config:cache`, wenn Sie die Konfiguration zwischenspeichern).
+
+#### Wenn Sie docker-exment verwenden
+Im PHP-Image von docker-exment sind `mysql` und `mysqldump` der MariaDB-Client. Das neueste docker-exment legt eine Einstellungsdatei in das Image, damit sich dieser Client mit MySQL und MariaDB des Stacks verbindet. Holen Sie das neueste docker-exment (`git pull`) und bauen Sie das PHP-Image neu (zum Beispiel `docker compose build php`, dann `docker compose up -d`). Siehe die [README von docker-exment](https://github.com/exceedone/docker-exment#the-mysql-and-mysqldump-clients-in-the-php-container).
+
 ## Wiederherstellen
 Es gibt 2 Wege, Daten wiederherzustellen: „Aus der Sicherungsliste wählen“ und „Hochladen“.  
 

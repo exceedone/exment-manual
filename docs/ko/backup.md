@@ -115,6 +115,31 @@ php artisan exment:backup --target=database,attachment
 ~~~
 
 
+<h3 id="check_backup_db"><a href="#/ko/backup?id=check_backup_db" data-id="check_backup_db" class="anchor"><span>백업에 DB가 들어 있는지 확인하기</span></a></h3>
+
+v7.2.8까지는 mysqldump 클라이언트와 데이터베이스 서버의 조합에 따라, 백업이 「성공」으로 표시되어도 데이터베이스가 들어 있지 않은 경우가 있었습니다(`.sql` 파일이 0바이트). 예: MariaDB 11.4 이후의 클라이언트 도구와 자체 서명 인증서를 쓰는 MySQL 8, 또는 TLS가 없는 MariaDB의 조합입니다. **이런 백업으로 복원하면 데이터베이스가 비게 됩니다.**
+
+- 백업 zip을 열어 맨 위에 있는 `table_definition.sql`의 크기를 확인하세요. **0바이트이면 그 백업에는 데이터베이스가 들어 있지 않습니다. 그 백업으로 복원하지 마세요.**
+- v7.2.9로 업데이트한 뒤 백업을 다시 만들고, 같은 방법으로 확인하세요.
+- v7.2.9부터는 mysqldump가 실패하거나 빈 파일만 만들어지면 백업이 실패로 끝나고, 이유와 힌트가 표시됩니다. 복원은 데이터베이스를 바꾸기 전에 모든 파일과 연결을 확인하고, 확인에 실패하면 복원하지 않았고 데이터베이스는 바뀌지 않았다고 표시하고 멈춥니다. 자동 백업의 실패는 로그에 남습니다.
+
+#### mysqldump·mysql에 옵션 전달하기
+클라이언트와 서버의 TLS 설정이 맞지 않을 때는 `.env`에서 옵션을 추가할 수 있습니다(v7.2.9부터).
+
+~~~
+# mysqldump(백업)에 추가하는 옵션
+EXMENT_DB_DUMP_OPTIONS=--skip-ssl-verify-server-cert
+# mysql(복원과 그 전의 연결 확인)에 추가하는 옵션
+EXMENT_DB_RESTORE_OPTIONS=--skip-ssl-verify-server-cert
+~~~
+
+- MariaDB 클라이언트: `--skip-ssl-verify-server-cert` (my.cnf의 `[client]`에 `skip-ssl-verify-server-cert`라고 써도 됩니다)
+- MySQL 클라이언트: `--ssl-mode=DISABLED`, 또는 CA 파일을 지정해 `--ssl-mode=VERIFY_CA --ssl-ca=...`
+- 설정한 뒤 `php artisan config:clear`(`config:cache`를 쓰는 경우에는 `php artisan config:cache`)를 실행하세요.
+
+#### docker-exment를 쓰는 경우
+docker-exment의 PHP 이미지에서 `mysql`·`mysqldump`는 MariaDB 클라이언트입니다. 최신 docker-exment는 이 클라이언트가 스택의 MySQL·MariaDB에 연결되도록 설정 파일을 이미지에 넣었습니다. 최신 docker-exment를 받고(`git pull`) PHP 이미지를 다시 빌드하세요(예: `docker compose build php` 후 `docker compose up -d`). 자세한 내용은 [docker-exment의 README](https://github.com/exceedone/docker-exment#the-mysql-and-mysqldump-clients-in-the-php-container)를 보세요.
+
 ## 복원
 데이터를 복원하는 방법은 "백업 목록에서 선택"과 "업로드"의 2가지입니다.  
 

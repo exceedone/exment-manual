@@ -115,6 +115,31 @@ php artisan exment:backup --target=database,attachment
 ~~~
 
 
+<h3 id="check_backup_db"><a href="#/backup?id=check_backup_db" data-id="check_backup_db" class="anchor"><span>Check that a backup has the database</span></a></h3>
+
+Up to v7.2.8, with some combinations of the mysqldump client and the database server, a backup could be saved without the database while it was shown as a success (the `.sql` files are 0 bytes). For example: the MariaDB client tools from 11.4 with a MySQL 8 server that uses its self-signed certificate, or with a MariaDB server without TLS. **Restoring such a backup empties the database.**
+
+- Open the backup zip and look at the size of `table_definition.sql` at its top. **If it is 0 bytes, the database is not in that backup. Do not restore it.**
+- Update to v7.2.9, take a new backup, and check it the same way.
+- From v7.2.9, a backup fails with the reason and a hint when mysqldump fails or writes an empty file. A restore checks every file and the connection before it changes the database, and when a check fails it stops with "Nothing was restored: the database was not changed." A failed scheduled backup is written to the log.
+
+#### Options for mysqldump and mysql
+When the TLS settings of the client and the server don't match, you can add options in `.env` (from v7.2.9).
+
+~~~
+# options added to mysqldump (backup)
+EXMENT_DB_DUMP_OPTIONS=--skip-ssl-verify-server-cert
+# options added to mysql (restore, and the connection check before it)
+EXMENT_DB_RESTORE_OPTIONS=--skip-ssl-verify-server-cert
+~~~
+
+- MariaDB client: `--skip-ssl-verify-server-cert` (or `skip-ssl-verify-server-cert` under `[client]` in my.cnf)
+- MySQL client: `--ssl-mode=DISABLED`, or `--ssl-mode=VERIFY_CA --ssl-ca=...` with the CA file
+- After the change, run `php artisan config:clear` (or `php artisan config:cache` if you cache the configuration).
+
+#### If you use docker-exment
+In the PHP image of docker-exment, `mysql` and `mysqldump` are the MariaDB client. The newest docker-exment puts a setting file in the image so that this client connects to the stack's MySQL and MariaDB. Get the latest docker-exment (`git pull`) and rebuild the PHP image (for example `docker compose build php`, then `docker compose up -d`). See the [README of docker-exment](https://github.com/exceedone/docker-exment#the-mysql-and-mysqldump-clients-in-the-php-container).
+
 ## Restore
 There are two ways to restore the data: "select from the backup list" and "upload".
 
