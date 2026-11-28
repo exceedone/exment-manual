@@ -115,6 +115,31 @@ php artisan exment:backup --target=database,attachment
 ~~~
 
 
+<h3 id="check_backup_db"><a href="#/ja/backup?id=check_backup_db" data-id="check_backup_db" class="anchor"><span>バックアップに DB が入っているか確かめる</span></a></h3>
+
+mysqldump のクライアントとデータベースの組み合わせによっては、v7.2.8 までは、バックアップが「成功」と出ても、データベースが入っていないことがありました（`.sql` のファイルが 0 バイト）。たとえば、MariaDB 11.4 以降のクライアントのツールと、自己署名の証明書を使う MySQL 8、または TLS のない MariaDB の組み合わせです。**このバックアップでリストアすると、データベースが空になります。**
+
+- バックアップの zip を開いて、いちばん上にある `table_definition.sql` の大きさを見てください。**0 バイトなら、そのバックアップにはデータベースが入っていません。そのバックアップでリストアしないでください。**
+- v7.2.9 にアップデートしてから、バックアップを取り直し、同じように確かめてください。
+- v7.2.9 からは、mysqldump が失敗したときや、空のファイルしかできないとき、バックアップは失敗になり、理由とヒントが出ます。リストアは、データベースを変える前にすべてのファイルとつながりを確かめ、だめなときは「リストアはしていません。データベースは変わっていません。」と出して止まります。自動のバックアップの失敗は、ログに出ます。
+
+#### mysqldump・mysql にオプションを渡す
+クライアントとサーバーで TLS の設定が合わないときは、`.env` でオプションを足せます（v7.2.9 から）。
+
+~~~
+# mysqldump（バックアップ）に足すオプション
+EXMENT_DB_DUMP_OPTIONS=--skip-ssl-verify-server-cert
+# mysql（リストアと、その前のつながりの確かめ）に足すオプション
+EXMENT_DB_RESTORE_OPTIONS=--skip-ssl-verify-server-cert
+~~~
+
+- MariaDB のクライアント：`--skip-ssl-verify-server-cert`（my.cnf の `[client]` に `skip-ssl-verify-server-cert` と書いてもかまいません）
+- MySQL のクライアント：`--ssl-mode=DISABLED`、または CA のファイルを指定して `--ssl-mode=VERIFY_CA --ssl-ca=...`
+- 書いたあとは `php artisan config:clear`（`config:cache` を使っているときは `php artisan config:cache`）を実行してください。
+
+#### docker-exment を使っている場合
+docker-exment の PHP のイメージでは、`mysql`・`mysqldump` は MariaDB のクライアントです。新しい docker-exment では、このクライアントがスタックの MySQL・MariaDB につながるように、設定のファイルをイメージに入れています。最新の docker-exment を取って（`git pull`）、PHP のイメージを作り直してください（例：`docker compose build php` のあと `docker compose up -d`）。くわしくは [docker-exment の README](https://github.com/exceedone/docker-exment#the-mysql-and-mysqldump-clients-in-the-php-container) をご覧ください。
+
 ## リストア
 データをリストア(復元)する方法は、「バックアップ一覧から選択」と「アップロード」の2種類です。  
 

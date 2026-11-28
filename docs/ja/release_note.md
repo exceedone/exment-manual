@@ -1,6 +1,28 @@
 # リリースノート
 ※パッチ・脆弱性リストは[こちら](/ja/patch_weakness)
 
+## v7.2.9 (2026/11/XX)
+- **重要：バックアップを確かめてください。** mysqldump のクライアントとデータベースの組み合わせによっては（たとえば、MariaDB 11.4 以降のクライアントのツールと、自己署名の証明書を使う MySQL 8、または TLS のない MariaDB）、バックアップが「成功」と出ても、データベースが入っていないことがありました（`.sql` のファイルが 0 バイト）。このバックアップでリストアすると、データベースが空になります。バックアップの zip の `table_definition.sql` が 0 バイトなら、そのバックアップでリストアしないでください。7.2.9 にアップデートして、バックアップを取り直し、確かめてください。詳細は[こちら](/ja/backup?id=check_backup_db)
+- 更新方法：ふつうのアップデートです（`composer update` と `php artisan exment:update`）。そのあと、バックアップを取り直してください。詳細は[こちら](/ja/update)
+1. バックアップ・リストア（[#2352](https://github.com/exceedone/exment/pull/2352)）
+    - mysqldump が失敗したとき、または空のファイルしかできないとき、バックアップを失敗にして、理由（クライアントの出力。パスワードは伏せます）を出すようにしました。クライアントとサーバーの TLS の設定が合わないときは、ヒントも出します
+    - リストアは、データベースを変える前に、すべての `.sql` のファイルと、mysql のクライアントがつながるかを確かめます。だめなときは「リストアはしていません。データベースは変わっていません。」と出して止まります。取りこみが途中で失敗したときは、途中で止まったことを出します
+    - 自動のバックアップが失敗したときは、ログに出して、次の回にもう一度取ります
+    - `.env` に `EXMENT_DB_DUMP_OPTIONS`（mysqldump に足すオプション）と `EXMENT_DB_RESTORE_OPTIONS`（mysql に足すオプション）を足しました
+    - `exment:backup`・`exment:restore`・`exment:total-update` は、失敗したとき終了コード 1 で終わります
+    - docker-exment：PHP のイメージの MariaDB のクライアントが、スタックの MySQL・MariaDB につながるようにしました（[docker-exment #25](https://github.com/exceedone/docker-exment/pull/25)）
+1. アップデート（[#2352](https://github.com/exceedone/exment/pull/2352)）
+    - いちばん新しい版（たとえば 7.3。exment-admin-core 2.x が要ります）が `composer update` だけでは入らないとき、ダッシュボード・システムの画面・`exment:update` でお知らせし、マニュアルの手順へのリンクを出すようにしました
+    - 動かなくなっていた、画面からの更新（`system/call_update`）をなくしました
+1. 不具合修正
+    - カンバン（列ごとに読みこむボード）：絞りこみとキーワードの検索をサーバーで行い、件数・合計と「もっと読む」が、当てはまるデータ全部になるようにしました。ヘルプの文も直しました（[#2344](https://github.com/exceedone/exment/pull/2344)・[#2346](https://github.com/exceedone/exment/pull/2346)、GitHub [#2185](https://github.com/exceedone/exment/issues/2185)）
+    - グラフの凡例に「undefined」と出ていたのを、Y 軸の項目の名前が出るように直しました（[#2344](https://github.com/exceedone/exment/pull/2344)）
+    - 保存する人から見えないユーザー・組織が入った列にも、通知が届くようにしました（[#2344](https://github.com/exceedone/exment/pull/2344)）
+    - プラグインのメッセージで、プラグインの名前を文字のまま出すようにしました（[#2344](https://github.com/exceedone/exment/pull/2344)）
+    - PHP 8.4 の非推奨の警告（暗黙の nullable の型）を直しました。OAuth のクライアントのエラーは warning でログに出します（[#2344](https://github.com/exceedone/exment/pull/2344)）
+    - ログインユーザーのボタンと画面の名前を「API キー・MCP」にしました（[#2325](https://github.com/exceedone/exment/pull/2325)）。サイトの API キーの画面（/api_keys）に、その画面の見出しを出すようにしました（[#2346](https://github.com/exceedone/exment/pull/2346)）
+    - CI：PHP 8.4 での構文の確かめ、composer・phpstan・phpunit の設定が変わったときのテスト（[#2344](https://github.com/exceedone/exment/pull/2344)・[#2351](https://github.com/exceedone/exment/pull/2351)）
+
 ## v7.2.8 (2026/11/28)
 - 更新方法：ふつうのアップデートです（`composer update` と `php artisan exment:update`）。詳細は[こちら](/ja/update)
 1. 不具合修正

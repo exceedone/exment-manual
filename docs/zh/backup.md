@@ -115,6 +115,31 @@ php artisan exment:backup --target=database,attachment
 ~~~
 
 
+<h3 id="check_backup_db"><a href="#/zh/backup?id=check_backup_db" data-id="check_backup_db" class="anchor"><span>确认备份中是否包含数据库</span></a></h3>
+
+在 v7.2.8 及之前，根据 mysqldump 客户端与数据库服务器的组合，备份有时显示“成功”却没有包含数据库（`.sql` 文件为 0 字节）。例如：MariaDB 11.4 及以后的客户端工具，与使用自签名证书的 MySQL 8，或与没有 TLS 的 MariaDB 组合时。**用这样的备份还原，数据库会被清空。**
+
+- 打开备份的 zip，查看最上层的 `table_definition.sql` 的大小。**如果是 0 字节，该备份中没有数据库。请不要用它还原。**
+- 请更新到 v7.2.9，重新备份，并用同样的方法确认。
+- 从 v7.2.9 起，mysqldump 失败或只生成空文件时，备份会失败，并显示原因和提示。还原会在修改数据库之前确认所有文件和连接，确认失败时会显示没有还原、数据库没有改变，并停止。自动备份失败时会写入日志。
+
+#### 给 mysqldump・mysql 传递选项
+客户端与服务器的 TLS 设置不一致时，可以在 `.env` 中添加选项（v7.2.9 起）。
+
+~~~
+# 添加到 mysqldump（备份）的选项
+EXMENT_DB_DUMP_OPTIONS=--skip-ssl-verify-server-cert
+# 添加到 mysql（还原及其之前的连接确认）的选项
+EXMENT_DB_RESTORE_OPTIONS=--skip-ssl-verify-server-cert
+~~~
+
+- MariaDB 客户端：`--skip-ssl-verify-server-cert`（也可以在 my.cnf 的 `[client]` 中写 `skip-ssl-verify-server-cert`）
+- MySQL 客户端：`--ssl-mode=DISABLED`，或指定 CA 文件 `--ssl-mode=VERIFY_CA --ssl-ca=...`
+- 修改后请执行 `php artisan config:clear`（使用 `config:cache` 时执行 `php artisan config:cache`）。
+
+#### 使用 docker-exment 时
+在 docker-exment 的 PHP 镜像中，`mysql`・`mysqldump` 是 MariaDB 的客户端。最新的 docker-exment 在镜像中放入了设置文件，使该客户端能连接到 stack 中的 MySQL・MariaDB。请获取最新的 docker-exment（`git pull`），并重新构建 PHP 镜像（例如 `docker compose build php` 之后 `docker compose up -d`）。详情请参阅 [docker-exment 的 README](https://github.com/exceedone/docker-exment#the-mysql-and-mysqldump-clients-in-the-php-container)。
+
 ## 还原
 还原(恢复)数据的方法有“从备份列表选择”和“上传”2 种。  
 

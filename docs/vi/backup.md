@@ -115,6 +115,31 @@ php artisan exment:backup --target=database,attachment
 ~~~
 
 
+<h3 id="check_backup_db"><a href="#/vi/backup?id=check_backup_db" data-id="check_backup_db" class="anchor"><span>Kiểm tra bản sao lưu có cơ sở dữ liệu hay không</span></a></h3>
+
+Đến v7.2.8, với một số tổ hợp giữa trình khách mysqldump và máy chủ cơ sở dữ liệu, bản sao lưu có thể được lưu mà không có cơ sở dữ liệu dù màn hình báo thành công (các tệp `.sql` có 0 byte). Ví dụ: công cụ trình khách MariaDB từ 11.4 với máy chủ MySQL 8 dùng chứng chỉ tự ký, hoặc với máy chủ MariaDB không có TLS. **Khôi phục từ bản sao lưu như vậy sẽ làm cơ sở dữ liệu trống.**
+
+- Mở tệp zip của bản sao lưu và xem kích thước của `table_definition.sql` ở cấp trên cùng. **Nếu là 0 byte, bản sao lưu đó không có cơ sở dữ liệu. Đừng khôi phục từ bản đó.**
+- Cập nhật lên v7.2.9, tạo bản sao lưu mới và kiểm tra theo cách tương tự.
+- Từ v7.2.9, khi mysqldump thất bại hoặc chỉ ghi ra tệp trống, việc sao lưu sẽ thất bại kèm lý do và gợi ý. Việc khôi phục kiểm tra mọi tệp và kết nối trước khi thay đổi cơ sở dữ liệu; nếu kiểm tra không đạt, nó dừng lại với thông báo rằng chưa khôi phục gì và cơ sở dữ liệu không thay đổi. Lỗi của sao lưu tự động được ghi vào log.
+
+#### Truyền tùy chọn cho mysqldump và mysql
+Khi cài đặt TLS của trình khách và máy chủ không khớp, bạn có thể thêm tùy chọn trong `.env` (từ v7.2.9).
+
+~~~
+# tùy chọn thêm vào mysqldump (sao lưu)
+EXMENT_DB_DUMP_OPTIONS=--skip-ssl-verify-server-cert
+# tùy chọn thêm vào mysql (khôi phục và kiểm tra kết nối trước đó)
+EXMENT_DB_RESTORE_OPTIONS=--skip-ssl-verify-server-cert
+~~~
+
+- Trình khách MariaDB: `--skip-ssl-verify-server-cert` (hoặc ghi `skip-ssl-verify-server-cert` trong `[client]` của my.cnf)
+- Trình khách MySQL: `--ssl-mode=DISABLED`, hoặc `--ssl-mode=VERIFY_CA --ssl-ca=...` với tệp CA
+- Sau đó, chạy `php artisan config:clear` (hoặc `php artisan config:cache` nếu bạn lưu cấu hình vào cache).
+
+#### Nếu bạn dùng docker-exment
+Trong image PHP của docker-exment, `mysql` và `mysqldump` là trình khách MariaDB. docker-exment mới nhất đưa một tệp cài đặt vào image để trình khách này kết nối được với MySQL và MariaDB của stack. Hãy lấy docker-exment mới nhất (`git pull`) và build lại image PHP (ví dụ `docker compose build php`, rồi `docker compose up -d`). Xem [README của docker-exment](https://github.com/exceedone/docker-exment#the-mysql-and-mysqldump-clients-in-the-php-container).
+
 ## Khôi phục
 Có 2 cách khôi phục (phục hồi) dữ liệu: "chọn từ danh sách bản sao lưu" và "tải lên".  
 

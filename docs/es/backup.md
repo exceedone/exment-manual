@@ -115,6 +115,31 @@ php artisan exment:backup --target=database,attachment
 ~~~
 
 
+<h3 id="check_backup_db"><a href="#/es/backup?id=check_backup_db" data-id="check_backup_db" class="anchor"><span>Comprobar que una copia de seguridad contiene la base de datos</span></a></h3>
+
+Hasta v7.2.8, con algunas combinaciones del cliente mysqldump y el servidor de base de datos, una copia de seguridad podía guardarse sin la base de datos aunque se mostraba como correcta (los archivos `.sql` tienen 0 bytes). Por ejemplo: las herramientas cliente de MariaDB desde 11.4 con un servidor MySQL 8 que usa su certificado autofirmado, o con un servidor MariaDB sin TLS. **Al restaurar una copia así, la base de datos queda vacía.**
+
+- Abra el zip de la copia y mire el tamaño de `table_definition.sql`, en el primer nivel. **Si tiene 0 bytes, la base de datos no está en esa copia. No la restaure.**
+- Actualice a v7.2.9, haga una nueva copia y compruébela de la misma manera.
+- Desde v7.2.9, la copia falla con el motivo y una pista cuando mysqldump falla o escribe un archivo vacío. La restauración comprueba todos los archivos y la conexión antes de cambiar la base de datos y, si una comprobación falla, se detiene con un mensaje que dice que no se restauró nada y que la base de datos no cambió. Una copia automática fallida se registra en el log.
+
+#### Opciones para mysqldump y mysql
+Si la configuración TLS del cliente y del servidor no coincide, puede añadir opciones en `.env` (desde v7.2.9).
+
+~~~
+# opciones que se añaden a mysqldump (copia de seguridad)
+EXMENT_DB_DUMP_OPTIONS=--skip-ssl-verify-server-cert
+# opciones que se añaden a mysql (restauración y la comprobación de la conexión antes)
+EXMENT_DB_RESTORE_OPTIONS=--skip-ssl-verify-server-cert
+~~~
+
+- Cliente MariaDB: `--skip-ssl-verify-server-cert` (o `skip-ssl-verify-server-cert` en `[client]` de my.cnf)
+- Cliente MySQL: `--ssl-mode=DISABLED`, o `--ssl-mode=VERIFY_CA --ssl-ca=...` con el archivo de la CA
+- Después, ejecute `php artisan config:clear` (o `php artisan config:cache` si guarda la configuración en caché).
+
+#### Si usa docker-exment
+En la imagen PHP de docker-exment, `mysql` y `mysqldump` son el cliente de MariaDB. El docker-exment más reciente incluye en la imagen un archivo de configuración para que este cliente se conecte a MySQL y MariaDB del stack. Obtenga el docker-exment más reciente (`git pull`) y vuelva a construir la imagen PHP (por ejemplo `docker compose build php` y luego `docker compose up -d`). Consulte el [README de docker-exment](https://github.com/exceedone/docker-exment#the-mysql-and-mysqldump-clients-in-the-php-container).
+
 ## Restaurar
 Hay 2 formas de restaurar (recuperar) los datos: "Elegir en la lista de copias de seguridad" y "Subir".  
 

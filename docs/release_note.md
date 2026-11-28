@@ -1,6 +1,28 @@
 # Release notes
 * Click [here](/patch_weakness) for the patch / vulnerability list.
 
+## v7.2.9 (2026/11/XX)
+- **Important: please check your backups.** With some combinations of the mysqldump client and the database server (for example the MariaDB client tools from 11.4 with a MySQL 8 server that uses its self-signed certificate, or with a MariaDB server without TLS), backups were saved without the database while the backup was shown as a success (the `.sql` files are 0 bytes). Restoring such a backup empties the database. If `table_definition.sql` in a backup zip is 0 bytes, do not restore that backup. Update to 7.2.9, take a new backup, and check it. See [here](/backup?id=check_backup_db)
+- How to update: the usual update (`composer update` and `php artisan exment:update`). Then take a new backup. See [here](/update)
+1. Backup and restore ([#2352](https://github.com/exceedone/exment/pull/2352))
+    - A backup whose mysqldump fails, or writes an empty file, now fails with the reason (the output of the client, with the password masked). A TLS mismatch between the client and the server is told with a hint
+    - A restore checks every `.sql` file and the connection of the mysql client before it changes the database. If a check fails, it stops with "Nothing was restored: the database was not changed." A failed import stops the restore and says it stopped midway
+    - A failed scheduled backup is written to the log, and the next run tries again
+    - New `.env` settings: `EXMENT_DB_DUMP_OPTIONS` (added to mysqldump) and `EXMENT_DB_RESTORE_OPTIONS` (added to mysql)
+    - `exment:backup`, `exment:restore` and `exment:total-update` end with 1 when they fail
+    - docker-exment: the MariaDB client in the PHP image connects to the stack's MySQL and MariaDB ([docker-exment #25](https://github.com/exceedone/docker-exment/pull/25))
+1. Updates ([#2352](https://github.com/exceedone/exment/pull/2352))
+    - When the newest version can't be installed with `composer update` alone (for example 7.3, which needs exment-admin-core 2.x), the dashboard, the system page and `exment:update` say so, with a link to the steps in the manual
+    - The update from the screen (`system/call_update`), which did not work, is removed
+1. Bug fixes
+    - Kanban, a board read per column: filters and the keyword search run on the server, so the counts, the totals and "load more" cover all the matching records; its help text is updated ([#2344](https://github.com/exceedone/exment/pull/2344), [#2346](https://github.com/exceedone/exment/pull/2346), GitHub [#2185](https://github.com/exceedone/exment/issues/2185))
+    - Chart legends show the Y item instead of "undefined" ([#2344](https://github.com/exceedone/exment/pull/2344))
+    - Notifications to a user or organization column work when the person who saves can't see that user or organization ([#2344](https://github.com/exceedone/exment/pull/2344))
+    - Plugin messages show the plugin's name as text ([#2344](https://github.com/exceedone/exment/pull/2344))
+    - PHP 8.4: deprecations (implicitly nullable types) are fixed; OAuth client errors are logged as warnings ([#2344](https://github.com/exceedone/exment/pull/2344))
+    - The login user's button and page say "API keys & MCP" ([#2325](https://github.com/exceedone/exment/pull/2325)); the site's API keys page (/api_keys) has its own heading ([#2346](https://github.com/exceedone/exment/pull/2346))
+    - CI: PHP 8.4 lint, and tests when the composer, phpstan or phpunit settings change ([#2344](https://github.com/exceedone/exment/pull/2344), [#2351](https://github.com/exceedone/exment/pull/2351))
+
 ## v7.2.8 (2026/11/28)
 - How to update: the usual update (`composer update` and `php artisan exment:update`). See [here](/update)
 1. Bug fixes
