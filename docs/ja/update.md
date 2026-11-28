@@ -27,7 +27,7 @@ Exment を新しい版にする手順です。
 
 | 今の版 | すること |
 |---|---|
-| **v7.x**（v7 の中で新しくする） | 下の「[ふつうのアップデート](/ja/update?id=ふつうのアップデート)」で上がります |
+| **v7.x**（v7 の中で新しくする） | 下の「[ふつうのアップデート](/ja/update?id=ふつうのアップデート)」で上がります。<span class="red bold">ただし、v7.2.x から v7.3.0 以上は「[v7.3 へのアップデート](/ja/update/v7_3_0)」</span>（`composer update` だけでは v7.2 のままです） |
 | **v6.x 以下** | 先に、下の「[古い版から上げるとき](/ja/update?id=古い版から上げるとき)」の手順が必要です |
 
 - v7.0.x から v7.1.0 以上に上げると、<span class="red bold">画面のデザインが「モダン」に変わります。</span>前の見た目に戻すには、「システム設定」の[画面のデザイン](/ja/system_setting?id=画面のデザイン)で「クラシック」を選んでください。
@@ -130,6 +130,7 @@ php artisan exment:update
 | v4.4.x 以下 → v5.0.0 以上 | [v5.0 へのアップデート](/ja/update/v5_0_php8) |
 | v5.0.x 以下 → v6.0.0 以上 | [v6.0 へのアップデート](/ja/update/v6_0_php8) |
 | <span class="red bold">v6.x 以下 → v7.0.0 以上</span> | <span class="red bold">[v7.0 へのアップデート](/ja/update/v7_0_0)</span>（Laravel の版と、管理画面のライブラリの名前空間が変わります） |
+| <span class="red bold">v7.2.x 以下 → v7.3.0 以上</span> | <span class="red bold">[v7.3 へのアップデート](/ja/update/v7_3_0)</span>（管理画面のライブラリが 2.x になります。`composer update` だけでは v7.2 のままです） |
 
 - どの版がいつまで修正されるかは、[サポートの期間](/ja/support_policy)をご覧ください。
 

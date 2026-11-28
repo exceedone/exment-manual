@@ -27,7 +27,7 @@ Tùy theo phiên bản hiện tại và phiên bản muốn nâng lên.
 
 | Phiên bản hiện tại | Việc cần làm |
 |---|---|
-| **v7.x** (lên bản v7 mới hơn) | "[Cập nhật thông thường](/vi/update?id=Cập-nhật-thông-thường)" ở dưới |
+| **v7.x** (lên bản v7 mới hơn) | "[Cập nhật thông thường](/vi/update?id=Cập-nhật-thông-thường)" ở dưới. <span class="red bold">Nhưng từ v7.2.x lên v7.3.0 trở lên: xem [Cập nhật lên v7.3](/vi/update/v7_3_0)</span> (chỉ `composer update` thì vẫn ở v7.2) |
 | **v6.x trở xuống** | Trước tiên làm theo "[Nâng từ phiên bản cũ](/vi/update?id=Nâng-từ-phiên-bản-cũ)" ở dưới |
 
 - Khi nâng từ v7.0.x lên v7.1.0 trở lên, <span class="red bold">thiết kế màn hình sẽ chuyển thành "Modern".</span> Để quay lại giao diện cũ, hãy chọn "Classic" ở [Screen design](/vi/system_setting?id=screen-design-thiết-kế-màn-hình) trong thiết lập hệ thống.
@@ -130,6 +130,7 @@ Vui lòng xem trang của mọi mốc nằm giữa phiên bản hiện tại và
 | v4.4.x trở xuống → v5.0.0 trở lên | [Cập nhật lên v5.0](/update/v5_0_php8) |
 | v5.0.x trở xuống → v6.0.0 trở lên | [Cập nhật lên v6.0](/update/v6_0_php8) |
 | <span class="red bold">v6.x trở xuống → v7.0.0 trở lên</span> | <span class="red bold">[Cập nhật lên v7.0](/update/v7_0_0)</span> (phiên bản Laravel và namespace của thư viện màn hình quản trị thay đổi) |
+| <span class="red bold">v7.2.x trở xuống → v7.3.0 trở lên</span> | <span class="red bold">[Cập nhật lên v7.3](/vi/update/v7_3_0)</span> (thư viện màn hình quản trị lên 2.x: chỉ `composer update` thì vẫn ở v7.2) |
 
 - Mỗi phiên bản được sửa lỗi đến khi nào, vui lòng xem [thời hạn hỗ trợ](/vi/support_policy).
 

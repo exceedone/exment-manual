@@ -27,7 +27,7 @@
 
 | 现在的版本 | 要做的事 |
 |---|---|
-| **v7.x**（在 v7 之内升级） | 用下面的“[普通的更新](/zh/update?id=普通的更新)”升级 |
+| **v7.x**（在 v7 之内升级） | 用下面的“[普通的更新](/zh/update?id=普通的更新)”升级。<span class="red bold">但从 v7.2.x 升到 v7.3.0 以上，请参阅“[更新到 v7.3](/zh/update/v7_3_0)”</span>（仅靠 `composer update` 会停留在 v7.2） |
 | **v6.x 以下** | 需要先进行下面的“[从旧版本升级时](/zh/update?id=从旧版本升级时)”的步骤 |
 
 - 从 v7.0.x 升级到 v7.1.0 以上时，<span class="red bold">页面设计会变为“现代”。</span>要恢复以前的外观，请在“系统设置”的[页面设计](/zh/system_setting)中选择“经典”。
@@ -130,6 +130,7 @@ php artisan exment:update
 | v4.4.x 以下 → v5.0.0 以上 | [更新到 v5.0](/update/v5_0_php8)（英语） |
 | v5.0.x 以下 → v6.0.0 以上 | [更新到 v6.0](/update/v6_0_php8)（英语） |
 | <span class="red bold">v6.x 以下 → v7.0.0 以上</span> | <span class="red bold">[更新到 v7.0](/update/v7_0_0)（英语）</span>（Laravel 的版本和管理页面的库的命名空间会改变） |
+| <span class="red bold">v7.2.x 以下 → v7.3.0 以上</span> | <span class="red bold">[更新到 v7.3](/zh/update/v7_3_0)</span>（管理页面的库变为 2.x，仅靠 `composer update` 会停留在 v7.2） |
 
 - 哪个版本修正到什么时候，请看[支持期限](/zh/support_policy)。
 

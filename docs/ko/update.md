@@ -27,7 +27,7 @@ Exment를 새 버전으로 하는 절차입니다.
 
 | 지금의 버전 | 할 일 |
 |---|---|
-| **v7.x**(v7 안에서 새롭게 한다) | 아래의 "[일반 업데이트](/ko/update?id=일반-업데이트)"로 올라갑니다 |
+| **v7.x**(v7 안에서 새롭게 한다) | 아래의 "[일반 업데이트](/ko/update?id=일반-업데이트)"로 올라갑니다. <span class="red bold">단, v7.2.x에서 v7.3.0 이상은 "[v7.3으로 업데이트](/ko/update/v7_3_0)"</span>(`composer update`만으로는 v7.2 그대로입니다) |
 | **v6.x 이하** | 먼저 아래의 "[오래된 버전에서 올릴 때](/ko/update?id=오래된-버전에서-올릴-때)"의 절차가 필요합니다 |
 
 - v7.0.x에서 v7.1.0 이상으로 올리면 <span class="red bold">화면 디자인이 "모던"으로 바뀝니다.</span> 이전의 겉모습으로 되돌리려면 [시스템 설정](/ko/system_setting)의 "화면 디자인"에서 "클래식"을 고르십시오.
@@ -130,6 +130,7 @@ php artisan exment:update
 | v4.4.x 이하 → v5.0.0 이상 | [v5.0으로 업데이트](/update/v5_0_php8)(영어) |
 | v5.0.x 이하 → v6.0.0 이상 | [v6.0으로 업데이트](/update/v6_0_php8)(영어) |
 | <span class="red bold">v6.x 이하 → v7.0.0 이상</span> | <span class="red bold">[v7.0으로 업데이트](/update/v7_0_0)(영어)</span>(Laravel의 버전과 관리 화면 라이브러리의 네임스페이스가 바뀝니다) |
+| <span class="red bold">v7.2.x 이하 → v7.3.0 이상</span> | <span class="red bold">[v7.3으로 업데이트](/ko/update/v7_3_0)</span>(관리 화면 라이브러리가 2.x가 됩니다. `composer update`만으로는 v7.2 그대로입니다) |
 
 - 어느 버전이 언제까지 수정되는지는 [지원 기간](/ko/support_policy)을 보십시오.
 

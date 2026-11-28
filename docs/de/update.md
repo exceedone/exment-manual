@@ -27,7 +27,7 @@ Das hängt von der aktuellen Version und von der Zielversion ab.
 
 | Aktuelle Version | Was zu tun ist |
 |---|---|
-| **v7.x** (innerhalb von v7 auf eine neuere Version) | Die „[Normale Aktualisierung](/de/update?id=Normale-Aktualisierung)“ unten genügt |
+| **v7.x** (innerhalb von v7 auf eine neuere Version) | Die „[Normale Aktualisierung](/de/update?id=Normale-Aktualisierung)“ unten genügt. <span class="red bold">Aber v7.2.x → v7.3.0 oder höher: siehe [Aktualisierung auf v7.3](/de/update/v7_3_0)</span> (`composer update` allein bleibt auf v7.2) |
 | **v6.x oder niedriger** | Zuerst sind die Schritte unter „[Aktualisierung von einer alten Version](/de/update?id=Aktualisierung-von-einer-alten-Version)“ unten nötig |
 
 - Bei einer Aktualisierung von v7.0.x auf v7.1.0 oder höher <span class="red bold">wechselt das Bildschirmdesign auf „Modern“.</span> Um zum früheren Aussehen zurückzukehren, wählen Sie in den „Systemeinstellungen“ unter Bildschirmdesign „Klassisch“ ([Systemeinstellungen](/de/system_setting)).
@@ -130,6 +130,7 @@ Bitte lesen Sie die Seiten aller Versionswechsel, die zwischen Ihrer aktuellen V
 | v4.4.x oder niedriger → v5.0.0 oder höher | [Aktualisierung auf v5.0](/update/v5_0_php8) (Englisch) |
 | v5.0.x oder niedriger → v6.0.0 oder höher | [Aktualisierung auf v6.0](/update/v6_0_php8) (Englisch) |
 | <span class="red bold">v6.x oder niedriger → v7.0.0 oder höher</span> | <span class="red bold">[Aktualisierung auf v7.0](/update/v7_0_0)</span> (Englisch) (die Laravel-Version und der Namensraum der Bibliothek für die Verwaltungsbildschirme ändern sich) |
+| <span class="red bold">v7.2.x oder niedriger → v7.3.0 oder höher</span> | <span class="red bold">[Aktualisierung auf v7.3](/de/update/v7_3_0)</span> (die Bibliothek der Verwaltungsbildschirme wird 2.x: `composer update` allein bleibt auf v7.2) |
 
 - Wie lange welche Version Korrekturen bekommt, steht unter [Supportzeitraum](/de/support_policy).
 
