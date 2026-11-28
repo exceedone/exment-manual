@@ -27,7 +27,7 @@ It depends on your current version and the version you want.
 
 | Current version | What to do |
 |---|---|
-| **v7.x** (a newer v7) | The "[usual update](/update?id=The-usual-update)" below |
+| **v7.x** (a newer v7) | The "[usual update](/update?id=The-usual-update)" below. <span class="red bold">But v7.2.x → v7.3.0 or higher: see [Update to v7.3](/update/v7_3_0)</span> (`composer update` alone stays on v7.2) |
 | **v6.x or lower** | First the steps in "[Updating from an old version](/update?id=Updating-from-an-old-version)" below |
 
 - From v7.0.x to v7.1.0 or higher, <span class="red bold">the screen design becomes "Modern".</span> To go back to the previous look, select "Classic" in the [Screen design](/system_setting?id=screen-design) of the system setting.
@@ -130,6 +130,7 @@ Please read the pages of every border between your current version and the newes
 | v4.4.x or lower → v5.0.0 or higher | [Update to v5.0](/update/v5_0_php8) |
 | v5.0.x or lower → v6.0.0 or higher | [Update to v6.0](/update/v6_0_php8) |
 | <span class="red bold">v6.x or lower → v7.0.0 or higher</span> | <span class="red bold">[Update to v7.0](/update/v7_0_0)</span> (the Laravel version and the namespace of the admin library change) |
+| <span class="red bold">v7.2.x or lower → v7.3.0 or higher</span> | <span class="red bold">[Update to v7.3](/update/v7_3_0)</span> (the library of the admin screens becomes 2.x: `composer update` alone stays on v7.2) |
 
 - For how long each version gets fixes, see the [support policy](/support_policy).
 

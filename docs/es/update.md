@@ -27,7 +27,7 @@ Depende de la versión actual y de la versión a la que quiere subir.
 
 | Versión actual | Qué hacer |
 |---|---|
-| **v7.x** (pasar a una más nueva dentro de v7) | Se sube con la «[Actualización normal](/es/update?id=Actualización-normal)» de más abajo |
+| **v7.x** (pasar a una más nueva dentro de v7) | Se sube con la «[Actualización normal](/es/update?id=Actualización-normal)» de más abajo. <span class="red bold">Pero de v7.2.x a v7.3.0 o superior: consulte [Actualización a v7.3](/es/update/v7_3_0)</span> (solo con `composer update` se queda en v7.2) |
 | **v6.x o inferior** | Antes hacen falta los pasos de «[Al subir desde una versión antigua](/es/update?id=Al-subir-desde-una-versión-antigua)», más abajo |
 
 - Al subir de v7.0.x a v7.1.0 o superior, <span class="red bold">el diseño de pantalla cambia a «Moderno».</span> Para volver al aspecto anterior, elija «Clásico» en el Diseño de pantalla de la [Configuración del sistema](/es/system_setting).
@@ -130,6 +130,7 @@ Compruebe todas las páginas de los cambios que hay entre su versión actual y l
 | v4.4.x o inferior → v5.0.0 o superior | [Actualización a v5.0](/update/v5_0_php8) (inglés) |
 | v5.0.x o inferior → v6.0.0 o superior | [Actualización a v6.0](/update/v6_0_php8) (inglés) |
 | <span class="red bold">v6.x o inferior → v7.0.0 o superior</span> | <span class="red bold">[Actualización a v7.0](/update/v7_0_0) (inglés)</span> (cambian la versión de Laravel y el espacio de nombres de la biblioteca de las pantallas de administración) |
+| <span class="red bold">v7.2.x o inferior → v7.3.0 o superior</span> | <span class="red bold">[Actualización a v7.3](/es/update/v7_3_0)</span> (la biblioteca de las pantallas de administración pasa a 2.x: solo con `composer update` se queda en v7.2) |
 
 - Para ver hasta cuándo se corrige cada versión, consulte [Periodo de soporte](/es/support_policy).
 
